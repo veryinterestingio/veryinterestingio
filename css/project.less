@@ -1,0 +1,180 @@
+@brand-green: #00aa00;
+
+@font-size-large: 20px;
+@font-size-normal: 16px;
+@font-size-small: 14px;
+@font-size-mini: 12px;
+
+
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	background: #fafafa;
+}
+
+a {
+	color: @brand-green;
+	text-decoration: none;
+
+	&:hover {
+		color: lighten(@brand-green, 10%);
+	}
+}
+
+
+.midview() {
+    width: 800px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.posts {
+	.midview();
+	margin-top: 50px;
+	margin-bottom: 50px;
+
+	.post {
+		@pad: 10px;
+
+		margin-bottom: 40px;
+		box-shadow: -0.5px 1px 1px rgba(0,0,0,0.25);
+		background: white;
+		list-style-type: none;
+
+		.overview {
+			padding: @pad;
+
+			h2 a {
+				font-size: @font-size-large;
+				line-height: 26px;
+				font-weight: normal;
+				cursor: pointer;
+				color: inherit;
+
+				&:hover {
+					color: @brand-green;
+				}
+			}
+			.source {
+				float: right;
+				font-size: 15px;
+			}
+			.comment-count {
+				float: right;
+
+				i {
+					margin-left: 3px;
+				}
+			}
+			.date, .comment-count {
+				display: inline-block;
+				margin-top: 1em;
+				font-size: @font-size-mini;
+			}
+		}
+		.question {
+			padding: 0 10px;
+			font-style: italic;
+		}
+		.author {
+			float: right;
+			margin-left: 20px;
+		}
+		.answers {
+			.answer {
+				padding: @pad*2 @pad;
+				list-style-type: none;
+
+				&:nth-child(even) {
+					background: #f8f8f8;
+				}
+				.author {
+				}
+				p {
+				}
+				.replies-controls {
+					margin-top: 0.5em;
+					font-size: @font-size-small;
+				}
+				.replies {
+					margin: 0.5em 0 0.5em 30px;
+					font-size: @font-size-small;
+					list-style-type: none;
+
+					.reply {
+						margin: 0.5em 0;
+					}
+				}
+			}
+		}
+		.more-less {
+			margin-top: 1em;
+			padding: 0 @pad @pad @pad;
+
+			.collapse {
+				float: right;
+			}
+		}
+		.less-answers.upper {
+		    margin-left: @pad;
+		}
+
+		// .post.open
+		&:not(.open) {
+			.question {
+				display: none;
+			}
+			.comment-section {
+				display: none;
+			}
+		}
+		&.open {
+		}
+
+		// .post.all-answers
+		&:not(.all-answers) {
+			.less-answers {
+				display: none;
+			}
+			.answer:not(:first-child) {
+				display: none;
+			}
+		}
+		&.all-answers {
+			.more-answers {
+				display: none;
+			}
+		}
+
+		// .answer.open
+		.answer:not(.open) {
+			.hide-replies {
+				display: none;
+			}
+			.replies {
+				display: none;
+			}
+		}
+		.answer.open {
+			.show-replies {
+				display: none;
+			}
+		}
+	}
+}
+
+
+
+@media (min-width: 800px) {
+	.post:not(.open) {
+		margin-left: 100px;
+		margin-right: 100px;
+	}
+}
