@@ -4,8 +4,24 @@
 
 
 $('form.subscribe').submit(function(e) {
-	// TODO
+	var fields = {
+		email: $(this).find('input[type=email]'),
+		button: $(this).find('input[type=submit]')
+	};
+	var emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
 	e.preventDefault();
+	var data = {
+		email: fields.email.val(),
+		utcOffset: - new Date().getTimezoneOffset()/60
+	}
+	if (!emailRegex.test(data.email)) {
+		fields.email.fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).focus();
+		return;
+	}
+	fields.button.attr('disabled', 'disabled');
+	$.post('//'+config.api.url+'/subscribe', data, function() {
+	});
 	return false;
 });
 
@@ -67,7 +83,7 @@ $(window).scroll(function() {
 
 		$(next).each(function(i, e) {
 			var handle = this;
-			$.get('/api/posts/'+handle+'.html', function(html) {
+			$.get('/parts/posts/'+handle+'.html', function(html) {
 				results[i] = html;
 				if (results.filter(function(e) {return e!==null}).length === n) {
 					for (var j=0; j<n; ++j) {

@@ -8,7 +8,7 @@ var post = {
 	expand: function($post) {
 		$post.addClass('open');
 		var handle = $post.attr('data-handle');
-		this._fetch('/api/answers/'+handle+'.html', $post.find('.answers-placeholder'))
+		this._fetch('/parts/answers/'+handle+'.html', $post.find('.answers-placeholder'))
 	},
 	collapse: function($post) {
 		$post.removeClass('open');
@@ -22,7 +22,7 @@ var post = {
 	showReplies: function($answer) {
 		$answer.addClass('open');
 		var handle = $answer.attr('data-handle');
-		this._fetch('/api/replies/'+handle+'.html', $answer.find('.replies-placeholder'))
+		this._fetch('/parts/replies/'+handle+'.html', $answer.find('.replies-placeholder'))
 	},
 	hideReplies: function($answer) {
 		$answer.removeClass('open');

@@ -1,0 +1,131 @@
+<div class="answers">
+	<div class="answer" data-handle="d1qw3px">
+		<a class="author" href="https://www.reddit.com/user/CobraCabana" target="_blank">CobraCabana</a>
+		<span class="qa" title="Answer">A:</span><p>The captcha is a 3rd part widget made by google that has a lot of logic behind it.  One of the main purposes of it, is that a crawler can't click it.  It has to be actually clicked for it to register, and the developer can see if the user has been authenticated when the submit button is clicked.<br><br>Because it's in an iFrame it makes it more difficult for bots (and web developers) to trigger the clicking of the div that contains the checkbox due to the <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy" target="_blank">same-origin policy</a> present in all major browsers.  This stops developers like me from having my submit button trigger the captcha.  My option is to check to see if the captcha has been verified yet, but I can't trigger an automatic captcha.  Which is a good thing, if I can do it, then so could a bot visiting my site.<br><br>Presumably, google could create a captcha that is just a button, and that could trigger a submit on the actual page.  But that would get confusing for the user.  Styling would be an issue. As well as the times when a more traditional captcha is required.<br><br>Look at the following captcha demo page.<br><br><a href="http://www.google.com/recaptcha/api2/demo" target="_blank">Captcha demo</a><br><br>Now, look at it in incognito mode, and verify that you are human.<br><br>You'll notice a different type of interaction that really doesn't lend itself to a button click.  This is also in addition to being accessible to people with visual disabilities.  Which is beyond the scope of a button with a single click action.</p>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d1quddk">
+		<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+		<span class="qa" title="Answer">A:</span><p>Actually a very good question! A lot of captchas are third-party widgets that provide the <del>entire</del> captcha* form through their API. <br><br>But still, technically it should be feasible to trigger the captcha form from your submit button with reasonable effort, depending on which API or code is in use.<br><br>Next time I’ll be doing a form with a captcha, I’ll give it a try. Every button or step less is almost always an improvement.<br></p>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1qxyxo">
+		<a class="author" href="https://www.reddit.com/user/skygrinder89" target="_blank">skygrinder89</a>
+		<span class="qa" title="Answer">A:</span><p>Most answers are completely wrong.<br><br>Most captchas that feature this layout, in particular ReCaptcha actually collect the metrics such as the mouse movement on the screen, time to reach checkbox, time to move from the checkbox post-click to the button, etc. They aggregate these metrics and build a statistical model allowing better prediction of whether a bot or a human have completed the operations.<br><br>Which is why you will often see with ReCaptcha, you click the checkbox and it pops-up a secondary verification (usually something like &quot;choose all images that contain a goat&quot;).</p>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1qugcg">
+		<a class="author" href="https://www.reddit.com/user/Madrugadao" target="_blank">Madrugadao</a>
+		<span class="qa" title="Answer">A:</span><p>I believe it is because Captcha functionality is generally a stand alone application that can be plugged into any form. It is easier to generically code it to only send the associated form when the condition is met than it would be to start replacing elements within the form.</p>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1qstbf">
+		<a class="author" href="https://www.reddit.com/user/sylario" target="_blank">sylario</a>
+		<span class="qa" title="Answer">A:</span><p>Usually, those button will submit an HTML Form. An HTML Form is a collection of input (text area, text fields, checkboxes ...) that the browser will send when you submit the form.<br>Detecting a form and sending the data of the form with a script is ridiculously easy. The captcha thingy is usually a javascript that will communicate by itself with the web server, telling him that he has been successfully activated for this user and that the form is ok to validate.<br><br>They do that because detecting and running a JS when you are using a bot is way harder than just detecting an HTML form and submit it with preestablish values.</p>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1rp4n6">
+		<a class="author" href="https://www.reddit.com/user/tabarra" target="_blank">tabarra</a>
+		<span class="qa" title="Answer">A:</span><p>Most of the answers here put the spot light at the iframe. But that's wrong because normal captchas can also be used in iframes.  <br>Google [creator of the no-captcha reCaptcha] realized that today's AI can resolve captcha's image BETTER THAN HUMANS, therefore, making it useless.  <br>They decided that using analytics, AI, ip/cookie checking and behavioral variables would be way more efficient than cryptic image captchas.  <br>Today, if they're not sure if you're a human, they will ask you to select images containing &quot;pancakes&quot; [or something] inside a 4x4 set of images. This is harder for bots than text image captchas.  <br>  <br>edit: realized that's not the question asked. Sorry for this.</p>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1r3u67">
+		<a class="author" href="https://www.reddit.com/user/Arancaytar" target="_blank">Arancaytar</a>
+		<span class="qa" title="Answer">A:</span><p>Since a single button is obviously recognizable to robots as the form element that must be pressed (otherwise we wouldn't need CAPTCHAs in the first place), I gather that you'd suggest multiple buttons, only one of which is the correct one, that are labeled in ways only humans can recognize the right one.<br><br>The answer is that this simply provides no additional benefit, and is probably less convenient for humans.<br><br>The buttons can't simply be labeled &quot;Submit&quot; and &quot;Cancel&quot; (because the robots can read that too). You can't make them different colors, because that kills your accessibility.<br><br>The only thing you can do is give the buttons longer labels in natural language (similarly to the statement &quot;I am a human&quot;). But then you're just left with the same function as the checkboxes - <em>and</em> you're using a form element for multiple functions (CAPTCHA and form submission) which surprises the user (a bad thing), <em>and</em> the big buttons with a lot of text look odd.<br><br>Edit: I neglected some tricks you might pull with cursor positions, telling users to click the left or right side, or double-clicking, etc. But it's clear that all of these would be impossible to do while keeping your site accessible.<br><br>Edit2: I just realized that your hypothetical form might already have two buttons, one for the CAPTCHA and one for the actual submission. In that scenario, you might be able to do away with the checkbox, but then you're hoping the robot isn't sophisticated enough to just press all the buttons in the form.</p>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1s38zm">
+		<a class="author" href="https://www.reddit.com/user/Solidify0118" target="_blank">Solidify0118</a>
+		<span class="qa" title="Answer">A:</span><p>I haven't see this posted yet but there was a Ted talk about it.   Captchas have more than one purpose; they tell if you are a computer,  and they decifer older books that were uploaded to the Web.   This gives them a dual purpose and makes everyone as a whole more efficient. </p>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1quwlt">
+		<a class="author" href="https://www.reddit.com/user/uselesstriviadude" target="_blank">uselesstriviadude</a>
+		<span class="qa" title="Answer">A:</span><p>also, why can't they make them easier if nothing else? Those picture ones like &quot;click on all pictures with a body of water&quot; are difficult when the picture is 1mm x 1mm big. Why not make it something like &quot;type the second letter of the alphabet&quot; BOOM, problem solved.</p>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1qxlp9">
+		<a class="author" href="https://www.reddit.com/user/amazondrone" target="_blank">amazondrone</a>
+		<span class="qa" title="Answer">A:</span><p>After reading the ideas already posted, my conclusion is that a few factors influence this:<br><br>- Integration: it's often third-party code, and it's easier to integrate a new checkbox than to tie the third-party code into your form's submit button<br><br>- Branding: the third-party code wants a presence on your website <br><br>- Fallback: the checkbox solution can't always be used and sometimes has to fallback to an image or text based captcha. Integrating the code into your form's submit button would make the fallback behaviour more complicated to implement.</p>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1qy29k">
+		<a class="author" href="https://www.reddit.com/user/hstarnaud" target="_blank">hstarnaud</a>
+		<span class="qa" title="Answer">A:</span><p>We developper here.<br><br>This is actualy the whole purpose of the captcha. The robots are searching for forms on a page and they want to fill the fields and click send. Adding a captcha is like adding a pre condition that works like another form inside the form element. Like saying this form is not valid until this little piece of javascript has been activated and validated. This is the part that is hard for a robot. To actually get the &quot;inner form&quot; working in order to validate the &quot;parent&quot; one. This allows for the parent form to be designed faster and more basic and the complex and secure logic to be standard everywhere and easily implemented in all the simple but useful forms.</p>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1qwssf">
+		<a class="author" href="https://www.reddit.com/user/eqleriq" target="_blank">eqleriq</a>
+		<span class="qa" title="Answer">A:</span><p>The reason is because the captcha box is served externally from your form. This provides an extra layer of security and so the form itself cannot be compromised.<br><br>If javascript/html was what was providing the captcha data, it would be trivially bypassed.<br><br>The real question is why not both? That level of detection would be breakable, sure, but it would be more secure most of the time.<br><br></p>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1r22f2">
+		<a class="author" href="https://www.reddit.com/user/justarandomgeek" target="_blank">justarandomgeek</a>
+		<span class="qa" title="Answer">A:</span><p>Because not all users are interacting with the page with fully functional eyes/hands and a &quot;normal&quot; web browser. Screen readers, voice input, and other accessibility technologies needs to work with it too, and that pretty much requires them to be separate, so that the captcha can sub out an accessibility-friendly version when needed.</p>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1rfsmn">
+		<a class="author" href="https://www.reddit.com/user/theraaj" target="_blank">theraaj</a>
+		<span class="qa" title="Answer">A:</span><p>The word guessing method is preferable. Not because it's more user friendly (it can be a pain in the ass), but because it is used to transcribe real material into digital media. Billions of words are transcribed each day, allowing us to safeguard material that could otherwise be lost. It drives me crazy, but at least I'm doing it for a good reason! </p>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1qwgxy">
+		<a class="author" href="https://www.reddit.com/user/lol_admins_are_dumb" target="_blank">lol_admins_are_dumb</a>
+		<span class="qa" title="Answer">A:</span><p>A lot of forms are not submitted via javascript, and they are just standard forms. Validating the captcha status requires an async call to a backend to determine if it's usable or not. By making it separate buttons, you can trigger this async call ahead of time that you would submit the form so that the response has already been collected and is ready to go by the time you submit, and then it's just a simple case of a hidden input field submitting data as normal -- no form submission logic required.<br><br>It would be possible for the captcha to happen on form submit, but then it would have to capture the real form submit, cancel it, do its own thing in the background, and then trigger a new submit when it's done. And there are just far too many ways that form submit events are used across the web to do this in a consistent reliable way that doesn't break anything else. This is my guess as the #1 reason why.<br><br>The people talking about iframe stuff -- you can use postMessage across domains, and the person who owns the widget on your page also owns the iframe so you can be sure they can do communication. It's more about the form submission than any security issues.</p>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1qufpw">
+		<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+		<span class="qa" title="Answer">A:</span><p>[deleted]</p>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1qyo54">
+		<a class="author" href="https://www.reddit.com/user/no1survivalist" target="_blank">no1survivalist</a>
+		<span class="qa" title="Answer">A:</span><p>I'm thinking of the check box one. Wouldn't that defeat the purpose? Sure you can have it in a submit box but the bot would just press submit, acting like a normal user. Unless the validation check on the capta returned false.. Hm</p>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1ruiwy">
+		<a class="author" href="https://www.reddit.com/user/StopTCPabuse" target="_blank">StopTCPabuse</a>
+		<span class="qa" title="Answer">A:</span><p>Web Bot Developer here, it makes it a bit harder for automated tools that used headless browsers to go about the automation process to validating the form. It utilizes past Google Analytic data built from your recent browsing session in order to determine whether or not your recent activity could be programmatically generated.</p>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1s5v7s">
+		<a class="author" href="https://www.reddit.com/user/spec1al_sn0wflake" target="_blank">spec1al_sn0wflake</a>
+		<span class="qa" title="Answer">A:</span><p>You mean clicking the button = I must be a human? Because all clicking the button does is submit the details in the form to a specific url. There is nothing stopping a bot from submitting details to said url pretending to be a human. Captcha was designed to stop this. Captcha uses technology that would be very difficult if not impossible for a machine (using current commonplace technology) to prove that you are human. Without the captcha, your site would be open to spamming from bots.</p>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1r5eiz">
+		<a class="author" href="https://www.reddit.com/user/Terny" target="_blank">Terny</a>
+		<span class="qa" title="Answer">A:</span><p>I write scripts that load test websites. Basically: buttons are easy to press. You can either find it in html or even find the x-y coordinates and tell the script to press it. The thing about reCAPTCHA is that it makes you have to do something else if the analytics think youre a script/bot, this is either a regular captcha or one of those pick trees, animals, food, whatever from a set of images. That is hard.</p>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1rs2kg">
+		<a class="author" href="https://www.reddit.com/user/lsrwLuke" target="_blank">lsrwLuke</a>
+		<span class="qa" title="Answer">A:</span><p>Every other answer seems to be completely off-topic for some reason, the actual reason is that when you're filling out a form- it will 99% of the time end with a &quot;submit&quot; button of some kind... therefore it is easy to program a bot to look for this.<br><br>Checkboxes make it that the bot has to do more work to figure out if there is a checkbox required for the form to be submitted, this is not in 99% of forms (though, due to the rising number of forms that used it, many bots countered easily- which is why Google started reCaptcha).</p>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1qwgz6">
+		<a class="author" href="https://www.reddit.com/user/thecraighammond" target="_blank">thecraighammond</a>
+		<span class="qa" title="Answer">A:</span><p>In the case of this type of captcha (and without looking into it) it may be using a technique to test for automatic validation. <br>Sometimes known as a honeypot (I believe) the form will have a number of fields that have different required/not required values and the validation actually runs against these. The 'robots' are caught out when the form knows that a field should be empty, but is filled in anyway as the robot will just fill all fields with data as an attempt to get though. <br>This wouldn't work with a single input (the button) as there is nothing to really check.</p>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1rja8v">
+		<a class="author" href="https://www.reddit.com/user/SavePae" target="_blank">SavePae</a>
+		<span class="qa" title="Answer">A:</span><p>I'm actually not sure what OP is asking here, but I have a feeling that most of the captcha tests are just used for image recognition purposes; for example, when you're shown a selection of pictures, and asked to identify which pictures are of an apple, then Google Photo (or whatever it's called) improves its capability to recognize apples.</p>		<div class="replies-placeholder"></div>
+	</div>
+</div>

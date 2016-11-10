@@ -1,0 +1,109 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/baru_monkey" target="_blank">baru_monkey</a>
+			<p>Yeah, but the question is, why can't the JS just be on the button instead of in a separate checkbox?</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/parlez-vous" target="_blank">parlez-vous</a>
+			<p>Because they're different actions. The submit button posts your data to a server. Google's captcha communicates with Google's servers. <br><br>But also It's also easier on the devs part. Instead of coding a whole new anti-robot captcha system that may take thousands of lines of code and hundreds of hours, they can instead just paste a little snippet of code that Google already made. <br></p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/raaneholmg" target="_blank">raaneholmg</a>
+			<p>But why not trigger the from submission as the final stage of the javascript then?</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/parlez-vous" target="_blank">parlez-vous</a>
+			<p>Because the way Google verifies if your a user varies from mouse movements (tracked on the DOM), Google cookie data and other factors. It's too complex to assign an &quot;onclick&quot; value to</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xyierz" target="_blank">xyierz</a>
+			<p>I dunno, I suspect the real reason is that it tracks your mouse movements as you click the button. Clicking a button like a human is hard to fake and it's an additional signal that the captcha detection can use.<br><br>Or it could just be branding. &quot;Look at us, we figured out how to do a captcha without making you decipher those difficult letters.&quot; Gives the Google brand a little boost.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Seriphix" target="_blank">Seriphix</a>
+			<p>Couldn't someone make a program to view the page, get the position of that check box and then automate a mouse click based on the position on the screen. At worst I think it'd be the same as if checking the box with a touch screen where no mouse movement is made. I think it's just meant to be another layer of security.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xyierz" target="_blank">xyierz</a>
+			<p>Yeah it's just another signal. I'm sure there's lots of stuff like that they merge together to form an overall score.<br><br>If you write a program to record mouse movements, the movements your program sends will be identical each time it submits. I'm sure that's something they check for.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CrateDane" target="_blank">CrateDane</a>
+			<p>&gt; <br>&gt; <br>&gt; <br>&gt; <br>&gt; If you write a program to record mouse movements, the movements your program sends will be identical each time it submits. I'm sure that's something they check for.<br><br>Just becomes an arms race then, doesn't it? Some guy in India will get paid to move a mouse several thousand times, each one being recorded for use in defeating CAPTCHAs.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/solepsis" target="_blank">solepsis</a>
+			<p>That's why they use this new version instead of the older text ones. Google's own system can defeat the text reCAPTCHA, so they came up with a newer version.</p>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xyierz" target="_blank">xyierz</a>
+			<p>Yep, no doubt. But if you've got some Google engineers working full time on it and are constantly evolving the algorithm, it's probably not difficult to make it so the cost of writing software to bypass the captcha exceeds the cost of just hiring some unskilled workers to submit the forms manually.</p>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hivemind_downvote" target="_blank">hivemind_downvote</a>
+			<p>It's always been an arms race.  The truth is, robots got better than people at figuring out slightly messed up letters a long time ago.  This just drops the charade and relies entirely on metrics instead of making the person/robot decipher text and then relying entirely on the metrics anyway.</p>		</li>
+					</ul>
+		</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/weirdasianfaces" target="_blank">weirdasianfaces</a>
+			<p>It uses browsing habits to determine whether or not you're a robot. If it can't determine with great certainty that you're not, you still have to solve a challenge.</p>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jmaj315" target="_blank">jmaj315</a>
+			<p>But i thought you only needed to get half of it right? The easily deciphered half + whatever worked for me in the past. The sloppy half didnt stop me if i was wrong</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xyierz" target="_blank">xyierz</a>
+			<p>We're talking about the newer captchas where you just have to click a check box.</p>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Darxide-" target="_blank">Darxide-</a>
+			<p>Or... You receive the 200 from the captcha result and trigger your submit off that</p>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/otakuman" target="_blank">otakuman</a>
+			<p>Captchas are monolithic, they can't be broken down to accomodate your page. It's like an embedded google map. You just paste a snippet of code, and the script loads the captcha and other scripts necessary for the<br> execution.<br><br>And because they're embedded, they need their own submit button, as they're separate forms.<br><br>Maybe you can build your own captcha, but why waste time with a custom, untested code when a tried-and-working solution already exists?<br><br>It's all about developers convenience.</p>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lol_admins_are_dumb" target="_blank">lol_admins_are_dumb</a>
+			<p>There is no consistent reliable way to &quot;submit a form&quot; across the web, due to all the various ways that people use it. What if they have their own validation baked in and it works by calling some function called dickButt() when the inputs are all validated, and dickButt will read the form data and submit it via AJAX. Google would have to <em>know</em> about how your form works, and that it eventually calls dickButt() to be able to finish the form submission process. It would have to call dickButt() manually. That or it would have to force-trigger a submit twice, which again depending on how people use their forms, may break things. And not everybody is even using a form with a submit button, this might be a 100% javascript widget which doesn't use forms at all. All these reasons are why the checkbox makes more sense.<br><br>Example normal form validation process:<br><br> <em> Submit button pressed<br> </em> Form submit event triggered<br> <em> Send email to backend validator to validate that it's unique<br> </em> Send rest of input to backend validator to validate the rest of the data<br> <em> Show a &quot;loading&quot; icon<br> </em> Serialize the form data and submit via AJAX<br><br>See how complex &quot;simple form submission&quot; can be? All of this happens asynchronously too, which means that google can't just say &quot;inject my step as the last step in the process&quot;. The only way would be for it to support your actual code and for there to be standardized hooks to inject into this process, which there are not.<br><br>So by far the more flexible and interopable approach is to just not screw with people's submit events at all and detach it entirely and leave it up to the dev to decide how they want to integrate.<br><br>Mouse movements really have nothing to do with it. What about mobile users, who don't have a mouse and in fact would appear <em>exactly</em> like a robot which goes from 0,0 to the exact position of the button and clicks it? Not to mention they could be validating hte mouse movement as soon as the page loads. I highly doubt the mouse movement is related, I also don't think it's for security, as I mentioned elsewhere on the page. It's also not due to it being an iframe -- you can communicate across domains into an iframe if you own code on both sides of the gate (which is the case here)<br><br>That said, I could see them offering a second option which is just a form submit button, and it only works on static forms and nothing else. If that were the case they could do it easily and without issue. But then that's just more work for google and how many non-nerds are actually complaining about having to check the box to merit the work?</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/not-enough-memory" target="_blank">not-enough-memory</a>
+			<p>Got it. It can only detect within the frame. <br><br>Also it seems the main indicator is more likely whether this particular user has sent data to google recently.. I.e. If Google knows my ip and browser fingerprint visited a ton of other Google related products in the past few days it knows I'm human. </p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lol_admins_are_dumb" target="_blank">lol_admins_are_dumb</a>
+			<p>&gt; Got it. It can only detect within the frame.<br><br><br>Well technically not. The code to inject a recaptcha includes a div, and a script tag. They use the script to inject the iframe into the div but they could also track mousemovement on the parent page and pass that info into the iframe via postMessage. I just don't think they care enough to do that, because...<br><br>&gt; Also it seems the main indicator is more likely whether this particular user has sent data to google recently.. I.e. If Google knows my ip and browser fingerprint visited a ton of other Google related products in the past few days it knows I'm human.<br><br><br>Totally agree with you here, I think this is the #1 thing they're checking for. The other stuff is just fallback.</p>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/not-enough-memory" target="_blank">not-enough-memory</a>
+			<p>Very good way of describing the variable nature of forms. <br><br>As for mouse movements on mobile, could they not track touch events? hmm would be super interesting to know what they collect!<br><br>Thanks!</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lol_admins_are_dumb" target="_blank">lol_admins_are_dumb</a>
+			<p>I'm suggesting that I don't think mouse movement really plays all that much into it. From my reading of the docs, it's more about your history that google tracks -- they already knew if you were a robot by the time you hit the page</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/not-enough-memory" target="_blank">not-enough-memory</a>
+			<p>Thanks for the response. Agreed brother!</p>		</li>
+					</ul>
+		</ul>
+		</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Purpledrank" target="_blank">Purpledrank</a>
+			<p>&gt; Because they're different actions.<br><br>Not really. The only difference between GET and POST is that POST allows an unlimited sized body, whereas GET has limits on the query string length (the server will response with a 414 error).<br><br>I see no reason to trigger it with a button click. Just track all the human interactions and send it via AJAX for verification.</p>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/a300600st" target="_blank">a300600st</a>
+			<p>It's not a question of if it's possible. Of course it's possible. It's a question of what makes the most sense for the developers. The makers of the captcha are providing a service to anyone who wants to use it. They don't know what every developer may want it for. It's possible that it might be used without ever submitting a form. To facilitate that, I imagine they designed it in the most flexible way they could and apparently that involved not tying it to a submit button.<br><br>Think of it like this. When you build a PC you buy each part customized to exactly what you want. Video card makers build their cards to fit into the PCI slot but they don't know exactly how your computer works. What you're asking is similar to &quot;Why do video cards have to be so big? Can't we just build them onto the motherboard?&quot; Sure. Of course we can. Laptops do this. But in doing so you lose the ability to pick whatever graphics card you want and swap one out later for an upgrade or repair. At the same time you gain a much smaller computer.<br><br>These types of decisions are all about trade-offs and my guess is that the builders of the captcha wanted to make their service as flexible as possible.</p>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shady_mcgee" target="_blank">shady_mcgee</a>
+			<p>That doesn't answer the question as to why the user still needs to check the box. Whatever script that's executed when the checkbox is clicked should be able to do a similar type of detection without the checkbox.  The question is why the physical check is required.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/monsieurpoirot" target="_blank">monsieurpoirot</a>
+			<p>Because this is exactly what Google is using to check if the site user is a human. It's how humans click a checkbox and, my best guess, how they react while waiting for confirmation that lets Google know if you are a human or not. Having the user click something instead of just hovering the mouse is probably not only part of the process, but also a better design decision.</p>		</li>
+					</ul>
+		</ul>
+	
