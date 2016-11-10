@@ -3,6 +3,15 @@
 
 
 
+$('form.subscribe').submit(function(e) {
+	// TODO
+	e.preventDefault();
+	return false;
+});
+
+
+
+
 $(document).on('click', '.post h2', function(e) {
 	var $post = $(this).closest('.post');
 	if (post.isExpanded($post)) {
