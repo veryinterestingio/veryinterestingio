@@ -34,6 +34,11 @@ a {
     margin-right: auto;
 }
 
+.box() {
+	box-shadow: -0.5px 1px 1px rgba(0,0,0,0.25);
+	background: white;
+}
+
 
 .posts {
 	.midview();
@@ -44,11 +49,10 @@ a {
 		@pad: 10px;
 
 		margin-bottom: 40px;
-		box-shadow: -0.5px 1px 1px rgba(0,0,0,0.25);
-		background: white;
 		list-style-type: none;
 
 		.overview {
+			.box();
 			padding: @pad;
 
 			h2 a {
@@ -79,9 +83,20 @@ a {
 				font-size: @font-size-mini;
 			}
 		}
+		.question .qa, .answer .qa {
+			font-family: serif;
+			font-size: 27px;
+			line-height: 26px;
+			margin-right: 4px;
+			color: #ccc;
+		}
 		.question {
-			padding: 0 10px;
-			font-style: italic;
+			.box();
+			padding: 0 10px 10px 10px;
+
+			p {
+				display: inline;
+			}
 		}
 		.author {
 			float: right;
@@ -89,15 +104,15 @@ a {
 		}
 		.answers {
 			.answer {
+				.box();
+				margin: 10px 0;
 				padding: @pad*2 @pad;
 				list-style-type: none;
 
-				&:nth-child(even) {
-					background: #f8f8f8;
-				}
 				.author {
 				}
 				p {
+					display: inline;
 				}
 				.replies-controls {
 					margin-top: 0.5em;
@@ -115,8 +130,7 @@ a {
 			}
 		}
 		.more-less {
-			margin-top: 1em;
-			padding: 0 @pad @pad @pad;
+			padding: 0 @pad;
 
 			.collapse {
 				float: right;
