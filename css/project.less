@@ -29,9 +29,13 @@ a {
 
 .midview() {
     width: 800px;
-    max-width: 100%;
+    max-width: 98%;
     margin-left: auto;
     margin-right: auto;
+
+	&.narrow {
+		width: 600px;
+	}
 }
 
 .box() {
@@ -40,8 +44,44 @@ a {
 }
 
 
-.posts {
+
+#header {
+	text-align: center;
+	background: #f0f0f0;
+	margin-bottom: 1em;
+	padding: 0.5em 0;
+
+	a {
+		font-size: @font-size-mini;
+
+		&:not(:last-child) {
+			margin-right: 15px;
+		}
+	}
+}
+
+
+
+#content {
 	.midview();
+
+	&.about {
+		h1 {
+			text-align: center;
+			margin: 1em 0 0.5em 0;
+		}
+		img {
+			display: block;
+			width: 150px;
+			margin: 20px auto 100px auto;
+		}
+	}
+}
+
+
+
+.posts {
+	visibility: hidden;  // To avoid flickering when the "NEW" label gets hidden this gets faded in later
 	margin-top: 50px;
 	margin-bottom: 50px;
 
@@ -68,20 +108,20 @@ a {
 			}
 			.source {
 				float: right;
-				font-size: 15px;
+				font-size: 12px;
+				margin-top: 8px;
 			}
-			.comment-count {
+			.is-new {
 				float: right;
-
-				i {
-					margin-left: 3px;
-				}
 			}
-			.date, .comment-count {
+			.date, .is-new {
 				display: inline-block;
 				margin-top: 1em;
 				font-size: @font-size-mini;
 			}
+		}
+		&.seen .is-new {
+			visibility: hidden;
 		}
 		.question .qa, .answer .qa {
 			font-family: serif;
@@ -108,6 +148,8 @@ a {
 				margin: 10px 0;
 				padding: @pad*2 @pad;
 				list-style-type: none;
+				max-width: 100%;
+				overflow-x: hidden;
 
 				.author {
 				}
@@ -182,6 +224,9 @@ a {
 			}
 		}
 	}
+}
+html.no-storage .post .is-new {
+	visibility: hidden;
 }
 
 

@@ -1,13 +1,52 @@
 'use strict'
 
 
+var storage = {
+	init: function() {
+		if (typeof(Storage) === 'undefined') {
+			$('html').addClass('no-storage');
+		}
+	},
+
+	setPostSeen: function(handle) {
+		if (typeof(Storage) === 'undefined') {
+			return
+		}
+		localStorage.setItem('seen-'+handle, '1');
+	},
+
+	isPostSeen: function(handle) {
+		if (typeof(Storage) === 'undefined') {
+			return
+		}
+		return localStorage.getItem('seen-'+handle) === '1';
+	}
+}
+storage.init();
+
+
+
+
 var post = {
+	init: function() {
+		$('.post').each((i, e) => {
+			this.checkSeen($(e));
+		});
+		$('.posts').css({visibility: 'visible'});
+	},
+	checkSeen: function($post) {
+		var handle = $post.attr('data-handle');
+		if (storage.isPostSeen(handle)) {
+			$post.addClass('seen');
+		}
+	},
 	isExpanded: function($post) {
 		return $post.hasClass('open');
 	},
 	expand: function($post) {
-		$post.addClass('open');
+		$post.addClass('open seen');
 		var handle = $post.attr('data-handle');
+		storage.setPostSeen(handle);
 		this._fetch('/parts/answers/'+handle+'.html', $post.find('.answers-placeholder'))
 	},
 	collapse: function($post) {
@@ -41,3 +80,4 @@ var post = {
 		}
 	}
 };
+post.init();

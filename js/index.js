@@ -5,6 +5,7 @@
 
 $('form.subscribe').submit(function(e) {
 	var fields = {
+		weekday: $(this).find('select[name=weekday]'),
 		email: $(this).find('input[type=email]'),
 		button: $(this).find('input[type=submit]')
 	};
@@ -13,6 +14,7 @@ $('form.subscribe').submit(function(e) {
 	e.preventDefault();
 	var data = {
 		email: fields.email.val(),
+		weekday: fields.weekday.val(),
 		utcOffset: - new Date().getTimezoneOffset()/60
 	}
 	if (!emailRegex.test(data.email)) {
@@ -20,7 +22,14 @@ $('form.subscribe').submit(function(e) {
 		return;
 	}
 	fields.button.attr('disabled', 'disabled');
-	$.post('//'+config.api.url+'/subscribe', data, function() {
+	$.post('//'+config.api.url+'/subscribe', data, function(data) {
+		if (data.status === 'inserted') {
+			alert('You successfully subscribed. Please confirm by clicking the link in the email we sent you.');
+		} else if (data.status === 'updated') {
+			alert('You successfully changed your subscription.');
+		}
+		fields.email.val('');
+		fields.button.attr('disabled', null);
 	});
 	return false;
 });
@@ -72,9 +81,9 @@ $(window).scroll(function() {
 	if ($(window).scrollTop()+$(window).height()+200 >= $(document).height() && !alreadyLoading) {
 		alreadyLoading = true;
 
-		var n = config.stream.catchup;
 		var crnt = $('.post').length;
-		var next = allPostsHandles.slice(crnt, crnt+n);
+		var next = allPostsHandles.slice(crnt, crnt+config.stream.catchup);
+		var n = next.length;
 		var results = Array(n).fill(null);
 
 		if (next.length === 0) {
@@ -87,7 +96,10 @@ $(window).scroll(function() {
 				results[i] = html;
 				if (results.filter(function(e) {return e!==null}).length === n) {
 					for (var j=0; j<n; ++j) {
-						$('.posts').append(results[j]);
+						var newPost = $(results[j]);
+						post.checkSeen(newPost);
+						console.log(newPost);
+						$('.posts').append(newPost);
 					}
 					alreadyLoading = false;
 				}
