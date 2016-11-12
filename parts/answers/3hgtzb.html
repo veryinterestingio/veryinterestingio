@@ -1,0 +1,43 @@
+<div class="answers">
+	<div class="answer" data-handle="cu7g0kw">
+		<a class="author" href="https://www.reddit.com/user/Phylonyus" target="_blank">Phylonyus</a>
+		<span class="qa" title="Answer">A:</span><p>Baidu has now ditched some of the speech recognition techniques mentioned in this thread. They instead rely on an Artificial Neural Network that they call Deep Speech (<a href="http://arxiv.org/abs/1412.5567" target="_blank">http://arxiv.org/abs/1412.5567</a>).<br><br>This is an overview of the processing:<br><br>1. Generate spectrogram of the speech (this gives the strength of different frequencies over time)<br><br>2. Give the spectrogram to the Deep Speech model<br><br>3. The Deep Speech model will read slices in time of the spectrogram<br><br>4. Information about that slice of time is transformed into some learned internal representation<br><br>5. That internal representation is passed into layers of the network that have a form of memory. (this is so Deep Speech can use previous, and later, sound segments to inform decisions)<br><br>6. This new internal representation is used by the final layers to predict the Letter that occured in that slice of time.<br><br>A little more simply:<br><br>1. Put spectrogram of speech into Deep Speech<br><br>2. Deep Speech gives probabilities of letters over that time.</p>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cu7cy6k">
+		<a class="author" href="https://www.reddit.com/user/foofdawg" target="_blank">foofdawg</a>
+		<span class="qa" title="Answer">A:</span><p>One of the reasons Google offered the free google voice system with voicemail text functionality was to test their voice to text reliability rate and find ways to improve it. At one point, part of the terms of agreement for using the service was that they would be able to anonymously compare the sound of the voicemail you received with the text translation of the voicemail they provided you. <br><br>They basically crowdsourced a ton of people leaving voicemail messages, used their speech to text software to create a transcript of the voicemail for the users via email, then checked the accuracy of the voicemail to the transcript to learn how to improve their accuracy. </p>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cu7ow7n">
+		<a class="author" href="https://www.reddit.com/user/GrinningPariah" target="_blank">GrinningPariah</a>
+		<span class="qa" title="Answer">A:</span><p>It's worth saying that this has been one of the hardest problems in Computer Science, and some of the industry's most powerful algorithms have been used to tackle it. First there was the Harpy System, then Hidden Markov Models, then Neural Networks. Looking at the thread, you've gotten a pretty good rundown of each. <br><br>The basics of them are the same, though. Looking a single syllable as data (think of an audio waveform, though it's not quite that simple), the AI has a notion of what that syllable might sound like, and can try to match it to that. However, lots of syllables sound similar, and people with different accents say the same syllable differently. <br><br>So, instead, this matching can generate a list of different possible syllable matches, along with a confidence level for each. This is put into a list of all the syllables in that breakdown of the sentence, and then that breakdown is put into a list of possible breakdowns, which also has confidence values. Now you've got a list of lists of lists, some of those having confidence values. This set will probably have millions of permutations, so now the game becomes intelligently figuring out what the most reasonable interpretation, and that's where other tricks like Hidden Markov Models come into play. <br><br>It's the two rules of making AIs: <br><br>1. In AI, searching is to be avoided.<br>2. All AI is searching. </p>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cu7ewju">
+		<a class="author" href="https://www.reddit.com/user/solidtwerks" target="_blank">solidtwerks</a>
+		<span class="qa" title="Answer">A:</span><p>To piggy back of this question... How far are we from having a AI similar to Google Now, Siri and Cortana that will help teach us a foreign language?  It would be awesome to have simple conversations with a AI and have them correct pronunciation.</p>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cu7nv88">
+		<a class="author" href="https://www.reddit.com/user/Nyrin" target="_blank">Nyrin</a>
+		<span class="qa" title="Answer">A:</span><p>A lot of people are focusing in really deeply on ASR techniques used (e.g. HMMs versus DNNs) but there's not a lot of layman-perusable overview.<br><br>When you speak, it produces a continuous stream of sounds, complete with background noise, recording artifacts, and every other defect imaginable.<br><br>Computers then use mathematical resources called acoustic models to make a best guess at the sequence of phonemes, or &quot;sound buckets,&quot; that this mess of real-world audio represents. These acoustic models are created via sophisticated machine learning algorithms that use thousands (or millions!) of hours of transcribed recordings to learn which patterns of frequency and intensity changes map to each &quot;bucket.&quot; They're generally language- and often region-specific, as the more variances you remove, the more tailored and accurate you can make the AM.<br><br>A runtime engine will then actively evaluate incoming audio against the acoustic model, often employing other digital signal processing resources that may be available, e.g. echo cancelation.<br><br>At this point, your recognition system has some guesses about what sequences of phonemes are most likely. These are often arranged in probability-weighted trees or lattices, as there can be a <em>lot</em> of decent guesses for any single audio source -- many ASR systems will have drastically overgenerated at this stage and will need to prune the majority of lower-probably guesses.<br><br>The phoneme data derived from acoustic models is then fed into what are called language models, which map phoneme chains into words and phrases. LMs can be as simple as a couple of words (you can make very good ASR systems for recognizing variants of &quot;yes&quot; and &quot;no&quot; along with numbers and a few key phrases; these more simplistic models have a pretty big market in the IVR systems you interact with when you call an automated support system) but are very large and sophisticated for large-vocabulary, &quot;open&quot; systems like Siri.<br><br>Much like AMs LMs are built using machine learning algorithms, this time using phonetically-annotated sample data from the target scenario, typically by evaluating the probabilities of one word following another in a given context (see the concept of an &quot;n-gram&quot; in computational linguistics). It's again typically language-dependent but can also be usage-specific -- e.g. medical transcription may use very different LMs from web search or text messaging.<br><br>So now you've gone from audio to phonemes to words and phrases. From there, systems may also leverage language understanding models to try to derive domains of intent; these can mutually inform both the final result of what the system thinks you said as well as what the system thinks it should do in response. The specifics get very product-specific at this point.</p>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

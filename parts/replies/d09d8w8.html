@@ -1,0 +1,28 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rmh86" target="_blank">rmh86</a>
+			<p>By far the best answer on here. Thanks so much!<br><br>What's a solution to prevent SQL injection? How would a developer know that anything after 'dorito' is no longer part of a username?</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/just_speculating" target="_blank">just_speculating</a>
+			<p>There are two ways to prevent SQL injection: the wrong way (which too many people advocate), and the right way.<br><br>The wrong way would be to perform input validation.  You can make a rule that usernames can't contain semicolons and then just show an error if the user enters one.  Then later you'll discover that if the user enters a FULLWIDTH SEMICOLON the same problem happens too, so you block that one too.  You hope that there won't be a third such character, but if one is found you block that too.  Slowly but surely you'll get more secure, but not really.<br>You can also make the rule that usernames can only contain letters, and that will work for this specific case, but less so as a general rule.  If you want to allow some characters but not others, handling the list of allowed characters gets crazy pretty quickly.<br><br>The right way to handle this is to realize that what you got from the user is &quot;a text string&quot;, which is not the same thing as &quot;a SQL statement&quot; (nor as &quot;a bit of HTML&quot;, nor &quot;a piece of javascript&quot;).  The moment you build a SQL statement out of text strings you have to be very careful.  If your language allows it, the safest way to do this is using binding or prepared statements.  You use &quot;?&quot; as a placeholder for where the value goes and specify the value separately, and the code does the right thing:<br><br>    query(&quot;Find ?;&quot;, $X)<br>If your language doesn't support binding, you have to manually translate the &quot;text string&quot; into a &quot;SQL string&quot; by adding quotes:<br><br>    query(&quot;Find 'giantdorito; Delete giantdorito';&quot;)<br>To do that, you have to replace characters that are special in a &quot;SQL string&quot; but not special in a &quot;text string&quot; with the not-special-in-a-SQL-string equivalent.  This is commonly referred to as &quot;escaping&quot;.<br><br>    query(&quot;Find '&quot; + replace( $X, &quot;'&quot;, &quot;\'&quot; ) + &quot;';&quot;)<br>    //creates:<br>    query(&quot;Find 'giantdorito; Delete giantdorito';&quot;)<br>    //and also:<br>    query(&quot;Find 'jeffrey o\'connell';&quot;)<br>The rules for qotes and escaping quotes depend on your choice of language, but should always be limited to a handful of characters and should always be the same (unlike lists of &quot;allowed characters&quot;).<br><br>SQL injection happens when user-entered &quot;text strings&quot; are treated as &quot;SQL strings&quot; without proper escaping.<br>Cross-site scripting (XSS) happens when user-entered &quot;text strings&quot; are treated as &quot;HTML strings&quot; without proper escaping.<br><br>Every time you switch from plain-text to not-plain-text you need to translate the text accordingly or you're gonna have a bad time.</p>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jwensley2" target="_blank">jwensley2</a>
+			<p>The easiest way is to use prepared statements.<br><a href="https://en.wikipedia.org/wiki/Prepared_statement" target="_blank">https://en.wikipedia.org/wiki/Prepared_statement</a></p>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/82Caff" target="_blank">82Caff</a>
+			<p><a href="https://xkcd.com/327/" target="_blank">Sanitization of Database Entries</a>.<br><br><a href="https://www.explainxkcd.com/wiki/index.php/Little_Bobby_Tables" target="_blank">Alternative source</a>.</p>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jamaica1" target="_blank">jamaica1</a>
+			<p>Damn that was awesome. What a great explanation</p>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SarpSTA" target="_blank">SarpSTA</a>
+			<p>Solid answer.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/My-Fake-Life" target="_blank">My-Fake-Life</a>
+			<p>Thanks!</p>		</li>
+					</ul>
+		</ul>
+	

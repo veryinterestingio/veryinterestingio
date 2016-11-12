@@ -1,0 +1,51 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/loljetfuel" target="_blank">loljetfuel</a>
+			<p>&gt; backdoors are not always intentionally coded into websites <br><br>You seem to be confusing &quot;vulnerability&quot; and &quot;backdoor&quot;; a backdoor is <em>by definition</em> a deliberately-created bypass of access control mechanisms. This could be something like <a href="https://cwe.mitre.org/data/definitions/798.html" target="_blank">CWE-798</a>, where a hard-coded credential is in place; or something like <a href="https://cwe.mitre.org/data/definitions/489.html" target="_blank">CWE-489</a>, where a backdoor was inserted for debug purposes but escaped to production.<br><br>There are <em>definitely</em> other ways to bypass access controls; from screwing up the implementation (category <a href="https://cwe.mitre.org/data/definitions/723.html" target="_blank">CWE-723</a>, e.g.), to things like SQLi and XSS that you mention. But those are <strong>not</strong> backdoors.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aris_ada" target="_blank">aris_ada</a>
+			<p>The intent is <em>essential</em> to differentiate a backdoor from a vulnerability. Sometimes it's obvious, sometimes it's disputed.</p>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MrjB0ty" target="_blank">MrjB0ty</a>
+			<p>If you look at the example.I've given that is a pretty solid description of a process by which an exe can be installed to bypass authentication. I'm not confusing terms here. That can be considered a backdoor in the malicious sense of the term.</p>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rmh86" target="_blank">rmh86</a>
+			<p>Hello - you seem knowledgable on this topic. What's a good source for me to read up on?<br><br>This stuff has always fascinated me but my understanding of it is pretty weak. Thanks. </p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/loljetfuel" target="_blank">loljetfuel</a>
+			<p>Most of learning about the technical side of security is learning deeply how particular technologies work -- a deep understanding of hardware and software architecture, common platforms (OS, things like Java and .NET and the C/C++ environments, networking, etc.) will help you understand the rules of play.<br><br>And that's really what technical security practice ultimately is: developing a sense for what the rules <em>really are</em>, not what <em>they claim to be</em>.  The best pen testers are basically rules lawyers with deep technical knowledge.<br><br>That said, a good overview of penetration testing isn't a terrible way to start thinking about the technical side of security, and <a href="https://www.nostarch.com/pentesting" target="_blank">Georgia Weidman's book</a> is a pretty decent place to get that.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rmh86" target="_blank">rmh86</a>
+			<p>Thanks for the recommendation - will add it to the list!</p>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MrjB0ty" target="_blank">MrjB0ty</a>
+			<p>Hi, if you look up anything on penetration testing for beginners that would be a good start. You could also look at how to use various security tools and pen testing OS distributions. <br>Don't try to run before you can walk though and I'm not encouraging you to do anything illegal! </p>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hackedhacker" target="_blank">hackedhacker</a>
+			<p>-&gt; Implies InfoSec  <br><br> -&gt; Talks about windows servers</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MrjB0ty" target="_blank">MrjB0ty</a>
+			<p>Infosec encompasses Windows servers. Remember the above is an example.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hackedhacker" target="_blank">hackedhacker</a>
+			<p>Just teasing you man. </p>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Deto" target="_blank">Deto</a>
+			<p>How do you test for SQL Injection vulnerabilities?  Do scripts just try to guess the name of underlying database tables and fields?</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MrjB0ty" target="_blank">MrjB0ty</a>
+			<p>You don't necessarily need to know the name of the db for sql injection to work. If you are targeting a specific db you could but the majority of scripts try random generic queries intended to run on any connected db, usually attempting to access tables with common names e.g. SELECT <em> FROM PASSWD or SELECT </em> FROM USERS  (very simple examples; the code that scanning tools run is often beyond my knowledge of SQL). However it is possible to dump a directory of databases at which point you could run targeted queries against them by changing the variables (table names, field names etc.)<br><br>EDIT: You test for any vulnerabilities by simply seeing if they exist. If it's a known vulnerability then there is always a written exploit out there somewhere. If unknown then congratulations you've discovered a zero-day vulnerability! </p>		</li>
+					</ul>
+		</ul>
+	

@@ -1,0 +1,167 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kingkiller_123" target="_blank">kingkiller_123</a>
+			<p>Thank you!  I've been thinking about this all day and I finally have a new math rabbit hole to go down</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mmmsoap" target="_blank">mmmsoap</a>
+			<p>From an algebraic perspective:<br><br>If T is the tens digit and N is the ones digit, then a number is 10T + N. The reverse is 10N + T. When you subtract you get:<br><br>(10T + N) - (10N + T) <br><br>= 10T + N - 10N - T <br><br>= 9T - 9N<br><br>= 9(T - N)<br><br>With 53 and 35, T=5 and N=3. 53-35 is 9(5-3)=18</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Balrog_of_Morgoth" target="_blank">Balrog_of_Morgoth</a>
+			<p>Keep in mind that this only proves the two-digit case. However, this argument is not difficult to generalize.<br><br>Edit: <a href="http://imgur.com/SvrbI7I" target="_blank">See this for the general argument</a>.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JPK314" target="_blank">JPK314</a>
+			<p>How would you do so?</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Balrog_of_Morgoth" target="_blank">Balrog_of_Morgoth</a>
+			<p>The idea is to write the number and it's reversal as sums, then show that the difference is equivalent to 0 modulo 9 (meaning it is divisible by 9). My reddit LaTeX skills aren't so great, so I am going the imgur route: <a href="http://imgur.com/SvrbI7I" target="_blank"><a href="http://imgur.com/SvrbI7I" target="_blank">http://imgur.com/SvrbI7I</a></a>.<br><br></p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pX_" target="_blank">pX_</a>
+			<p>Cool, that proof tells that if you mix up the digits any way you want (without changing any of them), the difference would be still divisible by 9.<br><br>Thanks</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Silent_Talker" target="_blank">Silent_Talker</a>
+			<p>Not just mixing them around, but also redistributing their values any way you like.<br><br>As in:<br>473 -&gt; 554 (by moving 1 from the 7 to 4 and another to 3)<br><br>Just as long as the sum of the digits is the same. (You can show that moving 1 from any digit to any other adds or subtracts a multiple of 9 from the number).<br><br>So even 19 -&gt; 1111111111 works. Or even 1030040002.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/_NW_" target="_blank">_NW_</a>
+			<p>The sum of the digits doesn't even have to be the same.  It just needs to have the same remainder when divided by 9.  The two numbers don't even need to be the same number of digits long.<br><br>For example:<br><br>M=5894503 (Some randomly typed digits) has a remainder of 7 when divided by 9  <br>N=7<br><br>M-N=5894496=9*654944<br><br>N can be any number with a remainder of 7 and you get the same results.  The difference will divide by 9.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Silent_Talker" target="_blank">Silent_Talker</a>
+			<p>Yes I see, adding or subtracting 9 from the digits is the same as adding or subtracting a multiple of 9.</p>		</li>
+					</ul>
+		</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Subito_morendo" target="_blank">Subito_morendo</a>
+			<p>I love that &quot;intuitively obvious&quot; part. It's nice to see my Discrete Structures class paid off! Is there a technical term for the way all the values candled out to zero? (Like telescoping or something?)</p>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tembul0" target="_blank">tembul0</a>
+			<p>Shouldn't you use the congruence mark with the mod 9?</p>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drostie" target="_blank">drostie</a>
+			<p>Use the same trick of spreading the proof out over addition. So for example if we have 5412, we look at<br><br>&gt; 5412 − 2145<br><br>and divide over sums as:<br><br>&gt; (5000 − 0005) + (0400 − 0040) + (0010 − 0100) + (0002 − 2000)<br><br>Pulling out each of these numbers (5,4,1,2 in this case) we have 10^m − 10^n in each case. <strong>Every</strong> such difference is divisible by 9, therefore the sum is divisible by 9, since 9A + 9B + 9C + 9D = 9(A + B + C + D) by the distributive rule.<br><br>This is not hard to see; 1000 − 10 = 990 for example. The formal argument looks like this: when you divide 10^m by 9 you must get remainder 1. Take the m=0 case first, 10^0 = 1 and it obviously has remainder 1. Now suppose that 10^(m−1) has remainder 1 and can therefore be written as  9X + 1; then 10^m must be 90X + 10 = 9(10 X + 1) + 1 = 9Y + 1, so remainders-after-division-by-9 are always preserved when we multiply-by-10.<br><br>Therefore when we divide by 9, we get (A + 1/9) − (B + 1/9) = A − B, which is a whole number.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JPK314" target="_blank">JPK314</a>
+			<p>Gotcha. That's interesting, thanks!</p>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mithra9009" target="_blank">Mithra9009</a>
+			<p>Can this be generalised even further to include the scenario of applying the modulus in a different base counting system?</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MathPolice" target="_blank">MathPolice</a>
+			<p>Yes. Using the modulus of (Base - 1).<br><br>There's even a common &quot;trick&quot; called the Chinese Remainder Theorem where you use several different moduli.<br><br></p>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lampishthing" target="_blank">lampishthing</a>
+			<p>How does the modulus behave when applied to a product? I notice the mod is dropped when you get the remainder of the 10 factor.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Balrog_of_Morgoth" target="_blank">Balrog_of_Morgoth</a>
+			<p>Suppose x = a (mod 9) and y = b (mod 9). Then x = 9n + a and y = 9m + b for some integers n and m. Hence, xy (mod 9) = (9n + a)(9m + b) (mod 9) = 81nm + 9am + 9bn + ab (mod 9) = ab (mod 9). In other words, the modulus respects products. <br><br>The proof for sums is simpler (check for yourself!). Combining these properties [and the fact that 10^i = 1 (mod 9)] justifies the step in which I  dropped the 10^i terms.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lampishthing" target="_blank">lampishthing</a>
+			<p>Ah, ok. But doesn't that mean you should have carried a mod 9 all the way to the part where the cancellation happens? The digits a_i can be 9 in which case the remainder is 0, not a_i. Or am I missing the point?</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Balrog_of_Morgoth" target="_blank">Balrog_of_Morgoth</a>
+			<p>Yes, I was pretty careless with carrying through the mod 9. I should have put it on the RHS of every line toward the end of the proof, and it should not have appeared on the LHS at all. I apologize for any confusion.</p>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Royce-" target="_blank">Royce-</a>
+			<p>&gt; Suppose x = a (mod 9) and y = b (mod 9). Then x = 9n + a and y = 9m + b for some integers n and m. <br><br>Did you mean that x (mod 9)  = a and y (mod 9) = b because looking at your second part, x = 9n + a and y = 9m + b, x and y seem to be the numbers you are using the modulo operation on to get the remainders a and y. <br><br>By the way, I really liked you proof, it was very neat and concise, thank you very much. </p>		</li>
+					</ul>
+		</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/erasmause" target="_blank">erasmause</a>
+			<p>You mean 9(5-3), right?</p>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MeiCaiKouRou" target="_blank">MeiCaiKouRou</a>
+			<p>Your answer is better than the long winded answer it's piggy-backing on. </p>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hexanon" target="_blank">Hexanon</a>
+			<p>I used to work in accounting a long time ago.  If you came up with a wrong total somewhere, a shorthand I was taught by an old hand was to divide the difference by 9. If there was no remainder, check to see if you transposed a number along the way (data entry error, etc.). Obviously not foolproof, but it was a handy thing to know.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/the_one_poneglyph" target="_blank">the_one_poneglyph</a>
+			<p>They call that technique <a href="https://en.wikipedia.org/wiki/Casting_out_nines" target="_blank">casting out nines</a>. I prefer a slightly more complicated technique called &quot;casting out elevens,&quot; which unlike casting out nines does catch transposition errors.</p>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Blitz421" target="_blank">Blitz421</a>
+			<p>I learned exactly this 10 years ago when I worked in the company accounting room.  I remember being amazed first time I was shown. Like it was some kind of savant street magic.  I still use this trick to this day to solve various life-number problems that crop up!  I've impressed a few people with it as a result.</p>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CunningAllusionment" target="_blank">CunningAllusionment</a>
+			<p>Just to make sure you don't come away thinking 9 is somehow special, consider that in any numbering system, the largest single digit number will always have this property.<br><br>For example, in base 3 (digits 0, 1, and 2) you can write 14 as 112 while 211 is what we'd call 22. 22-14=8 which would be written 22 which is divisible by 2, the largest single digit writable in base 2.</p>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dickballsdinosaur" target="_blank">Dickballsdinosaur</a>
+			<p>If we used based 9 instead of base 10 would 8 have the same property?</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fordiman" target="_blank">Fordiman</a>
+			<p>As mmmsoap wrote above:<br><br>&gt; If T is the tens digit and N is the ones digit, then a number is 10T + N. The reverse is 10N + T<br><br>If we cast 10 to a variable, B...<br><br>    (BT + N) - (BN + T)<br>    = BT + N - BN - T<br>    = (B - 1)T - (B - 1)N<br>    = (B - 1)(T - N)<br><br>So, yes.  For whatever base B you use, you'll get funny stuff happening with (B - 1).  So, you're right: essentially, the answer to OP's question is, &quot;it's a property of using base 10&quot;; use another base, and it'll happen with one less than that.</p>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/yesennes" target="_blank">yesennes</a>
+			<p>Yes. More generally, one less than the base should have the same property. </p>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/functor7" target="_blank">functor7</a>
+			<p>Yup. If you use base B, then any divisor of B-1 will have this property. For instance, all of this works for dividing by 3 as well.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Paracortex" target="_blank">Paracortex</a>
+			<p>Also, just as 1/9 = 0.111..., 2/9 = 0.222..., ..., 8/9 = 0.888...; so will, in base N: 1/(N-1) = 0.111..., 2/(N-1) = 0.222..., etc., for each numeral in the system as a denominator. <br><br>As a bonus, one can easily see by these sequences that, in fact, 9/9 = 0.999... = 1.  :)<br></p>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ErnstIB" target="_blank">ErnstIB</a>
+			<p>Nice explanation, but your first premise is that a number is divisible by 9 exactly when it's digits sum to a multiple of 9. Why does this hold?</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/functor7" target="_blank">functor7</a>
+			<p>The remainder of 10^(n) after dividing by 9 is always 1. Eg, 1000=999+1. So if we are to find the remainder of, say, 4*10^(2)+3*10+1 after dividing by 9, then since we know that the remainder of each 10^(n) is 1, we can replace each of these by 1. That is, the remainder is the same as the remainder of 4*1+3*1+1 = 4+3+1.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tenaciousgreen" target="_blank">Tenaciousgreen</a>
+			<p>Mind blown. I understand now why that rule works for 9 but no other number. Thank you for your very thorough explanations.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EpicScizor" target="_blank">EpicScizor</a>
+			<p>It actually works for any number N-1 using N as base, as demonstrated by /u/Fordiman and /u/functor7. That is, in base 9, the number 8 has this property, in base 2 the number 1 has it.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tenaciousgreen" target="_blank">Tenaciousgreen</a>
+			<p>Ok, thank you for that clarification!</p>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NewbornMuse" target="_blank">NewbornMuse</a>
+			<p>It actually does work for 3 also in base ten. If the digits sum up to a multiple of 3, the number is divisible by 3, if not, then not. It's kind of handy when you're like &quot;hm, I wonder if 45723 is prime...&quot;. Sum of digits is a multiple of 3, so the number is a multiple of 3, case closed.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dhelfr" target="_blank">dhelfr</a>
+			<p>Would it then work for any number that divides (n - 1) in base n. i.e. for 3 and 5 in hexadecimal? After an underwhelming number of examples, it seems to hold.</p>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NewbornMuse" target="_blank">NewbornMuse</a>
+			<p>I think /u/functor7's reasoning can be applied in this case. The reason it works for 9 in base 10 (every base is base 10, duh!), is that all the powers of the base can be written as a multiple of n-1 plus one. For any number m dividing n-1, you can then also write it as a multiple of m plus one.<br><br>In other terms: The reason it works for 9 is that 1000 = 9 <em> 111 + 1, 10000 = 9 </em> 1111 + 1, and so on. The reason it works for 3 is that 1000 = 3 <em> 333 + 1, 10000 = 3 </em> 3333 + 1, and so on, and those are true because the same thing works for 9.<br><br>Formally, you need that <code>n mod ab = 1 =&amp;gt; n mod a = 1</code> (or perhaps a more general variant of that), which seems intuitively true, but I don't have the background required to prove that.</p>		</li>
+					</ul>
+		</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/stepsword" target="_blank">stepsword</a>
+			<p>thank you genius explanation man</p>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
