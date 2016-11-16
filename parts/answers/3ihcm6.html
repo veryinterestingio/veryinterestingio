@@ -1,0 +1,49 @@
+<div class="answers">
+	<div class="answer" data-handle="cugfc1c">
+		<a class="author" href="https://www.reddit.com/user/bartekxx12" target="_blank">bartekxx12</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Basically when you hit the restart command, the computer never fully turns off.</p>
+<p>It shuts down all processes, cleans info about what's currently running etc. If you went for a shutdown, power would be cut off at this point but during a restart it simply starts loading up all the things it would if you hit the power on button after a shutdown. Power to the motherboard is kept on at all times during a restart.</p>
+<p>Edit:
+Slight correction: Even after a shutdown power is kept flowing to some components like the power button or other devices waiting for an ON signal or in some cases to USB ports so that you can charge your phone with the computer off. So power isn't fully cut off even during a shutdown like I previously stated.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cughe4m">
+		<a class="author" href="https://www.reddit.com/user/holobonit" target="_blank">holobonit</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It might be internal to the chip now, but cpu chips used to have a dedicated line called reset (or something like that). Reset zeroed all memory bits inside the cpu, then started the power up sequence. Normal power up via the power button would send a signal to the reset line.
+&quot;restart&quot; as a bios function attached a memory address to the reset line so that bios code could cause the power reset to the cpu.  </p>
+<p>There were many, many variations to this idea, so for non-OP persons with detailed info on specific cpus, plz be gentle.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cuguhx6">
+		<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[deleted]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cugryor">
+		<a class="author" href="https://www.reddit.com/user/fishsupreme" target="_blank">fishsupreme</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There's more than one kind of &quot;off.&quot;</p>
+<p>When you issue the shutdown command, or push the power button on the front of the PC (sometimes called &quot;ATX power&quot;), you tell the motherboard to shut off the CPU and memory, but portions of the motherboard it remain on -- so that it can get a power-on signal, or Wake on LAN, or supply power to always-on USB ports, or (in the case of laptops) charge batteries.  Those portions of the motherboard can be instructed to turn the PC back on again after the shutdown.</p>
+<p>If you turn off the power switch on the PSU (sometimes called &quot;AT power&quot;), it cuts power to the entire motherboard.  In that case, the system won't be coming back on until you turn that switch back on; Wake on LAN, etc. will not function.</p>
+<p>Note that &quot;restart&quot; is different from either shutdown state; the CPU actually has a &quot;reset&quot; function that clears all its internal registers and restarts it.  Power isn't cut at all; the CPU just behaves as if it had just been powered on.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cugy8t5">
+		<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Computers have a reset line (wire) which goes to many chips and initializes many parts of them to a known state which is needed for startup. When power is applied, this is used to initialize the CPU and other chips before executing the firmware/BIOS. A pulse on this same line can restart the computer without turning off power.</p>
+<p>The ability to turn off power is a totally different and newer capability. There is no need to turn off power to restart.</p>
+<p>If restarting causes a computer to actually power off and then power back on, that is under control of firmware running in a microcontroller. That's essentially a small low power CPU. It receives power even when the computer is off as long as it's plugged in and the switch on the back is on, and for laptops as long as the battery is installed. It can be running a program which says &quot;turn off computer, wait a few seconds and turn it back on&quot;.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

@@ -1,0 +1,70 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/scrotch" target="_blank">scrotch</a>
+			<div class="markdown"><p>In my first C programming class, many years ago, we had an assignment to roll two dice (pick two random numbers from 1 to 6) and graph their sums. On my Mac, every single pair returned an odd number. It took some sleuthing to figure out that the random number function returned alternating even/odd numbers. Every pair always had one even and one odd number. Another random number function returned better results.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Nicksaurus" target="_blank">Nicksaurus</a>
+			<div class="markdown"><p>Presumably that's based on the compiler you used? I'm surprised that any would use a PRNG that predictable.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/college_pastime" target="_blank">college_pastime</a>
+			<div class="markdown"><p>Some people use PRNGs that are quite stupid, usually out of laziness or ignorance about the API they are using. That being said, a basic PRNG with obvious flaws like always outputting an even/odd sequence can have their uses. It's a &quot;right tool for the job&quot; situation, because even the most advanced <a href="https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator" target="_blank">cryptographically secure</a> PRNGs (like Blum Blum Shub) have flaws.   </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheEllimist" target="_blank">TheEllimist</a>
+			<div class="markdown"><p>Wouldn't it be based on the library/random number function you used? I'm not very well versed in programming. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Modevs" target="_blank">Modevs</a>
+			<div class="markdown"><blockquote>
+<p>If you have ever played a multiplayer strategy game such as Starcraft, each computer is actually running the full simulation in lock-step. They all start with the same random 'seed' and thus generate the same results.</p>
+</blockquote>
+<p>Is there a source on this? I'd like to read more about it but I can't seem to find anything to elaborate on how the original SC AI works.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ElusiveGuy" target="_blank">ElusiveGuy</a>
+			<div class="markdown"><p>I don't know about SC, but that's how CS:GO did bullet spread. The server and client would both know the (player-specific?) seed for random bullet spread calculations, which enabled the client to predict the result without waiting for the round-trip to the server, enabling better responsiveness. You don't want to wait &gt;20ms to for each gunshot to complete!</p>
+<p>This was actually <a href="https://www.reddit.com/r/GlobalOffensive/comments/2p1o1i/bug_accuracy_desynced_after_12122014_update/" target="_blank">patched out</a> at the end of last year, and now the server keeps this seed secret - because some hacks were using it to compensate for the random spread. Now the client doesn't know the RNG state, and therefore cannot predict the spread that will be applied. A side effect is that what looks like a bullet hit on client-side might not necessarily be a hit on (authoritative) server-side, and vice versa.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Roquer" target="_blank">Roquer</a>
+			<div class="markdown"><p>It has less to do with the AI but more with how you can resume play if one player drops. It also means that a 45 minute replay of a match can be saved in a file smaller than one MB. It also allows cool features such as observers joining a game in progress,  or even the players going back to a certain point in time in the match, then replaying it from that point with unique results after that point.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/illvm" target="_blank">illvm</a>
+			<div class="markdown"><p>How does a PRNG seed allow the game to continue if one player drops, saving a 45 minutes of replay data in a &lt; 1MB file, or observers joining a game in progress (AFAIK this isn't possible in SC or SC2)? I can imagine how such a seed would allow two players to share the same map in a game which has procedurally generated worlds like Diablo, but I'm having a bit of a hard time understanding these examples.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kyz" target="_blank">kyz</a>
+			<div class="markdown"><p>Specifically Starcraft: I can't find any documentation on its network protocol either, just some traffic analyses <a href="http://web.cs.wpi.edu/~claypool/papers/net-game/" target="_blank">1</a> <a href="http://www.researchgate.net/publication/4179828_A_packet-level_traffic_model_of_Starcraft" target="_blank">2</a> (which are only concerned about the size, rate and flow of packets, not their contents)</p>
+<p>For a sourced example of a multiplayer strategy game where &quot;each computer is actually running the full simulation in lockstep&quot;, see <a href="http://www.gamasutra.com/view/feature/3094/1500_archers_on_a_288_network_.php?print=1" target="_blank">the <em>Age of Empires</em> 1 &amp; 2 multiplayer protocol design</a></p>
+<p>EDIT: You might also be interested in Yahn Bernier (of Valve Software)'s paper on <a href="https://developer.valvesoftware.com/wiki/Latency_Compensating_Methods_in_Client/Server_In-game_Protocol_Design_and_Optimization" target="_blank">lag compensation</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cocaine_enema" target="_blank">cocaine_enema</a>
+			<div class="markdown"><p>The randomness of the method used is good enough.  using current time [out to a resolutions of 1/1000 second] is good enough and seeds will not be repeated.</p>
+<blockquote>
+<p>They all start with the same random 'seed' and thus generate the same results.</p>
+</blockquote>
+<p>Really?  I've often practiced again multiple computers of the same level and they end up doing very different things (even if same race).  Keep in mind, the same random process in different settings (ie the bases aren't identical) won't produce the same results.  Also, I'd be surprised if starcraft computers used the same seeds</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/feodoric" target="_blank">feodoric</a>
+			<div class="markdown"><blockquote>
+<p>Really? I've often practiced again multiple computers of the same level and they end up doing very different things (even if same race). </p>
+</blockquote>
+<p>I don't think parent meant each computer opponent, rather each physical computer taking part in a match. If you and I are playing 2v1AI, both of our systems will be running the AI simulation. I'm not sure how much randomness there is outside of AI opponents, but anything like damage ranges would also be simulated in lockstep.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MirrorPuncher" target="_blank">MirrorPuncher</a>
+			<div class="markdown"><p>I'm having a hard time understanding this. If we are playing 2v1AI, one of us is the server and is 'running the AI simulation'. The other computer isn't the server, so his computer isn't calculating anything, just receiving data from the host. What does it have to do with this?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Altavious" target="_blank">Altavious</a>
+			<div class="markdown"><p>You are correct, see &quot;dead reckoning&quot; from DARPA for the original implementation.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Xelath" target="_blank">Xelath</a>
+			<div class="markdown"><p>The person you're responding to means when you play multiplayer. That's how all the &quot;randomness&quot; is the same for each person.</p></div>		</li>
+					</ul>
+		</ul>
+	

@@ -1,0 +1,129 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/applepiefly314" target="_blank">applepiefly314</a>
+			<div class="markdown"><p>It is correct that if we flip a coin 2n times, the chances that we get n heads and n tails is ( (2n)!/(n!)^2 )/2^(2n) . A useful trick that lets us get our hand calculators to be sufficient and let's us see some deeper behavior is <a href="https://en.wikipedia.org/wiki/Stirling%27s_approximation" target="_blank">Stirling's approximation</a>, which roughly tells you that a good approximation for n! is sqrt(2 <em> pi </em> n)*(n/e)^n. When you plug this approximation in for the factorials in this coin problem, it simplifies beautifully. </p>
+<p>What we get is that the probability of n heads and n tails after 2n flips is very well approximated by 1/sqrt(pi*n). </p>
+<p>In our case of n=500,000 , my desk calculator gives me:
+0.079788456%</p>
+<p>Compare this to the exact value given in your W|A link:
+0.079788436%</p>
+<p>That is a relative error of only 0.000025% ! As our values for n gets larger, the relative error of this approximation will tend to 0.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OldWolf2" target="_blank">OldWolf2</a>
+			<div class="markdown"><p>Here's another way to get the same result, using something I learned in high school.</p>
+<p>A binomial distribution of <code>n</code> trials and probability <code>p</code> can be approximated by a normal distribution with mean <code>np</code> and variance <code>np(1-p)</code>.</p>
+<p>The mode of a normal distribution is <code>1/sqrt(2.pi.variance)</code>, so that gives us <code>1/sqrt(pi.n/2)</code>, the same as your formula considering that your <code>n</code> is half the number of trials.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gash789" target="_blank">gash789</a>
+			<div class="markdown"><p>Not to be annoying, but because I learnt it recently: while the normal approximation is equivalent when calculating probabilities close to the peak (as we are here), it cannot be trusted far out in the tails of the distribution. By contrast the Sterling approximation does not suffer such loss a bad loss of precision out in the tails. If you want more I can only point you to Jaynes <em>Probability theory: the logic of science Pg 122 5.2.1</em></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hmm_dmm_hmm" target="_blank">hmm_dmm_hmm</a>
+			<div class="markdown"><p>Don't forget to compensate for smoothness - the continuity correction for the normal approximation to the binomial distribution.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fezvez" target="_blank">fezvez</a>
+			<div class="markdown"><p>A bit late to the party, but if someone stumbles here, the mode of a normal distribution is the same as the mean.</p>
+<p>What /u/OldWolf2 meant is that the p.d.f has a value of <code>1/sqrt(2.pi.variance)</code>, so to approximate the probability, you just integrate this value over an interval of size 1</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dmoore0988" target="_blank">dmoore0988</a>
+			<div class="markdown"><p>Could the same be applied to finding the probability of rolling a single 6-sided die 6 times and having each value come up as a result exactly once?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/reddallaboutit" target="_blank">reddallaboutit</a>
+			<div class="markdown"><p>The chance of rolling 1 then 2 then 3 then 4 then 5 then 6:</p>
+<p>(1/6)^6 = 1/46656.</p>
+<p>But we can roll these in any order.</p>
+<p>So there's 1|2|3|4|5|6, and 1|2|3|4|6|5, etc.</p>
+<p>The number of ways to rearrange 6 distinct digits is 6! = 720.</p>
+<p>So we end up with: 720/46656 = 0.01543209876...</p>
+<p>Really, though, we computed: n! / n^n for n = 6.</p>
+<p>Stirling's approximation says:</p>
+<p>n! / n^n ~ sqrt(2 * pi * n) / e^n</p>
+<p>Using a calculator, when n = 6, the right hand side is: 0.01521943982...</p>
+<p>So the two values are pretty close!</p>
+<p>(The former minus the latter is about 0.00021265893.)</p>
+<p>Stirling's approximation gets even better, by the way, as n increases.</p>
+<p>So the approximation would be better if your question were about a die with more than 6 sides.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KillerCodeMonky" target="_blank">KillerCodeMonky</a>
+			<div class="markdown"><p>I don't believe so. That method of working relies on the success of each trial being independent. However, for rolling reach number once, reach roll will have different success criteria based on the previous rolls. The events are no longer independent.</p>
+<p>However, this one is easy enough to do by hand.</p>
+<p>First roll: p=1. No matter what we roll, it's ok.</p>
+<p>Second roll: p=5/6. We can roll anything but the number from roll 1.</p>
+<p>Continue this out, you get (1 <em> 5/6 </em> 4/6 <em> 3/6 </em> 2/6 * 1/6) ~ 1.5432%</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CowsFromSpace" target="_blank">CowsFromSpace</a>
+			<div class="markdown"><p>Yes. It is useful for any number of results appearing in a set of results, as long as you know the probabilities of occurrences don't change. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[removed]</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[removed]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[removed]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[removed]</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Moore1994" target="_blank">Moore1994</a>
+			<div class="markdown"><p>Wow, that's super interesting. So I can flip a coin 1 million times and approx. 1 in 125 times I do so it will land on heads the same amount as it does tails.</p>
+<p>How about if I flip it 50 times, is it more likely to be 25:25 than 26:24?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rannasha" target="_blank">Rannasha</a>
+			<div class="markdown"><p>No, it's 1 in 1,250 times that it will land on heads as often as it does tails.</p>
+<p>When you flip it 50 times, the odds of getting exactly 25 heads are 11.2%. Getting 26 heads has a chance of 10.8%. The outcome of having the same amount of heads and tails will always be the most likely outcome (assuming a fair coin), but when the amount of trials is very large, even the most likely outcome can be very unlikely.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/foodfighter" target="_blank">foodfighter</a>
+			<div class="markdown"><blockquote>
+<p>The outcome of having the same amount of heads and tails will always be the most likely outcome (assuming a fair coin), but when the amount of trials is very large, even the most likely outcome can be very unlikely.</p>
+</blockquote>
+<p>Perfectly stated.  Upvote for you.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/WiglyWorm" target="_blank">WiglyWorm</a>
+			<div class="markdown"><p>It should be noted that this presumes an ideal coin flip.</p>
+<p>In fact, a flipped coin actually has odds of about 51%/49%, with a bias toward the side that was up at the beginning of the coin flip.</p>
+<p><a href="http://econ.ucsb.edu/~doug/240a/Coin%20Flip.htm" target="_blank">http://econ.ucsb.edu/~doug/240a/Coin%20Flip.htm</a></p>
+<p>Edit:</p>
+<p>Also<br />
+<a href="http://epubs.siam.org/doi/abs/10.1137/S0036144504446436" target="_blank">http://epubs.siam.org/doi/abs/10.1137/S0036144504446436</a>  <a href="http://statweb.stanford.edu/~susan/papers/headswithJ.pdf" target="_blank">http://statweb.stanford.edu/~susan/papers/headswithJ.pdf</a>  </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/somewhat_royal" target="_blank">somewhat_royal</a>
+			<div class="markdown"><p>Ok it's been a few years since I've done any of this stuff, but this seems to contradict what I learned in thermodynamics about probabilities with very large numbers, that the number of microstates for the most probable macrostate would explode to the point of certainty making things like equilibrium and atomic decay entirely predictable overall when in reality the individual processes are completely random... I know 50 and a million aren't exactly very large numbers but the probability of the most likely macrostate seems to be going in the wrong direction, 11.2% for 50 and 0.008% for a million, what am I too stupid to understand here?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ThePenisBetweenUs" target="_blank">ThePenisBetweenUs</a>
+			<div class="markdown"><p>May I ask if you're still in school?  I teach basic statistics in high school and intro statistics in college.  We go over exactly this.  It's called the &quot;binomial distribution&quot;.  Extremely useful.  If you're still at that point in your life, you can learn about this in HS and college!  Take the course!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dickcheese_casserole" target="_blank">dickcheese_casserole</a>
+			<div class="markdown"><p>Calculator results:</p>
+<p>binompdf (100,.5,50) = 8.0%</p>
+<p>binompdf (1000,.5,500) = 2.5%</p>
+<p>binompdf (10000,.5,5000) = 0.8%</p>
+<p>binompdf (100000,.5,50000) = 0.25%</p>
+<p>binompdf (1000000,.5,500000) = ERROR </p>
+<p>damnit.  I'm going to assume the answer is 0.08%.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ericGraves" target="_blank">ericGraves</a>
+			<div class="markdown"><p>I am a little late here, unfortunately. This question actually is one of the fundamentals of information theory.</p>
+<p>Basically you are asking the probability of a typical set. For any empirical distribution (in your example the empirical dist is [26/50,24/50] = [13/25,12/25]) and expected distribution ([1/2,1/2] in your example)
+P(empirical distribution) ~ 2^-n(D(P||Q)) P(expected distribution)
+where P is the distribution of the observed sequence, Q is the expected sequence, D is the relative entropy function (\sum p(x) \log_2 p(x)/q(x) ) and n is number of samples. </p>
+<p>In the case of an empirical distribution of [13/25,12/25] and expected distribution [1/2,1/2] the relative entropy is about .0012. So for n &gt; 10000, the probability of this empirical distribution occurring is about 2^-12 less than the expected distribution.</p>
+<p>In information theory typical sets can be used to show the direct part of things like the maximum amount of information which can go through a discrete memoryless channel, and also how to construct codes with unbreakable security over discrete memoryless channels.</p></div>		</li>
+					</ul>
+		</ul>
+	

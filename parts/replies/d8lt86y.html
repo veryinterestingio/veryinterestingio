@@ -1,0 +1,74 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cryptoengineer" target="_blank">cryptoengineer</a>
+			<div class="markdown"><p>64 bits of state isn't enough. A 64 bit key for RC5 was brute-forced back in 2002 (See distributed.net). 14 years of speed increases later, you want at least 128 bits of state, and 256 is better. [I helped set up and run the RSA Secret Key Challenges]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/geezorious" target="_blank">geezorious</a>
+			<div class="markdown"><p>No disagreement here.  I was speaking academically of how prngs work generally from 1970 - today, hence the range 2 ^64 to 2 ^256</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Lurker_Since_Forever" target="_blank">Lurker_Since_Forever</a>
+			<div class="markdown"><p>You seem like a reliable target for this question!</p>
+<p>So 256 bit encryption is the standard now, things like AES-256.  What does RSA-4096 key generation do?  Why does it need to be 16 times longer than other elements in the process?  That seems a bit overkill, since it's 2^3840 times harder to guess.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cryptoengineer" target="_blank">cryptoengineer</a>
+			<div class="markdown"><p>There are two kinds of encryption. 1: 'Symmetric' encryption, in which the key is the same to encrypt and decrypt data. AES is a symmetric cipher. Symmetric ciphers run very fast and are used to encrypt most of the data. BUT: How do you get that random 256 bit key to the recipient, when you've never met them face to face?</p>
+<p>The solution is to use 2: an 'asymmetric' cipher, where the key is created in two parts - one can encrypt the data, the other decrypt it. If you have only the encryption part, you can't decrypt data (this also known as a 'one way algorithm'). You can then send someone with whom you want to communicate privately the encryption part of your key pair. They create a random 256 bit AES key, encrypt it with your encryption key, and send it to you. You can decrypt it, and now both of have a secret key you can use with (fast) AES to exchange long messages.</p>
+<p>In the case of RSA, the private key involves knowing two 2048 bit prime numbers, and the public key is the 4096 product of those numbers. Its very easy to multiply two primes, but vastly harder to derive the prime factors if all you have is the product. IE, its 'one-way'. The asymmetric ciphers tend to be far far slower than the symmetric ones - perhaps by a factor of 1000. Thus they are only used to encrypt the small, 256 bit AES key. </p>
+<p>As you might imagine, this kind of magic math doesn't work with every number; they have to have a special form. To get the same level of difficulty to factor the RSA product (known as the 'modulus'), as to guess a symmetric key (which can be any of the 2^256 possible values), the modulus has to be a lot bigger than the AES key.</p>
+<p>I've somewhat simplified things here. There's a lot more that restricts the possible values of RSA keys, and thus makes searching for them easier, meaning they have to be bigger. For details, you might want to take a look at <a href="https://gpgtools.tenderapp.com/kb/how-to/introduction-to-cryptography" target="_blank">https://gpgtools.tenderapp.com/kb/how-to/introduction-to-cryptography</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sacundim" target="_blank">sacundim</a>
+			<div class="markdown"><blockquote>
+<p>So 256 bit encryption is the standard now, things like AES-256. What does RSA-4096 key generation do?</p>
+</blockquote>
+<p>Something completely different, so that the two numbers are not really comparable.  With current knowledge, the effort needed to break RSA-4096 is some constant factor of 2^140 or thereabouts—or as cryptographers say it, it has a &quot;140 bit security level&quot; (comparable effort to doing a brute force search over 2^140 values).  Why?  Because:</p>
+<ol>
+<li>Breaking AES requires (to best currently knowledge) searching nearly the whole of the key space;</li>
+<li>Breaking RSA requires factoring large integers, <a href="https://en.wikipedia.org/wiki/Integer_factorization#Difficulty_and_complexity" target="_blank">for which subexponential algorithms exist</a>.</li>
+</ol></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mahou" target="_blank">Mahou</a>
+			<div class="markdown"><blockquote>
+<p>Yes, in theory, if by random number generator you mean a pseudo-random number generator.</p>
+<p>All of these prngs keep some data in memory known as &quot;state&quot;. That state allows them to generate the next number and the state changes. None of the processes are random, they are deeply deterministic from the initial condition.</p>
+</blockquote>
+<p>And if you think newtonian physics means that all states of the universe depend upon the state before it and could happen no other way, the same is true for the real world. (A topic best for /r/philosophy, perhaps).</p>
+<p>The problem is with the observer, and not the generator of random numbers. When the <em>observer</em> has enough information, the numbers stop appearing random to him/her.</p>
+<p>Randomly generated numbers require an even distribution of the output over time and that the observer not be able to predict which number will come next with a success rate greater than random chance (no discernible pattern).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kogasapls" target="_blank">kogasapls</a>
+			<div class="markdown"><p>Not sure I understand your point here. Pseudo-random number generators are necessarily deterministic, random number generators are necessarily not deterministic, the real world is much less easy to classify. </p>
+<p>RNGs don't require an even distribution of numbers over time. They require that each number be equally likely, which implies that over time the numbers will tend to even out (but do not <em>have</em> to do so). </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dvrzero" target="_blank">dvrzero</a>
+			<div class="markdown"><p>The NIST tools rank RNG output lower if there's discrepancy in the distribution than if there wasn't. I vaguely recall assertions that if zero is, say 0.1%(or any arbitrary amount) more likely, the encryption/randomness is broken.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/spanktastic2120" target="_blank">spanktastic2120</a>
+			<div class="markdown"><p>The universe does not use Newtonian physics. Newtonian physics is insufficient to describe the <a href="https://en.wikipedia.org/wiki/Mercury_%28planet%29#Advance_of_perihelion" target="_blank">orbit of Mercury</a>, let alone the motion of all particles in the universe.
+Our best understanding of the universe so far involves quantum mechanics, which appears to have <a href="https://en.wikipedia.org/wiki/Hidden_variable_theory" target="_blank">non-deterministic properties</a>.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pandabush" target="_blank">pandabush</a>
+			<div class="markdown"><p>So it's a Markov process? It seems like the transition probabilities will be a function of these states of entropy. You should be able to deduce a Markov Random Field from simply observing the results and assuming some structure on the sources of entropy.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/geezorious" target="_blank">geezorious</a>
+			<div class="markdown"><p>It's not really a Markov process unless you use the degenerate case where the transition probability is 1.</p>
+<p>The state is usually something along the lines of a linear congruence generator (LCG), which is a memory-efficient way to iterate over a permutation.  While a permutation and a random sequence may appear similar, there are key differences: a random sequence may repeat one value and omit others.  e.g.  1 4 4 5 1 is a random sequence (5 C 5), whereas 2 3 4 1 5 is a permutation (5 P 5).  A permutation does not repeat until its cycle is complete.</p>
+<p>There are two variables in play, the hidden variable (state) that undergoes a permutation with an enormously large cycle length of 2 ^64 to 2 ^256, and then the prn it outputs which is a hash (reduction) of that state down to 32-bit.  This allows a permutation to appear like a random sequence because values may now repeat.  (Different 256-bit values may hash down to the same 32-bit value).</p>
+<p>Due to concerns that this state may be leaked, modern OSes mix multiple sources of entropy together, like sensor data (thermal, clock, gps, Intel's RdRand, etc.).  As long as at least one of the sources remains unhacked, the final result will appear random.  (This has to do with how XOR cannot reduce entropy.  If A and B are independent, entropy(A xor B) = max(entropy(A), entropy(B)).  So B can be hacked and have 0 entropy, but A xor B is unaffected.  Linus Torvalds tries to make this appeal during the concerns of Linux using Intel's RdRand and the collaboration of Intel and the NSA.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pandabush" target="_blank">pandabush</a>
+			<div class="markdown"><p>So if I understand the hash reduction correctly, we're basically applying a surjective (and non-bijective) map to the set of permutations so that the original data generating process looks random.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

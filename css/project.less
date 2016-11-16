@@ -27,6 +27,19 @@ a {
 }
 
 
+.markdown {
+	blockquote {
+		padding: 0 8px;
+		margin-left: 5px;
+		border-left: 2px solid #c5c1ad;
+		color: #555;
+	}
+	p, blockquote {
+		margin-bottom: 0.5em;
+	}
+}
+
+
 .midview() {
     width: 800px;
     max-width: 98%;
@@ -95,21 +108,36 @@ a {
 			.box();
 			padding: @pad;
 
-			h2 a {
-				font-size: @font-size-large;
-				line-height: 26px;
-				font-weight: normal;
-				cursor: pointer;
-				color: inherit;
+			h2 {
+				.tags {
+					display: inline-block;
+					background: #ddd;
+					color: #666;
+					border-radius: 1px;
+					padding: 7px 5px 5px 5px;
+					margin-right: 5px;
+					font-size: 14px;
+					line-height: 14px;
+					vertical-align: bottom;
+					font-weight: normal;
+				}
+				a {
+					font-size: @font-size-large;
+					line-height: 26px;
+					font-weight: normal;
+					cursor: pointer;
+					color: inherit;
 
-				&:hover {
-					color: @brand-green;
+					&:hover {
+						color: @brand-green;
+					}
 				}
 			}
 			.source {
 				float: right;
 				font-size: 12px;
 				margin-top: 8px;
+				margin-left: 5px;
 			}
 			.is-new {
 				float: right;
@@ -123,20 +151,20 @@ a {
 		&.seen .is-new {
 			visibility: hidden;
 		}
-		.question .qa, .answer .qa {
+		&:not(.seen) .overview {
+			box-shadow: -1px 2px 1px rgba(0, 0, 0, 0.25);
+		}
+		.qa {
+			float: left;
 			font-family: serif;
 			font-size: 27px;
-			line-height: 26px;
+			line-height: 14px;
 			margin-right: 4px;
 			color: #ccc;
 		}
 		.question {
 			.box();
 			padding: 0 10px 10px 10px;
-
-			p {
-				display: inline;
-			}
 		}
 		.author {
 			float: right;
@@ -152,9 +180,6 @@ a {
 				overflow-x: hidden;
 
 				.author {
-				}
-				p {
-					display: inline;
 				}
 				.replies-controls {
 					margin-top: 0.5em;

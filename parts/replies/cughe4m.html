@@ -1,0 +1,50 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/exosequitur" target="_blank">exosequitur</a>
+			<div class="markdown"><p>Basically,  when you pull the reset pin low on the CPU,  it resets all the registers,  pipeline states,  (and cache?) and starts executing instructions at #00 (used to be,  anyway,  not sure on IA64 architectures). This loads into the BIOS,  which hands execution over to the OS (or whatever program is set up in the boot sector of the selected boot device) </p>
+<p>You could actually run any assembly program,  instead of an OS if you wanted to. Like boot directly into Missile Command or something for a dedicated game console. (this is basically never done these days,  as almost everything is compiled to run on an OS,  not on &quot;bare metal&quot;) </p>
+<p>It would even be possible to code a decent arcade style game into the bios flash memory,  so that you could maybe hit f6 to boot into asteroids.... </p>
+<p>I figured you probably already know this,  but thought it might be interesting to others. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MEaster" target="_blank">MEaster</a>
+			<div class="markdown"><p>If anyone wants to know how Intel describes the initialization of one of their embedded Pentium processors, <a href="http://datasheets.chipdb.org/Intel/x86/Pentium/Embedded%20Pentium%AE%20Processor/INITCONF.PDF" target="_blank">This</a> PDF datasheet is what you want. It's a bit technical.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gringer" target="_blank">gringer</a>
+			<div class="markdown"><p>Many years ago, I decided to write a simple program to reset the computer. It was something like 2 bytes long, and called the appropriate reset function in the computer system. Unfortunately, I didn't know how to properly save files at that time using the debug command, so I accidentally wrote the program to the first bytes of the hard drive instead of a file inside a directory on the hard drive. Everything was going along fine until I shut the computer down. When the computer booted up, it seeked to the first byte of the hard drive, and ran whatever was there....</p>
+<p>It was times like those that reminded me to keep a recent backup of the data on the family computer.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cuulcars" target="_blank">cuulcars</a>
+			<div class="markdown"><p>Hmm. I wonder if anyone has tried writing a modern game in assembly to achieve maximum performance. Lol. The most sophisticated assembly game I've ever seen is roller coaster tycoon.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/newmewuser5" target="_blank">newmewuser5</a>
+			<div class="markdown"><p>The only reason to code in assembly is raw performance, however nowadays C++ compilers do a very nice optimization job. Doing it by hand would be a waste of time and since only experts would do a better job than the compiler it would be prohibitively expensive. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mvartan" target="_blank">mvartan</a>
+			<div class="markdown"><p>Assembly, and no operating system</p>
+<p><a href="https://www.raspberrypi.org/blog/pifox-bare-metal-arm-assembly-language-star-fox/" target="_blank">https://www.raspberrypi.org/blog/pifox-bare-metal-arm-assembly-language-star-fox/</a></p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chiliedogg" target="_blank">chiliedogg</a>
+			<div class="markdown"><p>So is that why frozen PCs button still reset with the reset button when the shutdown button won't work? It's essentially bypassing the frozen system, dumping the memory, and starting up BIOS?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VMX" target="_blank">VMX</a>
+			<div class="markdown"><p>In today's PCs, pressing the power button normally just sends the shutdown command to the OS. You can achieve the same effect by binding a key from your keyboard to the shutdown command in Windows.</p>
+<p>However, if you <strong>press and hold</strong> the power button for a few seconds, you should get the same shutdown effect as with the reset button.</p>
+<p>I don't know the technicalities behind it and I'm sure lots of people in this thread can actually explain you why... this is just my experience from building several PCs over the last 10-15 years + fixing my friends' machines :) Not related to my job or anything.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/holobonit" target="_blank">holobonit</a>
+			<div class="markdown"><p>The power button on PCs has evolved from being a on-off button to a surprisingly complicated bit of electronics integrated with motherboard.  What it used to control was the power <em>without going thru classical software logic</em>. That means when you hit the power button, you were doing electronically the same thing as yanking the cord from the wall. This leads to data corruption over time, and other technical nasties are possible, too.<br />
+The modern power button (I think) talks to the bios, but it is still has that feature of forcing the cpu to act, not because of software, but because of signals sent directly down the wires into the cpu.<br />
+(note to techies: I say it this way to emphasize the no-OS, no-software-can-touch-it aspect of the design.)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/darkshaddow42" target="_blank">darkshaddow42</a>
+			<div class="markdown"><p>Yep, I remember how windows 98 had a &quot;it's now safe to turn off your computer&quot; screen after completing shutdown processes. </p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

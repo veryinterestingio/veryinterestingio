@@ -1,0 +1,55 @@
+<div class="answers">
+	<div class="answer" data-handle="d9eaico">
+		<a class="author" href="https://www.reddit.com/user/functor7" target="_blank">functor7</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If we have a^(b)=b^(a), then taking logs and rearranging gives log(a)/a=log(b)/b. So if we look at the function f(x)=log(x)/x, then we'll want to find two different values x=a and x=b so that f(a)=f(b). If f(a)=f(b), then we can just work backwards to a^(b)=b^(a). </p>
+<p>So what does f(x) look like? Well, it's negative for 0&lt;x<1 and positive for all x>1. Furthermore, looking at it's derivative, you can find that it is increasing when 0&lt;x<e and decreasing when x>e. And, finally, the limit of f(x) at x=infinity is zero. So, f(x) is increasing whenever it is negative and this means that it never repeats a negative value, since it is only going up when it <em>is</em> negative, and once it's positive it's never negative again. So we can't have f(a)=f(b) when either a&lt;1 or b&lt;1. But, since it is increasing from x=1 to x=e, and f(1)=0, and it is decreasing from x=e onward, and f(x)-&gt;0 as x-&gt;infinity, it follows that for any 1&lt;a&lt;e, there is exactly one b&gt;e so that f(a)=f(b). So there are infinitely many solutions to this.</p>
+<p><a href="http://i.imgur.com/d4AGJsy.png" target="_blank">Here is a plot of how this works</a></p>
+<p>Note that 2 is the only integer between 1 and e, so a=2 and b=4 is the only nontrivial integer solution.</p>
+<p>We can actually parameterize all of our solutions. In particular, if r is any real number, then maybe we can find an 1&lt;a&lt;e so that b=a^(r) gives us a solution? Plugging b=a^(r) into log(a)/a=log(b)/b and rearranging things, gives a=r^(1/[r-1]) so we'll have b=r^(r/[r-1]). Since any 1&lt;a&lt;e can be written as  a=r^(1/[r-1]) for <em>some</em> real number r&gt;1, this means that every solution looks like this. So, pick  any r&gt;1 and</p>
+<ul>
+<li>
+<p>a=r^(1/[r-1]) </p>
+</li>
+<li>b=r^(r/[r-1])</li>
+</ul>
+<p>will be a solution to the equation a^(b)=b^(a).</p>
+<p>But what about rational solutions? If there's no guarantee that when x=a is rational that the corresponding x=b will also be rational. When does this happen? It turns out that it will happen infinitely often. In particular, if n is any positive integer, then</p>
+<ul>
+<li>
+<p>a = (1+1/n)^(n)</p>
+</li>
+<li>b = (1+1/n)^(n+1)</li>
+</ul>
+<p>will work. This works by making r an rational number so that 1/(1-r) and r/(1-r) are integers, and plugging it into our formula. In particular, picking r=1+1/n works. The first few rational solutions are</p>
+<ul>
+<li>
+<p>a=2, b=4,</p>
+</li>
+<li>
+<p>a=9/4, b=27/8</p>
+</li>
+<li>a=64/27, b=256/81</li>
+</ul>
+<p>To see why this form provides <em>all</em> the rational solutions requires some work, but it isn't too difficult, see <a href="http://www.math.uiuc.edu/~reznick/xyyx.pdf" target="_blank">this article</a> for details.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d9ewo58">
+		<a class="author" href="https://www.reddit.com/user/Noobwrite" target="_blank">Noobwrite</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's funny to see this question because incidentally I just stumbled across this video today that explores exactly this question, from integer solutions, to rational ones, to even complex ones. You should definitely check it out as it will probably explain everything you need to know concerning this question.</p>
+<p><a href="https://youtu.be/p-R0druZiTs" target="_blank">https://youtu.be/p-R0druZiTs</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d9ek3kn">
+		<a class="author" href="https://www.reddit.com/user/existentialpenguin" target="_blank">existentialpenguin</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If we <a href="https://www.desmos.com/calculator/yfpe9shyrw" target="_blank">plot</a> x^y = y^(x), we see that the graph has two pieces: a straight piece and a curved piece that intersect at the point (e,e).</p>
+<p>The straight piece is just y=x; this corresponds to the trivial solutions.</p>
+<p>The curved piece is given by y = -W(-log(x)/x) <em> x / log(x), where W is the principal branch of the <a href="https://en.wikipedia.org/wiki/Lambert_W_function" target="_blank">Lambert W function</a>.  W(x) is a <a href="https://en.wikipedia.org/wiki/Transcendental_number" target="_blank">transcendental</a> number whenever x is <a href="https://en.wikipedia.org/wiki/Algebraic_number" target="_blank">algebraic</a> and nonzero, but as /u/functor7 explains, this doesn't prevent -W(-log(x)/x) </em> x / log(x) from being algebraic or even rational for rational values of x.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>

@@ -1,0 +1,87 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/iamapizza" target="_blank">iamapizza</a>
+			<div class="markdown"><p>Just a correction here:</p>
+<blockquote>
+<p>If you went for a shutdown, power would be cut off at this point </p>
+</blockquote>
+<p>Power isn't cut off during a shutdown, the motherboard goes into the G2 (ACPI) state where it receives standby power.  Often, network adapters and BIOS/EFI are kept on (if you schedule turn-on times) and is also how the Wake-on-Lan feature works (magic packets).  Power is cut off when the PSU is switched off.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bartekxx12" target="_blank">bartekxx12</a>
+			<div class="markdown"><p>This is true, I didn't know how to add ACPI states without making the answer too complicated so I tried and will avoid mentioning that. But yes, basically even once &quot;off&quot; from a shutdown but with the power supply on &amp; plugged in, some electricity still flows so that presses of the power button or any other on signals can be detected. Some computers also allow you to charge your phone with the computer off so obviously in those cases some USB ports etc still have power supplied to them. But basically the &quot;compute&quot; parts of a computer are off at this point.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jedakiah" target="_blank">Jedakiah</a>
+			<div class="markdown"><p>Personally in AskScience I prefer correct answers over simple ones. But I appreciate the answer all the same.</p>
+<p>It's worth noting that a lot of computers have a &quot;power on when power is lost&quot; feature. In this scenario all power can be cut to the computer. When it's powered off correctly it stores this state in nonvolatile memory. Everytime the computer gets power it checks to see if the previous state was a proper shutdown. If it wasn't, it knows to turn on the instant it receives power.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Agent_staple" target="_blank">Agent_staple</a>
+			<div class="markdown"><p>Is it fine to leave the PSU on at all times or should I turn it fully off when I'm not using it?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/misddit" target="_blank">misddit</a>
+			<div class="markdown"><p>I remember a time where even after shutting down windows 95 you had to actually power down the CPU. Otherwise it would just stay on. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[removed]</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dancingbanana123" target="_blank">dancingbanana123</a>
+			<div class="markdown"><p>I heard that reserve power takes more power than leaving your computer on? Is this true or just a myth?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marklein" target="_blank">marklein</a>
+			<div class="markdown"><p>Figure out where you heard that from and NEVER LISTEN TO THAT PERSON AGAIN.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/WaxLightly" target="_blank">WaxLightly</a>
+			<div class="markdown"><p>That will depend on the quality of the ACPI implementation of your computer. ACPI is implemented as a combination of hardware and software and these, like all such, have bugs. Sometimes, they don't do what is intended. Sometimes the consequences are fatal (to the computer). It is entirely possible that there have been systems where the implementation was bad enough that more power was consumed in what should be a low power state than in a high power state. For example, I had a system that, when it went to sleep, ran the fan and CD drive continuously and kept its LED on. Not exactly the best way to conserve power.</p>
+<p>On a properly implemented system, the low power state will consume less power than the normal 'on' state.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/coupdespace" target="_blank">coupdespace</a>
+			<div class="markdown"><p>What series of events led to you believing this?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/queenkid1" target="_blank">queenkid1</a>
+			<div class="markdown"><p>Is there any scenario where it would make a difference between a restart and a shutdown?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bartekxx12" target="_blank">bartekxx12</a>
+			<div class="markdown"><p>Some new operating systems (Windows 8 &amp; newer for example) use &quot;Hybrid Boot / Fast Startup&quot;.</p>
+<p>In this case, when you click &quot;Shut down&quot;, most running processes are still cleared out but some core processes are saved to the hard drive in their current state so that they can be loaded quickly upon startup from one place - mostly already processed. This means that when you next turn on your computer the processes that were saved are much faster to load so your computer boots up faster.</p>
+<p>When restarting the assumption is that you want everything stopped and cleared in case there is a problem with the current data or in case updates might want to modify one of the &quot;core processes&quot;. Because of this on computers with Fast Startup, restarts can take a lot longer than shutting down and turning the computer back on as not everything has to be processes from scratch when simply starting up after a shutdown.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DarthPneumono" target="_blank">DarthPneumono</a>
+			<div class="markdown"><p>To add a Linux perspective, tools like kexec can be used to load a new kernel in-place without ever rebooting the machine. You get the same effect as a full reboot, everything is unloaded and reloaded, but it takes only a few seconds because the BIOS/EFI and bootloader don't have to load.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[removed]</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jmjf7" target="_blank">jmjf7</a>
+			<div class="markdown"><p>If you want to do a full restart in win8 type &quot;shutdown -r&quot; in the command prompt </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CrazyTillItHurts" target="_blank">CrazyTillItHurts</a>
+			<div class="markdown"><p>Once upon a time, back when dinosaurs roamed the earth, and Jesus played for the Mets, I had this nightmare of a modem/soundcard hybrid, an Mwave modem. It was a winmodem, meaning, it did most everything in software, rather than the hardware doing the work. There were only drivers for Windows, but Slackware Linux 3.3 came out and I really just wanted to use that. However, of course, there were no linux drivers for this monster.</p>
+<p>There was a glimmer of hope, however. One could load up Windows, which loaded up the modem/soundcard drivers, then you could just restart and boot into Linux, keeping the code in memory. From there, I could launch some binary called like mwaved, and I could use the device.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HighRelevancy" target="_blank">HighRelevancy</a>
+			<div class="markdown"><p>... that's almost psychopathic. You couldn't just capture that stuff in memory?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ShavedRegressor" target="_blank">ShavedRegressor</a>
+			<div class="markdown"><p>While programming some intensive graphics last year, I once ran into a graphics card bug that caused watermark-like visual leftovers on the screen that would survive a reboot, but did not survive after a power cycle with an unplug.</p>
+<p>^(No, these weren’t burn-in. I only deliberately displayed them for a moment.)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Krutonium" target="_blank">Krutonium</a>
+			<div class="markdown"><p>Care to Share?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/not_anonymouse" target="_blank">not_anonymouse</a>
+			<div class="markdown"><p>This is not entirely accurate. The power is still cut off and turned back on for the CPU and majority of the components by the PMIC (Power something IC) chip. Even when you turn off the PC using a shutdown command, the PMIC always stays on. That's why you are still able to turn on the PC when the switch on the front isn't really an electrical switch to cut off power to the motherboard. </p></div>		</li>
+					</ul>
+	

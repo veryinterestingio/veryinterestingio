@@ -1,0 +1,190 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PaulMorel" target="_blank">PaulMorel</a>
+			<div class="markdown"><p>I did a simulation as well.</p>
+<p>I simulated each test on grids of increasing size: 20x20, 40x40, 80x80, 160x160, and 320x320. I gave the seeker a vision of 10 units, and counted the number of loop iterations until the seeker found the other person. I only ran 100 trials for each grid size.</p>
+<p>Median iterations for one person standing still: 0, 547, 9215, 32892, 188207</p>
+<p>Median iterations for both people wandering randomly: 4, 380, 3208, 17359, 95125</p>
+<p>The std. deviation was also much larger when one person was standing still.</p>
+<p>This more or less confirms u/GemOfEvan's data.</p>
+<p>Great question, OP.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/creepyeyes" target="_blank">creepyeyes</a>
+			<div class="markdown"><p>It might also be more accurate to limit the random direction choices to not include moving backwards, as realistically neither party would spend 25% of their time backtracking.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PaulMorel" target="_blank">PaulMorel</a>
+			<div class="markdown"><p>Yep. There's lots of ways to model the idea of &quot;moving randomly&quot;. A more accurate simulation might have the seeker wander in a random direction, and only occasionally change direction. Adding obstacles would help too, except OP kind of ruled those out.</p>
+<p>I might do a better version tonight if I have a chance. It's an interesting question.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/br0ck" target="_blank">br0ck</a>
+			<div class="markdown"><p>Most amusement parks I've been to are basically a huge circle so if both people moved in the same direction, they'd potentially never meet unless one backtracked. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HumpRAWR" target="_blank">HumpRAWR</a>
+			<div class="markdown"><p>If I were looking for someone who I knew was just walking around the park, I would probably backtrack a lot, especially if I suspected their location based on prior info.</p>
+<p>A perfect example of this situation would be a band trip, where I knew my friends would be there and uninterested in finding me, but I might want to find them and talk about a certain ride or thing that happened. Should I stay where I'm at and wait for them to pass by, should I constantly move forward, or is there a level of backtracking that can improve my ability to find them?</p>
+<p>In one of the simulations, the searching party had a range. I wonder if &quot;staying in place&quot; by moving around within their range would help.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/spliznork" target="_blank">spliznork</a>
+			<div class="markdown"><p>I replicated something similar to your setup. But, I added a bit of a movement model.</p>
+<p>I tried to pick something reasonably simple that modeled each player wandering around with some intent, moving to a location they haven't been to in a while. The seeker because they're looking in a &quot;stale&quot; location for their friend. The tourist because they want to see something new.</p>
+<p>In this case, for a moving player (either seeker or tourist), they pick a destination and move with determination to it. The destination is randomly selected from the lowest 10% least recently seen grid squares. Players then move in nearly a straight line until they reach their target destination, at which point they pick a new random destination using the same strategy. Each tick, players move in one of four directions. If the destination requires movement in both x and y, the player randomly picks one of those two directions each turn. Each movement marks the vision radius (10) around the current grid square as recently seen.</p>
+<p>I ran 1000 trials for each grid size and seeker strategy (wanders or stands). The seeker finds the tourist if they're within 10 grid squares. The results:</p>
+<pre><code>   World   Seeker    2%ile   10%ile   25%ile   50%ile   75%ile   90%ile   98%ile
+-------- -------- -------- -------- -------- -------- -------- -------- --------
+   20x20   stands        0        0        0        0        5       14       32
+   20x20  wanders        0        0        0        0        3        7       18
+   40x40   stands        0        0        5       29       74      123      203
+   40x40  wanders        0        0        4       16       36       66      188
+   80x80   stands        0       16       71      192      396      605      911
+   80x80  wanders        0       11       36      104      222      404      766
+ 160x160   stands       17      117      342      891     1672     2395     3943
+ 160x160  wanders        7       64      172      464     1020     1834     3119
+ 320x320   stands       84      541     1516     3821     6919    10562    18815
+ 320x320  wanders       69      251      732     2024     4213     6908    12974</code></pre>
+<p>This agrees with previous results. On average (median) it's 2x faster for a seeker to wander than stand. In the 90th percentile, it's about 3x faster. In the 98th percentile, it's about 4x faster.</p>
+<p>This is maybe a little surprising for this movement model because you'd think even with the bit of randomness the tourist still might visit the whole map more quickly, thus finding a standing seeker sooner. Apparently not -- I'd suppose even in this case the randomness trumps the intent. (Or there's a bug in my simulation.)</p>
+<p><strong>Edit:</strong> Ah! It's worthwhile to consider how many moves it would take if one player stands and the other player takes an optimal route that covers the map.</p>
+<p>With this setup with a visibility radius of 10, an optimal route to cover the 320x320 world from an optimal starting point requires somewhere around 5100 steps, the median being half that at around 2500 steps.</p>
+<p>In this simulation, a wandering seeker found the tourist in a median of about 2000 steps. This means that <strong>it is on average better for the seeker to wander than stand still, even if the tourist happens to be optimally seeking the seeker.</strong></p>
+<p><strong>Edit:</strong> Fixed bias in marking a region viewed -- primarily affects the 75-, 90-, and 98%iles. Signficantly less bad for standing in the worst case (for a 320x320 world, 48433 steps became 18815 steps) -- slightly worse for standing in the worst case (for a 320x320 world, 10197 steps became 12974 steps). Updated the table.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Haynes24" target="_blank">Haynes24</a>
+			<div class="markdown"><p>Does it make any difference if the stander - i.e. you - stand in the optimal position? I.e. is there a big difference between standing in the middle or a corner?  </p>
+<p>Plus OP does mention field of vision. So are these models based on literally bumping into each other? In reality even in a busy park you can scan a certain amount and therefore not have to venture completely into the corners. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/grimymime" target="_blank">grimymime</a>
+			<div class="markdown"><p>What does this percentile mean in the simulation?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/whatchalookinat123" target="_blank">whatchalookinat123</a>
+			<div class="markdown"><p>hey, may i ask how you modeled this?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/greenlaser3" target="_blank">greenlaser3</a>
+			<div class="markdown"><p>There's actually a simple explanation for why they meet about twice as quickly for a large grid. Assuming an infinite grid, person A taking a random step is exactly equivalent to person B taking a random step while person A stands still. That's just a change in reference frame. Thus, person A and person B both taking a random step is equivalent to person B taking <em>two</em> random steps while person A stays still. So, when both people are moving, we would expect the average meeting time to be cut in half, since it's equivalent to making person B take twice as many steps per unit time.</p>
+<p>Of course, that only works if the people never run into the boundaries of the grid (i.e., the grid is effectively infinite). That's why your results don't quite match my prediction for the smaller grid, but they do seem to for the bigger grids.</p>
+<p>Edit: I should point out that I've tacitly assumed here that a person on an infinite grid would, on average, find their friend in a <em>finite</em> amount of time. I realize now that that may not be correct. To fix that, I would need to assume that there are boundaries, so that a person will find their friend eventually, but also assume that those boundaries are far enough away that my argument above is mostly valid.</p>
+<p>The point is, two people moving randomly at each time step can be viewed as one person making two independent random steps at each time step. Adding boundaries just makes the probability of moving in a given direction more complicated. So if a person is going to find their friend eventually, they'll find them faster if both people are moving. For large grids, they'll find them roughly twice as fast.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[removed]</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/B11111" target="_blank">B11111</a>
+			<div class="markdown"><p>That was my thinking as well, except the parameters of the person moving randomly would suggests that the double movements would tend to cancel each other out, thus cancelling the acceleration to a solution.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/q_-_p" target="_blank">q_-_p</a>
+			<div class="markdown"><blockquote>
+<p>On average (median) it's 2x faster for a seeker to wander than stand. In the 90th percentile, it's about 3x faster. In the 98th percentile, it's about 4x faster.</p>
+</blockquote>
+<p><strong>Thank you</strong> for being the only sane person on this thread that realizes that moves:time as 2:1 is twice as fast as 1:1.... it's insane that people are making big tables and saying &quot;oh my gosh it's twice as fast, and oh look at this normal curve&quot;.</p>
+<p>Amazing. Amazing. Amazing.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/1_--_1" target="_blank">1_--_1</a>
+			<div class="markdown"><p>This is a cool simulation, but I'm fairly certain the size of the grid will significantly affect the outcome, assuming the grid is small enough (and I think your grid is small enough that it will affect the outcome).</p>
+<p>The average time until collision is large enough that I'm willing to bet they both end up on the perimeter at some point in many of your simulations (avg = ~1000 steps, but they're only a max of 50 steps from the perimeter at any given moment), given reasonable variation in their movement. At that point, they're much more likely to remain on the perimeter than leave, and so they're much more likely to collide (once you're on the perimeter, but not on a corner, you're twice as likely to remain on the perimeter on any given move as compared to leave it; in the corner, it's even a 100% guarantee that you'll remain on it). I'd be curious what the results are like on a much larger grid - 1000x1000 will be closer to an 'infinite' plane than 100x100.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/N8CCRG" target="_blank">N8CCRG</a>
+			<div class="markdown"><p>This got me thinking, and it turns into a more interesting problem than I thought it would.</p>
+<p>Imagine a 4x4 grid. This consists of three different types of points: corners (4 of them) edges (8 of them) and middles (4 of them). So, initial state you have a 1/4 chance of being in a corner, 1/2 chance of being on an edge, 1/4 chance of being in the middle.</p>
+<p>If you're on a middle piece, you have even chance of moving in any direction: two of those directions put you back on a middle piece and two put you on an edge.</p>
+<p>If you're on an edge you have 1/3 chance of moving to a middle, 1/3 chance of moving to the other edge, and 1/3 chance of moving to a corner.</p>
+<p>If you're in a corner, you have a 100% chance of moving to an edge.</p>
+<p>So, the odds of your second position being a middle space are (1/4)x(1/2)+(1/2)x(1/3) +(1/4)x(0) = 7/24.</p>
+<p>The odds of your second position being an edge are (1/4)x(1/2)+(1/2)x(1/3)+(1/4)x(1) = 13/24</p>
+<p>The odds of your second position being a corner are (1/4)x(0)+(1/2)x(1/3)+(1/4)x(0)=1/6 or 4/24.</p>
+<p>In fact, I bet as we continue we could make a Markov chain of this. We can make it into a matrix and find the eigenvector for steady state. We'll actually get three eigenvectors, but two of them will have negative values which won't make sense. <del>Lo and behold... the eigenvector with equal probability of being in a corner/edge/middle gives us the eigenvector.</del></p>
+<p><del>This means that you <em>will</em> have an equal chance of being in a corner as on an edge as on a middle... but there are twice as many edges as middles and corners... so any particular edge piece is actually half as likely to contain a person as a non-edge piece.</del></p>
+<p><del>Edit: I tried it with a 5x5 and also found equal chance of being in an state type, but since the middle middle is unique and the EdgeNextToACorner has 8, then those will be the most and least likely places to find them (by a factor of 4 and 1/2 respectively)? Now I'm beginning to doubt my method.</del></p>
+<p><del>Edit2: I definitely see why it will always give me a solution of equal odds in every state... and makes me think the Eigenvector-&gt;Steady State assumption has a flaw.</del></p>
+<p><strong>Edit3</strong>: I wrote my matrix the wrong way. Transposed it and for the 4x4 case now I get a steady state solution of 1/3 middle, 1/2 edge and 1/6 corner, which actually puts any middle square as more likely than any edge (since there are twice as many edges), which is more likely than a corner.</p>
+<p>Edit4: 5x5 case yields results of 1/20 chance of being in the very middle square, 1/5 chance of being in an &quot;interior edge&quot; (there are four of them, so 1/20 each), 1/5 chance of being in an interior corner (there are four of them, so 1/20 also), 3/20 chance of being in an exterior middle edge (there are four of them, so 3/80), 3/10 chance of being in an exterior secondary edge (there are 8 of them so 3/80) and 1/10 chance of being in a corner (there are four of them so 1/40). Or, 4/80 to be in any specific interior square, 3/80 for an exterior edge square and 2/80 for a corner.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Orbitir" target="_blank">Orbitir</a>
+			<div class="markdown"><p>Hmm. I think you are on to something. Not sure about the eigenvector part but to some extent we must be able to model this using Markov Chains. I'm going to look into this to see if I can add anything but that is a job for Friday/weekend - Algebra exam tomorrow must take priority unfortunately! </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tinfoil_habberdasher" target="_blank">tinfoil_habberdasher</a>
+			<div class="markdown"><p>Not sure if this is what you meant, but one Markov chain representation would be to consider the state transitions &quot;from middle to middle&quot;, &quot;from middle to edge&quot;, &quot;from middle to corner&quot;, ..., &quot;from corner to edge&quot;, &quot;from corner to corner&quot;</p>
+<p>If what it is you intended to capture in a (first-order) Markov chain was the probability of transition from one state (M, E, or C) to another, your transition matrix would look like:</p>
+<p>[1/2, 1/2, 0</p>
+<p>1/3, 1/3, 1/3</p>
+<p>0, 1, 0]</p>
+<p>With Rows 1,2,3  defined as &quot;from M, E, C&quot;, and Cols 1,2,3 defined as &quot;to M, E, C&quot; respectively.</p>
+<p>... In the 4x4 case, I should clarify.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bwomp99" target="_blank">bwomp99</a>
+			<div class="markdown"><p>What kind of background do you have?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gabemart" target="_blank">gabemart</a>
+			<div class="markdown"><blockquote>
+<p>I'd be curious what the results are like on a much larger grid - 1000x1000 will be closer to an 'infinite' plane than 100x100.</p>
+</blockquote>
+<p>I made a javascript version so you can test for yourself: <a href="http://jsfiddle.net/7723nwnm/2/" target="_blank">http://jsfiddle.net/7723nwnm/2/</a></p>
+<p>edit: with multiple runs and averages: <a href="http://jsfiddle.net/7723nwnm/6/" target="_blank">http://jsfiddle.net/7723nwnm/6/</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mustangsal" target="_blank">mustangsal</a>
+			<div class="markdown"><p>So using your tool, a grid of 1001x1001, both wandering is faster, however, after increasing the grid to 2001x2001, It's actually faster for one party to stay still.  Even more so the larger the grid.
+<a href="http://i.imgur.com/BmUlS7x.png" target="_blank">Pic of data runs</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TiagoTiagoT" target="_blank">TiagoTiagoT</a>
+			<div class="markdown"><p>It would be nice to have an option to define how many runs to try on each size, and have the average of the runs included in the output.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gburgwardt" target="_blank">gburgwardt</a>
+			<div class="markdown"><p>Do you think diagonal motion being allowed would help too? I think that would help significantly with getting off of the perimeter, but I might be overlooking something.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/quatch" target="_blank">quatch</a>
+			<div class="markdown"><p>I tried this in my implementation, <a href="http://www.reddit.com/r/askscience/comments/35uljq/if_i_wanted_to_randomly_find_someone_in_an/cr89r0o" target="_blank">http://www.reddit.com/r/askscience/comments/35uljq/if_i_wanted_to_randomly_find_someone_in_an/cr89r0o</a></p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/atomfullerene" target="_blank">atomfullerene</a>
+			<div class="markdown"><p>I wonder...this assumes the searcher is searching randomly.  But how would a systematic search affect things?  A systematic searcher is <em>guaranteed</em> to find a stationary person within the time it takes to search all cells (in your example, perhaps walking to the nearest corner and then covering the space row-by-row).  But for a mobile target there's no guarantee of success.  </p>
+<p>Any chance you could see how a systematic searcher stacks up in both situations?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/quatch" target="_blank">quatch</a>
+			<div class="markdown"><p>I wrote a copy as well, and given that a systematic search of 100 squares would take 99 steps at most, and the mean of the both moving (which is better) was 134, compared to 228 (one static), I think systematic will come out ahead given the assumptions.</p>
+<p><a href="http://www.reddit.com/r/askscience/comments/35uljq/if_i_wanted_to_randomly_find_someone_in_an/cr89r0o" target="_blank">http://www.reddit.com/r/askscience/comments/35uljq/if_i_wanted_to_randomly_find_someone_in_an/cr89r0o</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jess_than_three" target="_blank">Jess_than_three</a>
+			<div class="markdown"><p>But the question remains, given systematic searching, is it better for one party to remain stationary than for both to search systematically? </p>
+<p>Also, isn't it awesome that we're finally at a point where we can math/sim this out - right as it's becoming less and less relevant due to the increasing likelihood of both parties having cell phones? ;) </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Bausse" target="_blank">Bausse</a>
+			<div class="markdown"><p>Can you ELI5 your flair? </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OBOSOB" target="_blank">OBOSOB</a>
+			<div class="markdown"><p>That isn't the question though, the situation proposed asks if it is better with a randomly wandering &quot;searchee&quot; will be found faster if the <em>searcher</em> remains still or moves around.</p>
+<p>Now the unstated case of whether it is better for the <em>searcher</em> to be systematic or random is a relevant test, but a stationary &quot;searchee&quot; is ruled out by the presented scenario.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/saysomething234" target="_blank">saysomething234</a>
+			<div class="markdown"><p>I don't know about systematic search patterns, but you're starting to touch on the idea of what's know as a Schelling Point.</p>
+<p><a href="http://en.wikipedia.org/wiki/Focal_point_%28game_theory%29" target="_blank">Wikipedia</a> gives a breakdown of how they work in theory, and there have been numerous trials that have shown that people do rely on Schelling points when they are unable to communicate. To put it into your question, the optimal search pattern may be one that A) focuses toward the most popular ride, B) focuses towards the talles landmark, or C) focuses on the entrance.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cxseven" target="_blank">cxseven</a>
+			<div class="markdown"><p>Yes, and in some topologies, like a line, it would be possible to guarantee finding the other person in a certain number of steps by sticking to a particular strategy. Also see this <a href="http://gurmeet.net/puzzles/fox-in-a-hole/" target="_blank">fox hole puzzle</a>.</p>
+<p>Even in a grid there would be useful strategies probably more nuanced than visiting every location one after the other, since a random walk does not result in an equal probability of being in each square. (See a 3x3 case <a href="http://stats.stackexchange.com/a/81735/77190" target="_blank">here</a>.)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mlmayo" target="_blank">mlmayo</a>
+			<div class="markdown"><blockquote>
+<p>A systematic searcher is guaranteed to find a stationary person within the time it takes to search all cells</p>
+</blockquote>
+<p>Just an aside, but a random walker in the plane (2 spatial dimensions) is also <em>guaranteed</em> to eventually find a stationary &quot;target&quot; (under certain conditions, like isotropy), because the fractal dimension =2.</p></div>		</li>
+					</ul>
+		</ul>
+	

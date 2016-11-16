@@ -1,0 +1,83 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rannasha" target="_blank">Rannasha</a>
+			<div class="markdown"><p>You could determine the value of pi experimentally. Take a small stick (or set of identical sticks) and draw parallel lines on a piece paper with a spacing equal to the length of the stick.</p>
+<p>Then repeatedly drop the stick from a decent height onto the paper and count the total number of drops and the number of times the stick lands in such a way that it crosses one of the lines. The ratio (#crosses / total #drops) will approach 2 / pi.</p>
+<p>This approach converges extremely slowly, so be prepared to spend a long time to get any reasonable approximation.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bstix" target="_blank">bstix</a>
+			<div class="markdown"><p>Here's a simulator: <a href="http://www.sciencefriday.com/articles/estimate-pi-by-dropping-sticks/" target="_blank">http://www.sciencefriday.com/articles/estimate-pi-by-dropping-sticks/</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rodbourn" target="_blank">Rodbourn</a>
+			<div class="markdown"><p>I like how we have a computer simulation of a method to find pi using nothing but a pen (which could be the stick) and paper.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/StarWarswasmeh" target="_blank">StarWarswasmeh</a>
+			<div class="markdown"><p>Okay, I call voodoo/black magic/sorcery! Should my mind be as blown as it is or is my boggled mind not justified? I mean I see the equation but WHY does this approximate pi? Incredible. Also shout out to Archimedes for calculating it in the first place. </p>
+<p>Edit: answered my own question: <a href="http://mathworld.wolfram.com/BuffonsNeedleProblem.html" target="_blank">http://mathworld.wolfram.com/BuffonsNeedleProblem.html</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rix0r" target="_blank">rix0r</a>
+			<div class="markdown"><p>Amazing that 10 sticks seem to be almost as good at approximating pi as 10,000 sticks.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/redditrambler" target="_blank">redditrambler</a>
+			<div class="markdown"><p>Could you explain why this is the case?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IndigoMontigo" target="_blank">IndigoMontigo</a>
+			<div class="markdown"><p>First of all, we need to assume that it doesn't matter if the stick is straight or curved.   A curved stick might not cross a line as often, but it will sometimes cross more than once, and it all equals out.</p>
+<p>Next, we need to assume that a stick that is twice as long will cross a line twice as often.</p>
+<p>Now, let's assume that we have a stick that's curved into a perfect circle, and its diameter is the distance between the lines.</p>
+<p>This circular stick will always cross a line twice.  Either it will cross the same line twice, or if it's perfectly centered between two lines, it will barely touch each line once.  Either way, it's twice.</p>
+<p>What is the length of this circular stick?  It's Pi*D, where D is the distance between the parallel lines.</p>
+<p>So, if a stick of length Pi*D always crosses the line 2 times, then a stick of length D should, on average, cross 2/Pi times.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thentherewerefour" target="_blank">thentherewerefour</a>
+			<div class="markdown"><p>FYI, I dropped over a million sticks in the simulation and I got an estimate that was accurate to 2 digits. So to put it mildly, this might not be a suitable algorithm for calculating the n'th digit of pi. </p>
+<p>still a fascinating fact though!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Overunderrated" target="_blank">Overunderrated</a>
+			<div class="markdown"><p>Probably not the fastest way to converge on a lot of digits, but <a href="http://arxiv.org/abs/1404.1499" target="_blank">my favorite method for manually calculating pi is by using an actual shotgun.</a></p>
+<blockquote>
+<p>We compute a Monte Carlo approximation of {\pi} using importance sampling with shots coming out of a Mossberg 500 pump-action shotgun as the proposal distribution. An approximated value of 3.131 is obtained, corresponding to a 0.33% error on the exact value of {\pi}. To our knowledge, this represents the first attempt at estimating {\pi} using such method, thus opening up new perspectives towards computing mathematical constants using everyday tools.</p>
+</blockquote>
+<p>Bonus points for the authors indicating this could be useful in the event of a zombie apocalypse.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/functor7" target="_blank">functor7</a>
+			<div class="markdown"><p>One of the easiest ways to approximate pi well is it's <a href="https://en.wikipedia.org/wiki/Continued_fraction" target="_blank">Continued Fraction Expansion</a>, given by <a href="https://oeis.org/A001203" target="_blank">OEIS A001203</a>. But then you have to be able to compute the numbers in the continued fraction expansion, so it kinda only shifts the problem.</p>
+<p>The simplest, from scratch way to do it is through the limit: pi=limit of Nsin(pi/N) as N goes to infinity. This is how Archimedes did it. To do this, just compute sin(pi/3) and then use the half-angle formula as much as you want to compute sin(pi/3x2^(k)) and so pi will be approximately 3x2^(k)sin(pi/3x2^(k)). Archimedes did this up to 96. If you can approximate square roots well by hand, then this is pretty fun because it's very clearly from basic principles about pi being the circumference of a circle of diameter 1. What you're doing is inscribing a regular polygon with N sides into such a circle, and you can use trig to show that each side has length sin(pi/N), so the total perimeter is Nsin(pi/N). The more sides you put in, the closer the regular polygon approximates a circle, so you get the limit. In fact, if you also draw a polygon that fits onto the outside of the circle, it's sides will have length tan(pi/N), so pi is also the limit of Ntan(pi/N). In general, Nsin(pi/N) &lt; pi &lt; Ntan(pi/N), with everything equal in the limit.</p>
+<p>But this can get a lot of nested roots pretty quick, which may or may not be attractive. If this fails, then you can compute <a href="https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80" target="_blank">Leibniz Formula</a> up to some term to get an approximation. But this is a fairly slow and boring way to do it.</p>
+<p>A very advanced and fast converging formula for pi is given by <a href="https://en.wikipedia.org/wiki/Ramanujan%E2%80%93Sato_series" target="_blank">Ramanujan</a>, it's what computers still use today (I think...) but can still be done by hand to get pretty good approximations. It's good because you'll get a lot of decimals very quickly, but it's just plugging and chugging into a formula, so not really that fun. Additionally, it's derivation is super complex, using Modular Forms and Ramanujan's God-Like intuition, so you'll just have to take it as a black-box.</p>
+<p>All of these can be done with pen-paper. If you want lots of terms really quickly, then Ramanujan is the way to go. If you want to compute it using first-principles and geometric reasoning, then using half-angle formulas and sin or tan is the way to go.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/krankie" target="_blank">krankie</a>
+			<div class="markdown"><p>I'm not a math guy but when I need to use pi in programming, a lot of times pi is something I have to create from scratch.  I used to approximate it as 22/7 or just write it out to a few decimal places as a constant, but then I learned that pi is 4 x arctangent(1).  Can 4 x arctangent(1) be expressed on paper?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rodbourn" target="_blank">Rodbourn</a>
+			<div class="markdown"><p>To add a little bit on why you might use 4*ATAN(1.0) in particular for PI, it's so that you know you have PI to the maximum precision available on any architecture.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Overunderrated" target="_blank">Overunderrated</a>
+			<div class="markdown"><blockquote>
+<p>Can 4 x arctangent(1) be expressed on paper?</p>
+</blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions#Infinite_series" target="_blank">Of course!</a> You can express <em>anything</em> as a series, but with some caveats on radius of convergence (singularities and such.)</p>
+<p>I also use 4* atan(1) to define pi in my codes.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AFTERWAKE" target="_blank">AFTERWAKE</a>
+			<div class="markdown"><p>Well arctan(1) == pi/4 or 45° or roughly 0.785 radians. When you multiply by 4, you get pi, 180°, or roughly 3.14.</p>
+<p>This is true because the tan(pi/4) == exactly 1. If you were to plot a tangent graph, you would see that that the x value of pi/4, the graph is at 1 on the y axis. Other than this, I see no way to express it on paper, but maybe someone with more experience than me can contribute to this.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dnap123" target="_blank">dnap123</a>
+			<div class="markdown"><p>Thanks for the great answer!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ZugNachPankow" target="_blank">ZugNachPankow</a>
+			<div class="markdown"><p>Last I checked, the last standard for computing pi was a formula from Fabrice Bellard (the same guy behind qemu and the JavaScript Linux simulator). </p></div>		</li>
+					</ul>
+		</ul>
+	
