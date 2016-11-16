@@ -1,0 +1,24 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheDragon99" target="_blank">TheDragon99</a>
+			<div class="markdown"><blockquote>
+<p>What about UNIX? Well they make a shadow copy of the file to which the file handle points so Step 2 would affect a different file than was opened in step 1. When the program goes to step 3 it is executing the OLD update.exe which is valid.</p>
+</blockquote>
+<p>How does this work? What is the &quot;shadow copy&quot; of the file? If I get a handle to a 200GB file, how can it possibly be making a &quot;copy&quot; in a trivial amount of time? I get access to the file handle immediately.</p>
+<p>Edit: Suddenly getting multiple replies so going to mention something here - A lot of you are stating things that are true, but they don't confirm the behavior I quoted. I can easily write a program A that opens a file by its path, and program B that opens a file by the same path. If program A writes, then program B reads, program B will be able to read what program A wrote.</p>
+<p>You all have made me feel so crazy that I <em>actually did this</em> to confirm.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nooneofnote" target="_blank">nooneofnote</a>
+			<div class="markdown"><p>It doesn't, there's no such functionality. <code>tail -f</code> would never work. Opening your disk's device file would clone your entire disk.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eythian" target="_blank">eythian</a>
+			<div class="markdown"><p>It's not a copy, it's just that the data on disk remains there almost invisible until the file handle pointing to it is closed, then it's released. In the meantime a new version of the file can be put down under the same name. </p>
+<p>You can test this: make a big file, find a program that will hold it open (not sure what that would be off the top of my head, cat it into something that blocks maybe), delete the file, and check your free space. Then kill your opening program and check the free space again. An amount the size of your file will now be free. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Detective_Fallacy" target="_blank">Detective_Fallacy</a>
+			<div class="markdown"><p>Consider that a 200GB file is not fully loaded into memory either, as that would require an awfully large amount of RAM.</p>
+<p>A program usually has a couple of regions in its allocated virtual memory: Text, Data, Stack and Heap. When you rename a file while it's opened in a program, you essentially open up a new instance of the program that shares its Text region with the old process, and copies the Data, Stack and Heap values. The old file's link count drops to zero, and its inode will be freed once the new process closes.</p></div>		</li>
+					</ul>
+		</ul>
+	

@@ -1,0 +1,84 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/caboose2" target="_blank">caboose2</a>
+			<div class="markdown"><p>A very good explanation. This is exactly what I'm working on in my job using CFD. However, to understand exactly how and why this phenomenon works, would require a more detailed explanation.</p>
+<p>As vortices separate from a vehicle's a-pillar, it sheds itself at a certain frequency which is largely dependent on the speed of the vehicle. As soon as this frequency matches the resonant frequency of the cabin helmholtz resonator, this &quot;throbbing&quot; effect occurs. This is why throb is much more pronounced if just the driver or passenger side window is open, as opposed to the rear windows (which are farther from the a-pillar vortex source).</p>
+<p>Assuming the vehicle cabin to be a 1 dof helmholtz resonator is a simplification, but the idea is correct. There are various sources of damping within the cabin, such as cabin air leakage (even with all the windows closed), porous media (namely the rear seat which acts as viscous resistance between the cabin and a trunk volume), and friction losses from the moving slug of air on the edges of the open window. All of this affects the cabin resonant frequency as well as the damping.</p>
+<p>The exterior shape of the a-pillar and mirrors can change the characteristics of the vortices, which will also affect how this acoustic phenomenon occurs.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/therationalpi" target="_blank">therationalpi</a>
+			<div class="markdown"><p>Thanks for hopping in on this discussion.</p>
+<blockquote>
+<p>As vortices separate from a vehicle's a-pillar, it sheds itself at a certain frequency which is largely dependent on the speed of the vehicle. As soon as this frequency matches the resonant frequency of the cabin helmholtz resonator, this &quot;throbbing&quot; effect occurs.</p>
+</blockquote>
+<p>Thanks for including this. I mostly talked about the resonant phenomena in the car, but the forcing function at the window is important as well. This is essentially the same process as blowing across the opening of a beer bottle or blowing over the opening of a flute. The forcing function for the acoustic oscillation is supplied by the turbulent flow of air creating eddies. In the case of the car, the a-piller is acting as the lip of the beer bottle.</p>
+<blockquote>
+<p>Assuming the vehicle cabin to be a 1 dof helmholtz resonator is a simplification, but the idea is correct.</p>
+</blockquote>
+<p>Simplifications need to be made sometimes to make a problem tractable. As you pointed out, the biggest part that I left out was damping, which actually determines how loud the resonance is going to be. It's traditional to leave out damping in initial descriptions of acoustics problems, though, because frequency predictions without damping are usually pretty close.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/caboose2" target="_blank">caboose2</a>
+			<div class="markdown"><p>Good points. I see a lot of people are wondering about the frequency at which this occurs. I'll take a look at the paper you linked, but in my experience (in both CFD and wind tunnel), throb typically occurs at 14-17 Hz for sedans in most brands.</p>
+<p>Well, noise occurs across all frequencies from a few Hz to kHz. When we plot out the FFT, it typically peaks at around 15 Hz. Some people are asking about how we can hear that since the low end of human hearing is 20 Hz. I guess an analogy for that could be an explosion, it's a singular large pressure fluctuation of 1 Hz that we can hear.</p>
+<p>I might be wrong, but maybe if the pressure root mean square is large enough for a sound wave, we can hear sounds 1-20 Hz?</p>
+<p>All cars throb when you roll down one window, the only difference is the magnitude. It's usually between 100-125 SPL dB. Typically the cars that have louder throb have better attached flow around the a-pillar. Again, I'll take a look at that paper and see why it's saying 30 Hz.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Funkit" target="_blank">Funkit</a>
+			<div class="markdown"><p>Good explanation. So pretty much your forcing frequency is your shedding frequency and this problem reduces to a standard second order diff equation for forced vibrations. When you say 30Hz, are you saying Wn of the sedan is 30Hz? Or were you solving for Sqrt(K/M) of the resonator? Also would you consider the shedding frequency to be sinusoidal ie F(t) is a cosine function?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jwhepper" target="_blank">jwhepper</a>
+			<div class="markdown"><p>So the frequency changes due to the size of the car? A bigger car would provide a deeper resonating sound then?</p>
+<p>Also, if I sped up, would that increase the frequency or not? Would it just break the standing wave? (If it is even a standing wave!)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Armageist" target="_blank">Armageist</a>
+			<div class="markdown"><p>Strange.  In every car I've been in, the resonation ONLY takes place when a rear window is down and NEVER when a front window is.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lostboyz" target="_blank">lostboyz</a>
+			<div class="markdown"><p>Back windows of any wagon or hatch will be more regularly shaped than the front windows, that might contribute to a higher occurance from rear windows. Sunroofs are very common for this noise and often have mesh or shaped material before the opening to prevent the effect. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/caboose2" target="_blank">caboose2</a>
+			<div class="markdown"><p>That's interesting. Are all the cars you've been on older less aerodynamic cars? If so, it could be because the flow is separating early around the a pillar, only to reattach on the b pillar. This could explain why throb is happening from an opened rear window.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PhotoJim99" target="_blank">PhotoJim99</a>
+			<div class="markdown"><p>I had a car where this only happened if a) I was driving fairly fast, e.g. &gt;80 km/h, and b) all four windows were open.  It disappeared if I slowed down or if I closed the back windows.  (I never tried it with back windows open, front closed, to be honest.)</p>
+<p>Highly annoying.  And the car lacked air conditioning, so this scenario wasn't completely theoretical.  Plus it had crank windows, so it was a real nuisance to put them up if nobody was sitting in the back seat.  :)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>I find the opposite to be true. If I open my front windows there is no throbbing. If it is only the rear windows we have some real problems.</p>
+<p>Could you explain why this is the case?</p>
+<p>Also: Every car I have ever owned has been this way</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/caboose2" target="_blank">caboose2</a>
+			<div class="markdown"><p>Do the cars you've driven tend to be older, relatively blockier, and less aerodynamic? Like cars made in the 90s or older.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Spaink" target="_blank">Spaink</a>
+			<div class="markdown"><p>Ditto. Owned a lot of cars, always experienced this with only one window, a rear window, open. Couldn't they simply line the pillar with that honeycomb material from the sunroof example to test (and possibly solve) this problem? Cost not an issue, even very high end cars have this issue and most owners hate it. MBenz would jump on a solution.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/groggyMPLS" target="_blank">groggyMPLS</a>
+			<div class="markdown"><blockquote>
+<p>If you have people in the car, the effective volume will drop and the frequency will go down.</p>
+</blockquote>
+<p>Hold on, if you had more people in the car (more beer in the bottle) and reduced volume of air in the car, wouldn't the frequency go <em>up</em>?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/therationalpi" target="_blank">therationalpi</a>
+			<div class="markdown"><p>Ack. Good point. I'm full of silly mistakes today, but luckily there's an edit button available!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/groggyMPLS" target="_blank">groggyMPLS</a>
+			<div class="markdown"><p>Still a very interesting and valuable analysis! I'm just a man who's blown on his fair share of beer bottles at varying degrees of empt. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[removed]</p></div>		</li>
+					</ul>
+	

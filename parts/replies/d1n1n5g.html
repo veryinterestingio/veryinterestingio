@@ -1,0 +1,114 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/YJSubs" target="_blank">YJSubs</a>
+			<div class="markdown"><p>Follow up question,..what's the pro/cons of both method ?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hegbork" target="_blank">hegbork</a>
+			<div class="markdown"><p>Windows uses a simplistic approach to files and filesystems which they inherited from DOS. Unix (MacOS is a descendant from Unix, definitely on the filesystem front) allows more things to be treated just like files and this in turn requires a disconnect between a file name and a file object.</p>
+<p>From another point of view we can say that one of the reasons might be that in Unix a file can have multiple names. In one part this allows multiple similar programs to be just one program that has different names and chooses behavior based on the name (I don't have an easily recognizable example, but trust me, it's done all the time). In another part this actually makes filesystem implementation simpler. The special directories &quot;.&quot; and &quot;..&quot; are handled with special cases in Windows (not entirely true today) while they are just hard links in Unix (not at all true today). So for example if you have the directory &quot;/&quot; which is file number 1, then a directory &quot;/foo&quot; which is file number 2, the directory &quot;/foo&quot; will just contain an entry for &quot;.&quot; with the file number 2 and an entry &quot;..&quot; with the file number 1. Instead of writing special code that handles &quot;.&quot; and &quot;..&quot; we're just lazy and have proper directories for them. This is no longer true because of special requirements on &quot;.&quot; and &quot;..&quot; which makes life spectacularly complex for locking and a very important requirement that a directory tree must be an acyclic graph so &quot;.&quot; and &quot;..&quot; must always point the way we expect them to and we can't be clever with them anymore.</p>
+<p>To answer your question. We can't really talk about pros and cons no matter how much we want to champion our favorite choices. Talking about pros and cons implies that there some choice and tradeoff to make. There isn't. The things are the way they are because they were like that 30-40 years ago and it would be mad to try to change it. NTFS (one filesystem choice on windows) can behave just like a normal Unix filesystem. Unix can quite easily be made to behave like Windows in this case. There are no technical pros and cons because changing the semantics here is a matter of backwards compatibility rather than a tradeoff we consciously make. The low level filesystems themselves all behave more or less the same (FAT doesn't, but then FAT doesn't on Unix either).</p>
+<p>To answer OPs question the real answer is: historical reasons.</p>
+<p>Source: wrote a few experimental and one production filesystem in a Unix-like system. Worked in filesystem code for over a decade.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sharfpang" target="_blank">sharfpang</a>
+			<div class="markdown"><p>As for example of a Linux program that utilizes multiple names: Busybox.</p>
+<p>It's at the core of about any embedded Linux installation. It's a single program that contains all the essentials and a lot of extras of software normally seen in Linux, slimmed down to a various (configurable) degree, and whatever command you call in such a system, it's almost exclusively a call to Busybox under a different name, which name tells it how to behave. You type  <code>ls</code> and busybox displays the list of files. You type <code>vi</code> and the new instance of busybox starts acting as the text editor. You try to log in over Telnet - and the OS launches Busybox through its telnetd link, making it provide the server-side service of remote access.</p>
+<p>This approach makes upgrades of single commands somewhat difficult (especially that if you just try to delete old busybox and save the new one in its place you'll suddenly find you can't - because all the commands needed to put the replacement in are gone... that one accounts for a considerable number of <em>whoops</em> for people working with embedded.) and it makes the commands overall slower in many cases, but the binary takes up far less space (both disk and RAM), and the centralized 'tailoring' functionality makes it easy to get exactly what you need and nothing over that.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wklink" target="_blank">wklink</a>
+			<div class="markdown"><p>Well, there's one pro for the Unix-type filesystem: you can update a program without restarting.  If you have a program running in Windows, you <em>must</em> close it to write the new program in its place.  In Unix, you can &quot;delete&quot; an open file and the actual file will continue to be available to all programs using it until the last program closes it.  Only then is it actually freed. This allows you to update executable programs without making you exit.  That's also why so many Windows updates require a reboot.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Cezoone" target="_blank">Cezoone</a>
+			<div class="markdown"><blockquote>
+<p>&quot;.&quot; and &quot;..&quot; must always point the way we expect them to and we can't be clever with them anymore.</p>
+</blockquote>
+<p>I'd like some examples of how this was used cleverly, it sounds neat</p>
+<blockquote>
+<p>wrote a few experimental and one production filesystem in a Unix-like system</p>
+</blockquote>
+<p>Would really be curious about the experimental filesystem! And/or any experimental filesystems that might be interested for a semi-layperson (plenty of linux/programming experience, but not a lot in specifically file systems)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/indoninjah" target="_blank">indoninjah</a>
+			<div class="markdown"><p>I've taken a class in Operating Systems. The simplest answer is probably this:</p>
+<ul>
+<li>From the Windows perspective, you have a file identifier sitting right there as the file name. Why complicate things?</li>
+<li>From the OS X perspective, adding an extra, invisible file identifier allows you to allow some user-friendly operations, like renaming an open file.</li>
+</ul>
+<p>In this case specifically, there may not be many repercussions. However, let's consider an extrapolation of these two mindsets. Windows is keeping things simple, but disallows some operations like the one that OP asked about. OS X is keeping things easy for the user to use, at the price of more file metadata per file. This can add up over time, particularly if a user has many small files (then the ratio of file metadata to actual data will be small, and you want it to be large so that disk space is not wasted on metadata).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheDragon99" target="_blank">TheDragon99</a>
+			<div class="markdown"><blockquote>
+<p>From the OS X perspective, adding an extra, invisible file identifier allows you to allow some user-friendly operations, like renaming an open file.</p>
+</blockquote>
+<p>I first want to say that it's not just OS X that does this, it's all unix-like OSes (including Linux).</p>
+<p>As a software engineer, the way that the unix-like OSes do it makes much more sense. In CS, it's very common to identify an object, concept, or &quot;thing&quot; using a unique identifier, usually a number, that has nothing to do with the &quot;thing&quot; itself other than uniquely identifying it.</p>
+<p>For example, when you log into Reddit or some other website, your account is almost certainly represented by a unique identifier. It's just easier to pass around this unique identifier instead of something else that would uniquely identify you, like your user name.</p>
+<p>Obviously you don't <em>always</em> need this unique identifier abstraction, but it's extremely common.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/o23ulsdflsuieroisej" target="_blank">o23ulsdflsuieroisej</a>
+			<div class="markdown"><blockquote>
+<p>at the price of more file metadata per file.</p>
+</blockquote>
+<p>There isn't more metadata per file. Both systems would require roughly the same amount of storage per file.</p>
+<p>Furthermore, Windows actually does it like OSX (really: like unix) under the hood. NTFS supports hard links -- this functionality simply isn't exposed via the win32 api. But the functionality is present and supported by the NTFS driver and on-disk data structure.</p>
+<p>If you mount an NTFS filesystem on linux, or if you access it on windows via the posix subsystem (or perhaps the newer linux subsystem!) you can create hard links, rename files while open, and so on and so forth.</p>
+<p>It's a legacy support thing dating back to filesystems originally designed for a single-user operating system (DOS), not an engineering design thing.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Epistaxis" target="_blank">Epistaxis</a>
+			<div class="markdown"><p>You're arguing from usability vis-a-vis OS X, but it wasn't designed this way for OS X. OS X inherited this sort of thing from Unix, where it was implemented long before Apple was a company. </p>
+<p>How did Apple computers do this before they switched to Unix?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/_pigpen_" target="_blank">_pigpen_</a>
+			<div class="markdown"><p>One significant problem with the Windows approach is that there is a maximum length for a file path. Most APIs have a limit of 260 characters (MAX_PATH), but some unicode APIs support 32K characters.</p>
+<p>This has some strange side effects. You can have a file in a directory that you can't move to another directory, because the path to the new directory is longer and the combined length of the filename + path is greater than MAX_PATH.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/asten77" target="_blank">asten77</a>
+			<div class="markdown"><p>The limit isn't the filesystem, its the WIN32 APIs to access it.  Which is even stupider. :(</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FalconX88" target="_blank">FalconX88</a>
+			<div class="markdown"><p>Well, there are even stranger things: windows itself creates files and folders with lang names which are too long for the windows Recycle Bin...</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/danielcw189" target="_blank">danielcw189</a>
+			<div class="markdown"><p>I don't think it is the same issue.
+The MAX_PATH problem could (and would) still exist, even if files were identified by ID numbers (inodes). For example the open command on Unix also has an error code for:</p>
+<blockquote>
+<p>ENAMETOOLONG
+The length of the path argument exceeds {PATH_MAX} or a pathname component is longer than {NAME_MAX}.</p>
+</blockquote>
+<p>Filesystems may also impose path length limitations</p>
+<p>Besides: the MAX_PATH situation is well documented in Winodws' API documentation, directly pointing to what can and should be used instead.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/0xdeadf001" target="_blank">0xdeadf001</a>
+			<div class="markdown"><p>This is actually inaccurate.  It's simply an intentional design choice in Windows, to prevent confusion.  Internally, NTFS has the same distinction between file name and file identity.  And you can pass flags to NTFS that say, &quot;nah bro, I'm cool with the rename&quot;.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/n1ck_n4m3" target="_blank">n1ck_n4m3</a>
+			<div class="markdown"><p>The Windows portion of this answer is correct for FAT/FAT32 filesystems, as their File ID changes when the file is renamed.  However, with current Windows operating systems that use NTFS by default, the File ID persists throughout the entire lifecycle of the file in order to ensure proper security ACLs are applied.</p>
+<p>In NTFS filesystems, you can often rename files that are in use without impacting current programs that have open handles.  In certain circumstances, programs can obtain an exclusive lock on the file that will prevent renaming, but it having an open handle in NTFS does not immediately lock the file from being renamed like it does in FAT filesystems.  Additionally, a malfunctioning program can incorrectly close a file handle, resulting in an exclusive file lock until the program is closed.</p>
+<p>References:</p>
+<p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa363788%28v=vs.85%29.aspx" target="_blank">https://msdn.microsoft.com/en-us/library/windows/desktop/aa363788%28v=vs.85%29.aspx</a></p>
+<p><a href="https://msdn.microsoft.com/en-us/library/aa365202.aspx" target="_blank">https://msdn.microsoft.com/en-us/library/aa365202.aspx</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/onlinebugaboo" target="_blank">onlinebugaboo</a>
+			<div class="markdown"><p>It's also feasible that a poorly written piece of OSX code might store the file path in memory instead of the handle, or rely on the file path in some capacity after the file is open. In this case, the file being renamed may resort in duplicate files being created or in corruption.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bearsinthesea" target="_blank">bearsinthesea</a>
+			<div class="markdown"><p>Does 'often' depend on the OS? I'm using Win7 with NTFS drives, and I can't rename if a file is open in Word or adobe acrobat.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/n1ck_n4m3" target="_blank">n1ck_n4m3</a>
+			<div class="markdown"><p>Not specifically, it's more reliant on the program that has opened the file handle and how they've gone about doing it.  Office apps can be lock heavy (I'm not exactly certain why, but my guess is because the file formats for older versions were binary and hard to modify in a transactional fashion  -- also the case with .PDF format --but that's mostly a poorly educated guess), hence the ability for the products to open files in read-only mode when they detect they are in use.</p>
+<p>On the other hand, you can open notepad, save a file as &quot;clownshoes.txt&quot; to your desktop, open it in another instance of notepad and load that file, modify it, save it, and close it -- all while the other instance of notepad is running.  Admittedly, that's because notepad reads the contents of the file into RAM and displays from there without a lock against the file.  It won't even notice through journaling that a change has occurred.  Other apps, like TotalEdit Pro, will detect that the opened file has been modified by another program and ask if you want to re-load it.</p>
+<p>Obviously, since Notepad and Office open and use documents via different methods, it's not a true 1:1 comparison, but it is a good example of a case where having a file open doesn't lock it due solely to how the program accesses the file.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

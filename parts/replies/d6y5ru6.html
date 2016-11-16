@@ -1,0 +1,66 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zebediah49" target="_blank">zebediah49</a>
+			<div class="markdown"><blockquote>
+<p>In a game with zero chance, player A will win something extremely close to 0% of the games (that is: exactly 0 unless there exists a winning strategy for A from the start position, in which case it's the chance that A accidentally plays that winning strategy).</p>
+</blockquote>
+<p>This is a point that leads to a fascinating place.</p>
+<p>With perfect minimax players, there may be a winning strategy for A, and A may randomly choose that strategy, thus giving it a finite (if very small) chance of winning.</p>
+<p>However, what happens if we grant B a theory of mind for A?  That is, for some games, can B increase his win rate with the knowledge that A will make random moves?  Specifically, instead of attempting to play perfectly under the assumption that A will also play perfectly, B can safely make suboptimal moves that prolong the game, further increasing the chances that A will randomly make a mistake.</p>
+<p>Are there even games for which this knowledge allows B to push the end of the game out indefinitely, allowing the winrate to go all the way up to 100%?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/demented_doctor" target="_blank">demented_doctor</a>
+			<div class="markdown"><p>Most chess games come down to a few common endgame situations that experienced players can recognize as a drawn or winning/losing position with optimal play.  Occasionally the game will be &quot;played out&quot; to conclusion but often there will be an early draw offer or resignation if both players know the technique used to force an outcome and, important to your point, believe their opponent knows the technique.</p>
+<p>Against a weaker opponent I might continue in an objectively drawn position hoping my opponent makes that one wrong move turning it into a winning position.  If my opponent doesn't understand what to do it is really just a matter of time (as long as repeated positions and the 50 move rule didn't come into play).</p>
+<p>I think though that in that situation you can't really say it is a good idea to make a bad move.  Either the move creates a losing position and is bad, or the move is safe and entices my opponent into making a move that seems strong to them but is actually losing and then my move would be considered good (if tricksome).</p>
+<p>For the make bad moves until your opponent messes up system to work (all the way to 100%) you need a game where there are unlimited small points your opponent wants and can be offered that in the end are overshadowed by the one winning point.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zebediah49" target="_blank">zebediah49</a>
+			<div class="markdown"><p>My point is that against the random opponent, the definition of &quot;bad&quot; changes.</p>
+<p>For example, in an unfortunate position, let's say rook vs. rook and bishop, minimax says that if you can take the bishop for free, that's good.  It evens your odds.  However, against the random opponent, it may be better to pass that up.  Having the additional piece increases the space of possible moves, and makes it more likely that the opponent will do something bad with the rook.  If you can take the rook, of course, it's worth it because you are now in a winnable position.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/agamemnon42" target="_blank">agamemnon42</a>
+			<div class="markdown"><p>I think the simpler solution might be for player A to simply be the opposite of B, and minimize their chance of winning on each move.  For a perfectly random game, there is still a 50% chance of winning.  Granted, this leads to another factor to consider in addition to skill vs. chance, which is the typical distribution of expected values assigned to each move, possibly related to the skill cap or learning curve of the game.  </p>
+<p>On one extreme, there is a specific move that loses, while all other moves are effectively equal.  The proposed player A loses 100%, but a small amount of skill is enough to turn the game into chance.  On the other side would be a game where differences in value between each move are small, but the function from skill to value is a monotonically increasing function plus a large amount of noise.  This is again a game with a large amount of chance, but no skill cap.  </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NewlyMintedAdult" target="_blank">NewlyMintedAdult</a>
+			<div class="markdown"><p>Nope.</p>
+<p>If A has a winning strategy, then a player who plays A optimally can win against any strategy B plays. Thus, if we expand out the game tree by examining each of B's possible moves as a &quot;branch&quot; (but not expanding A's moves - those are taken to be optimal) we should get a tree where each branch terminates at a victory for A. Therefore, all branches must terminate, which means that the tree must have finite depth. In other words, if A has a winning strategy, they have a winning strategy in at most M moves for some constant M. </p>
+<p>But the number of possible moves on each turn in chess is bounded (lest say by N), so the chance of optimal play is at least 1/N to the Mth power, regardless of what player B does. Ergo, player B can't force his win rate up to 100%. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Veggie" target="_blank">Veggie</a>
+			<div class="markdown"><p>This only works for fair games. If a game is perfectly random but unfair, player A could win less or more than 50% of the time.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mconeone" target="_blank">mconeone</a>
+			<div class="markdown"><p>Yes but wouldn't the assignment of who is A and who is B be perfectly random? You would adjust the advantage a side has by the probability of being on that side.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aeschenkarnos" target="_blank">aeschenkarnos</a>
+			<div class="markdown"><p>Suppose one rule gives an advantage to the starting player, and another rule non-randomly selects the starting player (eg &quot;the storyteller with the longest beard&quot; or &quot;the player who was most recently sick&quot;).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bluesam3" target="_blank">bluesam3</a>
+			<div class="markdown"><p>Yeah, it's not perfect. Perhaps some way of weighting it against unfairness would be good? Subtract the same thing calculated between two random steppers perhaps, as a first approximation?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/simonthefoxsays" target="_blank">simonthefoxsays</a>
+			<div class="markdown"><p>I feel like a definition of unfairness would be almost as contrived. It might be simpler to come up with some approximation of what counts as a &quot;fair&quot; game (no statistical difference in win rates between skilled players for first and second play, for instance) and simply limit this definition to those games.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/diazona" target="_blank">diazona</a>
+			<div class="markdown"><p>If a game isn't fair there have to be two different roles taken by each player, one favored and one unfavored, so you could just extend your definition to say that each player is randomly assigned to a role with uniform (50%) probability before the game starts. I think that's a general way to construct a fair game from an unfair one.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ulyssessword" target="_blank">ulyssessword</a>
+			<div class="markdown"><p>Just have the algorithm run for two games, one where player A goes first, and one where B goes first (or whatever else is making the game unfair).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/inekarma" target="_blank">inekarma</a>
+			<div class="markdown"><p>I wouldn't completely randomize player A, because often there's moves which are competely moronic, and that would make it seem that luck plays a bigger or smaller factor. </p>
+<p>Example is poker where there's always a possibility to fold, even though you can check. A completely randomized opponent would win nearly 0% of hands in limit poker, because on every action there would be 1/3 chance that it would simply fold. So that would seem like there's nearly 0 luck involved, even though we know otherwise. </p></div>		</li>
+					</ul>
+	

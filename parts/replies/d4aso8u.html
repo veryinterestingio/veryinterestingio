@@ -1,70 +1,71 @@
 	<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/lappet" target="_blank">lappet</a>
-			<p>Using your approach it does seem to work for 3 digit and 4 digit numbers as well. I wonder if there is a generic proof for any N where number of digits in N is &gt; 1</p>		</li>
+			<div class="markdown"><p>Using your approach it does seem to work for 3 digit and 4 digit numbers as well. I wonder if there is a generic proof for any N where number of digits in N is &gt; 1</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/Squatomatic" target="_blank">Squatomatic</a>
-			<p>You can write an integer N = a0<em>10^0 + a1</em>10^1 + a2<em>10^2 + ... + an</em>10^n<br><br>You can write it's reverse N' = an<em>10^0 + a(n-1)</em>10^1 + ... + a0*10^n<br><br>In Z9, the finite ring of 9 integers, 10 is equivalent to 1, so all of those 10^x terms become 1^x = 1 and N = a0 + a1 + ... + an. N' will reduce to the same terms, so N - N' = (a0 + a1 + ... + an) - (an + ... + a1 + a0) = 0<br><br>An integer being equivalent to 0 in Z9 means it is divisible by 9.<br><br></p>		</li>
+			<div class="markdown"><p>You can write an integer N = a0<em>10^0 + a1</em>10^1 + a2<em>10^2 + ... + an</em>10^n</p>
+<p>You can write it's reverse N' = an<em>10^0 + a(n-1)</em>10^1 + ... + a0*10^n</p>
+<p>In Z9, the finite ring of 9 integers, 10 is equivalent to 1, so all of those 10^x terms become 1^x = 1 and N = a0 + a1 + ... + an. N' will reduce to the same terms, so N - N' = (a0 + a1 + ... + an) - (an + ... + a1 + a0) = 0</p>
+<p>An integer being equivalent to 0 in Z9 means it is divisible by 9.</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/gerusz" target="_blank">gerusz</a>
-			<p>It also works for any base, of course then the result will always be divisible by base-1.</p>		</li>
+			<div class="markdown"><p>It also works for any base, of course then the result will always be divisible by base-1.</p></div>		</li>
 						<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/bovinity99" target="_blank">bovinity99</a>
-			<p>While I agree that the result follows, I don't think we need to resort to modular arithmetic, as follows:<br><br>Using your notation of N = sum(a_k <em> 10^k), and N' = sum(a_k</em>10^(n-k)), let's look at the difference N-N'.  This is simply sum(a_k<em>(10^k-10^(n-k)).  So to take an example, if you have 3872 - 2783, you can break this down as 3</em>(1000-1)+8<em>(100-10)+7</em>(10-100)+2<em>(1-1000).  Each of those terms in parentheses is divisible by 9.<br><br>That's pretty clear with the terms we've used above, but you can demonstrate this is true in general by writing (for k &gt; n / 2), 10^k - 10^(n-k) = 10^(n-k) </em> (10^(2k-n) - 1) = (10-1) * sum(10^j) (for j = 0 to 2k-n-1), i.e. it's 9 times something (something like 11111....).  Same thing for k &lt; n / 2, but you get a negative number, and if k = n/2 the term is 0.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/p3rspxv" target="_blank">p3rspxv</a>
-			<p>These threads are... humbling to the average Joe who only uses basic arithmetic.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/TheShreester" target="_blank">TheShreester</a>
-			<p>This one example of why Maths is the most important subject at school! You may not be able to do the calculations (I can't) but you should be able to follow the logic.<br><br>Maths is the language of Science, Engineering and of course, Maths! Along with Computing it's a core skills in the 21st century...</p>		</li>
-					</ul>
-			<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/Econo-punk" target="_blank">Econo-punk</a>
-			<p>Just for clarity,<br><br>&gt; Using your notation of N = sum(a_k <em> 10^k), and N' = sum(a_k</em>10^(n-k)), let's look at the difference N-N'.  This is simply sum(a_k<em>(10^k-10^(n-k)).  So to take an example, if you have 3872 - 2783, you can break this down as 3</em>(1000-1)+8<em>(100-10)+7</em>(10-100)+2<em>(1-1000).  Each of those terms in parentheses is divisible by 9.<br><br>is meant to be: This is simply sum(a_k</em>(10^(k)-10^(n-k))<br><br>&gt; That's pretty clear with the terms we've used above, but you can demonstrate this is true in general by writing (for k &gt; n / 2), 10^k - 10^(n-k) = 10^(n-k) <em> (10^(2k-n) - 1) = (10-1) </em> sum(10^j) (for j = 0 to 2k-n-1), i.e. it's 9 times something (something like 11111....).  Same thing for k &lt; n / 2, but you get a negative number, and if k = n/2 the term is 0.<br><br>For any k such that n &gt;= k &gt; n/2,<br><br>10^k - 10^(n-k) = 10^(n-k) <em> (10^(2k-n) - 1) <br><br>For 10^(n-k), we know that n - k &gt;= 1, so it's some number divisible by 10.  Call it 10x.  For (10^(2k-n) - 1), we know that 2k - n &gt; 1, so 10^(2k-n) is divisible by 10, call it 10y.  So we have 10x </em> (10y - 1).  We know that (10y - 1) is divisible by 9, call it 9z, so then we have 10x <em> 9z, which is clearly divisible by 9.  <br><br>For any k such that n/2 &gt;= k &gt;= 0,<br><br>10^k - 10^(n-k) = 10^(k) </em> (1 - 10^(n-2k)) <br><br>For 10^(k), we know that k &gt;= 0, so it's 1 or some number divisible by 10.  Call it 10x, where x can = 1/10, 1, 2, 3, etc.  For (1 - 10^(n-2k)), we know that n - 2k &gt;= 1, so 10^(n-2k) is divisible by 10, call it 10y.  So we have 10x <em> (1 - 10y).  We know that (1 - 10y) is divisible by 9, call it 9z, where z = -1, -2, -3, etc., so then we have 10x </em> 9z, which is clearly divisible by 9.  <br><br><br>So sum(a_k<em>(10^(k)-10^(n-k)) for k = 0 to n is:<br><br>a_0 </em> (some number divisible by 9) + a_1 <em> (divisible by 9) + ... + a_n </em> (divisible by 9)<br><br>and the whole thing is divisible by 9.<br><br><br></p>		</li>
+			<div class="markdown"><p>While I agree that the result follows, I don't think we need to resort to modular arithmetic, as follows:</p>
+<p>Using your notation of N = sum(a_k <em> 10^k), and N' = sum(a_k</em>10^(n-k)), let's look at the difference N-N'.  This is simply sum(a_k<em>(10^k-10^(n-k)).  So to take an example, if you have 3872 - 2783, you can break this down as 3</em>(1000-1)+8<em>(100-10)+7</em>(10-100)+2*(1-1000).  Each of those terms in parentheses is divisible by 9.</p>
+<p>That's pretty clear with the terms we've used above, but you can demonstrate this is true in general by writing (for k &gt; n / 2), 10^k - 10^(n-k) = 10^(n-k) <em> (10^(2k-n) - 1) = (10-1) </em> sum(10^j) (for j = 0 to 2k-n-1), i.e. it's 9 times something (something like 11111....).  Same thing for k &lt; n / 2, but you get a negative number, and if k = n/2 the term is 0.</p></div>		</li>
 						<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/TombKrax" target="_blank">TombKrax</a>
-			<p>I actually think your proof is less comprehensible than the proof using modular arithmetic, simply because you're doing more notation juggling.</p>		</li>
-					</ul>
-			<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/dezholling" target="_blank">dezholling</a>
-			<p>This also shows it doesn't have to be a reversal but any mixing, e.g. 231-123 = 9x12.</p>		</li>
+			<div class="markdown"><p>This also shows it doesn't have to be a reversal but any mixing, e.g. 231-123 = 9x12.</p></div>		</li>
 					</ul>
 			<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/ashdelete" target="_blank">ashdelete</a>
-			<p>There is, this is just the simplified version so that it's easier for people to understand who haven't studied undergraduate mathematics.</p>		</li>
+			<div class="markdown"><p>There is, this is just the simplified version so that it's easier for people to understand who haven't studied undergraduate mathematics.</p></div>		</li>
 						<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/fuck_cancer" target="_blank">fuck_cancer</a>
-			<p>His working doesn't work for 3 digit numbers because he used <em>10x + y</em> (53 is 10<em>5 + 3 right?) So for 3 digits use 100x + 10y + z.<br><br>100x + 10y + z - 100z - 10y - x<br><br>= 99x - 99z<br><br>= 99 (x - z)<br><br>= 9 </em> 11 (x - z)<br><br>Edit: The difference of a 3 digit number and its reverse is divisible by 9 and 11!<br><br><del>Huh...that didn't amount to anything significant, except</del> now you also know how to quickly find the difference of 3 digit number and it's reverse.<br><br>It is 99 times the difference of its hundreds and ones place.</p>		</li>
+			<div class="markdown"><p>His working doesn't work for 3 digit numbers because he used <em>10x + y</em> (53 is 10*5 + 3 right?) So for 3 digits use 100x + 10y + z.</p>
+<p>100x + 10y + z - 100z - 10y - x</p>
+<p>= 99x - 99z</p>
+<p>= 99 (x - z)</p>
+<p>= 9 * 11 (x - z)</p>
+<p>Edit: The difference of a 3 digit number and its reverse is divisible by 9 and 11!</p>
+<p><del>Huh...that didn't amount to anything significant, except</del> now you also know how to quickly find the difference of 3 digit number and it's reverse.</p>
+<p>It is 99 times the difference of its hundreds and ones place.</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/ThePopeShitsInHisHat" target="_blank">ThePopeShitsInHisHat</a>
-			<p>It does work: 99 is divisible by 9 (9 * 11) hence 99(x - z) is divisible by nine as well!<br><br></p>		</li>
+			<div class="markdown"><p>It does work: 99 is divisible by 9 (9 * 11) hence 99(x - z) is divisible by nine as well!</p></div>		</li>
 					</ul>
 		</ul>
 			<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/e_a_blair" target="_blank">e_a_blair</a>
-			<p>i just want to point out that while the top comment succinctly addresses a good number of facts about modular arithmetic, this is the comment that actually explains <em>why</em> this occurs. <br><br>one has to wonder how many people clicked on the title of the post, read the top comment, said &quot;darn, that's interesting,&quot; then left without really resolving their initial curiousity.</p>		</li>
+			<div class="markdown"><p>i just want to point out that while the top comment succinctly addresses a good number of facts about modular arithmetic, this is the comment that actually explains <em>why</em> this occurs. </p>
+<p>one has to wonder how many people clicked on the title of the post, read the top comment, said &quot;darn, that's interesting,&quot; then left without really resolving their initial curiousity.</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/Piratesmom" target="_blank">Piratesmom</a>
-			<p>Actually, while I have enough interest in math to wonder about the question, I took one look and my brain kinda oozed a couple of tears. I don't understand this one, either. (Art Student) Guess I'll have to ask one of my more math-literate friends.  I learn better if I can ask questions. :)<br><br>Actually, the statement that it works with other bases was more useful to me. As in &quot;It's just one of the characteristics of counting sets.&quot;</p>		</li>
+			<div class="markdown"><p>Actually, while I have enough interest in math to wonder about the question, I took one look and my brain kinda oozed a couple of tears. I don't understand this one, either. (Art Student) Guess I'll have to ask one of my more math-literate friends.  I learn better if I can ask questions. :)</p>
+<p>Actually, the statement that it works with other bases was more useful to me. As in &quot;It's just one of the characteristics of counting sets.&quot;</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/e_a_blair" target="_blank">e_a_blair</a>
-			<p>ha but wait no! it's not just like a random fact that happens to be true. it's a byproduct of the fact that we use a base-system of 10.<br><br>think of it this way: after the number 9, you go to 10. that's one number higher, but in terms of adding up the digits, you've actually just sorta reset it to 1, right? <br><br>assume we're only working with two digit numbers so i can try a simplified explanation. call two digit numbers xy. to get to the next multiple of 9, you always have to take one step forward in the y department. OR you have to take one step forward in the x department and 10 steps back in the y department. does that kinda make sense?<br><br>if you could imagine a system where we used a base of 8 (so we counted 1, 2, 3, 4, 5, 6, 7, 10... 15, 16, 17, 20... and so forth), the same would actually be true of the number 7 in this scenario.</p>		</li>
+			<div class="markdown"><p>ha but wait no! it's not just like a random fact that happens to be true. it's a byproduct of the fact that we use a base-system of 10.</p>
+<p>think of it this way: after the number 9, you go to 10. that's one number higher, but in terms of adding up the digits, you've actually just sorta reset it to 1, right? </p>
+<p>assume we're only working with two digit numbers so i can try a simplified explanation. call two digit numbers xy. to get to the next multiple of 9, you always have to take one step forward in the y department. OR you have to take one step forward in the x department and 10 steps back in the y department. does that kinda make sense?</p>
+<p>if you could imagine a system where we used a base of 8 (so we counted 1, 2, 3, 4, 5, 6, 7, 10... 15, 16, 17, 20... and so forth), the same would actually be true of the number 7 in this scenario.</p></div>		</li>
 					</ul>
 		</ul>
 			<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/mypastaisrunny" target="_blank">mypastaisrunny</a>
-			<p>I lost you after 'thusly', some reason that word makes me chortle muchly.</p>		</li>
+			<div class="markdown"><p>I lost you after 'thusly', some reason that word makes me chortle muchly.</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/PoisonMind" target="_blank">PoisonMind</a>
-			<p>The earliest citation is an Artemus Ward humor piece in Punch Magazine from 1866, <a href="http://twain.lib.virginia.edu/innocent/award.html" target="_blank">The Tower of London.</a><br><br></p>		</li>
+			<div class="markdown"><p>The earliest citation is an Artemus Ward humor piece in Punch Magazine from 1866, <a href="http://twain.lib.virginia.edu/innocent/award.html" target="_blank">The Tower of London.</a></p></div>		</li>
 					</ul>
 		</ul>
 	

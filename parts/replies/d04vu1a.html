@@ -1,0 +1,49 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Yaktheking" target="_blank">Yaktheking</a>
+			<div class="markdown"><p>As an RF Engineer this is the best answer I've seen so far. The tower works harder or less hard based on the number of users accessing the tower. As that changes the power of the radio the power being transferred to your phone changes. This is because the density of the air and materials between you and the tower stay roughly the same, so that is the only thing that is changing. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheWheez" target="_blank">TheWheez</a>
+			<div class="markdown"><p>How does my phone differentiate the signal directed towards it, rather than a signal directed towards another phone? What prevents me from reading a signal directed towards somebody else?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Majromax" target="_blank">Majromax</a>
+			<div class="markdown"><p>The three big techniques for this are called time, frequency, and code division multiplexing.</p>
+<p><a href="https://en.wikipedia.org/wiki/Time-division_multiplexing" target="_blank">Time division multiplexing</a> is the simplest: it just schedules who can &quot;speak&quot; at any given time.  If the cell tower &quot;speaks&quot; from milliseconds 0 to 50 and your phone &quot;speaks&quot; from 50 to 100, then you both can share the channel.</p>
+<p><a href="https://en.wikipedia.org/wiki/Frequency-division_multiplexing" target="_blank">Frequency division multiplexing</a> is the backbone of &quot;spread spectrum&quot; technologies.  Here, rather than transmitting a single high-power, high-bandwidth signal on one channel, it transmits a number of <em>weaker</em> signals on sub-channels that are added together.</p>
+<p>Imagine instead of watching TV on channel 5, you put channels 4-10 on at the same time and added the signals together.  Even if any single channel were too noisy to make out, adding them together positively reinforces the signal and &quot;averages out&quot; the noise.</p>
+<p>This can be used to share frequency space because we can do more than just add channels together.  Imagine you were transmitting on channels 1 and 2 and added them together, but I was also transmitting on channels 1 and 2 and took the difference (that is, I transmitted my signal normally on channel 1 and the negative of it on channel 2).  When you add channels 1 and 2 together, my contribution cancels out, and likewise when I add (1) + (-2) <em>your</em> contribution cancels out.</p>
+<p>The final big technology is <a href="https://en.wikipedia.org/wiki/Code_division_multiple_access" target="_blank">code division multiplexing</a>, which operates in the digital rather than analog domain.  Instead of transmitting on different frequency channels, we use the same channels but modulate our signals with a different digital <em>code</em>.  Short of getting into vector mathematics, this is akin to being in a room where one person is speaking English and another person is speaking French: even though they are using the same frequencies at the same time, if you're paying attention to the English you'll hear that speaker.  (In fact, this is also a way of transmitting encrypted signals with a cryptographic code; without knowing the code the signal is indecipherable.)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Arquill" target="_blank">Arquill</a>
+			<div class="markdown"><p>There are multiple technologies that can allow you to do this.  LTE does it through time-division multiplexing as well as frequency-division multiplexing.  The gist of it is, your phone does not operate at exactly one frequency.  Rather, it operates on a range of frequencies centered around a single frequency.  Devices on different frequencies do not interfere with each other.  So if we both agree to talk on different frequencies, we can talk simultaneously and be heard clearly by the same cell tower, listening on two frequencies.</p>
+<p>Time division multiplexing involves taking turns sending data.  Imagine now that you have used up all the available frequency spectrum and you don't have any more available frequencies.  What you can now do, is send data to one user for one period of time, then send data to another user for another period of time.  The periods are short enough that the user doesn't notice this is happening.  </p>
+<p>Some 3G networks use another scheme called CDMA (Code division multiple access).  This is different in the sense that all users are talking simultaneously and also on the same frequency.  However, there is a trick of DSP involved.  The signal being sent is &quot;encoded&quot; by a pre-determined code before being broadcasted.  Using math, the receiver can then deduce whether or not the received signal is using the same code or not.  This way, it can differentiate all the users even though they are all simultaneously on the same frequency.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gingerbenji" target="_blank">gingerbenji</a>
+			<div class="markdown"><p>Your phone could read them all, but it will tune itself to a set frequency, then use one or more 'descrambling codes' (think decryption key, but more accurately related to CDMA fundamentals) to retrieve the message meant for you. Only your phone knows the codes associated with your traffic so it's not possible to decode other's traffic. And this is all still on the physical RF/air interface and not the data itself. Email, Apps etc still use a whole other way of protecting their data. Think of it as encryption upon encryption upon encryption.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/yeast_problem" target="_blank">yeast_problem</a>
+			<div class="markdown"><blockquote>
+<p>That's why radio stations can be heard from farther away at night.</p>
+</blockquote>
+<p>This may be because of changes in the layers of the ionosphere, linked to the sun and the weather, not straightforward interference:</p>
+<p><a href="https://en.wikipedia.org/wiki/Radio_propagation#Ionospheric_modes_.28skywave.29" target="_blank">https://en.wikipedia.org/wiki/Radio_propagation#Ionospheric_modes_.28skywave.29</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/molo1134" target="_blank">molo1134</a>
+			<div class="markdown"><p>Yes, the absorbing D-layer disappears at night, which lets mediumwave (AM) radio stations be heard at long distances.  There are several &quot;clear channel&quot; stations that can be heard across the continent.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/greed-man" target="_blank">greed-man</a>
+			<div class="markdown"><p>Clear channel AM stations were created by the FCC in 1941 to give radio access to virtually all parts of the US, at least at night.  Prior to that, most radio stations broadcasted at lower power (1,000 watts) and station frequencies could be re-issued at intervals of 100 miles. But if that station broadcasted after the sun went down, these two stations would overlap.  They picked large, well-funded stations who could afford the move to at least 10,000 watts of power (now most are at 50,000 watts), allowing their signals to be heard at night hundreds of miles away.  This created phenomenon like The Grand Ole Opry, which was just a local country music show, but when WSM went Clear Channel, virtually everyone in the south could hear it.  Or why most Midwesterners west of Chicago are St. Louis Cardinals fans.  You can thank KMOX Clear Channel out of St. Louis.  It was the only thing you could get at night.  </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/raydio27" target="_blank">raydio27</a>
+			<div class="markdown"><p>I was driving home tonight and since my phone was dead, decided to listen to FM radio. I live in the county and there are typically only a few stations but noticed nearly every station had signal! Thanks for the explanation. </p></div>		</li>
+					</ul>
+	

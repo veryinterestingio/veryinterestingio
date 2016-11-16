@@ -1,74 +1,68 @@
 	<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/SunilTanna" target="_blank">SunilTanna</a>
-			<p>&gt; Since the produced digit and the next state depends on the state alone reaching a previously inhabited state means the sequence of digits start to repeat.<br><br>I think that there's an error in that argument.<br><br>Not repeating does not necessarily mean that you need to encode the previous state to get the next state.<br><br>Consider for example the continued fraction representation of e.  [2; 1, 2, 1, 1, 4, 1, 1, 6, 1, 1, 8, 1, 1, 10, 1, 1, etc.]. This does not repeat, but it's trivial to &quot;jump ahead&quot; to the million, or trillionith, or googolinth item in the sequence because there is a discernable pattern that can be encoded simply as an algorithm for finding any item in the sequence.<br><br>Currently it is true that we do not know of any simple (or complex) pattern to the digits of pi, but we do not know for sure that there is no pattern<br><br>(all we actually know for sure, is that if there is a pattern it does not repeat).</p>		</li>
+			<div class="markdown"><blockquote>
+<p>Since the produced digit and the next state depends on the state alone reaching a previously inhabited state means the sequence of digits start to repeat.</p>
+</blockquote>
+<p>I think that there's an error in that argument.</p>
+<p>Not repeating does not necessarily mean that you need to encode the previous state to get the next state.</p>
+<p>Consider for example the continued fraction representation of e.  [2; 1, 2, 1, 1, 4, 1, 1, 6, 1, 1, 8, 1, 1, 10, 1, 1, etc.]. This does not repeat, but it's trivial to &quot;jump ahead&quot; to the million, or trillionith, or googolinth item in the sequence because there is a discernable pattern that can be encoded simply as an algorithm for finding any item in the sequence.</p>
+<p>Currently it is true that we do not know of any simple (or complex) pattern to the digits of pi, but we do not know for sure that there is no pattern</p>
+<p>(all we actually know for sure, is that if there is a pattern it does not repeat).</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/Solesaver" target="_blank">Solesaver</a>
-			<p>&gt;Not repeating does not necessarily mean that you need to encode the previous state to get the next state.<br><br>Yes, but you need to encode <em>an</em> input state.  In finite memory you can only store a finite number of unique input states so you can only calculate a finite number of unique outputs.  Even with an explicit formula for finding the nth digit of an irrational number (say: the nth digit of a number can be calculated by solving f(n)) how do you solve f(n) for n=10^1000000000000 when you can't store the value of n in memory?<br><br>I think the best you could do is translate in input tape of an infinite, non-repeating series into a specific rational number where the some finitely formulaic determination of the nth entry of the series would be the input state to get you the nth digit.  Even then, a computer alone with finite memory isn't going to be able to jump or calculate how to find which entry on the input tape to use.  A machine with infinite memory would have to provide it with the correct input.</p>		</li>
+			<div class="markdown"><blockquote>
+<p>Not repeating does not necessarily mean that you need to encode the previous state to get the next state.</p>
+</blockquote>
+<p>Yes, but you need to encode <em>an</em> input state.  In finite memory you can only store a finite number of unique input states so you can only calculate a finite number of unique outputs.  Even with an explicit formula for finding the nth digit of an irrational number (say: the nth digit of a number can be calculated by solving f(n)) how do you solve f(n) for n=10^1000000000000 when you can't store the value of n in memory?</p>
+<p>I think the best you could do is translate in input tape of an infinite, non-repeating series into a specific rational number where the some finitely formulaic determination of the nth entry of the series would be the input state to get you the nth digit.  Even then, a computer alone with finite memory isn't going to be able to jump or calculate how to find which entry on the input tape to use.  A machine with infinite memory would have to provide it with the correct input.</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/SunilTanna" target="_blank">SunilTanna</a>
-			<p>Consider the number 0.101001000100001000001...<br><br>This is an irrational number.  I can calculate any digit without even considering prior digits.   The n'th digit is 1 if n is triangular, and 0 if not.  I can test if n is triangular by checking if 8n+1 is square.  I do not ned to kniw anything about prior digits.<br><br>Yes I might need memory to store n, but I think that was assumed in the question.   <br><br>In my examole, you need 4 bits more than the number reqd to store n to store 8n+1<br><br>I think that is the spirit of the question. <br><br>More to follow.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/Solesaver" target="_blank">Solesaver</a>
-			<p>&gt;Yes I might need memory to store n, but I think that was assumed in the question.<br><br>Possibly, assumed, but certainly not explicit.  And not required for it to be an interesting question.  Just a different question.<br><br>&gt;In my examole, you need 4 bits more than the number reqd to store n to store 8n+1<br><br>And herein lies the problem I have with assuming you don't need memory store n.  Even if I concede that you have special input memory that can store the entirety of your input, in most cases you need more than the input to actually operate upon the input.  In your example, sure 8n+1 is a simple operation, but given that n is in special input memory, where are you going to store 8n while you are adding the one.  That memory is computational memory, and, per the original question, is finite, not scaled to the size of n.<br><br>As a computer scientist these kinds of questions are very important.  Most of the time we don't worry about memory anymore because memory is cheap, computation time is much more the bottleneck.  That doesn't mean that memory is irrelevant.  For example, solving any problem that has to reference a dictionary (say, a spell-checker) can't just assume you have room to load the dictionary into memory.  In the same way, in math, you can't just assume you can load any number into memory.  Arbitrarily large numbers require special consideration.</p>		</li>
-					</ul>
-			<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/WikiWantsYourPics" target="_blank">WikiWantsYourPics</a>
-			<p>If there's an algorithm that doesn't need to see the whole of n at once, and can work piecewise, and if you don't count the input tape (containing n) as part of the memory, you can process arbitrarily large n as input.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/Solesaver" target="_blank">Solesaver</a>
-			<p>If I'm not misunderstanding your point:  Say you have f(n) that only needs 1 bit of n at a time (where n equals the digit of the irrational number you are trying to find).  Note that for the original problem f(n) cannot have a repeating pattern, so the output must consider the entirety of the input to be a unique state.  To steal from elsewhere, let's say f(n)=1 if n is a power of 2 and f(n)=0 otherwise.  You could have an input tape read in the value of n one bit at a time, the first time it found a set bit it would store that state (bool setBitFound = true), the second time it found a set bit (setBitFound already = true) it would output 0 for that index.  If it finished scanning n without finding a second set bit it would set the output to 1 for that index.<br><br>Ok. :)  We have proven by example that there exists an irrational number that can have the arbitrarily large nth digit computed within finite working memory.  Point conceded.<br><br>The outstanding question remains whether such a formula can exist for pi.  Obviously, that is pretty unlikely, but can it be proven?  Neat to condsider anyway. :)</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/SunilTanna" target="_blank">SunilTanna</a>
-			<p>Such formulas would not exist for most irrational numbers.  So on the face of it is unlikely. That said pi is a very special irrational number so maybe such a formula exists.</p>		</li>
+			<div class="markdown"><p>Consider the number 0.101001000100001000001...</p>
+<p>This is an irrational number.  I can calculate any digit without even considering prior digits.   The n'th digit is 1 if n is triangular, and 0 if not.  I can test if n is triangular by checking if 8n+1 is square.  I do not ned to kniw anything about prior digits.</p>
+<p>Yes I might need memory to store n, but I think that was assumed in the question.   </p>
+<p>In my examole, you need 4 bits more than the number reqd to store n to store 8n+1</p>
+<p>I think that is the spirit of the question. </p>
+<p>More to follow.</p></div>		</li>
 						<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/schmuelio" target="_blank">schmuelio</a>
-			<p>The issue is that you're not counting the input as part of the memory, this would work just fine for a base-2 encoded input method where f(n) is only whether or not the input is a power of 2.<br><br>This only really limits you to two types of f(n) though. Assuming the input is in base-k, the only f(n) that you could calculate without having to store the entirety of n are:<br><br> - f(n) = a if n = k^x ; b otherwise (where a, b, and x are integer values)<br> - f(n) = a if n = y/(k^x ); b otherwise (where a, b, x, and y are integer values)<br><br>Outside of those two f(n) you have to start reading (at least) more than one digit of n at a time, and outside of trivial cases like &quot;are the last m digits of n some value?&quot; you would have to store n in it's entirety. Meaning (correct me if I'm wrong) for all non-trivial f(n), n must be stored in memory, and f(n) cannot be computed in finite memory for all n.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/Solesaver" target="_blank">Solesaver</a>
-			<p>I'd have no trouble believing your point.  In fact it is my base assumption.  However, I have no proof that it is the case so I cannot verify my assumption.  Do note, per the original question, we can read more than one bit in of n at a time.  It just has to be a finitely limited amount of it.  Who knows? Maybe there is a g(x) such that the nth digit of pi is equal to the sum of g(x) over X modulo 10 where X is made up of terrabyte elements representing large chunks of n.  Such a formula would be able to operate within finite working memory upon an arbitrarily large n and still output an irrational number.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/schmuelio" target="_blank">schmuelio</a>
-			<p>As a continuation of my thoughts, I've thought about that pesky case of finite digits of n (k) where 1 &lt; k &lt; infinity:<br><br>If you only need a finite number of digits to compute f(n) then you must be looking at a repeating number. Lets say you only need 5 digits of n to compute f(n), there are a finite number of 5 digit combinations and they follow a predictable (and repeating) pattern as you increment n. This means that if f(n) is deterministic (the same input will give you the same output), the result of f(n) will also follow a predictable (and repeating) pattern as n increments.<br>Seeing as though f(n) computes the nth digit of an irrational number, it cannot produce repeating output as n increments otherwise the number would not be irrational. So you can't read a fixed and finite number of digits from n.<br><br>The next step up from that would be if you could read a variable number of digits from n in order to compute f(n), this is well beyond my scope of mathematics so I don't know the answer to this. You would essentially have to prove that the number of digits you need is both variable and always finite, you would likely need some formula g(n) to decide how many digits you need for a given n.<br><br>This would run into more problems because how do you calculate g(n) in finite space (bearing in mind you can't have a fixed number of digits to calculate g(n) because see above)?<br><br>Maybe there is some infinite series of functions that allows you to calculate f(n), without it's output repeating, and without ever needing to read all of n. At that point you're gonna have to look into how to store all those functions in finite space.</p>		</li>
+			<a class="author" href="https://www.reddit.com/user/WikiWantsYourPics" target="_blank">WikiWantsYourPics</a>
+			<div class="markdown"><p>If there's an algorithm that doesn't need to see the whole of n at once, and can work piecewise, and if you don't count the input tape (containing n) as part of the memory, you can process arbitrarily large n as input.</p></div>		</li>
 					</ul>
-		</ul>
-		</ul>
-		</ul>
-		</ul>
 		</ul>
 			<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/F0sh" target="_blank">F0sh</a>
-			<p>Since the problem was not stated formally you could ask whether there is any Turing machine which, when presented with the input <em>n</em> on one tape, produces the desired output while only writing to a second, finite tape.</p>		</li>
+			<div class="markdown"><p>Since the problem was not stated formally you could ask whether there is any Turing machine which, when presented with the input <em>n</em> on one tape, produces the desired output while only writing to a second, finite tape.</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/CynicalHarry" target="_blank">CynicalHarry</a>
-			<p>I thought about that too (theres another answer which debated a similar issue) and I think this depends on the irrational number itself. If the pattern of the irrational number is sufficiently simple then yes, you can, but I'm not sure this true for all irrational numbers.<br><br>To answer this question we would need a measure for the complexity of the number pattern itself I think.<br><br>EDIT: That's why i generally refer to a state machine rather than a turing machine and talk about the size of the state because even though a turing machine can also be seen as a state machine its state comprises of both the current inhabited state as well as the state of all tapes combined. Otherwise I could solve the problem by proposing a turing machine with an infinite number of states and no extra tape usage at all which <em>would</em> be able to compute the digits.</p>		</li>
+			<div class="markdown"><p>I thought about that too (theres another answer which debated a similar issue) and I think this depends on the irrational number itself. If the pattern of the irrational number is sufficiently simple then yes, you can, but I'm not sure this true for all irrational numbers.</p>
+<p>To answer this question we would need a measure for the complexity of the number pattern itself I think.</p>
+<p>EDIT: That's why i generally refer to a state machine rather than a turing machine and talk about the size of the state because even though a turing machine can also be seen as a state machine its state comprises of both the current inhabited state as well as the state of all tapes combined. Otherwise I could solve the problem by proposing a turing machine with an infinite number of states and no extra tape usage at all which <em>would</em> be able to compute the digits.</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/F0sh" target="_blank">F0sh</a>
-			<p>A Turing machine by definition has finitely many states. If you are thinking of simply a 'state machine' then the Turing machine is not a <em>finite state machine</em> which is something else - and indeed could not possess an unbounded tape which would allow infinitely many 'states'.</p>		</li>
+			<div class="markdown"><p>A Turing machine by definition has finitely many states. If you are thinking of simply a 'state machine' then the Turing machine is not a <em>finite state machine</em> which is something else - and indeed could not possess an unbounded tape which would allow infinitely many 'states'.</p></div>		</li>
 					</ul>
 			<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/anotherdonald" target="_blank">anotherdonald</a>
-			<p>That's exactly the same problem. You can replace a piece of finite tape by multiplying the internal state. To get out of the limitations of a finite automaton, you need an unbounded tape.</p>		</li>
+			<div class="markdown"><p>That's exactly the same problem. You can replace a piece of finite tape by multiplying the internal state. To get out of the limitations of a finite automaton, you need an unbounded tape.</p></div>		</li>
 						<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/null_work" target="_blank">null_work</a>
-			<p>&gt; when presented with the input n on one tape<br><br>Physically? No. You can't have a physical tape that is arbitrarily large and you would need to read the entire number in order to know what the number is, ergo your n's would still surpass physical limitations. Of course, this is the wrong direction to approach this topic, as generally our n's can just be considered unbounded and we care more about the abstract case.</p>		</li>
+			<a class="author" href="https://www.reddit.com/user/CynicalHarry" target="_blank">CynicalHarry</a>
+			<div class="markdown"><p>I actually have to come back again, because this question has been raised multiple times and I might have had a epiphany.</p>
+<p>Even if we disregard the memory the input uses (which is basically what you suggest) and we suppose a simple pattern, we still need unbounded memory. Consider the infinite sequence 1, 2, 1, 3, 1, 4, ... We can calculate the digit at the nth position easily by returning 1 for odd and n/2 for even.</p>
+<p>The problem is that n/2 is then unbounded too, if n is. And I think this might be a general property. If we have an infinite, non repeating sequence or an irrational number the n'th position will depend on some measure derived from <em>n</em>. The measure must consider the entirety of <em>n</em> because the number is irrational and therefore distinct indices must have distinct measures or we would be repeating (this collides with the example above, because there it is a sequence, sorry bad example). Since the measure is derived from the input it too is unbounded. Either in his small, or how large it is.</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/F0sh" target="_blank">F0sh</a>
-			<p>Turing machines are not physical objects so I'm not sure where that objection comes from. </p>		</li>
+			<div class="markdown"><p>Your infinite sequence doesn't make a real number because real numbers (in base 10) only have digits from 0 to 9.</p>
+<p>But you consider the following irrational number: 0.1101000100000001... The <em>n</em>th digit is computable as follows:
+If <em>n</em> is a power of 2, return 1, otherwise return 0. Whether <em>n</em> is a power of 2 is computable by a finite state machine.</p></div>		</li>
 					</ul>
 		</ul>
 			<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/morgan423" target="_blank">morgan423</a>
-			<p>I know it was probably just your phone auto-correcting you, but <em>Digits of Pie</em> would be an outstanding band name.</p>		</li>
+			<div class="markdown"><p>I know it was probably just your phone auto-correcting you, but <em>Digits of Pie</em> would be an outstanding band name.</p></div>		</li>
 					</ul>
 	

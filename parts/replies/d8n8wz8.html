@@ -1,207 +1,75 @@
 	<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/alercah" target="_blank">alercah</a>
-			<p>This is also the lower bound for how much memory you need, because you need O(log(n)) memory to even express the input n.</p>		</li>
+			<div class="markdown"><p>This is also the lower bound for how much memory you need, because you need O(log(n)) memory to even express the input n.</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/EricPostpischil" target="_blank">EricPostpischil</a>
-			<p>This occurred to me too, but the problem is not formally stated and leaves room for interpretation. For example, suppose the input <em>n</em> is presented on an input tape. The processor itself might never need to contain the entirety of <em>n</em>. Alternately, the computer might simply produce digits one by one (not bothering to count how many) until the user says stop.<br><br>If the problem were instead to compute the <em>n</em>^th digit of ⅓, then the computation is simple: If <em>n</em> is positive, produce 0, and, if <em>n</em> is negative, produce 3 (enumerating the digits in correspondence to the power of ten for their position). Thus we see that the fact that <em>n</em> cannot be held in the computer does not prevent us from computing any desired digit of some numbers.<br><br>So, a formal proof has to rely on properties of π, not just the amount of space required to express <em>n</em>, or the statement of the problem has to require that <em>n</em> be stored in the computer. The fact that the computer has finite memory means that, after some time, it must repeat states. Therefore, any decimal string it produces must start repeating at some point and hence must represent a rational number. π is irrational, therefore it cannot be produced by a computer with finite memory.</p>		</li>
+			<div class="markdown"><p>This occurred to me too, but the problem is not formally stated and leaves room for interpretation. For example, suppose the input <em>n</em> is presented on an input tape. The processor itself might never need to contain the entirety of <em>n</em>. Alternately, the computer might simply produce digits one by one (not bothering to count how many) until the user says stop.</p>
+<p>If the problem were instead to compute the <em>n</em>^th digit of ⅓, then the computation is simple: If <em>n</em> is positive, produce 0, and, if <em>n</em> is negative, produce 3 (enumerating the digits in correspondence to the power of ten for their position). Thus we see that the fact that <em>n</em> cannot be held in the computer does not prevent us from computing any desired digit of some numbers.</p>
+<p>So, a formal proof has to rely on properties of π, not just the amount of space required to express <em>n</em>, or the statement of the problem has to require that <em>n</em> be stored in the computer. The fact that the computer has finite memory means that, after some time, it must repeat states. Therefore, any decimal string it produces must start repeating at some point and hence must represent a rational number. π is irrational, therefore it cannot be produced by a computer with finite memory.</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/shiny_thing" target="_blank">shiny_thing</a>
-			<p>Are you saying that you can't compute the Nth digit of any irrational with finite memory even when N is on an input tape?<br><br>This isn't true:<br><br>The number X = 0.1101000100000001...<br><br>The Nth digit is 1 if N is a power of two, and is 0 otherwise. It's irrational because the subsequences of 0s grow. Given N as input in a binary representation, the Nth digit of X can be computed with a three state DFA.<br><br>Edit: I'm used to thinking dealing with binary when talking about cs, but if course this example extends to other bases. The Nth digit is 1 if N is a power of the base, zero otherwise.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/Unexecutive" target="_blank">Unexecutive</a>
-			<p>&gt; Are you saying that you can't compute the Nth digit of any irrational with finite memory even when N is on an input tape?<br><br>In order for the complexity class DSPACE(O(1)) to even exist we must choose our definition of complexity classes so that we don't count the input against the amount of space used.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/TheRealKidkudi" target="_blank">TheRealKidkudi</a>
-			<p>I am in so far over my head here trying to read along. What is DSPACE(O(1))?</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/Unexecutive" target="_blank">Unexecutive</a>
-			<p>DSPACE(x) means the class of <strong>D</strong>eterministic turing machines which require an amount of <strong>SPACE</strong> (i.e. computer memory + disk) x.  Related terms include NSPACE, DTIME, etc.  DSPACE(x) can also refer to the set of algorithms which can be run, the set of problems that can be solved, or the set of functions which can be computed by those machines.<br><br>O(1) is a fancy way of saying the set of bounded functions.<br><br>So DSPACE(O(1)) is the set of turing machines which require no more than a certain amount of space to run, no matter what the input is.  This has a special name, it is also called REG.<br><br>REG because &quot;regular languages&quot; can be recognized by DSPACE(O(1)) algorithms.  Regular expressions are a way to express regular languages.  This is why regexes are so common, because they're useful but for every regular expression, you know ahead of time what the maximum amount of memory that regex needs.<br><br>There's a little more to this that I'm leaving out, but there are a lot of resources online and in libraries for learning complexity theory, computability theory, and algorithms.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/TheRealKidkudi" target="_blank">TheRealKidkudi</a>
-			<p>Interesting, especially in relating it to regex. I've used regex plenty, but didn't know anything besides the functionality of it. Thanks for the explanation!</p>		</li>
-					</ul>
-		</ul>
-		</ul>
-			<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/dankeHerrSkeltal" target="_blank">dankeHerrSkeltal</a>
-			<p>Huh. I found <a href="http://math.stackexchange.com/questions/462790/are-there-any-examples-of-non-computable-real-numbers" target="_blank">a good thread on this sort of thing</a> on stack overflow. MJD draws parallels between the halting problem, and noncomputable real numbers.<br><br><a href="https://en.wikipedia.org/wiki/Computable_number#Formal_definition" target="_blank">The definition of a computable number is interesting too.</a></p>		</li>
+			<div class="markdown"><p>Are you saying that you can't compute the Nth digit of any irrational with finite memory even when N is on an input tape?</p>
+<p>This isn't true:</p>
+<p>The number X = 0.1101000100000001...</p>
+<p>The Nth digit is 1 if N is a power of two, and is 0 otherwise. It's irrational because the subsequences of 0s grow. Given N as input in a binary representation, the Nth digit of X can be computed with a three state DFA.</p>
+<p>Edit: I'm used to thinking dealing with binary when talking about cs, but if course this example extends to other bases. The Nth digit is 1 if N is a power of the base, zero otherwise.</p></div>		</li>
 						<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/Solesaver" target="_blank">Solesaver</a>
-			<p>With limited memory can you test if an arbitrarily large n is a power of 2 though?  How are you even tracking which digit you are on?</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/WikiWantsYourPics" target="_blank">WikiWantsYourPics</a>
-			<p>If n is a power of two, it's a 1 followed by a string of 0s, and you don't need to hold the whole number in memory to test that.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/iamplasma" target="_blank">iamplasma</a>
-			<p>No, but you need <em>a</em> number to be tracked in memory, being the position of the digit that you are up to.  Even if it takes near-eternity, eventually that counter will swallow the entirety of your system memory.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/ImpartialPlague" target="_blank">ImpartialPlague</a>
-			<p>you don't need to know how many 0s you've skipped.  You need only one boolean: whether you have already seen the most-significant digit.  your logic is:<br>    .<br><br>    <br>    // assume that input is a null-terminated character string representing a binary number<br>    bool most_sig_seen = false;<br>    bool input;<br>    while (input = (next_digit_from_tape() == '1')) {<br>      if (input) {<br>        if (most_sig_seen) {<br>          return '0';<br>        }<br>      }<br>      most_sig_seen = true;<br>    }<br>    return '1';<br>    </p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/snobocracy" target="_blank">snobocracy</a>
-			<p>I think iamplasma's argument is that you would need a counter inside next_digit_from_tape().   <br><br>I think I agree.  <br>You can't get the next index without knowing the current index. You will need memory to store the current index, which could potentially overflow whatever the limit is. <br><br>Edit: Actually, you could simply pop off the tape as you use it so that 'current index' is permanently at 0.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/gumiho-9th-tail" target="_blank">gumiho-9th-tail</a>
-			<p>next_digit_from_tape() could just mechanically move the tape x cm forwards (or backwards). It does not need to remember where it is on the tape.</p>		</li>
-						<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/ImpartialPlague" target="_blank">ImpartialPlague</a>
-			<p>Your edit is like what I had in mind, though I was visualiIng a physical tape (like a reel-to-reel magnetic tape), and imagined just scrolling forward through it, so you &quot;kept your place&quot; by virtue of a physical bit of tape being under the physical read head.</p>		</li>
-						<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/Benhg" target="_blank">Benhg</a>
-			<p>If the tape is essentially a linked list, you don't need the index, just a pointer to the next spot on the tape. Additionally, assuming some physical Turing machine like thing with real physical tape, get_next_digit() could be just moving the tape and reading whatever is on the new tape spot. </p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/snobocracy" target="_blank">snobocracy</a>
-			<p>&gt;If the tape is essentially a linked list, you don't need the index, just a pointer to the next spot on the tape.  <br>  <br>I don't think that would work. Any climbing pointer in an infinite list, would become infinitely large.  <br>Instead, if you cut off each spot on the list, right after you check it, the pointer can eternally remain at 0, which will never infinitely inflate.</p>		</li>
-					</ul>
-		</ul>
-		</ul>
-		</ul>
-		</ul>
-		</ul>
-		</ul>
-			<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/CNoTe820" target="_blank">CNoTe820</a>
-			<p>Someone recently set the world record for calculating the furthest digit of pi, he's up to the 10 quadrillionth digit. He talks about it on <a href="http://www.karrels.org/pi/" target="_blank">his site</a>.<br><br>They used a CUDA cluster at Santa Clara University.  <a href="http://abc7news.com/archive/9467245/" target="_blank">Source</a>.<br><br>His slides from the 2013 NVIDIA GPU Technology Conference are <a href="http://www.karrels.org/pi/S3071_EdKarrels.pdf" target="_blank">here</a>.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/blueberriesnpancakes" target="_blank">blueberriesnpancakes</a>
-			<p>Noob question, but how do you know that the answer is right? Is there a simple (I'm reminded of P/NP) way to try and verify the correctness of these new digits at the extreme depths without relying on just calculating them all over again with the hardware? Like a sanity check? </p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/skeletalcarp" target="_blank">skeletalcarp</a>
-			<p>Presumably they proved that the algorithm was correct and as long as nothing weird happens like a stray cosmic ray or a hardware bug then the answer is guaranteed to be correct.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/pi_stuff" target="_blank">pi_stuff</a>
-			<p>The formula has been proven correct, but the software implementation wasn't. That would be pretty hard.<br><br>There were errors encountered in that calculation that seemed to be cosmic ray or hardware errors. Some of the older (Fermi-era) CUDA cards produced about one erroneous result per day. See the <a href="http://www.karrels.org/pi/S3071_EdKarrels.pdf" target="_blank">&quot;Hardware Errors?&quot; slide</a>. None of the errors were reproducible.</p>		</li>
+			<div class="markdown"><p>Someone recently set the world record for calculating the furthest digit of pi, he's up to the 10 quadrillionth digit. He talks about it on <a href="http://www.karrels.org/pi/" target="_blank">his site</a>.</p>
+<p>They used a CUDA cluster at Santa Clara University.  <a href="http://abc7news.com/archive/9467245/" target="_blank">Source</a>.</p>
+<p>His slides from the 2013 NVIDIA GPU Technology Conference are <a href="http://www.karrels.org/pi/S3071_EdKarrels.pdf" target="_blank">here</a>.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mixels" target="_blank">Mixels</a>
+			<div class="markdown"><p>Because the value set for <em>n</em> can be anything between 1 and infinity, no finite amount of memory can contain each of all values from the full range of valid values for <em>n</em>. It is therefore not possible to do input a very large value for <em>n</em> into the application (and it's doubly impossible to store that value in memory) without causing a buffer or integer overflow.</p></div>		</li>
 					</ul>
 			<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/pi_stuff" target="_blank">pi_stuff</a>
-			<p>Run the calculation again, but at a slightly different offset. Say you computed 25 digits starting at the 1000000th digit. Do the calculation again starting at the 1000001th digit. The first 24 digits of the results of the second run should match the last 24 digits of the first run. Since your target digit was different, all the calculations were slightly different, so the odds that both had the same error are remote.<br></p>		</li>
-					</ul>
-		</ul>
-			<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/Mixels" target="_blank">Mixels</a>
-			<p>Because the value set for <em>n</em> can be anything between 1 and infinity, no finite amount of memory can contain each of all values from the full range of valid values for <em>n</em>. It is therefore not possible to do input a very large value for <em>n</em> into the application (and it's doubly impossible to store that value in memory) without causing a buffer or integer overflow.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/WikiWantsYourPics" target="_blank">WikiWantsYourPics</a>
-			<p>In theory, there could exist a method to calculate the nth digit by working on parts of n at a time. I don't know of such a method, and maybe for pi there's a proof that it doesn't exist, but just the fact that large values of n won't fit in memory doesn't mean it's impossible.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/Mixels" target="_blank">Mixels</a>
-			<p>You can't derive parts of <em>n</em> without storing <em>n</em> to begin with. I know what you're thinking--that maybe the user could enter parts of <em>n</em> in a certain sequence and piece together the results manually--but IMO that's cheating and doesn't satisfy the criteria specified in the question.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/WikiWantsYourPics" target="_blank">WikiWantsYourPics</a>
-			<p>Elsewhere, someone mentioned the number where the nth digit is 1 if n is a power of 2, and 0 otherwise. <br><br>That number is irrational, and you don't need to hold the whole of n in memory to calculate whether the nth digit is 1 or 0. You take in n as a bitstream of digits, and as long as the first bit is 1 and no other bit is 1, you output a 1, otherwise you output 0.<br><br>Now that's a trivial example, and I don't know of an algorithm to calculate an arbitrary digit of pi without holding its sequence number in memory, but I also can't think of a simple proof that no such algorithm exists.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/Mixels" target="_blank">Mixels</a>
-			<p>What do you mean? Feeding in <em>n</em> as a bitstream is still cheating because you have to store <em>n</em> in memory somewhere to do that.<br><br>But no one so far has ever been able to determine a pattern to the occurrence of digits in pi, meaning that to calculate the <em>n</em>th digit, you must either divide or select from a set of known values. This presents a further problem even if you accept that it's ok to feed <em>n</em> in as a stream.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/WikiWantsYourPics" target="_blank">WikiWantsYourPics</a>
-			<p>No, you don't need to store n. What if I asked you &quot;how much memory does a weather station need to be able to calculate the maximum weather over a day's measurements?&quot; It doesn't need to store all the day's measurements. It can read them one by one.<br><br>And there are algorithms to calculate the nth digit of pi without calculating digits 1-n.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/Target880" target="_blank">Target880</a>
-			<p>But you need to store the number n to know which decimal is asked for.<br>Your weather station it not correct. That looks for the maximum value.<br>If you instead ask for a the temperature at 13:59:33 you need to store the time to look for and more memory is needed. And more memory if the time is in milliseconds.<br><br>If you have a function that calculate PI decimal by decimal with finit memory usage you need the counter to know where to stop and returned the asked for decimal. That is n and need to be stored.<br>In practice n is only 44 bits for the pi decimal record of 13,300,000,000,000 bits.<br>But it was asked for any n and then the answer is not.<br></p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/WikiWantsYourPics" target="_blank">WikiWantsYourPics</a>
-			<p>We already have algorithms to calculate the nth digit of pi without calculating digits 1 to n, so you don't need to store n as a counter in you algorithm.<br><br>We don't currently have an algorithm to calculate the nth digit of pi without storing the whole of n in memory as part of the calculation, but such algorithms can be shown to exist for other irrational numbers.<br><br>So unless you can prove that there is no possible algorithm to calculate the 5268FEB4C25Cth digit of pi by reading 5268, calculating something, storing an intermediate value, reading FEB4, calculating further, storing another intermediate value, reading C25C, and then calculating the required digit, that proof fails.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/Target880" target="_blank">Target880</a>
-			<p>But you need to store 5268FEB4C25C somewhere if you can read it it need to be stored. It might be stored in the memory of the typing it in to the computer but it need to be stored. Then i would count the person typing the numer as a off-line memory of the computer.<br><br>It feels like cheating to use external memory and don't count it.<br>You could rewrite a program to stor information in a file and not in RAM it will work and.<br><br>You could rewrite the question as.<br>-Can you creates program that outputs the decimals of PI one after another with limited memory usage.<br><br>Then you don't need to store anything and the question almost the same as the poster asked.<br><br>You also need to specify that the output is not in base pi of a linear combination of pi. Because in base pi the problem is trivial wen all decimals are 0<br><br><br></p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/WikiWantsYourPics" target="_blank">WikiWantsYourPics</a>
-			<p>Generally in complexity theory you consider the input to the program as separate from the memory itself - it's a read-only memory that is only processed sequentially, not accessed at will.<br><br>It's like the question of the weather station, again. If I want to know how much ram to buy for an Arduino that needs to give me the maximum temperature over a day from a weather station that samples every second, I don't need to consider the whole of the input data volume for the day. <br><br>&gt; You could rewrite the question as. -Can you creates program that outputs the decimals of PI one after another with limited memory usage.<br><br>Not really: the question was specifically referring to calculating the nth digit of pi in limited memory, and that's a very different question, as long as you consider the input of n to be external to the computer.</p>		</li>
-					</ul>
-		</ul>
-		</ul>
-		</ul>
-		</ul>
-		</ul>
-		</ul>
-		</ul>
-		</ul>
-		</ul>
-			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/v4vijayakumar" target="_blank">v4vijayakumar</a>
+			<div class="markdown"><p>Store big number in a file, and load a small part as and when you need?</p></div>		</li>
+						<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/SmokyDragonDish" target="_blank">SmokyDragonDish</a>
-			<p>I don't know if this is valid, but I was going to say &quot;probably not&quot; to OP for a slightly different reason, although I could be full of it.<br><br>Because OP specified 1MB of &quot;memory&quot; (open to interpretation), you cannot say that this hypothetical computer is Turing Complete (and absolutely not a Turing Machine), because you just set a limit on memory.  And you're dealing with an irrational number, which by definition is infinitely calculable.<br><br>Not sure if that makes any sense or I'm blowing smoke.  Been 20 years since I got my Comp Sci degree. </p>		</li>
+			<div class="markdown"><p>I don't know if this is valid, but I was going to say &quot;probably not&quot; to OP for a slightly different reason, although I could be full of it.</p>
+<p>Because OP specified 1MB of &quot;memory&quot; (open to interpretation), you cannot say that this hypothetical computer is Turing Complete (and absolutely not a Turing Machine), because you just set a limit on memory.  And you're dealing with an irrational number, which by definition is infinitely calculable.</p>
+<p>Not sure if that makes any sense or I'm blowing smoke.  Been 20 years since I got my Comp Sci degree. </p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/fetchingTurtle" target="_blank">fetchingTurtle</a>
-			<p>Could you please elaborate on how a memory limitation makes a given computer not Turing Complete?</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/8Bit_Architect" target="_blank">8Bit_Architect</a>
-			<p>A turing complete computer can calculate anything that is calculable. If I only have one bit of storage I'm severely limited in what I can functionally calculate</p>		</li>
+			<div class="markdown"><p>Could you please elaborate on how a memory limitation makes a given computer not Turing Complete?</p></div>		</li>
 					</ul>
 		</ul>
 			<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/v4vijayakumar" target="_blank">v4vijayakumar</a>
-			<p>Store big number in a file, and load a small part as and when you need?</p>		</li>
-					</ul>
-			<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/GarthOmSmith" target="_blank">GarthOmSmith</a>
-			<p>Is there something special about base 16? Is it solely because the algorithm is meant to be on computers or is there something intrinsic to base 16? (That would blow my mind.) Why not base 10, or base 2, or base 1823746?</p>		</li>
+			<div class="markdown"><p>Is there something special about base 16? Is it solely because the algorithm is meant to be on computers or is there something intrinsic to base 16? (That would blow my mind.) Why not base 10, or base 2, or base 1823746?</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/pi_stuff" target="_blank">pi_stuff</a>
-			<p>It works with any base that is a power of 2, due to the 16^k factor in the <a href="https://en.wikipedia.org/wiki/Bailey%E2%80%93Borwein%E2%80%93Plouffe_formula" target="_blank">BBP formula</a>.  Nobody has yet found a formula that lets you extract digits of pi in base 10 efficiently.</p>		</li>
-						<li class="reply">
+			<div class="markdown"><p>It works with any base that is a power of 2, due to the 16^k factor in the <a href="https://en.wikipedia.org/wiki/Bailey%E2%80%93Borwein%E2%80%93Plouffe_formula" target="_blank">BBP formula</a>.  Nobody has yet found a formula that lets you extract digits of pi in base 10 efficiently.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[removed]</p></div>		</li>
+					</ul>
+			<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/StrangeConstants" target="_blank">StrangeConstants</a>
-			<p>In formulas like this, it usually gets more complex as you have other base primes like 5 or 7 guiding the equations. 2 is the most simple, hence the base 2 (convertible to base 16). There is no reason why we couldn't find something in base 5, though it would likely be more complex and take more computing time. </p>		</li>
+			<div class="markdown"><p>In formulas like this, it usually gets more complex as you have other base primes like 5 or 7 guiding the equations. 2 is the most simple, hence the base 2 (convertible to base 16). There is no reason why we couldn't find something in base 5, though it would likely be more complex and take more computing time. </p></div>		</li>
 					</ul>
 			<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/hoseja" target="_blank">hoseja</a>
-			<p>Does it work by crawling through pi and forgetting the previous digits to get to your digit? Clever.</p>		</li>
+			<div class="markdown"><p>Does it work by crawling through pi and forgetting the previous digits to get to your digit? Clever.</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/MiffedMouse" target="_blank">MiffedMouse</a>
-			<p>It's crazier than that. It turns out there is a sum of ratios of polynomials that gives the nth digit. The sum is technically infinite, but because you know the answer is an integer (and the sum converges nicely) you can stop when you get close enough.<br><br>So you can skip directly to the nth digit!</p>		</li>
+			<div class="markdown"><p>It's crazier than that. It turns out there is a sum of ratios of polynomials that gives the nth digit. The sum is technically infinite, but because you know the answer is an integer (and the sum converges nicely) you can stop when you get close enough.</p>
+<p>So you can skip directly to the nth digit!</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/mfb-" target="_blank">mfb-</a>
-			<p>Only works for hexadecimal, unfortunately, and the conversion between that and decimal needs more digits (not all of them, but much more than 1).</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/zcbtjwj" target="_blank">zcbtjwj</a>
-			<p>well OP didn't specify what base to use so I am happy with that answer.<br><br>N.B. don't try this trick in exams</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/tornato7" target="_blank">tornato7</a>
-			<p>In that case I can give a really good answer for a base-pi number system: Any digit but the first is zero.</p>		</li>
-					</ul>
-			<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
-			<p>[deleted]</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/mfb-" target="_blank">mfb-</a>
-			<p>There is a variant for pi^2 in base 3. I'm not aware of formulas for decimal digits, but I don't see a fundamental reason why those should be impossible.</p>		</li>
-					</ul>
-		</ul>
-			<li class="reply">
+			<div class="markdown"><p>Only works for hexadecimal, unfortunately, and the conversion between that and decimal needs more digits (not all of them, but much more than 1).</p></div>		</li>
+						<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/CountSheep" target="_blank">CountSheep</a>
-			<p>So it's a series?</p>		</li>
+			<div class="markdown"><p>So it's a series?</p></div>		</li>
 					</ul>
 		</ul>
 		</ul>
