@@ -1,0 +1,105 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/matig123" target="_blank">matig123</a>
+			<div class="markdown"><p>Interesting. That seemed more reasonable than it trying to lose. Thanks for the response!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Qksiu" target="_blank">Qksiu</a>
+			<div class="markdown"><p>Well, there are several ways. Most programs do in fact simply restrict the time/number of moves that the computer is allowed to think. However, the more advanced programs also let you set the difficulty giving you the option of choosing what move the computer should go for. A chess engine usually explores several move options, and then plays the best move it found. However, you can also set it to always play the 2^nd best move, 3^rd best move, etc... and still let it think for however long you want. Some programs also have the option to let you choose the % strength of the engine, meaning that if you set it to e.g. 10% of its strength, the best move will only played 5% of the time, while the 7^th best move will be played 70% of the time.</p>
+<p>A good and free program for this is <a href="http://www.playwitharena.com/" target="_blank">Arena</a>, which has all of the features I mentioned. It comes with several engines pre-installed (most of which can beat the pre-installed chess engines on your OS with ease), and you can install additional free/commercial engines if you so wish.</p>
+<p>I once did the experiment of letting a years old version of Rybka (I think it was 2.3.2, which is like 10 years old now) play against the pre-installed Windows engine, both on an i7. I gave Rybka 1 second for every move, and set Windows to the highest difficulty, which is about 5-10 seconds per move. Rybka won within 30 moves. And there are much better chess engines out today, like the European &quot;Stockfish&quot; engine, which is currently the strongest one, and it is free to use and open source.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>To elaborate further, this is usually done by limiting the amount of time the computer has to look at moves. On easy difficulties, it is only given a small amount of time to calculate move value. The higher the difficulty, the longer it can look for moves, and the better of a choice it can make. This is why high difficulty AI takes a long time before making its move. It is given enough time to evaluate millions of moves per turn.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/underhooksuplex" target="_blank">underhooksuplex</a>
+			<div class="markdown"><p>Shit, what you said just made this so clear to me. I had a chess computer when I was younger, and I loved trying the higher difficulty settings but I always hated how long it would take for the computer to take it's turn at those settings. What you just said makes that make perfect sense now. Thanks for that.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/penmonicus" target="_blank">penmonicus</a>
+			<div class="markdown"><p>Similarly, I had a &quot;travel&quot; chess electronic game, one with actual piece that you'd press down to signify that you were moving it, then press down again at its destination, then wait for the computer to calculate its move and move the piece on the computer's behalf. I was about nine years old and loved playing, but really only played it on the two easiest difficulties. When eventually I tried on a harder difficulty, it eventually just never made a move, seemingly trying to plan out an entire game and never deciding what to do.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VlK06eMBkNRo6iqf27pq" target="_blank">VlK06eMBkNRo6iqf27pq</a>
+			<div class="markdown"><p>After each side has played three moves, the pieces could form any one of over nine million possible positions on the board.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ErraticDragon" target="_blank">ErraticDragon</a>
+			<div class="markdown"><p>The chess program I used as a kid actually let me directly configure how long the computer had to take its turn, and even had a &quot;hurry up&quot; button for some reason.</p>
+<p>I don't think I understood how those affected its prowess, I just liked making it go quickly.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>Can you go a little more into the computing power required to look X number of moves into the future?</p>
+<p>I figure in 2015 this would be trivial for a mid range CPU. (ie. I've never understood why we needed Deep Blue to do what I assume to be simple maths)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gnoani" target="_blank">gnoani</a>
+			<div class="markdown"><p>Deep Blue was a fairly brute-force solution to computer chess, at least compared to what we have now. Deep Blue checked many, many positions that more modern systems would instantly disqualify. Today's chess software, running on normal computers, is designed to work smart, not hard.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Throwaway-tan" target="_blank">Throwaway-tan</a>
+			<div class="markdown"><p>It's a matter or exponential complexity.  If we say there are 4 moves for every piece on the board (not true but it's an example) and there are 10 pieces. That's 40 possible moves, but then you need to predict the next step. So you have another 40 possible moves but you have to do each of these simulations for each of the 40 possible moves for the previous turn. So it's 40^2 or 1600 possible moves, then the next turn is 1600^2 and so on. </p>
+<p>This is simplified and doesn't take in to account weighting which will eliminate certain paths because of unfavourable outcomes early on.</p>
+<p><strong>edit:</strong> my apologies, the math is wrong in this example it should've been x^n where n is the number of turns and x is the number of possible actions that could be taken in a single turn.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KJ6BWB" target="_blank">KJ6BWB</a>
+			<div class="markdown"><p>Well, they sort of cheated with Deep Blue. They had a team of chess experts who analyzed every game Kasparov had played, and they programed Deep Blue to take advantage of any weakness that they found in Kasparov's play style. In between each game, they were able to update the program as well. Deep Blue couldn't have beaten another grandmaster at that time, it was specifically optimized to beat Kasparov.</p>
+<p>These days, yeah, computers can beat most people. But they sort of cheated in my opinion.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheGreatGimmick" target="_blank">TheGreatGimmick</a>
+			<div class="markdown"><p>Do we have the processing power to make a computer that always sees all possible moves? I would assume such a computer would be unbeatable, but could you tie it? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/feroqual" target="_blank">feroqual</a>
+			<div class="markdown"><p>Well, considering that <a href="https://en.wikipedia.org/wiki/Shannon_number" target="_blank">the number of chess moves is estimated to be 10^120, and the number of atoms in the observable universe is estimated to be less than 4X10^81</a> ,  I would say no.</p>
+<p><strong>Edit:</strong> This means that there are 250,000,000,000,000,000,000,000,000,000,000,000,000 times more chess moves than atoms in the entire universe.</p>
+<p><strong>Edit the second:</strong> currently it looks like we've been able to cram <a href="http://news.stanford.edu/news/2009/january28/small-012809.html" target="_blank">about 35 bits</a> of information per electron. The upper bound is likely much, much higher.</p>
+<p>Back of the envelope calculations tell me that this gives about 12 bits per hydrogen atom, if you convert them to copper first; assuming that we get that up to <em>ten thousand</em>, we would still have <em>2,500,000,000,000,000,000,000,000,000,000,000+</em> games not stored in your universe computer--assuming it only takes ONE BIT to store an entire game.</p>
+<p><strong>Edit the third:</strong> Going off of the shannon <em>number</em> wikipedia article, if we limit the number of games stored to the 10^40 &quot;sensible&quot; games estimate, one would have 10^40 atoms to spare for actual computing use (again, assuming we convert the entire universe.) Using conservative estimates, this gives at least 100,000,000,000,000,000,000,000,000,000,000,000,000,000 atoms to spare for things such as:</p>
+<ul>
+<li>Figuring out what move goes after what;</li>
+<li>Actually representing each game with more than a &quot;this game exists&quot;;</li>
+<li>Being able to actually project the game in some medium to something that is not part of the computer; and most importantly,</li>
+<li>Hosting a single immortal, so bored that he converted the entire universe into a computer just to store all of the possible games of chess that weren't stupid.</li>
+</ul>
+<p><strong>Edit the fourth:</strong> Shannon NUMBER wikipedia article. not...that...no. CURSE YOU 1 AM BRAIN</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TokyoJokeyo" target="_blank">TokyoJokeyo</a>
+			<div class="markdown"><p>No, chess is too complex for that at the moment. When a game has had all of its possible moves calculated, it is called &quot;solved,&quot; because for any position, there is a winning solution (or perhaps only a tie or loss are possible).</p>
+<p>Tic-tac-toe has been solved, since it is a pretty simple game. If two players play perfectly, they will always tie. There is some discussion over whether white will always win in a perfect game of chess, since it gets to move first. In the future, we'll be able to calculate it.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DanishWeddingCookie" target="_blank">DanishWeddingCookie</a>
+			<div class="markdown"><p>As a programmer I'm going to guess at this. I want to add to the previous comments in that to introduce those errors the computer makes on the easier level is probably controlled by a random number generator. So it will pick a random 2 digit float and if that value is higher than the threshold for that difficulty, it would make an error but less than it would make a move towards the most efficient t win.</p>
+<p>As an example suppose easy is 75% of playing a good move and not creating an error.</p>
+<p>A matrix for this would be something like</p>
+<p>Easy : .75
+Med: .85
+Hard: .95
+Prodigy: .99</p>
+<p>So on the highest level it will have a 1% chance to make a mistake.</p>
+<p>That's just an example, I'm sure you could really get down to the fine details.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/buddaaaa" target="_blank">buddaaaa</a>
+			<div class="markdown"><p>As a chess player, this is a much better answer IMO than the original post and hope more people read it. Computers on easy modes make blunders that even computers with only a microsecond of time to think would never make (e.g. hanging a piece in one move). The way computers play is like a rank of probability that they make a mistake.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MattieShoes" target="_blank">MattieShoes</a>
+			<div class="markdown"><p>Yes!  I was annoyed with the original answer too.  A computer with a fraction of a second per move can still be stronger than almost all people.  :-)</p>
+<p>Making a computer &quot;easy&quot; requires it to make blunders it can see even in a fraction of a second.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sleeps_with_crazy" target="_blank">sleeps_with_crazy</a>
+			<div class="markdown"><p>Scrolled this far to see this.  Yep.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/diox8tony" target="_blank">diox8tony</a>
+			<div class="markdown"><p>also as a programmer who has dabbled in game AI, I'll display another example.</p>
+<p>Deep Blue the chess machine, plays out 10-100 moves into the future and marks all paths that end in win. it builds a tree of possible moves, the first layer of the tree being the ~50 possible moves it can make right now, second level is the 50 <em> 50 that the opponent can respond with, third level is the 50 </em> 50 * 50 moves that it could respond to the level 2 moves with....etc, it gets huge fast. using tree trimming,(he wouldn't put his king in check so don't even go down that path) can make the data small enough for a PC. eventually these possible paths end in wins/loses/draw and it ranks each first move with a % win rate. &quot;moving bishop to KR5 ends in 90% wins.&quot;</p>
+<p>if move 1 ends in 99% wins, and move 2 ends in 70% wins...the easy mode will choose move 2 to give you a 30% chance of winning, hard chooses move 1.</p>
+<p>no randomness needed.</p></div>		</li>
+					</ul>
+		</ul>
+	

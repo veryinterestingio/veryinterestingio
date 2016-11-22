@@ -1,0 +1,86 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/devluz" target="_blank">devluz</a>
+			<div class="markdown"><p>Can confirm that. The state change in DirectX causes that everything the game uploaded into DirectX and the graphics card is lost. So if the developer didn't actively plan that in it will end up trying to draw objects that aren't in the memory anymore -&gt; crash.</p>
+<p>The developers have to reinitialize everything again e.g. 3d models then it has to be uploaded to directX / the graphics card. That is why games often get stuck for a while even though they are programmed properly.
+In my first game I didn't plan that in and fixing the problem would have taken at least a few days...</p>
+<p>This all happens only if true fullscreen mode is used.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Clewin" target="_blank">Clewin</a>
+			<div class="markdown"><p>Fullscreen mode creates what is called a Context in OpenGL and a Surface in DirectX, which in layman's terms is a bunch of settings describing your graphics settings, including resolution, bit depth, etc. This was less of an issue before Aero because Windows was rendered in software. With Aero, Windows started using a Direct 3D Surface, so Alt-Tab will change the Surface to the Aero one and when you switch back via Alt-Tab or some other way, the developer needs to detect this and reload the correct Surface for the game they are rendering.</p>
+<p>It is possible to make Alt-Tab very fast by using a shared Surface, which uses all of the graphics settings that Aero is using. You can also switch to Windowed mode quickly this way, but you have to take what Windows gives you - if FSAA is off, FSAA is off in your game.</p>
+<p>Someone said OpenGL doesn't have this problem and they are not entirely correct as you do need to reload Contexts when switching between them, but I think that may be correct for switching between Aero (Direct3D) and OpenGL full screen contexts. OpenGL Windowed mode creates a Direct3D Surface and paints OpenGL rendering into it and you get a fairly significant performance hit (about 20% when I did it last ~5 years ago). I don't know if performance is better or worse today.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SR_TEXAS" target="_blank">SR_TEXAS</a>
+			<div class="markdown"><blockquote>
+<p>Someone said OpenGL doesn't have this problem and they are not entirely correct as you do need to reload Contexts when switching between them</p>
+</blockquote>
+<p>This is done automatically with ANY windowing system you can find. Also, performance for OpenGL has improved A LOT over the past 5 years (as well as Java). OpenGL windowed speeds are pretty much the same as Dx. Nowadays the Direct3D surface is nothing more than a &quot;proxy graphics layer&quot;. All the data is handled by OpenGL/OpenCL and then the final frame is passed to the Direct3D surface, so the surface basically does nothing but draw what it's told to draw.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/snerp" target="_blank">snerp</a>
+			<div class="markdown"><p>The reason OpenGL is better about it is because an OpenGL context is not a DirectX surface, so alt-tabbing doesn't destroy your OpenGL context, it just sits there in memory until you need it again.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/screwyou00" target="_blank">screwyou00</a>
+			<div class="markdown"><p>Would that explain why Skyrim (esp. heavily moded) takes forever to alt+tab, but a DX 11 game like BF4 can alt+tab easily?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/devluz" target="_blank">devluz</a>
+			<div class="markdown"><p>Yeah would make sense. Never used Dx11 in fullscreen though. But as far as I remember it was a Dx9 annoyance only. Dx11 is also easier to use  ... so programmers don't mess up that often.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rihsatra" target="_blank">Rihsatra</a>
+			<div class="markdown"><p>BF4 and alt+tabbing easily is not something I would say in the same sentence. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TommoPuppy" target="_blank">TommoPuppy</a>
+			<div class="markdown"><blockquote>
+<p>So if the developer didn't actively plan that in it will end up trying to draw objects that aren't in the memory anymore -&gt; crash.</p>
+</blockquote>
+<p>That explains why Sonic &amp; All-Stars Racing Transformed likes to crash when a loading screen comes up while the game is minimised. (e.g. if you alt-tab while in an online lobby and the game starts without you)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OrderOfMagnitude" target="_blank">OrderOfMagnitude</a>
+			<div class="markdown"><p>Thank you for being a real answer and not just another person who (like nearly all gamers) knows what full screen borderless is.</p>
+<p>I mean yes it's a factor but it's not <em>the</em> factor.</p>
+<p>EDIT: It's not the factor OP is talking about, since borderless lets you totally skip the alt-tabbing problems and has little to do with which games handle actual alt-tabbing the most efficiently ie not hl2.exe</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jringstad" target="_blank">jringstad</a>
+			<div class="markdown"><p>full-screen borderless/windowed vs. exclusive fullscreen is the factor that decides whether you lose the device or not when the user alt-tabs though, so it is pretty much &quot;the&quot; factor. If you render in windowed/borderless, you will never lose the device. (Also if you're using OpenGL you will never lose the device)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OrderOfMagnitude" target="_blank">OrderOfMagnitude</a>
+			<div class="markdown"><p>Exactly, it's not a videogame-specific quality, so it's not the factor we're even talking about. OP's asking about why certain videogames alt-tab better than others, borderless essentially allows you to cheat the alt-tab problem but that's totally regardless to which games handle actually alt-tabbing the best.</p>
+<p>HL2 for such a robust, moddable, and iterated on engine always had such a hilarious time being total shit at alt-tabbing. I can still hear the 1/2 second sound byte loops in my sleep. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Astrobody" target="_blank">Astrobody</a>
+			<div class="markdown"><p>Doesn't full screen windowed cause Windows Aero to still be rendered, thus stealing resources from the GPU and RAM? That's why I never do it, more of a habit from Vista than anything.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/i_laugh_at_idiots" target="_blank">i_laugh_at_idiots</a>
+			<div class="markdown"><p>There's something so unsatisfying about your response heh. It's like asking someone about the pathogenesis of cancer and them telling you not to smoke. I mean sure, not smoking will hugely decrease my chances of cancer but that barely answers the question.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/myztry" target="_blank">myztry</a>
+			<div class="markdown"><p><a href="https://en.wikipedia.org/wiki/Commodore_64#Graphics" target="_blank">Full screen border-less requires careful timing of raster interrupts...</a></p>
+<p>Oh, not Direct Hardware Hammering...</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>Running a game in fullscreen borderless though isn't very good for stuff like VSync or SLI/Crossfire. It's only really a good idea on multi-monitor set ups where you need to quickly use the other monitor, and don't need VSync or full GPU power from more than 1 GPU.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Linard" target="_blank">Linard</a>
+			<div class="markdown"><p>Why is it then that significantly more recent games (who are all using Dx10 or up) have more trouble to Alt+Tab (Civ V comes into my mind, which just doesnt want to give the control away and sometimes forces itself into the foreground again, everytime you try to alt+tab) while most older games who use Dx9 or lower work in general better?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ticamai" target="_blank">Ticamai</a>
+			<div class="markdown"><p>Civ V doesn't just do this in DirextX10. Even on Mac and Linux, where it has no option but OpenGL, it still tends to refuse to be anywhere but the foreground, and often won't recover if you do manage to alt-tab out. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Wolfbane5001" target="_blank">Wolfbane5001</a>
+			<div class="markdown"><p>In DirectX9 it won;t bug out if you alt-tab.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

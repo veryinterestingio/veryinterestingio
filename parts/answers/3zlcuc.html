@@ -1,0 +1,107 @@
+<div class="answers">
+	<div class="answer" data-handle="cynhsmo">
+		<a class="author" href="https://www.reddit.com/user/charonn0" target="_blank">charonn0</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are a couple of rules that multiplayer game developers follow to permit near-real time network play:</p>
+<ul>
+<li><strong>Exchange as little information as possible</strong></li>
+</ul>
+<p>Take, for example, my all-time favorite game Left4Dead2. Each zombie has a position within the map that is defined by its X, Y, and Z coordinates. If you listen to the developer commentary, you learn that the zombies don't report their Z coordinate unless it changes (e.g. climbing/falling). This reduces by one-third the amount of position information that must be exchanged for each running/walking/standing zombie.</p>
+<ul>
+<li><strong>Calculate as much as possible locally</strong></li>
+</ul>
+<p>Each player has an identical game program, and so calculations that don't affect gameplay directly can be done for each player locally. This also makes it possible to detect cheaters since their calculations won't agree with the other players' games.</p>
+<ul>
+<li><strong>Send the information as fast as possible, even at the risk of corrupting or losing it</strong></li>
+</ul>
+<p>Most web pages are delivered using the network protocol called TCP. This protocol emphasizes reliability, and guarantees that information will arrive without error and in the same order it was sent. This is good when transferring data where minor errors cause big problems, like images, music, or written language. The downside is that TCP has significant overhead.</p>
+<p>Most multiplayer games, on the other hand, use a different protocol called UDP. UDP runs on top of the same hardware and software as TCP but does not guarantee delivery, correctness, or even the order in which information arrives. These tradeoffs give UDP a lower overhead and a higher throughput than TCP in almost all scenarios. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cyn1a4j">
+		<a class="author" href="https://www.reddit.com/user/HeavyDT" target="_blank">HeavyDT</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Games actually send very little data in the grand scheme of things because rendering is handled locally so you can send small amounts of data and just handle the interpretation client side. It's like the difference between being told to draw a triangle over the phone rather than having to actually send a picture of a triangle through the mail to the other person. Also online games use interpolation and other techniques to hide the effects of delay or lag to the end user.</p>
+<p>Edit: Okay so for those wondering interpolation is when you have a set of data and you generate new data points that fit in with the existing data.  You use this in online games to make things look smooth because in reality the internet isn't. there's always delay(lag) when dealing with online among other issues like packet loss and data arriving out of order (packet 2 arrives before 1 does). If you tried to code a 1 to 1 experience then everyone would be teleporting around the screen all the time because by the time one movement confirmation is received it's already out of date you're really dealing with past information. You also need it because games don't update instantly the game logic is only updated in certain certain time steps (frame rate) and data is only sent out over the internet in certain time steps (tickrate).</p>
+<p>For example, say in the previous update we know that a player was at the orgin (0, 0 , 0) but in the next hes reported as being at (0, 10, 0). We dont want to just move that player to (0, 10, 0) because it's gonna look like he teleported so we use interpolation to move him smoothly to this new location. The end user sees something more like this:
+(0, 0, 0) to -&gt; (0, 2, 0) -&gt; (0, 4, 0) .......... to it finally hits (0, 10, 0) and now it actually looks like the player moved more naturally to that position. </p>
+<p>As for the other tricks I mentioned there's a ton. Well first there's just straight lag compensation. Interpolation makes things look smooth but they also need to feel smooth so you have to code the game so that it takes into account the lag that is happening and still provides as 1 to 1 of an experience as possible. Some games use movement prediction to try and hide lag. Have you ever played an online game when a player is lagging or disconnects and their player keeps walking into the wall? that's generally why that happens. Others use roll back techniques as well that work well in small cases. If push to far though you get snap back or rubber banding issues. even simple things like having hit registration in a shooter (the hit noise in halo or the hit markers in COD) make the game feel less laggy to the player.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cynb1qc">
+		<a class="author" href="https://www.reddit.com/user/Cekuro" target="_blank">Cekuro</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A webpage is actually hundreds of websites that needs to be accessed  vs gaming which is basically a stream of data whether you ask for it or not. Plus, gaming servers send very small amount of information. what is sent is essentially telling your game to recreate the animations so the actions and information is very small. This is also how Voice over IP works, too.  Plus you and the game server are sending each other information at a super fast interval and not waiting for responses from the other person, you're just spatting out information all the time where a website and you confirm each other's actions and wait for the other person before proceeding.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Webpage basics:</p>
+<p>Me: What's the IP address of this website?</p>
+<p>DNS: Here's the IP</p>
+<p>Me: I want to talk with you, website, are you there?</p>
+<p>Website: I'll talk with you, I acknowledge your request.</p>
+<p>Me: Alright, we're talking.</p>
+<p>Me: I want this webpage, website.</p>
+<p>Website: Okay here's a list of all other websites you need to get information from to fully understand my webpage</p>
+<p>(tons of repeat back and forth with DNS and establishing sessions with other websites)</p>
+<p>&nbsp;</p>
+<p>Here's a typical gaming session:</p>
+<p>Me: Game server, I want to participate in this server.</p>
+<p>Game Server: Okay, I see you participating</p>
+<p>Me and Game Server at the same time: Here's what I got, I don't care if you got it or not</p>
+<p>Me and Game Server at the same time: Here's what I got, I don't care if you got it or not</p>
+<p>Me and Game Server at the same time: Here's what I got, I don't care if you got it or not</p>
+<p>Me and Game Server at the same time: Here's what I got, I don't care if you got it or not</p>
+<p>Me and Game Server at the same time: Here's what I got, I don't care if you got it or not</p>
+<p>Me and Game Server at the same time: Here's what I got, I don't care if you got it or not</p>
+<p>&nbsp;</p>
+<p>edit: I'm humbled by the gold, much appreciated. As others have mentioned, this is really just a rough overview of what happens. There's many factors that go into loading, mainly dealing with server, internet, type of data, and your own computer. The internet in all its bits and bytes is a magically digital place. Thanks again!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cyn0je9">
+		<a class="author" href="https://www.reddit.com/user/tsuuga" target="_blank">tsuuga</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>When you load a webpage, it's a one-time connection.  Your computer contacts a DNS server, which identifies the computer you want to talk to and provides you with a route to contact it, and then you have to open the route before you can start loading the webpage.  And even simple webpages these days are spread across several different servers for media hosting, ads, APIs, etc, all of which you also have to contact, and you only find out you need to contact after the first page has started loading</p>
+<p>Multiplayer games keep a connection open, so they only need to send data.</p>
+<p>Additionally, the data being sent in a multiplayer game is simpler than you'd think.  A player character could be represented by 3 numbers for their coordinates, a number for their vector, a few bytes to indicate what they've got equipped, and a few bytes to indicate what action they're taking (shooting, emoting, jumping, etc).  Your computer can reconstruct the scene from that information.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cyo1r41">
+		<a class="author" href="https://www.reddit.com/user/ur_mum_" target="_blank">ur_mum_</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Web pages and file transfers use a protocol called TCP. It isn't the fastest, but gives you assurance no data gets lost on the way. Like this:</p>
+<pre><code>TCP packet walks into a bar and says "I want a beer".  
+Bartender replies "Do you want a beer?".  
+TCP packet says "Yes, I want a beer."  
+Bartender - "Okay, are you ready to receive a beer?"  
+TCP - "Yes, I'm ready to receive a beer"  
+Bartender - "Okay, I'm going to give you the beer now, the transmission will take at most 3 seconds"   
+TCP - "I will grab it"  
+Bartender gives the beer  
+TCP receives the beer  
+Bartender - "I gave you the beer"  
+TCP - "I received the beer"  
+Bartender - "Is that all?"  
+TCP - "Yes"   
+-- end of connection--</code></pre>
+<p>While games use a protocol UDP, that doesn't check for correctness and if even the thing gets delivered. It's like that:</p>
+<pre><code>UDP packet walks into a bar and when it's barely trough the door already screams "BEER!"  
+Nobody hears it over the chatter.  
+UDP packet screams again.  
+Still, bartender doesn't hear it.  
+UDP packet keeps screaming.   
+Bartender finally hears it, throws 40 beers in packets direction.  
+One beer hits the UDP packet. Half of it spilled on the way but its okay.</code></pre></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

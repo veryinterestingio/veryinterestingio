@@ -1,0 +1,105 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hegbork" target="_blank">hegbork</a>
+			<div class="markdown"><blockquote>
+<p>Network hardware uses basically the same amount of power weather your packet traverses it or not.</p>
+</blockquote>
+<p>I must disagree with this. Back around y2k I worked in a company that built routers for a proprietary level 2 network technology. We had an overheating problem in a prototype when doing long term stress tests with minimal size packets. Large packets were no problem, but each packet required a CAM lookup to get a state and with minimal packet size this led to too many more CAM hits per unit of time. Since this was a prototype, we haven't really figured out the power consumption yet and at minimal packet sizes the tested unit burned up after a few hours of small packets while it could do large packets for days. I don't exactly remember the difference in power consumption, but it was definitely more than double.</p>
+<p>A CAM lookup, especially back then, is almost like a short-circuit. You hit a few hundred thousand memory cells at the same time and no matter how efficient they are it costs a lot of juice. If you google for &quot;cam memory power consumption&quot; you'll find tons of research from the past decade with attempts to make this better.</p>
+<p>Same goes for the slow path of a router. If you need to do a routing table lookup (to populate the CAM if nothing else) it will involve quite a bit of work for the CPU which can normally be completely idle and most of the software work in power savings is in making sure the CPU is idle for as long as possible.</p>
+<p>I agree that the question is basically unanswerable, but I know for a fact that packets are not energy neutral.</p>
+<p>Edit: In case someone wonders, &quot;burned up&quot; means that the blue smoke escaped, I don't mean it actually caught fire.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/John_Barlycorn" target="_blank">John_Barlycorn</a>
+			<div class="markdown"><p>Right, a couple of other people have mentioned routing. Do we count the energy consumed in deciding how to route the packet? I dunno...</p>
+<p>But I'm talking about a real world, major network... Is any more energy going to get consumed when you send one packet across the network? No. If you increase the load on the network by 40%? Ok, sure, the psu's are going to ramp up on the routers, air conditioners kick in... Is that in any way measurable at the packet level?</p>
+<p>We might as well be measure how far out of orbit we move the earth when we jump rope. (Which if you think about it as hard as we're think about this problem, gets just as complicated)</p>
+<p>Edit: spelling</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CitizenWoot" target="_blank">CitizenWoot</a>
+			<div class="markdown"><p>If we assume a switch is running at maximum capacity, could you divide the power consumption @ max load by max packet capacity to get a number that way?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/John_Barlycorn" target="_blank">John_Barlycorn</a>
+			<div class="markdown"><p>Sure... but is that really answering the users question? The equipment wasn't running at max capacity, and rarely will. The answer to his question on a typical day is 0 extra energy. i.e. If he hadn't sent the packet, the network would have used the same amount of power. On a peak traffic day... would there be a difference? I doubt it would be anything measurable. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/WERE_CAT" target="_blank">WERE_CAT</a>
+			<div class="markdown"><p>What about dividing the world daily average consumption by the world daily average information exchanged ?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TBNecksnapper" target="_blank">TBNecksnapper</a>
+			<div class="markdown"><p>Maybe not the max, but dividing by the average would be fair. Because it the ISP want their router to run on X% of the full capacity on average, and you start sending X% more packets to it so it is on average running at 2X%, they'll need to install a second router so both run at X% again. So doubling the packets does double the energy consumption. </p>
+<p>Although sending a single packet will most likely do nothing, it has the chance to be the packet tilts the statistics over the threshold and tell them to install a second router. So on average it would be fair to divide the power consumption by the average number of packets.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jsprogrammer" target="_blank">jsprogrammer</a>
+			<div class="markdown"><p>The information is encoded in energy. Transmission requires additional energy, the increase in power usage would be tiny compared to everything else that is running, but it must still be used.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SandorClegane_AMA" target="_blank">SandorClegane_AMA</a>
+			<div class="markdown"><p>This is obtuse interpretation of the question.</p>
+<p>The network equipment exists to move packets. The network consumes power. The motivation and need to power it is that it will move packets as needed. Therefore it ought to be possible to divide the power by the number of packets moved to derive an average wattage per packet. A more specific answer might give a value for a specific route.</p>
+<p>The challenge is that you need to collect info from many different folks to total the consumption at the various links and interconnections for your sample path or to estimate a global total. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DenormalHuman" target="_blank">DenormalHuman</a>
+			<div class="markdown"><p>If my packet consisted of mostly '0's , would that make a difference in the energy required compared to a packet of mostly '1's?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SandorClegane_AMA" target="_blank">SandorClegane_AMA</a>
+			<div class="markdown"><p>I don't know, my guess is generally not. </p>
+<p>Speculating: There may be specific cases - like fibre optics where the light source is on for longer when transmitting a high proportion of ones. The transmission protocol might complicate that though, turning the light on/off more often for sync. or error correction reasons. Perhaps some links could encode in the reverse (light on = 0) - hypothetically. Hence my guess it doesn't make much of a difference in the end, probably averages to close to even.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/The_camperdave" target="_blank">The_camperdave</a>
+			<div class="markdown"><p>Not much.  The signal on the line is a lot more complicated than 0=off and 1=on.  They can use, among other techniques, a process called Manchester encoding.  With this method 1 is encoded as on/off, and 0 is encoded as off/on.  Either way, the signal is on for half of the bit and off for half of the bit.  </p>
+<p>Another technique is alternate mark inversion, or AMI.  With AMI, off is 0 volts, but on alternates between 5v and -5v (or whatever the voltage in use is).  Half the time power is flowing from the transmitter, and half the time power is flowing to the transmitter.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/John_Barlycorn" target="_blank">John_Barlycorn</a>
+			<div class="markdown"><p>But if you didn't send the packet, the same amount of power would be consumed, so how is what you propose any sort of answer? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nerdyHippy" target="_blank">nerdyHippy</a>
+			<div class="markdown"><p>Even though it's not 100% precise, talking about the marginal cost of one packet has meaning. If there were significantly fewer packets being sent the network operators might sell off some equipment - if there were significantly more they might add some. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bhoskins" target="_blank">bhoskins</a>
+			<div class="markdown"><p>This is simply not true.  In modern core and edge routers (in a real service provider network) power is allocated to chassis components based on demand.  Service providers forecast how much power they expect to use at both peak (power-on) and steady-state (daily busy-hour throughput within each company's engineering guidelines for the hardware) periods when they are planning for new hardware deployment.</p>
+<p>Case in point, here is output from two Juniper MX960 routers, common edge devices with many service providers.  They have identical hardware configurations, side by side in my lab, but are utilized differently.</p>
+<pre><code>System:
+  Zone 0:
+      Capacity:          4100 W (maximum 4100 W)
+      Allocated power:   1926 W (2174 W remaining)
+      Actual usage:      1140 W
+  Zone 1:
+      Capacity:          4100 W (maximum 4100 W)
+      Allocated power:   2176 W (1924 W remaining)
+      Actual usage:      1368 W
+  Total system capacity: 8200 W (maximum 8200 W)
+  Total remaining power: 4098 W
+
+System:
+  Zone 0:
+      Capacity:          4100 W (maximum 4100 W)
+      Allocated power:   1318 W (2782 W remaining)
+      Actual usage:      754 W
+  Zone 1:
+      Capacity:          4100 W (maximum 4100 W)
+      Allocated power:   2176 W (1924 W remaining)
+      Actual usage:      1392 W
+  Total system capacity: 8200 W (maximum 8200 W)
+  Total remaining power: 4706 W</code></pre>
+<p>As you can see, their actual usage is significantly different, even though they have identical hardware configurations and sit in the same bay next to each other.  It is a function of heat mostly.  More packets makes the router's forwarding engines work harder (use more electricity) which creates more heat, which in turn causes the cooling system fans to spin faster.  Chassis cooling systems may require as little as a few amps or &gt;60 depending on how fast they have to spin to move enough air to keep everything cool.</p>
+<p>There is no free lunch.  While increased throughput through a given box drives down your overall cost per bit to carry that traffic,  powering big routers is expensive and a significant facilities planning challenge, and is, absolutely function of utilization.</p>
+<p>Further reading:  Here is some documentation from Juniper, who makes big core routers that power the Internet, on how to calculate power requirements for the PTX 5000, their bleeding edge core device.  Got 10Kw on your DC power plant to spare to run one of these at 100% utilization?</p>
+<p><a href="http://www.juniper.net/documentation/en_US/release-independent/junos/topics/reference/specifications/power-ptx5000-dc-requirements.html" target="_blank">Juniper PTX 5000 power requirements</a></p>
+<p>Source:  My career is an IP/MPLS network architect for a Tier 1 service provider.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SandorClegane_AMA" target="_blank">SandorClegane_AMA</a>
+			<div class="markdown"><p>Total power consumed ÷ Number of packets.</p>
+<p>It might possible to estimate the cost of active use of the equipment by multiplying it by the proportion of max capacity used. </p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

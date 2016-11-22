@@ -1,0 +1,49 @@
+<div class="answers">
+	<div class="answer" data-handle="d7uj2js">
+		<a class="author" href="https://www.reddit.com/user/troycheek" target="_blank">troycheek</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>tl;dr: Marketing, false advertising, GB as used by computer geek vs GB as used by rest of the world, and hidden reserve to make the drive run faster and have a safety buffer in case of failure.  Also, lost track of what sub I was in and made this not very ELI5.  Sorry.</p>
+<p>Internal computer memory (RAM or Random Access Memory) is built and accessed in multiples and powers of two (binary).  You still buy computer memory sticks in capacities like 512 MB or 2 GB.  These aren't really &quot;real&quot; mega- and giga-bytes because in the old days computer people borrowed some metric terms like kilo that meant exactly 1000 and used them as a shorthand to refer to 1024.  Even today, some operating systems and programs (and programmers) still use the &quot;wrong&quot; 1024 value when calculating both computer memory and storage.</p>
+<p>When computer hard disk drives were invented, they weren't electronic structures built on powers of two, so the marketing people used the &quot;correct&quot; multiples of 1000 when talking about storage capacity (decimal).  If nothing else, it makes the capacity look slightly bigger, and marketing always likes bigger.  Marketing also really likes round numbers.  So hard disk drives are advertised in terms like 250 GB or 2 TB.</p>
+<p>Solid state drives are internally more structured like computer memory (built in binary) than mechanical hard disks (measured in decimal for convenience).  A 240 GB SSD probably has a &quot;raw&quot; storage capacity more like 256x1024x1024x1024 bytes (and 8x that many bits).  So why not call it 256 GB (using the old binary method) or even 275 GB (using the newer decimal method) SSD?  Again, marketing people like round numbers.  Also, the buying public (as opposed to just computer geeks) has figured out that hard drives never seem to have the full storage capacity that is advertised.  With old mechanical disks, this was mostly due to the binary/decimal measuring difference.  With SSDs, it's mostly due to something called over-provisioning.  So, the marketing people pick a smaller round number that more or less reasonably reflects the actual usable space.</p>
+<p>Over-provisioning is when some of the SSD storage capacity is marked as off limits right from the get go.  Your 256 GB SSD has 16 GB set aside for future use, leaving 240.  If the SSD internal control electronics notices that sector 18 (for example) is developing a fault, it will copy the information to a new sector in the 16 GB.  Old sector 18 will be permanently disabled.  The new sector 18 will be marked as in use.  The SSD's total amount of storage, as reported to the end user, remains the same at 240.  A 480 GB SSD is probably a 512 GB SSD with 32 GB of over-provisioning.  </p>
+<p>I just did a quick search on Amazon and I see 240 GB, 250 GB, 256 GB, and 275 GB SSDs from different manufacturers which I'm pretty sure all have the same amount of actual storage, so it's not like the marketing people are consistent.</p>
+<p>edit: some numbers formatting</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d7uk1tk">
+		<a class="author" href="https://www.reddit.com/user/FallsDownMountains" target="_blank">FallsDownMountains</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Okay, so so far, none of these are really ELI5. Here's the easiest I can do.</p>
+<p>Think of a piece of paper with 256 lines or 512 lines (imagine it's double the paper), etc. Pieces of paper here always have 256 lines, 512 lines, etc (power of 2s). Always. </p>
+<p>So you can buy sheets of paper with 256 lines, 512 lines, etc. Except your question is, why is it being sold as 250 lines, 500 lines, or 240 lines, 480 lines?</p>
+<p>Computer memory is exactly the same, replacing &quot;lines&quot; with &quot;GB&quot;. Hard drives have 256 GB, 512 GB, etc. So, you would THINK hard drives would be sold as 256, 512, 1024. But they aren't. Why?</p>
+<p>So why 240, 250, etc instead of 256? The answer is a cross between functionality and marketing. Let's say I have 256GB. </p>
+<p>1) <strong>HDDs and 250</strong>: This is still a piece of paper with 256 lines / a drive with 256 GB. But, the marketing is done either by or for people who aren't particularly tech-savvy: 250 is a nice round number and 256 is not. &quot;250 lines on this piece of paper!&quot; vs &quot;256 lines on this piece of paper!&quot;. 250 sounds nicer. So 256 has become 250, 512 has become 500, etc (see <a href="http://petapixel.com/2012/10/10/why-hard-drives-and-memory-cards-have-less-space-than-advertised/" target="_blank">this</a>).</p>
+<p>2) <strong>SSDs and 240</strong>: There's still 256 lines of paper here - 256GB of room. But here, the SSD itself saves some of the room for itself. So maybe out of those 256 lines, there are actually only 240 lines on the paper that you're allowed to use here; the other 16 are extra lines (in case you're writing something and it goes over the last line - it has to go somewhere, so we write the overflow on line 241), or backup lines (oops, let's say you just tore the paper or spilled ink on line 194, let's copy everything on line 194 over to line 242), or just lines to make an index - so maybe lines 243-247 are taken up to say, &quot;She has the grocery list on line 210&quot;. And then the remaining 247-256 are more overflow/backup/index lines. So while there technically ARE 256 GB, you as a user can only use 240 of them. So, it's sold as 240. (And again, it's probably more like 243.24 but 240 is a &quot;prettier&quot; number).</p>
+<p>Also, I think u/troycheek has the best ELImaybe20 so far. So, for a more technical version of everything I just said, read theirs next :).</p>
+<p><em>edit</em> u/TupperwareMagic has an excellent elaboration on the difference between SSD and HDD as a reply to mine below.</p>
+<p><em>edit in</em> - it's power of 2s, and that's where the 256, 512, 1024, etc, come from.</p>
+<p><strong>edit:</strong> If you don't like my answer, that's your right, but please stop telling me so. I'm getting all these messages that basically say &quot;your answer sucks&quot; with no corrections (any corrections I get, I edit in). What does that accomplish? Should I apologise that everyone's brain works differently? I explained it in a way that I would understand if I didn't know it, and if it doesn't jive with you, just go upvote a different reply. Like, you know, the voting system is supposed to work. There are a lot of great answers here  (I even recommended one in my OP...). Please just upvote someone else if you don't like mine.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d7ur82f">
+		<a class="author" href="https://www.reddit.com/user/dtfinch" target="_blank">dtfinch</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The SSD may be 256 or 512 internally, but they reserve space for the wear leveling pool. Flash can only be rewritten a limited number of times, around 10-100 thousand. The size difference is especially dramatic if you notice that 240 GB is only 224 GiB, so you only get 7/8ths of the total space.</p>
+<p>When you rewrite a block on the SSD, it actually writes to a new block from the pool (there's likely many small pools, but we'll pretend there's one), and erases/returns the old block to the pool. So you can keep rewriting the same address and get a different block every time, so it can survive millions of rewrites instead of just tens of thousands. If you could fill the whole SSD, the pool would get too small and blocks would burn out quickly from over-reuse, so that last 1/8th or so is reserved.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d7usl69">
+		<a class="author" href="https://www.reddit.com/user/mike413" target="_blank">mike413</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>not true.  It's almost arbitrary now.</p>
+<p>For example, samsung 850 evo ssds come in 250 and 500 while samsung 850 pro ssds come in 256 and 512.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>

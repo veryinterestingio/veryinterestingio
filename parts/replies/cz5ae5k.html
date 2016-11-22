@@ -1,0 +1,50 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jeremr" target="_blank">jeremr</a>
+			<div class="markdown"><p>I wanted to get a sense of this amount of energy so I put it in to Wolfram.</p>
+<p>Apparently it's:</p>
+<p>0.12 or 1/8th the acoustic energy of a whisper</p>
+<p>0.6 to 1.5 times the mechanical work of pressing a key on a keyboard</p>
+<p><a href="http://www.wolframalpha.com/input/?i=1.2%20mJ%20in%20W-s" target="_blank">1.2 mJ in W-s</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Keudn" target="_blank">Keudn</a>
+			<div class="markdown"><p>So the work required to press enter to send the packet is equal to the energy required to actually send it? That is kind of cool actually (yes I know pressing enter to send something over the internet takes more than one packet, still a cool concept though)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/westerschwelle" target="_blank">westerschwelle</a>
+			<div class="markdown"><p>On a side note:</p>
+<p>Power would be Work/Second wouldn't it?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mrweinerslav" target="_blank">mrweinerslav</a>
+			<div class="markdown"><p>Yes, I skipped a word there.  Thanks.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/westerschwelle" target="_blank">westerschwelle</a>
+			<div class="markdown"><p>Now I'm confused.</p>
+<p>I meant because you wrote you interpreted &quot;work&quot; as eletrical power. I never saw anything about a missing word though :o</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bitwiseshiftleft" target="_blank">bitwiseshiftleft</a>
+			<div class="markdown"><p>This makes sense until almost the end, but the answer should be in Joules per packet, not Watts per packet.  Multiplying out 15 W/Gb/s * 800 bytes / packet I'm getting 1.2 mJ/packet passive.  So if it's 20% active power, then it would cost 240µJ to actually send the packet.  But the total cost would include 1.2mJ / load factor, because the router is probably idle some of the time.  I don't know what the average load factor is across the whole internet; if it's 50% then the total cost of the packet would be 2.4mJ passive + 240µJ active ~ 2.6mJ.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mrweinerslav" target="_blank">mrweinerslav</a>
+			<div class="markdown"><p>You're right, I made a mistake in the unit analysis.  Long form, with inverted denominators, it's:</p>
+<p>15 W/hop <em> seconds/Gb  </em> 12 hops * 1/156,000 Gb/packet = 1.2 mW-s/packet = 1.2 mJ/packet.</p>
+<p>My 15W estimate applied to passive+active power at 100% network load factor.  If the network load factor is 50% (that's reasonable) then the energy/packet would be de-rated by 10% (active power is 1/5 of total), making it 1.0 mJ/packet.</p>
+<p>Thanks for noticing my error.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bitwiseshiftleft" target="_blank">bitwiseshiftleft</a>
+			<div class="markdown"><blockquote>
+<p>If the network load factor is 50% (that's reasonable) then the energy/packet would be de-rated by 10% (active power is 1/5 of total), making it 1.0 mJ/packet.</p>
+</blockquote>
+<p>This still doesn't sound right to me.  If you want to calculate (total power used by network) / (total packets processed), then a low load on the network should increase power/packet, not decrease it.  The active power might be about the same per packet no matter how many packets there are, but the large leakage power would be amortized over fewer packets.</p>
+<p>But if the active power is already in the 1.2mJ/packet, then the final number would be 2.2mJ/packet at 50% load, not 2.6mJ/packet as I had.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

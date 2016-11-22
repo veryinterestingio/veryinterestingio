@@ -1,0 +1,60 @@
+<div class="answers">
+	<div class="answer" data-handle="cs765gw">
+		<a class="author" href="https://www.reddit.com/user/mcmonkey819" target="_blank">mcmonkey819</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Here's the actual ELI5 answer (as opposed to the explain like I'm a gamer who knows a bunch about games, DirectX, video cards etc):</p>
+<p>When you're a game running in full screen, Windows (mostly) gives you all of the things to play with. All the memory you want, nobody interrupts your processing, your work gets moved to the front of the line. This makes everything much faster. When someone presses alt-tab it tells Windows that the user wants you to share all the stuff. </p>
+<p>Some games, like some kids, are pretty good at listening. They get the message from Windows that they need to let go of some memory and that their stuff isn't the most important anymore and they just change what they're doing, try not to interrupt and play nice. Then when they get full screen again they set all their toys back up the way they had them and keep playing.</p>
+<p>Other games, like some other kids, don't listen. They ignore the message from Windows and keep playing as if they are the most important and only program running. Eventually Windows stops being so nice and forcefully takes away some memory and processing time and that makes the game either slow down or crash.</p>
+<p>Still other games, like kids, are brats. They hear the message and throw a tantrum. They scream that they don't know how to play with less toys. Instead of trying to work with less they get mad and just quit, sometimes knocking everything over on the way out.</p>
+<p>It all comes down to the parents (developers) to teach the kids (games) to behave. Some parents are good, some are bad and that's reflected in the kids.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cs72dco">
+		<a class="author" href="https://www.reddit.com/user/Karai17" target="_blank">Karai17</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I can answer the first part of this question. Windows has two fullscreen modes: borderless window and dedicated. Older games generally used dedicated fullscreen because it gives full control of the screen to the game. When resources were significantly lower (power of the GPU if there even was a GPU), having complete control helped squeeze out every little bit of power you could. Switching out of the game via alt-tab will force the game to lose control of the screen and give it back to Windows. This can cause flickering, screen resizing, and in some cases (such as Source games) crash.</p>
+<p>Borderless windows are completely different. They are as you expect, simply a window within Windows that has the chrome (title bar, exit button, borders) removed. This means that to tab out of a game, you don't need to do anything fancy or invasive since the game is just another window. This allows Windows to keep control of the screen which makes your game have a little less available to it in terms of resources but since GPUs are so damn powerful these days (even Intel HD chips are noteworthy) it's not really an issue.</p>
+<p>The biggest disadvantage in using borderless windows is that you cannot enable true vsync, you must rely on Windows' ability to properly sync output with your screen's refresh rate to ensure no tearing occurs. Games that allow you to enable vsync even in window borderless mode simply lock the FPS to your refresh rate and hope Windows performs as intended.</p>
+<p>Edit:</p>
+<p>Some people have suggested that a possible answer to OP's original question (if we ignore borderless windows) could be a difference in DirectX 9 and 10+, where handling the switch to and from exclusive control might be automated now where in the past developers had to handle this switch manually (to varying levels of success).</p>
+<p>Another possible answer might be that the way the game manages resources could affect how it handles tabbing. Anecdotally, I will suggest that I've heard my hard disk spin up when I tab to and from some fullscreen games that might suggest that some data is being dumped to the disk which would definitely slow things down.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cs73dij">
+		<a class="author" href="https://www.reddit.com/user/taspeotis" target="_blank">taspeotis</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A lot of it comes down to the implementation of the video game. For example, if the video game uses Direct3D 9 or earlier, its responsible for recovering from a &quot;lost device&quot; state.</p>
+<p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/bb174714.aspx" target="_blank">Lost Devices (Direct3D 9)</a>:</p>
+<blockquote>
+<p>By design, the full set of scenarios that can cause a device to become lost is not specified. Some typical examples include loss of focus, such as when the user presses ALT+TAB or when a system dialog is initialized.</p>
+</blockquote>
+<p>If you read that page, there's a lot of stuff you're responsible for after a user ALT+TABs.</p>
+<p>Direct3D 10 and later handles this for you. When D3D10+ handles it, that's code the video game developer doesn't have to write and can't screw it up.</p>
+<p>(Direct3D 9 vs. 10+ isn't the only reason, there's lots of code that goes into a videogame and lots of ways you can implement code incorrectly.)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cs72dvw">
+		<a class="author" href="https://www.reddit.com/user/xdert" target="_blank">xdert</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>When a game runs in full-screen mode, it can gain exclusive access to your graphics hardware — this is known as running in “Exclusive Mode.” Windows won’t render your desktop in the background, which saves on hardware resources. This means you can squeeze the most gaming performance out of your graphics hardware by running the game in full-screen mode, and that’s why games run in full-screen mode by default.</p>
+<p>Windows doesn’t just have to switch from one window to another when you press Alt+Tab. It has to minimize the game and start rendering the desktop again. When you switch back to the game, the game has to restore itself and take control away from Windows. For a variety of reasons — especially problems with the way some games are coded — the game may encounter a problem while doing this.</p>
+<p>You can see this in action when you have a game running in full-screen, exclusive mode. If you Alt+Tab out of it, you can hover over the game’s taskbar icon or press Alt+Tab again. You won’t see a preview of the game’s display area like you would for other windows. The game running in full-screen exclusive mode doesn’t redirect its output through the desktop’s display manager, so the desktop display manager can’t display a preview.</p>
+<p><a href="http://www.howtogeek.com/181761/why-pc-games-struggle-with-alttab-and-how-to-fix-it/" target="_blank">Source</a></p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cs7atqn">
+		<a class="author" href="https://www.reddit.com/user/seledorn" target="_blank">seledorn</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I think many of these answers are great but at the same time I think an important part of the answer is missing in this thread:</p>
+<p><strong><em>Did the developers/management prioritize it?</em></strong></p>
+<p>As with every other feature there is the question of <em>value vs time to implement</em>. Do we want to put our time on making it faster to alt-tab or do we want to make a better game.</p>
+<p>Why does photoshop take ages to launch while similar programs take moments? Because they didn't care about startup-time.</p>
+<p>If a program crash when alt-tabing, the developers knew about it, they just didn't think it was important enough to spend time to fix it. </p>
+<p>I'm a programmer myself, and if you want to release something you can't make every detail prefect, then you'd never release anything at all. In AA-games it's even worse than in other fields, they have to pump out games, it has to be <em>good-enough</em> not better. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>

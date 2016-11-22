@@ -1,0 +1,43 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LittleDinghy" target="_blank">LittleDinghy</a>
+			<div class="markdown"><p>To elaborate a little, in many games randomness is decision-making is used.</p>
+<p>Let's consider a simple AI that on its turn has 4 options: A, B, C, and D.</p>
+<p>Suppose in this situation, option A is the optimal choice, options B and C are both good choices, and option D is not a good choice at all.</p>
+<p>Programmers will add a &quot;weight&quot; to each option that determines how likely the AI is to choose it. So if you want the AI to choose C 20% of the time, then the weight of C will be 0.2. </p>
+<p>We will say that in this game, option A has a weight of 0.5, options B and C have a weight of 0.2 each, and option D has a weight of 0.1.  Therefore the AI will make a good decision 90% of the time (chooses A, B, or C), and makes a bad one 10% of the time (chooses D).
+The AI will then utilize a random number generator to determine which choice to make.</p>
+<p>This is one of the easiest ways to make a game fair to the player. You want the AI to make a good decision most of the time, but you don't want it to always make a good decision, let alone the single best decision it could make. You have to throw in bad decisions every once in a while because the player makes bad decisions every once in a while. This also makes changing the difficulty easy. You can make the game harder by increasing the weight of good decisions and decreasing the weight of bad ones.</p>
+<p>As a side note: in modern AI and game theory, you occasionally come across &quot;local maximums,&quot; where you pursue a decision-making process that leads you to a good (but not great) decision, but because of the way the decisions are arrayed, the AI thinks that it is the best decision when it is not.
+It's like the guy that after a few weeks of trial and error, settles on the same route to work every day for a year. Then one day he takes a wrong turn and discovers these side roads that cut out a bunch of traffic lights and makes the commute shorter. The first route was a local maximum since it was the best route out of the ones he'd tried. But the best route was still out there, and only by making a bad decision (the wrong turn), did he find the best route (the real maximum). So it is with advanced AIs. There is almost always the chance of them making a bad decision, because sometimes only by making a bad decision can you arrive at the best conclusion. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/UndefinedColor" target="_blank">UndefinedColor</a>
+			<div class="markdown"><p>For those that want to google around a bit on this subject beyond ELI5 scope, especially regarding this part:</p>
+<blockquote>
+<p>but more advanced ones use Finite State Machines (FSM) along with flow charts</p>
+</blockquote>
+<p>Game AI, especially in the last few years, is a very actively developed and researched topic.
+A long series of &quot;if then&quot; statements as the OP puts it would be very hard to maintain and tweak. </p>
+<p>In the last decade these &quot;flow charts&quot; have matured as <em>Behavior Trees</em>.
+At the moment this is the go to method for most complex AI.</p>
+<p>Some interesting things to look at:</p>
+<p><em>Hierarchical finite state machines</em> were the step up when <em>finite state machines</em> became unmanageable (these generally came before Behavior Trees got popular):
+<a href="http://aigamedev.com/open/article/hfsm-gist/" target="_blank">http://aigamedev.com/open/article/hfsm-gist/</a></p>
+<p>Somewhat technical, but covers the important high level concepts of <em>behavior trees</em> (which is very popular in game AI atm):
+<a href="http://www.gamasutra.com/blogs/ChrisSimpson/20140717/221339/Behavior_trees_for_AI_How_they_work.php" target="_blank">http://www.gamasutra.com/blogs/ChrisSimpson/20140717/221339/Behavior_trees_for_AI_How_they_work.php</a></p>
+<p>Finally, If something exciting has been done in the world of game AI, it shows up here eventually: <a href="http://aigamedev.com/" target="_blank">http://aigamedev.com/</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PornCartel" target="_blank">PornCartel</a>
+			<div class="markdown"><p>Much obliged. I'll have to look into all this stuff, I've been thinking a lot about how to do AI on some projects given the unique gameplay.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RenaKunisaki" target="_blank">RenaKunisaki</a>
+			<div class="markdown"><p>To give some other examples of how the AI works in popular games:</p>
+<p>Pokemon: The AI examines all of its possible moves this turn (its mon's 4 attacks, its available items, other mons it could switch to) and scores each move. e.g. a move that the opponent is immune to gets a very low score, while a move that they're weak to gets a high score; a move that buffs stats instead of doing damage usually gets a low score, but some trainers are set to prefer those. Also, each trainer has a &quot;stupidity&quot; setting, which is effectively a random weight added to each move (so a higher setting will tend to weigh the moves all wrong and make poor decisions). Then it just uses the highest scored move.</p>
+<p>Of course, the early games have some dumb bugs in their scoring algorithms. (No consideration for damaging vs non-damaging moves, so Dragonite will happily spam Barrier all day against a Poison type; Only considers one of the opponent's dual types, so will try to poison Gengar; opponents have unlimited PP, etc.)</p>
+<p>Mario Kart 64: The AI pretty much fakes everything. They don't get their items from the item boxes; they just fire off items randomly. While off screen, they don't even do any hit detection or actual driving; they just gradually advance along the course path, at a rate proportional to how far ahead or behind they are. Sometimes they wipe out at random (to simulate having hit an item on the track) and sometimes an item on the track is randomly removed (to simulate someone having hit it). You can see this if you make an impassable line of bananas across the track, or edit the game to make an impassable wall; if you're watching, they'll hit the barrier and wipe out, but if you turn away and just watch the map, they'll magically pass right through. This is partly to save on processing power (doing actual hit detection and AI for 7 players all the time is expensive) and partly to be able to control how &quot;fair&quot; the AI is. (Usually two players are set to be less fair, having crazy speed/rubberbanding, getting good items, and generally annoying the player, while the others are set to stay behind, and will actually slow right down if they get ahead.)</p>
+<p>In later Mario Kart games, the AI's items are given a little more intelligently. I haven't studied whether they actually hit the item boxes or still just obtain items at random, but the items given are similar to what the player would be given in the same position. (Mario Kart DS even shows you every player's item.) This is more realistic, but less fun, because it leads to being constantly battered by red and blue shells. I believe Double Dash also does some actual hit detection while offscreen - if an AI player manages to get stuck somewhere, they don't magically get unstuck when you drive away; they'll still be stuck there on the next lap, and will have a projected finish time of 10+ minutes (whereas most races take 2-3 minutes) at the end of the race.</p>
+<p>[edit: an stupidity]</p></div>		</li>
+					</ul>
+	

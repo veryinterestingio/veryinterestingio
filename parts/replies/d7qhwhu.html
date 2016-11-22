@@ -1,0 +1,77 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MisPosMol" target="_blank">MisPosMol</a>
+			<div class="markdown"><p>As part explanation (excuse?) :), I loved Quick Basic in DOS, which mutated into Visual Basic in Windows. I never programmed much in VB, but I've done lots in VBA, usually one-off utilities to automate time-consuming, repetitive tasks in Excel, Word and Outlook. It's good for those. One of its strengths is that you can record a macro in any Office application, and get a good start for your code. Then that code usually takes only a half-day or so to produce a fairly complex task. e.g. Go thru a spreadsheet, identify overdue tasks, pass the task data to a Word template, email the Word document to the task owner, read the updated Word document from the return email, update the spreadsheet, and email the boss with a report. Automation like this can save days of manual work each month. And in a large organisation, you can get a couple of automation requests a day. I would never program a full application in VBA, but it has its place. (FYI, my main programming job was a COBOL programmer in UniSys and IBM mainframes. We did write big applications in COBOL.)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OvidPerl" target="_blank">OvidPerl</a>
+			<div class="markdown"><p>Since you know both COBOL and VBA, I thought you might appreciate this :) (not many others would)</p>
+<p>I couldn't help but think about my time as a mainframe programmer and the team lead who hated me. She once got upset at another developer for increasing the space allocation for jobs. Why was the other developer increasing that allocation? Because our nightly batch jobs were running out of space and we'd get woken up with calls telling us the jobs were failing and we'd tell them to increase the disk space and restart the job. The team lead was upset because if the operators didn't have to call us, &quot;why would they need us?&quot;.</p>
+<p>However, I was the person who really upset her and I never quite figured out why. I was told it was because, unlike her, I could actually program (allegedly she was an operator who simply rose through the trenches), but I don't know this for certain. All I know is that she did not like me and one day she managed to exact her revenge against me for whatever I had done to offend her.</p>
+<p>It was shortly before the year 2000 and there was a code freeze. Only emergency bug fixes could go in and I had finished all of my other work. I asked my boss what I should work on and he told me to go ask the team lead. So I did. And then she told me something I very much didn't want to hear: &quot;You're going to build our new test region.&quot;</p>
+<p>On a mainframe, a test region is sort of like a partition. All code and data is copied to the region and the JCL (Job Control Language) is updated to use the new region instead of the old region. For some reason (that I can't remember), it's like if every time you copied code to a new location, you always had to update all filenames. I was dreading this because this was done infrequently and, as a result, it was not automated. My team lead gave me a job that was essentially a month of cutting and pasting code and manually updating everything. It was a job for an intern, not a programmer, and I was looking at a month of hell. There are tools for doing this, but I was a brand new programmer and I didn't know about them and everyone else told me that these regions were always built manually.</p>
+<p>I went to the cafeteria to grab a cup of coffee and sulk when I remembered that we just had our terminal emulation software upgraded. All of a sudden, this task started to look interesting.</p>
+<p>Because I was new to mainframe programming, my boss encouraged me to explore and play with tools to learn them. I had discovered that the new terminal emulation software had VBA scripting built in. This was almost useless because we simply had effectively random text getting spewed out to the screen and, unlike with Word or Excel, the only way to interact with the mainframe using VBA was screen scraping and simulating user input. However, by playing with this I had already written a form that could copy individual COBOL or JCL files so long as I pasted in the correct name to the form. Now I just needed to be able to copy them to different regions ... and to spider an entire mainframe region finding all of the files that I could copy.</p>
+<p>This turned out to be rather hard because I kept getting logged out for trying to access files I didn't have the permissions to access. I remember scary messages about internal security being alerted, but a couple of questions later and I found out that no one could remember security ever following up on this. I decided to not say anything about this and continue.</p>
+<p>I quickly wrote up some screen-scraping code to spider the mainframe region, detect log outs, log back in and ignore anything that logged me out and copy everything else over. While copying, it would, of course, update the JCL to point to the new region.</p>
+<p>When I finally finished all of this, I took a deep breath, launched my spider and went to lunch.</p>
+<p>When I came back, it was still copying files, so I just basically went around for the rest of the day, chatting with friends and seeing what they were up to. Four hours after I launched my spider, it was finished. I had done a &quot;month's work&quot; in a day.</p>
+<p>I sent an email to the team explaining that I had just built the new mainframe test region but since I had never built a mainframe test region before, could they please double-check my work?</p>
+<p>People started coming over to my cube, trying to find out what the hell had just happened. The boss showed up and was amazed by the VBA interface I had built. People were congratulating me.</p>
+<p>And the team lead sent me a nasty email (cc'd to everyone) informing me that I should be more careful because I hadn't corrected the email addresses. That took 30 seconds to fix. She also chewed me out for using VBA for this one-off task because no one else knew VBA. In my annual review, the team lead mentioned those email addresses and wrote that I &quot;lacked attention to detail.&quot;</p>
+<p>As I left that company for my first Perl job, I heard through the grapevine that they decided to move her off the team, but it seems that no one else wanted her. Meanwhile, I may be the only guy on the planet to have built a mainframe test region using VBA. This is not on my CV.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MisPosMol" target="_blank">MisPosMol</a>
+			<div class="markdown"><p>Good story :) We used to do similar things, once we had micro computers emulating the terminal. I was pretty good on the mainframe utilities on UniSys, but like young you my REXX on IBM wasn't that good, so I used to screen scrape and use Quick Basic (or take it to the local Unix wiz, who would sed, grep and awk the problem). And some people just aren't managers, or at least don't understand programmers. I would have got you to show everyone else how to do it, and given you the rest of the week off :)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/munkiman" target="_blank">munkiman</a>
+			<div class="markdown"><p>Upvoted for mainframe and JCL. Good lord I can never explain what I do to normals. I'm a shitty L1 guy, but MF is my life!!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tarnafein" target="_blank">Tarnafein</a>
+			<div class="markdown"><p>VBA <> Visual Basic.  VB6 was awful, no question there.  VB.Net is really just a more human-readable version of C++.Net (bring on the hate!), with End If and End While at the end of conditionals rather than using brackets to denote the end of everything, more flexible about case of variables/classes, and a few quirky legacy features like And not short-circuiting but AndAlso does.  It has all the new features like Linq, same as C++ .Net does.  </p>
+<p>People just remember VB6 and assume modern VB is the same, or they're accustomed to C/Java syntax.  I would love to hear an argument why VB is worse than C++ that isn't grounded on someone's personal preference.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/frarl" target="_blank">frarl</a>
+			<div class="markdown"><p>Fiddling with VBA was a key part of my learning to program. Being able to execute a number of actions and then see the code in real-time was a revelation.</p>
+<p>Since then I've come to thoroughly loathe Microsoft, but they did me a solid back in the day.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mattdw" target="_blank">mattdw</a>
+			<div class="markdown"><p>To add on a little on the .NET story, .NET (and C#) grew out an effort (COM 2.0) to improve upon on COM (Component Object Model) and Win32. The team that was working on Microsoft's JVM soon merged with the COM 2.0 team. (And then they split again, due to disagreements -- see link below.)</p>
+<p>Actually, WinRT (UWP/ new framework introduced in Windows 8+) is closer to the original concept of COM 2.0, which is basically a better version of COM.</p>
+<p><a href="https://blogs.msdn.microsoft.com/patrick_dussud/2006/11/21/how-it-all-startedaka-the-birth-of-the-clr/" target="_blank">Some additional reading</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PM_ME_YOUR_NACHOS" target="_blank">PM_ME_YOUR_NACHOS</a>
+			<div class="markdown"><p>Ugh. Microsoft  JVM, that's something I've not heard of in a while. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gu3st12" target="_blank">gu3st12</a>
+			<div class="markdown"><p>I've mentioned it a few times at work lately, as people have been talking about C# and Java (and why syntactically they're somewhat similar).</p>
+<p>Nobody remembers that 20 years ago Microsoft had their own JVM and got sued by Sun for it.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/yatea34" target="_blank">yatea34</a>
+			<div class="markdown"><blockquote>
+<p>The code I wrote for a PDP-11 wouldn't run on a different type of computer</p>
+</blockquote>
+<p>But now it will!!!</p>
+<p><a href="http://www.dbit.com/" target="_blank">http://www.dbit.com/</a></p>
+<blockquote>
+<blockquote>
+<p>Developer of Ersatz-11, a software PDP-11 emulator for MS-DOS, Windows, Linux, OS/2, and bare-metal PCs giving emulation speed far faster than the PDP-11/93.</p>
+</blockquote>
+</blockquote>
+<p><a href="https://en.wikipedia.org/wiki/SIMH" target="_blank">https://en.wikipedia.org/wiki/SIMH</a></p>
+<blockquote>
+<blockquote>
+<p>SIMH is a highly portable, multi-system emulator which runs on Windows, Linux, Mac OS X, FreeBSD, OpenBSD, NetBSD and OpenVMS. It is maintained by Bob Supnik, a former DEC engineer and DEC vice president, and has been in development in one form or another since the 1960s.</p>
+<p>...</p>
+<p>PDP-11</p>
+</blockquote>
+</blockquote></div>		</li>
+					</ul>
+	

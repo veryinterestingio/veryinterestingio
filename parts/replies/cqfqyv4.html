@@ -1,0 +1,87 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mcrackin" target="_blank">mcrackin</a>
+			<div class="markdown"><p>How accurate is it? Over a whole year, if we had 2 computers side-by-side with independent clocks, would they be pretty much accurate within hundredths of a second? When we go online, do our clocks calibrate with a time server?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wasser24" target="_blank">wasser24</a>
+			<div class="markdown"><p>So I sell engineering equipment, specifically one of my products is a GPS based timing box. Basically, it connects to a GPS signal to get the exact time. The box has an oscillator (the crystal /u/Loki-L was talking about) that will output a constant 10MHz wave, both for regular timing and holdover time. So if the GPS gets blocked, the oscillator becomes the primary timing source with its 10 MHz signal.</p>
+<p>For different materials, there are different holdover times. The lowest quality that I sell has a midterm spec of 1x10^(-8) Seconds/day, or 10 nanoseconds/day. The highest quality that I carry is Rubidium at 5x10^(-11) Seconds/MONTH! So in 30 days, you'll lose (at most) 50 one-trillionths of a second (50 picoseconds/month, under 2 ps/day).</p>
+<p>Mind you, this is high end timing equipment. Just thought I'd give some information.</p>
+<p>EDIT: there is a higher quality resonator than rubidium, which is Cesium, which I do not sell. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lightningp4w" target="_blank">lightningp4w</a>
+			<div class="markdown"><p>What would the practical use for something the precise be? Not knocking it; just curious. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Koldfuzion" target="_blank">Koldfuzion</a>
+			<div class="markdown"><p>The simple built in digital clock in my car gains about a minute or two a day.  I've seen cases with digital clocks losing time, but I have never seen one gain time, so quickly at that.  The CD player seems to keep time relatively accurately, however the dash clock does not.</p>
+<p>Is there something that can cause a digital clock to gain time like that?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nogami" target="_blank">nogami</a>
+			<div class="markdown"><p>Just curious - when the GPS time is reacquired after being lost, does the clock gradually drift the time back into spec, or just immediately lock back to GPS time regardless of the offset?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xelormy" target="_blank">xelormy</a>
+			<div class="markdown"><p>Quartz time can be very accurate. In the watch world, mechanical movements are revered for their craftsmanship, not quartz. However to give you an idea of quartz accuracy; A modern Rolex that you can spend many thousands or even tens of thousands of dollars on won't hold time as well as a ten dollar quartz watch. Enthusiasts of course love the craftsmanship required to make a watch without a battery as well as the related status to owning such timepieces. Quartz movements are also typically jerky, with only 1 beat per second which makes them less appealing to look at. This is why you hear that Rolex will have a sweeping hand, well it's not really sweeping, it's still ticking just typically 8 times per second or 28,800 times per hour giving it the appearance of sweeping. Some manufacturers of quartz watches are mimicking this behavior now.</p>
+<p>If you had two identical computers would time drift? Yea they will likely drift against each other and against atomic clocks over a year's time. This drift should be within spec of the real-time clock integrated circuit in their motherboards, this is a battery protected circuit which continues to function even when main power is removed, which is why your computer doesn't miss time when you take it offline (unless there's a problem). The RTC uses crystal oscillation as others have mentioned, just like digital watches, so if you're curious on the theory of this Wikipedia is your friend.</p>
+<p>Yes going online does allow you to sync with a time server. Windows has had some form of built-in Net Time Protocol (NTP) for a while, there are public NTP servers like time.nist.gov which you can sync against. Linux, OS X, and virtually all other major operating systems will have this functionality too.</p>
+<p>The level of synchronization you need is dependent on the accuracy your application needs. For the overwhelming majority of people, businesses and applications, simple daily synchronization with time.nist.gov is plenty. Others may need a to operate at Stratum 1 and poll their data from an attached Stratum 0 device, a reference clock such as a GPS clock, atomic clock, radio clock, etc...</p>
+<p>EDIT: Fixed typo</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nogami" target="_blank">nogami</a>
+			<div class="markdown"><p>I find it interesting that my current watch (a Kickstarter Pebble), is very slightly fast - if I disconnect it from the phone App for a day or two, the time consistently jumps backwards by 2 or 3 seconds the next time it connects with the phone (to get NTP time).</p>
+<p>One would think it would be relatively easy to calculate an averaged offset from the NTP time over multiple connections, that the watch could use to self-adjust to keep itself even more accurate.  But perhaps it's just not worth the bother?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/das7002" target="_blank">das7002</a>
+			<div class="markdown"><p>There's a few differences between how Windows and Linux handle NTP. Windows only allows syncing, which can make it a bit more difficult to get time accurate again when it's drifted a bit. Linux can emulate this with ntpsync as a cron job, but ntpd is much nicer. ntpd constantly corrects time and logs clock drift. Which is great for many applications, but especially servers. With ntpd time will always be accurate as long as you have an Internet connection, while regular synchronizing can end up with rather large errors. I've seen some systems with drift in the range of 10s/hour. ntpd is about the only thing you can use to whip the time into line.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ThisIsADogHello" target="_blank">ThisIsADogHello</a>
+			<div class="markdown"><blockquote>
+<p>Quartz movements are also typically jerky, with only 1 beat per second which makes them less appealing to look at</p>
+</blockquote>
+<p>Well, to be fair, that's mostly just a physical limitation of the display.  I've got a quartz digital watch, and in stopwatch mode it has no issues ticking 100 times a second.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aaaaaaaarrrrrgh" target="_blank">aaaaaaaarrrrrgh</a>
+			<div class="markdown"><p>Expect clock drift of 1-2 seconds per day. Could be more if you're unlucky, could also be significantly less. If you want to dive deep, <a href="http://tf.nist.gov/general/pdf/2276.pdf" target="_blank">here's a study</a> of cheap wrist watches. </p>
+<p>All modern systems sync from time servers or other external time sources (e.g. phones could use GPS, which provides extremely accurate time if used correctly).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>But wristwatches can't, so are you saying you should re calibrate your watch quite frequently? Sounds like you'd run a minute off after only a month!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Problem119V-0800" target="_blank">Problem119V-0800</a>
+			<div class="markdown"><p>Tiny factoid: wristwatches are able to maintain their accuracy in part because they are, in effect, ovenized— your wrist is at a reasonably constant temperature, and the watch back makes good thermal contact with your wrist. This eliminates a lot of temperature variation, which is one of the major sources of frequency error.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nomequeeulembro" target="_blank">nomequeeulembro</a>
+			<div class="markdown"><p>Also, external factors influence it, like temperature and stuff like that. There are different ways to cut the quartz that keep those details in mind.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/garydee119" target="_blank">garydee119</a>
+			<div class="markdown"><p>Does the crystal have to be an extremely specific size to vibrate at such a specific frequency?  Or is the resonant frequency inherent in the material itself and not size dependent? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Loki-L" target="_blank">Loki-L</a>
+			<div class="markdown"><p>Yes it depends on the size, but we have lasers to cut it extremely specific to exactly the frequency we want.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/garydee119" target="_blank">garydee119</a>
+			<div class="markdown"><p>So out of curiosity, what is the margin of error (I assume there must be <em>some</em> margin of error even though minuscule)?  How long would it take before two computer's times were off by say 1 second?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BucketHeadJr" target="_blank">BucketHeadJr</a>
+			<div class="markdown"><p>A few days ago my laptop clock stopped when I turned my laptop off (2am-ish). Then the next day it started again at 2am instead of the 'real' time. Did this happen because the battery of the crystal stopped?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/alohadave" target="_blank">alohadave</a>
+			<div class="markdown"><p>Unlikely.  The computer tell you that the date and time wasn't set when it booted up if the battery was dead.  It's probably something with the OS clock.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RenaKunisaki" target="_blank">RenaKunisaki</a>
+			<div class="markdown"><p>If the battery dies, the clock will lose its setting completely and reset to some time in the past (Jan 1 1970, 1980, 2000 are popular). Same as an ordinary digital clock doesn't stop when it's unplugged; it resets to 12:00 (and flashes). What you saw was probably a software glitch.</p></div>		</li>
+					</ul>
+		</ul>
+	

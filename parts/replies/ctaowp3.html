@@ -1,0 +1,102 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/necktie_13" target="_blank">necktie_13</a>
+			<div class="markdown"><p>Another way to get around the re-buffering is to switch to the HTML5 player on YouTube. Simply go to youtube.com/html5 and click on the &quot;Switch to HTML5 player&quot; button. The videos load faster, and once buffered, you don't need to worry about DASH playback.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Apocalyptic0n3" target="_blank">Apocalyptic0n3</a>
+			<div class="markdown"><p>HTML5 is the default player now and I believe they'll be phasing out Flash entirely in the next year. Regardless, the buffering on the HTML5 player seems to behave the same</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DocmanCC" target="_blank">DocmanCC</a>
+			<div class="markdown"><p>HTML5 is the default player on Chrome, but not Firefox.  Unsure of others, but I think the default applies only to Chrome right now. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ThisIs_MyName" target="_blank">ThisIs_MyName</a>
+			<div class="markdown"><p>Then it's your browser's fault. With HTML5 videos, the browser decides how to buffer. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>This also completely deprecates the need for Flash player on YouTube, which is always a plus.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wannacreamcake" target="_blank">wannacreamcake</a>
+			<div class="markdown"><p>Do you mean deprecates?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/giantpotato" target="_blank">giantpotato</a>
+			<div class="markdown"><p>Not completely. There are still some features only available in the flash player like stereoscopic 3D playback.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Chronobones" target="_blank">Chronobones</a>
+			<div class="markdown"><p>I find it a lot better, but I still  get random re-buffering on HTML5.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cannibalismo" target="_blank">cannibalismo</a>
+			<div class="markdown"><p>Thanks, but this didn't really explain what the gray &quot;buffered to here&quot; part of the bar even does any more..... Seem's to not mean anything to me.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Klathmon" target="_blank">Klathmon</a>
+			<div class="markdown"><p>I'll take a crack at trying to explain this a bit better.</p>
+<p>DASH is a system that lets multiple different &quot;qualities&quot; all exist in the same &quot;stream&quot; (kind of, this is all very simplified). So what happens is first a 480p stream might start, and you will get 10 seconds of that buffered, then it will decide to upgrade you to 720p, and that will start buffering from a point which it will decide so that playback isn't interrupted.</p>
+<p>The grey bar only shows the lowest quality stream. So while you may have 30 seconds of 480p video buffered, you may only have 9 seconds of 720p video (which starts 3 seconds from now), and beyond that you may have 3 seconds of 1080p video starting to buffer as well (basically 12 seconds out). So if you click in any parts that don't have the 1080p stream (since you were just upgraded to that, it is what the browser knows is your &quot;optimum&quot; streaming rate), you will have to re-buffer that data (for the first time).</p>
+<p>Now imagine you are at 1080p in a video, and you want to go back 10 seconds. You may not have had 1080p at that point in the video, so it will need  to re-buffer that 1080p (again, that it may have never actually downloaded in the first place).</p>
+<p>So there are very few places that you actually have the video you are watching cached because DASH playback is optimized to have to send as little of it as possible to save on both your and Youtube's bandwidth.</p>
+<p>Edit: to expand, DASH can potentially have MANY different qualities in between the ones you can choose, so there could potentially be 5 720p &quot;qualities&quot; that can be adjusted constantly.</p>
+<p>Edit 2: Nuked all my comments, y'all are a bunch of angry motherfuckers!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/murtokala" target="_blank">murtokala</a>
+			<div class="markdown"><p>You would think it would start playing the bad quality stream then, but even if the gray bar goes from start to finish it rebuffers, or if I rewind back on a portion I have already looked at it might rebuffer. It's just weird.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/luke_in_the_sky" target="_blank">luke_in_the_sky</a>
+			<div class="markdown"><blockquote>
+<p>So if you click in any parts that don't have the 1080p stream (since you were just upgraded to that, it is what the browser knows is your &quot;optimum&quot; streaming rate), you will have to re-buffer that data (for the first time).</p>
+</blockquote>
+<p>Why don't it play the low quality already buffered while the 1080p is not loaded yet?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SuperElitist" target="_blank">SuperElitist</a>
+			<div class="markdown"><p>I'd rather stare at blank screen than 480p. Is it potentially possible to 'force' the browser to only be willing to accept the highest quality stream, and simply not play anything until the entire video is available at that quality?</p>
+<p>... short of using <a href="https://rg3.github.io/youtube-dl/" target="_blank">youtube-dl</a>?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>Keep in mind that without dash you don't have access to 60fps videos or anything but 480/720.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/choppysmash" target="_blank">choppysmash</a>
+			<div class="markdown"><p>So when Magic Actions for Youtube on Chrome gives me the options to always load videos in 1080p it's lying to me and that video is actually only in 720p?  Not disagreeing with you I'm genuinely curious here. I have faster internet now so I would consider getting rid of that add-on if it's only playing in 720p. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ncrwhale" target="_blank">ncrwhale</a>
+			<div class="markdown"><p>A comment above lists Magic Actions as an option for loading a full video in 1080p, so it probably works?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/faceplanted" target="_blank">faceplanted</a>
+			<div class="markdown"><p>If you couldn't tell the difference before someone mentioned it, what difference is there?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OhTheDerp" target="_blank">OhTheDerp</a>
+			<div class="markdown"><p>Thanks for the warning. Not having 60 FPS and higher resolution than 480/720 is just not worth it to me.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Freqd-with-a-silentQ" target="_blank">Freqd-with-a-silentQ</a>
+			<div class="markdown"><p>See this is one pf those thing to say Fuck you Youtube over, I live out in the sticks, shit internet always. No matter what I can never get 60 FPS or anything over 480, yet now I also cannot preload videos so I can actually watch them, I, if i even try, end up watching a 5 minute video that stalls a dozen times to buffer.</p>
+<p>Long story short, a decade ago Youtube worked better and was a more advanced piece of work than today. Fuck their bandwidth, mine, the user, is far more &quot;constricted&quot; than they are.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/audiophileguy" target="_blank">audiophileguy</a>
+			<div class="markdown"><p>Magic Actions for YouTube is a good extension that actually lets you load the whole video in any of the available formats. I use it all the time</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/loverboi808" target="_blank">loverboi808</a>
+			<div class="markdown"><p>youre spoiled sir i envy you, anything above 30 fps at 240+ pp is a luxury to me</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mrgonzalez" target="_blank">mrgonzalez</a>
+			<div class="markdown"><p>You can still get higher than 720p without DASH. I haven't seen 60fps without it, however.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>I've used non dash personally and never had the option to play anything but the stated. Google also somewhat recently changed non dash playback options as they started phasing it out entirely.</p>
+<p>Edit: words</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

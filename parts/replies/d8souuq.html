@@ -1,0 +1,43 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/will_owens18" target="_blank">will_owens18</a>
+			<div class="markdown"><p>I never thought about taking user inputs as inputs for the rng. It is also a very clever design to judge the &quot;randomness&quot; of the inputs and take that into account for the inputs. Very interesting, thanks for the reply.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/theelectricmayor" target="_blank">theelectricmayor</a>
+			<div class="markdown"><p>This was a favored technique on older consoles like the SNES, as they usually lacked a real time clock and where exceedingly deterministic in every other way. From the time the console is turned on you count the number of frames before a button is pressed - add that number to the seed of your random number generator. Take the button's number and add that to the seed. Count how many frames the button is held down and add that to the seed. Keep repeating as needed.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/745631258978963214" target="_blank">745631258978963214</a>
+			<div class="markdown"><p>I believe many &quot;press start!&quot; requirements were indeed to grab a seed and not just &quot;we're giving you a chance to start the game at your convenience in case you're distracted between the time you hit the power button and actually started playing&quot;.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RufusMcCoot" target="_blank">RufusMcCoot</a>
+			<div class="markdown"><p>That's really cool.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/withabeard" target="_blank">withabeard</a>
+			<div class="markdown"><p>Not just user input. But timings around network packets arriving. Timings around processes starting, stopping, timings around thread execution.</p>
+<p>It all adds up, and at the micro level is very unpredictable.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pirround" target="_blank">pirround</a>
+			<div class="markdown"><p>You can use other sources, like the timing of packets over the network, but even that can be difficult. The difficulty of collecting initial entropy or a seed for a pseudo RNG is the cause of many security problems.</p>
+<p>A while ago there was a story about some people who hacked into a Jeep remotely. The Jeep generated a &quot;random&quot; password to stop people from logging in. The problem is that the seed was the time of day when the car was first turned on. When the car was first turned on it always came up with the time set to 1970 Jan 1 00:00:00.000 there was only a tiny variation in how quickly the computer booted as a source of entropy, so there were only six possible passwords.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/andy1633" target="_blank">andy1633</a>
+			<div class="markdown"><p>Some Intel CPUs have built in hardware RNG support. I believe it measures the tiny fluctuations when measuring the temperature of the CPU to generate randomness.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pirround" target="_blank">pirround</a>
+			<div class="markdown"><p>Both Intel and AMD now have hardware RNGs. They don't actually work by measuring temperature.</p>
+<p>It uses <a href="http://spectrum.ieee.org/computing/hardware/behind-intels-new-randomnumber-generator" target="_blank">a circuit that is unstable</a> and when it's turned on the random movement of electrons determines which state it settles in. Ultimately the random movement of electrons is a result or atomic movement, which is a result of temperature (so at 0K there should be no noise).</p>
+<p>There are some concerns about how Intel made their RNG. It isn't perfectly random -- 1s might be more common outputs than 0s -- and the bias changes with temperature. To combat this Intel collects twice as many bits as they need, combine them, and then process them to make the same number of 1s and 0s. The problem with this is that it hides the quality of the underlying RNG, and without that working well we can't trust the output. If the RNG worked well than the final processing would be unnecessary, and the fact that it is necessary tells us that the hardware RNG isn't as random as it claims to be.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/2PlyKindaGuy" target="_blank">2PlyKindaGuy</a>
+			<div class="markdown"><p>I've used a microcontroller that amplifies noise to generate a random number. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/willjoke4food" target="_blank">willjoke4food</a>
+			<div class="markdown"><p>Much better answer than the one gold above</p></div>		</li>
+					</ul>
+	

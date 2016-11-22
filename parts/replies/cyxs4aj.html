@@ -1,0 +1,90 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/audigex" target="_blank">audigex</a>
+			<div class="markdown"><blockquote>
+<p>like trying out different card numbers</p>
+</blockquote>
+<p>This is the most valid point. The company isn't worried that you're going to pay your bill with a robot. They're worried that you're going to make a robot that tries different card numbers to fraudulently pay your bill, or that you're going to make a robot that uses multiple cards to do money laundering by passing it around hundreds of cards registered to different people.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RunninADorito" target="_blank">RunninADorito</a>
+			<div class="markdown"><p>You don't need captcha to stop that, you just need to cap the number of failures and introduce throttling. </p>
+<p>The real answer is that most sites use captcha incorrectly. </p>
+<p>EDIT: Since this is getting some visibility, I might as well add the main, proper use for CAPTCHA.  Generally the place you want to put this is where a non-authenticated used can kick off a resource intensive operation.  That's about it.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CWagner" target="_blank">CWagner</a>
+			<div class="markdown"><p>I would like to add to that, that adding a captcha (using a JS plugin) is way simpler than rate limiting etc. and thus what probably will be done if you are understaffed / in a hurry / inexperienced / etc.</p>
+<p>edit: Because people keep commenting, of course you need to check the response from the backend. Sorry for assuming common sense.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gossip_hurl" target="_blank">gossip_hurl</a>
+			<div class="markdown"><p>Additionally, password policies are a joke</p>
+<p>&quot;Your password must contain at least:</p>
+<p>*One uppercase letter</p>
+<p>*One lowercase letter</p>
+<p>*One numeric character</p>
+<p>*One special character</p>
+<p>*One Simpsons Character</p>
+<p>*No fewer or more than 7 question marks, but they may not be substituted for letters, like in ?uestlove</p>
+<p>*A naughty emoji</p>
+<p>*A villanelle about changing of the seasons&quot;</p>
+<p>Which means absolute dick if you have a key-logger or your system gets compromised (or the site gets hacked). Two-factor is the way to go but it's a real pain now, at least until you can buy <a href="https://www.yubico.com/" target="_blank">these</a> at CVS for $3.99. Keep it on your keychain, hover over a sensor, combined with a simple pin. If you lose it, you buy it, register a new one. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/theinsanepotato" target="_blank">theinsanepotato</a>
+			<div class="markdown"><p>Not to mention that no one in their right mind would pay a bill, registered to their OWN NAME, with a stolen card number. What do they think is gonna happen when the cards real owner reports the transaction as fraud? First off, your bills gonna get un-paid, so the whole thing was pointless, and second, now youre gonna be arrested for credit card fraud.</p>
+<p>Using captchas on, say, a web store where youre buying a product MIGHT make sense, since once you have the product, they cant get it back, but on a bill payment? Nah.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/choleropteryx" target="_blank">choleropteryx</a>
+			<div class="markdown"><p>Another use case is a credit card checker service. When a carder buys a batch of credit cards on a black market, he or she would often want to know, if the numbers are valid. There are special underground apps and online services and that help with that. These would take an online shop, and try to automatically charge a small amount on each card. Then they show which payments went through and which where declined. Sometimes they would even find a way to reverse the charges, so that nothing appears on the victim's statement. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/arzen353" target="_blank">arzen353</a>
+			<div class="markdown"><p>huh.  I never would have thought of either of those possibilities. </p>
+<p>I always wondered why I had to prove my identity with my SS# and DOB to pay my student loans, and now I have a better idea.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/stckfigure" target="_blank">stckfigure</a>
+			<div class="markdown"><p>What about this new type of Captcha I've seen that is literally just a box you check saying &quot;I verify I am not a robot&quot; or something like that? How is that not something a robot could do? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/buffygr" target="_blank">buffygr</a>
+			<div class="markdown"><p>I have not looked into it but i have written bots before and can guarantee you it's something a bot can do. I'm actually not entirely sure how it works but i'm assuming it's based on statistics, afaik it's not known though. One HUGE downside here is though that it's a javascript based captcha. This means you will need a javascript engine that can interpret the code, that usually requires a browser running (or something similar). Common bots are just console applications sending packets to servers, they are not running anything interface based. This is a huge performance drop and thus makes botting harder.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JeramieH" target="_blank">JeramieH</a>
+			<div class="markdown"><p><a href="http://www.wired.com/2014/12/google-one-click-recaptcha/" target="_blank">http://www.wired.com/2014/12/google-one-click-recaptcha/</a></p>
+<p>Says it's based on mouse behavior before the click. But I had assumed it was JS/Flash that a simple bot wouldn't be capable of processing.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dWintermut3" target="_blank">dWintermut3</a>
+			<div class="markdown"><p>Great answer.  I'd also add that one use of a bot there would be trying to attack your encryption by using the form as an Oracle, hoping you send the information back encrypted, if you don't validate that it's a valid credit card number before encrypting it then they might attempt any number of chosen plaintext attacks on your encryption.</p>
+<p>Another possibility may be attempting an injection or overflow attack of some form.</p>
+<p>Even if none of that is possible leaving anything that submits to your website bot-usable opens up a potential for a denial of service attack.  Such a DoS attack is particularly insidious because you can't dump the traffic at the firewall, and it doesn't just hit the webserver's pipes but could affect the CPU utilization of the database server or other nonpublic servers.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Curmudgy" target="_blank">Curmudgy</a>
+			<div class="markdown"><p>CAPTCHA doesn't prevent DDOS attacks.  They just attack the CAPTCHA instead of the next form.  It would only help if the CAPTCHA response loop were an order of magnitude faster than the underlying web pages.  That might be true, but usually isn't a design goal for the CAPTCHA, and the way massive DDOS attacks overload things, it's unlikely to be much help.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IICVX" target="_blank">IICVX</a>
+			<div class="markdown"><p>Captcha servers are generally scaled to handle significantly more traffic than the servers they protect, and the nature of captchas makes them super amenable to horizontal scaling.  </p>
+<p>I mean for instance, reCaptcha serves captchas out over the entire Internet; they can definitely handle more traffic than your local power company's bill payment website. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CWagner" target="_blank">CWagner</a>
+			<div class="markdown"><p>In our case (contact form), they'd DDoS Google (probably the most widespread captcha solution). I think they are far better equipped to stomach a DDoS ;)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tragicpapercut" target="_blank">tragicpapercut</a>
+			<div class="markdown"><p>This is why CAPTCHA can be used to protect expensive operations. CAPTCHA is lightweight, but often the operation it protects is resource heavy. Sites want to allow human use but generally hate bots not named Google (or Bing if you're into that). If the sales guy who sold me on bot protection can be believed, in some industries bots can account for up to 75% of a website's traffic. On my own it is closer to 10%, but that's still a large number of resources at scale.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/40ozWolfMan" target="_blank">40ozWolfMan</a>
+			<div class="markdown"><p>A captcha ain't gonna stop no distributed denial of service attack. A DDoS just pounds on your network from ANY vector.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dWintermut3" target="_blank">dWintermut3</a>
+			<div class="markdown"><p>True, but unsecured forms that query a database or trigger back-end business logic widen your attack profile by letting them hit more than your firewall or email server.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

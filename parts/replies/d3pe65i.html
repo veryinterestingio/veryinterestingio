@@ -1,0 +1,45 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DickMcFanny" target="_blank">DickMcFanny</a>
+			<div class="markdown"><p>I think that doesn't work because a GPU is made for doing loads of things in parallel whereas a CPU is made for doing few things really quickly and with low latency. </p>
+<p>NVIDIA GPUs have like a thousand (CUDA) Cores, whereas modern CPUs have only 2-6 Cores (twice as many threads through hyperthreading). Naturally, the clock speed of a proper core is higher than that of a CUDA-core. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Enialis" target="_blank">Enialis</a>
+			<div class="markdown"><p>CPU cores are not necessarily faster, what's really critical is they are more complicated.  CPU's are generalist &amp; have a wide instruction set, allowing them to do many types of computations.  GPU's really can only do floating-point math, they just do a shitload of it in parallel.</p>
+<p>GPU's are really bad at two critical computational tasks: conditional branching &amp; context switching.  Branching is your typical &quot;if CONDITION do X else do Y.&quot;  It's borderline impossible to make a useful program without boolean logic, unless it's pure computation.  Context switching is how computers &quot;fake&quot; doing multiple things at once (multi-tasking is really just switching between lots of stuff faster than a human can notice).</p>
+<p>GPU's achieve their processing throughput by not including all of the complicated logic to allow those types of operations.  This makes each GPU core fast &amp; dense, so many can be on a single board. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Saltysalad" target="_blank">Saltysalad</a>
+			<div class="markdown"><p>Could you describe a CPU as train tracks that cross and mix, but require the train (data) to go a little slower so as not to derail, and a GPU as train tracks that are straight which allows the train to go fast but also doesn't allow trains to go from one set of tracks to another?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gerryn" target="_blank">gerryn</a>
+			<div class="markdown"><p>To note as well is error correction, GPUs do way less of it since it doesn't matter for most of their usage scenarios.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HubbaMaBubba" target="_blank">HubbaMaBubba</a>
+			<div class="markdown"><p>*Shader cores, literally every GPU has a bunch of them. CUDA is just how Nvidia brands their's. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sweetbacker" target="_blank">sweetbacker</a>
+			<div class="markdown"><p>Before 3D accelerators became viable and common, around 1996 onward, older computers did use CPUs as GPUs, or &quot;software rendering&quot; for games. It was a lot slower and worse looking than 3D-accelerated graphics. (Except for raytracing, but that was VERY slow)</p>
+<p>Modern GPUs are sufficiently advanced that they are being used as not quite as featuresome, but massively parallel CPUs. Each individual core on the GPU isn't very powerful, but modern graphics cards can have thousands of them. So for certain tasks, such as bitcoin mining or breaking passwords, GPUs can get the job done hundreds of times faster. nVidia even sells specialized GPUs for that kind of computing, which go into PCI-E slots just like a regular graphics card, but don't even have any outputs for the monitor.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Oh-A-Five-THIRTEEN" target="_blank">Oh-A-Five-THIRTEEN</a>
+			<div class="markdown"><p>Is raytracing in games a common thing now?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sweetbacker" target="_blank">sweetbacker</a>
+			<div class="markdown"><p>No. They do some reflection effects with shaders, but nothing really approaching actual raytracing. It's just quite a different technology compared to how regular 3D graphics work.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IAmTheSysGen" target="_blank">IAmTheSysGen</a>
+			<div class="markdown"><p>Sometimes. People are still working on it: Pure pathtracing and global illumination is too slow even on a quad 1080 setup.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TokyoJokeyo" target="_blank">TokyoJokeyo</a>
+			<div class="markdown"><p>Specialization. GPUs are designed specifically to excel at graphics rendering, whereas CPUs need to support all sorts of more general computing tasks well. Although it depends on what you're trying to do, in most cases it's proven cost-effective to separate the two functions at the hardware level.</p></div>		</li>
+					</ul>
+	

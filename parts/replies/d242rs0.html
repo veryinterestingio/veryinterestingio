@@ -1,0 +1,88 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/N8swim" target="_blank">N8swim</a>
+			<div class="markdown"><p>How many of these pins are on a typical phone?  Like are there only 32 pins on a typical 5 inch screen?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/j12" target="_blank">j12</a>
+			<div class="markdown"><p><a href="http://imgur.com/vxcsudO" target="_blank">http://imgur.com/vxcsudO</a>
+Here is usually what it looks like on phones, tablets, and laptops with touch sensors. Every X channel and every Y channel goes to a pin on the chip. One layer (either x or y) is the driving layer, and the other layer is the sensing layer. </p>
+<p>In the early days of capacitive touch sensors the lines were driven sequentially, meaning the signal is sent down one line at a time and the sensing line &quot;listens&quot; one at a time. When there is no finger there is a known RC (resistor/capacitor time constant). When there is a finger you change your C (capacitance value) and the time constant is different, that's how the controller knows where your finger is. </p>
+<p>Many touch sensors now have much more complicated algorithms and lines no longer need to be driven sequentially, they can be driven simultaneously. This has several advantages included faster response time, and improved signal at a given resistance value (of the TCO)</p>
+<p>Hey /u/nomotiv we do very similar things.</p>
+<p>If i'm wrong, please correct me. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/_mainus" target="_blank">_mainus</a>
+			<div class="markdown"><p>I understand this row/column system, I'm a firmware engineer and we use it for the keypad on our equipment (on top of that my first experience with it was in an embedded class in college on a touch-tone phone keypad)... but I don't get how you can simultaneously &quot;light&quot; all of the rows (or columns) and discern any useful information... unless it works very differently than how I'm thinking.</p>
+<p>The way it works that I'm familiar with is you set one row high then read all the columns sequentially, if any column is high you know the row/column position of the touch... you do this for each row in turn. If instead you set all rows high at the same time you can still test each column but when you find a high column you won't know the row that caused it so you won't know where the touch occurred, only the column that it occurred in... How would that work?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nomotiv" target="_blank">nomotiv</a>
+			<div class="markdown"><p>Excellent.  Thanks for posting the layout of the touch interface behind a phone screen.  I figured it had to be a mutual row/column type of scan, but I did not know the actual recommendations, as it isn't something I have had to actually dig into ever.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/198jazzy349" target="_blank">198jazzy349</a>
+			<div class="markdown"><p>For resistance touch (cell phones don't use this, pos terminals often do) you only need four wires. Some models use five or more. On big screens, capacitance doesn't work well. laptops, tablets, phones use capacitance instead of resistance because it doesn't really work at all for multitouch, and we like multi-touch a lot.</p>
+<p>If you have QT convenience stores where you are and you've watched in awe as employees tap 400 screen buttons per minute, that's resistive touch. It's perfect for fast and accurate single touches on 23&quot; panels. </p>
+<p>If you try to build a POS solution using an HP 2107tm touch monitor (supports four fingers at once) you'll be very disappointed at the performance. There's a reason ELO monitors cost &gt; $1k. </p>
+<p>/morethanyouwannaknow</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gehzumteufel" target="_blank">gehzumteufel</a>
+			<div class="markdown"><blockquote>
+<p>For resistance touch (cell phones don't use this,...</p>
+</blockquote>
+<p>This is true now, but all smartphones used to use resistive touch sensors.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Megabobster" target="_blank">Megabobster</a>
+			<div class="markdown"><p>A good example of resistive touch screens that the average person might have more in-depth experience with is Nintendo consoles that have touch support. The WiiU, NDS, and 3DS/n3DS all use resistive touch sensors. It's more accurate and precise for gaming purposes (when you use a stylus), but it has no multitouch and does fun things when you do touch two points at the same time.</p>
+<p>The PS4 and Steam Controller's touch pads, on the other hand, are capacitive.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mach-disc" target="_blank">mach-disc</a>
+			<div class="markdown"><p>I'm going to go out on a limb and guess that pos doesn't mean product of sums…</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nomotiv" target="_blank">nomotiv</a>
+			<div class="markdown"><p>Not sure actually as I have never done a phone screen in my design work.  I would speculate that 32 pins would be way more than enough using a good proximity algorithm.</p>
+<p><em>edit</em> I was just counting touch sense pins.  As noted below, a 32 touch input part could have 40-64 pins depending on the peripherals, communication interfaces, power requirements and package chosen.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mgzukowski" target="_blank">mgzukowski</a>
+			<div class="markdown"><p>Well all those pins wouldn't just be for the touch input. If it followed the hdmi format it would be 19 pins for the signal. Atleast 3 for power, ground, and brightness. But ten pins should be more then enough.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hornwalker" target="_blank">hornwalker</a>
+			<div class="markdown"><p>Any chance we could get a dumbed down version of this answer?  It seems really cool.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nomotiv" target="_blank">nomotiv</a>
+			<div class="markdown"><p>Take a look at this <a href="http://imgur.com/vxcsudO" target="_blank">Image</a> provided by /u/j12.  Each column of red is a transmitter and each row of green is a receiver. </p>
+<p>You start out by taking turns putting an electric field onto each red columns and measure how strong the field is on each green row.   The fields like glass okay, but don't like air much, so they bunch up in the glass and land back down on the receivers.  When nothing is around, all of the green rows measure the same thing all the time because the glass is the only thing around to bunch up those field lines.</p>
+<p>Now a finger come along.  It turns out your finger is really good at bunching up these field lines.  Now when the red column underneath your finger is transmitting, the green row closest to your finger sees way more signal.  For instance, if you touch the top left corner, you see more signal on the top green row only when the left red column is transmitting.   Using this information you can determine where finger(s) are.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Torgamous" target="_blank">Torgamous</a>
+			<div class="markdown"><p>So it works like those purple lightning balls?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FuzzyMcBitty" target="_blank">FuzzyMcBitty</a>
+			<div class="markdown"><p>My Kindle Fire recognizes when I ALMOST touch the screen. How does it know?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nomotiv" target="_blank">nomotiv</a>
+			<div class="markdown"><p>Probably just a slightly over tuned touch sensor coupled with the fact that the electric fields do travel through the air, just not as tightly coupled as in glass. Looking at google, the dielectric constant of Air is 1, Glass is around 5-10, and water is 80.  Assuming your finger is somewhat water, lets assume your finger is like a 20 on this scale.  </p>
+<p>Through a single medium, the field lines will prefer to travel through the shortest path they can.  When there are multiple mediums they will tend to flow through the shortest path with a preference on the dielectric constant of the material.  So basically the higher the dielectric constant, the more preferable the material, the high percentage of the fields flowing through it.  Still Air has a constant greater than 0, so you still have a small percentage of the fields travelling through the air even though air is way less preferable to glass.</p>
+<p>Back to the kindle, normally nothing happens until you touch the glass, because the air has so little field strength it takes the path of glass + finger to equal a touch threshold that is recognized.  In the case of your Kindle, when you make the air gap &quot;really small&quot; you providing just enough of a path for the electric field to trip past its threshold.I will note most likely you may find that the location sensitivity is pretty bad in this scenario, because the fields are way less concentrated in the small air gap than they would be when you touch the glass directly.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jobblejosh" target="_blank">jobblejosh</a>
+			<div class="markdown"><p>Some single-activation sensors (we have ones that you put your hand up to to open a door) will make it overly sensitive for hygiene reasons, especially if the equipment will be in a busy environment with multiple different 'users'.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FuzzyMcBitty" target="_blank">FuzzyMcBitty</a>
+			<div class="markdown"><p>Thanks!! I was wondering about this when I was reading this morning.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

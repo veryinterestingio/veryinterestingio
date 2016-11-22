@@ -1,0 +1,65 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jenkinsonfire" target="_blank">jenkinsonfire</a>
+			<div class="markdown"><p>You nailed it!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PetersNachbar" target="_blank">PetersNachbar</a>
+			<div class="markdown"><p>Don't know if anyone else mentioned it here, but if you want to just skip ahead a few seconds press &quot;L&quot; to skip 10 seconds. Doing so does keep the already buffered part of the video. Likewise with &quot;J&quot; you can go back 10 seconds and &quot;K&quot; pauses the video.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sue_cide" target="_blank">sue_cide</a>
+			<div class="markdown"><p>&quot;L&quot;ol &quot;J&quot;ust &quot;K&quot;idding</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Uncle_DirtNap" target="_blank">Uncle_DirtNap</a>
+			<div class="markdown"><p>Vim navigation key bindings work in most Google products, so just try this with any app you are in.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Cellerdoorp" target="_blank">Cellerdoorp</a>
+			<div class="markdown"><p>I literally logged on only to thank you. You have completely changed my life. I live with very crappy internet and youtube has always been extremely frustrating. This will make my entire existence less painful. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nicorivas" target="_blank">nicorivas</a>
+			<div class="markdown"><p>I think it must be because video compression needs a starting point to deduce the rest, so it depends on the starting condition. If you change it manually it has to reload.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/corrosive_substrate" target="_blank">corrosive_substrate</a>
+			<div class="markdown"><p>That is true, but it doesn't apply here.  With a fully buffered video, you would have already loaded all of the keyframes between the current playback position and the end, so it could just snap to the nearest one.  YouTube actually does start you off at a keyframe when you skip, regardless... but their software/javascript player doesn't support skipping to a buffered position without reloading the stream from there.</p>
+<p>Google provides devices to ISPs to cache YouTube videos, which helps lower traffic between the ISP and YouTube cdn servers.  I would be willing to put money on the reason for this being that since Google has pretty extensively saturated ISPs with YouTube caching devices, they don't particularly care if a video download gets restarted a dozen times while playing back, because they only have to pay for content bandwidth with the first transfer.  Which kinda sucks for the end user, but tbh Google has never really cared about the end user.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Amani77" target="_blank">Amani77</a>
+			<div class="markdown"><p>Complete shot in the dark here:</p>
+<p>I think it has to do with how compression works. Now this is my very layman understanding of video compression and I may just embarrass myself with this explanation but here goes: </p>
+<p>Imagine an image, there are many pixels in that image. A simple static image can be 4MB. Now, videos usually produce around 60 frames per second. With that in mind, if there were 60 'static images' being displayed each time that would be 60x4mb = 240MB for one second of video. That is a lot! </p>
+<p>This is also not what we see in video playback. Compression comes into play. So now imagine another image, and then the camera moves slightly to the right, most of the pixels are the same or a slight variation in color. So, instead of recording the whole image again, we only record the DIFFERENCES in the pixels. So lets say only 10% of the image moved as the video progresses, we only need to record 10% of the original 4MB data. Compression algorithms are much more advanced than this but one thing holds true: they rely off of previous frame data. Each  compression splits up the video into keyframes. These are spots that are fresh 'static images' that they use to encode the rest of the section. When you seek a video, you may move into a new keyframe section and you have to be sent a new keyframe as well as start to decode the compression again.</p>
+<p>So even though you buffered the data according to the old keyframe, you need to do it again for the new keyframe when you seek forward a very small amount. It's a stream of data that is determinate off of the old data, not a display of raw data.</p>
+<p>Edit: some wordy stuffs.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ddrddrddrddr" target="_blank">ddrddrddrddr</a>
+			<div class="markdown"><p>Your explanation doesn't work, because even though you need to download a new keyframe, the data that makes up your screen at time T is the same whether you got it by downloading it or by arriving it by adding and subtracting pixel differences. Therefore by your explanation, you should only need to download at most a new keyframe, that's it.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Amani77" target="_blank">Amani77</a>
+			<div class="markdown"><p>You would have to download a new keyframe and then decode your current data, it takes time - they write that off as &quot;buffering&quot;.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/meneldal2" target="_blank">meneldal2</a>
+			<div class="markdown"><p>That's not the issue. The actual issue in TL;DR is because google are cunts and are using tricky javascript to try to make you watch more advertisements.</p>
+<p>It actually used to work fine before and also works fine on many streaming website that don't use their crap. There is no need to redownload anything, it is a problem (or feature) in their players, H.264 or the webm crap they're using can work perfectly fine with skipping ahead but they just prevent you from doing it correctly.</p>
+<p>For streaming purposes, content is generally encoded so there is at least one keyframe per second so when things work fine the buffer up until the last keyframe before the point where you want to go is ignored and frames after this are decoded so the frame you requested can be displayed. FYI it's exactly the same if you play a video on your computer (except that outside of dvd and blu-ray, stuff doesn't use such fucked up inefficient one keyframe per second and usually it goes more up to 10 seconds for slow scenes, which btw will explain why it can take time to jump to a different part of the video with slow computers and hd content).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Amani77" target="_blank">Amani77</a>
+			<div class="markdown"><p>Playing a video on a computer and seeking also produces a similar lag, it is small because the data is localized and on a medium that is much quicker: your hard drive. Download a 4k video, something that will tax your computer and seek, observe the delay.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tetsugakusei" target="_blank">tetsugakusei</a>
+			<div class="markdown"><p>You can actually observe this. If you torrent a poor quality video and it enters a moment of whiteout, the only part that will start to improve is the image that is moving/central to the Story.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/donchilo" target="_blank">donchilo</a>
+			<div class="markdown"><p>Yeah man, but the question is why?</p></div>		</li>
+					</ul>
+	

@@ -1,0 +1,106 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/In_between_minds" target="_blank">In_between_minds</a>
+			<div class="markdown"><p>I would like to note (if anyone even sees this) that latency is important for TCP/IP. TCP/IP (often and after this referred to as just TCP) is one of thew two biggest ways data is sent to and from consumer computers (and video game consoles), the other is UDP. The biggest difference between TCP and UDP is that TCP is the &quot;every bit of data is important&quot; method of sending data, and UDP is the &quot;just send it&quot; way. Things like first person shooters, in game voice comunication and so on tend to use UDP since it is more important to send data as &quot;fast&quot; as possible and it doesn't matter if some data is never actually received. For TCP, every packet (think mailing a letter) that a computer receives causes a &quot;I got it!&quot; response to be sent. If the sender never gets the &quot;I got it&quot; for a specific packet within a given time (the &quot;timeout&quot;) it will send that packet again.</p>
+<p>So why does latency matter? If you are sending a bunch of TCP packets, say for a large file, and the &quot;I got it&quot; replies take a long time, the software that manages sending and receiving network traffic on your computer may/will limit how many &quot;outstanding&quot; (send but unanswered) packets, it may also start sending smaller packets. &quot;Why is that a good idea?&quot; Well, imagine that instead of latency, you had congestion between you and the other machine. To the software that handles sending and receiving information over the network the end result would be largely the same, replies would take a long time, and in that case continuing the send data faster that it could be received would have two bad impacts; one it would increase congestion, and two it increases the likelihood that some data would need to be resent. A similar issue can happen when the other computer simply can not keep up with the amount of data you are sending it.</p>
+<p>This is why you can have a &quot;12Mb&quot; download speed on your phone, but still have things transfer very slowly, for example.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sohcahtoa82" target="_blank">Sohcahtoa82</a>
+			<div class="markdown"><blockquote>
+<p>For TCP, every packet (think mailing a letter) that a computer receives causes a &quot;I got it!&quot; response to be sent.</p>
+</blockquote>
+<p>Gonna be pedantic here, since that's what reddit likes to do.</p>
+<p>Not every packet gets an acknowledgement packet.  Or rather, every packet gets acknowledged, but they're done in batches.  That is to say, 1 acknowledgement packet will acknowledge multiple packets received.</p>
+<p>You might send 100 packets, and I'll send back one response saying &quot;I've gotten up to packet 100&quot;.  This window of data is counted in bytes, but answered by packets and is usually called the <em>receive window</em>.</p>
+<p>A large receive window is important on a fast connection since latency is an issue.  Most devices have an MTU (Maximum Transmissible Unit) of 1,500 bytes, which has to include the TCP packet headers.  If you have a round-trip latency of 50 ms, then without using receive windows, you could only send 30 kilobytes/second, and that's ignoring packet headers and assuming every packet is the maximum size!</p>
+<p>Large windows allow the full bandwidth of a connection to be used despite high latency.  However, it causes a LOT of data to have to get resent if a packet gets dropped.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fapping_home" target="_blank">fapping_home</a>
+			<div class="markdown"><p>TCP is a conversation. UDP is talking and just assuming you're listening.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sohcahtoa82" target="_blank">Sohcahtoa82</a>
+			<div class="markdown"><p>I'll tell you a UDP joke, but you might not get it.</p>
+<p>A UDP packet walks into a bar.  The bartender doesn't acknowledge him.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tminus7700" target="_blank">tminus7700</a>
+			<div class="markdown"><p>Two things I diagree with:</p>
+<blockquote>
+<p>So electrons have the same thing, they take time to change direction and speed - which is exactly what happens when the zero and one bits are transmitted.</p>
+</blockquote>
+<p>That is not the reason. Electrons can oscillate on a wire at extremely high speeds. the signal travels as a wave along the wire. The electrons just 'wiggle' in place. But the wave moves along at great speed. Like the wave thing people do at sporting events. You then went on and posted the right answer. It is the inductance/capacitance that reduce the bandwidth. Oliver Heaviside in the 1900's figured that out for telephone lines:</p>
+<blockquote>
+<p>This is called inductance. There is a similar related effect called capacitance which also slows down the maximum rate of change.</p>
+</blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Oliver_Heaviside" target="_blank">https://en.wikipedia.org/wiki/Oliver_Heaviside</a></p>
+<p>Then on cable:</p>
+<blockquote>
+<p>High speed electrical signals can only travel ~100m before they get too weak and drowned out with noise. </p>
+</blockquote>
+<p>High bandwidth coaxial cables were used, starting in the late 1940's to send TV signals across the US continent. The signals would be sent for many miles before a repeater was necessary.</p>
+<p><a href="http://www.itworld.com/article/2833121/networking/history--1940s-film-explains-coaxial-cable--microwave-networks.html" target="_blank">http://www.itworld.com/article/2833121/networking/history--1940s-film-explains-coaxial-cable--microwave-networks.html</a></p>
+<p>In both fiber and cable you have to use repeaters along the way. They are placed at periodic intervals. At a point that the signal has not degraded enough to be a problem. They then reconstitute digital signals and send then along their way as new. </p>
+<p><a href="https://en.wikipedia.org/wiki/Repeater" target="_blank">https://en.wikipedia.org/wiki/Repeater</a></p>
+<blockquote>
+<p>Digital repeater: or digipeater This is used in channels that transmit data by binary digital signals, in which the data is in the form of pulses with only two possible values, representing the binary digits 1 and 0. A digital repeater amplifies the signal, and it also may retime, resynchronize, and reshape the pulses. A repeater that performs the retiming or resynchronizing functions may be called a regenerator.</p>
+</blockquote>
+<p>Ultimately fiber has higher bandwidth because it is not subject to the  inductance/capacitance problems that cables have. It is also much cheaper than copper (it's glass and plastic). But even with fiber, you have to be careful to develop glass that has low dispersion. Dispersion 'smears' out the pulses very similar to the inductance/capacitance in cables. Otherwise you get the degradation's similar to coaxial (or twisted pair) cables.</p>
+<p><a href="https://en.wikipedia.org/wiki/Dispersion_(optics" target="_blank">https://en.wikipedia.org/wiki/Dispersion_(optics</a>)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SoylentRox" target="_blank">SoylentRox</a>
+			<div class="markdown"><p>Sigh, gotta be pedantic.  Inductance/capacitance reduce the effective range of the signal.  However, the <em>bandwidth</em> - for even a short distance - is limited by <em>another</em> effect, the Shannon Limit.  Even with Coax cable, all available communication channels are in the RF range.  With IR optical fiber, each communication channel in the spectral band the fiber can carry can carry a lot more information because the frequency is higher.  There's more bandwidth in a fiber optical cable than the entire RF spectrum.  So it'll always be faster than wireless internet until they start using free air lasers... </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>I feel like an ant standing among giants.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/guiltyandstupid" target="_blank">guiltyandstupid</a>
+			<div class="markdown"><p>In all fairness, the 100m distance was used to directly explain when 1 to gb/s starts to degrade, not when television signals and standard 30 to 50 mb/s do. He just said that fibre can carry the load of 1 to 10 gb/s farther than copper. I fully understand your comment but if you were to try to get the speeds he mentioned over even 1 or 2 miles without a repeater on cable, it'd be incredibly difficult. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/feed_me_haribo" target="_blank">feed_me_haribo</a>
+			<div class="markdown"><p>To add on, the key difference between a coaxial cable for signal transmission and copper wire for power transmission is that we're talking about transmission of an RF wave rather than electrons. While flow of electrons in power transmission is probably more intuitive/familiar, it's not an accurate description of signal transmission.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CourseHeroRyan" target="_blank">CourseHeroRyan</a>
+			<div class="markdown"><p>Yeah, a transmission lines generally have an extremely wide bandwidth, which take into account the inductance and capacitance in the design to cancel each other out so they are not a factor as a transmission medium. Wave guides are also a transmission medium with little losses, essentially the electrical equivalent of what a optical line is. The issue for many wave guides are cost/flexibility which aren't practical if you can run optical lines, which are much cheaper and flexible for the same functionality at a higher frequency. Then the issue comes with designing high bandwidth/frequency front ends, though I've never designed optical front ends to compare.</p>
+<p>The costs of high frequency transmission lines (in 10's of GHz) are phenomenally high, I've herd of short cables and connectors costing hundreds+ of dollars. Granted, if the market used these in consumer applications its possible the price would drop compared to mostly being used in industrial/research applications. </p>
+<p>Source: RF engineer</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ArcFault" target="_blank">ArcFault</a>
+			<div class="markdown"><p>Nitpicking a nitpick:</p>
+<blockquote>
+<p>to add on, the key difference between a coaxial cable for signal transmission and copper wire for power transmission is that we're talking about transmission of an RF wave rather than electrons</p>
+</blockquote>
+<p>This is kind of misleading.   Both coax and copper wires transmit energy through an applied voltage that causes electrons to experience a force and move.  Specific explanation in the foot note.*  </p>
+<p>The key difference between a data cable and a power cable is the frequencies of the signals (the bandwidths) they are able to carry which is affected by 2 main characteristics - cable length and frequency-dependent electrical properties.</p>
+<p>A high frequency signal has a short wavelength and correspondingly a low frequency signal a long wavelength.  This matters because if you look at this <a href="http://i.imgur.com/jOwJnnZ.gif" target="_blank">alternating signal here</a> you'll notice that there are points where the value of the signal goes to zero.  So if for example your cable length happened to match up with that point, you would get no signal at the other end of it (or a very weak one).  For power cables this is not normally an issue since the frequencies they carry have wavelengths that are much much longer than the length of the cable ( so you have a strong value signal at every point on the cable.)  However, as you increase your frequency, the wavelength becomes much shorter and the length of the cable starts to matter.  For the uninformed, in general (there are other limiting factors) a higher frequency means higher bandwidth which mean more data which is obviously desirable.</p>
+<p>Additionally, the electrical characteristics of a cable (or any medium) depend on the frequency of the signal applied.   Power cables are not designed to carry high frequency signals.  They have favorable electrical parameters at low frequencies (usually designed to minimize loss due to resistance), but not at high ones and if you try to pass a high freq through it, the signal will be distorted.  Data cables are specifically designed to have favorable electrical parameters at high(er) frequencies (designed to not distort the signal as it propagates).  The specifics of this are a bit beyond the scope of this comment but resistance (impedance), capacitance, and inductance are the characteristics that are tuned and they, because we are at high frequency, depend on the geometry and physical properties of the cable itself.  </p>
+<hr />
+<p>* To be specific, a signal with a nonzero average cause electrons to move/flow at their drift velocity (on the order of molasses, a few meters per second) through the conductor.  The way that energy is transferred at the speed of light is a result of the speed at which that electromotive force is transmitted (analogous to electrical pressure if you like)  through the conductor - imagine something similiar to <a href="http://i.imgur.com/3AJ5Xgo.gif" target="_blank">this</a>.  In a power transmission setting this is referred to as a DC signal - this is what a battery provides.  Now if the signal oscillates above and below 0 and has an <strong>average</strong> value of zero, then the electrons will still move, but they will oscillate back and forth and so will the resulting transmitted signal.  In a power transmission setting this is referred to as an AC signal - this is what mains (wall) electricity is in your house.  Data signal transmission can be anywhere in between these two (but not completely DC since that would mean your frequency is 0 and you're passing no data) depending on the type of signaling used which depends on the needs of the application.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pancholibre" target="_blank">pancholibre</a>
+			<div class="markdown"><p>Oh ho! Fibres are susceptible to noise though! </p>
+<p>There's thermal noise, shot noise, noise from dark current, relative intensity noise, etc. This all plays into the snr and will eventually cause whatever signal to get lost in the noise. </p>
+<p>There are also power penalties and nonlinear effects that are taken into consideration with light. These aren't as important as they are in electrical signals. </p>
+<p>Another thing to point out is that the light waves that the lasers output is in the terahertz. This means that it can be used as a carrier signal for a much slower signal, such as radio or telecommunications which typically reside in the gigabits pretty second range. </p>
+<p>This will quickly devolve into eli25 and an engineer but whatever.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PhiPolSciHisEtc" target="_blank">PhiPolSciHisEtc</a>
+			<div class="markdown"><p>I'm not great at physics but what 'range' (is that the correct term?) is the light in fibre? Is it visible spectrum or like ultraviolet etc?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/_vogonpoetry_" target="_blank">_vogonpoetry_</a>
+			<div class="markdown"><p>They use specific wavelengths chosen so that the effective transparency/reflectivity of the fiber is at the maximum. Usually this is either 850, 1300 or 1550nm depending on the material. Which is just outside the visible spectrum (400-700nm).</p>
+<p>However, most fiber optic is a digital signal, so the wavelength of the signal is not really a factor in its bandwidth. </p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

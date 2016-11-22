@@ -1,0 +1,73 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/colluphid42" target="_blank">colluphid42</a>
+			<div class="markdown"><p>This is <em>part</em> of the answer. In the case of mobile devices running 6 or 8 cores, the main power saving advantage is that those cores are split into two CPU islands (ARM calls this big.LITTLE). There are 2 or 4 high-performance cores, then 4 high-efficiency cores. This isn't only a question of clock speed, but also architecture. Example, a Snapdragon 810 has four Cortex-A57 CPUs (fast) and four Cortex-A53 CPUs (less fast, more efficient).</p>
+<p>When the faster cores aren't needed, they can go to sleep to save power. A mobile OS also knows how to split up work between fast and slow cores to get things done as quickly as possible, allowing the device to enter a deep sleep state sooner. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RhynoD" target="_blank">RhynoD</a>
+			<div class="markdown"><p>I imagine heat plays a large part in that as well.  Eight cores running very efficiently won't put out too much heat.  But four cores in a PC is already hot enough...stuffing another four chip sets on top would mean a ton of heat to dissipate, and I doubt the average Dell doesn't have a heat sink strong enough for that.</p>
+<p>Also consider that your (OP's) PC has more &quot;cores&quot; than you think.  While not directly a part of your CPU, you probably still have a separate graphics processor (which itself my have multiple cores).  You also have your north bridge and south bridge to control communication between various parts; your HDD will have its own internal processor to control its hardware...  I don't have a clue how much of that is handled by a phone's CPU, but I bet there are fewer peripheral processors, so more is being done by a centralized processor, rather than the distributed processors in your PC.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dragonitetrainer" target="_blank">dragonitetrainer</a>
+			<div class="markdown"><p>In regards to the heat comment- I think thats where binning comes into play. They dont use many of those $1000+ chips, they bin for the best ones</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/arienh4" target="_blank">arienh4</a>
+			<div class="markdown"><p>You're mostly right. Most phones use a SoC, System-on-Chip, which has pretty much everything on one chip as opposed to spread out over a circuit board.</p>
+<p>However, heat is still the main thing. An ARM processor is so many orders of magnitude more efficient than an x86-64 one that you can build far more cores into it without any issues. That, plus big.LITTLE makes it more advantageous to use 8 cores instead of 4.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RhynoD" target="_blank">RhynoD</a>
+			<div class="markdown"><p>Wiki'd big.LITTLE. Fascinating! What a perfectly simple but incredibly useful idea.</p>
+<p>Edit: &quot;simple&quot; in concept, anyways. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/permalink_save" target="_blank">permalink_save</a>
+			<div class="markdown"><p>Somewhat. With a desktop processor, a lot of what runs is single threaded so it loses benefit having an 8 core machine for gaming. Four cores is generally the sweet spot for clock speed, performance, and heat/power consumption. There's very little benefit past that. Four cores overclocked will beat 8 stock.</p>
+<p>For servers, this goes out the window. We run 24 core (+HT=48 core) boxes at work all the time, and we offer 60 core (+ht=120 core) boxes. Webservers love multitasking. More cores = more requests can be served concurrently. These are typically only 2ghz to 2.4ghz however, so single threaded performance isn't ideal (they have Xeons that are the equivalent of desktop procs for this purpose too).</p>
+<p>There are also a lot of quadcore Xeons that are equivalent to normal 4590s and 4790s, Xeon's aren't necessary super processors they are just made for ECC memory in mind and typically lack integrated GPUs (so a Xeon could cost less than a desktop i7 for the same power).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/coltcrime" target="_blank">coltcrime</a>
+			<div class="markdown"><p>Why do so many people not understand what hyperthreading does?It does <em>not</em> double your cores!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/laskeos" target="_blank">laskeos</a>
+			<div class="markdown"><blockquote>
+<p>It does not double your cores!</p>
+</blockquote>
+<p>The definition of &quot;core&quot; is a bit archaic. First when multi-core processors were made it was just doubling the whole &quot;internal&quot; part of the processor and then adding some &quot;glue&quot; so they could access system memory and peripherals together.</p>
+<p>You can say that each core was a worker that was carrying all the tools they would need but instead of each worker travelling in his own car they were put into a single van (cpu package).</p>
+<p>Now intel have figured out that each worker don't need all the tools - some tools are used less often than others, so each one have only essential tools and are sharing the rest between a pair - that's new HT (from intel core i5 or i7). There are in fact TWO &quot;lightweight cores&quot; that contain all the stuff a core needs apart from some heavy equipment. And unless that specific equipment is needed all the time by both of them they can work without restricting each other.</p>
+<p>So in the end, yes, HT doubles cores, just not entirely. In a lot of tasks that's enough to have the same performance as you would get with completely separated cores.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kupiakos" target="_blank">kupiakos</a>
+			<div class="markdown"><p>ELI5 what it actually does</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/permalink_save" target="_blank">permalink_save</a>
+			<div class="markdown"><p>It presents 48 logical cores. I very well understand what it does on a processor level :)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BABarracus" target="_blank">BABarracus</a>
+			<div class="markdown"><p>I have 8 cores and its nice to play games and not have to close anything before I start a game or when i altab the game doesn't crash or act funny. When my cpu is at100% utilization i can still do things and not have the computer freeze. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheChance" target="_blank">TheChance</a>
+			<div class="markdown"><p>This has almost nothing to do with how many processor cores you have. If you're going to extra trouble to try to force different programs to run on different cores, stop. Your operating system will do a better job of this anyway.</p>
+<p>This is an oversimplification, but good enough for most purposes:</p>
+<p>Your CPU affects how fast things happen. When the thing appears to be maxed out, your computer <em>might</em> slow down, because processes are competing for the same resources. However, a modern, multi-core machine isn't likely to have that problem.</p>
+<p>Your RAM affects how <em>many</em> things you can do <em>at the same time</em>. The CPU is just a calculator. All the data that it's working with right now lives in memory. Data on your hard drive is in &quot;cold storage&quot; for later.</p>
+<p>Whether a program takes advantage of multiple cores is down to the program, for the most part, and not the hardware or the operating system.</p>
+<p>So: the fact that you don't have to close anything before starting a game is due to having enough RAM. The fact that a game doesn't act funny or crash when you alt+tab is due to the game being well-written software. The fact that your computer continues to work normally when the CPU is at 100% utilization is not surprising.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gorocz" target="_blank">gorocz</a>
+			<div class="markdown"><p>On Saturday, I had WoW and Diablo 3 on (I was playing D3, while waiting for something in WoW)  and even though my PC (4 core i5 4690, GTX 760) could technically handle both of them on highest graphical options at once, I was pretty freaking happy about the possibility of limiting FPS on both of the games, when they are not active (i.e. when I'm doing something in a different window), since otherwise it would pretty much cook both my GPU and CPU. When unchecked, <a href="http://i.imgur.com/wlg6oNX.png" target="_blank">my GPU got to 82°C (180 F) and my CPU to 79°C (174 F)</a>. I know I'm gonna have to improve my cooling/airflow in my PC, but in the meanwhile, it would be nice if this freaking heatwave finally ended. 35+°C (95 F) room temperature can't be good for the poor machine.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rustled_orange" target="_blank">rustled_orange</a>
+			<div class="markdown"><p>Exactly.</p>
+<p>I was playing Civ 5 and randomly decided I had an urge to play Dark Souls 2 instead. I opened it up, was done playing after a little while, then closed it - only then did I realize that I had accidentally left Civ 5 open the entire time. I &lt;3 my desktop.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

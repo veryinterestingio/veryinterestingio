@@ -1,17 +1,151 @@
 	<ul class="replies">
 		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/iamunknowntwo" target="_blank">iamunknowntwo</a>
-			<p>TL;DR backdoor access is about finding loopholes in the system, or unsecured things in the system.<br><br>Think of the system as a huge buildng. Uh oh! Looks like the designers forgot to make one of the windows on the 60th floor lockable! As a result, you climb the building Mission Impossible style and you break the weak security the contractors installed as a temporary solution to the window.<br><br>After you break in, you collect whatever useful data you have. Sometimes, they can break into another room from there, and can end up hijacking something far more valuable.</p>		</li>
-						<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/szarroug3" target="_blank">szarroug3</a>
-			<p>Looks like you have much practice backdooring your mom... </p>		</li>
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>A practical answer, in a similar mom-and-dad analogy:</p>
+<p>You know that if you ask your mom if you can take $5 from her wallet she'll say &quot;no&quot;, but if your dad is watching a football game he isn't paying attention to you and if you ask him he'll just say &quot;yeah, sure&quot;. So when you want money you go directly to dad when he isn't paying attention, hoping mom doesn't find out soon.</p>
+<p>Something like this happened with some SSH servers, the vulnerability being named (for no particular reason) <a href="https://en.wikipedia.org/wiki/Heartbleed" target="_blank">Heartbleed</a> (non ELI5-link). SSH servers are programs that allow other users to connect remotely to the machine and run commands. It is used by almost everyone who uses Linux servers, because you can just login with SSH and type &quot;reboot&quot; to reboot the machine instead of going to the keyboard and typing it. Or you can use it to log in and change some program's configuration. This is a fantastic advantage - you don't need to be in front of the computer to run commands and the computer allows you to run only what you should run.</p>
+<p>So how does this work in the mom-and-dad context? Someone discovered that a library used by a lot of SSH servers had a vulnerability. You could send some data to it <em>and</em> tell it how long that data was <em>but</em> the program wasn't paying attention to the length you said at all times. Some times it did (when it replied to you with the same data) some times it didn't (when it stored the data you gave it). You told the server &quot;my data is HELLO and it is 1,000 characters long. what is my data?&quot; and because it wasn't paying attention to all the details of your message, it only stored HELLO in memory it gave you back 1,000 characters starting from where HELLO was. This allowed attackers to read random bits and pieces from the computer's memory, which occasionally contained other people's passwords and some times those people had access rights to run any command they wanted, including rebooting the system.</p>
+<p>All SSH clients (the programs which connect to SSH servers) were behaving normally and they would always send &quot;my data is HELLO and it is 5 characters long&quot; but someone malicious could easily modify these programs to change the message. If you played by the rules (asking your mom first, which is what you should always do like she told you a million times in all that documentation) the protocol worked as expected, but if you broke some rules (asking your dad when he wasn't paying attention) the protocol would be tricked into revealing sensitive information.</p>
+<hr />
+<p>So how exactly do you find these bugs?</p>
+<ul>
+<li>
+<p>With a trained eye for spotting errors in code: You look at the code and the documentation and see if the code does exactly what the documentation said, or if the programmer took a shortcut and left something out.</p>
+</li>
+<li>
+<p>With a lot of luck: There is an insane amount of code in the world (billions of lines of code), so some times it helps if you're lucky enough to start analyzing the right piece of code.</p>
+</li>
+<li>
+<p>With a trained mind for spotting logic errors: It is almost impossible to take all factors into account when writing code, but some people specialize in a particular area of programming so they learn which factors should be taken into account when writing sensitive code. For example, it is possible to write a program that generates an insane amount of data in RAM and then reads it back repeatedly trying to figure out when a read takes a few nanoseconds longer, which would hint that another program is working with identical data which should be a secret, but thanks to what is called <em>a timing attack</em> your program now knows that some other program is working with a secret and by repeating this read/write millions of times you can potentially find out what that secret is (eg, a password).</p>
+</li>
+<li>
+<p>With hard work: You spend years learning about common patterns in vulnerabilities. The most commonly known is a <em>stack overflow</em> which happens when you trick a program in overwriting some data it has in its stack (the stack is a region that exists in each program and controls what the program's state is, and potentially what it should execute next). Another common programming mistakes which leads to vulnerabilities is <em>use after free</em>, when memory is said to no longer be used but, in practice, that memory <em>is</em> reused and nothing ever accidentally overwrites it, so everybody things everything is fine because the program is behaving as expected. Since that memory is free, it's basically &quot;free for grab&quot;, too, so a malicious programmer could write a program to grab it and write malicious data there.</p>
+</li>
+<li>With logs of knowledge: You learn (memorize) which programs or libraries have vulnerabilities and when you find a program that uses other programs or libraries, you check their version numbers to see if they are vulnerable to anything; if they are, you could probably use that in your advantage to get control of the main program.</li>
+</ul>
+<p>Programming is actually a lot more difficult than you'd think. It's easy to slap together some code and keep it up right with duct tape, but it's difficult to do it properly, to last, to survive external attacks, earthquakes, acid rain, evil scientists, etc.</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/Inkkk" target="_blank">Inkkk</a>
-			<p>Sorry OP, I had to like it, it is hilarious</p>		</li>
+			<a class="author" href="https://www.reddit.com/user/gildedkitten" target="_blank">gildedkitten</a>
+			<div class="markdown"><blockquote>
+<p>the vulnerability being named (for no particular reason) Heartbleed</p>
+</blockquote>
+<p>There actually is a reason behind the name. In software development terms, a heartbeat is a message sent to check if a connection is still going. A lot of data connections will automatically shut themselves off if the connection hasn't done anything in a while, so keeping this heartbeat going allows you to maintain a connection even if nothing is actively going on.</p>
+<p>Heartbleed took advantage of this &quot;heartbeat&quot; in the OpenSSH program to slowly &quot;bleed&quot; out sensitive information, thus it was called &quot;Heartbleed&quot;.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>I was picking on the whole thing about naming bugs. Why that particular name was chosen is another story (the one you told), but there was no need for that particular bug to be named over others. There was a short period following Heartbleed when bugs were named, but, fortunately, the press quickly learned to ignore the naming and not judge bugs on whether or not they have names.</p></div>		</li>
 					</ul>
 			<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/fausto2278" target="_blank">fausto2278</a>
-			<p>Nice<br></p>		</li>
+			<a class="author" href="https://www.reddit.com/user/Noobs_Stfu" target="_blank">Noobs_Stfu</a>
+			<div class="markdown"><p>How has nobody yet pointed out how catastrophically incorrect you are? Heartbleed was an OpenSSL vulnerability, not SSH, let alone the fact that it's a vulnerability and not a &quot;backdoor&quot;.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/N0m0r3" target="_blank">N0m0r3</a>
+			<div class="markdown"><p>Because it is an ELI5?  Ssh had nothing to do with heart bleed. It was strictly open SSL TLS.  Hopefully someone that wants to learn something did not read the above comment. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheOneTrueTrench" target="_blank">TheOneTrueTrench</a>
+			<div class="markdown"><p>Yes, he's wrong about it being SSH, not SSL, but the rest is fairly right for ELI5. And the heartbleed vuln could be turned into a backdoor if you lucked into getting credentials out of the stream.</p>
+<p>It's not catastrophically wrong, just wrong.</p></div>		</li>
 					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/danniusmaximus" target="_blank">danniusmaximus</a>
+			<div class="markdown"><p>When you find one congrats. You just made 6 maybe 7 figures this year. Just do yourself a favor and dont submit it to apple if you want to be paid.  Look up companies who do zero day stuff.  The NSA would love to have your code.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>No.</p>
+<p>Six figures is only for RCE on Windows / Android / iOS. Don't submit the vulnerability to the vendors if you are part of what's wrong with this society - the people you keep complaining about.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tim_Burton" target="_blank">Tim_Burton</a>
+			<div class="markdown"><p>To add to this, sometimes a house is built with coal chute from the 19th century. Later, someone buys it and patches up the chute. They later sell the house, and, after a few decades, people forget it exists, cuz who uses coal chutes anymore?  </p>
+<p>Well, someone might know a thing or two about 19th century homes and know it might have a coal chute. So, they go looking for it, and sure enough, they find it. Because it was never properly fixed up (as in, removed and secured), the thief removes the vinyl to reveal the plywood covering the chute, pulls it off, and slips into the home.  </p>
+<p>In otherwords, sometimes programs or software have features that used to serve a function, but after several revisions, they get patched up and forgotten about, instead of being properly re-coded. Someone with knowledge of old features in software could know where to look, poke around, and eventually find the weak spot.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sirin3" target="_blank">sirin3</a>
+			<div class="markdown"><p>The best (non eli-5) example for that was PHP on an Apache server. For years every PHP website had such a chute, and you could hack the site without any issues. It was like this:</p>
+<p>You can send data to a website by appending ?data to the website address. E.g. ?a=b&amp;c=d sets a variable QUERY_STRING to a=b&amp;c=d and the website can read that variable to get a value for a and c. Lots of websites expect their data in this form.</p>
+<p>Now, the http standard says something like, if there is no = and no &amp;, the server should  pass the data as command line argument without a variable. </p>
+<p>And when you call a  php program on your computer, you can call it with -s to view some code or -r to run some code. </p>
+<p>Now Apache knows the standard, but PHP does not.</p>
+<p>So if you have a webpage <code>http://example.org</code> just call <code>http://example.org/?-s</code> and you see their internal code. Often with all their passwords. Or <code>http://example.org/?-r...</code> and you might some code  on their server</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ThatITguy2015" target="_blank">ThatITguy2015</a>
+			<div class="markdown"><p>Also, sometimes people just go to a company, drop a thumb drive with a script, and hope somebody picks it up. People are curious bastards by nature. Somebody will do it. You just have to play the waiting game. Then it is your script Vs. their security software. (How strict firewalls are when blocking outbound traffic to certain websites(think Dropbox,) detecting outbound emails to external addresses, detecting unusual activity, or how good the system is at detecting/stopping unauthorized access.)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lucasgorski99" target="_blank">lucasgorski99</a>
+			<div class="markdown"><p>32 people are now trying this</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Anotheronethrown" target="_blank">Anotheronethrown</a>
+			<div class="markdown"><p>What's the difference between learning to code and learning to hack?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AyeBraine" target="_blank">AyeBraine</a>
+			<div class="markdown"><p>Yeah, and a hacker is a person dressed as a maintenance man or a party guest, who comes up to the owner and asks a long series of innocent questions to find out about all the coal chutes, utility hatches, attic windows and garage remotes that he/she can later exploit during a break-in.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tim_Burton" target="_blank">Tim_Burton</a>
+			<div class="markdown"><p>Actually, one of the best analogies for this are faux security guys who come into your home to see where your windows are, what kind of locks you have, etc, then offer you a security system. You refuse, but say thanks anyways, and the guy then sells that info to people.  </p>
+<p>Could be thought of those programs that you install that 'scan your computer' for stuff, when really, it's opening ports and installing keyloggers.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Flakmaster92" target="_blank">Flakmaster92</a>
+			<div class="markdown"><p>I always thought one of the best mainstream examples of social engineering was in the movie Now You See Me. The magicians drain their sponsor's back account info by getting his answers to common security questions (name of first pet, mothers maiden name, etc) by playing a guessing game with him where they tried to read information about his life. Name of first pet was reveal by one of them saying he had a really mean dog when he was younger, this was false, and in chastising him for being wrong their sponsor reveal he had a small dog name Fluffy or something. Mothers maiden name was reveal by one of them taking a blind guess at info regarding his uncle, which he then corrected them on. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/danniusmaximus" target="_blank">danniusmaximus</a>
+			<div class="markdown"><p>So true.  Except he would just talk to maintenance guy instead and act like he was the owner.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ceol_" target="_blank">ceol_</a>
+			<div class="markdown"><p>Heck, sometimes you might hire someone to build out a piece of your website, and instead of doing it properly, they grab an old, unmaintained plugin out of convenience (extremely common with Wordpress sites) which has documented vulnerabilities they overlook.</p>
+<p>ELI10 version: You might hire someone to build you a chimney, but all they did was rip the coal chute out of an old house and tape it to the side of yours, ignoring the safety concerns because they didn't really know any better and you hired the cheapest guy you saw on Craigslist.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tim_Burton" target="_blank">Tim_Burton</a>
+			<div class="markdown"><blockquote>
+<p>extremely common with Wordpress sites</p>
+</blockquote>
+<p>I run a website off of WP, and this is scary. I had a breach once where my site was sending out spam. I couldn't even locate the source of it. Reinstalled the site from scratch and upped my security protocols.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NoXander007" target="_blank">NoXander007</a>
+			<div class="markdown"><p>To expand on this idea in the context of the show, there are many points we are going to assume:</p>
+<ul>
+<li>
+<p>The hacker didn't previously have access to the university's network (the house) or the databases (the jewelry boxes).</p>
+</li>
+<li>The hacker didn't know anyone within the university with access to any of the databases that contained the student records.</li>
+</ul>
+<p>With these two things out of the way, that hacker had to inspect the perimeter of the university's network, kind of like scoping out a house; What websites are hosted within the university, what web services, which IP addresses are theirs, what kind of servers (hardware) are they using. All of this is kind of like trying to find out if the person has an alarm system, which kind it is and how to disable it, if that's possible at all.</p>
+<p>Once the hacker knows what security measures are inside the house, they need to know if there's any way of disabling those security systems; Can a power cut do it? Are there known problems with those alarm systems? Is there a way to put that alarm system in 'maintenance mode', where it doesn't report the alarm going off?</p>
+<p>If there isn't a way to bypass the security systems (firewall, IDS/IPS) they're going to need to find someone with the access code to that system and somehow con them into revealing it to them; This is what &quot;phishing&quot; is all about.</p>
+<p>Here's the kicker, infiltration is only the first step. In this specific case, the hacker used her skills to infiltrate the school network, go into the student record database and literally add a new student along with all their records and fake documents, to provide that student with a credible enough identification to evade any suspicious looks towards his status as a lawyer; And this is where it gets tricky for our hacker trying to get to that sweet, sweet jewelry box.</p>
+<p>Because up until now, the hacker doesn't know where the database (jewelry box) is, a network (house, or in the case of a university, imagine a mansion such as the Playboy estate) can be huge, and in fact <strong>is</strong> huge, and you're looking for a <em>very</em> specific jewelry case. So the hacker, had to then (after they broke into the house), navigate the house, find the safe (computer server) where the jewelry box (databases) were stored, find a way to break the safe (hack into the computer server), and then learn the storage system within the jewelry box; because every database is different. They might follow a &quot;proper way to do it&quot; (industry standards), but they're always going to have a particular way of storing information, and unless you're familiar with the way it stores information and how to communicate with that database, you're dead in the water.</p>
+<p><strong>TL;DR</strong> So let's sum this up. The hacker has to inspect the house from the outside, either find out or guess what alarm system and security measures are in the house already. Once that's known, they have to either find a way to either bypass/disable the security measures, or con their way into knowing the code for the alarm system. After that, they need to find their way through a mansion, and find a very specific jewelry box, and crack the safe that the jewelry box is in. Once that safe is cracked, they need to figure out how the way those people sort their jewelry, to find exactly what they want.</p>
+<p>You need to be determined as hell to do this, just saying.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AyeBraine" target="_blank">AyeBraine</a>
+			<div class="markdown"><p>Actually, you're describing more of a &quot;hostile&quot; infiltration. From what little I know about hacking, it's mostly a &quot;friendly&quot; inflitration. That is to say, you come up to a librarian or a dean, stike up a conversation as a prospective student or a new teacher, and ask a long series of questions that look absolutely innocent and proper. </p>
+<p>From the answers, you find out about all the &quot;holes&quot; in security. These are, again, mostly quite benign ones: like a door that is always open until 12AM, or a plumber who always arrives at 6AM on 2nd of the month, and nobody remembers how he looks.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NoXander007" target="_blank">NoXander007</a>
+			<div class="markdown"><blockquote>
+<p>you're describing more of a &quot;hostile&quot; infiltration</p>
+</blockquote>
+<p>The concept of hostile vs friendly should always be used in the context of social engineering, which is (arguably) considered a branch of phishing, whether through physical or virtual interaction. Social engineering's main goal is to either gather access/information for the purpose of access to a system/ressource, or execute actions towards a system/ressource you should not have access to under normal circumstances.</p>
+<p>But yes, what you're describing isn't really referred to as infiltration rather than social engineering as a whole, which is a beautiful art in itself, more often than not required for system infiltration these days because of the sheer amount of amazing security features systems use :-)</p>
+<p><strong>EDIT</strong>: If you're interested in Social Engineering, I'd point you towards an amazing book from Kevin Mitnick, &quot;<em>Ghost in the Wires</em>&quot;.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NovaeDeArx" target="_blank">NovaeDeArx</a>
+			<div class="markdown"><p>Or bribe, threaten or bullshit someone in the Academic Records department into adding it all for you... Which is a much more common tactic these days.</p></div>		</li>
+					</ul>
+		</ul>
 	

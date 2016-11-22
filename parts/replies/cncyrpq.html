@@ -1,0 +1,89 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Reinboom" target="_blank">Reinboom</a>
+			<div class="markdown"><p>Another professional game developer here and would like to point out that this is spot on. :) </p>
+<p>Achieving the feeling of a human player is actually exceptionally hard, especially the more complex the game is. AI developers don't have the luxury of reading off screen in the way that a player does. Knowing &quot;what to do&quot; is based on &quot;what data is available to the AI&quot; which tends to be &quot;everything about the game /right at this moment/&quot;. Things like &quot;What occurred 1 second ago&quot; or knowing patterns in general are complex endeavors. Compared to humans, this makes things different and weird. Usually, humans have a reaction time of 0.25 to 0.5 seconds (depending on their comfort in the game). The 0 second response time of a lot of AIs is really frustrating for this. Humans are also exceptionally good at recognizing patterns and creating responses for those patterns (e.g. &quot;She always dodges to the left when I shoot my ability to her, I'll shoot it slightly to the left next time&quot;). The number of possible patterns and responses is so large that it's rather unreasonable to accommodate for all of them.</p>
+<p>For this, AI programming tends to have to take a lot of techniques to emulate that feel. Some techniques to reach that human feel: (and these are all being used in the game I work on atm: League of Legends - which is to note is a real time game)</p>
+<p>Fuzzy Logic (As CyberBill mentioned)</p>
+<p>Have the AI only change their current strategy or command at a slow rate, such as &quot;every half a second&quot; or &quot;every minute&quot;.</p>
+<p>Queue up (basically, &quot;when you're done with everything else you're doing/everything else in the queue before this&quot;) commands for the AI.</p>
+<p>Create a series of strategy &quot;layers&quot; to simplify each layer. Layers can be things like &quot;Strategy&quot; &gt; &quot;Tactics&quot; &gt; &quot;Command&quot; (for example). This allows smaller layers to change based on bigger layers. &quot;We're behind in destroying buildings according to our Strategy. When we're trying to figure out where to attack and there's buildings and enemies nearby, evaluate the buildings as being a higher value target than it otherwise would be.&quot; (Fuzzy Logic)</p>
+<p>The online nature of games nowadays allows for even more complex techniques than we ever had before and a lot of this can feed back into the techniques above. With many games, a lot of your decisions and outcomes of those decisions is stored somewhere that can be evaluated. This can be made available to the AI with a complex enough system. The &quot;generalities&quot; of this data can be fed back into the AI to let it &quot;learn&quot; from human players playing lots of games. For example: &quot;This character with this item setup on average does 1000 damage in a small window&quot; can easily be responded to by an AI as being able to mark a character as a threat.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PornCartel" target="_blank">PornCartel</a>
+			<div class="markdown"><p>Now <strong>this</strong> is a fascinating look at modern AI! Shame on reddit for not raising it higher.</p>
+<p>Is there somewhere I can go for more info like this? Preferably more algorithm detail? Though I'm sure it's largely trade secret...</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Double-Key-Error" target="_blank">Double-Key-Error</a>
+			<div class="markdown"><p>Awesome, I was hoping to learn a bit about the LoL AI.  </p>
+<p>I agree, those instant skillshot dodges are frustrating, but since the bots can't recognize patterns it's not hard to fake em out with a few tries.  </p>
+<p>I think the LoL AI does a decent job most of the time, but I wonder what the hurdles are to programming a jungle AI.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BastionOfSnow" target="_blank">BastionOfSnow</a>
+			<div class="markdown"><blockquote>
+<p>This actually turns out to be how a LOT of AI is made - for instance Quake III AI enemies inherently are 100% accurate. They make a seemingly perfect AI, and then dumb it down until it's actually fun.</p>
+</blockquote>
+<p>This is a great point - the most praised AIs are usually the perfect ones that make mistakes intentionally to feel more human but don't do anything usually associated with bad AI.</p>
+<p>There's an old flight sim game called Echelon Storm that illustrates this perfectly. It has two kinds of AI, a bad &quot;rookie&quot; AI and a good &quot;ace&quot; AI. The simple AI merely tries to point its plane on you and shoot. The ace AI, on the other hand, dodges almost everything the player can throw at it, is perfectly accurate and cooperates with other ace AIs to take down a single target. Neither is much fun to play against, though, as the basic AI represents no challenge and the perfect AI is simply too good to play against, especially in groups.</p>
+<p>In short, it's very important to make the AI look like it estimates, not calculates.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/No-More-Stars" target="_blank">No-More-Stars</a>
+			<div class="markdown"><blockquote>
+<p>Echelon Storm</p>
+</blockquote>
+<p>I remember playing the sequel (Echelon: WindWarriors). Probably the best combat flight sim hat I've played.</p>
+<p>From memory, the Ace AI was much improved.</p>
+<p>Steam link: <a href="http://store.steampowered.com/app/311100/" target="_blank">http://store.steampowered.com/app/311100/</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BastionOfSnow" target="_blank">BastionOfSnow</a>
+			<div class="markdown"><p>Nice to see somebody who remembers the game! I still have the original discs of both and even replayed them this year... the Aces are still as unforgivingly good in Wind Warriors, but they are used more sparingly.</p>
+<p>If you ever get the chance to get Storm, I would definitely recommend it! It's a bit rougher around the edges and can be infuriatingly hard at times (it's apparent the devs didn't have as much experience creating missions at the time) but it's still a lot of fun, has some cool missions that Wind Warriors lack and the campaigns of both games intertwine very nicely.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Freddie_AppsHero" target="_blank">Freddie_AppsHero</a>
+			<div class="markdown"><blockquote>
+<p>After that, we added a bunch of adjustment values that would randomize the trajectory and stuff, to make it less likely to hit the target. It made it feel MUCH better. This actually turns out to be how a LOT of AI is made - for instance Quake III AI enemies inherently are 100% accurate. They make a seemingly perfect AI, and then dumb it down until it's actually fun.</p>
+</blockquote>
+<p>Mostly unrelated, but it reminds me of how they made realistic messy rooms in Doom 3. They would make tidy rooms, and then use a dev tool, which was similar to the Gravity Gun in Half-Life 2, to mess it up.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Artificecoyote" target="_blank">Artificecoyote</a>
+			<div class="markdown"><p>That's what gets me in some shooter games especially multiplayer maps. </p>
+<p>Sometimes I'll be playing a map that's supposed to be say, a science lab, but some games don't feel like it's actually a lab. Yes there are beakers and computers and displays with readouts and things but there will be passages and rooms or layouts that don't seem conducive to what a lab would need in terms of space or layout. </p>
+<p>I'd like to know if designers of maps like that (ruins of an office building or something) design a functional office building that makes sense with its layout, then add damage like burnt out rooms, craters and holes in the walls. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BlueBlueForever" target="_blank">BlueBlueForever</a>
+			<div class="markdown"><p>I know that for the development of Oni, Bungie hired two architects for to design the levels in game.<br />
+I've also heard that people hated the level design, which is understandable seeing as they were probably not made with a game in mind.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Isnogood87" target="_blank">Isnogood87</a>
+			<div class="markdown"><p>I guess real lab probably wouldn't be fun to jump and shoot around :)
+We all know that Counter Strike maps are nothing like real Aztec ruins or middle east cities or italian villages, but they are fun.
+They just need a realistic theme for their (weird) virtual arenas... so it's a more relatable experience.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tequila13" target="_blank">tequila13</a>
+			<div class="markdown"><blockquote>
+<p>They make a seemingly perfect AI, and then dumb it down until it's actually fun.</p>
+</blockquote>
+<p>I don't know man, Xaero with the railgun on nightmare pissed me off a lot. I took me well over 10 hours to beat him. If you stopped for more than 0.2 sec, and he saw you, you were dead. The strategy was to not let him get the railgun, he had near 100% accuracy from the other side of the map.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><blockquote>
+<p>Xaero</p>
+</blockquote>
+<p>If you look at his bot file, you will see he is the only Quake 3 bot without any adjustments. He is literally perfect. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Roya14" target="_blank">Roya14</a>
+			<div class="markdown"><p>Where'd you hear this? I have the Making of Doom 3 book and don't remember reading something like this..</p></div>		</li>
+					</ul>
+		</ul>
+	

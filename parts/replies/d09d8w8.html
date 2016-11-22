@@ -1,28 +1,88 @@
 	<ul class="replies">
 		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/rmh86" target="_blank">rmh86</a>
-			<p>By far the best answer on here. Thanks so much!<br><br>What's a solution to prevent SQL injection? How would a developer know that anything after 'dorito' is no longer part of a username?</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/just_speculating" target="_blank">just_speculating</a>
-			<p>There are two ways to prevent SQL injection: the wrong way (which too many people advocate), and the right way.<br><br>The wrong way would be to perform input validation.  You can make a rule that usernames can't contain semicolons and then just show an error if the user enters one.  Then later you'll discover that if the user enters a FULLWIDTH SEMICOLON the same problem happens too, so you block that one too.  You hope that there won't be a third such character, but if one is found you block that too.  Slowly but surely you'll get more secure, but not really.<br>You can also make the rule that usernames can only contain letters, and that will work for this specific case, but less so as a general rule.  If you want to allow some characters but not others, handling the list of allowed characters gets crazy pretty quickly.<br><br>The right way to handle this is to realize that what you got from the user is &quot;a text string&quot;, which is not the same thing as &quot;a SQL statement&quot; (nor as &quot;a bit of HTML&quot;, nor &quot;a piece of javascript&quot;).  The moment you build a SQL statement out of text strings you have to be very careful.  If your language allows it, the safest way to do this is using binding or prepared statements.  You use &quot;?&quot; as a placeholder for where the value goes and specify the value separately, and the code does the right thing:<br><br>    query(&quot;Find ?;&quot;, $X)<br>If your language doesn't support binding, you have to manually translate the &quot;text string&quot; into a &quot;SQL string&quot; by adding quotes:<br><br>    query(&quot;Find 'giantdorito; Delete giantdorito';&quot;)<br>To do that, you have to replace characters that are special in a &quot;SQL string&quot; but not special in a &quot;text string&quot; with the not-special-in-a-SQL-string equivalent.  This is commonly referred to as &quot;escaping&quot;.<br><br>    query(&quot;Find '&quot; + replace( $X, &quot;'&quot;, &quot;\'&quot; ) + &quot;';&quot;)<br>    //creates:<br>    query(&quot;Find 'giantdorito; Delete giantdorito';&quot;)<br>    //and also:<br>    query(&quot;Find 'jeffrey o\'connell';&quot;)<br>The rules for qotes and escaping quotes depend on your choice of language, but should always be limited to a handful of characters and should always be the same (unlike lists of &quot;allowed characters&quot;).<br><br>SQL injection happens when user-entered &quot;text strings&quot; are treated as &quot;SQL strings&quot; without proper escaping.<br>Cross-site scripting (XSS) happens when user-entered &quot;text strings&quot; are treated as &quot;HTML strings&quot; without proper escaping.<br><br>Every time you switch from plain-text to not-plain-text you need to translate the text accordingly or you're gonna have a bad time.</p>		</li>
+			<a class="author" href="https://www.reddit.com/user/Titan_Astraeus" target="_blank">Titan_Astraeus</a>
+			<div class="markdown"><p>I think this is one of the better answers here, most others are stuck on the particular methods, followed by a bunch of nitpicking on backdoor vs vulnerability. In the end, everything we interact with on the web is made by a human and we are fallible.</p>
+<p>A developer makes their service with some intent, for the target user to do something. That would be fine if everyone was an expert at using their computers and there were no malicious people in the world, but on top of the core functionality the developer must make their code robust. That is you have to think about in what ways someone might mess up, what parts should have restricted/limited access and what parts might be vulnerable?</p>
+<p>Again, we are only human and might not be able to find all the problem areas. Hackers know this and to find vulnerabilities they pore over the code, try many different inputs to see what the sites limitations are. There are basically a few common vulnerabilities (injection, faulty authentication setup and cross site scripting). Those are all due to human error, not going over and testing your code thoroughly. </p></div>		</li>
 						<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/jwensley2" target="_blank">jwensley2</a>
-			<p>The easiest way is to use prepared statements.<br><a href="https://en.wikipedia.org/wiki/Prepared_statement" target="_blank">https://en.wikipedia.org/wiki/Prepared_statement</a></p>		</li>
-						<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/82Caff" target="_blank">82Caff</a>
-			<p><a href="https://xkcd.com/327/" target="_blank">Sanitization of Database Entries</a>.<br><br><a href="https://www.explainxkcd.com/wiki/index.php/Little_Bobby_Tables" target="_blank">Alternative source</a>.</p>		</li>
-					</ul>
-			<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/jamaica1" target="_blank">jamaica1</a>
-			<p>Damn that was awesome. What a great explanation</p>		</li>
-						<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/SarpSTA" target="_blank">SarpSTA</a>
-			<p>Solid answer.</p>		</li>
+			<a class="author" href="https://www.reddit.com/user/q3w3e3" target="_blank">q3w3e3</a>
+			<div class="markdown"><p>The iPhone date issue may not, itself, be a hole that hackers may abuse. </p>
+<p>However, it may be an indication of other possible holes, or allow those to be found. </p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/My-Fake-Life" target="_blank">My-Fake-Life</a>
-			<p>Thanks!</p>		</li>
+			<div class="markdown"><p>Like I said, it's not relevant to hackers, that point was mostly poking at the fact some developers are careless and that's why things happen</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>In all probability, ignorant rather than careless.</p>
+<p>Source: I did some reallllly dumb things security-wise as a junior dev. Then I took a security training and now I know enough to know that I don't know enough about security to write an air-tight app. Luckily we have a security team at my job that does review :). </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eeeponthemove" target="_blank">eeeponthemove</a>
+			<div class="markdown"><p>(Note that apple made a lock so you cant set the time before 01/01/1970, this is important to know if you read the text)</p>
+<p>On the iphone thing, we needed a way to count time when using computers and other things like that, the solution was Unix.</p>
+<p>Unix was ''started'' in 1970 hence it is called the '1970' glitch. </p>
+<p>Unix works in a way it ignores time zones and other stupid things like that.</p>
+<p>It is a simple ticking clock that goes up by 1 for every second.</p>
+<p>now the thing is on the date  01/01/1970, that clock says 0.</p>
+<p>this glitch only occurs on 64-bit iphones because there is a bug.</p>
+<p>now lets say the largest number we can store is 5.</p>
+<p>now what happens if we do 5+1 ? it goes to 0 again.</p>
+<p>now what happens if 0-1 happens?</p>
+<p>That is called an integer underflow, you can't store negative numbers.</p>
+<p>so you wont end up with 0 as it would've reset it self, it will instead</p>
+<p>wrap around itself to the maximum value, 5 and it wont reset itself.</p>
+<p>That's why if you go back to the calender on an iphone 64-bit it stops at 01/01/1970</p>
+<p>It can't go past that date because by unix, that would be a negative number, and we can't do negative numbers (we can but that is a different programming method because, why would we need to count time negatively?)</p>
+<p>So if you try to set the time near the Unix epoch (0) in time by unix 01/01/1970 (01:00) I belive,</p>
+<p>So when you do that, it will say 00000000000000000 as example, but somewhere the main bug is something they don't know but what it does is, a normal calculation maybe try to update the battery% </p>
+<p>.whatever that does, it sets a date before 01/01/1970, which apple doesn't allow because bad stuff would happen, but this bug makes that possible, but instead of resetting back to 0, it maxes itself out to the highest date available on 64-bit, now.</p>
+<p>This date is 20x longer than the expected number of years the universe is suspected to ''live'' so then the CPU will have a hard time showing that number and, it bricks it self.</p>
+<ul>
+<li>64_bit really maxes out at 15 quintillion, that is 18 zeros.</li>
+</ul>
+<p>1,000,000,000,000,000,000 = 1 quintillion</p>
+<p><a href="https://www.youtube.com/watch?v=MVI87HzfskQ" target="_blank">A video to explain it 1000x better than me</a></p>
+<p>(Definitely recommend to spend 5 minutes watching this)</p>
+<hr />
+<p>EDIT: Ignore below things as I am pretty tired and messed things up.
+Now here is how it happens.</p>
+<p>CPU:s often work in 32 bit or 64 bit, </p>
+<p>that is simply put how the cpu stores information I belive.</p>
+<p>So the thing is, the date ''unix'' would run out on a 64 bit set-up is so far away we wont have to worry, but if something goes above that limit that is set from the 64 bit, it dies, resets if we can say that.</p>
+<p>For example let's say in a game, a character is very friendly.</p>
+<p>His aggresion is set to -1 for everytick, but when the </p>
+<p>aggresion stat = 0</p>
+<p>there can be bugs that need to be fixed so when </p>
+<blockquote>
+<p>aggresion stat = 0</p>
+</blockquote>
+<p>and that bug hasn't been fixed.</p>
+<p>instead of going to</p>
+<p>aggresion stat = -1</p>
+<p>It will go to the HIGHEST value possible, that being</p>
+<p>aggresion stat = 99999999999</p>
+<p>as an example, and that is a problem between unix and apple software.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/My-Fake-Life" target="_blank">My-Fake-Life</a>
+			<div class="markdown"><p>Yeah, your explanation was ELI a Computer Science student. Which was a good explanation.</p>
+<p>Even simpler though, the UNIX clock started July 1, 1970. The time the clock started, the binary number for it in 32bit is &quot;00000&quot;</p>
+<p>So what's smaller than 00000? Well, in binary, nothing. Actually, there is something before it, and that is the highest possible number (11111), and since it has no more room to go down, it just rolls back around to the top.</p>
+<p>But the iPhone doesn't seem to know what to do, it doesn't roll the number back around, it just stops entirely. The internal clock is no longer set and the iPhone relies heavily on the internal clock for everything from basic functions to checking the validity of the OS trying to boot (which is likely what's throwing it in a boot loop/brick).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eeeponthemove" target="_blank">eeeponthemove</a>
+			<div class="markdown"><p>Yeah sorry, really tired at the moment :/</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kvistur" target="_blank">kvistur</a>
+			<div class="markdown"><blockquote>
+<p>Unix was ''started'' in 1970</p>
+</blockquote>
+<p>weeeeeell the epoch was originally 1971 so that can't be right.</p></div>		</li>
 					</ul>
 		</ul>
 	

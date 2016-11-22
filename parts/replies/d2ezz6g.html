@@ -1,0 +1,75 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Chalcogenide" target="_blank">Chalcogenide</a>
+			<div class="markdown"><p>Well, not quite. Don't forget that nowadays many consumer SSD use TLC NAND, thus every physical cell can store 3 bits of data, so the base-2 reasoning doesn't really hold up. Also, most NAND chips have spare banks of memory with remapping capability built into the controller, and many controllers even had on-the-fly data compression - so remapping require a fair amount of work, but it is actually an extremely trivial tasks.
+To put the final nail in the coffin, many SSDs are now 240GB or 250GB instead of 256GB, and never are they GiB (so they are playing the same exact game of the HDD manufacturers).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gSTrS8XRwqIV5AUh4hwI" target="_blank">gSTrS8XRwqIV5AUh4hwI</a>
+			<div class="markdown"><p>First, the base-2 reasoning applies to the addresses, not to the number of bits stored per flash cell, so it very much does hold up. Secondly, NAND chips don't have anything of that sort, defects and remapping are the job of the SSD's controller to take care of. Which also explains why SSDs are a bit under a power of two in size (rather than arbitrary values): The chips inside are in total a power of two in size, but the defects and the remapping tables and stuff use up some of the capacity. Compression really only serves to reduce wear but doesn't increase capacity.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/C0R4x" target="_blank">C0R4x</a>
+			<div class="markdown"><blockquote>
+<p>Don't forget that nowadays many consumer SSD use TLC NAND, thus every physical cell can store 3 bits of data, so the base-2 reasoning doesn't really hold up.</p>
+</blockquote>
+<p>But why are the chips themselves then still designed to be base-2 sizes? Is it just because everyone has always done that? Or does that have to do with address space?</p>
+<p>edit: nevermind <a href="https://nl.reddit.com/r/explainlikeimfive/comments/4g6f6r/eli5_how_come_solid_state_drives_ssds_are_mostly/d2f9rwe" target="_blank">I found a comment below</a> which explains it a bit more.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Halvus_I" target="_blank">Halvus_I</a>
+			<div class="markdown"><blockquote>
+<p>store 3 bits of data</p>
+</blockquote>
+<p>DO you know what the term <em>bit</em> is derived from? BINARY DIGIT! You are wrong.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Chalcogenide" target="_blank">Chalcogenide</a>
+			<div class="markdown"><p>TLC NAND flash cells can be programmed in either of 8 different states, meaning they can store 3 bits. So, I am not wrong.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Alpha3031" target="_blank">Alpha3031</a>
+			<div class="markdown"><blockquote>
+<p>3 bits</p>
+</blockquote>
+<p>That term refers to 3 binary digits, by the way.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VincentPepper" target="_blank">VincentPepper</a>
+			<div class="markdown"><blockquote>
+<p>SSD's are fundamentally digital devices that operate is base-2 math at their very core. Making a 1000GB SSD would actually be detrimental to the design, as mapping the address space to run from 0x0000000000 to 0xE8D4A40FFF would require far more complex circuitry than mapping to 0xFFFFFFFFFF.</p>
+</blockquote>
+<p>This would be new to me. If the drive is only 0xE8D4A40FFF Bytes big there would be no access to any addresses larger than that. So you could have very similar circuitry if not the same and it would work.</p>
+<p>It's less efficient. But definitely not far more complex. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zadszads" target="_blank">zadszads</a>
+			<div class="markdown"><p>You are correct, it's the same circuitry and all, not really less efficient or not. Just different.</p>
+<p>You can actually increase hard drive performance by artificially limiting the address space the HDD reports to the computer (aka short stroking). For instance, taking a 2TB and setting its reported capacity to 1TB. Physically, the HDD arm only has to move half the distance on average for a data address. Also, the outside half of the platter has more platter area (data bits)  passing under the HDD arm than the inside half of the platter, which results in higher data throughout for the outer sections of the disk.</p>
+<p>You get certain performance increases 'short stroking' SSDs, but for different much more complex reasons.</p>
+<p>Source: 11 years as SSD development engineer </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jackrosenhauer" target="_blank">jackrosenhauer</a>
+			<div class="markdown"><p>Yeah, circuitry would not change you would just have a smaller address space</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/yanroy" target="_blank">yanroy</a>
+			<div class="markdown"><p>If you work out the <a href="https://en.m.wikipedia.org/wiki/Karnaugh_map" target="_blank">K-map</a> for that address space, I bet it's going to be messier than the one that goes to all Fs.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/meodd8" target="_blank">meodd8</a>
+			<div class="markdown"><p>I don't want to think about what that kmap would look like...</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gSTrS8XRwqIV5AUh4hwI" target="_blank">gSTrS8XRwqIV5AUh4hwI</a>
+			<div class="markdown"><p>This is getting closer to the real reason. The real reason is address bus width and address decoding logic. Memory systems (like SSDs, or RAM, which also tends to come in power of 2 sizes) have what is called an address bus, that is a number of conductors that each carry one bit of the address (&quot;storage slot number&quot;) that is to be read or to be written. The controlling logic on the SSD (or the memory controller in the case of RAM) sets high (binary 1) or low (binary 0) voltage levels on these conductors to represent the location to be read or written in binary and then toggles additional control lines to perform the respective operation.</p>
+<p>With a single memory chip (flash or RAM), that chip would simply be connected to all these lines, and the controller could access any of its storage locations by setting different patterns of zeros and ones on the address bus, and for an n bit address, there are 2 to the power of n different patterns (or binary numbers, as they would commonly be called - just like there are 10^n n-digit decimal numbers), so it would be possible to address 2^n different storage locations. Now, that does not mean that the memory chip would necessarily have to actually have that many storage locations, the highest addresses could just be unused.</p>
+<p>But they all do, and that is for the following reason: If you want to have more memory than there is in a single chip, what you do is that you add a second chip and you add a line to your address bus and use its state to select with a small circuit which of the two chips to access (so, if that line is 0, you access one chip, if it's 1, you access the other), while the remaining lines of the address bus are connected to both chips in parallel. Now, if both chips have a storage cell for each possible address, this combined circuit of two chips also has a storage cell for each possible address of the extended address bus. Otherwise, you would have holes in the middle somewhere: First, some addresses that have storage cells, them some that don't, then again some that do, then more that don't, ..., which would be extremely inconvenient to manage.</p>
+<p>You can continue the pattern above to increase the space further, of course: Add another pair of chips and another address line to select which pair of chips to access, and so on. </p>
+<p>So, all memory chips have power of two sizes because that makes them easy to combine into larger memory systems, and as a result, most memory systems also have power of two sizes, as you start with the smallest model with a single chip, and then create increasingly larger models by adding more chips - and if you have a model with 8 chips, say, selling one with 12 probably doesn't make much sense, so the next size you build is one with 16 chips.</p>
+<p>And also, there is another reason: Memory chips themselves often are internally constructed of what is essentially multiple &quot;sub-chips&quot;, which are connected in just the same way you combine multiple chips.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LostSoulsAlliance" target="_blank">LostSoulsAlliance</a>
+			<div class="markdown"><p>I'm surprised this isn't higher.</p></div>		</li>
+					</ul>
+		</ul>
+	

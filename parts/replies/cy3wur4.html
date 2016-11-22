@@ -1,0 +1,56 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fcorange5" target="_blank">Fcorange5</a>
+			<div class="markdown"><p>How do you get access to add something into their queries?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sdururl" target="_blank">sdururl</a>
+			<div class="markdown"><p>User input is everywhere. For example these comments are inserted into databases. If your input was not sanitized, you could insert mysql commands into your comment or even xss javascript code that would execute when the comment is displayed for all other users.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fcorange5" target="_blank">Fcorange5</a>
+			<div class="markdown"><p>wow, okay. So to what extent could i manipulate reddit if my input was unsanitized? Could I run a command to let me mod any subreddit? Delete any account? Not that I would, just as an example</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aaronify" target="_blank">aaronify</a>
+			<div class="markdown"><p><a href="http://www.abluestar.com/blog/wp-content/uploads/2011/10/for_traffic_cameras.jpg" target="_blank">http://www.abluestar.com/blog/wp-content/uploads/2011/10/for_traffic_cameras.jpg</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ProtoJazz" target="_blank">ProtoJazz</a>
+			<div class="markdown"><p>I came across an interesting one earlier this week. A user could add information to a notes page on their profile. All input was treated in a way that it wouldn't be run as a SQL statement. </p>
+<p>However, when the users executed a certain action information would be added to their notes automatically, and NOT properly sanitized, including commands that were already there. So users could have had a timebomb of sorts setup just waiting for an action that added to their notes (usually when their account was moderated in some way)  </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sulfura3" target="_blank">sulfura3</a>
+			<div class="markdown"><p>Trying to explain it in layman's terms: The idea behind SQL injection is that a language mixup happens somewhere and the Database engine cannot differentiate between the command and the user input anymore.</p>
+<p>Let's say the command is &quot;Give me posts from user /u/sulfura3&quot;. &quot;Give me posts from user X&quot; would be the command and &quot;/u/sulfura3&quot; is the parameter (or user input). What would happen if I didn't type in &quot;/u/sulfura3&quot; but typed instead &quot;... actually ignore that and delete all posts&quot;?</p>
+<p>Non sanitized input is basically an intermediate programming language (like PHP for instance) putting the command and values together into one sentence and giving <em>that</em> to the DB. So the DB would get &quot;Give me posts from user ... actually ignore that and delete all posts&quot;. At this point, the DB would delete all posts because it cannot differentiate between a value and a command. Yes, this means you can run ANY command that the system would be allowed to do on its own, which is why it's serious business.</p>
+<p>Sanitized input makes a clear distinction. In an example of sanitized requests, a developer makes a DB call with 2 sets of values: the command, and the input. So the DB gets this instead:</p>
+<pre><code>Command: Give me posts from user X
+Values: X = /u/sulfura3</code></pre>
+<p>In the sanitized example, no matter what shenanigans I try with the user input, the DB cannot mistake the value &quot;delete all posts&quot; with the command &quot;delete all posts&quot; because they are clearly identified as such and put together by the DB itself.</p>
+<p>With that in mind, enjoy <a href="https://xkcd.com/327/" target="_blank">this XKCD comic</a> about SQL injection. If you understood the concept correctly, you will get the joke.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Troy_And_Abed_In_The" target="_blank">Troy_And_Abed_In_The</a>
+			<div class="markdown"><p>This post was like a light switch for me. I finally understand backend and front end. (And sql injection) Thank you!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/anras" target="_blank">anras</a>
+			<div class="markdown"><p>In most cases inputs don't even need sanitization if they're just bound. Concatenating inputs to create your SQL = requires sanitization but why are you doing that in the first place? I recall Oracle guru Tom Kyte getting so frustrated with developers concatenating strings together instead of just binding, that he kinda snapped once on his Q&amp;A site. <a href="https://asktom.oracle.com/pls/apex/f?p=100:11:0::::P11_QUESTION_ID:23863706595353#689770841339740" target="_blank">Here's the post</a> (need to ctrl-f for &quot;just bind just bind&quot; to get to the &quot;snapping&quot; comment I'm talking about. :)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ornamental_conifer" target="_blank">ornamental_conifer</a>
+			<div class="markdown"><p>This is the best explanation I've read on the subject. Nice job!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BassSounds" target="_blank">BassSounds</a>
+			<div class="markdown"><p>Former DC tech here. Most common way I've seen unauthorized access is through exploits. The &quot;expert&quot; black hats used 0-day exploits. More commonly, the &quot;script kiddies&quot; used pre-made scripts for known exploits; usually targeting a specific application (mostly PHP apps) such as Wordpress, Drupal, Plesk control panel, with image upload galleries being a very common target.</p>
+<p>So I'll use the image upload PHP scripts as an example. Let's say it's a Wordpress image upload plugin. The script kiddie wants to target the most people so they pick a popular one to exploit. They try to find a way to fool the script into thinking their payload is an image. The reason for this is because if you fool the script into uploading it, you can usually then run it from the web. </p>
+<p>So the malicious script (let's say it a Perl script called image.pl.jpg) is uploaded and with a buffer overflow is somehow marked as executable then they can put any perl code in that script. That perl script now has all permissions that web server process runs as. I've seen some scripts wipe index.php files across ALL their websites, but usually they abuse the server for spam, botnets or something like that. </p>
+<p>I hear now these guys are encrypting your data and requesting Bitcoin to decrypt your hijacked data, but that was after my time.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/La_Guy_Person" target="_blank">La_Guy_Person</a>
+			<div class="markdown"><p>I program and repair CNC programs which is different in a lot of ways but the same in this sense. I was trying to explain this to a co-worker the other day after I fixed an issue in his program and he said he wanted to learn programming so he could do this kind of stuff. I tried really hard to explain to him that I first had to understand the machining process and what was causing the problem. In machining, often times its not that the program is &quot;wrong&quot; as much as the programmer's intentions aren't working givin the real word conditions his program has to operate under. I could have stared at the program all day and never found an actual mistake that just needed correcting. Knowing all the rules to a specific coding language is almost secondary to knowing what makes a functioning process start to finish and how to trouble shoot it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jedakiah" target="_blank">Jedakiah</a>
+			<div class="markdown"><p>The first side of that coin is just programming. Any programmer worth their salt knows intermediate to advanced hacking techniques. Not only do programmers need an intimate understanding of computers to write software, they also need a good understanding of hacking to defend against it. Learning to program well is learning to hack. That's why so many people know how to do it.</p></div>		</li>
+					</ul>
+	

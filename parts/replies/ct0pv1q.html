@@ -1,0 +1,66 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rodbourn" target="_blank">Rodbourn</a>
+			<div class="markdown"><p>www is just a sub-domain convention from back when a website might not be the default service of a domain name.  You could have www., ftp., mail., etc., point to IPs for the desired service.  The website is the expected default service now, so many sites redirect you to the www. sub-domain automatically.</p>
+<p>short answer, it's redundant. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/overzealous_dentist" target="_blank">overzealous_dentist</a>
+			<div class="markdown"><p>It's not redundant - there is different content between www vs www2 vs www3 etc. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rodbourn" target="_blank">Rodbourn</a>
+			<div class="markdown"><p>The expectation of www bringing you to the main website is redundant by convention.  If you are doing www2/www3/preview/dev/etc you aren't expected the 'main' website.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/technotrader" target="_blank">technotrader</a>
+			<div class="markdown"><p>pedantic detail: the reddit servers won't &quot;ignore&quot; requests from www.outsh... - they will not get those requests for another domain. However, they will get everything put in front of their domain name such as hello.reddit.com, which they can ignore or link to specific services.</p>
+<p>Also, the servers don't have to know which websites they are serving. It's in fact easier to not make them know that, so that you can develop them in localhost, then move them to qa-reddit.com for example.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/phrakture" target="_blank">phrakture</a>
+			<div class="markdown"><blockquote>
+<p>pedantic detail: the reddit servers won't &quot;ignore&quot; requests from www.outsh... - they will not get those requests for another domain</p>
+</blockquote>
+<p>You can send a &quot;Host: www.foobar.com&quot; header in a request to reddit.com. Some sites do not respond to incorrect Host headers.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/classicrando" target="_blank">classicrando</a>
+			<div class="markdown"><p>I put strict haproxy rules to reject any Host headers except the ones that that machine should be receiving. Anyone monkeying with the Host header is doing something either<br />
+1) Wrong<br />
+2) Malicious        </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PixelEater" target="_blank">PixelEater</a>
+			<div class="markdown"><p>Another pedantic detail: technically speaking, the servers <strong>will</strong> get requests for other domains if DNS is rerouted locally for some reason, either be it a hosts file or an alternative DNS server. Whether or not the web server is set up to only answer to &quot;Host&quot; headers (sent by the web browser) that are its own domain is up to the administrator, but for the most part websites like Reddit likely just ignore the &quot;Host&quot; header since they are only hosting one service per app server.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ragingman2" target="_blank">Ragingman2</a>
+			<div class="markdown"><p>Technically speaking I can make it so typing &quot;downloadpoop&quot; into the address bar takes me directly to the internet explorer download page. However, I believe that neither comment is relevant to the discussion.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/He_Who_is_Something" target="_blank">He_Who_is_Something</a>
+			<div class="markdown"><p>Boom! You out-pedanticed someone's pedanticness!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Banevader69" target="_blank">Banevader69</a>
+			<div class="markdown"><p>Just figured out. xxx.reddit.com redirects to the www.reddit.com/r/xxx (interesting tidbit, autocorrect changed that to /r/xxxcaptions, funny, ive never been there and certainly have never typed it before). </p>
+<p>Cool. So I guess subreddits are subdomains, which makes sense I guess. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/justcool393" target="_blank">justcool393</a>
+			<div class="markdown"><p>Also interesting, if you do &lt;2-letter-language-code&gt;.reddit.com, it displays reddit in that language.</p>
+<p>Like for example, <a href="http://es.reddit.com/r/all/" target="_blank">http://es.reddit.com/r/all/</a> would display /r/all with the UI in Spanish.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Richy_T" target="_blank">Richy_T</a>
+			<div class="markdown"><p>Good find.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/killerstorm" target="_blank">killerstorm</a>
+			<div class="markdown"><p>Initially subreddits were subdomains, but later they got rid of this system for SEO reasons</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/coredumperror" target="_blank">coredumperror</a>
+			<div class="markdown"><p>Another reason that www fell out of favor is that the average person understands that &quot;amazon.com&quot; is a URL now. 15 years ago, you needed the &quot;www&quot; and &quot;.com&quot; together to make people realize that you were advertising your company's web address.</p></div>		</li>
+					</ul>
+	

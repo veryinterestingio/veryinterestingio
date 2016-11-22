@@ -1,0 +1,89 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PaulRivers10" target="_blank">PaulRivers10</a>
+			<div class="markdown"><p>I think this is the most sensible explanation in the thread. If we're talking about passwords used to login to a server (not encryption on a file), brute force doesn't matter - as you say the best defense is to limit the rate at which people can attempt to login to the account.  </p>
+<p>Talk of the brute force rate is rather an irrelevant diversion.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tashre" target="_blank">Tashre</a>
+			<div class="markdown"><p>Even crappy little Internet forums have attempt locks in place.</p>
+<p>I wouldn't be surprised if 99.99% of &quot;hacks&quot; are simply phishing and/or keylogging.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mmmmmmBacon12345" target="_blank">mmmmmmBacon12345</a>
+			<div class="markdown"><p>Most of the big ones lately are social engineering to get an admin password then snatch the database and crack the passwords offline.</p>
+<p>Passwords are secure, people are not</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TigerlillyGastro" target="_blank">TigerlillyGastro</a>
+			<div class="markdown"><p>yeah, but online vs offline attacks.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TigerlillyGastro" target="_blank">TigerlillyGastro</a>
+			<div class="markdown"><p>Offline brute force of database worth of account details is worthwhile. Hashes can be generated in the order of 10s to 1000s millions per second. Even salted hashes are vulnerable.</p>
+<p>Online brute force is another kettle of potato.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PaulRivers10" target="_blank">PaulRivers10</a>
+			<div class="markdown"><p>Thanks for commenting - you bring up a good point I had not considered. If someone hacks into your database and tries to brute-force your one-way hash. Hmm.  </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IWugYouWugHeSheMeWug" target="_blank">IWugYouWugHeSheMeWug</a>
+			<div class="markdown"><p>At this point, salts are basically only good for keep actually strong passwords hidden. If you have a list of the 100 million most common passwords from previous database hacks and you have a password's salt, you'll still crack a decent percentage that way.</p>
+<p>That's one of my favorite features about Lastpass. They let you set the number of times your password is hashed and since I don't use Lastpass on any device with low processing power, I have it set to something super high like 25000 times. That way, even if someone was generating 10 million hashes per second, they would still only be able to go through 400 possible passwords per second. That's really the simplest way to massively improve security in a simple way in a database of passwords: after the password is sent to the server, run it through a high number of hash iterations. If the database is stolen, a high number of iterations could reduce the speed of finding common passwords by a few orders of magnitude.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/maddata" target="_blank">maddata</a>
+			<div class="markdown"><p>Came here to say this, brute force is relevant.</p>
+<p>Every additional piece of information about the password, from a min size, max size, character type requirement, reduces the amount of uncertainty by orders of magnitude and are a often a bad practice.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bubba_pants" target="_blank">bubba_pants</a>
+			<div class="markdown"><p>This is incorrect.  The counter-attack to this defense is simply to try each password once against multiple accounts.  Of course this limits an attacker's ability to choose targets, but most attacks these days aren't targeted anyway.  Running this attack from behind a &quot;botnet&quot; can make it very difficult for a high-volume victim site to detect. </p>
+<p>Rate-limiting can also be used as a denial-of-service attack.  If an attacker is able to &quot;lock out&quot; another user, even temporarily, this can be advantageous.  Auction sites and gaming are obvious examples but DoS attacks can be used for many purposes.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tminus7700" target="_blank">tminus7700</a>
+			<div class="markdown"><p>That method goes back to 1960's radio phone contests. The days of phone freaking. When it was first to call in, people would dial all but the last number of the station and tie up the phone system relays. Effectively a DoS. Stations later changed rules so that today phone in contests are usually the nth caller. It can still lead to a heavy system load, but there are no static tie ups. You have to completely dial for each try.</p>
+<p>I knew a friend that said when they worked for the phone company they added special numbers to the system, that when they were called, would bypass the normal routes and get directly to the radio station. Dumping anyone who was about to get through.</p>
+<p>There were all kinds of numbers like that, that did special things, not known to the public.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Impact009" target="_blank">Impact009</a>
+			<div class="markdown"><blockquote>
+<p>Ultimately password rules tend to be poorly implemented, but they at least have a theoretical background that makes some sense.  The better approach to password rules would be to implement a minimum length, since length is the ultimate counter to brute force.  Unfortunately many sites go the opposite direction and make a <em>maximum</em> length instead, but that's likely because they incompetently coded part of their site and can't handle larger inputs.</p>
+</blockquote>
+<p>This is a massive understatement. In the cryptology field, we feel that these general password rules are so Draconian that it's frustrating. I won't mention where, but I will say that it's almost everywhere, and safety is a misnomer with these stupid rules.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ScottLux" target="_blank">ScottLux</a>
+			<div class="markdown"><p>I once went to IT at my community college to get my password reset. The clerk opened up an excel spreadsheet containing every users name, username, password, student ID, and date of birth all in plain text.</p>
+<p>That's why using Lastpass to generate unique gibberish passwords and fake security question  answers is a very good idea. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/idevxy" target="_blank">idevxy</a>
+			<div class="markdown"><p>Personally, I think the best available compromise right now is a minimum entropy requirement with an entropy estimator right in the password selection UI. That way the user is free to choose any secure password scheme they like rather than being forced to include a laundry list of hard-to-remember requirements.</p>
+<p>The greatest contributor to password fragility (aside from users picking incredibly dumb passwords to begin with) is failure to remember passwords. This leads to users writing them down and routine password resets which may increase the IT staff's vulnerability to social engineering.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gavendaventure" target="_blank">gavendaventure</a>
+			<div class="markdown"><p>This may be a shock but writing down passwords isn't that bad of a thing.</p>
+<p>If writing down your password means you have a stronger password your better protected.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tminus7700" target="_blank">tminus7700</a>
+			<div class="markdown"><p>I have increasing dealt with web sites that do the entropy estimator route. I don't always agree with their estimator, but they are being used.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gripey" target="_blank">Gripey</a>
+			<div class="markdown"><p>A security expert insisted that the length was way more important. So any non guessable phrase would be pretty good. Would you agree with that?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/amoore109" target="_blank">amoore109</a>
+			<div class="markdown"><p>You try typing in a passphrase every time you need to use your computer which locks every time you walk away from it. When I worked for Sprint and they made us use a phrase I just did my password twice (Hunter2hunter2) and called it a day. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BalsaqRogue" target="_blank">BalsaqRogue</a>
+			<div class="markdown"><p><a href="https://www.xkcd.com/936" target="_blank">Ever-relevant xkcd</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/giganticpine" target="_blank">giganticpine</a>
+			<div class="markdown"><p>Yeah, plug <em>this-password-is-super-easy-to-remember</em> into any password checker (<a href="https://www-ssl.intel.com/content/www/us/en/forms/passwordwin.html" target="_blank">try this one</a>) and you will see that it would take craaaaaazy long to crack. Like, over 19 million years. And with no capitals or numbers or symbols.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

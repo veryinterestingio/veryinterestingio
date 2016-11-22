@@ -1,0 +1,164 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Iceclaw2012" target="_blank">Iceclaw2012</a>
+			<div class="markdown"><p>Oh so you can actually do it yourself! That's quite interesting :)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ochyanayy" target="_blank">ochyanayy</a>
+			<div class="markdown"><p>eh...it's not really as simply as /u/vk6flab is indicating.  To actually build your own network (which in internet engineering parlance is called an &quot;autonomous system&quot; or AS) you need to register with ICANN and get an AS number.  Most networks aren't actually AS's, they are simply domains within a larger AS.  Some AS's are 'backbone' AS's (like AT&amp;T, Sprint, NTT, Level 3, etc).  Some AS's are just really big networks (Universities, government networks like the military, corporate networks).  </p>
+<p>The reason I say it's not as simple is that you have to meet pretty strict requirements to register as an AS.  For most intents and purposes ICANN will simply direct you to a Tier 3 network and tell you to lease space from that network (rather than getting your own AS; ie starting your own 'network' in the sense that is meant by adding a network to the internet).  Obviously you can build a network at home easily, but this network is not an autonomous system (even if you connect it to the internet by buying retail internet service from an ISP).  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Iceclaw2012" target="_blank">Iceclaw2012</a>
+			<div class="markdown"><p>The more you know :D</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RangerNS" target="_blank">RangerNS</a>
+			<div class="markdown"><p>If you want to run your <em>own</em> internet, do whatever the fuck you want.</p>
+<p>If you want to join <em>this</em> internet, there are complex rules, technical and political.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/p7r" target="_blank">p7r</a>
+			<div class="markdown"><p>And just to be clear for those wondering why, ICANN will redirect you for technical reasons mostly, not because they are an evil and suspicious gatekeeper.</p>
+<p>Autonomous Systems talk to each other using a protocol called BGP that has a lot of issues. Somebody who does not know what they're doing can break parts of the Internet when given control of a router with BGP that other AS networks listen to, and every AS added to the network adds to the routing table that is causing some issues with memory in edge routers that are extremely expensive to upgrade.</p>
+<p>There is a real need for a proper alternative to BGP4. It's not a great protocol, and a single bad network can cause mild chaos.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GuitarrasDeAmor" target="_blank">GuitarrasDeAmor</a>
+			<div class="markdown"><p>A city I used to neighbor, Wilson NC, did just this because they were tired of dealing with the internet companies in their area. Greenlight was the service name they setup.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Iceclaw2012" target="_blank">Iceclaw2012</a>
+			<div class="markdown"><p>Haha that's pretty cool</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/F90" target="_blank">F90</a>
+			<div class="markdown"><p>And how this are going?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AlexGeddylfson" target="_blank">AlexGeddylfson</a>
+			<div class="markdown"><p>I work in Raleigh for a certain local HSD provider. Can confirm Wilson has a pretty decent infrastructure.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aaaaaaaarrrrrgh" target="_blank">aaaaaaaarrrrrgh</a>
+			<div class="markdown"><p>So you want to be your own ISP. I'll walk you through it step by step.</p>
+<p>What you need to understand is the principle of routing. You can only send data directly to networks you're connected to. Your computer can't talk to &quot;the Internet&quot; - it talks to your WiFi router, which talks to your ISPs router, which then &quot;talks to the Internet&quot; aka some other routers which in turn talk to other routers. We'll revisit this later.</p>
+<p>You will start small, so you won't do any complicated peering, you just need an uplink. Your current Internet connection will do for now. To connect multiple devices, you'll need a router. You probably already have one. Since you likely only have one external IPv4 address, you'll have to do NAT. Your consumer-grade router probably already does that. Maybe your ISP was nice and gave you an IPv6 subnet, maybe you can buy additional IPv4 addresses, but there's a decent chance whoever you'll provide Internet to will be able to do without their own IPv4 - even major ISPs sometimes NAT customers unless they complain.</p>
+<p>Now you need to somehow connect others to your Internet uplink. You could lay a copper cable, but when you do that across buildings you have to be aware of lightning protection etc. You could buy fiber hardware and lay fiber. But that's expensive and a lot of work with a shovel. So let's go wireless. Again, no shame in that - apparently even Google Fiber is doing it.</p>
+<p>So you need a WiFi AP. Surprise, you already have one! Just give your neighbor your WiFi password, and you are a very simple form of ISP.</p>
+<p>Let's revisit routing. Your neighbor wants to shitpost on reddit. His computer sends the shitpost to your WiFi router. Your WiFi router has only one Internet connection, your ISPs uplink, so it sends the shitpost to your ISP. Your ISP is connected to multiple other ISPs, but not to reddit, so he figures out which ISP is best capable to deliver the shitpost to reddit's ISP, and sends it there. That ISP again may not be connected to reddit's ISP, but again know where to forward it, until it reaches the ISP of reddit, who hands the shitpost to reddit. Reddit will confirm that they received the shitpost, and the confirmation will be sent to your neighbor - maybe even using a <em>different</em> set of ISPs to reach first your ISP, then you, then your neighbor. This proces can be as fast as 10-20 milliseconds (1/100 to 2/100s of a second).</p>
+<p>Now, you'll want to let more neighbors in, and over larger distances, and your router is crashing under the load and your neighbors hate that their porn stops streaming each time you have to reset the router. So you buy a slightly more professional device, and also better WiFi APs/antennae so you can cover more range. You are probably violating the FCC's emission limits with your hacked firmware and using a satellite dish to get a highly-directional antenna for cheap now, but as long as noone complains and you don't stick your head into the beam, it'll be fine.</p>
+<p>You also upgrade your Internet connection to a consumer-grade fiber line because you got lucky and they're available.</p>
+<p>Your ISP notices what you're doing and tells you that you can't do that on a consumer line, so you upgrade to a business contract. You pay 10x as much now, but they'll also fix outages more quickly, and your neighbors are chipping in.</p>
+<p>An appartment block that can't get fiber asks whether they can join. You put a dish on it, link it to your network, they put cabling to the individual units, and your small network is growing. You put in proper routers a few key locations, a few redundant lines so that a single cable breaking doesn't take down all your customers, and add a second independent fiber line. You start running some simple routing protocol within your small network, which is now running on a mix of professional and semi-professional hardware. You've also obtained the necessary approvals for some of your radio links, and the appartment complex decided to pay for a fiber line to your garden shed (where your uplink meets your network) so they can get more speed and more reliability.</p>
+<p>You obtain digging permits, have everyone mark their utilities so you don't accidentally dig someone else's fiber (or gas line) up, dig a trench and lay some fiber.</p>
+<p>Slowly, you've taken over the city. Your garden shed has been torn down and replaced with an ugly, multi-story concrete box, and since the city really wants your fiber, they rezoned your neighborhood as an industrial area so you can install a 100 kW backup diesel generator. You've negotiated contracts with two local ISPs for your uplinks (now called &quot;IP transit&quot;), bought a bankrupt company for their /16 IPv4 network (a bargain - noone noticed this gem among their otherwise worthless assets) and are now participating in BGP routing to send traffic through the ISP that is &quot;closest&quot; (network wise) to the destination. You went from getting a sub-AS number from one of your ISPs to your very own AS, and are now by all definitions an ISP.</p>
+<p>Comcast has sued you fifty different times, but they stopped after you sent a notification to your customers that you might be unable to provide service and someone repeatedly put chopped-off horse heads in their executive's offices. You're lucky, since otherwise those lawsuits would have ruined you even if you won. </p>
+<p>Since your customers watch a lot of videos, and your uplink is straining under the load, you approach major content providers like Youtube and large CDNs whether they want to put caching servers directly onto your network. Maybe they even approach you. You provide them a few racks worth of space in the concrete box that once was your garden shed (the power company has now deployed a small substation next to it), maybe pay for the power, maybe they even pay you a nominal amount, doesn't really matter. What matters is that a large part of the traffic is now being served from within your network, saving you valuable uplink bandwidth and the content provider valuable peering bandwidth.</p>
+<p>A small datacenter within your city is also peering with you, meaning that traffic between your network and theirs is exchanged directly instead of going the long way across the Internet.</p>
+<p>Since you bought an abandoned fiber to the next city, you are also peering with a similar new ISP there, and have an agreement in place allowing you to use their uplinks and them to use yours.</p>
+<p>You have a few engineers staffing a NOC, a network operation center, you have a small callcenter providing support for your customers (since your wife told you a year ago that the 3 AM calls from neighbors about Internet issues have to stop).</p>
+<p>You offer fiber and wireless connections for anyone in the city. Since you're a large ISP now, you are legally required to install &quot;lawful interception&quot; technology so the FBI can spy on your customers.</p>
+<p>After you won the lottery repeatedly, you decided how far you can go, and since you live near the coast, lay an intercontinental undersea cable to Europe. You rent a fiber from the landing point to the large Internet exchanges in Amsterdam and Frankfurt, and now the fastest/cheapest way from the US to Europe might be you. You already went from paying for your uplinks to zero-settlement peering (meaning no money is exchanged because both sides like being able to send traffic directly to each other), and now you allow your peers to use your cable to Europe and get paid for it (or offer it for free/zero-settlement and get access to other networks in exchange - small ISPs like you were in the beginning pay, larger ones like you are now peer with you directly).</p>
+<p>After some time, everyone wants to peer with you, and you don't have to pay anyone for any peerings. When someone shitposts in Belgium, they hand it to their ISP, who hands it directly to you in Amsterdam because you're the best way to reach reddit, and you route the shitpost through your network, delivering it straight to reddit's ISP at their datacenter location.</p>
+<p>Within the impressively short period of 30 years and thanks to a few lucky turns, like the city really liking you, winning the powerball a dozen times in a row, and the horse heads someone placed at Comcast, you went from a guy with an open Wifi to a Tier 1 ISP, your town prides itself with the world fastest internet, and your porn is delivered home on a 10 Gbit fiber (just because you can) straight from the local Internet exchange that was once your garden shed.</p>
+<p>I simplified a bit and I'm probably mistaken about a few points since I don't know <em>that</em> much about it, but the rough idea should be this.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wwwcre8r" target="_blank">wwwcre8r</a>
+			<div class="markdown"><p>I so want a SimCity version of this, building an ISP from scratch as you build your city, infrastructure, laying cable, upgrades to fiber, connect to neighboring cities, dealing with hackers, etc. That would be a blast!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/iurysza" target="_blank">iurysza</a>
+			<div class="markdown"><p>Thanks mate!
+There's a company doing this kind of stuff in my city. They just reached the fiber stage when it was previously working just with Wifi/APs. All in all, your story sounds pretty accurate to me. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bourne_js" target="_blank">bourne_js</a>
+			<div class="markdown"><p>People like you make learning easy.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/regoapps" target="_blank">regoapps</a>
+			<div class="markdown"><blockquote>
+<p>Some towns and cities, disenchanted with incumbent providers, have started their own networks and succeed in larger and smaller degree in providing their citizens with Internet connectivity.</p>
+</blockquote>
+<p>Yup. Our small town recently chipped in for a gigabit Fiber Optics connection, because our only other internet provider was Comcast cable, which was frequently down at random times. For the past few years, I've been watching each house in my town have their yards ripped up to install the Fiber Optics cables. It's also relatively cheap aside from being locked in a 2 year contract to offset the installation fee. Surprised that not more people are doing this, because then you don't have to wait for Google Fiber and also don't have to feed Comcast more revenue.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cambrogers" target="_blank">cambrogers</a>
+			<div class="markdown"><p>There are alot of behind the scene negotiations that happen between companies like Comcast and the counties that you live in.  the end result helps Comcast et al  to be one of the few if not the only provider in your area.  That negotiation might include removing the right/responsibility for the city to start their own service.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/regoapps" target="_blank">regoapps</a>
+			<div class="markdown"><p>Yea, one of the first things I check for is internet provider options before I move to a town. That and cell phone reception.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rs999" target="_blank">rs999</a>
+			<div class="markdown"><blockquote>
+<p>You can form an organization that connects to existing infrastructure and if you'd on-sell it, your organisation is an ISP.</p>
+</blockquote>
+<p>Is there a raw point where one could connect to the Internet without buying from a provider? A better question is where does Comcast, Verizon, ATT, etc connect to become part of the larger internet?</p>
+<p>I saw posts below for Cogent and Level3. Do these retail providers (Verizon, etc) connect to those companies and then become part of the whole internet? If so do Verizon, etc pay internet connection fees to connect to the larger internet?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ariakkas10" target="_blank">Ariakkas10</a>
+			<div class="markdown"><blockquote>
+<p>Is there a raw point where one could connect to the Internet without buying from a provider?</p>
+</blockquote>
+<p>We are to Comcast and Time Warner as they are to Cogent and level3. Cogent and Level3 pay backbone providers in the US and in other countries for interconnects. </p>
+<p>No one rides for free</p>
+<blockquote>
+<p>A better question is where does Comcast, Verizon, ATT, etc connect to become part of the larger internet?</p>
+</blockquote>
+<p>Through backbone providers. </p>
+<blockquote>
+<p>I saw posts below for Cogent and Level3. Do these retail providers (Verizon, etc) connect to those companies and then become part of the whole internet? If so do Verizon, etc pay internet connection fees to connect to the larger internet?</p>
+</blockquote>
+<p>They do. They pay a lot of money for access. Though I believe Verizon is a backbone provider. So it's not a hierarchical relationship like us to them, but more of a lateral interconnect between providers. </p>
+<p>If backbone providers don't have an interconnect agreement then their data can't go over the other's network. There may be other ways for data to get where it needs to go</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RobAtSGH" target="_blank">RobAtSGH</a>
+			<div class="markdown"><blockquote>
+<blockquote>
+<p>A better question is where does Comcast, Verizon, ATT, etc connect to become part of the larger internet?</p>
+</blockquote>
+<p>Through backbone providers.</p>
+</blockquote>
+<p>Which in the case of Verizon, is Verizon.</p>
+<p>Verizon the ISP gets its connectivity from Verizon the Tier-1 backbone network provider. AT&amp;T is similar.</p>
+<p>The US Tier-1's are:
+AT&amp;T, Verizon, Sprint, CenturyLink, Level3, Cogent, and Verio.</p>
+<p>These are the companies that own, maintain, and sell capacity on the really big infrastructure. Lots of fiber, lots of switches. And these networks come together in peering points, or NAPs (Network Access Points) where traffic is routed between them. Tier-2 ISPs frequently pull off network feeds from peering points, and then resell to Tier-3's out of their own regional network operations centers. In some cases, local ISPs will pull service from a phone company central office.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EtherMan" target="_blank">EtherMan</a>
+			<div class="markdown"><blockquote>
+<p>No one rides for free</p>
+</blockquote>
+<p>Technically, the tier1 ISPs do. They do pay for infrastructure, more so than any other. But tier1 never pay for bandwidth as they either have peering deals (as in where neither side pays for bandwidth), or they are the one getting paid for access by tier2s and 3s.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/joey03" target="_blank">joey03</a>
+			<div class="markdown"><p>Not OP but wanted to pop in and say really good answer! I have a question....if you say Verizon is a backbone provider...do any other comparably sized ISPs connect through them? Is it usually smaller, regional ones?</p>
+<p>Edit: u/RobAtSGH answered this pretty well a few replies down from here!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FaustTheBird" target="_blank">FaustTheBird</a>
+			<div class="markdown"><p>You can get an Autonomous System Number (ASN) from ARIN and run a public set of IP addresses (though you can only get IPv6 nowadays). Once done, you then need your traffic to get everywhere else and everywhere else's traffic to get to you. This is where peering comes in to play. And since you're starting out, no one cares about your little network so you have no leverage and you'll have to pay to peer. Get big enough and you can get some quid pro quo, but as a small operator, your choices are limited by your physical locale. Find a bigger fish, pay their fees, you're routable!</p>
+<p>We <em>should</em> be making more of our own networks. Some of us think the right to build networks should be a right protected via Constitutional amendment in the US.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EtherMan" target="_blank">EtherMan</a>
+			<div class="markdown"><blockquote>
+<p>you'll have to pay to peer.</p>
+</blockquote>
+<p>Transit, not peer. Peering is the term for when neither side is being paid for the data, and generally means both sides share the costs of the infrastructure.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/0101011001010010" target="_blank">0101011001010010</a>
+			<div class="markdown"><p>yup, apply for an Autonomous System Number, or ASN, apply for your own IP space (ARIN, RIPE, and other regional orgs, depending where you are based), spend loads on your own physical IP network, connect it to a neutral data center, and buy the raw Internet access, or IP Transit as it's commonly called, from one or two providers, and you're all set.</p>
+<p>You may want to become a network engineer first, though.</p>
+<p>Source: I work for an Internet Exchange (IXP).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SodaAnt" target="_blank">SodaAnt</a>
+			<div class="markdown"><p>IXPs are quite amazing to me. I work a blocks from the Westin Building in Seattle, home to SIX, and it just amazes me that something like half a terabit of traffic passes in and of that building and nobody really knows or cares. </p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

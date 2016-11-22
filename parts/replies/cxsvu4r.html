@@ -1,0 +1,42 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NeJin" target="_blank">NeJin</a>
+			<div class="markdown"><p>What if someone were to made a crawler that ignores that line of code? Is that possible? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/trainercase" target="_blank">trainercase</a>
+			<div class="markdown"><p>Yes, everything I said applies only to well-behaved bots, such as those used by major search engines. There are also crawlers for other purposes, such as seeking out e-mail addresses to spam, that can ignore these directives.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Enverex" target="_blank">Enverex</a>
+			<div class="markdown"><p>There are bots out there that explicitly check the robots.txt file of a site for places they aren't supposed to go and then go there instead. </p>
+<p>Unless the designer of the site has coded in something to stop them then they'll be able to walk right in because meta tags and the robots.txt file are purely advisory. Blocking by client name wouldn't really help either because again that's something you can specify yourself.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/loljetfuel" target="_blank">loljetfuel</a>
+			<div class="markdown"><blockquote>
+<p>There are bots out there that explicitly check the robots.txt file of a site for places they aren't supposed to go and then go there instead.</p>
+</blockquote>
+<p>A fun thing to do as a site op is to include a robot.txt directive that points to a script that's not linked anywhere else: and that script looks at the originating IP of a request and blocks that IP from accessing the rest of the site. :)</p>
+<p>Such a thing won't stop an <em>attacker</em> or anyone who is determined to index your site specifically, but will often make the unattended spam-scanners go away.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/loljetfuel" target="_blank">loljetfuel</a>
+			<div class="markdown"><p>Not only possible, it's actually less work than making a crawler respect it. </p>
+<p>All the reputable search engines respect the robots protocol because it's mutually beneficial (e.g. I often include robots directives to keep the search engine from indexing failover copies of data; they wouldn't want to link that anyway, and it helps me by reducing the amount of bandwidth the crawlers consume).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LoggingPIC" target="_blank">LoggingPIC</a>
+			<div class="markdown"><p>Just want to make sure I understand this. We have a webpage at my job that displays an image of a text file so people can view upcoming open shifts. It can only be accessed by typing in a specific URL, so there a no links to it from the parent site. Would the crawlers not know this exists because it has no links to it? </p>
+<p>Also, if the URL is linked to off of a social media site, could the crawlers find it through that link if that social media page is public?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jpsi314" target="_blank">jpsi314</a>
+			<div class="markdown"><p>Yeah, that's how it works. Basically the crawler visits all the urls on a list and it adds to that list any links it discovers as it is crawling. If a site isn't on the initial list and isn't discovered then it remains invisible to the crawler. There is no reason your company's internal URL would be on the initial list at say, Google, but if someone publishes it somewhere public (like Twitter, but not Facebook if it is somewhere you'd have to be logged in to view) then it's likely to make it into a crawler's list.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/collinsl02" target="_blank">collinsl02</a>
+			<div class="markdown"><p>Yes, and yes. </p>
+<p>Crawlers can't find anything that isn't linked to, and if it gets linked to they will find it eventually, depending on the permissions of the social networking site - most allow crawlers to index comment pages. </p>
+<p>In fact, this is one of the ways search engines rank where pages appear in their list - the number of links found to each page is one of the factors used in how high up the list the page goes.</p></div>		</li>
+					</ul>
+		</ul>
+	

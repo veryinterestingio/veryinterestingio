@@ -1,0 +1,64 @@
+<div class="answers">
+	<div class="answer" data-handle="cs64u6l">
+		<a class="author" href="https://www.reddit.com/user/xavier_505" target="_blank">xavier_505</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Wireless communications engineer here. There are several things that might be happening.</p>
+<p><strong>TL;DWR</strong> It's probably your network trying to provide service to the greatest number of customers.</p>
+<p>Ok, so full explanation: First, and most likely, is that your cellular provider is attempting to redistribute the load on their network. Typically this happens by making less loaded cells appear 'virtually more attractive' making your phone more likely to change which tower it is communicating with and listening to. This is most likely to happen between frequency bands, because the way the energy moves through space is very different depending on frequency. Generally speaking, higher frequencies will not propagate as far.</p>
+<p>In my area, for example, AT&amp;T typically advertises their 1900 MHz (high frequency band) 2G cells as 20dB (100x) 'better' than those in the 850 MHz (low) band because they want mobiles that <em>can</em> see 1900 MHz band cells to use them, to free up cells on the lower bands for users who cannot. The same thing can happen between 3G and 4G. A network carrier might have a very loaded 700 MHz 4G carrier, and some lighter loaded 2100MHz 3G channels and want you to move to the 3G channels if you are in range.</p>
+<p>This might sound like carriers screwing their customers over, but it's really an important construct in cellular networks. It is entirely possible that you will get better data rates with 2 bars of 3G compared to 4 bars of 4G, depending on how loaded the particular cells are. Sometimes, of course, this works to your disadvantage and you will get worse rates, but it generally improves the <em>net capacity</em> of the network.</p>
+<p>There are also propagation issues, though they are unlikely to cause such dramatic affect as above. It <em>is</em> entirely possible that the box truck that just parked down the street is causing an unfortunate reflection resulting in severe multipath interference (multiple signals taking different paths from the transmitting antenna to the receiving antenna as they are reflected off usually metal objects, arriving at different times causing a jumbled received signal) for the great 2100 MHz 3G signal you were getting forcing you to use a poor performing 850 MHz 2G cell. Dead zones in your house <em>are</em> likely to be cause by multipath interference however as signals bounce around they destructively cancel in certain areas. Moving your phone can make this effect much more pronounced.</p>
+<p>Finally, there are numerous edge cases that can cause this. The network may be taking a cell down for maintenance, or you were associated with a temporary cell. Maybe an emergency call was placed kicking you off the channel you previously had, or a someone with a priority data arrangement requested use of the cell. It's hard to be exhaustive here.</p>
+<p>Anyway, I suspect for very dramatic changes (5 bars -&gt; 1 bar, or 4 bars 3G to 2 bars GPRS) the first description is what's happening</p>
+<p><strong>EDIT:</strong> So /u/lostpasswordagain made an amazing analogy in his comment <a href="http://www.reddit.com/r/explainlikeimfive/comments/39srd5/eli5_when_im_sitting_on_my_couch_and_my_phone/cs66mr4" target="_blank">here</a>. It doesn't track 1:1 with everything that I said above, but it gets the idea of why this is important down - I'm going to paraphrase here:</p>
+<p>Two cities are connected by two highways, a 6-lane highway with a speed limit of 75 mph (4G), and a 4 lane highway with a speed limit of 50 mph (3G). Obviously, given a choice, you would want to take the former. However, given enough traffic, you will reach a point where it would have been better to take the slower highway. In this example, the choice would be up to the driver, but since a cellular provider owns the road (spectrum), they get to make the decision, so they tell each car which highway they are allowed to use to optimize the amount of cars that can get from city 1 to city 2.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cs6f1ig">
+		<a class="author" href="https://www.reddit.com/user/ARedditingRedditor" target="_blank">ARedditingRedditor</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><blockquote>
+<p>Also, if this is still getting attention, I'd love to know more about why my 4G signal allows significantly faster browsing than when I'm using wifi. I have blazing fast wifi at the house but the phone absolutely drags when I use it.</p>
+</blockquote>
+<p>Did anyone answer this? </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cs6cs97">
+		<a class="author" href="https://www.reddit.com/user/imnamenderbratwurst" target="_blank">imnamenderbratwurst</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Let me try a bit. The quality of your network connection depends on a number of things, but it mostly boils down to something called the signal-to-interference-plus-noise ratio (SINR). It basically tells you how much &quot;louder&quot; the signal you're trying to receive is, than everything else the receiver picks up.</p>
+<p>If you're not moving, then for the most part a change in the noise/interference is to blame for a decreasing SINR. Could be many things: more other users in your area, some random signal from electronic equipment, that doesn't quite follow standards, sometimes even your own signal interfering with itself (there's something called multipath propagation, which basically means, that the signal reaches you after being reflected via multiple different ways. That can lead to the signal interfering with itself, because it's not necessarily in phase, i.e. the same signal anymore). Especially the last one can be a matter of moving a few centimeters. Specific services require specific SINR values, so the network might switch you to a different service (e.g. 3G) when you are below a certain threshold.</p>
+<p>That's one option. The other one could simply be an overload in your serving cell. Each user in a cell takes up a specific amount of resources. If the cell is overloaded, it may hand over users to its neighbours. Your device doesn't get a say in that, the network decides. If the neighboring cell is worse for you, well, tough luck.</p>
+<p>That and a whole bunch of other possible reasons like Verizon switching of cells for the night because you're living close to a business area and they like to save power (i.e. money).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cs6qdr4">
+		<a class="author" href="https://www.reddit.com/user/MikeBearPig916" target="_blank">MikeBearPig916</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>So, heres the fix..</p>
+<p>On your android phone, open up the dialer and dial :</p>
+<p><em>#</em>#4636<em>#</em>#</p>
+<p>Click &quot;Phone Information&quot;</p>
+<p>Now, a page will pop up with a bunch of your phones services.  Go ahead and scroll down to the first box, it should say something like, &quot;LTE/GSM/CDMA AUTO&quot;, or something to that extent.</p>
+<p>If you switch it to just LTE, it will LTE &gt; GSM/CDMA, and so on for what option you select.  </p>
+<p>It's really good for conserving battery only using 2g/3g over LTE all the time, there are app switches for all that though.  I think this trick just makes it more favorable to the option selected.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cs6f12d">
+		<a class="author" href="https://www.reddit.com/user/Gothiks" target="_blank">Gothiks</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Last time I posted this question, it got downvoted and buried. Thanks for finally getting it answered!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

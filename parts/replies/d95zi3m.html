@@ -1,0 +1,157 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>So rather than answer generally, let's talk about how a VPN or proxy works.</p>
+<p>I pay a VPN company and connect.  My traffic is then encrypted and sent to the VPN company.  The ISP can now see that I am sending encrypted traffic and that it is going to the VPN company, but not what that traffic contains.</p>
+<p>The VPN company decrypts it and forwards the traffic to wherever it is going.  They then receive return traffic, encrypt it, and pass it back to me.</p>
+<p>The ISP can't see what the end point is because the routing was part of the encryption at the start.  Return traffic also just looks like encrypted packets coming back from the VPN company.</p>
+<p>So, with a simple VPN we have reduced the ISP knowledge to the fact that we are sending traffic to a VPN company, but that is all they can discern.</p>
+<p>The obvious problem with this arrangement is that you have a vulnerability in the VPN company because they can in fact see your decrypted traffic and where it's going.  For things like torrenting this is good enough as long as your VPN doesn't store logs.  It would take some real heavy legal pressure to get them to start logging and turn you in.</p>
+<p>This doesn't work for hacking because that legal pressure may be the full weight of the US government and no VPN company has the resources to fight that.</p>
+<p>Si we add in another layer-Tor.  You'll have to do some outside reading on how its built, but basically it allows you to connect to a random entry point, the traffic is bounced around between tor servers, and then routed to the exit.</p>
+<p>The beauty of tor is that the entry point cannot see the exit and the exit does not know what the entry point was.</p>
+<p>So with tor you connect to the VPN, which then routes your traffic to the entry point.  The entry point bounces it around to an exit, and the exit forwards traffic to its destination.</p>
+<p>ISP only sees encrypted traffic between you and the VPN.  The VPN only sees encrypted traffic between you and the Tor entry point.  </p>
+<p>Now let's say I want to trace something back to you.  I have to get the ISP to tell me what VPN you were using, then I have to legally lean on the VPN company to see their logs if they keep them or to start logging if they don't.  Now I have to identify and compromise the Tor entry point (which also, hopefully isn't logging).  Theoretically I would say they have to figure out the tor routing system, but there is some evidence that the NSA may have contributed to it, so I am not informed enough to say.</p>
+<p>You can add even more layers but using a VPN combined with tor will keep you safe from most governments.  You can make it more complex by putting more proxies or VPNs in layers.</p>
+<p>Finally, if you want to be very secure, do it all from a brand new machine connected to public wifi and never use that system on any network that could be associated with you.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/alex_57_dieck" target="_blank">alex_57_dieck</a>
+			<div class="markdown"><blockquote>
+<p>The obvious problem with this arrangement is that you have a vulnerability in the VPN company because they can in fact see your decrypted traffic and where it's going</p>
+</blockquote>
+<p>Is this actually true? Let's say you talk to google via https, and you encrypt your message as E. I would suppose all you send to VPN host is the encrypted version of E, let's call that F. Then ISP sees F and dunno wtf you are doing; VPN host sees E, and they still shouldn't know what you are doing as long as your encryption is secure. It's only google that should what the real, decrypted message is.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BoojumG" target="_blank">BoojumG</a>
+			<div class="markdown"><p>Yes, you can have end-to-end encryption over a VPN, but it's a separate deal from what the VPN itself is doing. So with end-to-end encryption over a VPN, the data going between you and the VPN is encrypted twice - once for the channel between you and the VPN, and once again for the channel between you and the final server. The VPN would then know where it's sending data (clearly), but not the contents.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nachofrand" target="_blank">nachofrand</a>
+			<div class="markdown"><p>This is my understanding of how it works. </p>
+<p>Your computer and the VPN host establish a connection/tunnel and share a key. Now that a tunnel has been established, all internet traffic is routed to the VPN machine. Data is now encrypted from your computer to the VPN host machine. Once data goes from your computer to the host, it decrypts it, reads the routing information, and forwards the data/request to the outside world outside of your encrypted tunnel. </p>
+<p>Now the final destination of the data you sent only knows that the request/data came from the VPN host machine. Anyone snooping or your ISP only knew the routing information from your machine to the VPN host but doesn't know anything about it because everything under the IP headers were encrypted. Same deal when data needs to be sent back to your machine. It's all encrypted until it gets to your computer and you have the only key to decrypt it and read the packet contents.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nvrMNDthBLLCKS" target="_blank">nvrMNDthBLLCKS</a>
+			<div class="markdown"><p>The traffic to Google is double encrypted, first by your browser using the Google certificate, then by the VPN. The VPN cannot decrypt the Google traffic, but can see that you use Google. Well in fact they cannot even see the URL, which is encrypted as well, but the IP address is not encrypted, and that can be linked back to Google. </p>
+<p>For a criminal investigation this can be very informative. They now know you use Google, and they can go there to find out more. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fattysausagegut" target="_blank">fattysausagegut</a>
+			<div class="markdown"><p>hands down the best explanation, wrap it up folks</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Weep2D2" target="_blank">Weep2D2</a>
+			<div class="markdown"><p>I have a lil question, what benefit does tor have for the non-hacker <em>normal user</em>, why should he/she use that instead of chrome for example ?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mschley2" target="_blank">mschley2</a>
+			<div class="markdown"><p>For a normal user, no reason. If you really don't like the idea of Big Brother watching, I guess that's a reason, but they can figure out what you're doing on TOR, anyway. Plus, if what I've read is true, the FBI/NSA put everyone who uses TOR on a watchlist, so using TOR might actually result in Big Brother watching more of your stuff.</p>
+<p>Plus, it's slower than using a regular browser due to it having to bounce the information all over the place.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gordonmessmer" target="_blank">gordonmessmer</a>
+			<div class="markdown"><p>There are lots of things that make it difficult to identify an attacker.  I'll try to outline a few, in brief:</p>
+<p>1: To quote your example, an attacker might send a shell command like &quot;rm -rf /&quot;.  What would record that he'd done so?  Ignore the fact that he's eliminating files that log his action.  Shell history is optional to begin with.  And many attackers won't use a normal shell, they'll use a program of their own which is designed to accept commands and execute them without any logging.</p>
+<p>2: You might try to record that sort of thing at the network.  There are a few problems with that.  First, recording all traffic would require more storage (and faster storage) than most businesses have, so that's impractical.  You could instead try to record only data that's an attack, but that means you'd have to know what constitutes an attack.  As new attacks are developed constantly, keeping logs of only data involved in an attack is probably impossible.</p>
+<p>3: Encryption.  As you guessed, the source and destination of traffic are not encrypted, but the data itself is.  That generally means that only the application which is receiving the data is capable of examining its plain-text contents.</p>
+<p>4: Anonymization.  Attackers very rarely launch an attack from a machine that they directly control and which could identify them specifically.  They might use a VPN, or tor, or another machine that they've previously compromised to launch the attack.  In any of those cases, even if you log the traffic, and even if you can examine the plain-text, you still don't know anything other than the fact that the attacker is using a specific VPN (unlikely, since the VPN provider could probably correlate a VPN IP to the user it was assigned to at the time, and to a person via billing information), or that an attacker was using tor (no way to identify such users, by design), or that they were using a compromised host.  In the latter case, you might be able to contact the owner of that host and get them to help you track the attacker, but in practice this is improbable, and because you have to do that repeatedly until you can actually identify the attacker, it becomes exponentially more improbable for each hop the attacker uses.</p>
+<p>The attacker's ISP has all of the same problems.  They can't reasonably log all of the data they process, they can't generally identify attack data, they can't tell what you're doing if your traffic is encrypted, and anything you send to initiate an attack probably isn't sent to the system you're attacking directly, so they can't even correlate encrypted traffic to an attack between your system and your target.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/emlgsh" target="_blank">emlgsh</a>
+			<div class="markdown"><p>It's also a matter of legal jurisdictions.  If you hop a few compromised hosts to act as proxies, but all of them are in Five Eyes (or mainland EU, they play together pretty well) jurisdictions, you're probably going to be in trouble unless you're either very careful or your actions are very inconsequential.</p>
+<p>Toss a hop or two through China, Russia, Africa, lots of former-USSR/non-EU states in Eastern Europe, or any other jurisdictions without strong data laws and cooperation agreements with the nations in which your target and/or other hosts used in the attack reside, and you're basically untouchable.</p>
+<p>The sheer headache of getting such a motley crew of state actors to cooperate, coordinate, and put together the full story of how you did what you did raises the threshold for what you can get away with doing pretty high - like, anything short of messing with the states themselves or their core (financial, energy) infrastructure is just going to be more trouble than it's worth to investigate past the point where it lands somewhere with a problematic jurisdiction.</p>
+<p>But, that being said, special task forces are assembled as grand gestures of cooperation from time to time, and those can afford to pursue relatively minor or otherwise &quot;more trouble than they're worth&quot; cases, so your mileage may vary.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/capn_krunk" target="_blank">capn_krunk</a>
+			<div class="markdown"><p>This is a beautiful answer, overall, but I'd like to emphasize encryption. Any real pro worth his salt will be plenty sure he's on a secure shell, and going through private proxies (bare minimum of one.)</p>
+<p>Tor provides a great route of anonymity, particularly in conjunction with other anonymizing protocols/services, and can be setup in ways that increase anonymity greatly. VPN + Tor + Proxy/ies = pretty much totally anonymous (barring some <strong>really bad luck</strong>.)</p>
+<p>End point is that the careful and knowledgeable hacker need not worry too much. So long as he knows how to avoid leaving tracks, or to cover the tracks he's left, he <em>should</em>, in most cases, be alright.</p>
+<p>The opposite side, <em>computer forensics,</em> is literally just knowing what the hacker may not have known to hide. In other words, things are logged all over the place in a system. A good hacker will know what, and where, and how to remove those traces. An amateur might remove the obvious traces, but fail to use encryption, or fail to erase <em>all</em> traces, or make some other of a billion simple mistakes.</p>
+<p>Not sure that this helps, but I hope it does.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gordonmessmer" target="_blank">gordonmessmer</a>
+			<div class="markdown"><blockquote>
+<p>I'd like to emphasize encryption</p>
+</blockquote>
+<p>I think that most modern command-and-control systems will use both encryption and anonymization.  My point isn't that one of these things is more of a problem than the others.  Individually, each of them make it challenging to identify an attacker, and they're almost always used together, layering the protections that an attacker uses.</p>
+<blockquote>
+<p>VPN + Tor + Proxy/ies = pretty much totally anonymous</p>
+</blockquote>
+<p>Tor, by itself is pretty much totally anonymous.  As far as we know, any of the ways that might identify a user over tor (such as a request leaking information about the source or identity of the person making the request) will typically be preserved by VPN or proxies.  An attacker might add those things on top of tor, but I'm not sure they'd make it any harder to identify the source.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AdhocSyndicate" target="_blank">AdhocSyndicate</a>
+			<div class="markdown"><blockquote>
+<p>bare minimum of one</p>
+</blockquote>
+<p>You can't touch me. I'm behind 7 proxies. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/deltefknieschlaeger" target="_blank">deltefknieschlaeger</a>
+			<div class="markdown"><blockquote>
+<p>Anonymization</p>
+<p>[...] or that they were using a compromised host. In the latter case, you might be able to contact the owner of that host and get them to help you track the attacker, but in practice this is improbable, and because you have to do that repeatedly until you can actually identify the attacker</p>
+</blockquote>
+<p>That and public WIFI / non-personalized mobile plan is the keypoint. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/champaignthrowaway" target="_blank">champaignthrowaway</a>
+			<div class="markdown"><blockquote>
+<p>non-personalized mobile plan</p>
+</blockquote>
+<p>I didn't even think about using a burner phone for a hotspot.  Last time I had a prepaid phone I didn't have to tell them my real name.  I just made something up on the spot I'm pretty sure.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AjaxGb" target="_blank">AjaxGb</a>
+			<div class="markdown"><p>Let's use the post office as an analogy for your ISP. Say you want to send John Victim a nasty letter, but don't want him to know who sent it. If you just send him the letter, he can look at the return address and see that it was you.</p>
+<p>This is where VPNs come in. You write your letter and address it to &quot;John Victim&quot;. Then you put the envelope inside a <em>second</em>, special envelope, and address that to &quot;VPN Inc.&quot; VPN Inc. runs a popular service that you and many other people subscribe to. It gives you special envelopes that only VPN can open. When your letter arrives there, a machine extracts the inner envelope and automatically sends it on its way. Now when John checks the return address, all he will see is that the letter came from &quot;VPN Inc.&quot;, just like many other letters. The post office knows that you sent some sort of letter to VPN Inc., and that a nasty letter reached John Victim, but there is nothing linking the two events together, since lots of people are constantly sending letters through VPN's service.</p>
+<p>There are also similar services that will add their own envelopes and send the letter back and forth randomly between a ton of different locations, if you need extra security and less speed.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Zeyn1" target="_blank">Zeyn1</a>
+			<div class="markdown"><p>That is a great ELI5 explanation! </p>
+<p>I always find that analogies with cars (for computers) and the post office (for Internet) make these complex things easier to understand for the layperson. I'm not even a layperson, and I still didn't really understand VPNs until your explanation. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Trixles" target="_blank">Trixles</a>
+			<div class="markdown"><p>I already understand how VPNs work, but this was for real one of the best ELI5s I've ever seen. Bravo, sir.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/iYogurt" target="_blank">iYogurt</a>
+			<div class="markdown"><p>Using the same example can you describe tor?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rexamicum" target="_blank">Rexamicum</a>
+			<div class="markdown"><p>Tor is a like a network of post offices. You send your letter to the network, which then in turn forwards your letter to a variety of different post offices so that the original destination is unknown then it finally delivers your letter and noone knows where it came from.</p>
+<p>Edit: Sorry to clarify, it forwards the letter to one post office, which then forwards it to another and so forth until it reaches the destination. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/postslongcomments" target="_blank">postslongcomments</a>
+			<div class="markdown"><p>Someone please correct me if I'm wrong as I'm not horribly familiar with the ins-and-outs of TOR, but from my understanding it's like taking an encrypted letter, ripping it into 100 pieces, sending a piece of the letter to 100 middleman recipients, doing this step multiple times, and eventually it reaches the final destination where it's decrypted. </p>
+<p>Individual pieces of the letter are useless as A. it's encrypted and B. it's only part of the letter.  </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AjaxGb" target="_blank">AjaxGb</a>
+			<div class="markdown"><p>That'd be my second example:</p>
+<blockquote>
+<p>There are also similar services that will add their own envelopes and send the letter back and forth randomly between a ton of different locations, if you need extra security and less speed.</p>
+</blockquote></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/i-am-qix" target="_blank">i-am-qix</a>
+			<div class="markdown"><blockquote>
+<p>The post office knows . . . that a nasty letter reached John Victim</p>
+</blockquote>
+<p>Not really. Using anything as a proxy (including VPNs) with proper encryption is enough for an ISP to not know what you're doing. Assuming the VPN isn't on a list somewhere, the ISP would never know what you're actually doing unless they wanted to break your encryption method (nearly impossible if you're using adequate encryption - e.g. AES256).</p>
+<p>From there, remaining anonymous just becomes a game of trust; do you trust your VPN to not disclose your connection details upon being audited? Not enough to sacrifice your life? Then start chaining connections until you've reached a point where you feel comfortable.</p>
+<p>This wasn't enough for some people, hence why Tor was created (I'm sure for a multitude of reasons, but this is a big one). Tor does some <a href="https://en.wikipedia.org/wiki/Tor_(anonymity_network)#Operation" target="_blank">Funky Stuff</a> to keep users anonymous, but follows a very similar concept of chaining connections.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bobafethp" target="_blank">bobafethp</a>
+			<div class="markdown"><p>Many vpns offer no logging or am I misunderstanding </p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

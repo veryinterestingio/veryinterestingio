@@ -1,0 +1,84 @@
+<div class="answers">
+	<div class="answer" data-handle="d95zi3m">
+		<a class="author" href="https://www.reddit.com/user/dekc_bu" target="_blank">dekc_bu</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I actually read a lot of of your answers and many not because I didn't expect so much interest. </p>
+<p>The thing is that I find it still really hard to get it for one main reason (and maybe because I don't know how all of this works).</p>
+<p>Mostly I read about encryption and one explication with cabs as examples, but that one (sounded quite simple at first), gave me a bit of confusion...</p>
+<p>In a few stupid words it goes like this &quot;rm -rf /&quot;, in which a hacker would delete a server... ok this is pretty stupid but what I still cannot understand is how could it not be traced since that command firstly should pass through the ISP and even if encrypted the ISP must know from who the packets came and to where pass it forward.</p>
+<p>The only thing that I can think of is that the sender and the receiver address are in plain text and the only thing that is encrypted is the command. Did I get something right?</p>
+<p>Oh and thank you very much for trying to make a curious guy learn a bit more!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d95vk7a">
+		<a class="author" href="https://www.reddit.com/user/slccsoccer28" target="_blank">slccsoccer28</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You have to take a bus to get across the country. This involves stops at a lot of bus stops. To get on the bus, you have to have your tickets stamped with the current station (departing), the next station (arriving), and your final destination across the country. </p>
+<p>Each time you get to a bus station, you must provide the attendant with your current ticket in exchange for a new ticket. The new ticket still has the same final destination, but now has a new departing station and arriving station. The old tickets are put in a cabinet to be stored.</p>
+<p>A theft decides that he wants to rob you since he knows you're not at your home. He doesn't know where you live, but he does have access to every single old bus ticket from across the country.</p>
+<p>To figure out where you came from, he looks at the ticket you used to get off the train at your final destination. This ticket tells him the station you came from before arriving at your final destination. Since he now knows your 2nd from last stop, he looks up that ticket. He keeps looking up tickets to find the 3rd, 4th, 5th from last stops until he finally finds the stop at your house.</p>
+<p>It works well until he gets to the 10th stop. At the 10th stop, they think keeping old tickets is a waste of time so they throw them all out immediately. Robber now has no way of getting to your house because he can't find your ticket - breaking the chain back to your house.</p>
+<p>Since the robber is lazy he gives up at this point.</p>
+<hr />
+<p>That's the end of the question OP asked. He's a continuation showing how sleuth's might work around the &quot;lost ticket&quot; problem.</p>
+<p>If the robber was dedicated, he would try to go the landfill to find the discarded ticket. He's unlikely to find anything because it's been raining and all of the tickets have turned to mush.</p>
+<p>His last options is to look for your ticket at every station that provides service to the 10th station. There are a looooooooot of stations that provide service to the 10th station so he can't simply look at every ticket from every station.  He's a smart robber, so he only looks for routes in the time frame he knows you arrived at the 10th station. He finds 5 possible routes you took. </p>
+<p>Since he really wants to break into your house, he goes to all 5 of the routes and by a stroke of luck finds your ticket (EDIT: Important to note, he has a bit of help because he finds only one ticket with the same final destination as yours). He can once again find your house and rob you.</p>
+<hr />
+<p>Basically, tickets are much like packets. They carry a partial story about where you're traveling too but don't necessarily show where you came from (VPN's, proxies, NAT, etc). If you can follow each step of the chain back, you can find out where something came from. In certain cases, the chain might be broken. You either need to get a bit lucky or find another way to connect the chain.</p>
+<hr />
+<p>EDIT 2: Obligatory thanks for the gold!</p>
+<p>This is a pretty difficult one to thoroughly ELI5. My explanation explains only the simplest of simple (i.e. one layer of protection - VPN).</p>
+<p>The true issue gets compounded when you factor in crazy things like:</p>
+<ul>
+<li>Bus rider might buy a ticket for himself and a hundred thousand other people to the same final destination. Robber still wanting to rob original bus rider (who owns a lot of gold) would have to sort through all one hundred thousand people - or find a way to figure out who purchased all of the tickets.</li>
+<li>Bus rider might purchase separate fares over the course his travel (kind of how VPN's and Proxies work).</li>
+<li>Bus rider might have a friend drop him off at the bus station (i.e. using a compromised). The bus rider is no longer coming directly from his home, so you have to talk to the friend.</li>
+<li>Bus rider might take an indirect route, making it illogical to follow him back (this is kind of how TOR works).</li>
+<li>Bus rider talked to somebody else on the route. Robber knew the two talked, sought that person out, and learned about bus rider through 3rd party.</li>
+</ul></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d95m3d0">
+		<a class="author" href="https://www.reddit.com/user/sawyplanet" target="_blank">sawyplanet</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Anonymity is achieved in practice using VPNs and multiple proxies. These are two different techniques but they can be combined.</p>
+<p>A VPN is a special kind of proxy that allows many people to appear to have the same IP address which makes it very difficult for anyone (except the VPN's owner) to figure out who connects to where. VPNs can and often are used for other purposes and may not even anonymize your connection, but for the purpose of this discussion I will talk about those VPNs which are designed to hide your connection by communicating with you only using encrypted messages and by merging more user connections through the same IP address.</p>
+<p>Tracking users is difficult, but not impossible. You have a bunch of incoming transmissions and a bunch of outgoing transmissions and you correlate the timings. If after long observation you notice that every time someone connects to a website someone in the VPN is connecting to something, then you can say with more or less certainty which user of the VPN connects to that website. In practice, this is expensive and takes a lot of time, so it's only used to track certain users. Copyright enforcers don't want to invest resources in this because their only evidence in court would be a strong correlation between a user's connection to a VPN and that VPN's connection to a host. On the other hand, some three letter US agencies invest in this kind of correlation because it gives them enough evidence to gather more evidence. If you're doing bad things online, you will be discovered.</p>
+<p>It's also worth noting that a couple of VPN encryption methods were just declared ineffective, so a lot of traffic can now be monitored until VPN providers reconfigure their software to use better encryption.</p>
+<p>The Tor proxy does something similar, but it actually uses a chain of proxies. This makes it difficult in practice for three letter agencies to track you down because they need to collaborate with other jurisdictions. The way the chain of proxies is built is geographical. You will go through foreign countries on opposite sides of the world because these countries collaborate less with each other.</p>
+<p>Then, there are Tor hidden services. These can only be accessed using Tor proxy chains which make it difficult to find where they are physically located. This provides even more anonymity. The hidden service chains are also longer than regular chains.</p>
+<p>And finally, there are other solutions - like Freenet - which act only similarly to Tor hidden services but also keep content distributed on the users' computers so it doesn't get taken down even if the original server is found and disconnected from the network. The more people use it, the more information can be stored on the network and the faster content can be delivered.</p>
+<p>On top of technology, there's also the human element. To maintain anonymity you must act like the average user of your group (you must blend in) so you can't be tracked by your writing style or any other drops of personal information you might leave behind. The human element is crucial to maintaining anonymity.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d95nqqi">
+		<a class="author" href="https://www.reddit.com/user/_Jag0ff" target="_blank">_Jag0ff</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Imagine you are in the busiest city in the world with the largest population.  The only mode of transportation are yellow cabs.  Everyone has to use one for everything to from A to B.  Now if someone just uses one cab to go from A to B its easy since its the same taxi service, same driver, same everything.  </p>
+<p>This would allow tracking and following you relatively easy since all you have to do is ask the taxi service in this case your ISP where that cab went.  </p>
+<p>Now if I change cabs multiple times going from A to B someone would have to ask multiple drivers, cab companies, for any details.  </p>
+<p>Now lets say I took multiple cabs to the border of the next city whose laws are much different that the riding laws of the previous ctiy.  Maybe that next city doesn't collect data on my destination or doesn't share that information.  Hell maybe they dont like each other and tell the other city to screw off (imagine US to China).  This would make it damn near impossible to track.</p>
+<p>Apply this logic to how packets hop and there ya go.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d95kjo5">
+		<a class="author" href="https://www.reddit.com/user/demize95" target="_blank">demize95</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Like /u/liarandathief said, the way a VPN or TOR works means that you connect to one server (the VPN server or the first TOR node) and then all your traffic goes through that. Your traffic also uses strong encryption between your computer and the server you're connected to, which means nobody can intercept and read that traffic. </p>
+<p>Because of these two factors, it's only easy to say &quot;this VPN is connected to this website&quot; and unless the VPN provider keeps logs (or otherwise provides information saying which user accessed which website and when), there's no way to trace it back to you. With TOR, if you set it up properly, nothing can really trace back to you because there are so many different servers that you connect through: if the first server in the path keeps logs, the next one probably won't, and the one after that won't, and so on.</p>
+<p>Now, it's important to note that this anonymity only works because so many people are using the same server as you. If you run your own VPN, that doesn't actually provide any anonymity: since you're the only person using it, any traffic that comes from it can be traced back to you. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

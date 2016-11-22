@@ -1,0 +1,71 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/paklaikes" target="_blank">paklaikes</a>
+			<div class="markdown"><p>Advantages of borderless windows - the ease of Alt-TAB and maintaining the same screen colors if you're using <a href="https://justgetflux.com" target="_blank">f.lux</a>. For games that don't have the windowed/borderless fullscreen mode, you can use windowed mode with a program like <a href="http://www.nexusmods.com/oblivion/mods/39550/?" target="_blank">GameCompanion</a> to force it to fullscreen.</p>
+<p>Edit: some people are saying f.lux works for them on fullscreen. That may be so, my experience has been it usually doesn't. So I just switch to the windowed fullscreen first thing on any game I play, else in the evenings when you launch a game you go from the soothing reddish that your eyes adapted to, to full OMG IT'S SO BLUE WHY IS IT SO BLUE MY EYES ARE BURNING mode and that's just not fun, colors be damned :)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/deeteex" target="_blank">deeteex</a>
+			<div class="markdown"><p>Wait you're saying when I use full screen mode instead of borderless windows, the effects of f. Lux are automatically negated when I start my game? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Karai17" target="_blank">Karai17</a>
+			<div class="markdown"><p>Yes, the game takes complete control over your screen and f.lux is disabled.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/snerp" target="_blank">snerp</a>
+			<div class="markdown"><p>No. This is true for some games, bot not all.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Nautisop" target="_blank">Nautisop</a>
+			<div class="markdown"><p>f.lux DOES affect EVERY game of mine, no matter if i play borderless or fullscreen so this is not entirely true.</p>
+<p>for example: games are lol, gtav, cities</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/itaShadd" target="_blank">itaShadd</a>
+			<div class="markdown"><blockquote>
+<p>and maintaining the same screen colors if you're using f.lux!</p>
+</blockquote>
+<p>I'm not sure it's an advantage. I turn it off every time I play because it's bothersome to not see the true colours.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/F0sh" target="_blank">F0sh</a>
+			<div class="markdown"><p>There is no true colour. Did the dress teach you nothing?!</p>
+<p>But seriously, that's why f.lux works.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dernom" target="_blank">Dernom</a>
+			<div class="markdown"><p>But why do some games alt-tab quickly in fullscreen and some not. For example games like Skyrim take ages to alt-tab, but Heroes of the Storm does it relatively smoothly, even in proper fullscreen</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>Its because directX, the programming library which handles alot of the drawing has sections of memory which represent the screen called buffers, and the game draws to them. Direct x creates this 'special' memory, on the video card if possible, for the fullscreen mode. </p>
+<p>When switching to windowed mode, directX creates new 'windowed' screen buffers and, for some reason that still confuses game devs (but likely performance related), it throws out the full screen buffers. </p>
+<p>The long pause is basically directx recreating the full screen buffers when it pops back into fullscreen mode.  This often includes textures etc depending on how the game is coded, so it can be quite a large amount of data.</p>
+<p>TLDR: its a quirk of directx, the software library that renders most windows games. Games which use other software rendering libraries such as opengl, or coded differently to avoid the issue, often do not have this lag</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xipheon" target="_blank">xipheon</a>
+			<div class="markdown"><p>All sorts of things happen when you alt tab out of a fullscreen application.  The biggest thing being that the window isn't just hidden, it is destroyed.  Because of this, many engines do all sorts of things before it'll allow the window to be destroyed.  It also affects how long the window will take to be recreated when you give it focus again.</p>
+<p>The last engine I worked on went so far as to destroy all the textures stored on the video card, so it kept a copy in ram of all texture data which caused the game to take up waaaay too much memory.  The alternative was to reload all the textures from disk when the window gets back focus.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Karai17" target="_blank">Karai17</a>
+			<div class="markdown"><p>That is a question beyond my knowledge. It could do with how the game manages resources. Perhaps a fast-tab game does nothing special where a slow-tab game dumps resources from memory to disk to give you some resources back to do your other tasks outside of the game. Or maybe this is an issue with Windows doing resource management? I really can't say.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jringstad" target="_blank">jringstad</a>
+			<div class="markdown"><p>It should be noted however, that even with the most powerful GPU in the world, a &quot;composited&quot; window (a window that is rendering with the help of windows rather than have exclusive control over the screen) still typically has more delay from application to screen than a window that has exclusive control.</p>
+<p>So that means anything you see on the screen may be 1 frame or more &quot;late&quot; compared to what you would see on a window with exclusive control (which in itself will also be a few frames late.) This is because instead of directly rendering to the screen, the window renders into an image provided by windows, and then windows renders this image to the screen (possibly together with other stuff.)</p>
+<p>So if you are for some reason or other very sensitive to input latency (competitive gaming, simulation sickness or somesuch) it's probably a better choice to not use borderless fullscreen.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Karai17" target="_blank">Karai17</a>
+			<div class="markdown"><p>I think you are over-exaggerating the problem here. While you are not wrong, I don't think a game will be delayed by a full frame. Instead, the game will draw when Windows draws instead of exactly when the game wants to draw which could be <strong>up to</strong> a frame in delay, but is usually a lot less.</p>
+<p>I have never had any issued with controls feeling laggy or weird by playing games in windowed mode. This could be a real problem in VR where any amount of lag can cause nausea, but NVIDIA has already announced a Direct-to-VR mode in their GTX 900 series GPUs, and both DirectX 12 and Vulkan have significantly overhauled... everything, including how and when they render frames. Windows 10 is built with these new changes in mind.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jringstad" target="_blank">jringstad</a>
+			<div class="markdown"><p>Yes, how much this additional one-frame delay really matters or whether it's just a homeopathic thing is up for discussion. But the delays everywhere in the system do add up. I don't think most normal humans would be able to perceive this additional delay as input lagginess, especially if you are already using a high-latency screen and you are used to the lag.</p>
+<p>I'm not aware that DX12/vulkan affect the way compositing works in any way. FreeSync/GSync might, if the entire graphics stack is up to it (e.g. is able to sync the refresh of the entire desktop + screen to the game)</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

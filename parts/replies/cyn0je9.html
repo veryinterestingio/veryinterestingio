@@ -1,0 +1,150 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Varonth" target="_blank">Varonth</a>
+			<div class="markdown"><p>That's the answer but I want to add some more bits.</p>
+<p>As /u/tsuuga said, you establish connections each times anew when going from website to website, while a TCP connection to a gameserver stays open for aslong as you play on that server. Ontop of that, a TCP connection doesn't have full streamspeed from the get go. Instead speed ramps up overtime. With modern broadband speeds compared to the size of the website loading, you often don't even get near the maximum download speed your connection could achieve because you are done before reaching that point.</p>
+<p>You can see the ramp up process when starting bigger downloads. The first few seconds will be much slower than your final speed. That, combined with the connection establishment makes a fairly large part of the waiting time.</p>
+<p>Edit: Yes I know that game may use UDP.</p>
+<p>No, not all game use UDP. An action game(even fast ego-shooters) can run without noticable impact on latency by using prediction. Most of the time UDP based games also have prediction algorithm.</p>
+<p>What is more important is how big the average size of the data send is and how much critical data is required (which would require some sort of reliable UDP which may be even slower than TCP)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sup3r_hero" target="_blank">sup3r_hero</a>
+			<div class="markdown"><p>why does the speed ramp up over time?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zebediah49" target="_blank">zebediah49</a>
+			<div class="markdown"><p>The ELI5 version is that your computers play a trust game with the network.</p>
+<p>You don't know how good the network is, so you start out by asking for just a few (up to 4 IIRC) pieces.  If those pieces make it properly, you send back &quot;I got those, you can try more.&quot;  Next time, it can try sending more (say, 8) pieces.  Each time everything succeeds properly, more pieces get sent.  Eventually, the connection won't be able to handle any more, so they will use whatever that &quot;good number&quot; of pieces is.</p>
+<p>Incidentally, you <em>can</em> make your server a little bit faster by ignore the specification.  I know at least Google (I believe MS as well) adjusts that -- IIRC Google sends the entire 12-piece set that makes up its homepage in one go, rather than waiting.  This makes it a fraction of a second faster than it would otherwise be.</p>
+<hr />
+<p>The next question is &quot;why not use all of the connection to start with?&quot;  The answer is pretty simple: you don't know how good someone's connection is, and accidentally flooding it will end much worse than taking a couple seconds to reach full capacity.</p>
+<p>Lets say your internet connection can only take 10 packets per second.  Additionally, let's assume a 5-second &quot;timeout&quot; period: if it takes longer than that for you to respond I will assume that the packet gets lost.  It takes 1 second to actually make a round trip.</p>
+<p>If I start off by sending you 4 packets, you get them all and send me an &quot;ok&quot;.  I then send 8, you get them, and I get an OK.  At 16, I start getting the responses for the later pieces significantly after the early ones: I can start sending the next pieces while you're still receiving old ones, and we can keep up a continuous flow with that many unaccounted for.</p>
+<p>If I start off by sending you 100 packets, you slowly get the first 50 (and I send you more in response).  At this point, it's been too long, so I assume you never got packets 51-100... so I send them again.  Of course, they're just waiting for the previous copies to make it through, which means there's now 5 seconds worth of useless data queued up in your connection.  The end result is a very slow to respond connection (even if you cancel the request, the data is still out there waiting to get to you) with worse throughput (you're getting duplicates that you don't need).  It's an all-around bad time.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Varonth" target="_blank">Varonth</a>
+			<div class="markdown"><p>You cannot know how much bandwidth is available between you and the host. And no, just sending them your theoretical maximum won't help, as you don't know if the route the connection takes can handle your maximum.</p>
+<p>The host basically sends you a bit, and if the response is rather fast as everything inbetween the host and you can handle it pretty much immediatly as enough bandwidth is available, then it just tries more next time. Once it starts to take a while because some node requires some time to process it, you found your current maximum. It will still try every now and then if more bandwidth is now available. Or if responses are getting even longer slow down a bit.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Lucent_Sable" target="_blank">Lucent_Sable</a>
+			<div class="markdown"><p>its a process called slow start, which is designed to prevent network congestion. Basically, by ramping up the speed slowly, your computer can sense when data transfer is causing congestion, and throttle the connection to a suitable level.</p>
+<p>tl.dr throttle connection to prevent congestion</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/superPwnzorMegaMan" target="_blank">superPwnzorMegaMan</a>
+			<div class="markdown"><p>You guys are missing the big one, the first connection fetches the basic html site, but after that the html site orders to browser to make additional requests for images or extra scripts which make additional connections. Making new connections is the slowest part, and modern web pages (although poorly designed) average at about 30 different location to fetch stuff from. Think about the facebook like button or google analytics.</p>
+<p>You can use a tool like uMatrix to control requests directly, although your browser experience may become somewhat, buggy. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Incompatiblez" target="_blank">Incompatiblez</a>
+			<div class="markdown"><p>You can visualize this in Chrome by pressing F12 to open the Developer tools, going to the Network tab, and then browsing to a site.</p>
+<p>It will show you every item that it had to load in order to present the page to you and how long it all took, as well as a timeline of events.  You can even mouse over an event's timeline to see a breakdown of time taken to do every necessary action.</p>
+<p>(F12 -&gt; Network tab also works in Firefox)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/e39dinan" target="_blank">e39dinan</a>
+			<div class="markdown"><p>I worked for Catapult Entertainment in the 90's during high school cause my Dad hooked me up with the job. They made the Xband video game modem where you'd plug it in between your game (street fighter II or whatever) and your sega/nintendo, then plug the home phone line into it. The guy who invented it was Steve Pearlman, a genius who went on to do Web TV and now Rearden inc (a Think tank I think). Anyway, the xband modem was only a 2400 baud or less if I recall, and we were routinely playing with people on the East Coast and Puerto Rico from our home office in Cupertino. There was very minimal lag. </p>
+<p>Impressive for 1995 or so. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GoinStraightToHell" target="_blank">GoinStraightToHell</a>
+			<div class="markdown"><p>A lot of games also have code in them to predict how the players, projectiles, entities, etc will change by the next frame. These changes are processed then confirmed by the data sent in.  This speeds up what the player is seeing.</p>
+<p>Ever seen someone lag out?  They always keep heading in the direction they were already traveling.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/anon_smithsonian" target="_blank">anon_smithsonian</a>
+			<div class="markdown"><blockquote>
+<p>A lot of games also have code in them to predict how the players, projectiles, entities, etc will change by the next frame. </p>
+</blockquote>
+<p>If you're up for an interesting read, I recommend checking out <a href="http://www.codeofhonor.com/blog/the-making-of-warcraft-part-3" target="_blank">this article on the making of the first Warcraft game</a> (skip about halfway down to the section heading &quot;<strong>Playing against a human</strong>&quot;) and designing a multiplayer that they expected most would be playing with a 2400 baud modem. It's a fairly entertaining read and covers how they approached implementing multiplayer (and some surprising issues they ran into) without getting to technically dense.</p>
+<p>&nbsp;</p>
+<p>The tl;dr is that, instead of trying to send all of each players' units, locations, and positions back and forth between the computers, what they did was simply send the players' <strong>commands</strong>, as they issued them, to the other players. The other players' game would then stimulate the other players' actions and do all of the computation and everything required on their side. </p>
+<p>So, instead of sending &quot;Unit XYZ1 at coordinates (123, 456) moving 56°&quot; it would send the player's command &quot;Move unit XYZ1 to coordinates (432, 321)&quot;... which means it only needed to send any more information regarding that unit once the unit was given new orders.</p>
+<p>I wouldn't be surprised if modern multiplayer games still adopted a similar strategy. This would explain why, after a player has lagged out, they continue running into a wall... the last message you received from that player was &quot;Move player LagsAL0t [direction/heading]&quot;, and, until it hears otherwise (or performs a state sync), it just keeps trying to move the player along that direction. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/draftstone" target="_blank">draftstone</a>
+			<div class="markdown"><p>Network programmer for a big video game company here. This is still done a lot. In many cases, where the user command is deterministic (ie move unit from x to y, unit will make it from x to y using the shortest path possible and map is the same for all players) the server does not need to send the unit position to every one every frame. Server will just send to every one once &quot;unit x moving from there to here at this speed&quot; and with that every client has enough data to move the unit for as long as it takes with a packet only a couple bytes big.</p>
+<p>But yes, this system is not 100% hackproof so in competitive games there are a lot of protection added to prevent desynch problems. But even with all the protection, the system almost always ends up lighter and faster than sending every frame information to everyone.</p>
+<p>Battlefield and Warcraft are often cited as leaders in their genres to optimize network gameplay!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheCapedMoosesader" target="_blank">TheCapedMoosesader</a>
+			<div class="markdown"><p>So like playing chess by mail.</p>
+<p>We both start with two boards, set up with pieces in identical place.</p>
+<p>I make my move on my board, and mail you the move. </p>
+<p>On receipt of the letter, you move my piece on your board, make your move, and then mail me your move.</p>
+<p>We started with identical boards and made identical moves, so the boards stay identical, no need to include the position of every piece in every letter.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dopplegangr1" target="_blank">Dopplegangr1</a>
+			<div class="markdown"><p>Wouldn't sending commands lead to some kind of desync because of variable pings? Like say player one tells unit to go north, and player two gets that command .1 sec later (100ms). Then a second later player one tells unit to stop, so he walked for a second. Now, if player two's ping spiked to 200, it would take .2 sec for the stop command to arrive and his view of unit shows it walking north for 1.1 seconds.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/smurphatron" target="_blank">smurphatron</a>
+			<div class="markdown"><p><a href="https://www.reddit.com/r/IAmA/comments/3re82v/were_psyonix_developers_of_rocket_league_ask_us/cwnfsfp" target="_blank">Here</a>'s a good explanation of this from one of the Rocket League devs.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kindofthrownaway" target="_blank">kindofthrownaway</a>
+			<div class="markdown"><p>I've read that four times and still don't get it. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Alexr154" target="_blank">Alexr154</a>
+			<div class="markdown"><p>I don't know how to save comments in this app. Thanks for posting the link, and sorry for sending this to your inbox.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/StellarHansolo" target="_blank">StellarHansolo</a>
+			<div class="markdown"><p>How often are kill shots, or would-be kill shots affected by a communication lag?  It seems like fractions of a second could make the difference between making or missing that final kill.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Bibdy" target="_blank">Bibdy</a>
+			<div class="markdown"><p>In an authoritative server system (which is most games these days), it happens literally every time. That's why the worse your ping is, the further you need to aim ahead of a moving target to actually land a hit on it. The server doesn't trust a single packet you send it, and must make final confirmation of a kill.</p>
+<p>Damn-near everything you see happening client-side is an illusion. You see yourself instantly start moving and firing your gun the moment you make certain inputs, but in the simulation that is currently running on the server, it doesn't know you've started moving until a fraction of a second later. So, you can swear you moved out of the way of that fast-moving car just in the nick of time, but the server's like &quot;Nope, I never got a packet telling me you started moving before your collision boxes intersected&quot;.</p>
+<p>Things get hairy when packet loss is concerned, which means things like position and attack events might not ever make it to the server. The server will try to compensate by doing things like assume you're still moving in the same direction you were when you last sent an update, and perhaps allow some lee-way by allowing your position updates to occasionally break the maximum velocity (because once packets start arriving again, you might have stopped moving, but the server thought you moved another 10m forward in the meantime, so there's a disconnect there; do you force the player to teleport to the correct location, or do you give the player a little authority to decide where they actually are?). However, this becomes an avenue that speedhackers often exploit; trick the server into thinking you're just suffering from a little packet loss, and you can use that leeway it grants you to skip around the place faster than normal.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aiusepsi" target="_blank">aiusepsi</a>
+			<div class="markdown"><p>Especially back in the olden days, quite a lot. You'd have to lead your target in order to hit them because of the latency, because by the time you've seen them (i.e. from the time their position was sent by the server), and your command to shoot has reached the server, they'll have moved.</p>
+<p>These days (and by these days, I mean everything in probably the last 15 years) the server will rewind time to work out if the person you're trying to shoot was under your crosshairs at the time you fired.</p>
+<p>This time warping leads to the game world not exactly making sense, because, especially at high latencies, it can feel a bit like bullets are wrapping around corners, or other causal anomalies.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/the_omega99" target="_blank">the_omega99</a>
+			<div class="markdown"><p>It totally happens. It's why playing games with high latency is usually a horrible experience. Actions get skipped, players appear and disappear, your shots miss when they seemed to hit. It naturally results in people with high latency connections not playing games that require instant reflexes.</p>
+<p>Fortunately, most connections can handle latency just fine. Even dial up has latency low enough to sanely play a FPS (bandwidth sucks, but latency is tolerable). Satellite comes to mind for an example that has intolerable latency. Most cable connections will be fine. Distance from the server matters, though (and the way you route information to the server -- which is why services like WTFast exist). That's why most major games have servers spread out across the world.</p>
+<p>When I played FFXIV (an MMO), for example, all the North American servers were located in Quebec. So if you lived in Quebec, you could expect very low latency. If you were European, you could expect horrible latency (they only recently got an actual European server). To the point that certain actions weren't doable. Prior to some fixes, for example, the ninja class was only optimally playable with low latency (but they eventually implemented some work arounds to make it work better on higher latency connections).</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/c-digs" target="_blank">c-digs</a>
+			<div class="markdown"><p>To add to this, </p>
+<ul>
+<li>HTTP is extremely verbose; requiring a lot of overhead.  This is part of the reason why Google has been working on SPDY, HTTP/2</li>
+<li>Modern D/HTML is extremely verbose; requiring a lot of content to render even a basic page.</li>
+<li>An HTTP request for a web page usually involves dozens of connections and since HTTP is stateless, each of those connections is established separately.  For example, if you load a page with a .css and a .js file, those become two separate HTTP requests to the server and require two additional connections</li>
+</ul>
+<p>If you want to see what is happening behind the scenes, hit <strong>F12</strong> in your browser and check the Network tab in the developer tools.  You'll see each resource request going out to servers on the Internet.</p>
+<p>TL;DR: The nature of HTTP and web content makes it extremely inefficient to move that information around.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DeUsuahiaALaQuiaca" target="_blank">DeUsuahiaALaQuiaca</a>
+			<div class="markdown"><blockquote>
+<ul>
+<li>Modern D/HTML is extremely verbose; requiring a lot of content to render even a basic page.</li>
+</ul>
+</blockquote>
+<p>This just isn't true, or your definition of &quot;modern&quot; is different from mine. In most modern web applications, the client uses a framework that can subscribe to a data source and then render the HTML on the user's machine. Using websockets and/or long polling, the only communication after the initial page load that has to happen between the client and server is in compact JSON messages which are almost pure data with as little overhead as possible.</p>
+<p>If you mean it's verbose because the client has to load a large framework such as angular or react even for pages with no dynamic content, then I understand what you mean. Even still, this code will generally be cached in modern browsers so that future cold page requests will be much faster.</p>
+<p>But the overall trend in modern dynamic web development is to move toward thick clients and thin data interfaces, which reduces the verbosity of the majority of messages between the client and server.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/stephen_huntley" target="_blank">stephen_huntley</a>
+			<div class="markdown"><p>I think you're missing the bigger point that a browser is a blank canvas for creating whatever you want, whereas two players playing the same game already have 99.9999% of the data needed in common and only need basic coordinate/action information to update a game's state.</p>
+<p>For comparison, some of the games I play send update packets that are around 128 bytes in size. A web server typically transmits several orders of magnitude more than that per client.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/c-digs" target="_blank">c-digs</a>
+			<div class="markdown"><p>It's still verbose relative to what a game has to transmit.  While JSON is less verbose than equivalent X/HTML, it's still verbose compared to more efficient custom data encoding/compression that games would be using which do not have to be compliant to any standards nor would it have to serve a more general purpose which JSON does.</p>
+<p>In short, verbosity is relative.  Yes, with techniques like single page apps, long polling, web sockets, AMD (and thus script caching), it's better than it twas just a few years ago, but it's still verbose.  Especially so compared to what a game engine needs in terms of communicating coordinates.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rlbond86" target="_blank">rlbond86</a>
+			<div class="markdown"><p>But a game can just send binary data in a packed format. HTML requires markup because it is a type of source code. </p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

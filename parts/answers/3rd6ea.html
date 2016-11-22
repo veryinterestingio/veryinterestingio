@@ -1,0 +1,62 @@
+<div class="answers">
+	<div class="answer" data-handle="cwmyv52">
+		<a class="author" href="https://www.reddit.com/user/herotonero" target="_blank">herotonero</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I looked for /r/askstatisticians first which doesn't exist, and ironically /r/askmathematicians is private. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cwn0f4t">
+		<a class="author" href="https://www.reddit.com/user/simpleclear" target="_blank">simpleclear</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This is a bad test because it does not give you explicit information.  Normally when we discuss tests and probability we want to know <em>two</em> pieces of information about it: the rate of false positives and the rate of false negatives.  Normally you report these two pieces of information separately (i.e., this test has a 1% rate of false positives and a 1% rate of false negatives.) They report it as one rate for both, which is weird and not strictly correct.  I think you should have been able to figure out what they were asking (you wouldn't have had enough information to answer the question without a false positive rate), but it is easy to think that they were giving you a false negative rate and the test had a 0% rate of false positives.</p>
+<p>When you are doing probability and talking about tests or random samples, always do it this way:</p>
+<ol>
+<li>
+<p>Start by writing down the total population (you can do &quot;1.0&quot; to mean &quot;everyone&quot; if you think well in fractions, or pick a big number like 1,000,000 to make the math pretty.)</p>
+</li>
+<li>
+<p>Then draw out two branches from the first number, and multiply by the true population proportion for each sub-group.  We are now looking at the absolute numbers of people in each sub-group, who do not yet have any idea which sub-group they are in.  (So if you start with 1,000,000 people, you would draw one branch with 100 people who have the disease, and another with 999,900 people who don't have the disease.)</p>
+</li>
+<li>
+<p>Now, draw four more branches and use the information you have about the test to divide each of the sub-groups into two groups.  1% false negatives: so of the diseased group, 99 (99% of 100) get positive results (true positives, although all they know is that it is positive), and 1 (1% of 100) gets a negative result (false negative).  1% false positives: so of the healthy group, 9,999 (1% of 999,900) get positive results (false positive) and 989,901  (99%) get negative results (true negative).</p>
+</li>
+<li>Now interpret the results.  Overall there are 10,098 positive results; 99/10,098 are true positives, 9,999/10,098 are false positives.  So from the evidence that you have a positive result, you have a 1% chance of having the disease.  From the evidence of a negative result, you have a 1 in 989,901 chance of having the disease.</li>
+</ol>
+<p>If you draw out the branching structure you won't get confused.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cwmz72f">
+		<a class="author" href="https://www.reddit.com/user/Menolith" target="_blank">Menolith</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If 10000 people take the test, 100 will return as positive because the test isn't foolproof. Only one in ten thousand have the disease, so 99 of the positive results thus have to be false positives.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cwn0z2h">
+		<a class="author" href="https://www.reddit.com/user/KingDuderhino" target="_blank">KingDuderhino</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's all about conditional vs absolute probabilities and an application of Bayes' Formula. It's not really for a 5 year old, but you have an engineering degree. So you should be fine.</p>
+<p>Let A=having a rare disease and AC=not having a rare disease. We have now</p>
+<p>P(A)=1/10000 and P(AC)=1-1/10000</p>
+<p>Let B=test positive and BC=test negative. The information we have given are conditional probabilities. We seem to have (the text is a bit ambiguous on this one, but anyways):</p>
+<p>P(B|A)=0.99 and P(BC|A)=0.01</p>
+<p>The first equation is the probability that the test is positive given that you have a rare disease and the second equation is that the test is negative given you have a disease.</p>
+<p>P(BC|AC)=0.99 and P(B|AC)=0.01</p>
+<p>The first equation is the probability of a negative test, given that you don't have the rare disease and the second equation is positive test given that you don't have the rare disease.</p>
+<p>What you want to know is the probability that you have a rare disease given the test is positive, which is P(A|B). This information is not given directly but Bayes formula can help us here. Bayes' Theorem is:</p>
+<p>P(A|B)=P(A)*P(B|A)/P(B)</p>
+<p>P(A) is given (1/10000) and P(B|A) as well (0.99). The only part you have to calculate is P(B), i.e. the probability that a test is positive. That is</p>
+<p>P(B)=P(A)<em>P(B|A)+P(AC)</em>P(B|AC).</p>
+<p>So, the probability that the test is positive is the probability that you have a rare disease multiplied with the conditional probability that the test is positive plus the probability that you don't have a rare disease multiplied with the conditional probability that the test is positive.</p>
+<p>Calculating everything, you get P(A|B)=0.0098 or about 1%.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
