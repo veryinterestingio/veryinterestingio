@@ -1,0 +1,94 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/halica84" target="_blank">halica84</a>
+			<div class="markdown"><p>You put the tl;dr at the top, so I ended up reading the whole thing. I feel like I've been tricked.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/agent86ix" target="_blank">agent86ix</a>
+			<div class="markdown"><p>I'm laughing manically at you from my Fortress of Video Compression Expertise.  You might have learned something today, <em>sucker!</em></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SupremeNeckProtector" target="_blank">SupremeNeckProtector</a>
+			<div class="markdown"><p>You win this one. ...</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>Efficient post compression.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheOtherSomeOtherGuy" target="_blank">TheOtherSomeOtherGuy</a>
+			<div class="markdown"><p>Gotta go middle out, man, middle out</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LS_D" target="_blank">LS_D</a>
+			<div class="markdown"><p>pif!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/robonick" target="_blank">robonick</a>
+			<div class="markdown"><p>I too accidentally learned!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Bilgerman" target="_blank">Bilgerman</a>
+			<div class="markdown"><p>Dang it! What am I going to do with all this extra knowledge?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cliffotn" target="_blank">cliffotn</a>
+			<div class="markdown"><p>Except you learned wrong.  Listen, I've been using computers, and working with them for a living since before you young bloods were stars in your parents eyes.  OP simply needs more RAM - and I'm here to save the day.<br />
+Just download more RAM OP, and you'll be good to go!<br />
+<a href="http://www.downloadmoreram.com/" target="_blank">http://www.downloadmoreram.com/</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/UnknownStory" target="_blank">UnknownStory</a>
+			<div class="markdown"><p>to learn; do read</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Lighterlow" target="_blank">Lighterlow</a>
+			<div class="markdown"><p>except many gifs use a similar compression. I opened a gif in gimp for shits and giggles, and the different frames are actually planes. For the animation they get slapped on top of each other. Only the bottom frame was a full picture, the rest had large transparent chunks in them where they didn't need new information.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/agent86ix" target="_blank">agent86ix</a>
+			<div class="markdown"><p>I've left out a lot of detail, and that is part of the detail.</p>
+<p>The video codec method (P-frames) is far more sophisticated than leaving some pixels transparent in the subsequent frames of the GIF.  I just don't think I can do it justice in an ELI5 format.</p>
+<p><strong>EDIT:</strong> by request, <a href="http://www.reddit.com/r/explainlikeimfive/comments/2sa7gz/eli5_why_do_online_videos_stream_flawlessly_on_my/cnnww5o" target="_blank">I attempted to cover this.</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/weavin" target="_blank">weavin</a>
+			<div class="markdown"><p>Could you possibly try? This sounds really interesting.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AGreatBandName" target="_blank">AGreatBandName</a>
+			<div class="markdown"><p>Yes, GIF can ignore regions of the image that didn't change at all. But it can't do <a href="http://en.wikipedia.org/wiki/Motion_compensation" target="_blank">motion compensation</a>, so the OP's example of a falling ball is something that will compress much better in a video than a GIF.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>Thats only the case if the person making the gif actually gave a fuck. Most don't.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/scottperezfox" target="_blank">scottperezfox</a>
+			<div class="markdown"><p>ELI25 with a Master's in Computer Engineering</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/agent86ix" target="_blank">agent86ix</a>
+			<div class="markdown"><p>GIF is indexed color (usually 255 colors) that is then LZW compressed.  LZW (I believe) is better for data where there are lots of patterns.  Photos/videos tend to be less pattern-oriented, there's more variance from pixel to pixel.  </p>
+<p>JPEG/MPEG colorspace convert from RGB to YUV or YCbCr, and usually subsample the chroma planes to toss out most of the color data.  It's chunked into &quot;macroblocks&quot; of square pixel regions, and then each macroblock is translated into the frequency domain using a DCT.  </p>
+<p>This means &quot;JPEG/MPEG is better at representing photographic data, and optimizes its model towards the way it will be experienced by the human eye.&quot;</p>
+<hr />
+<p>Animated GIFs are just a bunch of GIFs stacked up one after another, optionally layering on top of the previous image.  They might benefit from some bitrate savings if the region of change between frames is relatively small compared to the overall image size.</p>
+<p>MPEG uses motion estimation to create P- and B-frames.  These frames use prediction to determine what macroblocks have been simply moved from one location to another, and which ones have actually changed.  The moved blocks are sent as a vector, and the changed blocks are re-encoded as they would have been in the first frame.  </p>
+<p>Depending on how the encoder is structured, occasionally it might be necessary to encode a frame that has no previous dependencies.  This is useful for situations where the decoder's state isn't constant (seeking, late joins to a stream, file corruption, etc).  </p>
+<p>So you could say &quot;MPEG encoders do a better job of using old data rather than re-encoding data that the decoder already has from decoding previous frames.&quot;</p>
+<p>There are a bunch of different video compression standards out there, and they've all got their own peculiarities and optimizations.  I've tried to hit the high points and the common bits of the ones I've used/studied in the past.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>Now ELI am drowning and didn't even ask the question and you are standing nearby holding a life preserver but for some reason feel the need to explain this before you throw it to me</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Verall" target="_blank">Verall</a>
+			<div class="markdown"><p>If you're interested in looking even further then this fantastic overview by agent86ix and don't mind how in-depth it gets I suggest checking out the x264 development at <a href="http://forum.doom9.org/forumdisplay.php?f=17" target="_blank">doom9</a>.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jlo80" target="_blank">jlo80</a>
+			<div class="markdown"><p>Usually 256 colors, index 0 - 255 inclusive range from a 24bit palette.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/joesighugh" target="_blank">joesighugh</a>
+			<div class="markdown"><p>ELI25MCE</p></div>		</li>
+					</ul>
+		</ul>
+	

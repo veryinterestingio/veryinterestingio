@@ -1,0 +1,45 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NeokratosRed" target="_blank">NeokratosRed</a>
+			<div class="markdown"><p>Thank you for this! The same difference - although smaller - can be observed in the uncompressed ones as well.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wherethebuffaloroam" target="_blank">wherethebuffaloroam</a>
+			<div class="markdown"><p>You should not see this difference in uncompressed files</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NeokratosRed" target="_blank">NeokratosRed</a>
+			<div class="markdown"><p>Maybe there is a slight compression. I have a nikon and the files are .nef, so maybe they are not exactly uncompressed, but I wouldn't know.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RlyNotSpecial" target="_blank">RlyNotSpecial</a>
+			<div class="markdown"><p>Sorry to be that guy, but this is not how jpg works.</p>
+<p>You are describing the png algorithm.</p>
+<p>The jpg algorithm is based on something called a fourier transformation. It essentially breaks down the image to information about how it changes, i. e. low changes in equally colores spaces and high changes in sharp corners. </p>
+<p>Then it tries to save space by removing some of this information that is not that important for the picture. For example usually there are less sharp corners that flat areas, so it will remove the information on sharp corners to save space (n.b. that's why jpg compressed pictures get blurry - the sharp corners are missing!)</p>
+<p>Now, as the current top comment mentioned, a long exposure shot has a lot of noise which makes it harder to determine which parts of the information can be left out.
+This means the compression is less effective and the end result a bigger file.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RickMantina" target="_blank">RickMantina</a>
+			<div class="markdown"><p>JPEG uses the Discrete Cosine Transform, not Fourier. Sorry to be that guy. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RlyNotSpecial" target="_blank">RlyNotSpecial</a>
+			<div class="markdown"><p>You're right. But the principle is the same and it's usually even computated using the Fast Fourier Transform (FFT) algorithm.</p>
+<p>That's why I went with Fourier transform - maybe more people have heard of it before.</p>
+<p>More <a href="https://en.wikipedia.org/wiki/Discrete_cosine_transform" target="_blank">on wikipedia</a></p>
+<blockquote>
+<p>In particular, a DCT is a Fourier-related transform similar to the discrete Fourier transform (DFT), but using only real numbers.</p>
+</blockquote></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/colemarie10" target="_blank">colemarie10</a>
+			<div class="markdown"><p>Mostly correct (it actually uses DCT) but I figured for ELI5 this was a good enough explanation that applies most of the time, even if not specifically for JPEG. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nooneofnote" target="_blank">nooneofnote</a>
+			<div class="markdown"><p>Note that this describes run-length encoding, which is how some image formats like <a href="https://wiki.multimedia.cx/index.php?title=Microsoft_RLE" target="_blank">MS RLE</a> really work, but is not how JPEG works (JPEG does make use of RLE, but on transform coefficients, not pixels, and only as an intermediate step)</p></div>		</li>
+					</ul>
+	

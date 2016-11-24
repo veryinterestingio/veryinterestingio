@@ -1,0 +1,33 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheEternal21" target="_blank">TheEternal21</a>
+			<div class="markdown"><p>Programmer here as well.  What I started doing a while back, is using an adaptive loading bar in my splash screens.  The way it works, is the first time the program is run, I use the usual method of computing remaining loading time.  At the same time, the program measures how long the loading actually took, and saves that information.  </p>
+<p>The next time the user starts the program, I average calculated time with actual time.  I also record the time it took to start the program yet again.  That way,  I end up using a running average, of last N load durations (usually 10), which is pretty damn accurate at that point, and allows me to present the user with a smooth loading bar.</p>
+<p>If I'm in a rush, I even skip the loading calculation time in step one, and just use a hardcoded value we get from testing in-house.  After that averaging is done as described above, with actual loading times.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chud555" target="_blank">chud555</a>
+			<div class="markdown"><p>This is exactly what I was going to do for the last status bar I made... haha, but when I told management how long it would take, they said &quot;naw...&quot;</p>
+<p>I was using wxPython, which... hell, it may be obsolete already, which is just something that happens with language libraries, especially open source languages. Anyway, all of this functionality should be part of a library. Saving off &quot;How long does this thing take to do? I have to update a status bar here, so let's figure this out using averages of other loads/processes/whatever...&quot;</p>
+<p>Nice job writing a tool that does that :) If it was in some open source type language, maybe push for it to be part of the libraries that come default with the language.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheEternal21" target="_blank">TheEternal21</a>
+			<div class="markdown"><p>In my case it's a WPF control written in C# and XAML.  But there's a good article on CodeProject about self-calibrating progress bar (I believe that one is also in C#, but WinForms instead):</p>
+<p><a href="http://www.codeproject.com/Articles/5454/A-Pretty-Good-Splash-Screen-in-C" target="_blank">http://www.codeproject.com/Articles/5454/A-Pretty-Good-Splash-Screen-in-C</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>This seems like the best way to do it!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TraumaMonkey" target="_blank">TraumaMonkey</a>
+			<div class="markdown"><p>Don't forget that you aren't the only process using the processor, hard drive, etc. You can know pretty precisely how much cpu time you'll need and still have an unpredictable progress bar because of multitasking.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/txgsync" target="_blank">txgsync</a>
+			<div class="markdown"><blockquote>
+<p>it's just a rough estimate.</p>
+</blockquote>
+<p>Foul-mouthed ELI5 version: &quot;Humans are fucking terrible at predicting the future, and the computers we program even more so.&quot;</p></div>		</li>
+					</ul>
+	

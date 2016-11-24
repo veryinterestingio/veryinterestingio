@@ -1,0 +1,108 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/i_love_thieves" target="_blank">i_love_thieves</a>
+			<div class="markdown"><p>Thanks a bunch for the information! I think I get it now.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Uanaka" target="_blank">Uanaka</a>
+			<div class="markdown"><p>Basically, the entire world is run on just a few major Primary DNS servers, they help to resolve the IP's into the website address that we see as the URL. When the DNS is down or made unavailable, the browser and internet as a whole is unable to resolve the website that you are trying to go to with the associated IP address. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TacticalBurrito" target="_blank">TacticalBurrito</a>
+			<div class="markdown"><blockquote>
+<p>Basically, the entire world is run on just a few major Primary DNS servers, they help to resolve the IP's into the website address that we see as the URL.</p>
+</blockquote>
+<p>Sounds like you're talking about the root servers. They don't actually serve up DNS mappings; they just give pointers. They are the &quot;last resort&quot; when another DNS server absolutely can't find a record.</p>
+<p>Dyn is not one of these organizations; they are below the root servers. They act as primary sources for a large number of domains. Because they are the <em>primary source</em> of those domains, all root servers are pointing at them. And if they're offline, then you're not gonna get any info out of them. The DNS system will basically just give up - &quot;Welp, I tried, but my guy isn't answerin' me. www.reddit.com must not exist.&quot;</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fatesurge" target="_blank">Fatesurge</a>
+			<div class="markdown"><blockquote>
+<p>Basically, the entire world is run on just a few major Primary DNS servers</p>
+</blockquote>
+<p>Then how can they be DDOS'd? ie they already have the bandwidth to handle, like, a billion requests at once? Where are the extra bots coming from? &gt;&lt;</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ztherion" target="_blank">ztherion</a>
+			<div class="markdown"><p>To clarify, each primary provider has a large number of servers, but there's only 13 (?) root providers.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HansenTakeASeat" target="_blank">HansenTakeASeat</a>
+			<div class="markdown"><p>Also, this is why bitching at Sony or reddit for &quot;being down&quot; is stupid.   They aren't down, it's just the street to get there isn't visible.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/_Dreamer_Deceiver_" target="_blank">_Dreamer_Deceiver_</a>
+			<div class="markdown"><p>More like you lost your address book and cant remember where they live. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/waste_gate" target="_blank">waste_gate</a>
+			<div class="markdown"><p>Not having the street address to navigate to is a better analogy.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Nero8762" target="_blank">Nero8762</a>
+			<div class="markdown"><p>And for gods sake, don't ever say the internet is down, drives me batshit crazy.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/faaltek" target="_blank">faaltek</a>
+			<div class="markdown"><p>Google's DNS caches pretty much everything you need. I always change my DNS to 8.8.8.8 (google's default address)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/skztr" target="_blank">skztr</a>
+			<div class="markdown"><p>... That'll help this whole &quot;bottleneck&quot; issue everyone's taking about </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dilutedmemories" target="_blank">Dilutedmemories</a>
+			<div class="markdown"><p>and 8.8.4.4 as secondary</p>
+<p><em>Google Public DNS operates recursive name servers for public use at the following IP addresses: 8.8.8.8 and 8.8.4.4 for IPv4 service, as well as 2001:4860:4860::8888 and 2001:4860:4860::8844, for IPv6 access.</em></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/6e79616e7961" target="_blank">6e79616e7961</a>
+			<div class="markdown"><p>Use OpenDNS. Google really doesn't need that much might handed to them on a silver platter. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/osi_layer_one" target="_blank">osi_layer_one</a>
+			<div class="markdown"><blockquote>
+<p>In the future I'd love to see a distributed DNS implementation.</p>
+</blockquote>
+<p>to go just a bit deeper than ELI5...</p>
+<p>I can ping google.com from my house in Milwaukee and have a buddy behind the great firewall of china ping google.com. his ping/travel time could be lower than mine even though he has farther to travel... why? because we aren't physically transmitting to google in California.</p>
+<p><a href="https://www.iana.org/domains/root/servers" target="_blank">distributed worldwide</a>
+Those are the thirteen root servers for the whole of the internet. but then you throw in anycast. anycast is fun. technically, there are over 500 root dns servers due to anycast. my buddy in china? he actually was hitting a server in bejing, while I was hitting one in Chicago, even though we were trying to get to the same address.</p>
+<p>anycast does a one to nearest scenario, meaning it'll query multiple dns servers and choose the &quot;quickest&quot; to respond. this is what happened to DynDNS, and why it only happened on the east coast of the US. It's an &quot;eggs in one basket&quot; scenario.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TacticalBurrito" target="_blank">TacticalBurrito</a>
+			<div class="markdown"><blockquote>
+<p>In the future I'd love to see a distributed DNS implementation. </p>
+</blockquote>
+<p>DNS is distributed and decentralized <em>by design</em>. The only reason google DNS is working for you now is because they're serving up cached results. They aren't authorative for any of those domains. And sooner or later, caches are going to expire.</p>
+<p>My company, for example, runs our own DNS, as <em>every domain-owning entity should</em>. We are not affected by this attack.</p>
+<p>The problem is, at one point, someone decided that outsourcing DNS would be a great business idea, they founded Dyn, they got a huge number of companies to all put their eggs into one basket, and now everything's all fucked up. If it helps, picture me saying that like Jeff Goldblum in Jurassic Park during his rant at the dinner scene.</p>
+<p>Dyn is a great example of how, and why, DNS should <em>not</em> be set up. They're doing the <em>opposite</em> of how this system should work.</p>
+<p>I hope someone learns a fuckin' lesson from these attacks.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BraveFencerMusashi" target="_blank">BraveFencerMusashi</a>
+			<div class="markdown"><p>So my company utilizes a website that stores all of our clients medical files and physician orders. We couldn't access it. It's been glitchy lately so I didn't investigate too much into it and just did other work. I eventually got curious and simply switched my DNS server and the website started working again.  </p>
+<p>Does that mean the company that created and maintains the website uses Dyn instead of hosting their own DNS?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TacticalBurrito" target="_blank">TacticalBurrito</a>
+			<div class="markdown"><blockquote>
+<p>Does that mean the company that created and maintains the website uses Dyn instead of hosting their own DNS?</p>
+</blockquote>
+<p>Yes.</p>
+<p>Many companies outsource their DNS (edit: to companies such as Dyn) because, honestly, it's kind of a hassle to maintain. You need to have a &quot;DNS Guy&quot; on staff. You need to have DNS servers. And that's expensive. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GeneralDisorder" target="_blank">GeneralDisorder</a>
+			<div class="markdown"><blockquote>
+<p>My company, for example, runs our own DNS</p>
+</blockquote>
+<p>This just means that it doesn't take as much resources to DDOS your DNS. Of course then you'd know for sure you were the target. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TacticalBurrito" target="_blank">TacticalBurrito</a>
+			<div class="markdown"><p>Well, sure. But on the other hand, we're not really worth DDoSing. I can't imagine why anyone'd want to, though it has happened on (rare) occasion in the distant past. Kids just fuckin' around, I'd expect, without any real motive other than lulz. It was basically the internet equivalent of petty vandalism.</p>
+<p>Point being, tho, that if all these servers were decentralized, the impact of this attack, on the internet in general, likely would've been way smaller.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/stvhl" target="_blank">stvhl</a>
+			<div class="markdown"><p>Yeah decentralized by design and not by implementation unfortunately.</p></div>		</li>
+					</ul>
+		</ul>
+	

@@ -1,87 +1,101 @@
 	<ul class="replies">
 		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/habitual_viking" target="_blank">habitual_viking</a>
+			<div class="markdown"><p>Sorry, but it's not entirely correct.</p>
+<p>You <em>could</em> put up a background picture and some may do. The newer techniques however, for detecting adblock looks at elements expected <em>after</em> an ad should have been loaded and does their anti anti ad features at this point.</p>
+<p>Now the reason why you can't just detect something and load a new add in place of the old, when adblocking is detected is due to the way adblocking is done. While you can detect the ad is missing, you can't force the browser to load a new image from the resource, since they browser is being told to block requests to the host.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/the_omega99" target="_blank">the_omega99</a>
+			<div class="markdown"><p>Technically, those &quot;hello adblocks&quot; could be blocked, too, since modern adblockers can also block by DOM element. But since they're not ads, the adblockers usually let them stay up. If they were to replace them with ads, then we can expect that the adblockers would block them again.</p>
+<p>So they can't put an ad there. The best they can hope for is convincing users to whitelist them.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DrDuPont" target="_blank">DrDuPont</a>
+			<div class="markdown"><p>I've ran into sites that have anti-anti-adblock scripts that will redirect you if it detects blocking in place. So, naturally, you get an anti-anti-anti-adblock set of rules to block that behavior.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JackAceHole" target="_blank">JackAceHole</a>
+			<div class="markdown"><p>You can put whatever you want there, so long as you're the one serving the content, not the third party ad company. But if you do this, you're not going to generate any revenue through ad sales.</p>
+<p>If you were CNN and you detected that AdBlock was installed on the visitor's machine, you wouldn't show an ad for Apple. If you showed an ad for Apple a million times, you couldn't just send Apple an invoice for $1000. They'd need proof that you showed the ad. That proof usually comes from the blocked ad serving companies. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mardoxx_" target="_blank">Mardoxx_</a>
+			<div class="markdown"><p>You're not sorry.</p></div>		</li>
+					</ul>
+			<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/Jemikwa" target="_blank">Jemikwa</a>
-			<p>This is a great eli5 version. It's exactly what is going on, to my understanding</p>		</li>
+			<div class="markdown"><p>This is a great eli5 version. It's exactly what is going on, to my understanding</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/BCawth06" target="_blank">BCawth06</a>
-			<p>But why not make what's back there another ad?</p>		</li>
+			<div class="markdown"><p>But why not make what's back there another ad?</p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/marcospolos" target="_blank">marcospolos</a>
-			<p>Because ads are additional overlays that change periodically based on adsense. It's not just a static image that the web host decides to put on. </p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/LookaBox" target="_blank">LookaBox</a>
-			<p>Why don't the people paying for the ads pay a bit more or work out an agreement to set up a static image ad?</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/Quatroplegig2" target="_blank">Quatroplegig2</a>
-			<p>Static image add can't be counted, and only very VERY small people will see it.<br><br>Edit: oh boy, didn't notice that error.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/account4august2014" target="_blank">account4august2014</a>
-			<p>The people asking in this follow up thread hit the exact point I was trying to ask. Thanks guys. </p>		</li>
+			<div class="markdown"><p>Because ads are additional overlays that change periodically based on adsense. It's not just a static image that the web host decides to put on. </p></div>		</li>
 						<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/MackDaddyVelli" target="_blank">MackDaddyVelli</a>
-			<p>Great way to corner the oft-ignored dwarf market.</p>		</li>
+			<a class="author" href="https://www.reddit.com/user/mister-la" target="_blank">mister-la</a>
+			<div class="markdown"><p>AdBlock and similar tools are built around a list of criteria. They use these criteria to look at elements on the page and try to find what is an ad.</p>
+<p>Some of these can easily be fooled if you are in complete control of the ad. So:</p>
+<ul>
+<li>
+<p>Since Adblock looks at <strong>the name of things in the page's code</strong>, you can avoid naming it <code>ad</code>, <code>advertisement</code>, <code>sponsor</code>, etc. AdBlock will block it if you do.</p>
+</li>
+<li>
+<p>Since AdBlock looks at <strong>the links's URL</strong>, you could remove something called a &quot;referral&quot; in it, which tells the advertisers who sent you to their website when you click. AdBlock will block this.</p>
+</li>
+<li>Since AdBlock looks at <strong>where links send you</strong>, you could avoid linking back to advertisers' websites at all. Otherwise, AdBlock will block it.</li>
+</ul>
+<p>But advertisers actually give you scripts, not ads. These scripts fetch ads from <em>their</em> servers, and you have no control over the code they insert in the page, the link's address, or the presence of a referral in it. And all these things will probably be caught by AdBlock.</p>
+<p>So, if you put an ad behind the ad, they'll both be blocked. AdBlock doesn't care if it's &quot;behind&quot; another thing, in the code they're both equally easy to spot.</p>
+<p>And, if you <em>are</em> able to display an ad – which is very possible if it's not served by an advertising network – then you don't need to &quot;hide&quot; it behind another ad to start with.</p>
+<p><em>(For you technical folks, by &quot;looks at&quot;, I mean AdBlock filtering is <a href="https://adblockplus.org/en/faq_internal#filters" target="_blank">based on regular expressions</a>)</em></p></div>		</li>
 						<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/HaqpaH" target="_blank">HaqpaH</a>
-			<p>it would also have to be painstakingly updated as the ad runs its course. i'd imagine the system is set up for easily swapping traditional ads, but a static image that few people are going to see anyway, probably not</p>		</li>
+			<a class="author" href="https://www.reddit.com/user/Domo929" target="_blank">Domo929</a>
+			<div class="markdown"><p>AdBlock works by stopping the Web page loading ads from certain locations. If you hide an ad behind another ad, that hidden ad still needs to come from somewhere. Whereas the message is just text with formatting. AdBlock stops the front ad from loading, and will do it the same for the back ad.</p>
+<p>EDIT: spelling and grammar </p></div>		</li>
 					</ul>
 			<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/CodeJack" target="_blank">CodeJack</a>
-			<p>Because google does this and centralizes the whole process. It would take years of work every day to do it statically on 100,000 websites for 10,000 advertisers.</p>		</li>
-						<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/eNaRDe" target="_blank">eNaRDe</a>
-			<p>There are people paying Ad block to unblock their ads. Ad Block isn't in the business to make your web experience better. They are in the business to make advertisers pay them.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
-			<p>You can opt out of that</p>		</li>
-					</ul>
-		</ul>
-			<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/Collin_morris" target="_blank">Collin_morris</a>
-			<p>Because that'd probably be unnecessarily expensive. Why spend that large of an amount of extra money just so the group of people using Adblock and on that specific website who just so happened to have that specific ad of theirs pop up on that visit. It's very minuscule. That money could be spent putting up a bunch of ads through Adsense on various sites.</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
-			<p>[deleted]</p>		</li>
-					<ul class="replies">
-		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/Collin_morris" target="_blank">Collin_morris</a>
-			<p>Right, but that is across every website that that users views. This guy is talking about paying one single site to keep your ad up as a static image. </p>		</li>
-					</ul>
-		</ul>
-			<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/JoeyJoeC" target="_blank">JoeyJoeC</a>
-			<p>Adblocks block based on page elements. All they would have to do is randomly change the selectors with gibberish.</p>		</li>
-					</ul>
-			<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/450925" target="_blank">450925</a>
-			<p>Most companies will rent out add space to different businesses, and also cookies provide insight into the types of ads that some users may respond to better.<br><br>So it doesn't make sense to have that there...<br><br>What they could do, is advertise their own ad banner on there. So it could be &quot;If you don't see an ad here, then maybe you should contact us about advertising you in our space.&quot;</p>		</li>
-						<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/TheMuffinMan2035" target="_blank">TheMuffinMan2035</a>
-			<p>Adblock is a doorman at your popular club. When certain guests show up (ads) that aren't on the &quot;list&quot; Adblock tells them to take a hike, so new ads could keep showing up and being turned around and you wouldn't know any different because only guests on the list came in. As far as you know, no unwanted guests showed up. </p>		</li>
-					</ul>
-			<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
-			<p>Except that it's actually absolutely not whats going on at all.</p>		</li>
+			<a class="author" href="https://www.reddit.com/user/1moe7" target="_blank">1moe7</a>
+			<div class="markdown"><p>Explained like we're indeed 5!</p></div>		</li>
 						<li class="reply">
 			<a class="author" href="https://www.reddit.com/user/sofaraway731" target="_blank">sofaraway731</a>
-			<p>Web Developer here. Basically there's an imaginary container (typically called a &quot;div&quot; in html code) that holds the ad. You can tell the container to have a background image. When the ad gets removed, the background image is revealed. </p>		</li>
+			<div class="markdown"><p>Web Developer here. Basically there's an imaginary container (typically called a &quot;div&quot; in html code) that holds the ad. You can tell the container to have a background image. When the ad gets removed, the background image is revealed. </p></div>		</li>
 					</ul>
 			<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/ZannX" target="_blank">ZannX</a>
-			<p>Why not another ad?</p>		</li>
-						<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/brightest-night" target="_blank">brightest-night</a>
-			<p>BUT WHAT IF IT IS <em>ANOTHER</em> PICTURE!<br><br>I think that's his point.</p>		</li>
+			<a class="author" href="https://www.reddit.com/user/throwaway4t4" target="_blank">throwaway4t4</a>
+			<div class="markdown"><p>Then OP's question is why don't they put the ad on the wall (with &quot;the wall&quot; being something that can easily be changed in real time on the internet). </p></div>		</li>
 					<ul class="replies">
 		<li class="reply">
-			<a class="author" href="https://www.reddit.com/user/Shinhan" target="_blank">Shinhan</a>
-			<p>Because nobody pays to show a picture. They pay to show the picture X times. And if you're not using an ad-network counting the impressions gets too hard.</p>		</li>
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>When you first enter a page, an algorithm runs that allows companies to bid on serving you an ad. This takes place during a few milliseconds, and then you are served an ad from a server somewhere. These are large systems that look uniform on each webpage. Adblock knows what these elements look like and stops them from displaying. </p>
+<p>If someone were to create an ad on a webpage that was simply a static image with a link in it, it would display exactly the same as a normal image. However that image can't be tailored towards a user, cannot have a milliseconds long auction for the right to display the ad, and can ultimately not be tracked as well, therefore there is no money in it. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/randomdude45678" target="_blank">randomdude45678</a>
+			<div class="markdown"><p>How do those &quot;auctions&quot; work? The company's whose Ad wins couldn't be quick enough to actually &quot;bid&quot; against other companies.
+Do they just have predetermined rates, and the server checks which relevant ad has the hugest rate, then chooses that one?</p></div>		</li>
 					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Parkermos" target="_blank">Parkermos</a>
+			<div class="markdown"><p>Because normally, they sell that wall space to someone who delivers the picture. AdBlock prevents the picture from being delivered.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lordcheeto" target="_blank">lordcheeto</a>
+			<div class="markdown"><p>That's not why. It's just a hard sell.</p>
+<blockquote>
+<p>Hey Sprint, I know you like your ads. I have some space on my website to sell, a 300x400 ad. I get, like, 40,000,000 unique hits a month. You are interested? Great...there is a catch, though, only people who DON'T want to see ads will see these. *click* Hello? Are you still there?</p>
+</blockquote></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/yabs" target="_blank">yabs</a>
+			<div class="markdown"><p>You could if you just did it really oldschool way which is just a linked image with an affiliate number or something. Adblock doesn't block those types of ads.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/notHooptieJ" target="_blank">notHooptieJ</a>
+			<div class="markdown"><p>Adblock blocks anything you want , if there is an image, regardless of its source, you CAN use adblock to prevent it from loading.</p>
+<p>be it an ad or a picture of someones cat, Adblock will let you block the specific element.</p></div>		</li>
+					</ul>
+		</ul>
 		</ul>
 	

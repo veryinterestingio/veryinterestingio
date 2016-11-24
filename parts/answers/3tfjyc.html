@@ -1,0 +1,138 @@
+<div class="answers">
+	<div class="answer" data-handle="cx5qkds">
+		<a class="author" href="https://www.reddit.com/user/Holy_City" target="_blank">Holy_City</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There is nothing simple about it. Processors are quite possibly the most complicated thing mankind has ever invented. Learning how one works is a semester long 300 level EE class that's not a lot of fun. </p>
+<p>To understand how a processor works you have to understand what its purpose is. The processor's job is to take data from memory (RAM), storage (hard drive), user inputs (mouse/keyboard) and then perform an operation on that data and output new data to memory, storage, or output devices (screen, speakers, etc). And at the end of the day, it's mostly just moving data from one place in memory to another. </p>
+<p>The operation that the processor performs is a list of &quot;instructions&quot; called a program or algorithm. This is not high level code, every single instruction corresponds to a direct action taken by the processor circuitry. It's important to understand this, because at the instruction (or &quot;machine&quot;) level, you are forcing a bunch of switches into position directly with a sequence of high and low voltages. </p>
+<p>Now when I say &quot;a bunch of switches&quot; I really mean a couple million logic gates. Logic gates are the simplest digital circuits and implement the boolean expressions AND, OR, and NOT. We use these operations to define and build more complex ones like addition and negation, even bit shifting (move all the bits to the left or right). Once we have those operations, we have subtraction (negation then addition), and multiplication (repeated additions and shifting). We can build up and implement all these operations in a special circuit that forms the basis of the processor called the <strong>ALU</strong> or Arithmetic Logic Unit. (We also have a thing called an FPU or Floating Point Unit, the ALU works on fixed point numbers, where we need an FPU for the floating point numbers). </p>
+<p>The ALU usually has three inputs and one output. Two data inputs and an instruction input. Think of it like a calculator. It takes two inputs, does the operation you tell it, then gives you the output.</p>
+<p>So the question is, where do the data inputs come from, where does the output go, and what is telling the ALU which operation to perform? The answer is the <strong>registers</strong> and <strong>control unit.</strong> Registers are tiny chunks of memory that hold onto a single &quot;word.&quot; If you have a 32 bit processor that means the registers are 32 bits &quot;wide.&quot; If you have a 64 bit processor then the registers hold 64 bits. Most processors have 16 registers. </p>
+<p>The control unit is a bit more complex because it's the &quot;brains&quot; of the processor. It takes the instruction from the program and controls switches between the registers and the ALU. A simple code example might help you understand this:</p>
+<pre><code>ADD $r0, $r1, $r2</code></pre>
+<p>This is an assembly instruction that tells the control unit to switch the data pathway so the ALU inputs are registers 0 and 1, the ALU instruction is &quot;ADD&quot; and the ALU output is switched to register 2. </p>
+<p>So to recap, we have the ALU, registers, and control unit. The control unit handles the internal &quot;data path&quot; or the routing from the registers to the ALU, and the takes instructions from the program to send instructions to the ALU. </p>
+<p>This is all well and good, but we're still only inside the processor. We haven't talked about how the processor accesses data from the user, memory or hard drive, or how the program is treated by the control unit. </p>
+<p>This all has to do with memory. The processor generally has a special register called the &quot;stack pointer.&quot; It stores an &quot;address&quot; or location in memory where data lies (which is why it's called a &quot;pointer&quot; it &quot;points&quot; to data). It's the responsibility of the program to keep track of memory. Usually all the data the processor will ever need is in memory. </p>
+<p>It also has a special layer of memory called the &quot;cache&quot; of very fast access memory. It's like RAM but costs a couple hundred bucks a gigabyte so you're lucky to have a few megabytes in the chip. In the cache we store &quot;program&quot; memory, which is the list of instructions to be executed. It is important to understand that the program memory holds the instructions as machine code <em>in order.</em> The processor has another pointer called the &quot;program counter&quot; which points to the location in program memory where the current instruction is stored. At the end of an instruction execution the processor increments the program counter so it then accesses the next instruction in program memory. What's really cool though is that like the stack pointer, the processor has direct access to the program counter which means it can execute instructions that changes its value. This is how we do things like loops in programming, you just reset the program counter to the start of the loop. You can also skip around in program memory, which is how you do things like functional programming. And because you're using very fast, random access memory for this there's usually no performance hit. </p>
+<p>Lastly, I'm sure you're wondering how the processor knows to go to the next instruction. It's pretty simple, you use a clock. Each time the clock ticks, the program counter increments and this forces the control unit to execute the next instruction. You might be wondering what happens if it gets messed up and the control unit doesn't successfully execute the instruction in that clock cycle. It's called a &quot;hazard&quot; and it's really bad so people put lots of effort into writing code that's free of hazards and processor architectures that make them near impossible to happen. </p>
+<p>You may also be wondering, is that really it? It's just a super complicated way of moving data from one place to another and <em>maybe</em> doing some math with it? And the answer is yes, that's it. Think about it, when I'm typing this the motherboard firmware is moving the data of the last key pressed and the action of the key being pressed (two data words) into memory, and Chrome is looking for the &quot;Key is pressed&quot; word, then the processor jumps to the instruction saying &quot;load last key pressed&quot; and moves it into the &quot;display&quot; program to show &quot;these bits at these locations.&quot; The whole thing is just moving data around. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cx5pe04">
+		<a class="author" href="https://www.reddit.com/user/Brumisator" target="_blank">Brumisator</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This is a complicated topic built on very simple ideas. If you go step by step you should be able to wrap your head around it.</p>
+<p><strong>What is a semi-conductor?</strong> Starting all the way down at the atomic level. In pure silicon crystals, the atoms are neatly arranged, and all have their outer electron shell full, so it won't conduct electricity because all the electrons are nice and cosy. By adding impurities into the crystal, we make two types of semiconductors,: P and N. N  (negative) has more electrons, so it's willing to give them away and P has fewer electrons (positive) so it's glad to take in electrons.</p>
+<p>You <a href="http://www.circuitstoday.com/wp-content/uploads/2009/08/semiconductor-diode-p-n-junction.gif" target="_blank">put a chunk of N next to P</a> and you have a diode. Pass electric current (aka a flow of electrons, but in the other direction) through it in the P-N direction, and the electrons will flow freely. however if you pass current in the N-P direction, the part where the two semiconducting materials meet will become &quot;full&quot; of electrons, like natural silicon crystals, building a wall between the N and P where electrons don't want to move, and any new electrons will hit that wall and won't be able to move forward, instead they'll just keep building that cosy wall.</p>
+<p>So we can force electricity to only pass one way through a circuit, pretty cool...now what?</p>
+<p><strong>What is a transistor?</strong> By <a href="http://i.imgur.com/bdu5kOQ.png" target="_blank">sandwiching semiconductors</a> in an N-P-N or P-N-P way, and attaching electrodes (wires), we have a component that will behave differently depending where the electron flow comes from. This was first used as an amplifier (like a transistor radio), But can also be <a href="http://i.imgur.com/pAFEsit.png" target="_blank">used as a switch</a>.</p>
+<p>Depending which part you put current in, what comes out of the transistor will either be current or no current.</p>
+<p><strong>Logic circuits.</strong>
+Now that we have this little thing that can switch depending on if it has current or not, we can string a bunch of them together in various ways to make boolean logic circuits. boolean just means you either have yes or no, or, in binary, 1 or 0.</p>
+<p>Here's a <a href="https://upload.wikimedia.org/wikipedia/commons/5/58/Nand-gate-en.svg" target="_blank">NAND gate</a>, meaning <em>not and</em>, as you can see it pretty much looks like a transistor, because it is! You have two inputs, and if A has current (A=1) and B has current (B=1), it will put out a 0 (because it's a <em>not and</em>).</p>
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/XOR_from_NAND.svg/300px-XOR_from_NAND.svg.png" target="_blank">Here's a basic XOR, <em>exclusive or</em> gate</a>, meaning that A need to be 1 or B needs to be 1 for Q to be 1, but if A and B are both 0 or both 1, Q will be 0. This is just one way basic AND or NAND gates can be strung together.</p>
+<p>Now slap a few billion of these together in a CPU and you have a logic machine that can do all kinds of calculations.
+(sorry for the brief ending, I ran out of time, hope you learned something)</p>
+<p>EDIT: thanks to all the other people explaining boolean arithmetic on a higher level. Teamwork, yay!</p>
+<p>EDIT2: Fixed some links and hopefully cleared up the confusion between electron flow and current.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cx5tah0">
+		<a class="author" href="https://www.reddit.com/user/Per_Aspera_Ad_Suilla" target="_blank">Per_Aspera_Ad_Suilla</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>These answers are good, but let me try relating it to an actual 5 year old.</p>
+<p>Imagine the processor is like a type of giant choose your own adventure book. It's a gigantic book, and though you might only have 32 or 64 choices to make at the beginning of the story, each unique set of choices you make at the start results in a different ending. All the billions of possible endings are already written into the processor when it's made, so all the hard work is done for you. You just choose a beginning and it (nearly) instantly gives you the ending. </p>
+<p>Now, the way the story is actually written into the processor is like a maze with special gates. When a part of the story reaches a gate, the gate automatically decides which way that part of the story will go, sometimes adding more stories to send through the maze. What comes out of the maze is the final ending, or the result of what you asked the processor to do.</p>
+<p>In reality, each choice you make at the beginning is really an on or off electrical switch (like a light switch). So for instance, you can give the processor two numbers (say 2 and 4) and ask it to add them. This means your story choices would be 2, 4 and add. The trick here is, there is a special language/code  you have to know, that lets you write any number, letter or request with just the on/off switches. This is called binary, and the book/processor is already written to understand it. </p>
+<p>So you tell the processor 2, 4 and 'add' in its special on/off switch language and it tells you how that story ends, or in this case, the answer to your problem, 6.</p>
+<p>Edit: Rereading the question, I think and explanation of the silicon base was asked for.</p>
+<p>The book/processor is written onto a silicon chip. The silicon is special because a maze can be drawn onto it, where electricity/stories can only travel through where the maze is drawn. The special gates are created with silicon, which has a special ability to only let electricity through under certain circumstances. These circumstances are what we use to build the book and decide which story parts go where next in the maze.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cx6gy5x">
+		<a class="author" href="https://www.reddit.com/user/r00nk" target="_blank">r00nk</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Lets dive right into the magical land of data.</p>
+<p>Whats the symbol for five? 5. Whats the symbol for ten? 10. But wait, isn't that the symbol for one and zero? Right, so in our numbering system, when we get to the number ten, we write the symbol for one and zero. There is no symbol for ten, we simply recycle the ones we already have. Because of this, we call our numbering system &quot;base-ten&quot;, or &quot;decimal&quot;. </p>
+<p>&quot;Ones and zeros&quot;,&quot;true and false&quot;, and &quot;on or off&quot; are all terms you have probably heard before. What these all are referring to is a <em>different</em> kind of numbering system. For our decimal system, we write a '10' when we get to ten, but for binary, we write a '10' when we get to two. There is no symbol for two in binary, exactly how there is no symbol for ten in decimal. &quot;On&quot; or &quot;off&quot; simply refers to '1' or '0' in binary.</p>
+<p>Just to make sure that makes sense (as its super important):</p>
+<p>01 = one;</p>
+<p>10 = two;</p>
+<p>11 = three;</p>
+<p>Make sense? Cool (if not google &quot;binary&quot;).</p>
+<p>Ok, now for something completely different, but related.</p>
+<p>Theres something in computer theory called a &quot;logic gate&quot;. It's a device. It has two inputs, and one output. The only input it accepts is &quot;on&quot; or &quot;off&quot;, and the output is the same, &quot;on&quot; or &quot;off&quot;. You might see the relation to binary.</p>
+<p>A logic gates output is based on its input. An example of a logic gate is a &quot;AND&quot; gate. When both of the inputs are on, the output is on. Otherwise, the output is off. </p>
+<p>You still with me? Don't worry, the cool stuff is coming soon.</p>
+<p>Another logic gate is the &quot;NOT&quot; gate. The NOT gate has one input. If the input is off, the output is on, and vice versa. The output is <em>not</em> the input. Get it? </p>
+<p>Now, if we put the input of a NOT gate on the output of an AND gate, we get a NAND gate. Creative, I know. We nerds don't get out much.  Anyways, try to figure out what the output would be for all the four different possible combinations of the two inputs for the NAND gate.</p>
+<p><a href="http://en.wikipedia.org/wiki/NAND_gate#mediaviewer/File:NAND_ANSI_Labelled.svg" target="_blank">Anyways, heres what a NAND gate looks like drawn.</a> </p>
+<p>Now, you have probably heard of computer memory right? <a href="http://en.wikipedia.org/wiki/Flip-flop_\(electronics\)#mediaviewer/File:SR_Flip-flop_Diagram.svg" target="_blank"><strong>ta da!</strong></a></p>
+<p>It's not going to make total sense at first, but that diagram shows a memory-holder-thingamajig. Look at it for a while and try to figure out what it does. Basically it holds a &quot;bit&quot; of memory. You could say that a bit is like one digit of a binary number. You line a bunch of these in a row, and you can start holding numbers.</p>
+<p>But what do you <em>do</em> with those numbers?</p>
+<p>This is where it gets cool. You do math with those numbers. This next device is called an &quot;<a href="http://en.wikipedia.org/wiki/Adder_\(electronics\)#mediaviewer/File:Half_Adder.svg" target="_blank"><em>adder</em></a>&quot;. </p>
+<p>The gate on top is called an XOR gate, its output is on if only one of its inputs is on. If there both on or off, then the output is off. </p>
+<p>Now, make it a <a href="http://i.stack.imgur.com/0rqZz.png" target="_blank">little more complex</a> and you can add multiple bits at the same time, by linking the last ones &quot;Cout&quot; to the next ones &quot;Cin&quot;.</p>
+<p>Cool, now we have a basic calculator. How can we turn this up to 11 and make a computer?</p>
+<p>Code. </p>
+<p>Now, you know what data is, and so code is easy to explain. Its just data. Thats all it is. Really. </p>
+<p>The reason why its different then other data though, is because the CPU interprets it as <em>instructions.</em></p>
+<p>If we wanted to do math for example, and we got to decide the instruction definitions we could use a system like;</p>
+<pre><code>00000001 = *add* a number to another number;
+
+00000010 = *subtract* a number from another number;</code></pre>
+<p>With this, we can set what logic gates are being used based on data. </p>
+<p>Now, real quick, memory is organized on a computer by something called memory addresses, basically they just allow the CPU to ask for memory at a specific location.
+Generally speaking the addresses are sized by &quot;bytes&quot; which is just another word for &quot;eight bits&quot;. So if we wanted to access memory location five or whatever we could store that as '00000101'.</p>
+<p>Lets go back and add some more to our table;</p>
+<p>00000011 = move this data into some location;</p>
+<p>Cool, now we can say something like:</p>
+<p>&quot;add the number at location #5 in memory to the other number at location #7 in memory.&quot;</p>
+<p>By breaking it down into:</p>
+<pre><code>(add) (memory address #5) (memory address #7)</code></pre>
+<p>Which is really just</p>
+<pre><code>00000001 00000101 00000111</code></pre>
+<p>Pretty sweet right?</p>
+<p>But hold on, how does the CPU know where to get its instructions?</p>
+<p>On the cpu, Theres a tiny amount of memory, it does various things, such as hold something called the &quot;instruction pointer&quot;. The instruction pointer holds the address of the next instruction, and increments itself after every instruction. So basically, the cpu reads the instruction pointer, fetches the next instruction, does it, adds one to the instruction pointer, and then goes back to step one.</p>
+<p>But what happens when it runs out of instructions?</p>
+<p>Lets go back to our table. Last time, I promise:</p>
+<p>00000100 = set instruction pointer to address</p>
+<p>Basically, all this instruction does is set the instruction pointer to a number. You ever wonder what an infinite loop is on a computer? Thats what happens when an instruction pointer is set to instructions that keep telling the instruction pointer to set itself to that same set of instructions.</p>
+<p>Thats computers in a nutshell.</p>
+<p><strong>tl;dr</strong> I need to get laid.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cx5rwit">
+		<a class="author" href="https://www.reddit.com/user/idgarad" target="_blank">idgarad</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I think the OP meant how they fundamentally compute things, not how they are made.</p>
+<p>They are not complicated in how they work, their engineering is but the actual mechanism for calculation has been known since about 400 BC apparently. Doing it quickly was the problem. Since the time of the clock, mechanical computation has been known but the capabilities were held back until the advent of the transistor.</p>
+<p>So how a processor works:</p>
+<p>A processor is a collection of light switches (or gears and values in a mechanical system) that are arranged into logical gates like AND, OR, XOR, NOT, etc. If you have ever played with Minecraft with mods like RedPower you know about those cool redstone gates.</p>
+<p>Using those gates you can load information into registers. Think of them as little bowls you put marbles in representing bits.</p>
+<p>You then dump the contents of those bowls into a channel that runs the marbles into those cool little gates and you get a result.</p>
+<p>You can make a basic 'computer' with nothing more then Legos and a few marbles. Clockwork computations have been around since the 12th century. The big advancement, attributed to Babbage was the idea of a programmable calculating device. (See also Turing Complete Systems) but that is another discussion.</p>
+<p>So back to the marbles. Depending on what marbles you pick depend on the route the remaining marbles take.</p>
+<p>If the first marble is red, turn left. If the first marble is blue, turn right. Swallow that marble and pass the rest on.</p>
+<p>Now if we go left we take the marbles in the first bowl say (1 for red, and 0 for blue) 101101 and run them to a XOR gate. The next bowl (register) also goes 101001. At this point we now have 01101 and 01001 at the XOR gate. As the marbles pass the XOR gate the output becomes 00100 and those marbles roll into the third bowl.</p>
+<p>This is basic computation. Turing, Babbage, Von Neuwmann, and others built modern processing to give us the ability to design complex routines that allow us to route those marbles around to a bunch of different gates, run some gates and routes concurrently, and even more complex stuff, but at the very core, it is very basic fundamentals. A few specialized components like addition, subtraction, multiplication, and division are collections of gates. More complex systems are usually built up from fundamental gates grouped and working together. The deepest principle is Boolean Logic or Binary Logic. Flipping light switches more or less.</p>
+<p>The cool thing is we do this every day as part of a processor already. When you go to the grocery store and there are two lanes for groceries. The cashier rings up your stuff and it goes to one lane but if there is a special code (e.g. that bar that separates your stuff from the next person in line) then a switch is thrown and the remaining stuff gets processed down a different path. </p>
+<p>By chaining tens of millions of those fundamental gates you can do complex calculations but again, the fundamentals are so basic you can build the basic parts on your own. It's shrinking them down and linking them together that is the hard part.</p>
+<p>Any basic book on Logic Circuits, a basic breadboard, and a electronics kits &lt;$100 bucks and you can build nearly all the fundamental circuits used in a modern processor with a few exceptions.</p>
+<p>For fun look up the 8086 processor (which has been recreated in minecraft on several occasions) as a good look at how modern processors work.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

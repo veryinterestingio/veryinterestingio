@@ -1,0 +1,91 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/seanalltogether" target="_blank">seanalltogether</a>
+			<div class="markdown"><p>Here's a very specific example of what you just described. I develop an app called Space Gremlin that scans your hard drive and visualizes how much space each file takes up. </p>
+<p>If you wanted to scan your user directory, there's no way for me to know ahead of time how many files are in there. What I do is a light scan first followed by a deep scan. The light scan might tell me that your directory contains 40 first and second level folders, but I still have no idea how many files are in each. </p>
+<p>So when the deep scan proceeds I show a loading bar that reflects how many first and second folders I've scanned through so far. It's possible the first 39 folders have no files at all and the lat folder has 100 GB of data and the loading bar will just jump to 98% and sit there for awhile. Luckily this isn't very common.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/immibis" target="_blank">immibis</a>
+			<div class="markdown"><p>Display the current path as well.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CreepyPsychoStalker" target="_blank">CreepyPsychoStalker</a>
+			<div class="markdown"><p>I'd know when it hit my video folder.  My work documents are all separated into hundreds of neat folders, but my TV shows and movies are all in a folder together.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Shoot_Heroin" target="_blank">Shoot_Heroin</a>
+			<div class="markdown"><p>Where can I try out this application? What OS is it for? Sounds like something cool!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/seanalltogether" target="_blank">seanalltogether</a>
+			<div class="markdown"><p>It's a mac app available at <a href="http://www.spacegremlinapp.com/" target="_blank">http://www.spacegremlinapp.com/</a></p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Blurgas" target="_blank">Blurgas</a>
+			<div class="markdown"><p>I'd rather have a jerking loading bar that just some spinning circle or other animation.<br />
+I've also seen a few loading screens where it also lists what is being loaded at that moment, even if they zip by too fast to read</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>As a dev myself, you'll find that very useful the day it freezes :) Even if it's just telling tech support where it stalled.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Blurgas" target="_blank">Blurgas</a>
+			<div class="markdown"><p>That's pretty much exactly why I prefer a loading bar and maybe the listings, because I've had games lock up in various ways, but the loading screen just keeps on chugging, leaving no sign it has borked</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MeepleTugger" target="_blank">MeepleTugger</a>
+			<div class="markdown"><p>The Age of Wonders 2 map generator had funny ones, like &quot;Dropping Frostlings in the desert&quot; and &quot;Throwing out perfectly good map and starting over&quot;.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tyyx0942" target="_blank">tyyx0942</a>
+			<div class="markdown"><p>The first time I saw something like this was with The Sims (1). I loved it and still enjoy it greatly if games do this.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Blurgas" target="_blank">Blurgas</a>
+			<div class="markdown"><p>It's little touches like that that make watching a loading screen less tedious</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gormlesser" target="_blank">gormlesser</a>
+			<div class="markdown"><p>Reticulating splines or GTFO. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/guyfox1990" target="_blank">guyfox1990</a>
+			<div class="markdown"><p>And this is the better way to do it. A loading screen .gif going to run whether or not anything is <em>actually</em> happening, which is a pain for anyone computer literate.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ddfghffyjgggh" target="_blank">Ddfghffyjgggh</a>
+			<div class="markdown"><p>Great answer</p>
+<p>Hijack time: Devs, please put some info so I know something is happening. If something is spinning ok the whole computer hasn't frozen but what if that single thread that it's waiting for is frozen. Like iMessage with a large file. The bar will load 90% and then just stop. I don't know if it's sending the file slowly or not sending at all. Data rates would be great. So at least I know something is happening that should be. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Chirimorin" target="_blank">Chirimorin</a>
+			<div class="markdown"><p>As a developer, this is not easy. </p>
+<p>You need to understand that threads talking to each other isn't trivial. If a thread is doing something (even if it's waiting), it can't do anything else. That's the whole reason threads exist, so a single program can do multiple things at once.</p>
+<p>So when a thread freezes, to any other thread it's the same as when the thread is busy. There's no way to see or check the difference because the result is the same (no signals from that thread at all).<br />
+If the thread is frozen, information like loading progress or data rates will not be updated either. So adding that wouldn't fix your problem (it will not jump to 0). </p>
+<p>A spinning loading indicator should only ever be used when no indication of progress can be given or when the loading takes a short time.<br />
+For example loading data from a server. At first, you don't know how much data you are going to get back. That information becomes available right before the actual data is sent. And then the data is often small enough that it would jump a progress bar from 0% to 100% instantly. </p>
+<p>Edit: added a reason for spinny loading indicators</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><blockquote>
+<p>A spinning loading indicator should only ever be used when no indication of progress can be given.
+For example loading data from a server. At first, you don't know how much data you are going to get back. That information becomes available right before the actual data is sent. And then the data is often small enough that it would jump a progress bar from 0% to 100% instantly.</p>
+</blockquote>
+<p>If you're talking about a business application or normal consumer software, I completely agree, but for games I feel like seeing the assets being loaded (which is often what is going on) can pull me out of the experience. I just want a cool transition between screens that keeps me in the feeling of the game. Of course if there are technical problems, I should be able to look at a log file or turn on some debugging option to see where the game is getting hung up, but that should be extremely rare and only for troubleshooting.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/takemo" target="_blank">takemo</a>
+			<div class="markdown"><p>I think the point was that a progress bar not making progress on an otherwise full black screen is not easily distinguishable from a frozen computer.</p>
+<p>While a spinning wheel may not be appropriate, some indication of activity can be helpful. Something like this maybe...</p>
+<p><a href="https://inspirationfeeed.files.wordpress.com/2013/04/progress-bar1.gif" target="_blank">https://inspirationfeeed.files.wordpress.com/2013/04/progress-bar1.gif</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sophiiii" target="_blank">sophiiii</a>
+			<div class="markdown"><p>/u/Chirimorin has it exactly right but to but to add onto what he's saying, as a professional developer (let's say Apple because /u/Ddfghffyjgggh mentioned imessage) no one is really going to care how 'neat' your loading bar is. Generally there are more important things to work on (at least from the eyes of the business). </p>
+<p>You can definitely split up the loading bar into different processes with detailed messaging and pretty graphs but that takes time and you'll likely have difficulty convincing management that a loading bar like the aforementioned one is worth the time and effort. If you are allocated time to work on such a loading bar you'll run into similar problems as described by /u/Chirimorin</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mattsoave" target="_blank">mattsoave</a>
+			<div class="markdown"><p>Nah man, just put things like &quot;reticulating splines.&quot;</p></div>		</li>
+					</ul>
+		</ul>
+	
