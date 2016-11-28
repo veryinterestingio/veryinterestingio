@@ -1,0 +1,88 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/paulHarkonen" target="_blank">paulHarkonen</a>
+			<div class="markdown"><p>Similar systems are used in numerous industries to overlay digital information on analog signals.  A simple consumer example is adapters to convert Ethernet signals and overlay them on the electrical circuits in your house.  Every wall socket becomes a wired access point.  The application to radio is pretty cool though.</p>
+<p>*Edit: since everyone is fixated on the Ethernet adapter, the same technology/concept is used industrially with sensors and transmitters.  A ton of industrial devices still use 4-20 mA.  Newer devices can overlay diagnostic information in a digital signal as well.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gorkish" target="_blank">gorkish</a>
+			<div class="markdown"><p>Oh god please don't use these things. They poop all over the RF spectrum from DC to several hundred MHz. Classic case of &quot;just because you can doesn't mean you should&quot; engineering. </p>
+<p>Big Edit: I think a lot of people are confusing my advice as some kind of claim that these ethernet-over-powerline devices either don't work or that they will cause issues for other devices plugged in around your home. They most certainly work; they give good network speeds, and they are pretty reliable. They generally don't cause problems with other devices in your home unless those devices are radio receivers The problem is that they essentially exploit a loophole in FCC Part 15 to get that job done, and that loophole causes many problems for other authorized services -- everything from automatic clocks that set their time from WWVB, shortwave radio, amateur radio, AM radio, FM radio, etc. If you dont think that it's any big deal that everytime you want to stream Netflix through your Xbox you might blow out AM radio reception across a 3 mile radius then I guess we are going to have to agree to have a difference of opinion, but there are certainly cases where this sort of thing is happening.</p>
+<p>Part 15 is the FCC rule set that governs both unintentional RF emissions and intentional RF emissions in certain bands such as the various ISM bands used for consumer WiFi and other such services. For intentional RF emissions like WiFi there are lots of constraints to protect other radio services. One important constraint is that the antenna system gets certified as part of the device itself as it has a large contribution to the effective radiated power.</p>
+<p>HomePNA devices by contrast operate under the rules and limits of 'unintentional emissions' (even though in this case the emissions are intentional they are still allowed to be certified under these rules.) These are a balancing act that are really designed to keep things like switching power supplies or motor controllers or whatever from emitting RF that would interfere with licensed services. But unlike most devices that might have a few spurious emissions to control, HomePNA devices purposely generate thousands of modulated carriers across a huge bandwidth at the maximum power level allowed and then couple them straight onto the mains wiring. </p>
+<p>See any problems yet? Depending on the particular configuration of the mains wiring, this antenna system has wildly differing performance characteristics. In some cases the actual radiated emissions will be strong enough to overwhelm licensed services across a fairly large area.</p>
+<p>So what is better? Well, first and foremost there is absolutely no substitute for dedicated cabling. There are all kinds of neat tricks to get cabling to where it is needed -- fishing flat cable under carpet; underneath baseboards, etc. Go with that if it's at all possible. If not, MoCA adapters are another good retrofit since the RF is contained in a closed system. Finally, WiFi bridges can be made to be a lot more robust than most people think if the network is engineered and installed properly. There is just no magic bullet unfortunately.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mastjaso" target="_blank">mastjaso</a>
+			<div class="markdown"><p>Yeah, but what's the issue with that? Most power supplies for consumer goods aren't going to notice a little bit of noise, and everyone's cell / laptop / tv / everything's switched power supplies are already injecting a ton of noise and harmonics all over your wiring anyways. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/myne" target="_blank">myne</a>
+			<div class="markdown"><p>It's basically DSL though. </p>
+<p>What makes it so much worse than DSL?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Nullius_In_Verba_" target="_blank">Nullius_In_Verba_</a>
+			<div class="markdown"><p>Any reason why I should care if these do that? Does that significantly impair my wifi, radio, or cellphone in any way?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mikekoot111" target="_blank">mikekoot111</a>
+			<div class="markdown"><p>That's not how 4-20 works. 4-20 is the range. A sensor senses, the signal is converted in a transmitter to a 4-20 signal, which is just a small current reading in between 4 and 20ma. A plc card that is programmed with the same range then reads the analog signal or current. Can also use 0-10vdc or 0-20ma similarly. Then you program what you want the signal to mean by converting or scaling or whatever you want. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/paulHarkonen" target="_blank">paulHarkonen</a>
+			<div class="markdown"><p>That's how a 4-20 sensor works, absolutely correct.  It is an analogue signal that you can establish a range and use your PLC to interpret it.  However, you can also overlay digital information on the analogue signal to provide additional diagnostics beyond just the 4-20 from the sensor.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gordonjcp" target="_blank">Gordonjcp</a>
+			<div class="markdown"><p>The whole point of 4-20mA is that you can detect an open circuit because there would be 0mA.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DardaniaIE" target="_blank">DardaniaIE</a>
+			<div class="markdown"><p>HART right? Always noticed it on the rosemount cut sheets but never actually saw it in use...how does it work in practice?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/paulHarkonen" target="_blank">paulHarkonen</a>
+			<div class="markdown"><p>HART is one, there are some others.  In practice it's mostly useful for technicians to do calibrations and troubleshooting, but I'm sure we don't use it optimally.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rebel1241" target="_blank">Rebel1241</a>
+			<div class="markdown"><p>We use Rosemount HART instruments in the paper mill I work at. With HART devices you can tag, calibrate ranges, and check device alarms with the information that rides on top of the 4-20mA signal. Like the other guy said HART is a maintenance tool </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Airuknight" target="_blank">Airuknight</a>
+			<div class="markdown"><p>Hart and other simmilar communications &quot;mount&quot; digital signals in analog signals. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JohnLocke815" target="_blank">JohnLocke815</a>
+			<div class="markdown"><p>Follow up question, why can my car stereo receive the audio and name of the mp3 playing on my phone via bluetooth, but not the album art? It works via USB, but not bluetooth. Isnt it all just &quot;data&quot;</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nerfherder111" target="_blank">nerfherder111</a>
+			<div class="markdown"><p>My car shows album art from my phone through Bluetooth as well as USB, though the whole info display is a little buggy sometimes. Could just be a quirk with the software in your particular car or phone. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ThickAsABrickJT" target="_blank">ThickAsABrickJT</a>
+			<div class="markdown"><p>When using USB, the car radio has to read the audio files directly.  There, it is responsible for picking the album art out from the files.  If the album art is embedded in the mp3 file itself, this usually works okay, but there are many other ways album art gets stored on phones, including being stored in a hidden file separate from the mp3s or being looked up from a server as needed.  Generally, car radios are not programmed to handle these other cases because they would require outside information to work.</p>
+<p>When connected via Bluetooth, the phone sends a stream of audio data, plus some commands to set the album art and text.  In this case, the phone can pass along the hidden file or looked-up image directly from the player app.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Demache" target="_blank">Demache</a>
+			<div class="markdown"><p>This is actually sort of a technical answer.</p>
+<p>In the case of Bluetooth, there is a very standard protocol for audio, called A2DP (aka Bluetooth Audio) along with AVRCP for the phone and car stereo to &quot;communicate&quot; with each other. A2DP is what the actual audio goes through and tells the phone what codecs the stereo supports for the phone to re-encode them into (since the actual audio files don't go to the radio over Bluetooth). AVRCP is what is used for the stereo controls and artist/title info.</p>
+<p>The latest version of AVRCP introduced support for album art. However, it requires that BOTH the phone AND stereo support it. By extension, the app and OS on the phone needs to support it too. 1.6 wasn't finalized until late 2014. So its very likely unless you own a very new car/stereo that is high end as well as a new phone this won't work. </p>
+<p>I'm not sure if the latest versions of Android and iOS support this either. From what it looks like, neither do. But there isn't a whole lot of info on it so they might.</p>
+<p>This of course barring any proprietary methods too.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SexWithTwins" target="_blank">SexWithTwins</a>
+			<div class="markdown"><p>Since you're the top answer, maybe you could explain something I've wondered about for a long time related to the question.  A friend of mine used to have a top of the range BMW, and the radio had a mode where you could be alerted to weather and traffic conditions in the area you happened to be driving.  It sounded like any other FM radio station, with slick music and professional presenters, but it was BMW's own service, which wasn't available through a regular FM radio receiver.  Where was it coming from, and how did it work over FM if the station was <em>invisible</em> to a normal FM receiver?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BenderRodriquez" target="_blank">BenderRodriquez</a>
+			<div class="markdown"><p>It is part of the same system. Radio stations send out a special code whenever they are doing a traffic alert, and if you have set your radio to search for such alerts it will instantly switch channel to any ongoing traffic alert and then switch back. It is fairly common in Europe and most car radios support this.</p>
+<p>EDIT: Since I guess this was in the US where they don't use the RDS-alerts, it could have been some satellite radio alert service from BMW too.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/whitcwa" target="_blank">whitcwa</a>
+			<div class="markdown"><p>This is a guess, but they may have two tuners. One is dedicated to the traffic channel. </p>
+<p>Also, BMW may use satellite audio or may have an <a href="https://en.wikipedia.org/wiki/Subsidiary_communications_authority" target="_blank">SCA</a> subcarrier on an FM station. SCA is used for background music (Muzak), and other purposes.  </p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
