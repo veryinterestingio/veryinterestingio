@@ -1,0 +1,61 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/captionquirk" target="_blank">captionquirk</a>
+			<div class="markdown"><p>Thanks. But a bigger pressing questions is why does searching for a file by name on your computer take so long? Surely, that's optimized as well. But it can take orders of magnitudes longer to search your hard drive than to search the web, which obviously has orders of magnitude more data to sort through even after optimization, no?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/from_future_import_" target="_blank">from_future_import_</a>
+			<div class="markdown"><p>It's a question of indexing. Using indexes means that finding matching data takes way less processing. So Google I presume uses a bunch of indexing techniques to search for text instantly. If Google wasn't using indexes it would probably take weeks or so to do a search through the data. </p>
+<p>On a database, if you don't have an index on a column, it takes a scan of all entries in a table to find the matches to that column. If you have a large amount of data, it takes a long time, depending on how fast the hard drive can read through the data. If however, the data is indexed, it will find exact matches instantly, no matter the size of the data. The disadvantage though is that index maintenance eats up resources (both disk and CPU).</p>
+<p>Also, your computer can in fact index local files: <a href="https://en.wikipedia.org/wiki/Windows_Search" target="_blank">https://en.wikipedia.org/wiki/Windows_Search</a></p>
+<p>And your searches can be near instant on indexed locations. Again, it does eat up CPU and disk to maintain the index (there have been a lot of complaints about Windows Vista and later and the initial indexing it has to do).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/oonniioonn" target="_blank">oonniioonn</a>
+			<div class="markdown"><blockquote>
+<p>If Google wasn't using indexes it would probably take weeks or so to do a search through the data.</p>
+</blockquote>
+<p>If they weren't using indexes it would take decades if not more. It's easy to underestimate just how much data Google has to search through. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cptskippy" target="_blank">cptskippy</a>
+			<div class="markdown"><p>Let's also remember that their search servers have hundreds of gigabytes of RAM to keep indexes in memory and they use a technique called MapReduce to spread the index across thousands of servers who all perform your search simultaneously.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cptskippy" target="_blank">cptskippy</a>
+			<div class="markdown"><p>Let's also remember that their search servers have hundreds of gigabytes of RAM to keep indexes in memory and they use a technique called MapReduce to spread the index across thousands of servers who all perform your search simultaneously.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Highflyingbirds" target="_blank">Highflyingbirds</a>
+			<div class="markdown"><p>It's a little bit inferred by OP's responds.  Your computer's operating system isn't constantly compiling data used for locating files on your system with the search program.  It would be an unnecessary use of resources. Searching for files on your computer involves actually parsing large amounts of data held by the OS which is a time consuming process even for modern systems.         </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/oonniioonn" target="_blank">oonniioonn</a>
+			<div class="markdown"><p>Except if you have the right software, that is exactly what it does. For example, Apple's Spotlight is a pre-indexed search engine inside OSX and iOS. Yes, that means any file you add to the computer has to be indexed but since a lot of the other technologies are built on being able to find shit with Spotlight, that extra bit of effort is worth the cost. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nickstroller" target="_blank">nickstroller</a>
+			<div class="markdown"><p>Nice work - thanks!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/grassvoter" target="_blank">grassvoter</a>
+			<div class="markdown"><p>How does Google find a sentence or string of words in quotations if it had already filtered out some of the words on a page? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cptskippy" target="_blank">cptskippy</a>
+			<div class="markdown"><p>Google retains a cached copy of everything it crawls. When you provide a quoted sentence, it filter the 8 billion pages it has cached down to just those that contain the words of the quoted text. Additionally they index the distance between terms on a page so they can also filter the results to just page where the terms exist in close proximity. Only after they reduce number of pages down do they then search for the exact quoted text.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/grassvoter" target="_blank">grassvoter</a>
+			<div class="markdown"><p>Wow. Where'd you learn that? </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/yuje" target="_blank">yuje</a>
+			<div class="markdown"><p>In the simplest techniques, phrases of significance are indexed as if they were a single word. Otherwise, after getting back a bunch of indexed search results, some processing is done to determine the order of the search results. There could be some checking then to find results with exact quotes and then return those first (and also update the the search term as a future index). Since the results are a fairly small set of data, it's much faster to process and search.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/grassvoter" target="_blank">grassvoter</a>
+			<div class="markdown"><p>I've tried searching all types of combinations in quotations from the same paragraphs on a web page. They all show up in the search. </p>
+<p>Try it. </p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

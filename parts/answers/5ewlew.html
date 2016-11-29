@@ -1,0 +1,59 @@
+<div class="answers">
+	<div class="answer" data-handle="dag4qno">
+		<a class="author" href="https://www.reddit.com/user/yuje" target="_blank">yuje</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Google doesn't search the entire Internet when you make a search request. </p>
+<p>It has those results already pre-searched, using web crawlers, which are programs that capture all the text on a page, then follow all links on the page to then do the same thing on the next page. These programs filter out unimportant words, then save a record of the words ranked by uniqueness and frequency. For example, if you're searching for ornithologists, and that word appears a lot, then it's likely to be a useful search results. More advanced algorithms filter out spam and do different types of ranking. In the early days, it would take Google weeks to crawl the whole Internet, but nowadays, Google has tons of crawlers running off of countless computers in their data centers  (more on that later) doing the same job, and results get updated in a few hours.</p>
+<p>In Google search, the search results are organized and indexed in a fashion as to allow quick lookup based on keywords to links. Google basically designed a database system Bigtable (<a href="https://en.m.wikipedia.org/wiki/Bigtable" target="_blank">https://en.m.wikipedia.org/wiki/Bigtable</a>), built on top of a custom file system GFS (<a href="https://en.m.wikipedia.org/wiki/Google_File_System" target="_blank">https://en.m.wikipedia.org/wiki/Google_File_System</a>) that stores the data across tens of thousands of computers and allows quick lookup. </p>
+<p>Each data center is basically a warehouse with rack upon rack of very barebone computers stripped down to only the essentials parts and packed as tightly as possible to get the most computer in the smallest area possible. A manager software called Borg (<a href="http://research.google.com/pubs/pub43438.html" target="_blank">http://research.google.com/pubs/pub43438.html</a>) manages all these computers automatically, and GFS and Bigtable, make it possible to use these computers to lookup and store data.</p>
+<p>At the sizes of the indexes used at Google, the index could never possibly fit on a single computer, so the data is spread out across all computers, and its the GFS's job to figure out in which computer the data is stored. As all of this needs to be incredibly fast in order to make your results, the entire web index is stored in RAM instead of hard drives or solid state drives in order to make access as fast as possible. </p>
+<p>There are a lot of optimizations and complex technologies involved, but that's the basic summary of how the search engine works.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dafocng">
+		<a class="author" href="https://www.reddit.com/user/Snewzie" target="_blank">Snewzie</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Google doesn't search the internet when you run a google search, they search their highly optimized indexes from their own database. The database is formed by google &quot;spiders&quot; that crawl &quot;the web&quot;.</p>
+<p>If you wanted, you could build a highly optimize database of your hard drive's contents that you could run searches against. But that would take up a lot of your computer's storage space, processor time, and isn't the best use of those resources.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dag2e61">
+		<a class="author" href="https://www.reddit.com/user/erisod" target="_blank">erisod</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Consider a library with shelves and books, etc .. and those drawers full of index cards.  Those index cards can very quickly tell you where books about aardvarks or dogs (or whatever) are on the shelves.   So say you are looking for books abouts dogs AND aardvarks?  You go to those index cards and pull out the list of books about aardvarks and also about dogs and with that reasonably small set find the books which are about both.   Then you take that short list and go get the books.</p>
+<p>This is largely how search engines work with all the words on a web page being indexed like topics in a book.  There is also ranking (ordering those results) but that's a different topic.</p>
+<p>You can use the same process on your computer (as others have mentioned) but Google does this with huge scale.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dag00b1">
+		<a class="author" href="https://www.reddit.com/user/BigMable" target="_blank">BigMable</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>it has much more to do with the way the data is presented than the speed of the computers.  the ELI5 analogy is that Google is looking for a word in the index of a book, whereas your computer is reading the whole book to find that word.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dag07k8">
+		<a class="author" href="https://www.reddit.com/user/trex0610" target="_blank">trex0610</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>To answer this question, you need to understand how a search engine works. As mentioned by other users, Google doesnt do this purely realtime. In fact, it build up its indexing databases &quot;offline&quot;. It then looks up your search keyword against the indexed databases and return the results.</p>
+<p>Search engine requires:</p>
+<ol>
+<li>Crawler &amp; Spider (to read web content and follow links in web sites)</li>
+<li>Indexing key words ( Building Inverted Index)</li>
+<li>Ranking algorithm (in google case, Page Rank)</li>
+</ol>
+<p>The above indexing steps require a lot of processing time due to the scope of internet, Imagine you keep follow links on each website, and for each link you repeat to follow its links and....its endless.</p>
+<p>This probably oversimplifies google search engine as it has been evolved through out the years, but the basic concepts still apply.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
