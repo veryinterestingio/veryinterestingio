@@ -1,0 +1,68 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DeltTerry" target="_blank">DeltTerry</a>
+			<div class="markdown"><p>I'm a software developer. Clasically trained C++, now in C# blah blah blah. I don't know a damn thing about how data transportation works, but I understand a lot of the technicals of computing. Any good resources to learn more about this?</p>
+<p>For example- I don't really understand the term 'jitter'. Buffer, latency, bloating, bursty- I get these terms. But the wikipedia page for Jitter is just filled with more jargon I don't understand.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/anttirt" target="_blank">anttirt</a>
+			<div class="markdown"><p>Short-term variability in latency.</p>
+<p>If latency is unpredictable in the short term, it's difficult to time resends optimally and you may either send many redundant packets because you thought a packet was lost when it wasn't, or wait longer to initiate a resend than is actually necessary which causes additional delay.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/etinaz" target="_blank">etinaz</a>
+			<div class="markdown"><p>latency = average delay</p>
+<p>jitter = unpredictability of delay</p>
+<p>You have both latency and jitter without any lost packets, neither of them imply lost packets. However if you do lose packets, that's when you get your data with significantly longer delay.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kindkitsune" target="_blank">kindkitsune</a>
+			<div class="markdown"><p>So jitter is to latency what jerk is to acceleration? </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/x-8-6" target="_blank">x-8-6</a>
+			<div class="markdown"><p>The most comprehensive books on this are TCP/IP Illustrated, Volume 1, 2 and 3. The bibles for white/black hat computing (hacking, networking, security etc.)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/forcedfor" target="_blank">forcedfor</a>
+			<div class="markdown"><p>Are the books readable for a hobby IT guy?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+			<div class="markdown"><p>In computer networks, jitter is the variability over time in (packet, typically) latency. Some people regard it as the rate of change of latency, others as statistical dispersion. Take your pick. :-)</p>
+<p>Stanford offers a good online Computer Networking class, and so do CMU and Berkeley. All very good courses. I'll see if I can come up with a list of good books, too.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hawkwings" target="_blank">hawkwings</a>
+			<div class="markdown"><p>I have the problem you mention for evening issues.  Not only does the internet slow down, but packets are lost so that web pages don't load correctly.  Speed test websites don't load correctly.  Ping works just fine.</p>
+<p>Is there a good way to graph when my connection goes bad?  I could setup a loop with ping, but ping works during the bad periods, so that won't tell me anything.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Zunger" target="_blank">Zunger</a>
+			<div class="markdown"><p>If packets are being lost and you know where then ping shouldn't work, it may just be returning 0 packets. If it's not, how are you determining you are dropping packets? The easiest first step would be to do &quot;tracert destination.ip&quot;. This will help confirm where the issue actually is. The issue could be with your LAN, your ISP, a peer, cdn, etc. You would want to check it and save the results. Ideally you would want it over multiple days to see if the issue is always at the same place, if it changes, or if the route changes but the same destination is involved and dropping packets. If you know any friends / neighbors on the same ISP (same city at minimum) then it would be useful for anyone trying to troubleshoot to compare.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/failburt" target="_blank">failburt</a>
+			<div class="markdown"><p>And at the end of all this troubleshooting after determining exactly where the problem is, you won't be able to get anyone on the phone who understands even half of what you're talking about for at least two hours while you try to escalate to tier 3 support :(</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fhajad" target="_blank">Fhajad</a>
+			<div class="markdown"><blockquote>
+<p>This will help confirm where the issue actually is. The issue could be with your LAN, your ISP, a peer, cdn, etc.</p>
+</blockquote>
+<p>Only if the devices allow response as well. A lot of networks don't support replies on some LAN aspects on the ISP transport side.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/admiraljustin" target="_blank">admiraljustin</a>
+			<div class="markdown"><p>Have you considered a tool such as pathping?</p>
+<p>It's something of a combination of tracert/ping, identifying each jump and pinging that jump, can sometimes (rarely, like anything useful really is :P) help you identify where the problem is.  If a router is suddenly wandering off and losing packets, etc.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mcniffty" target="_blank">mcniffty</a>
+			<div class="markdown"><p>It's called MRT (Matt's TraceRoute).  If there is a link problem or a specific path that appears to be having problem this tool will usually show it.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tolos" target="_blank">tolos</a>
+			<div class="markdown"><p>I recently learned (from lwn &quot;Making WiFi fast&quot; By Jonathan Corbet
+November 8, 2016) that bufferbloat is being actively worked on. e.g. <a href="https://www.bufferbloat.net/projects/bloat/news/" target="_blank">https://www.bufferbloat.net/projects/bloat/news/</a>  </p></div>		</li>
+					</ul>
+	

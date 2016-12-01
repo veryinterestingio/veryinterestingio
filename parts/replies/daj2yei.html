@@ -1,0 +1,50 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/WarlonX" target="_blank">WarlonX</a>
+			<div class="markdown"><p>That's why packet loss, even at a low percentage, is so devastating on a network.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/onlytoolisahammer" target="_blank">onlytoolisahammer</a>
+			<div class="markdown"><p>There is the concept of early packet discard, where routers will intentionally randomly discard some packets as a given output queue approaches capacity.  These discards will force some of the TCP sessions to ratchet down in advance of actual congestion.  For example, at 90% capacity, an output queue may start discarding, say, 1% of all packets, increasing the odds of discard as capacity is used.  The idea is that it's better to do this than wait until the queue hits 100% where suddenly <em>every</em> TCP stream has to do it at the same time, causing a spike in traffic at the worst possible time.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+			<div class="markdown"><p>RED (random early discard) is a pretty old idea which is largely out-phased - clarification: RED is out-lived, the idea persists in later algorithms. <a href="https://en.wikipedia.org/wiki/Blue_(queue_management_algorithm\)" target="_blank">BLUE</a> performed similarly and GREEN by <a href="https://pdfs.semanticscholar.org/4d85/9abfd620df0f17af48dd1df3c19a93871e1c.pdf" target="_blank">Wydrowski &amp; Zukerman</a> <del>did</del> does a lot better with better link utilisation. </p>
+<p>There's also PURPLE, which did even better in simulations [Pletka 2003], but I don't know of any real world case studies.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OnlySleepsWithAFanOn" target="_blank">OnlySleepsWithAFanOn</a>
+			<div class="markdown"><p>Noob lurker here, is there any way to test and prevent this?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/guy99877" target="_blank">guy99877</a>
+			<div class="markdown"><p>How's &quot;ratcheting down&quot; every TCP stream at once causing a spike in traffic?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/extractiontab" target="_blank">extractiontab</a>
+			<div class="markdown"><p>Another major reason why packet loss is so devastating is because buffer bloat interferes with the TCP congestion control algorithm.   The algorithm was not designed to run on switch backplanes with the massive input queues that we see today.  From the wikipedia article on buffer bloat:</p>
+<blockquote>
+<p>Packets are queued within a network buffer before being transmitted; in problematic situations, packets are dropped only if the buffer is full. On older routers, buffers were fairly small so they filled quickly and therefore packets began to drop shortly after the link became saturated, so the TCP protocol could adjust and the issue would not become apparent. On newer routers, buffers have become large enough to hold several megabytes of data, which translates to time amounts in seconds required for emptying the buffers. This causes the TCP algorithm that shares bandwidth on a link to react very slowly as its behavior depends on actually having packets dropped when the transmission channel becomes saturated.</p>
+</blockquote></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Deathcrow" target="_blank">Deathcrow</a>
+			<div class="markdown"><p>Detecting congestion earlier than at packet loss is theoretically a much better solution. Sadly delay aware congestion mechanisms are usually suppressed by others - and even if they have a compatibility mode at all you're probably using it all of the time on a general purpose network... So why use them at all.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SpineEyE" target="_blank">SpineEyE</a>
+			<div class="markdown"><p>One reason for the many packet losses are intermediate routers in the network (<a href="https://en.wikipedia.org/wiki/Middlebox" target="_blank">middleboxes</a>). Sometimes they have too large buffers which is a weak spot of the currently used TCP implementations. An engineering team from Google contributed a new version of TCP that should reduce the data rate fluctuation caused by too large buffers and lags in packet transmission. Of course that's not the only source of congestion/packet loss but is hoped to have a big impact to overall internet stability. The patch should be in Linux Kernel 4.9</p>
+<p>Here <a href="http://blog.cerowrt.org/flent/bbr/reno_cubic_bbr.png" target="_blank">a graph</a> that shows how fluctuation is reduced compared to other TCP implementations.</p>
+<p><a href="https://lwn.net/Articles/701165/" target="_blank">More details on the BBR algorithm</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Saucermote" target="_blank">Saucermote</a>
+			<div class="markdown"><p>This is becoming less an issue, but <a href="https://en.wikipedia.org/wiki/Quality_of_service" target="_blank">Quality of Service (QoS)</a> filters can cause issues on low quality or over burdened network equipment.   In theory QoS is a good thing, as you don't want your phone service (that also uses your internet) to go down just because you are saturating your network connection, but many consumer grade devices weren't designed with tons of connections in mind.   If you have several people on your home network running bit torrent clients for example, it can quickly overwhelm low end equipment (not enough ram, speed, or cooling), causing packet loss or overheating and freezing as the software just can't keep up with the demands of what the users are throwing at it.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CaptainOuzo" target="_blank">CaptainOuzo</a>
+			<div class="markdown"><p>Yeah, I had an issue with QoS on a piece of crap router that my ISP made me used. Made watching 1080p content a real dice throw. At first I just turned off QoS and dealt with it. But then when I started playing multiplayer games I noticed that although my wifi connection remained active at all times, my actual connection to the internet would drop out for a few seconds once every 10-20 minutes.</p>
+<p>That was when I looked my router up online, some rather old Cisco model, to find that it was one of the worst reviewed routers for sale anywhere.</p>
+<p>To give you some idea: it polled the NIST (time.gov) internet time every few seconds, and wouldn't let you change the polling rate. It refused to save static IPs (firmware bug), so if you had a device and wanted to assign it a static IP you had to do it the &quot;wrong&quot; way and turn DHCP off on the client.</p>
+<p>That was the day I discovered that if I wanted to play Rust on that POS router, I had to fully disable the firewall, because the port forwarding didn't work quite right either.</p>
+<p>Then I tried bridging it, but my ISP had custom firmware that prevented me from enabling that option. I couldn't be assed to call them and have them do it for me.</p>
+<p>ISPs can make really dumb choices of hardware. They probably got some sweet deal with Cisco and never bother to actually check of the hardware was shite or not.</p></div>		</li>
+					</ul>
+		</ul>
+	
