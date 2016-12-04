@@ -1,0 +1,36 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tolly-Tolly" target="_blank">Tolly-Tolly</a>
+			<div class="markdown"><p>Lower resolution content can still look better on a 4k - upscaling, sharpening algorithms.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lvanDrago" target="_blank">lvanDrago</a>
+			<div class="markdown"><p>It depends on the quality of the 1080p. Not all 1080p have the same quality. 1080p and 4k is a measurement. Its like zooming in on a good picture or a bad picture. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AdamColligan" target="_blank">AdamColligan</a>
+			<div class="markdown"><p>I think you're missing what /u/Tolly-Tolly was really saying, though.</p>
+<p><strong>TL;DR: Because the lower-resolution images are generally of &quot;real&quot; objects -- not random static -- there are tricks to guessing and filling in higher levels of detail than the ones provided in the original image or video.</strong> I'll ignore for now the issue of compression and treat original frames as if they contain discrete information for each pixel, even though in video they almost never do. I'm also not going to describe the particulars of how any actual downsampling algorithm works (not an expert) but just illustrate the idea of why it's possible.</p>
+<p>For a single frame, consider edges and color gradients. </p>
+<p>Say I have a 1080p picture of a white soccer ball,which for our purposes is perfectly round, on a grassy field. So the edge line runs for hundreds of pixels, and if you zoom in on it enough, it's inevitably a bit blocky. Some area outside the &quot;real&quot; edge curve is white, and some area inside the &quot;real&quot; edge curve is green. But a good algorithm might look at the the ball as a whole shape and say: &quot;Hey, what I have here is a circle in real life. I'll follow this blocky edge and estimate a function describing the 'real' circular edge line. If the user asks for it in a higher resolution than this, I'll just produce new, smaller white and green blocks that more tightly hug that line that I've inferred from the old one. Then maybe I'll even shade some of those blocks to in-between-white-and-green colors in a way that researchers have found tricks the human eye/brain into seeing the edge as smoother than than &quot;pure&quot; blocks of any given size can do.&quot;  </p>
+<p>Maybe next to the ball is a player wearing a uniform that looks <a href="https://rpetrosillo.files.wordpress.com/2015/03/dortmund-away-jersey-2011-2012-thailand-quality-soccer-jerseys-yellow-black-kits-shirts-best-quality-free.jpg" target="_blank">like this</a>, with a smooth color gradient going in one direction from black to yellow. The 1080p image will have made a choice for each of its blocks, some average of how black vs. how yellow the area covered by the block is. Potentially, a good algorithm could look at the shirt as a whole and say: &quot;Hey, in this area of the image, I've got one color gradually shifting to another. So I don't have to just make four blocks the same color as each 1080p block and put them where the 1080p block was. Instead, I'll guess a function where up there is more black, and down there is more yellow, and each point in between is closer to black or yellow by a proportionate amount. Now, if the user asks for a 1080p block to get turned into 4 new blocks, I'll make the top two blocks slightly more black and the bottom two blocks slightly more yellow, just like I think a 4k camera would have seen originally.&quot;  </p>
+<p>Things can get even better if you have a video with multiple frames. Say the 1080p player is kicking the ball, and there's an oddly-shaped logo on her shoe that you want to look closely at in 4k. It's a bit of a blocky mess in 1080p -- the logo edge's features are a bit smaller than the pixel size --, and obviously there isn't going to be some match for it in your generic algorithm the way there would be for just a plain circle. Well, but what if we look at more than one frame?  Each time the camera captured the logo, especially as the shoe moved, it must have recorded slightly different light inputs from the same areas on the logo edge that contain sub-pixel-sized features, and the random noise would have been slightly different, etc. A good algorithm may be able to recognize that there is a coherent, consistent object there (even when its location in the fame shifts, it does so on a smooth trajectory over time). </p>
+<p>So your algorithm could theoretically set out a grid of smaller 4k blocks across a model of the logo. Then you can use it to ask: &quot;Of the different big pixels over time that covered the area of this new little pixel, what were their colors on average, and is there a pattern to the colors going out in each direction from them?&quot;  Then you can make an educated guess about whether this little pixel should be inside the edge or outside the edge of the unknown-shape logo. And if you do that for all the surrounding pixels independently, you can then do a combined check of them to see if they're forming a coherent edge, disciplining outlier pixels that you now realize you've assigned to the wrong side.  The result should look more like the real logo shape than the original 1080p image would have been able to show you.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tjrou09" target="_blank">tjrou09</a>
+			<div class="markdown"><blockquote>
+<p>bellow</p>
+</blockquote>
+<p>Yo I fucking hate it when my TV yells at me</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ManoRocha" target="_blank">ManoRocha</a>
+			<div class="markdown"><p>haha I had to google what bellow was, TIL</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BlvckPhilCollins" target="_blank">BlvckPhilCollins</a>
+			<div class="markdown"><p>I got to peep an 8k monitor from a major manufacturer that will probably be released sometime in 2017, I will say the difference from 4k to 8k is about the same difference you notice from 1080p to 4k. Truly astonishing...might hold off on a 4k purchase until Moore's Law takes over and 8k is relatively the same price.  </p></div>		</li>
+					</ul>
+	
