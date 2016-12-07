@@ -1,0 +1,72 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sydonahi" target="_blank">Sydonahi</a>
+			<div class="markdown"><p>That's the answer.
+One cool thing: In X-ray telescopes the detectors are such that photons can be pretty much counted one by one (because X rays photon are very few even when you take exposures lasting thousands of seconds). </p>
+<p>Additionally in some professional telescopes the detectors are made so that one photon will yield way more than one electron by the time it is read out of the detector onto a computer. That's so that even if you take very small exposures (high speed photometry can take exposures smaller than 1 second) you'll still get a decent signal.     </p>
+<p>Edit: The detectors I am talking about are Electron Multiplying Charge Coupled Devices or EMCCDs (if you want to google it).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/N8CCRG" target="_blank">N8CCRG</a>
+			<div class="markdown"><p>I remember seeing a talk from someone showing us a new source that consisted of something like 6 photons.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sydonahi" target="_blank">Sydonahi</a>
+			<div class="markdown"><p>Yeah absolutely! Recently some people found X ray emission coming from Pluto. A wooping 6.8 +/-1.2 photons! (and yes 0.8 photons is meaning less physically but you still have to quantify uncertainties somehow haha)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rudolfs001" target="_blank">rudolfs001</a>
+			<div class="markdown"><p>FYI, the technical name is a <a href="https://en.wikipedia.org/wiki/Photomultiplier" target="_blank">Photomultiplier</a></p>
+<p>Spacecraft, especially scientific probes will often use these. For example, I did my grad research on the <a href="https://en.wikipedia.org/wiki/Cassini%E2%80%93Huygens" target="_blank">Cassini-Huygens mission</a>, which has one. (<a href="https://books.google.com/books?id=-atCAAAAQBAJ&amp;pg=PA315&amp;lpg=PA315&amp;dq=cassini+huygens+photomultiplier&amp;source=bl&amp;ots=3CU9mbiAld&amp;sig=WSi_2J3LqJzIM_d6E6xL8bba0bk&amp;hl=en&amp;sa=X&amp;ved=0ahUKEwj6-bDYs9vQAhUFX5QKHTPGBvsQ6AEILzAC#v=onepage&amp;q=cassini%20huygens%20photomultiplier&amp;f=false" target="_blank">source</a>)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/a_postdoc" target="_blank">a_postdoc</a>
+			<div class="markdown"><p>That's used not only in spacecraft, most labs doing physical chemistry will have one at some point mounted on an experiment. The one I have uses 4 PMT with different wavelength filters.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lmxbftw" target="_blank">lmxbftw</a>
+			<div class="markdown"><p>This &quot;dark current&quot; is part of the answer, but there's more to it. The detector also creates noise when reading the CCD out (&quot;read noise&quot;) that produces a background of electrons that act as &quot;false positive&quot; photons. For high quality cameras at professional observatories, the thermal noise is negligible (CCD is cooled with liquid nitrogen) and the read noise is typically on the order of several electrons per pixel. (Some professional observatories DO require dark current corrections, but many don't.)</p>
+<p>When you're looking at the types of objects you need these cameras to view, another big noise source is the sky itself. The sky glows at different brightnesses in different bandpasses, and it varies with the phase of the moon, but ~20th magnitude per square arcsecond is a reasonable average. If you're looking at a naked-eye star (&lt;6th magnitude) that doesn't matter at all (2.5 magnitudes is a factor of 10 in brightness, lower values are brighter, blame the Greeks). But if you're looking at a star that's close to 20th magnitude or fainter, the sky is actually the dominant source of noise. How many photons from the source you need for a secure detection is then highly dependent on the sky brightness. Because you add photons from the sky with longer exposures, and Poisson noise from that goes as sqrt(N_photons)~sqrt(exposure time), the signal to noise you build up for a faint star or galaxy can be far worse than you'd expect from just accounting for detector characteristics and Poissonian statistics from your source.</p>
+<p>At the other extreme is something like the Chandra X-ray Observatory, which has such a low background that even 3 photons in a half-hour exposure is highly significant. In fact, I did my dissertation on optical follow-up to an X-ray survey with Chandra, and about half of our X-ray catalog only had 3 photons. Odds are very high that none of them are spurious. If we had extended the catalog to 2 photons, a handful would not have been real sources (but most would have been). </p>
+<p><strong>TL;DR</strong> It STRONGLY depends on what your background is like, and that can vary with wavelength and detector. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TravisMay6" target="_blank">TravisMay6</a>
+			<div class="markdown"><p>That is awesome! Chandra added so much to multi-observatory imaging. I also like the fact that it's mirrors are basically rings. If you know more about that, that'd be cool.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ErrorlessQuaak" target="_blank">ErrorlessQuaak</a>
+			<div class="markdown"><p>The mirrors are shaped that way because you basically have to skip the photons down to the detector. They would go right through a normal shaped mirror.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EntropyAnimals" target="_blank">EntropyAnimals</a>
+			<div class="markdown"><p>What are the theoreticAL upper limits of signal detection?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/orad" target="_blank">orad</a>
+			<div class="markdown"><p>There's a quantum limit. Long story short, you can't beat vacuum fluctuations or the Heisenberg uncertainty principle. However, you can get below the classical noise limit using a quantum property known as squeezing. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rudolfs001" target="_blank">rudolfs001</a>
+			<div class="markdown"><p>Could you ELI-college student squeezing please?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AngularSpecter" target="_blank">AngularSpecter</a>
+			<div class="markdown"><p>Single photon is possible with geiger-mode avalanche photo diodes.  </p>
+<p><a href="https://www.ll.mit.edu/mission/electronics/ait/flashladar.html" target="_blank">https://www.ll.mit.edu/mission/electronics/ait/flashladar.html</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sir_Aleister" target="_blank">Sir_Aleister</a>
+			<div class="markdown"><p>Photo-multiplier tubes are quite common in high energy astrophysics (and in a lot of other nuclear applications) and are sensitive to single photons. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lolcoderer" target="_blank">lolcoderer</a>
+			<div class="markdown"><p>This brings up another question I've always wondered about... If it is apparently this difficult to detect single photons in 2016 - how in the heck did they do the double slit experiment with single photons back in the day? How did they produce single photons and how did they detect single photons back then?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sir_Aleister" target="_blank">Sir_Aleister</a>
+			<div class="markdown"><p>Gamma-ray telescope can detect single photon. Not only a single gamma-ray, but they detect it indirectly by measuring single photon signal emitted whil the atmosphere is being excited by this photon crossing the atmosphere. </p></div>		</li>
+					</ul>
+		</ul>
+	
