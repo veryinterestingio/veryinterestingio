@@ -1,0 +1,40 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/victorykings" target="_blank">victorykings</a>
+			<div class="markdown"><p><a href="https://youtu.be/U62S8SchxX4" target="_blank">https://youtu.be/U62S8SchxX4</a></p>
+<p>Here's a pretty good example of what you're describing </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/curious_iguana" target="_blank">curious_iguana</a>
+			<div class="markdown"><p>I think the question the OP is asking though, is this:</p>
+<p>In your analogy, you send your friend the padlock. He uses that to lock any messages he sends to you. </p>
+<p>Fine. But that <em>initial sending of the padlock</em> has to, by definition, be insecure. What's to stop someone looking at that lock? In computing terms, anyone could see that lock and copy it. Now people send you messages secured by what looks like your lock, but you don't know that it is. </p>
+<p>You say you have trusted certificate. So let's call that a makers stamp you can stick on your parcel to verify it came from you. Fine. But that has to be insecure and copyable too, surely? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mr-Magnus" target="_blank">Mr-Magnus</a>
+			<div class="markdown"><p>a )</p>
+<p>This is man in the middle attack, replacing the padlock with your own and then acting as a man in the middle, intercepting all communications and just switching the locks you own and can open with the &quot;correct&quot; lock as you send it back to the owner. We combat this by simply not sending the padlock belonging to a trusted certificate authority. Everyone already owns a bunch of them and don't need to verify them.</p>
+<p>Your computer has a list of &quot;good&quot; certificate authorities and their public keys. At some point this is just about trust. You trust your OS manufacturer to include only good padlocks, you trust your browser only has a list of good padlocks. Assuming your computer hasn't been infected and that list changed, you don't need to ask the Certificate authority for a padlock of theirs before verifying the padlock of the person you are talking with: You already have a stack of them ready to go and don't need that first step of exchanging locks.</p>
+<p>b)</p>
+<p>also, you're thinking about &quot;looking&quot; wrong. You can look all you want at a padlock, it's a padlock. You can't create a key that opens that padlock by examining the lock itself (or rather, doing so takes heat-death of the universe amount of time or luck of a million lotteries and getting an ordered deck after a shuffle. not worth it). </p>
+<p>What you can do is intercept and switch out the locks, which is what I covered in 1.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mgrier123" target="_blank">mgrier123</a>
+			<div class="markdown"><blockquote>
+<p>What's to stop someone looking at that lock?</p>
+</blockquote>
+<p>They're supposed to look at that lock, that's why it's public. The public key gives no inherent information about the private key, aka the padlock to the key. They can examine the lock all they want but they won't get any information about how to open the lock.</p>
+<p>At least in theory. Going back to actual RSA, it is actually possible to figure out the private keys given the public key, but if the public key is sufficiently large it is practically impossible (with current technologies and techniques) to find the private key as it might take somewhere in the order of years to decades to millennia to crack.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/revmoo" target="_blank">revmoo</a>
+			<div class="markdown"><blockquote>
+<p>Fine. But that initial sending of the padlock has to, by definition, be insecure. What's to stop someone looking at that lock?</p>
+</blockquote>
+<p>I believe it's called asymmetric encryption, and the concept is that anyone can you send a message locked with your publicly available key, but once it's run through that key, you need the private key that only you have, to unlock the content. My understanding is that TLS just does this on both ends (with incredibly strong encryption and further validation).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/coolthesejets" target="_blank">coolthesejets</a>
+			<div class="markdown"><p>I believe you're talking about asymmetric encryption, but I thought SSL was symmetric? </p>
+<p>Edit: after doing some reading up. The symmetric key is computed independently by both parties generated from the initial nonce sent by one of the parties. The nonce is signed by the sender's private key to verify authenticity. So it uses both technically. I'm not sure parent comment is correct, they are describing a key exchange via asymmetric encryption whereas HTTPS actually uses symmetric encryption, but verifies with asymmetric encryption.</p></div>		</li>
+					</ul>
+	
