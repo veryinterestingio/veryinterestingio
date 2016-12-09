@@ -1,0 +1,55 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheMoof" target="_blank">TheMoof</a>
+			<div class="markdown"><p>In addition to this, the reason redirects are used instead of aliases is because the software (your browser in this case) sees <code>www.reddit.com</code> and <code>reddit.com</code> as two entirely different sites.  This raises some interesting issues and causes complications when using things like cookies and script.  So, to keep it simple, administrators will use a redirect so everything is resolved as one name (<code>www.reddit.com</code> or <code>twitter.com</code>) to avoid problems.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/randomaccount178" target="_blank">randomaccount178</a>
+			<div class="markdown"><p>SSL is another big one for the same reason, if it thinks anything is pulling from the wrong site its going to cause issues from what I recall.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dzielin" target="_blank">dzielin</a>
+			<div class="markdown"><p>Exactly!  It'll forward <a href="http://www.reddit.com/" target="_blank">http://www.reddit.com/</a> to <a href="https://www.reddit.com/" target="_blank">https://www.reddit.com/</a>.  In fact, that's one of the most common usages of 301 (&quot;this site has moved permanently&quot;) forwarding.  A webserver sits on port 80 and listens for plain HTTP connections and redirects them to their HTTPS equivalents.  Meanwhile port 443 handles the HTTPS/SSL connections.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/memnochxx" target="_blank">memnochxx</a>
+			<div class="markdown"><p>Web servers care very much about the domain name because they may be responsible for more than one and that's the only way to differentiate when listening on the same port.</p>
+<p>Omit or alter the Host header to reddit.com and you'll get a 500 error response.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dzielin" target="_blank">dzielin</a>
+			<div class="markdown"><p>Hence the bit about oversimplification.  I was just trying to illustrate the point that DNS servers are used as an intermediate step between domain names and actually routing a request to a server.</p>
+<p>I suppose it might be more accurate to say that the server may (or may not) care about the domain, but that routing hardware and protocols do not care.  I probably shouldn't have used the term &quot;webservers&quot; either in that statement, as it implies Apache, IIS, Nginx, etc don't care about domain, when in fact they <del>do</del> can.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ikahjalmr" target="_blank">ikahjalmr</a>
+			<div class="markdown"><p>Can you explain why putting a dot at the end works? I learned this almost 10 years ago once, and never shared of it again. Like &quot;www.google.com.&quot;</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dzielin" target="_blank">dzielin</a>
+			<div class="markdown"><p>That's just part of the specification for fully qualified domain names.  In fact, a FQDN must (technically) end in a dot.  It's to prevent ambiguity at the DNS level.  With the trailing dot, the server knows when to append the root domain.</p>
+<pre><code>mydomain.com.    NS    ns1.mydomain.com</code></pre>
+<p>In that example, the NS record will resolve to ns1.mydomain.com.mydomain.com.  To prevent this from happening, we end with a dot.</p>
+<pre><code>mydomain.com.    NS    ns1.mydomain.com.</code></pre>
+<p>In short, the dot at the end works because it's technically the correct way to write a complete domain.  The DNS will let you slide and will append the dot during lookups if you don't include it.</p>
+<p>EDIT:
+More information: <a href="http://www.ietf.org/rfc/rfc1034.txt" target="_blank">http://www.ietf.org/rfc/rfc1034.txt</a></p>
+<blockquote>
+<p>Relative names are either taken relative to a well known origin, or to a
+list of domains used as a search list.  Relative names appear mostly at
+the user interface, where their interpretation varies from
+implementation to implementation, and in master files, where they are
+relative to a single origin domain name.  The most common interpretation
+uses the root &quot;.&quot; as either the single origin or as one of the members
+of the search list, so a multi-label relative name is often one where
+the trailing dot has been omitted to save typing.</p>
+</blockquote></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ikahjalmr" target="_blank">ikahjalmr</a>
+			<div class="markdown"><p>Wow, thank you. For almost a decade this was one of those things where I question that it's even a real thing, and now I have a complete answer. Thank you.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

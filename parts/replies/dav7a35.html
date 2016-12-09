@@ -1,0 +1,88 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CommieTau" target="_blank">CommieTau</a>
+			<div class="markdown"><p>As someone who's been recently working to get a better understanding of web protocols and standards: very interesting and helpful, thanks!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LpSamuelm" target="_blank">LpSamuelm</a>
+			<div class="markdown"><p>I'd like to to add that dropping the <code>www</code> subdomain isn't just companies that only offer one service - even those that offer other things (say, IRC, <code>irc.example.com</code>, or FTP, <code>ftp.example.com</code>) now often have no <code>www</code> subdomain for their web content.</p>
+<p>This is because the web has become the &quot;default&quot; for the internet. Earlier, things like Usenet, IRC, or FTP might've been on the same level as the World Wide Web in what you wanted to access, so it was specified. Now, you <em>definitely</em> want to access the web in the majority case, so subdomainless means &quot;normal website&quot; for most sites.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AintNobody-" target="_blank">AintNobody-</a>
+			<div class="markdown"><p>This is a very important bit that should be understood by the OP. The World Wide Web is not the Internet. The WWW is one aspect of the Internet...it just happens to currently be the most popular part. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/scotchirish" target="_blank">scotchirish</a>
+			<div class="markdown"><p>I'm disappointed that ftp hasn't gotten any love in these explanations</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gesucca" target="_blank">gesucca</a>
+			<div class="markdown"><p>God, this, THIS. The real answer buried down with no upvotes. Here's one, by the way.</p>
+<p>Www is World Wide Web. It was one of the early incarnation of the internet, but now for the overwhelming majority of users is the standard. So, basically, people are feeling like it is the internet itself and start to omit explicit references.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hrkristian" target="_blank">hrkristian</a>
+			<div class="markdown"><p>Just a small addition since I felt like he didn't cover it.</p>
+<p>The www part of www.reddit.com is actually the name of the server you're <em>really</em> accessing. This is a DNS thing.<br />
+You're accessing the server www in the domain reddit.com, just like for sales.somestore.com you're accessing the server named sales on the domain somestore. </p>
+<p>What happens with the whole &quot;doesn't matter if you use www first or not&quot; is relatively simple. The DNS server that is authoritative (has the &quot;this URL equals this IP&quot; hardcoded in a file) for reddit.com knows that both www.reddit.com and reddit.com point to the same IP, by a function called aliasing. Basically a nickname system, &quot;Jay is also called clitcommander&quot;</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ZugNachPankow" target="_blank">ZugNachPankow</a>
+			<div class="markdown"><blockquote>
+<p>You're accessing the server www in the domain reddit.com, just like for sales.somestore.com you're accessing the server named sales on the domain somestore. </p>
+</blockquote>
+<p>Subdomains don't have any logical connection to servers, they're just like first-level domains - they resolve to an IP.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Amulek43" target="_blank">Amulek43</a>
+			<div class="markdown"><p>Often, but this is not always.</p>
+<p>The subdomain (which is the &quot;www&quot; or the &quot;sales&quot; in sales.website.com) is typically the hostname (server) but it can be whatever the IT guy wants.</p>
+<p>You could have a multitude of subdomains all pointing to the same server, for instance.</p>
+<p>Just wanted to add this because I felt you didn't cover it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zagman76" target="_blank">zagman76</a>
+			<div class="markdown"><p>You can set an explicit <strong>A</strong> record for <code>www.</code> and not just use a <strong>CNAME</strong>.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Varonth" target="_blank">Varonth</a>
+			<div class="markdown"><p>Since you want to learn this some more informations.</p>
+<p>As OP descriped the &quot;www.reddit.com&quot; the most important part of the URL is at the end so the &quot;.com&quot;. This is called top level domain and they are regulated by certain organisation like ICANN.</p>
+<p>After the toplevel domain comes the actual domain name which is the next part read from the right, in this case &quot;.reddit&quot;. This is enough information for the DNS to find the internet address. To keep the analogy, it first takes the phone book for .com and searching for .reddit in it. If the top level domain would be something different like .org it would pick up another phone book, and the address given at the end might be something totally different even when looking for the same name.</p>
+<p>After that, everything in front of that tells the server which service you want to use. And if there is nothing in front of &quot;.reddit&quot; it will try to default services.</p>
+<p>This is also how many, especially older phishing attempts are done. Most languages are read from left to right, and people will generally read an internet address from left to right aswell. So for the uninformed an address like &quot;www.reddit.com.badwebsite.tl&quot; will look just fine, as it says &quot;www.reddit.com&quot; when the important part is actually the &quot;.badwebstie.tl&quot;, because that is the address you connect to.</p>
+<p>And it is a bit late for the general public to adjust to a system which would place the top level domain on the left.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tulgey_wood" target="_blank">tulgey_wood</a>
+			<div class="markdown"><p>Nice answer. Can i ask a second question? Its somewhat related although not to OPs question exactly. Who own the “phonebooks”? Andd assuming there are more than one how does your computer know which one to go to? Also what is to stop me setting up a DNS server that for example redirects people to the same website no matter what they request.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CalumMc" target="_blank">CalumMc</a>
+			<div class="markdown"><p>By default, you are probably using DNS servers provided by your ISP. However there are a number of other companies offering public DNS, and it is relatively straight forward to operate your own resolver.</p>
+<p>Your computer is configured with usually two DNS servers to use by default. Normally, these would be provided by your ISP and are automatically provided to your device when it connects to the network via DHCP. However you can override this and use alternative DNS severs, such as Google Public DNS.</p>
+<p>There is nothing to stop you setting up a DNS server that returns deliberately incorrect responses to queries. Although people would still have to configure their devices to use your server for this to have any effect. This is actually what many ISPs do; when you visit a non-existent domain, instead of returning an NXDOMAIN (domain does not exist), they return an IP address that points to a page of adverts or a monetized search engine.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tulgey_wood" target="_blank">tulgey_wood</a>
+			<div class="markdown"><p>Ok cool that makes sense, thanks. The last question I have is about ip addresses. Are they absolute, because i dont see how thats possible? What i mean is there specific ip address for a specific website that only corresponds to that website or is the system closer to that of house addresses where i can call my house “Cedar Valley” but because i note that its located in X province of some country my mail isnt going to be sent to some guy on the other side of the world with the same house name</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/WhiteheadJ" target="_blank">WhiteheadJ</a>
+			<div class="markdown"><p>I don't know the definite answer - but I'm pretty sure the user can change where the DNS service comes from. Google is often considered a fairly robust one, so Google own one. I would imagine the others are potentially other big IT companies (Amazon, Microsoft etc), and potentially ISPs. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CitricBase" target="_blank">CitricBase</a>
+			<div class="markdown"><p>The phone book is written by ICANN, the international organization you pay to tie &quot;tulgey.com&quot; to your computer's IP address. Anyone can host copies of the phone book, usually ISPs or big companies like google. There's nothing stopping you from hosting your own copy and modifying it how you like, but people would stop trusting and using your phone book pretty quick if you did that. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tulgey_wood" target="_blank">tulgey_wood</a>
+			<div class="markdown"><p>But who gives ICANN the authority to write it? Theyre hardly a government body are they and surely theyre not a company? </p>
+<p>Edit: changed “host” to “write”  </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Stevie_Rave_On" target="_blank">Stevie_Rave_On</a>
+			<div class="markdown"><p>Reddit allows you to change the prefix like your mail.google.com example. I always start typing the subreddit I want to go to in the URL bar.  Helps with autocomplete too. </p>
+<p>For instance askreddit.reddit.com   </p>
+<p>I start typing &quot;as&quot; and it'll autocomplete correctly </p>
+<p>I've learned politics subreddit I need to type further as &quot;po&quot; starts auto completing something a bit nsfw. </p></div>		</li>
+					</ul>
+	

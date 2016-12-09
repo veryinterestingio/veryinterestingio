@@ -1,0 +1,29 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PiRX_lv" target="_blank">PiRX_lv</a>
+			<div class="markdown"><p>Well, they actually identify that by port number on which service listens, so not that much of automatic identification.</p>
+<p>And www/ftp/mail (and whole different slew of prefixes) wasn't that much for machines, but for &quot;canonical&quot; names of services. You knew, that you can get web/files/gopher/mail service for somecompany.com just by prefixing URL with well known service name.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheConfirminator" target="_blank">TheConfirminator</a>
+			<div class="markdown"><p>Because it's ELI5, I kinda dumbed it down. You and I know that TCP/UDP ports actually determine the service (or vice versa actually). I was just trying to explain to laymen why there originally was a need for subdomains.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/konaya" target="_blank">konaya</a>
+			<div class="markdown"><p>It's still a bad idea to run your web site off the bare domain. You can't put a CNAME record on a bare domain, for instance, so using a content distribution network such as Akamai is right out. Cookie management does also benefit from using www; a stored cookie from www.example.com won't be sent to user.example.com, for instance, but a cookie meant for example.com will be sent to <em>all</em> subdomains. This is a security problem, and also a performance problem if you're big enough; Twitter has to host their static content on an entirely different domain (twimg.com) just because the marketing dweebs won over the people who actually run the show.</p>
+<p>Perhaps most importantly, though, is that running your web site without the www makes you look like the same kind of vacuous prick who sorts books on the shelves by colour.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KosherizedFirearms" target="_blank">KosherizedFirearms</a>
+			<div class="markdown"><p>Not necessary but oftentimes useful to use a subdomain to differentiate parts of your site or services.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheConfirminator" target="_blank">TheConfirminator</a>
+			<div class="markdown"><p>Absolutely. Those subdomains, when combined with a zone file with the appropriate records, identified what service/host the traffic would reach. I was trying to figure out how to describe that simplistically.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KosherizedFirearms" target="_blank">KosherizedFirearms</a>
+			<div class="markdown"><p>good point :)</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
