@@ -1,0 +1,61 @@
+<div class="answers">
+	<div class="answer" data-handle="dazih4g">
+		<a class="author" href="https://www.reddit.com/user/iktnl" target="_blank">iktnl</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Modern batteries for such devices are Lithium-Ion batteries, which hold relatively lots of energy in a small package. These batteries discharge, and the rate of discharge is somewhat linear up until a certain point: <a href="https://cdn-learn.adafruit.com/assets/assets/000/000/979/medium800/components_tenergydischarge.gif?1447976645" target="_blank">here is a nice graph</a>. </p>
+<p>Your device needs [some] amount of energy to work, if energy is too low, it'll not work. It depends on the circuitry, but I can assume most hardware is designed to not catastrophically fail somewhere below the &quot;0%&quot; voltage. The devices shut themselves down to prevent this energy level from being reached.</p>
+<p>The batteries themselves also need protection. <a href="http://www.mpoweruk.com/lithium_failures.htm" target="_blank">This page</a> shows what happens when a lithium-ion battery is outside the safe range - it gets physically damaged. This is why most lithium battery packs also contain regulation circuitry with the package.</p>
+<p>As you could see from the graph, the voltage drops very quickly after 3.6V or so, which is where most devices and batteries should say - &quot;stop, no further&quot;. When going further, you permanently damage the battery due to chemical reactions happening.</p>
+<p>The &quot;100%-0%&quot; display you see is entirely up to who programmed your laptop or phone. You can set Windows, Linux or whatever desktop OS you have to sleep, shutdown or hibernate at any percentage you want. Depending on who made this function, the percentage meter can show the battery power percentage or the &quot;usability&quot; percentage, both on the upper and lower end. This is to save your work, prevent hardware damage due to a sudden shut-down due to the battery controller saying &quot;no&quot; and to make batteries just work longer.</p>
+<p>tl;dr:
+Many reasons.</p>
+<ul>
+<li>OS level: Save work and data and let the OS shut down gracefully</li>
+<li>Battery level: Prevent permanent battery damage.</li>
+</ul>
+<p>Disclaimer - I'm no expert on any of these things, so feel very free to correct me if I'm wrong.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dazpric">
+		<a class="author" href="https://www.reddit.com/user/thatGuy91189" target="_blank">thatGuy91189</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You can change when your laptop shuts down due to a low battery.<br />
+Go to Control Panel -&gt; Power Options -&gt; Change Plan Settings -&gt; Change Advanced Power Options -&gt; Critical Battery Level and change it to whatever percentage you desire.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dazofcj">
+		<a class="author" href="https://www.reddit.com/user/RandomlyInserted" target="_blank">RandomlyInserted</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Most answers I'm seeing here contain a lot of true facts but omit an even more fundamental fact:<br />
+<strong>That percentage is a computed estimate.</strong></p>
+<p>You can't directly measure &quot;percentage used&quot; from a battery. What you can measure is voltage. Battery voltage over time, even under constant load, is not a straight line but <a href="http://simonmcauliffe.com/wp-content/uploads/2010/11/battery-voltage-4.8ohm.png" target="_blank">looks like this</a>. As you can see, voltage stays about the same then drops sharply when the battery is almost depleted.</p>
+<p>As you can see, the line is curvy and irregular, so you need to do some fancy math to tell you how much battery life you have left; it's almost as complicated as estimating how many more minutes your battery will last. Also, notice from the graph that at which point the final drop starts varies from battery to battery (and probably varies a little over the lifetime of the same battery), so it can be hard to predict. This is why a lot of devices shut off around 5% and why a lot of devices seem to last at 1% forever.</p>
+<p>Another way to measure battery percentage is to measure the amount of charge (in coulombs) that has passed through the wire and compare it to that of an earlier run. But the number of coulombs per battery cycle can vary and charge is &quot;leaked&quot; (or, depending on your perspective, the meter can be inaccurate) in various ways, so this method is also not effective at predicting battery life near the end.</p>
+<p>When a flashlight starts to run out of battery, it just gets dimmer, but advanced electronic devices contain parts that can malfunction or break outside the voltage range it was designed for, so when the voltage goes below a certain point they need to turn off completely. So 0% battery is not 0 volts but rather the minimum operating voltage. Modern laptops might also account for the energy it takes to go into hibernation, or throw in some leeway for the energy required to sleep for a few minutes so it doesn't have to go into hibernation if you charge it right away.</p>
+<p>So to answer your question, there are two main reasons:</p>
+<ol>
+<li>The voltage curve is very steep and unpredictable when the battery is almost used up, so it's hard to predict how much longer you can use it.</li>
+<li>The computer/battery/OS manufacturer's definition of 5% and 0% might be different from yours or different from each others'. (Example: Computer manufacturer calibrates 0% to mean 0 volts, but you expect 0% to mean when the computer starts to hibernate.)</li>
+</ol></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dazi4vz">
+		<a class="author" href="https://www.reddit.com/user/glowinghamster45" target="_blank">glowinghamster45</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Combination of a couple things. First, if you keep a tiny trickle of power and it goes to sleep, you don't lose any work. Secondly, pretty much everything today runs on lithium ion. Lithium ion batteries can actually become damaged or unusable if they hit 0%, so there are various safeguards in place to keep it from getting there. Even if you show 0%, there is more than likely a little bit of charge hidden away to keep the battery safe.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dazj2vq">
+		<a class="author" href="https://www.reddit.com/user/seldumonde" target="_blank">seldumonde</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Generally speaking, you do not want anything on a computer to end abruptly without having a chance to shut down. It's hard to program things that are truly prepared to be terminated at any time without warning. So as a basic rule, it's better if things have a chance to go through their shutdown routine, to make sure things are saved and nothing gets corrupted. When a computer gets to a very low battery, the system knows it is almost dead and there is a high chance it will run out of power. So to try to make the shutdown as graceful as possible, it will generally go into a sleep/hibernate mode when it gets very low to avoid the abrupt shutoff. This is also why it is good to have desktops hooked up to a UPS, so that there is a window to do a proper shutdown.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
