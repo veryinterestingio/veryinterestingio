@@ -1,0 +1,14 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tsunamisurfer" target="_blank">tsunamisurfer</a>
+			<div class="markdown"><p>When you say &quot;a lot of data&quot;, it makes me think you need to have a very large sample size. Is that what you mean? Or is it possible to have a relatively shallow sample size with great depth of information and still model with NN  effectively?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/6thReplacementMonkey" target="_blank">6thReplacementMonkey</a>
+			<div class="markdown"><p>It depends on the size of the network. A single neuron is essentially a binary classifier, and would work on less than 10 data points. Two would be a linear classifier, and would work with around 10. If you had a couple of layers with hundreds of nodes in each, you would need something like 100k to 1M points to get good results. This is assuming the sample distribution resembles the population distribution as well. If you have redundant data, or data that doesn't follow the same distribution, or if the data is highly skewed, then that changes things as well.</p>
+<p>The reason is that the more flexibility your model has, the better it can fit the training data, but if you have less training data than the dimensionality of the model, it will over-fit. It will make excellent predictions within the training set, and bad predictions on the test set.</p>
+<p>I don't know what your mathematical background is, but maybe this will make it more clear:</p>
+<p>You know how you need two points to define a line? You can always draw a line that exactly goes through two points. However, if you take two random points from the output of a linear function plus some noise, and draw a line through them, chances are that line is not going to predict the next few points very well. If you take several more points, you'll get a worse fit on the training data, but it will consistently predict the future points with the same level of inaccuracy. With three points you can exactly fit a quadratic equation, with four you can fit a cubic, and so on - the higher the dimensionality of the model, the more data you need to define it, and the more you need to get good predictions on the test data (we call that &quot;low variance&quot;). Neural networks have very low bias, meaning they are extremely flexible (dimensionality can be very high), but as a result, they are prone to high variance. The antidote for that is lots of data. A neural net can model simple linear functions, but since there is a lot of overhead involved, it usually makes more sense to use simpler models when you can get away with it.</p></div>		</li>
+					</ul>
+		</ul>
+	

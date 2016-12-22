@@ -1,0 +1,37 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CrushHazard" target="_blank">CrushHazard</a>
+			<div class="markdown"><p>Wouldn't overfitting be a problem with NNs? SVMs have built in protection against this. Is there a similar aspect to neural nets that I am missing?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/inneedofaname" target="_blank">inneedofaname</a>
+			<div class="markdown"><p>Overfitting is definitely a problem, but there are many ways to prevent it. Training in mini-batches, adding regularization terms to your loss function, stopping early, etc.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tikka_tokka" target="_blank">tikka_tokka</a>
+			<div class="markdown"><p>Neuron dropout is sometimes very effective for combating overfitting.</p>
+<p>For some applications, algorithmically randomly perturbing the training data (e.g. add noise, shifts, minor transforms, etc) is also effective.        </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rhodopsin_Less_Taken" target="_blank">Rhodopsin_Less_Taken</a>
+			<div class="markdown"><p>Overfitting can totally be a problem with neural networks. Of course, SVMs can also overfit, though they do (as you say) have 'built-in' protection (by which I assume you mean large-margin classification). In a 'typical' neural network, if there is such a thing, there is not a comparable form of overfitting protection. Often it will have a series of layers with nodes that function essentially with a weighted sum of inputs run through a sigmoidal nonlinearity on the feedfoward side, combined with <a href="https://en.wikipedia.org/wiki/Backpropagation" target="_blank">error backpropogation</a> to learn appropriate weights. Though there are of course many variations, pretty much all machine learning models would need to consider the risk of overfitting. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thecomputerscientist" target="_blank">thecomputerscientist</a>
+			<div class="markdown"><p>There are techniques, such as dropout, that help with over-fitting in neural networks, but it's not a panacea.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CrushHazard" target="_blank">CrushHazard</a>
+			<div class="markdown"><p>Yes, essentially the grid search with an SVM over both C and gamma allows the user to find a goldilocks level of fit in two different dimensions. </p>
+<p>If NNs can achieve better results, then I definitely want to use them. But it seems to me that the &quot;locking in&quot; effect of the kernel function is what allows for the overfitting protection. In other words, if the classification function is more freeform, then how can the user control the fit?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thecomputerscientist" target="_blank">thecomputerscientist</a>
+			<div class="markdown"><p>Neural Networks are absolutely prone to a very high level of over-fitting. You need a huge amount of data to get a neural network to learn anything worthwhile. That's the main problem with neural networks, really.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CrushHazard" target="_blank">CrushHazard</a>
+			<div class="markdown"><p>Intuitively that makes sense. Is the objective  to have enough data that the error rate stabilizes?</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
