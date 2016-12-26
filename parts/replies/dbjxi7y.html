@@ -1,0 +1,33 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dhelfr" target="_blank">dhelfr</a>
+			<div class="markdown"><p>Relevant xkcd. <a href="https://xkcd.com/882/" target="_blank">https://xkcd.com/882/</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GetsTrimAPlenty" target="_blank">GetsTrimAPlenty</a>
+			<div class="markdown"><p>This is the most correct answer, but let me attempt to translate to address your questions directly:</p>
+<blockquote>
+<p>Is the p-value a good representation of the quality of the work?</p>
+</blockquote>
+<p>No.</p>
+<p>As above, it tries to measure how significant an event is, given a model. If an event is unlikely to be caused by chance, then the p-value is small. So many scientific papers use a p-value to attempt to show that the thing they're looking at is a real effect, not just some fluke.</p>
+<p>Actually showing this with some rigor can be challenging, as above.</p>
+<blockquote>
+<p>Why scientists say people are misusing it?</p>
+</blockquote>
+<p>Mostly because it's difficult to define without some stats background and so people may use it to attempt to use it to justify something it doesn't do. E.g. &quot;Wow that study just said chocolate was good for weight loss! They had a p value of .001!&quot;.</p>
+<p>As you can see, saying something like that doesn't even make sense, once you know what a p-value does and is.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/knowledgeispowerx" target="_blank">knowledgeispowerx</a>
+			<div class="markdown"><p>I agree with all answers in this post. I learned in long discussions with (statistically more adept colleagues) that some of my conceptions about p-values were not correct and I wanted to share some of my insights in addition to sciklops post:</p>
+<ol>
+<li>
+<p>The very notion of significance is commonly interpreted as a Type I error rate, i.e. in the case of p &lt; 0.05 a 5% probability to reject a true null hypothesis. This is not the case. In fact one should be very careful to talk about probabilities when discussing p-values. Most of it is wrong from my experience (see point 3 for an explanation when it is appropriate to talk about p-values and probabilities). In fact p-values are a measure from a frequentist point of view, which always gives only statements about the expected distribution of p-values. For decision making ( i.e. discussion / comparisons  of models in terms of probabilities) it is necessary to describe your problem using Bayesian statistics (with all its hurdles to define prior functions of your current knowledge).</p>
+</li>
+<li>
+<p>As mentioned in the first point (and by sciklops) , discussions of a p-value are about the expected distribution of p-values in a large ensemble of equally conducted experiments, given that the null hypthesis is true. It is important to acknowledge  that the p-value itself is a test-statistics and the value you calculate using your statistical model is only one possible value it can take (The p-value is a random variable !), see e.g. [1] for a pedagogical introduction to p-values with an focus on its probabilistic nature . </p>
+</li>
+<li>I found it helpful to focus on some technical aspects of the p-value definition to understand its correct interpretation better: The p-value is a test statistics which is defined(!) to be uniformly distributed given the null hypothesis is true. This means it is a good test to create some pseudo-experiments (create random numbers within your uncertainties and replace your data with it). This will give you a distribution of p-values. If you dice a sufficient number of pseudo-experiments your p-values should be uniformly distributed between 0 and 1. Otherwise your model is flawed in the first place. If you reached enough trust in the statistical modelling of the null hypothesis and collected p-values from a set of equally sensitive experiments you may evaluate if it is likely that the observed distribution of p-values is described by a uniform distribution (here one may start to talk about the probability that the distribution describes a uniform distribution, see point 1)  </li>
+</ol>
+<p>[1] <a href="http://amstat.tandfonline.com/doi/abs/10.1198/000313008X332421?journalCode=utas20" target="_blank">http://amstat.tandfonline.com/doi/abs/10.1198/000313008X332421?journalCode=utas20</a></p></div>		</li>
+					</ul>
+	
