@@ -1,0 +1,121 @@
+<div class="answers">
+	<div class="answer" data-handle="dbjhkkb">
+		<a class="author" href="https://www.reddit.com/user/GreenEminence" target="_blank">GreenEminence</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Computers boil down to two main parts: memory and computation.
+Obviously there's some input and output going on, but I'll focus on these two parts. Input after all just means writing something into memory somewhere, and output just means reading some data from memory and displaying it in human readable form.</p>
+<p><strong>Memory:</strong> ones and zeroes. To briefly touch on the technical details, basically you attach a wire to a piece of metal, and if that piece has a charge stored, that charge will flow into the wire. If there isn't, nothing happens. This allows us to store 1 or 0 on a piece of metal, and to read those pieces by connectiong to it. The parts have become smaller, but the concept is the same. To write data, we just apply our wire to the metal again, but this time the wire might or might not have a charge on the other end based on what we want to store.</p>
+<p><strong>Computation:</strong></p>
+<p>This is slightly more complicatesd, but the fundamentals are easy again. We allow the flow of energy in one wire to affect the flow in another wire. This is what a transistor does. A transistor only allows a main current to pass through it, if there is another current applied to the side of it. So if and only if both currents are active, there's an output for us to store or use elsewhere. This is an AND.</p>
+<p>By (oversimplified) connecting two wires to an output, we get an output when at least one input is active. That's an OR.</p>
+<p>By having an input current open a switch to block another current, we have ceated a NOT, since the output only receives a current from the power source when the input is not active.</p>
+<ul>
+<li>
+<p>We can combine these to do more complicated things. We could, for example check if exactly one of two inputs (A and B) is active by checking if A OR B get's an output, but also A AND B doesn't.</p>
+</li>
+<li>
+<p>We can add numbers by combining these things (If you're curious on how I'll show you in a comment, just ask).</p>
+</li>
+<li>
+<p>We can multiply numbers by repeatedly adding the same number, while simultaniously adding 1 to a counter and checking wether we have to go on adding or wether we are done.</p>
+</li>
+<li>
+<p>We can subtract numbers by adding a negative number. Negative numbers are stored in a way that allows us to do this, and as long as everyone knows how to spot one, nobody is going to mistake a negative number for a positive one.</p>
+</li>
+<li>
+<p>We can handle sequences of characters by transscribing them into numbers and then saving those.</p>
+</li>
+<li>
+<p>We can save instructions to do all of this as numbers as well. instructions and stored values can both be stored as zeroes and ones. This is a bit more complicated, but basically everyone agreed that certain numbers mean certain orders. &quot;add the next number to what's in your storage right now&quot;. or &quot;check whether your storage is completely zero. If so, jump to this piece of code&quot;. All more complex code is derived from and built upon this.</p>
+</li>
+<li>And by now we can write programs that in turn make this complycated code from easier to read text files that contain code written in a programming language.</li>
+</ul>
+<p>That's basically it. A ridiculous amount of very easy actions happens ridiculously fast and creates the illusion of complex things happening. But the basics are... well... very basic.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dbjsqez">
+		<a class="author" href="https://www.reddit.com/user/Zerotan" target="_blank">Zerotan</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'm a Computer Science grad and it's magic to me too, in the same way as a million-part Boeing 747 keeps me in the air. My memory might be terrible, and people can correct me. Many abstractions coming.</p>
+<p>It boils down to layering of technology.</p>
+<p>Bits: If you read a wire and see ~5V, its because it's connected to the High Voltage source, and you should interpret this as &quot;1&quot; or &quot;on&quot;. If you see ~0.5V, it's connected to Ground, and you should interpret this as &quot;0&quot; or &quot;off&quot;</p>
+<p>Logic gates, mostly transistors : Drive the above bits onto the input wires, and they generate specific output bits. eg <a href="http://www.electronics-tutorials.ws/logic/log44.gif?x98918" target="_blank">OR Gate</a></p>
+<p>Logic components: hard-wired parts that perform a known function on inputs and generate outputs. eg: <a href="https://www.elprocus.com/wp-content/uploads/2014/12/Full-Adder-Circuit.jpg" target="_blank">Full Adder</a><br />
+EG:<a href="https://www.wolfram.com/system-modeler/industry/compact/examples/electrical-engineering/8-bit-adder/images/output1.png" target="_blank">8-bit adder</a></p>
+<p>Cache/Registers: small memory that will be immediately used for computation. Set the register to a value using a store instruction.</p>
+<p>Bus: Connects inputs and outputs of components. The instruction will dictate which output is connected to which input. The number of bits the bus holds at once designates the architecture eg Windows is now 64-bit but my examples use 8-bit</p>
+<p>Assembly/machine code: The interpretation of a stored sequence of bits as specific instructions. eg: instruction &quot;00001010&quot; means &quot;add the values in Reg1 and Reg2 and store in the memory location following this instruction&quot;. This instruction will cause the Reg1 and Reg2 outputs to connect to the 8 bit adder, and the output of that will be stored at the designated on the next cycle.</p>
+<p>Cycle/clock: (vaguely) a signal that tells all components that all the wires should have the correct voltages and signals them to accept the inputs and generate the outputs. The speed of this signal is tied to your processor speed, so if you have a 2.4GHz processor, it will execute 2,400,000,000 cycles per second. (vaguely, its super-complicated now)</p>
+<p>Memory: a numbered list of values. These data can be assembly instructions and/or data and/or other memory locations etc.</p>
+<p>Program: A series of instructions written in a human-friendly code like C or Unity or .Net etc. These are compiled - converted into machine code/assembly so the hardware can read them.</p>
+<p>File: A bunch of data meant to be interpreted by a particular program. (A .jpeg can be opened by Notepad, but looks like garbage text) The file could be executable by your operating system, in which case it's a program. eg DSC0002.jpg</p>
+<p>File system / Folders / Directory: A structure for storing related files together in groups eg: &quot;Graduation Pics 2015&quot; or &quot;League of Legends&quot; install directory</p>
+<p>Operating System: The program your computer runs when turned on (after ensuring all your hardware drivers are working eg boot sequence) eg Windows 10</p>
+<p>Software: A program designed to be run by your Operating System eg League of Legends or Firefox</p>
+<p>Hardware: Physical computer components and peripherals: monitors, disks, sound card, network adapter, keyboard, mouse, touch screen</p>
+<p>Drivers: Programs that interface your operating system and hardware</p>
+<p>Hard Disk/Drive: stores your operating system and most of your files</p>
+<p>Display (screen): rapid flashes of colour data. If you look close at a big screen TV, you'll see its made up of red green and blue rectangles. One of each makes a Pixel. If red and green and blue are maxed, the pixel appears white from far away. This picture changes at whatever frequency (in Hz or frames per second) so it looks animated</p>
+<p>Network Interface: Lets your computer communicate with other computers either on wires or wireless through electromagnetic waves.</p>
+<hr />
+<p>Technology is an iterative process, so every time we create a new version or product, it has built off of previous technology and knowledge. Each new thing makes it easier to make new things for the future. You're not supposed to know how everything works - even if you're a programmer or an electrical engineer. It's too complicated.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbjm5ne">
+		<a class="author" href="https://www.reddit.com/user/semaph0r3" target="_blank">semaph0r3</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'll take a stab at this.</p>
+<p>So think of basic math: you have two numbers and an operation.</p>
+<p>1 + 1,
+2 / 2,
+2 * 5</p>
+<p>Even more complicated math can be broken down to two numbers and an operation.  1 + 6 / 2 is in fact a 2 step problem, even though its written in 1 line.</p>
+<p>What a computer is is a series of wires that combine into operations.  To represent a number, I'll take some wires and establish a pattern.  If this wire is on and these are off, that is a 1.  If this one is one, and these others are off, its a 2.  If these two are on and the others are off, its a 3.  And so forth.  And we'll represent that pattern as 0s and 1s - a 0 means the wire is off, a 1 means the wire is on.</p>
+<p>If we decide that our system is going to use 4 wires to represent numbers, we can follow this pattern:</p>
+<p>0000 = 0,
+0001 = 1,
+0010 = 2,
+0011 = 3,
+0100 = 4,
+0101 = 5</p>
+<p>And so forth.  This is binary and is the same as counting in base 2.  Just like we use 10 numbers to count (1, 2, 3...) a computer uses 2 (on, off).  These is lots of research in being able to use other counting systems (quantum, for instance).  But right now we're using 2.</p>
+<p>We can then wire them together in patterns, so that if I have 2 groups of wires coming in (which follow that pattern I described above), it will change the ons and offs to 'add' them together.  So now  I'm not going to explain this pattern in depth - its way above ELI5.  But understand that you can make patterns of wires that change on and off.  I can have 1 wire that is on turn another off, for instance.</p>
+<p>So now I create a system that adds numbers together.  It takes in a 2 and a 3:</p>
+<p>0010 (2)
+0011 (3)</p>
+<p>and returns a 5</p>
+<p>0101 (5)</p>
+<p>It does this again by following a pattern of wires.  If this wire is on and this wire is off then this wire is on, for instance.</p>
+<p>And you can create another section that 'multiplies' them together.</p>
+<p>Input
+0010 (2)
+0011 (3)</p>
+<p>Output
+0110 (6)</p>
+<p>Same input and different output.</p>
+<p>Now how do we tell the system which we want?  Add or Multiply?</p>
+<p>Well, first we attach on / off switches to both add and multiply sections, and then we wire up a new section.  This one looks for wire patterns, but instead of these being numbers, they're commands.</p>
+<p>Say I give the system the 1000 command as ADD and 1001 as MULTIPLY</p>
+<p>I now have three groups of wires.  I want to add 2 and 3 together.</p>
+<p>One bundle of wires I charge with 1000 and that tells this new section (If 1000, power on ADD module, power off MULTIPLY module).  I've also charged the other wires with 2 and 3, and they're going to both sections. But because MULTIPLY is turned off, it won't do anything.  ADD is on, so that section follows its pattern and outputs a 5.</p>
+<p>Everything in a computer is this: a command, and the inputs.  Once you've built a system that adds and multiplies, you can add a Divide section, and change the command section to recognize that.  Eventually you can go crazy.  You get a machine that responds to electricity and makes images.  Now you can have a wired section created images based on inputs, and a command that sends inputs there.</p>
+<p>The computers that you see today are the result of an obscene number of wires flickering on and off in patterns.  We can talk about billions of transistors in an abstract way, but to really understand how much switching and flickering is happening is crazy.  We've as a species built new sections of wires, more sections of wires, smaller sections of wires, more efficient sections of wires, and eventually got them to respond to a ton of commands.  Programming is writing instructions that translate to those commands (which at the end of the day is just a couple wires turning on, which turns on some others and turns off others).</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbjn403">
+		<a class="author" href="https://www.reddit.com/user/spikyman" target="_blank">spikyman</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In the mediocre movie &quot;Central Intelligence,&quot; Dwayne &quot;The Rock&quot; Johnson is asked, &quot;how did you get so buff?&quot; He answers, &quot;it was easy, I just spent 6 hours a day, 7 days a week in the gym for 16 years.&quot;</p>
+<p>Computing devices are the result of MILLIONS of hours of research and experimentation over the last 250 years in materials, engineering, physics, math, and other disciplines.  </p>
+<p>Of course, back in the early 1800's, Geoarge Boole had no concept of an electro-mechanical computing device when he developed his math for dealing with data sets.  However, his work was the one of the first stepping stones to the gizmos we have today.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbjtn22">
+		<a class="author" href="https://www.reddit.com/user/_IsThisRealLife" target="_blank">_IsThisRealLife</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I think most answers have focused on the physical complexity of computers, and that's one way to think about it. Another is that you do start with some very basic operations(it doesn't really matter what they are as long as they form a sort of complete set for describing the 'problems' you are interested in) and from the &quot;how do humans get this metal and plasic to do amazing things?&quot; perspective the answer is 100+ layers of abstraction/complexity/solving problems. I think it is presented like you have hardware layer, and a software layer, and together they do magic, but the &quot;hardware&quot; is actually like 20(arbitrary-ish number) layers of complexity. What I mean by a layer of complexity in this sense is: first layer is something like arithmetic, then there is a layer to do arithmetic on a group of numbers(something like matrix math)then there is a layer to organize the numbers then there is a layer that maybe quite a few people work on(though all the layers were designed by some group of people at some point) in terms of programming or designing at that useful layer, then there maybe 5 or so more layers, combining units meant to solve very small problems, or to control the distribution of input or output, before you get to a level where many people work. This goes up and up. Intel has different teams working on 15-25 layers of complexity, then the company building the machine works on maybe 3-10 layers of complexity, then the OS by Microsoft or Apple or Google has 30-50 layers of complexity, then there are folks working on another 5-20 layers of things that may or may not be part of the OS, like transferring information over a network, or turning a high level game design language into lower level operations, then you have maybe 10-30 layers from the application developer(the company/group making your browser or your w/e software you install on your computer).</p>
+<p>Each of these 'layers' has 100 to 1 million people working on it, depending on the complexity, and how useful/easy an abstraction level to think about it is.  Most people working in the related fields operate on 5-20 layers, though some specialists operate on less than 5.</p>
+<p>An analogy might be how do you get a city from dirt and metal, and its just a layer at the brickmaking, a layer at the brick distributing, a layer at the brick shipping, a layer at the brick store, a layer at the guy placing bricks, a layer at the guy planning how the bricks are placed in one room, a layer at how the bricks are placed on the floor, a layer at how the floors of the building are combined, merged with all the other parts used in a building. And so we've gone from one sort of abstraction level, bricks/housing materials, to another, buildings. Then you have a layer planning the layout of the building on the property, the layout of the pieces of property on the streets, a layer for the intersections, etc...</p>
+<p>Random other way to conceptualize it: if you watch &quot;Westworld&quot; on HBO, one of the central ideas of the show IMO is that humans are just extraordinary complex computers with very different input and output mechanisms then those on what we conceive of as &quot;computers&quot; currently. There are a couple scenes in the show, one where a human-like machine is like &quot;I make my own choices&quot; and they show her word selection is actually just like a tree structure with various inputs controlling which branch is chosen, so like you can start the sentence with &quot;A person&quot; or &quot;A thing&quot;, and speech is just a whole bunch of those choices made per sentence.  And the same way a computer has tons of layers of complexity, a human being does as well. In a sense the last 10-20 years are us progressing in complexity from ant to mouse. 10 years out is cat/dog, 30 years out is maybe chimp/dolphin, 100 years out is past humans(back to the Westworld comparison, this is what 'hosts' are).</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
