@@ -5,14 +5,81 @@
 			<span class="tags tag-Mathematics">Mathematics</span>
 			<a href="/posts/5jxze9" onclick="return false">Is the p-value a good representation of the quality of the work? Why scientists say people are misusing it?</a>
 		</h2>
-		<span class="date">2016-12-26</span>
+		<!--<span class="date">2016-12-26</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Is the p-value a good representation of the quality of the work? Why scientists say people are misusing it?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dbjxi7y">
+		<a class="author" href="https://www.reddit.com/user/sciklops" target="_blank">sciklops</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>P-value is a concept wholly unrelated to the quality of work.</p>
+<p>A small p-value will tell you that your hypothesis is unlikely to have occurred by chance in the samples that you've gathered when analyzed by the statistical approach you have chosen.</p>
+<ol>
+<li>
+<p>If you do not have an <em>a priori</em> specific hypothesis but rather are working in big data where multiple comparisons and correlations are explored (ex. testing expression level of 20,000 genes for correlation with 1 experimental outcome), you will have a &quot;significant&quot; nominal p-value for correlation 20,000x0.05 = 1000 times, even if no real/clinically significant/reproducible correlation exists. These are <a href="https://en.wikipedia.org/wiki/False_positive_rate" target="_blank">false positives</a> and need to be corrected for using multidimensional reduction or multiple hypothesis test correction statistics.</p>
+</li>
+<li>
+<p>If the sample collection is poorly or fraudulently designed such that they are not-representative of reality, you can statistically derive a very high effect size and very small p-value ... but the conclusions will be false. P-value won't tell you that your experiment was designed badly.</p>
+</li>
+<li>All statistical tests make assumptions. If you use an inappropriate statistical test where the assumptions of the test (ex. normal distribution of data) are not true in your data, you can get a &quot;significant&quot; below-threshold p-value that, again, gives you a false conclusion about reality. This is particularly a problem when dealing with small sample sizes, where random outlier values can skew statistics quite a lot.</li>
+</ol>
+<p>Here's some more reading:</p>
+<p>Regina Nuzzo. <a href="http://www.nature.com/news/scientific-method-statistical-errors-1.14700" target="_blank">Scientific method: Statistical errors</a> <em>Nature News Feature</em> (2014)</p>
+<p>Megan L. Head, Luke Holman, Rob Lanfear, Andrew T. Kahn, Michael D. Jennions. <a href="http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002106" target="_blank">The Extent and Consequences of P-Hacking in Science</a> <em>PLoS Biology</em> (2015)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dbk5pbd">
+		<a class="author" href="https://www.reddit.com/user/dampew" target="_blank">dampew</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I've been doing statistical methods research lately and this comes up a lot.</p>
+<p>First, it's important to understand the definition of the p-value. The p-value tells you the odds that a result might occur by random chance, according to some model.  It does NOT tell you the likelihood that a result is true or valid.  It is NOT necessarily a good representation of the quality of work.  An example of a p-value might be, &quot;I flipped a coin 5 times and it landed heads 5 times.  The odds of that occurring by random chance is 1 in 32.  Therefore I believe my coin is loaded heads with p = 0.03.&quot;  But this doesn't mean that the coin has a 97% chance of being loaded; it still could have happened by chance, you know?  Especially if you try to do the test 20 times and don't tell anyone about the other 19!  This is the first problem I'll talk about below.</p>
+<p>P-values can be misused in several ways:</p>
+<ol>
+<li>
+<p>The biggest problem in fields like sociology is that this has contributed to a (so-called) reproducibility crisis.  There are thousands of people doing studies and publishing results with p-values of, say, p&lt;0.05.  Now imagine that a thousand studies have been published with p &lt; 0.05; the odds are good that many of these results (at least 1 in 20) just happened to have occurred by random chance.  It's actually worse than it seems, because the studies that aren't significant don't get published.  For example, if every researcher performs several studies and publishes only 1 in 4 of the studies that they attempt, then 5 out of 20 of their studies will eventually get published.  If they're using 1 in 20 (p&lt;0.05) as their threshold for significance, then we would expect 1 in 20 of their attempted results to be a false positive; if they publish 5 out of 20, and 1 in 20 is false, then 1 in 5 of their publications is false.  This is a general problem in the fields of sociology and psychology; many of the studies are false because of low significance thresholds.</p>
+</li>
+<li>
+<p>There's something called p-value hacking.  Say you're looking for a result at the p=0.05 level (1 in 20), and you study or measure your data in 20 different ways.  Some of those methods will <em>appear</em> to give you more significant results than others due to random chance, and if you try 20 different methods then you might expect one of them to be significant at the 1 in 20 level.  This seems like it should be obvious, but it can come up innocently if you get a bunch of data and try to analyze various aspects of it.</p>
+</li>
+<li>Very small P-values are often very difficult to calculate accurately.  If you create a statistical model based on some approximations that works for the majority of cases, there's no guarantee that the model will hold true for the extreme tails of the distribution -- which, ironically, are the most important regions for statistical studies.  For instance, if you're looking for something in the human genome, you might find a p-value of 1e-12; but there are a few billion basepairs in the human genome, so if it's actually a p-value of only 1e-9 instead of 1e-12, that would dramatically change the genome-wide significance of your finding.</li>
+</ol>
+<p>Edit: Of course, there are other issues.  Like people just using a totally wrong model for their calculations.  And it's common for people to confuse p-values with effect sizes.  I see this in talks all the time and it's really annoying.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbkgebp">
+		<a class="author" href="https://www.reddit.com/user/lambertb" target="_blank">lambertb</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Apart from many of the valid comments made above, it is vital to note that P is a function of the effect size and the sample size. If the sample size is large enough, even a very tiny effect can lead to a small (i.e., &quot;significant&quot;) value for P. Thus P is often misleading. Many critics of null hypothesis statistical testing argue that we should focus instead  on measuring effect sizes and confidence intervals. Andrew Gelman's blog is a great place to follow these issues. </p>
+<p><a href="http://www.stat.columbia.edu/~gelman/" target="_blank">http://www.stat.columbia.edu/~gelman/</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbjxb7h">
+		<a class="author" href="https://www.reddit.com/user/RobusEtCeleritas" target="_blank">RobusEtCeleritas</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The p-value is a great measure of goodness-of-fit or significance. You just have to interpret it correctly, or it can be misleading. There are also pitfalls one can fall into, like making a bad estimate for your p-value because you don't fully understand your null hypothesis, or misrepresenting your significance because of the look-elsewhere effect. </p>
+<p>Can you give an example of a case where scientists have said people are misusing the p-value?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbkq5xz">
+		<a class="author" href="https://www.reddit.com/user/r5t6" target="_blank">r5t6</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Sort of. A paper with a low p-value is like a product having 4 or 5 stars on Amazon. It's a prerequisite to have anyone even click on the product, but everyone knows there are plenty of ways to game this and so you must still dig into the product page and make sure the product will work for you.</p>
+<p>How are people misusing it? Merchants can game the system to get high ratings, and some shoppers might only use the star ratings to shop. Let's say a pair of headphones has 5 stars on Amazon. You know this doesn't, necessarily, mean it's actually the best headphones ever made. Maybe they paid for their reviews. Maybe the company posted twenty different listings and, by chance, this one got 5 stars. But then some bozo from The Verge has to write a top 10 list of headphones, so he just goes to Amazon and sorts by star ranking. So the product will get publicity as if it is the best product, when really it might not be.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -20,4 +87,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/5jxze9" onclick="return false"><span>show</span></a>
 </li>

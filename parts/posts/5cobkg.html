@@ -5,14 +5,82 @@
 			<span class="tags tag-Computing">Computing</span>
 			<a href="/posts/5cobkg" onclick="return false">Can a computer simulation create itself inside itself?</a>
 		</h2>
-		<span class="date">2016-11-16</span>
+		<!--<span class="date">2016-11-16</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>You know, that whole &quot;this is all computer simulation&quot; idea? I was wondering, are there already self replicating simulations? Specifically ones that would run themselves inside... themselves? And if not, would it be theoretically possible? I tried to look it up and I'm only getting conspiracy stuff.</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="d9y4gt9">
+		<a class="author" href="https://www.reddit.com/user/0Zyn" target="_blank">0Zyn</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A computer can emulate another computer (check <a href="http://www.visual6502.org/JSSim/index.html" target="_blank">this</a> out!). A computer can, in fact, emulate a simplified version of itself. The only problem is, as the usage of the emulated computer (or CPU) approaches the maximum speed/usage of the <em>real</em> computer, the number of states that can be simulated approaches one. </p>
+<p>Eventually, with the emulated computer under 100% load, the emulation will halt - unable to continue because it will require more memory and power than the <em>real</em> computer is able to provide it. /u/Begging4Bacon explained it very well:</p>
+<blockquote>
+<p>The computer would have to be able to simulate itself in a random state. The random state would take up all the memory, leaving none for the hardware itself.</p>
+</blockquote></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d9y3bi7">
+		<a class="author" href="https://www.reddit.com/user/uint65_t" target="_blank">uint65_t</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A cellular automaton can simulate the rules of its own world with some slowdown. <a href="https://www.youtube.com/watch?v=QtJ77qsLrpw" target="_blank">Here's an example with Conway's Game of Life</a>. (If you aren't familiar with Conway's Game of Life, you can read <a href="http://www.math.cornell.edu/~lipa/mec/lesson6.html" target="_blank">this</a> for an intro.)</p>
+<p>A program written in a Turing-complete programming language like C is capable of interpreting itself. If you wrote a C program that implemented a C interpreter that interpreted its own source code, it would run forever with an ever-growing number of recursive levels.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d9yc2t2">
+		<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>To answer this question meaningfully, we have to specify what a <em>computer</em> first is.</p>
+<h1>Cellular automata</h1>
+<hr />
+<p>The 2D block cellular automaton with two states, in which a cell becomes &quot;live&quot; only when its four predecessors have exactly two adjacent live cells, <em>can simulate itself</em> with a factor of two slowdown and a factor of two size blowup, but is not known to be Turing complete. See The B36/S125 “2x2” Life-Like Cellular Automaton by Nathaniel Johnston.</p>
+<h1>Modern programming languages</h1>
+<hr />
+<p>It is very common to write an X-in-X compiler. The process is called <a href="https://en.wikipedia.org/wiki/Bootstrapping_(compilers\)" target="_blank">bootstrapping</a>.</p>
+<p>This is not a simulation, however. Interpreting an X-in-X compiler as it is fed into itself would need infinite input in order to not halt (technically, stuck waiting for input).</p>
+<h1>Turing machines</h1>
+<hr />
+<p>A Turing machine that can simulate an arbitrary Turing machine on arbitrary input is called a <em>universal Turing machine</em>. The question how &quot;simple&quot; does a TM have to be to still be a UTM is an open problem in CS.</p>
+<p>Real computers like the one I'm typing this on and the ones you're reading this on are not Turing machines - they are decidedly finite in nature. We call them <em>linear bounded automata</em>. Turing machines formalise and model (all) aspects of those.</p>
+<p>Now let's answer the question.</p>
+<p>No, a computer cannot perfectly simulate itself in addition to something else without violating basic information theory: there exist strings which are not compressible.</p>
+<p>Here's the simplest possible proof: suppose the computer has a total of <em>N</em> possible states, and suppose there is something outside of the computer in the universe, so the universe has at least <em>N+1</em> possible distinct states. With zero overhead, each state of the computer can correspond to a state of the universe, but since the universe has more states than the computer, by the pigeonhole principle, some states of the universe will map to the same state of the computer, in which case the simulation will not be able to distinguish between them. QED.</p>
+<p>Next hypothesis: a computer cannot perfectly simulate itself.</p>
+<p>(not very formal) Proof: Assume the computer can simulate itself. This means the computer is running a program P which is simulating the computer running P, which is simulating the computer running P, and so on <em>ad infinitum</em>. We have reached an infinite regression, which means the computer cannot be simulating itself. QED.</p>
+<hr />
+<p><em>Addendum</em> We can actually prove a computer cannot simulate itself pretty easily, like so:</p>
+<p>Let C be a linear bounded automaton, and let C take another LBA M as its input and decides whether it halts or not. It does so by simulating M, then do the opposite: C halts if M does not, and loops forever if M halts. Then C(C) demonstrates a contradiction:</p>
+<ul>
+<li>if C halts, C(C) loops forever, which cannot be true</li>
+<li>if C does not halt, C(C) halts, which is false</li>
+</ul>
+<p>QED.</p>
+<p>PS. I'm not saying a computer is exclusively one of these 3 things. Attribute lack of other notions of a computer to my ignorance and boredom. :-)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d9y93sf">
+		<a class="author" href="https://www.reddit.com/user/marvin" target="_blank">marvin</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Any Turing-complete computer can perform any computing operation possible on any other Turing-complete computer. And as far as we know, no other computing operations exist.</p>
+<p>Since most computers are Turing-complete, this implies that a computer can in principle perform any simulation (assuming that enough memory and enough time is available). Since we are not aware of any computational operations (phenomena) in the physical world that cannot <em>in principle</em> be simulated, this means that the answer to your question is yes. </p>
+<p>According to our current understanding, physical reality could in principle be simulated on a computer. It would require an unfanthomably powerful computer which might not be possible to build in our universe, but as far as I know, we are not aware of any theory that precludes this.</p>
+<p>The question of whether any organism in such a simulated universe would be conscious is currently in the realm of philosophy; our current scientific understanding cannot answer this question.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">3 more answers...</a>
@@ -20,4 +88,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/5cobkg" onclick="return false"><span>show</span></a>
 </li>

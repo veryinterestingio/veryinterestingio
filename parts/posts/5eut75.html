@@ -5,14 +5,54 @@
 			<span class="tags tag-Engineering">Engineering</span>
 			<a href="/posts/5eut75" onclick="return false">If you point your phone camera at an IR LED (like in a TV remote) it is visible but why does it show up as blue/purple rather than red?</a>
 		</h2>
-		<span class="date">2016-11-28</span>
+		<!--<span class="date">2016-11-28</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>[Here is what it looks like] (<a href="http://i.imgur.com/ggcsrZX.png" target="_blank">http://i.imgur.com/ggcsrZX.png</a>)</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dafdmka">
+		<a class="author" href="https://www.reddit.com/user/crnaruka" target="_blank">crnaruka</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The explanation has to do with how digital cameras try to determine the color of an object. Cameras usually use a sheet of silicon sensors to detect the intensity of incoming light. However all the intensity tells you is how much total light falls on a given pixel (weighted by how responsive the sensor is in that spectral region). In other words, the best you could do at this point was to build up a grayscale image. In order to get information about the color, you need some way to separate light by wavelength. One way to do this is by adding a grid with color filters, e.g. a <a href="https://en.wikipedia.org/wiki/Bayer_filter" target="_blank">Bayer filter</a> on top of the sensor layer, <a href="http://i.imgur.com/Gkv5a3M.jpg" target="_blank">as shown here</a>.</p>
+<p>Now this set of filters is the only know the camera can distinguish between different colors. Because there are only three color filters, there is only so much spectral information you can get. However, that is fine, since our eyes also only have three types of biological censors, called cone cells, <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Cones_SMJ2_E.svg/1016px-Cones_SMJ2_E.svg.png" target="_blank">that can distinguish colors</a>. As a result, a camera can detect more or less as much spectral information as our eyes can see. A display can then use three color sources (e.g. RGB or red, green, and blue lights) to mimic the same color our eyes can see. </p>
+<p>That intro was a bit long, but we finally we can get to the heart of the question. The actual efficiency of the red, green and blue pixels of a camera is shown in <a href="http://imgur.com/a/QsrMo" target="_blank">this graph</a>. Notice that above 650nm, a filter is said to block off most of the near infrared (IR) light. Of course, a bit of it will leak in. In the case of things like an IR remote, the light will usually have a wavelength of ~900nm. In that wavelength range, the green, red, and blue detectors are triggered about equally strongly. Now when the camera tries to map this response on the RGB color space, it looks for the closest mixture of visible colors that would have given the same reading. It turns out that you can mimic a similar response by shining white light with a bit of extra blue/violet light mixed in. As a result, the camera decides that this was the light that must have hit it and records the infrared light as having a violet hue. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dafk0yq">
+		<a class="author" href="https://www.reddit.com/user/moeburn" target="_blank">moeburn</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The best answer I've ever had to this question came from a Quora article:</p>
+<p><a href="https://www.quora.com/Sensors-Why-does-infrared-appear-purple-in-digital-cameras" target="_blank">https://www.quora.com/Sensors-Why-does-infrared-appear-purple-in-digital-cameras</a></p>
+<p>This is a response curve for a typical digital camera sensor:</p>
+<p><a href="http://i.imgur.com/xXa8prP.png" target="_blank">http://i.imgur.com/xXa8prP.png</a></p>
+<p>So you'll notice that when the light is blue (wavelength of 400 to 500nm), the red and green sensors on the CCD/CMOS mostly ignore it, but the blue sensor picks it up.  Same for red - between 600 and 650, which is where red light is, only the red sensor picks it up, mostly.</p>
+<p>But infrared is often defined as between 750nm and 1000nm.  And you'll notice that for most of the infrared section of the graph, all 3 color sensors on the chip pick it up almost equally.  Your TV remote is probably emitting infrared light at about 825nm, where it is mostly just the red and blue sensors that react to it, but less the green sensor, which is why it appears purple.  A little higher, and it's closer to blue than purple. Even higher than that, and all 3 sensors pick it up equally, which should make it appear white on the camera's display.</p>
+<p>So to sum up, it's because the blue/red sensors on your camera's sensor don't just react to blue and red light respectively, they also both react to infrared light almost equally.  It isn't easy to manufacture sensors that <em>don't</em> have this issue, so even the most expensive digital cameras typically just put a glass infrared blocking filter in front of the sensor, or somewhere in the lens.  </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dafdm43">
+		<a class="author" href="https://www.reddit.com/user/LetEpsilonBeLessThn0" target="_blank">LetEpsilonBeLessThn0</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I did not know the answer to your question, but I was able to find answers to someone else's similar question and you may find those answers useful:</p>
+<p><a href="http://physics.stackexchange.com/questions/17455/infrared-remote-flashes-blue-light-in-camera" target="_blank">http://physics.stackexchange.com/questions/17455/infrared-remote-flashes-blue-light-in-camera</a></p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dafq2i7">
+		<a class="author" href="https://www.reddit.com/user/ePants" target="_blank">ePants</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Infrared light, like ultraviolet light, is not visible. The colors in their names only tell you their relation to the visible spectrum of light: Infrared light is below the visible spectrum while ultraviolet is above it. </p>
+<p>As for why it appears to have color on an iPhone, I'm not sure. But the assumption that non-visible light should be a certain color is just a misunderstanding of what the word means. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dageykz">
+		<a class="author" href="https://www.reddit.com/user/Anonnymush" target="_blank">Anonnymush</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Simple answer-</p>
+<p>Because infrared gets past the blue and red filters in front of pixels fairly well, but doesn't get through the green filter as much.
+Therefore, you get activation at the red pixels and blue pixels. </p>
+<p>Which to you looks purple.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -20,4 +60,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/5eut75" onclick="return false"><span>show</span></a>
 </li>

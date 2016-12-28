@@ -5,14 +5,140 @@
 			<span class="tags tag-Mathematics">Mathematics</span>
 			<a href="/posts/4o9p15" onclick="return false">Why is that when you subtract a number from its reverse, the difference is a product of 9?</a>
 		</h2>
-		<span class="date">2016-11-16</span>
+		<!--<span class="date">2016-11-16</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Same as the title.  Why is it that 41-14 or 52-25 all equal products of 9?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="d4aso8u">
+		<a class="author" href="https://www.reddit.com/user/thepatman" target="_blank">thepatman</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>From a mathematical standpoint:  For any N greater than 10 and less than 100, we can write it thusly:</p>
+<blockquote>
+<p>N = 10x+y</p>
+</blockquote>
+<p>...and its inverse, ~N as:</p>
+<blockquote>
+<p>~N = 10y+x</p>
+</blockquote>
+<p>You're asking for the calculation (N-~N).  That can be simplified as below:</p>
+<blockquote>
+<p>N-~N = (10x+y) - (10y+x)</p>
+<p>N-~N = 10x + y - 10y - x</p>
+<p>N-~N = 9x-9y</p>
+<p>N-~N = 9(x-y)</p>
+</blockquote>
+<p>So for any 10&lt;=N&lt;100, N-~N will always be divisible by 9</p>
+<p>If we use 41 * 14, we'd have x=4 and y=1:</p>
+<blockquote>
+<p>N-~N = (10(4)+1(1)) - (10(1)+1(4))</p>
+<p>N-~N = 10(4) + 1(1) - 10(1) - 1(4)</p>
+<p>N-~N = 9(4)-9(1)</p>
+<p>N-~N = 9(4-1) = 9(3) = 27</p>
+</blockquote>
+<p>So for any 10&lt;=N&lt;=100, N-~N will always be divisible by 9</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d4arukj">
+		<a class="author" href="https://www.reddit.com/user/functor7" target="_blank">functor7</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A number is divisible by 9 exactly when its digits sum to a multiple of 9. So 1836 is divisible by 9, 1936 is not. More exactly, a number and the sum of its digits both have the same remainder when we divide by 9. For example:</p>
+<ul>
+<li>
+<p>3823 divided by 9 is 424 remainder 7. Also, 3+8+2+3 = 16 divided by 9 is 1 remainder 7</p>
+</li>
+<li>92838845 divided by 9 is 10315427 remainder  2. Also, 9+2+8+3+8+8+4+5 = 47 divided by 9 is 5 remainder 2.</li>
+</ul>
+<p>So if I want to know the remainder of a number after dividing by 9, I can just look at the remainder of the sum of its digits. They'll always be the same.</p>
+<p>Now, remainders work nice under addition, subtraction and multiplication. If the remainder of N divided by 9 is 3 and the remainder of M divided by 9 is 2, then the remainder of N+M divided by 9 will be 2+3=5. If I add numbers, I can just add remainders. Same thing with subtraction and multiplication. Sometimes you might have to take an additional remainder, but it's good. For example</p>
+<ul>
+<li>
+<p>The remainder of 40 divided by 9 is 4, and the remainder of 55 divided by 9 is 1. The remainder of 40+55 will be 4+1=5.  So 40+55=95 has remainder 5 after dividing by 9.</p>
+</li>
+<li>
+<p>The remainder of 43 after dividing by 9 is 7 and the remainder of 80 after dividing by 9 is 8, so the remainder of 80-43 after dividing by 9 is going to be 8-7=1. In fact, 80-43 = 37, which has remainder 1 after dividing by 9.</p>
+</li>
+<li>3823+92838845 will be divisible by 9 because 3823 divided by 9 has remainder 7 and 92838845 divided by 9 has remainder 2. So 3823+92838845 divided by 9 will have remainder 2+7=9. But 9 can't be a remainder, and 9 divided by 9 has remainder 0 so 3823+92838845 will have remainder 0, which means that it is a multiple of 9.</li>
+</ul>
+<p>In particular, if N and M have the same remainder after dividing by 9, then N-M will be divisible by 9. Their remainders are the same, so subtracting them will give remainder zero, which means that it must be divisible by 9.</p>
+<p>If you have a number, then reordering it's digits won't change the remainder after dividing by 9, because this does not change the sum of the digits. The remainder of 435 after dividing by 9 is the same as the remainder of 4+3+5=12, which is 3. The remainder of 354 after dividing by 9  is the same as the remainder of 3+5+4 = 12, which is 3. This means that 435-354 will have remainder 3-3=0, so it is divisible by 9.</p>
+<p>So, because reversing the digits does not change the sum of the digits, the difference will always be divisible by 9.</p>
+<p>The field of math dealing with remainders is <a href="https://en.wikipedia.org/wiki/Modular_arithmetic" target="_blank">Modular Arithmetic</a>.</p>
+<p>EDIT: It works for 11,22,33 etc and palindromes, 313,2332 etc, because 0=0*9, which means zero is a multiple of 9.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d4b2n5l">
+		<a class="author" href="https://www.reddit.com/user/Sorathez" target="_blank">Sorathez</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Any two digit number can be written as 10x + y. (So 52 = 10*5 + 2). Reversing the number gives you 10y + x. Then:</p>
+<p>(10x+y) - (10y+x) = 10x+y - 10y-x</p>
+<p>= 10x - x + y - 10y</p>
+<p>= 9x - 9y</p>
+<p>= 9(x-y)</p>
+<p>Which is divisible by 9 so long as x and y are integers.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d4b3trf">
+		<a class="author" href="https://www.reddit.com/user/ImNorwegian" target="_blank">ImNorwegian</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It has to do with the fact that you are writing the numbers in base 10, and 9 is one less than that.</p>
+<p>I'll do a general calculation here, so you see what's going on with N digits. Hopefully you will see the point where our base-10 system comes into play. So, taking something like</p>
+<pre><code> AB...XZ = A*10^N + B*10^N-1 + ... + X*10 + Z</code></pre>
+<p>the reverse would be</p>
+<pre><code> ZX...BA = Z*10^N + X*10^N-1 + ... + B*10 + A</code></pre>
+<p>Now let's subtract the bottom number from the top one:</p>
+<pre><code> AB...XZ - ZX...BA =  
+ =   A*10^N + B*10^N-1 + ... + X*10 + Z -  
+   - Z*10^N - X*10^N-1 - ... - B*10 - A</code></pre>
+<p>I'm gonna gather up the numbers from the coefficients A and B and ... and X and Z, so that we get</p>
+<pre><code> AB...XZ - ZX...BA =  
+ = A(10^N - 1) + B(10^N-1 - 10) + ... +
+                  + X(10 - 10^N-1) + Z (1 - 10^N)  
+ = A(10^N - 1) + 10 B(10^N-2 - 1) + ...-
+                  - 10 X(10^N-2 - 1) - Z (10^N - 1)  </code></pre>
+<p>where I have extracted the lowest common power of 10 from each parenthesis, and switched the signs where we get something negative.</p>
+<p>Notice the look of each parenthesis now: They all are of the shape (10^something - 1). You probably know already what happens when you subtract 1 from a number like 100000...0000; You get lots of nines! Like 9999...999. So,</p>
+<pre><code> AB...XZ - ZX...BA =  
+ = A(99..N-1..99) + 10*B(99..N-2..99) + ... -
+              - 10*X(99..N-2..99) - Z(99..N-1..99)  
+ = 9*A(11..N-1..11) + 90*B(11..N-2..11) + ... -
+              - 90*X(11..N-2..11) - 9*Z(11..N-1..11) </code></pre>
+<p>We can now take all of this and place parentheses around, and then extract a number 9:</p>
+<pre><code> AB...XZ - ZX...BA =  
+ = 9 [ A(11..N..11) + 10 B(11..N-2..11) + ... -
+              - 10 X(11..N-2..11) -  Z (11..N..11) ]  </code></pre>
+<p>and you can therefore see that the number will be divisible by 9, since all the stuff inside the parenthesis are integers.</p>
+<p>If this was done in, say, base-4, we would not get 999...999 inside the different parenthesis, but 333...333 instead. But because we wrote the number in base-10 as AB...XZ, and then subtracted the mirror image, the result is a 9-divisible number!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d4be9pz">
+		<a class="author" href="https://www.reddit.com/user/CreativeArbok" target="_blank">CreativeArbok</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I know I'm a bit late but</p>
+<p>Let the two distinct digits that appear be a and b, where a&gt;b</p>
+<p>Hence the bigger number will be 10a+b and the smaller one will be 10b+a.</p>
+<p>Since we know a&gt;b&gt;=0,
+We also know 10a+b&gt;10b+a.</p>
+<p>The difference is</p>
+<p>(10a+b)-(10b+a)
+=9a-9b
+=9(a-b)</p>
+<p>Since a and b are both positive whole numbers, and a&gt;b, a-b is an integer.</p>
+<p>Thus the difference, 9(a-b), is a multiple of 9</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -20,4 +146,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/4o9p15" onclick="return false"><span>show</span></a>
 </li>

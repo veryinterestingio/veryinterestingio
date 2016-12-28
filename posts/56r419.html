@@ -45,14 +45,87 @@
 			<span class="tags tag-Mathematics">Mathematics</span>
 			<a href="/posts/56r419" onclick="return false">Is it possible to find the algorithm for a random number generator by studying the sequences it produces?</a>
 		</h2>
-		<span class="date">2016-11-16</span>
+		<!--<span class="date">2016-11-16</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Is it possible to find the algorithm for a random number generator by studying the sequences it produces?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="d8lrjjt">
+		<a class="author" href="https://www.reddit.com/user/linschn" target="_blank">linschn</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For the sake of brevity, we will talk neither about the seed, i.e. the number that is given to the algorithm to bootstrap its pseudo random generation process, nor the environment it is executed in, and from which it can draw some randomness (time, temperature of the CPU, etc.). We will only talk about a deterministic pseudo random generator.</p>
+<p>There is only a finite amount of information in the algorithm. You can more or less (discarding a whole lot of important details) map it to the size (in e.g. MB or kB) of the program file.</p>
+<p>Therefore, the pseudo random number generator can only output a certain amount of random numbers before it starts giving away information about itself.</p>
+<p>The mathematical notion that ties the output of a program to what we may informally call its true information content is called the Kolmogorov complexity.
+<a href="https://en.wikipedia.org/wiki/Kolmogorov_complexity" target="_blank">https://en.wikipedia.org/wiki/Kolmogorov_complexity</a></p>
+<p>The way in which we measure the information contained in, say, a program output is stronly tied to its randomness, it is called the entropy, or Shannon information:
+<a href="https://en.wikipedia.org/wiki/Entropy_(information_theory" target="_blank">https://en.wikipedia.org/wiki/Entropy_(information_theory</a>)</p>
+<p>You want to have a program whose output has a lot of entropy, i.e. is random, but you don't want to store this output as is on the disk (this would be a one-time-pad, it is an unbreakable means of encryption but requires the transit of huge amount of secret data), you want to store a program that will compute this at runtime.</p>
+<p>The problem is that there is a lower bound on the Kolmogorov complexity of a true random string, that is more or less the length of the string itself. This is bar some pathological case where the execution environment is defined as containing the random string you want to output. There is no way to minimize the Kolmogorov complexity in general.</p>
+<p>That is why you can not zip a file twice for example.</p>
+<p>Note that the output of a program does not need to repeat itself. For example you could output the digits of pi or of any irrational number and never repeat yourself, but the Kolmogorov complexity of pi is finite: you can write a program that outputs digits of pi, and this program will fit in a finite amount of memory.</p>
+<p>How to actually guess the structure of the algorithm is another can of worm. The naive approach is tied to one of the fundamental problem of Computer Science: the Halting Problem:
+If you try to enumerate all programs of reasonable size, and run them to see if their output match the one of your mystery algorithm, then you will find that some programs never terminate. And some other terminate after a reaaaaaaaaally long time. The problem is that the amount of time you have to wait before you can stop a program because it will never terminate is literally uncomputable, it is called the busy beaver number:
+<a href="https://en.wikipedia.org/wiki/Busy_beaver" target="_blank">https://en.wikipedia.org/wiki/Busy_beaver</a></p>
+<p>You will never know if you have the algorithm you search, and are just not patient enough to get the answer, or if you are just watching an endless loop...</p>
+<p>Practically, though, there exist a variety of attacks: you could try to learn how to predict the output with machine learning techniques, you can try to gain insights on the probable implementation using clues (which algorithms are commonly used, which system is this running on, can I time the execution of the algorithm...).</p>
+<p>All those side-channel attacks are the reason why crypto system are very hard to implement in practice, as the tiniest of error can bring the whole thing down.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d8lyw1d">
+		<a class="author" href="https://www.reddit.com/user/nexterday" target="_blank">nexterday</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>/u/linschn's answer is great from a theoretical perspective, but from a practical everyday perspective, I think there's an equally interesting answer.</p>
+<p>First, there are two kinds of pseudo-random number generators (PRNGs): cryptographically secure (CSPRNG), and non-cryptographic (PRNG). The short answer is that in practice, we design CSPRNGs specifically to not have the property you mention: knowing the partial output of a CSPRNG should not allow you to compute or learn anything else it has or will output. In fact, a stream that comes out of a CSPRNG is meant to be practically indistinguishable from true random. This means that if you have a set of CSPRNGs, they should also be indistinguishable from one another, as they should all look truly random. In fact, if you had some way to distinguish CSPRNGs from one another, you'd have an attack that showed those CSPRNGs were actually not secure (i.e. distinguishable from random).</p>
+<p>Now for the hard question: do we have actually secure CSPRNGs in practice? It turns out we're not really sure! We have many strong candidates, and many that have remained secure in practice for decades despite incremental advances in breaking them. On the other hand, we have seen popular CSPRNGs fail: in recent history, RC4 is a good example; RC4's output was weakly but detectably biased from random, making it unsuitable for use as a stream cipher.</p>
+<p>On the other side, there are CSPRNGs that are designed with a backdoor, such as DUAL_EC_DRBG. In this case, the NSA created a seemingly-secure CSPRNG that to a naive observer appeared to produce an output indistinguishable from random. However, shortly after its standardization, some clever cryptographers speculated that if the NSA knew a relation between two particular parameters in the algorithm (these parameters themselves being chosen by the NSA), then the NSA (and, in theory, only the NSA) would have the ability to compute future outputs from the supposedly-CSPRNG given its current output. This speculation was later confirmed to be true in the Snowden documents. Nonetheless, you'd be hard-pressed in practice to distinguish DUAL_EC_DRBG outputs from any other CSPRNG, unless you had the secret key generated by the NSA (in which case, it would be trivial).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d8lt86y">
+		<a class="author" href="https://www.reddit.com/user/geezorious" target="_blank">geezorious</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Yes, in theory, if by random number generator you mean a pseudo-random number generator.</p>
+<p>All of these prngs keep some data in memory known as &quot;state&quot;.  That state allows them to generate the next number and the state changes.  None of the processes are random, they are deeply deterministic from the initial condition.</p>
+<p>This state is very large, 64-bit or 256-bit, so it will not repeat for a very long time.  But after 2 ^64 or 2 ^256 prngs generated, it will repeat.  In practice, however, it's infeasible to wait so long.  Instead, you can guess the state based on power consumption because of the difference in electrical requirements for a &quot;goto&quot; instruction, as well as small changes in latency.  These hint at the state, and the latter can be done remotely.  Cryptographic prngs attempt to mask latency by introducing noops so information about the state isn't leaked.  More advanced crypto methods attempt to conceal informational leakage due to electricity as well.</p>
+<p>Many OSes now use additional sources of entropy to achieve truer randomness, like temperature, fan speed, network traffic, etc.  otherwise the only seed often used in older operating systems was start-time, which you can easily narrow down to a few minutes if you kept pinging the machine.  Once you figure out the seed, prngs are weak since you can more easily find the iteration they're on which is likely between 1000-1billion, vastly smaller than 2 ^64 or 2 ^256.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d8mdl46">
+		<a class="author" href="https://www.reddit.com/user/sacundim" target="_blank">sacundim</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Well, in an important sense this question is backwards, because in cryptography people look at it the <em>opposite</em> way around: they assume that the attacker knows the algorithm (but not the seed, key or any secret parameters), and a subset of the output, and ask how hard is it for the attacker to figure out the rest of the output.  </p>
+<p>Why?  Because in real life figuring out what random number generator algorithm a system uses isn't very hard—you just acquire an example of the system and reverse engineer it.  And even if you can't acquire such a sample, there's a relatively small number of RNG designs that are used over and over—for example, <a href="http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf" target="_blank">the NIST ones are very common</a>, as is the OpenSSL one and the ones in the major operating systems.  So uncertainty about what RNG an adversary is using contributes doesn't contribute many bits of entropy.</p>
+<p>But to answer your specific question, the answer is that:</p>
+<ol>
+<li><a href="https://jazzy.id.au/2010/09/20/cracking_random_number_generators_part_1.html" target="_blank">For some RNGs it's trivial</a>.  You just try a bunch of simple RNGs and test whether the sequence fits that RNG type.</li>
+<li>For others it might be impossible if the RNG used as intended.  In particular, operating system RNGs are constantly reseeded with random events measured by the computer they run on.  So while they are deterministic algorithms, in practice they're used to <em>expand</em> a slow, truly random bit stream into a fast one where nearby bits are pseudorandom but distant ones are truly random.</li>
+<li>Somewhere in the middle you have completely deterministic cryptographic RNGs (a.k.a. &quot;stream ciphers&quot;), where mathematically you can follow the same procedure as #1 but in practice it'd take you longer than the lifetime of the universe.</li>
+</ol></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d8mvxhp">
+		<a class="author" href="https://www.reddit.com/user/WeAreGlidingNow" target="_blank">WeAreGlidingNow</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Here's something mildly interesting, and somewhat related to your question:</p>
+<p>Clifford A. Pickover (who has a PhD in cellular biology but turned data scientist as an IBM Fellow) came up with an idea to quickly analyze random number generators for weaknesses. Granted, this is not exhaustive statistical analysis. This is quick-and-dirty, and really, it just demonstrates a simple idea. It can obviously be expanded.</p>
+<p>Take three numbers in the sequence, call them X, Y and Z, and plot them in three-dimensional space. Then repeat with the next three, and so on.</p>
+<p>If the random number generator was &quot;good&quot; (quotes here, for sure), the result would look like a <a href="https://media0.giphy.com/media/26BRzDIHfU6ItGtRS/200_s.gif" target="_blank">spherical cloud with no structure</a>. However, if the generator was &quot;bad&quot;, you would see <a href="http://soulwire.co.uk/img/experiments/noise-reactive-particle-sphere/noise-sphere-003.jpg" target="_blank">obvious structure in the cloud</a>.</p>
+<p>He called them <strong>Noise Spheres.</strong></p>
+<p>This won't help predict <em>EXACTLY</em> the next X, Y and Z. But will give you some statistical probabilities.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -60,6 +133,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/56r419" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

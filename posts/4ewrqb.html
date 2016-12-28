@@ -45,14 +45,67 @@
 			<span class="tags tag-Chemistry">Chemistry</span>
 			<a href="/posts/4ewrqb" onclick="return false">How does a tempered glass screen for your smart phone pass the sense of touch to the sensors below?</a>
 		</h2>
-		<span class="date">2016-11-16</span>
+		<!--<span class="date">2016-11-16</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>The title pretty much sums it up. I can guess that it would be through heat or possibly shadow but I can't say for sure. It probably isn't from pressure because the tempered glass seems very hard and therefore wouldn't flex much. </p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="d242rs0">
+		<a class="author" href="https://www.reddit.com/user/nomotiv" target="_blank">nomotiv</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I am currently working on a capacitive touch design right now, so I can take a stab at this.</p>
+<p>.</p>
+<p>First you basically need a way to measure capacitance.  There are several ways to do this, and every touch manufacturer has a variance on it.  Essentially you apply a stimulus to the &quot;sense&quot; pad and then look at it's decay or response to get a base capacitance measurement.  Generally there are 2 main kinds of base capacitance measurement, &quot;mutual&quot; and &quot;self&quot;.  Either way you are relying on the fact that this measurement is pretty consistent when there is nothing on the screen, that the glass is non-conductive so the fields can pass through it, and that your finger, which is conductive, will divert the electric field causing the measurement to change.</p>
+<p>.</p>
+<p><a href="http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/CapTIvate_Design_Center/latest/exports/docs/users_guide/html/design_self_buttons_finger.png" target="_blank">Self capacitance</a> is essentially when you are measuring the capacitance of your floating sense pad to ground.  The advantage here is you generally have a bit more signal, but the disadvantage is you essentially have 1 pin per pad.</p>
+<p>.</p>
+<p><a href="http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/CapTIvate_Design_Center/latest/exports/docs/users_guide/html/design_mutual_buttons_finger.png" target="_blank">Mutual capacitance</a> is essentially when you are measuring the capacitance from one sensor to another.  The disadvantage is you have a much smaller reference plane to measure capacitance to, which can be bad trying to measure through thicker pieces of glass/plastic.  The advantage is you can multiplex the sensors.  <a href="http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/CapTIvate_Design_Center/latest/exports/docs/users_guide/html/design_mutual_buttons_multiplexed.png" target="_blank">For instance, you could use 6 pins to measure 8 &quot;points&quot; by having 2 for the row and 4 for the column</a>.  Now you scan each row sensor with respect to each column sensor and you get 8 locations that are uniquely identifiable.</p>
+<p>.</p>
+<p>I am going to preface this section by saying, I have never done an actual phone touch screen before, but I can speculate on a possible design based on things I am testing.  Let assume we want to combine a mutual capacitance design with a touch screen, and my controller has 32 touch pins.  I can combine this with an LCD, which I have glued down to prevent the air gap from changing my measurements.  Since it is a rectangle, lets design my electrodes for say 18x14, using 32 pins giving me 252 zones behind my LCD.  You would think you could only measure 252 points, but it turns out you get some leakage between the sense pads, so you you can get a proximity type measurement.  You compare each pad's measurement with a nearby pad and you can better locate the location of a finger press.</p>
+<p>.</p>
+<p>Sounds complicated right?  Well luckily for a design engineer like me, the manufacturers of these sensing chips do most of the work for me. I can choose to dig into all of the sense values and run my own custom algorithms for finding fingers, or I can trust the built in libraries from the device manufacture.  This means that if I followed their guidelines correctly I pretty much can get back a table of information that says there are fingers in X and Y positions and I am good to go.</p>
+<p>.</p>
+<p>All images were linked from a <a href="http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/CapTIvate_Design_Center/latest/exports/docs/users_guide/html/ch_design.html#ch_design_process" target="_blank">Texas Instruments Technology design guide on their CapTIvate solution</a>.  You can thank TI for the lovely pictures, or read up on their guide for a more in depth detailing of their capacitive touch technology.  I will note I have no affiliation with TI.</p>
+<p><strong>edit</strong> Some minor wording changes and a note, that I haven't actually done a Touch screen LCD on a phone, so I am speculating based on how I would design a phone touch screen from scratch</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d246a05">
+		<a class="author" href="https://www.reddit.com/user/JoshuaPearce" target="_blank">JoshuaPearce</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Other posters have already described modern touchscreens (or at least, the good kind).</p>
+<p>Old ones worked by having a very thin metal mesh (which could sometimes be visible) that basically behaved like buttons do, but with some clever tricks to measure where you pushed. The downside is that this kind of screen is only good at single press, but it can also detect pressure from anything solid. The Nintendo DS uses this. <em>(Edit: I don't know if they actually use a mesh, it's possible since it's a low res screen already.)</em> More modern versions of this don't use a mesh, but are still limited to single press detection. They're popular for bank machines and such, because they're durable and work fine in cold weather when people are wearing heavy gloves, and they're much more reliable when wet.</p>
+<p>This works because even though like you said glass is very hard, it is not completely inflexible (nothing is 100% rigid). Especially when it's very thin. It doesn't need to flex much to be useful.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d23znlo">
+		<a class="author" href="https://www.reddit.com/user/kevsgrove" target="_blank">kevsgrove</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Touch screens work on the electrical conductance of your finger. That's why if you use it with a wet finger and leave water on the screen, you will get strange behavior. You can use it with a cold piece of metal as well, as long as the surface area is big enough.</p>
+<p>IIRC, there are many small areas of a clear, electrically conductive material (many different candidates, one source said indium tin oxide is most common) imprinted on the surface of the glass. When a conductive material makes contact, it disturbs the electric field in that area, and a touch is registered.</p>
+<p>Edit: I'm describing what are apparently known as <a href="https://en.wikipedia.org/wiki/Touchscreen#Capacitive" target="_blank">capacitive screens</a>. Somewhat misleadingly, I think, &quot;resistive&quot; touch screens work by pressure, and the sensors are behind the actual display.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d24c4ue">
+		<a class="author" href="https://www.reddit.com/user/Setiri" target="_blank">Setiri</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>These technical descriptions are great, but for a very simplified idea to get the general gist of it, <a href="https://upload.wikimedia.org/wikipedia/commons/7/71/Plasma_lamp_touching.jpg" target="_blank">look no further.</a></p>
+<p>I'm sure tons of people will argue this but again, it's meant as a simple illustration of your finger on glass can be accurately &quot;seen&quot; by the computer inside your phone.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">3 more answers...</a>
@@ -60,6 +113,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/4ewrqb" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

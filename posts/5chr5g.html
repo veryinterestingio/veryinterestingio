@@ -45,14 +45,79 @@
 			<span class="tags tag-Computing">Computing</span>
 			<a href="/posts/5chr5g" onclick="return false">Why can online videos load multiple high definition images faster than some websites load single images?</a>
 		</h2>
-		<span class="date">2016-11-16</span>
+		<!--<span class="date">2016-11-16</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>For example a 1080p image on imgur may take a second or two to load, but a 1080p, 60fps video on youtube doesn't take 60 times longer to load 1 second of video, often being just as fast or faster than the individual image.</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="d9wrjx8">
+		<a class="author" href="https://www.reddit.com/user/TheOneTrueTrench" target="_blank">TheOneTrueTrench</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The first frame of a 1080p video will take about as long to load as a 1080p jpg.</p>
+<p>But the next frame? It's almost identical. There's <em>some</em>* differences here and there, but overall the same. So the next frame isn't &quot;hey,  let's send another whole jpg&quot;, but an encoding of the differences. </p>
+<p>&quot;Move this area down 3 pixels,  bend this area to the left by this degree,  brighten this area by such and such amount, but everything else is the same&quot;</p>
+<p>And so on for the next 2 seconds. But now a lot has changed, so send another jpg, and send more updates got the next 2 seconds. </p>
+<p>* editted here</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d9wrqur">
+		<a class="author" href="https://www.reddit.com/user/technotrader" target="_blank">technotrader</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Two reasons mostly:</p>
+<p>First, still images are typically compressed much less than movie images even at the same resolution. This is because the viewer has more opportunity to scrutinize the still image (1/60th vs. several seconds or more) and may negatively perceive areas with less details. Less compression = more details = larger file size.</p>
+<p>Secondly, modern video codecs don't store movies as a series of still images, but as reference (full) images, followed by changes to that image. If the image hardly changes (which is the case most times except for panning/action scenes), those delta images will be really small.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d9wlepk">
+		<a class="author" href="https://www.reddit.com/user/bunky_bunk" target="_blank">bunky_bunk</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>So your question is whether a movie has a smaller file size than a collection of individual images with one image for each frame.</p>
+<p>The answer is yes and the most important compression mechanism is <a href="https://en.wikipedia.org/wiki/Motion_compensation" target="_blank">motion compensation</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d9wwhez">
+		<a class="author" href="https://www.reddit.com/user/drachs1978" target="_blank">drachs1978</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Actually, the top comments in this thread are mostly wrong.   Internet HTTP communications specialist here.  </p>
+<p>The compression algorithm that's used to compress the video does a great job of reducing it's size and the overall bandwidth consumed but videos are too small for their size to matter on internet connection capable of streaming the video.  Even if the video was 10 times bigger than it is, the frames would still arrive faster than they would need to be displayed, so compression really isn't relevant to why it's the same speed as imgur.  I.E., your question is the video is way bigger... why does it load in the same amount of time?  Answers about why the video is smaller than it could be otherwise are irrelevant, video is still way bigger than the image in question.</p>
+<p>Most display latency on modern websites is related to the ridiculously poor performance of the advertising networks, but that's not the deal with this particular case regarding imgur.</p>
+<p>TCP Handshake time + HTTP protocol overhead is what's up.</p>
+<p>TCP requires a round trip between you and the server to establish a connection.  Then HTTP (Runs on top of TCP) requires another round trip to fetch the index page.   Then at least one more round trip to fetch the image in question.  After that the website will pretty much be streaming on a modern browser.   Each round trip takes about 30-50ms.  That's a minimum of about  100-150ms to set up depending on how low the latency on  your internet connection is.</p>
+<p>Same thing happens on  youtube.  Takes about 100ms to get everything up and running and then the system is streaming and data is arriving faster than it's displayed.  </p>
+<p>As a matter of fact, Google tunes their latencies hard... So in general that fat youtube video will actually load way faster than your average website.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d9ws4ft">
+		<a class="author" href="https://www.reddit.com/user/egoncasteel" target="_blank">egoncasteel</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There is also the matter of establishing the connection in general. TCP/IP and web servers are very verbose in how they form a connection. There is a lot of back and forth before the stream of actual data starts to come through   </p>
+<p>I am over here can you hear me</p>
+<p>yes I hear you, can you hear me</p>
+<p>yes I hear you can I have that</p>
+<p>yes you can have that its this big and its coming in chunks so big can you accept that</p>
+<p>yes I can go ahead and send</p>
+<p>ok sending did you get that ....
+.
+and so on</p>
+<p>So the size of the actual file may have less to do with it. Like arranging to have something delivered by truck. The effort to setup the delivery is the same regardless of if delivery is 1lb or 100lb to a certain extent.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -60,6 +125,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/5chr5g" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

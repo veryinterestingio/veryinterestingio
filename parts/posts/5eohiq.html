@@ -5,7 +5,7 @@
 			<span class="tags tag-Physics">Physics</span>
 			<a href="/posts/5eohiq" onclick="return false">How does radio stations transmit the name of the song currently broadcasted?</a>
 		</h2>
-		<span class="date">2016-11-27</span>
+		<!--<span class="date">2016-11-27</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
@@ -13,7 +13,63 @@
 <p>EDIT: Thanks for all the answers! Learnt something new :)</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dadzwr6">
+		<a class="author" href="https://www.reddit.com/user/Canazza" target="_blank">Canazza</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You can send any kind of informaton over radio waves (it's how WiFi, Bluetooth and RFID work), with FM Radio there's a specific protocol called the <a href="https://en.wikipedia.org/wiki/Radio_Data_System" target="_blank">Radio Data System</a> which allows song names to show up, as well as other information such as the name of the staton, the show type, Traffic Alerts and some other stuff.</p>
+<p>How it's piggybacked onto the actual music signal is a little bit more complicated. Basically each station on FM is given a range of frequencies they can broadcast in (FM is Frequency Modulation after all, so they need some room to send their signal, though AM radio stations are also allocated a frequency range for other reasons). </p>
+<p>What happens with RDS is that a small amount of that frequency range (about 4kHz out of 57) is used to send additional data. The Data rate for this informaton is about 1kbps, but it's enough to send a short burst of data every couple of seconds, which is more than enough to keep you updated as to which track is playing.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dadyupy">
+		<a class="author" href="https://www.reddit.com/user/UnExpertoEnLaMateria" target="_blank">UnExpertoEnLaMateria</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The system is called RDS:</p>
+<p><a href="https://en.wikipedia.org/wiki/Radio_Data_System" target="_blank">https://en.wikipedia.org/wiki/Radio_Data_System</a></p>
+<p>It's a way to transmit a small digital information on the same frequency as the analog FM signal, without interfering with eachother..</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dae6rjk">
+		<a class="author" href="https://www.reddit.com/user/4543543543543" target="_blank">4543543543543</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I am a broadcast engineer in the united states.</p>
+<p>Most of the answers here are on the right track. You have to have a basic understanding of the FM transmission system first to gain a better working knowledge from start to finish of RDS/RDBS. I'm trying to explain this in a simple way :)</p>
+<p>With ANALOG FM transmission in the US a &quot;baseband&quot; or multiplexed signal is generated, to then transmitted using frequency modulation. So when you tune your car radio to 104.9MHZ the station is actually covering a little bit more bandwidth to left and right of 104.9FM, that is one reason why stations are spaced apart. (you won't see or be able to tune 105.0FM,, try it!)</p>
+<p>Back to the baseband that is being generated. It actually has several parts to it. A portion of it is for LEFT+RIGHT or mono audio. Another portion is for  LEFT-RIGHT audio.  If you sum together the L+R and L-R you receive STEREO. There is also a tone at 19KHZ in the baseband. This is how your car radio knows to look for the L-R portion, to give you that stereo image... If the 19KHZ tone is too weak to receive the radio understands that it should only latch onto the L+R or mono portion. The L+R is injected at a stronger level than the L-R... This is done on purpose, so when you are far away from the radio station transmitting antenna you can still get the MONO audio, with less noise than if you were trying to get stereo reception at that distance.</p>
+<p>There is more space left in the baseband for auxiliary services. Most notably the RDS (RDBS standard for US stations) portion, this is where the data bits are inserted. The radio station will extract their own metadata from whichever computer system they use to playout their audio (known as automation systems), and they can configure how they want this data to be formatted when it appears on the radio display. Some stations have a static text that doesn't change, like just showing the call letters and maybe a call in number. Most are dynamic and update the text for different songs or programs or sports scores if they wish.</p>
+<p>There is still more space in the baseband to insert a few more narrow band mono audio programs. You would need a special FM tuner that can switch over to these &quot;SCA&quot; (Subsidiary Communications Authorization) channels embedded into the baseband.  Back in the day, radio station owners would lease these SCA channels to companies like Muzak. Muzak would then use the SCA channel to broadcast their own music meant for malls, hotels, elevators, ETC. Muzak would sell the rights to carry their music format to the malls to use. $$$ Reading for the blind services would also use and still use these hidden mono program channels that can be received with the correct tuner.</p>
+<p>Back to RDS or RDBS. The original RDS can also direct your FM radio to do things like change frequencies. This is mostly used for European (other non US) broadcast stations that consist of many low power FM transmitters across multiple frequencies. So if you are driving across the country and Capital FM is your station of choice, it will automatically re-tune to the next strongest repeater station making it appear as one large high powered FM station. In the US, the FM band is configured a little bit different so we don't use the &quot;alternate frequency&quot; flag... We also don't use the &quot;traffic flag&quot;  where if 98.5MHZ has relevant traffic info you could tell the radio to goto 98.5MHZ when they go to read a traffic report. The radio would jump to 98.5MHZ and then go back to your other selection when the traffic read was over.</p>
+<p>So RDBS is a very stripped down version of the European RDS system and features</p>
+<p>Now HD radio is a totally different set of standards. All you need to understand is that in the US you will have the analog FM station, and on left and right sidebands you will have the digital HD carriers as well.. If you have the HD compatible radio it will see the digital signals and lock onto those instead of the analog. The digital bit streams of HD radio contain the HD-1, and HD-2 to 4 audio sub streams if valid, as well as all the PAD data like artist and title, and even album art is being transmitted over the air.</p>
+<p>Unfortunately in the US  HD radio adoption is not large. Different counties use different systems so don't confuse HD radio with DAB as its totally different. Even though a lot of stations have purchased the equipment to transmit HD radio, the general consumers are not aware that it exists. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="daeq9th">
+		<a class="author" href="https://www.reddit.com/user/spinout257" target="_blank">spinout257</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Wow something I can finally answer.<br />
+I am a broadcast engineer for an fm and am station in Canada.<br />
+Basically our automation system that play all our music will send the name of the current song over ethernet to a computer with a piece of software called TRE.  The engineer can program this software to add text to it.  I have mine programmed to say &quot;playing song  name by song artist on station name&quot;.  Then this software is linked over ethernet to our RDS encoder.  This takes the information and injects it into the pilot of the signal that gets sent to the transmitter.  So it's encoded directly onto the signal as data.<br />
+Then your vehicles are made to decode this information out of the radio signal and display all the cool information.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dadzs9t">
+		<a class="author" href="https://www.reddit.com/user/RaymieHumbert" target="_blank">RaymieHumbert</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In the US, many larger stations use a system called HD Radio which transmits a full digital signal that can carry multiple audio streams on the edges of the analog FM carrier. HD Radio stations can even carry small image files for their logo! Some Canadian and Mexican stations also use HD Radio, but I know that the HD station count in the latter is around 30.</p>
+<p>However, if your car radio isn't HD, it is being sent through RDS.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -21,4 +77,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/5eohiq" onclick="return false"><span>show</span></a>
 </li>

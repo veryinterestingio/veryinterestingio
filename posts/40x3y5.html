@@ -44,14 +44,57 @@
 		<h2>
 			<a href="/posts/40x3y5" onclick="return false">Why must I enter a CAPTCHA to pay a bill? Are they afraid a robot is going to enter a credit card on my behalf?</a>
 		</h2>
-		<span class="date">2016-11-16</span>
+		<!--<span class="date">2016-11-16</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Why must I enter a CAPTCHA to pay a bill? Are they afraid a robot is going to enter a credit card on my behalf?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="cyyioi5">
+		<a class="author" href="https://www.reddit.com/user/PIGFOOF" target="_blank">PIGFOOF</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Thanks for all your explanations.  Learned quite a bit.  My takeaway is if you insist on a CAPTCHA, as my electric bill does, make it in big, easy to decipher letters.  Don't make it into blurry little letters that takes me three tries, as my phone bill does. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cyyhvo1">
+		<a class="author" href="https://www.reddit.com/user/henry_waco" target="_blank">henry_waco</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They're not worried that you're using a bot to pay your bill or that you're trying to pay your bill with a fraudulent card because that would obviously only work once and, since it will be reported, you will get caught immediately (they have all your personal information, obviously); they're more worried that a bot will use the site to get a list of card numbers that work so that they can use them again on a different site or make duplicate physical cards.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cyxs4aj">
+		<a class="author" href="https://www.reddit.com/user/buffygr" target="_blank">buffygr</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Yes, captchas are generally used to prevent automation by using (ro)bots. However, there are a couple of side effects. One would be that you can not &quot;accidentally&quot; pay the bill because you would have to enter the captcha first. A bot would also not just enter &quot;a credit card&quot; but instead do pretty much anything on there - like trying out different card numbers. Using a captcha verifies that you are human. When developers are unsure whether or not to use a captcha then they will usually go for it because you know, better have than not have. </p>
+<p>Source: I'm a software engineer and ex webdev</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cyxxsvd">
+		<a class="author" href="https://www.reddit.com/user/John_Barlycorn" target="_blank">John_Barlycorn</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>No, I do this for a living, let me explain.</p>
+<p>The form on the site is something I'd design.  You fill out the form and on the back end a &quot;ticket&quot; or series of tickets is created. These tickets are either work for people... i.e. Some billing person punches the data into another system or calls you back... Or, preferably, some automated process enters the data into a billing system.</p>
+<p>If I don't have this form built correctly... Or the systems between it and where it's going aren't updated, or maybe the billing system itself is super outdated, it's possible that putting the correct values into that form could result in the system sending back information that it shouldn't. To read more about these sorts of attacks look up SQL injection attacks. There are many others as well. Exploits in php, java, who knows.</p>
+<p>An attacker isn't sure how your system is built or what you may have forgotten to update. So they have lists of thousands of exploits that they'll try on any particular form to see if any of them work. So they create scripts that hammer forms with all sorts of different inputs to see if anything works. They are almost always unsuccessful, but on the rare occasion that it works the payoff is big.</p>
+<p>Now, all my forms are built right. All the software is up to date. We've got firewalls, intrusion detection, the works. So no big deal right? Wrong... That script actually did create thousands of bullshit tickets while it was pen testing us. Last one I saw was 90k records created in 3hrs. I now have teams of people that have to wade through these tickets, sort out what's real and what's fake, etc... Maybe the attacker even submitted virus ladened urls I the notes!</p>
+<p>So we add captcha. It's not a perfect solution. A skilled attacker can bypass it. You can still attack by hand, etc... But it keeps out the highschool kids and eliminates 95% of it. And that's why there's captcha.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cyxwl3j">
+		<a class="author" href="https://www.reddit.com/user/Jessie_James" target="_blank">Jessie_James</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Web Dev here.</p>
+<p>We do it because of the tremendous number of bots that randomly submit forms in an effort to spider our sites, and create junk as a result.  A CAPTCHA dramatically lessens the amount of crap data we get.</p>
+<p>EDIT - without seeing the site in question, I must also presume the page does not require authentication (username/password) to use, which allows 'bots in, causing the problems (and is likely a poor design).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -59,6 +102,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/40x3y5" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

@@ -4,14 +4,58 @@
 		<h2>
 			<a href="/posts/3j1kte" onclick="return false">Why are new smartphone processors hexa and octa-core, while consumer desktop CPUs are still often quad-core?</a>
 		</h2>
-		<span class="date">2016-11-17</span>
+		<!--<span class="date">2016-11-17</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Why are new smartphone processors hexa and octa-core, while consumer desktop CPUs are still often quad-core?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="culryim">
+		<a class="author" href="https://www.reddit.com/user/dopadelic" target="_blank">dopadelic</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>big.Little actually doesn't answer this question either. This is implemented on dual/quad core CPUs as well.
+The real answer is <strong><em>marketing</em></strong>. Apple doesn't have this same marketing pressure since their marketing is about brand image and usability rather than the technical numbers, and they stick with dual core 1.4GHz in their latest and greatest when their competition are pushing 4-8 cores running up to 2.8GHz. Yet Apple scores top in most benchmarks.</p>
+<p>Here's a direct quote from <a href="http://www.anandtech.com/show/7335/the-iphone-5s-review/2" target="_blank">Anandtech</a>:</p>
+<p><em>&quot;As we saw in our Moto X review however, two faster cores are still better for most uses than four cores running at lower frequencies. NVIDIA forced everyone’s hand in moving to 4 cores earlier than they would’ve liked, and now you pretty much can’t get away with shipping anything less than that in an Android handset. Even Motorola felt necessary to obfuscate core count with its X8 mobile computing system. Markets like China seem to also demand more cores over better ones, which is why we see such a proliferation of quad-core Cortex A5/A7 designs.</em></p>
+<p><em>In such a thermally constrained environment, going quad-core only makes sense if you can properly power gate/turbo up when some cores are idle. I have yet to see any mobile SoC vendor (with the exception of Intel with Bay Trail) do this properly, so until we hit that point the optimal target is likely two cores. You only need to look back at the evolution of the PC to come to the same conclusion. Before the arrival of Nehalem and Lynnfield, you always had to make a tradeoff between fewer faster cores and more of them. Gaming systems (and most users) tended to opt for the former, while those doing heavy multitasking went with the latter. Once we got architectures with good turbo, the 2 vs 4 discussion became one of cost and nothing more. I expect we’ll follow the same path in mobile.&quot;</em></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="culi611">
+		<a class="author" href="https://www.reddit.com/user/Holy_City" target="_blank">Holy_City</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The name of the game is efficiency. Virtually everything done on the hardware side of cell phones is aimed at the goal of lowering power consumption. </p>
+<p>Usually, the best way to go about it with a processor is to lower the clock speed. Lower speed means lower heat dissipation, which  means the electronics perform more efficiently and use less power, so you get longer battery life (or more juice for the giant screen). However, lower clock speed means slower performance. So in order to get performance speed up while balancing efficiency, they use more cores. </p>
+<p>On a desktop processor, the name of the game is performance. They still go with multiple cores, but they also use higher clock speeds. They try to cram as many cores as they can in there, but it gets more expensive and you usually don't need as many for the same performance (unless you're using an AMD chip)</p>
+<p>In addition to that, you have to keep in mind the cast majority of processors for cell phones are ARM while many desktop processors are Intel. Intel is able to do some crazy efficient processing with just four cores, and doesn't need to cram as many as they can into one chip. When they do, you get the top of the line i7s and Xeons, which are too expensive for most desktops. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cum0zh1">
+		<a class="author" href="https://www.reddit.com/user/The_Assimilator" target="_blank">The_Assimilator</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Marketing, mostly. We've already seen this battle in the desktop sector between AMD and Intel, and AMD didn't win because despite having more cores (8 vs 4), their per-core performance, as well as power consumption, was/is terrible. (Actually it's a little inaccurate to call it a battle, because Intel won by not playing; they just made better CPUs with fewer cores and let AMD's marketing team make fools of themselves.)  </p>
+<p>The top-rated comment is correct in that big.LITTLE is a power-saving exercise, but I honestly doubt that any smartphone really needs any more than 2 cores at any given time. Eventually the smartphone manufacturers will figure out that people want more battery life instead of MOAR CORES that they can't use, and this willy-waving of &quot;how many cores can we cram into a 5&quot; smartphone without causing it to melt when it's powered on&quot; will stop.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cum8k3w">
+		<a class="author" href="https://www.reddit.com/user/jakes_on_you" target="_blank">jakes_on_you</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>EE Here Every Answer here is off a little</p>
+<p>Cell phones use ARM cores or other small <a href="https://en.wikipedia.org/wiki/Reduced_instruction_set_computing" target="_blank">RISC</a> based cpus. The philosophy behind RISC is to use a simplified  <a href="https://en.wikipedia.org/wiki/Instruction_set" target="_blank">instruction set</a>   (low level code) that makes the <a href="https://en.wikipedia.org/wiki/Instruction_pipeline" target="_blank">processing pipeline</a> that the instructions go down less complicated, faster, and smaller. The downside is that you may have to use 2, 3 or more instructions to accomplish what big boy intel does in 1.</p>
+<p>Intel uses a <a href="https://en.wikipedia.org/wiki/Complex_instruction_set_computing" target="_blank">CISC</a> architecture that takes the  the opposite approach with a hugely massive instruction set that has instructions for every type of thing you could invision doing with the cpu, meaning you need the hardware to interpret and process all of that, it has a long pipeline (20+ steps vs 3 in ARM) and is backwards compatible (seriously) going back to the 1980's . The addition of <a href="https://en.wikipedia.org/wiki/Hyper-threading" target="_blank">hyperthreading</a> is more complexity and silicon.</p>
+<p>Keep in mind as well, that the component price of even an 8 core cell phone cpu ($50, &lt;$30 at volume) is a fraction of the cost of a high end desktop cpu ($800+).</p>
+<p>It is much easier (in terms of making actual silicon) to stack RISC cores in your MPU and there are lots of parallel system tasks that cell phones need to do continuously that makes it marketable, it also helps that the kernels running the android flavors of linux have been multithreading efficient for years.  Additionally, Intel and AMD do not really license their cores or designs out, on the other hand ARM has a widely used softcore (for FPGA/ASIC), silicon design, and other licensable IP for all their products that people like TI, Qualcomm,, etc license, make, and sell to cellphone companies which increases the competitive pressure among manufacturers to stand out.</p>
+<p>TLDR: RISC vs CISC has come again boys</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">3 more answers...</a>
@@ -19,4 +63,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/3j1kte" onclick="return false"><span>show</span></a>
 </li>

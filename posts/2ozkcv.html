@@ -45,14 +45,92 @@
 			<span class="tags tag-Mathematics">Mathematics</span>
 			<a href="/posts/2ozkcv" onclick="return false">What's the point of linear algebra?</a>
 		</h2>
-		<span class="date">2016-11-16</span>
+		<!--<span class="date">2016-11-16</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Just finished my first course in linear algebra. It left me with the feeling of &quot;What's the point?&quot; I don't know what the engineering, scientific, or mathematical applications are. Any insight appreciated!</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="cms0f72">
+		<a class="author" href="https://www.reddit.com/user/AirborneRodent" target="_blank">AirborneRodent</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Let me give a concrete example.  I use linear algebra every day for my job, which entails using <a href="http://en.wikipedia.org/wiki/Finite_element_method" target="_blank">finite element analysis</a> for engineering.</p>
+<p>Imagine a beam.  Just an I-beam, anchored at one end and jutting out into space.  How will it respond if you put a force at the end?  What will be the stresses inside the beam, and how far will it deflect from its original shape?</p>
+<p>Easy.  We have equations for that.  A straight, simple I-beam is trivial to compute.</p>
+<p>But now, what if you don't have a straight, simple I-beam? What if your I-beam juts out from its anchor, curves left, then curves back right and forms an S-shape?  How would that respond to a force?  Well, we don't have an equation for that.  I mean, we could, if some graduate student wanted to spend years analyzing the behavior of S-curved I-beams and condensing that behavior into an equation.</p>
+<p>We have something better instead: linear algebra.  We have equations for a straight beam, not an S-curved beam.  So we slice that one S-curved beam into 1000 straight beams strung together end-to-end, 1000 <em>finite elements</em>.  So beam 1 is anchored to the ground, and juts forward 1/1000th of the total length until it meets beam 2.  Beam 2 hangs between beam 1 and beam 3, beam 3 hangs between beam 2 and beam 4, and so on and so on.  Each one of these 1000 tiny beams is a straight I-beam, so each can be solved using the simple, easy equations from above.  And how do you solve 1000 simultaneous equations?  Linear algebra, of course!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cms1tns">
+		<a class="author" href="https://www.reddit.com/user/unoimalltht" target="_blank">unoimalltht</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Sort of a CS response, but Graphical User Interfaces (on computers), especially video games, rely exceptionally heavily on Linear Algebra.</p>
+<p>The 2D application is pretty obvious, translating positions (x,y) around on a plane/grid at varying velocities.</p>
+<p>3D gaming is similar, except now you have to represent an object in three-dimensions (x,y,z), with a multitude of points; </p>
+<p>[{x,y,z}, {x2,y2,z2}, {x3,y3,z3}] (a single 2d triangle in a 3d world)</p>
+<p>which you have to translate, scale, and rotate at-will in all three dimensions. As you can see, this is the Matrix Theory you leaned (or hopefully touched on) in your class.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cmrz1zq">
+		<a class="author" href="https://www.reddit.com/user/dogdiarrhea" target="_blank">dogdiarrhea</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Ah geez, I mean I'll give you a few but there's probably dozens of applications in every field and there are many applications that I can't remember the details of so I may say something misleading or incorrect.</p>
+<p>First of all let me specify the 3 big picture things you learned in linear algebra</p>
+<ol>
+<li>
+<p>The manipulation of arrays of numbers (matrices) that are used in solving systems of equations</p>
+</li>
+<li>
+<p>(more of an extension of 1. but important nonetheless) geometric manipulation of vectors, including expressing them in a different basis, finding natural co-ordinates for them etc.</p>
+</li>
+<li>The algebra of linear things (!!) i.e. how does an object L that has the property L(x+y) = Lx + Ly behave. </li>
+</ol>
+<p>Number 1 is very important in analyzing data, most obvious in the method of least squares that is posed as a linear algebra problem. In fact matrices come out in many real world applications of statistics such as machine learning. I'm not sure if this fits under the same umbrella, but mixing 1+3 is famously used in Google's search algorithms which use some sort of an eigenvalue problem (an eigenvalue problem is when you have a linear operator L, a vector v, and a number where Lv = av, the linear operator is just a scaling when applied to that particular vector).</p>
+<p>Multivariable calculus: this is all 3. The derivative of a function going from R^n to R^m is an nxm matrix. It is a linear operator, and the geometric intuition is used for example when changing variables from (say) Cartesian to polar coordinates where you can. Optimization problems (with or without constraints) can be posed using multivariable calculus and it frequently boils down to a system of equations.</p>
+<p>Numerical Analysis: The numerical solutions of differential equations in many cases require the solution of a linear system. Many problems in numerical analysis can also be posed as an eigenvalue problem and if the ODE/PDE has some special structure it can be expanded in a basis of functions, this uses generalization of a <em>lot</em> of linear algebra concepts.</p>
+<p>Dynamical systems (this in itself is a large field, it studies problems in physics, engineering, biology): In dynamical systems we express differential equations as a system of differential equations. When these are nonlinear it is very difficult to tell what the system does through numerics, we can do so for specific solutions but it is not obvious that solutions nearby are going to behave in a similar fashion. An example of this is the Lorenz system in 3D which is chaotic so small changes in initial conditions lead to large changes in the system, but ignoring chaotic systems in many cases it is still not obvious that solutions will remain bounded (for example) which is of great concern in sciences and engineering. Linear algebra here is useful because the systems are</p>
+<ol>
+<li>
+<p>represented as a matrix</p>
+</li>
+<li>a part of their analysis is typically done by linearizing locally near certain special points. Here the structure of the matrix (and particularly its eigenvalues) is very important to tell what the local behaviour of the system is and whether the local behaviour can even be studied by linearization. </li>
+</ol>
+<p>A very abstract application is something known as 'functional analysis' where the concepts of linear algebra are generalized to infinite dimensional spaces. This field is used in the study of partial differential equations and the calculus of variations.</p>
+<p>There's many more applications, in any instance where you have a system of equations and where you may be looking for 'natural' co-ordinates of a system. I hope other people in the thread can list some more, but it is sort of like calculus, it is a very general problem solving tool so it leads to many areas where it can be used.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cms1yev">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Games, especially 3D, are really not much without linear algebra. Everything you see on your screen is a vector, that has been transformed by many different matrices (4d matrices in fact). Game Object are described by vectors: their position, rotation (might be a quaternion, which arguably is just a special type of vector, at least the way it's implemented) and scale. All polygons are described as vectors. All collisions are described using linear algebra (a collision is not much more than solving a linear equation). The physics are nothing but linear algebra. At some point the world has to be projected from 3d down to a 2d screen. This is a matrix transformation. In fact, your GPU is not much at all if not a linear algebra calculator on steroids.</p>
+<p>Naughty Dog (the game company) requires you to pass a test in linear algebra (or really 3d maths in general, which is mostly linear algebra) to get hired.<a href="https://www.youtube.com/watch?v=f8XdvIO8JxE" target="_blank">^1</a></p>
+<p>Computerphile had a great video series that explains how 3d worlds are built, in a very simple way:</p>
+<p><a href="http://youtu.be/KdyvizaygyY" target="_blank">1: Universe of Triangles</a><br />
+<a href="http://youtu.be/vQ60rFwh2ig" target="_blank">2: Power of the Matrix</a><br />
+<a href="http://youtu.be/aweqeMxDnu4" target="_blank">3: Triangles to Pixels</a><br />
+<a href="http://youtu.be/OODzTMcGDD0" target="_blank">4: Visibility Problem</a>   </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cms0duy">
+		<a class="author" href="https://www.reddit.com/user/The_Serious_Account" target="_blank">The_Serious_Account</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Quantum mechanics at its very basis is essentially just applied linear algebra. Entanglement, superposition, measurement, how physical systems change over time are all statements in the language of linear algebra. It's the language of the universe. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -60,6 +138,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/2ozkcv" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

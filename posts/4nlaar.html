@@ -45,7 +45,7 @@
 			<span class="tags tag-Technology">Technology</span>
 			<a href="/posts/4nlaar" onclick="return false">Why do really long exposure photos weigh more MB? Shouldn't every pixel have the same amount of information regardless of how many seconds it was exposed?</a>
 		</h2>
-		<span class="date">2016-11-24</span>
+		<!--<span class="date">2016-11-24</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
@@ -53,7 +53,56 @@
 Any info on why this happens?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="d44xxr9">
+		<a class="author" href="https://www.reddit.com/user/colemarie10" target="_blank">colemarie10</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's all to do with the level of detail. Say you have a really simple 10 pixel image. In a not so detailed JPEG, it might look like this:</p>
+<p>Red, red, red, red, red, blue, blue, blue, blue, blue.</p>
+<p>In a detailed long exposure it might look like this:</p>
+<p>Red, red, pink, pink, pink, purple, purple, blue, blue, blue. </p>
+<p>Each time it's still ten pixels. Ten bits of data. But, this is a really inefficient way of storing information. </p>
+<p>Instead, the JPEG will be stored like this:</p>
+<p>5 red, 5 blue. </p>
+<p>The long exposure like this:</p>
+<p>2 red, 3 pink, 2 purple, 3 blue. </p>
+<p>The ten pixels in a JPEG are therefore stored as four bits of data. The ten pixels in the long exposure are stored as eight bits of data - twice as much for the same (physical) size image. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d44y3yr">
+		<a class="author" href="https://www.reddit.com/user/Belboz99" target="_blank">Belboz99</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Long exposures contain more noise.</p>
+<p>Noise is considered &quot;detail&quot; in JPEG's, because while 10 pixels of the same color can be grouped up and thus save space, 10 very different pixels can't.</p>
+<p>If you instead shot in lossless TIFF, or converted the JPEGs into Lossless TIFF, you'd see that in actuality they do weigh the same amount of disk space, it's only when you compress it such as in JPG that the noise factor comes into play.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d44ttxz">
+		<a class="author" href="https://www.reddit.com/user/robbak" target="_blank">robbak</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The jpeg format we store photos in is designed to store a good photograph efficiently. A good photo has large areas of smooth, even gradients, and Jpeg does a great job of <em>compressing</em> these to take up less space.</p>
+<p>A long exposure photo will have more random 'roughness' in the picture. It will be much more <em>noisy</em>, with small, random changes in individual pixels. Jpeg is not designed for this, so it takes more space to store the noise.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d45isjf">
+		<a class="author" href="https://www.reddit.com/user/F_D_P" target="_blank">F_D_P</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The <a href="https://en.wikipedia.org/wiki/Noise_floor" target="_blank">noise floor</a> is raised by long exposures, meaning there is more high-frequency random noise in the image (confetti), which is in turn <a href="http://dsp.stackexchange.com/questions/2010/what-is-the-least-jpg-compressible-pattern-camera-shooting-piece-of-cloth-sca" target="_blank">harder to compress</a>. You will only see this with <a href="https://en.wikipedia.org/wiki/JPEG#Discrete_cosine_transform" target="_blank">compressed files such as JPEGs</a>. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d453trz">
+		<a class="author" href="https://www.reddit.com/user/foobar5678" target="_blank">foobar5678</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Not all pixels are equal to a compression algorithm. It's the same reason why when you have snow or confetti in a video, the bitrate stays the same but the quality drops dramatically.</p>
+<p>Tom Scott has an excellent video which explains this:</p>
+<p><a href="https://www.youtube.com/watch?v=r6Rp-uo6HmI" target="_blank">Why Snow and Confetti Ruin YouTube Video Quality</a></p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -61,6 +110,7 @@ Any info on why this happens?</p></div></div>
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/4nlaar" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

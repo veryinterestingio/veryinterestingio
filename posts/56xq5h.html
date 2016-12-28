@@ -45,14 +45,82 @@
 			<span class="tags tag-Mathematics">Mathematics</span>
 			<a href="/posts/56xq5h" onclick="return false">Is it possible to calculate nth digit of pi for any n in a limited amount of memory?</a>
 		</h2>
-		<span class="date">2016-11-16</span>
+		<!--<span class="date">2016-11-16</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Say, my algorithm can only use 1MB of memory. Is there a limit to how far can I calculate pi, assuming that I only need one digit and don't care about all the previous digits of pi?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="d8n8wz8">
+		<a class="author" href="https://www.reddit.com/user/MiffedMouse" target="_blank">MiffedMouse</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There is a limit.</p>
+<p>The most famous digit calculation algorithm is the <a href="https://en.wikipedia.org/wiki/Bailey%E2%80%93Borwein%E2%80%93Plouffe_formula" target="_blank">BBP</a> algorithm for pi. It calculates digits in base 16, but the basic idea is more or less what you need.</p>
+<p>However, the formula requires computing a polynomial of n. That will grow as <a href="https://en.wikipedia.org/wiki/Big_O_notation" target="_blank">O(log(n))</a>, at the least. Because log(n) -&gt; infinity as n -&gt; infinity, it will eventually fill your memory. Also note that this is already the space required simply to <em>store</em> n. The polynomial algorithm will require more memory in practice, but only a constant multiple more.</p>
+<p>However, the core algorithm can be stored in a small space and you could simply add O(log(n)) blank space to the calculation for each step. Then you could calculate any digit.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d8nh23r">
+		<a class="author" href="https://www.reddit.com/user/CynicalHarry" target="_blank">CynicalHarry</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You can also answer this question with a theoretical thought experiment.</p>
+<p>Suppose you have an algorithm which produces the digits of pi one at a time. Like any computer algorithm this can be interpreted as a <em>state machine</em> (or turing machine). The algorithm has some internal state (the memory) and in every computation step it produces a new digit of pie and and modifies the internal state by performing its computation. What the computation itself does i.e. what digit it produces and how it modifies the state depends entirely on the state at the beginning of the computation step.</p>
+<p>Suppose our state (our memory) has a size of <em>n</em> bits (0 &lt; n &lt; infinity). There are 2^n possible distinct states for our machine which means that it can run at most for 2^n + 1 steps before it reaches a state it has already had previously. Since the produced digit and the next state depends on the state alone reaching a previously inhabited state means the sequence of digits start to <em>repeat</em>.</p>
+<p>As you surely are aware pi is an irrational number, i.e. infinite and not repeating. Therefore our algorithm cannot be able to compute <em>all</em> digits of pi, regardless of the size of <em>n</em>. </p>
+<p>This theoretical observation proves not only that there is no algorithm <strong>known</strong> which computes digits of pie in constant memory, but also that, as long as our computers are state machines, there <strong>cannot exist</strong> an algorithm which computes digits of pie in constant memory.</p>
+<p>To answer your question: It is <strong>definitely</strong> impossible.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d8n8gf6">
+		<a class="author" href="https://www.reddit.com/user/ribnag" target="_blank">ribnag</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Yes.  The <a href="https://en.wikipedia.org/wiki/Bailey%E2%80%93Borwein%E2%80%93Plouffe_formula" target="_blank">Bailey Borwein Plouffe algorithm</a> does exactly that.  It doesn't require exotic data types, <del>or unbounded memory</del>, or a history of previous digits.</p>
+<p>Edit:  As /u/Thor_of_Asgard (and others) have pointed out, BBP is not truly bounded - You still need to store at least <em>n</em> itself, necessarily making it <em>un</em>bounded.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d8nx5q4">
+		<a class="author" href="https://www.reddit.com/user/Sniffnoy" target="_blank">Sniffnoy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>So, a number of people here have mentioned the BBP formula, but there's an important subtlety to it that hasn't been mentioned.  (Note of course that since I'm talking about the BBP formula, I'm assuming you're working in a base that's a power of 2.  If you want the n'th <em>decimal</em> digit, that's a whole nother matter.)</p>
+<p>(The TLDR in advance is that you can do it in log space.)</p>
+<p>So, let's say you want to compute the n'th digit, and we want to bound above how much space you need.  Many people inferred from the original Bailey-Borwein-Plouffe paper that this formula gave an algorithm for computing the n'th digit in at most polylog space.</p>
+<p>(Note: &quot;polylog&quot; means &quot;log(n)^(k)&quot;, for some k.  Except in computer science, one always cares about how the space and time used grow as a function of the <em>length</em> of the input; and of course the length of a number n is of course [essentially proportional to] log(n).  So here it actually means log(log(n))^(k), for some k.)</p>
+<p>However, <a href="https://rjlipton.wordpress.com/2009/03/15/cooks-class-contains-pi/" target="_blank">the naïve &quot;proof&quot; of this has a significant problem</a>, as noticed by Dick Lipton:</p>
+<blockquote>
+<p>The beautiful algorithm of BBP does not actually work. The problem is simple. In a nutshell: what if the fractional part they get lies between 0.5-ε and 0.5+ε. Is the bit 0 or is it 1? They cannot tell. This is the problem. Of course they could increase the precision and lower ε, but how far do they have to go? In practice, as I said earlier, this issue seems to be a non-issue. However, to prove that their algorithm is in SC requires a bound. They do not have one.</p>
+<p>The problem has to do with long runs of 1‘s in the number they are computing the bits of. For example, suppose that \ln 2 had a huge number of 1‘s in a row somewhere in its binary expansion. Then, how could we tell what is the correct bit? The fractional part must be determined whether is larger or smaller than 0.5: what happens if it is extremely close to 0.5? The answer is this is the bug in the algorithm. The problem is this:</p>
+<p>0.0111111111111111111...</p>
+<p>vs</p>
+<p>0.1000000000000000...</p>
+<p>how do you tell them apart if the run of 1 is very long? The following remakable quote is in Wikipedia:</p>
+<blockquote>
+<p>”There is a vanishingly small possibility that a particular computation targets a section that is subject to small round-off errors being carried for many digits (e.g. in base 10, a long string of zeros or string of 9’s within the constant) and that the error will propagate to the most significant digit, but being near this situation is obvious in the final value produced.” </p>
+</blockquote>
+<p>Excuse me, this is nonsense. The statement “vanishingly small possibility” is a statement of probability theory. There is nothing random here at all. I agree that it seems that the problem may never arise in practice, but that is different. The last point of the quote is correct. If the value of the fractional part is very close to 0.5 we will know that we are in trouble. But that means that the BBP is not really an algorithm.</p>
+</blockquote>
+<p>Fortunately, this bug was later <a href="http://www.cs.nyu.edu/exact/doc/pi-log.pdf" target="_blank">repaired by Chee Yap</a>.  The fix relies on the notion of <a href="http://mathworld.wolfram.com/IrrationalityMeasure.html" target="_blank">irrationality measure</a>.  The irrationality measure of π is known to be at most 7.6063; in particular, it is known to be finite.  Chee Yap showed how you can use this bound on the irrationality measure to get a bound on how long the runs of 1s can be, and thereby get a bound on how much space is used.</p>
+<p>In fact, it turns out to be an even better bound than the polylog &quot;bound&quot; mentioned earlier -- you actually only need logarithmic space (which, again, here means space around log(log(n)), since we mean &quot;logarithmic in the length of n&quot;, not &quot;logarithmic in n&quot;).</p>
+<p>So, the rough answer to your question is, if you're working in binary, you can compute the n'th bit of pi in log space.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d8nsm3z">
+		<a class="author" href="https://www.reddit.com/user/phunkydroid" target="_blank">phunkydroid</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There's a simple and logical limit that you can't compute the Nth digit of pi in 1MB of memory if N itself takes more than 1MB of memory to store.</p>
+<p>The algorithms will obvious have a lower limit than that, but that's enough proof that &quot;for any N&quot; isn't possible.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -60,6 +128,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/56xq5h" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

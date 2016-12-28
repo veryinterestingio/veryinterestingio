@@ -4,14 +4,68 @@
 		<h2>
 			<a href="/posts/3ks9a1" onclick="return false">Why are loading screens so inaccurate?</a>
 		</h2>
-		<span class="date">2016-11-24</span>
+		<!--<span class="date">2016-11-24</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>The bar &quot;jumps&quot; and there is no rate at which it constantly moves towards the end. Why is that?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="cv016t6">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Loading bars usually reflect some count of the number of things being loaded. If there are twenty things, the bar might be broken up into twenty sections.</p>
+<p>One problem is that the loading bar is often only updated when an item is complete, so instead of moving smoothly from one end to the other, it waits for each item to load and then moves the entire distance immediately.</p>
+<p>Another problem is that not every item takes the same amount of time. If you have a bunch of textures which each take a fraction of a second to load, but then come up to a complex light map which takes a couple of seconds to load into memory, it will suddenly look like it is making no progress at all.</p>
+<p>Other complications involve loading dependencies, where loading X requires loading Y and Z, and those might have their own dependencies. If the programmers don't traverse the tree before-hand and use that to set up the loading bar, then it becomes even less obvious what is happening.</p>
+<p>Loading bars can be improved by estimating how long things are going to take and using that to make the bar be feel better for users, but this is usually a <em>very</em> low priority. The most common response to user complaints is to simply get rid of the bar and have some simple loading animation which provides less information as it is easier than making the bar actually useful to users.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cv01i0d">
+		<a class="author" href="https://www.reddit.com/user/zutrov" target="_blank">zutrov</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I assumed it was like moving contents of a house. It's about amount completed, not time remaining as a percentage of the job. You can move one item to the truck, it can be a pillow, or a chest freezer. One thing gets moved in both instances, but one is clearly going to take more time and effort. As far as total process is concerned, each item is still equal to 1 of X. So you can move 20 pillows in the time it take to move one freezer, and that's where you get the peaks and valleys in progress. </p>
+<p>Keep in mind, I'm just sharing my assumptions....as far as I actually know, there is a magic wizard in my computer slacking off, then being poked by his manager. So really, I have added nothing to this ELI5. you're welcome. </p>
+<p>Edit: grammar </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cv04s4z">
+		<a class="author" href="https://www.reddit.com/user/smellyrobot" target="_blank">smellyrobot</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Software Engineer here. Progress bars suck because of unknowns. We have no way of knowing how your internet speed will change or if another program is going to hijack your CPU; if we have to do various actions like download, extract, and render, then it's difficult to make a single progress bar that's actually meaningful.</p>
+<p>So, we normally lie. The last time I had a progress bar on a project we made it start filling at a certain rate, then halve in speed every time it filled half the remaining bar so it would never complete. When everything was ready we took down the progress bar and started the app. We never had a complaint about it in the 5 years it was in production and people were usually happy that the process finished early ;).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cv03nnc">
+		<a class="author" href="https://www.reddit.com/user/michaelthecoder" target="_blank">michaelthecoder</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Programmer here who has built progress bars. There's two things in play.</p>
+<p>Often, measuring the actual time the process will take can often take just as much time. So instead of measuring the actual time, we break the process up into several rough &quot;phases&quot; and update the progress when a phase is complete. Sometimes these phases are very slow and different, like washing your clothes versus drying your clothes, and sometimes they are quick and similar, like loading 1 of 1000 objects in a scene. The problem is different phases take different amounts of time, so it's just a rough estimate.</p>
+<p>The second issue is that some large parts of the loading process are external to the currently running program. These are usually at the beginning or end of the process and involve things like loading dependencies. Because these things are external to the code in charge of the loading bar, that code is unable to split it up into smaller phases, as it only knows when that part is all finished. This causes that one long last phase, and is why loading bars can get &quot;stuck&quot; at 99% or 100%. For example, if your process loaded 99 objects, then loaded a dependency, you might have 100 phases on your loading bar, treating the dependency load and an object load as similar progress. In practice loading the dependency might take 10x as long as loading an object, so your loading bar spends 10x the time going from 99% to 100% as it does goes from 98% to 99%.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cv04qtf">
+		<a class="author" href="https://www.reddit.com/user/0xdeadf001" target="_blank">0xdeadf001</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Because estimating how long it takes to do work can often be as costly as actually doing the work.</p>
+<p>Let's say your game needs to load 600 textures from disk for the current level / area.  The game designers have no idea where the textures are stored on your hard disk, because the locations for those files were chosen by your computer, when your game was installed.  So when the level loads, the game goes through the list of 600 textures, and asks the operating system to load each texture.  Some textures may be very close to each other on disk, so there is no &quot;seek time&quot; for the hard disk to reposition the read-write head.  But other textures may be scattered all over the place.  Some large textures may be broken up into more than chunk (&quot;fragment&quot;), so that loading that individual texture requires seeking more than once.</p>
+<p>The game has no way to predict how long this will take.  So the game designer <em>approximates</em> how long it will take.  The easiest approximation would be &quot;how many textures have been loaded so far&quot;.  In other words, approximating completion by the count of textures.  A slightly better approximation would be &quot;how many total bytes of textures have been loaded&quot;. But that requires knowing the size of each individual texture, and getting <em>that</em> information may require reading data from disk, which would actually slow down the loading process.  (No one wants a slower loading process, just to get a more accurate progress bar.)</p>
+<p>Getting even better estimates would require knowing exactly where, on disk, the texture chunks are.  And getting <em>that</em> information is literally almost as expensive as simply reading the texture files.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -19,4 +73,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/3ks9a1" onclick="return false"><span>show</span></a>
 </li>

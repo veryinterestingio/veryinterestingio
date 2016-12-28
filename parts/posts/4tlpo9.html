@@ -5,14 +5,108 @@
 			<span class="tags tag-Technology">Technology</span>
 			<a href="/posts/4tlpo9" onclick="return false">Why are fiber-optic connections faster? Don't electrical signals move at the speed of light anyway, or close to it?</a>
 		</h2>
-		<span class="date">2016-11-17</span>
+		<!--<span class="date">2016-11-17</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Why are fiber-optic connections faster? Don't electrical signals move at the speed of light anyway, or close to it?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="d5isbq3">
+		<a class="author" href="https://www.reddit.com/user/buxtronix" target="_blank">buxtronix</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>IAA[G]NE (I am a [Google] Network Engineer) so I think I'm fairly qualified to chime in here to clear things up and dispel some inaccuracies in other comments. Not completely ELI5 but more ELI15.</p>
+<p>It's got nothing to do with the speed of light. Sure there are differences, but that only affects latency a little, not really speed (see other comments here for more on that). It's more to do with how fast you can turn the signal on and off.</p>
+<p>About claims of fibre carrying more channels/signals:</p>
+<p>So fibre can carry hundreds of signals / streams at once. More signals = more throughput. But so can electrical - just look at your cable tv connection - 200+ channels, and all sent over the one wire. It's the same principle - different frequencies on the radio dial. Fibre uses the same principle, and can carry 100+ channels, but the frequencies are represented by different colours, split and combined using a prism - though you cant see these colours as they're deep into the infra-red (like how you cant see the light from your TV IR remote).
+The main difference is that electrical has a limit to how much total combined speed it can carry...</p>
+<p>Let's look more at the differences between electrical and fibre signals.</p>
+<p>Electric cables are susceptible to noise - think about if your mobile phone is near a speaker and you get the buzzing. Lots of things aside from your phone can give out this interference - power lines, other cables in the same duct, TV/Radio stations, even radio hiss from space! Now imagine that over a looong cable between two cities and you're talking about a lot of noise on the signal (like radio static on a weak station). Even shielding them only reduces the noise to a certain extent.
+As well as receiving noise, electrical cables radiate signals - they are like a long antenna, some of the signal gets radiated and lost this way so it gets weaker.</p>
+<p>Fibre signals aren't susceptible to noise - a solid black tube can't pass any light at all, so the fibres within the cladding are completely blacked out from external light. (Note there can be reeealy tiny amounts of noise from quantum effects and the electronics at each end, but its minuscule compared to electrical.)
+The light within the also doesnt leak out. Refraction is like a near-perfect mirror, keeping the signal bouncing inside the fibre for a very long distance.</p>
+<p>So we've established that electrical signals get noisy, and fibre optics don't pick up interference.</p>
+<p>Next, we have signal degradation.</p>
+<p>Electricity has &quot;inductance&quot; - this manifests itself very similarly to physical inertia, which means it resists being changed. Heavier objects are harder to move and stop than lighter ones. So electricity has the same thing, it takes time to change the signal - which is what happens when the zero and one bits are transmitted. The longer the cable, the more the inductance (i.e &quot;inertia&quot;), so the longer it takes to change that zero to a one. Therefore you have to send signals at a slower rate to allow the electrons to keep up with the changes. There is a similar related effect called capacitance which also slows down the maximum rate of change.</p>
+<p>Light has no inductance, (so there is effectively no &quot;inertia&quot;) - therefore changing it from zero to one is pretty much instant. That means you can change it much faster - more &quot;bits per second&quot; - regardless of distance.</p>
+<p>(note it's not really &quot;inertia&quot;, the above is mostly an analogy, but it behaves like it)</p>
+<p>Next is resistance. Electrons are large (compared to photons), so they interact with the copper atoms as they travel through the wire. This interaction is analogous to friction. Friction creates heat, which is where the energy goes. In a wire, some electrons lose energy in the same way as heat (which is why power cables can get hot when carrying a lot of current). So over a long distance, much of the signal diminishes due to resistance. For high speed signals (1-10Gbps), this typically happens within a few hundred metres. Not very useful when you need to get cat videos between cities!</p>
+<p>Light interacts much less with fibre optics - the photons are tiny and much less likely to interact with the glass - especially as it's super clear specially made glass. The signal can travel up to 100km before it gets too weak for the other end to &quot;see&quot;.</p>
+<p>So we have problems of &quot;interference&quot; and &quot;signal degradation&quot;. Electrical gets both problems, fibre only degradation, and much less so.</p>
+<p>Eventually the signal degrades to such a weak one. For electrical signals, the noise from interference drowns out the original signal and you can no longer detect it. For the speeds that matter (1Gbps to 10Gbps) electrical signals are drowned out after just a couple of hundred metres.
+With fibre, the degradation happens after around 100km (depending on the power of the lasers at each end). There are other interesting effects with fibre (e.g dispersion), but they are more advanced topics.</p>
+<p>When the signal starts to get weak, but before it's too weak to extract, you install an amplifier to boost the signal. It's much more feasible and economical to install fibre amplifiers/repeaters every 100km that it is every few hundred metres for electrical. And that's why fibre is used for anything except short network connections (usually only inside buildings).</p>
+<p>TL;DR: High speed electrical signals can only travel ~100m before they get too weak and drowned out with noise. Fibre optics don't pick up noise and the signal can travel 100km before you need to amplify it.</p>
+<p>[edit: better wording]</p>
+<p>[edit 2: I know people are nit-picking. This is meant to be a simple(r) explanation using terms/analogies that avoid some of the deep detail].</p>
+<p>[edit3: more clarification - and Gold, thank you!]</p>
+<p>[edit 4: clarified a bit especially on inductance and the inertia analogy]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d5i9qfd">
+		<a class="author" href="https://www.reddit.com/user/Dodgeballrocks" target="_blank">Dodgeballrocks</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Individual signals inside both fiber and electrical cables do travel at similar speeds.</p>
+<p>But you can send way more signals down a fiber cable at the same time as you can an electrical cable.</p>
+<p>Think of each cable as a multi-lane road. Electrical cable is like a 5-lane highway. </p>
+<p>Fiber cable is like a 200 lane highway. </p>
+<p>So cars on both highway travel at 65 mph, but on the fiber highway you can send way more cars. </p>
+<p>If you're trying to send a bunch of people from A to B, each car load of people will get there at the same speed, but you'll get everyone from A to B in less overall time on the fiber highway than you will on the electrical highway because you can send way more carloads at the same time. </p>
+<p><strong>Bonus Info</strong> This is the actual meaning of the term <em>bandwidth</em>. It's commonly used to describe the speed of an internet connection but it actually refers to the number of frequencies being used for a communications channel. A group of sequential frequencies is called a <em>band</em>. One way to describe a communications channel is to talk about how wide the band of frequencies is, otherwise called <em>bandwidth</em>. The wider your band is, the more data you can send at the same time and so the faster your <em>overall</em> transfer speed is. </p>
+<p><strong>EDIT</strong>
+<strong>COMMENTS</strong> Many other contributors have pointed out that there is a lot more complexity just below the surface of my ELI5 explanation. The reason <em>why</em> fiber can have more lanes than electrical cables is an interesting albeit challenging topic and I encourage all of you to dig into the replies and other comments for a deeper understanding of this subject. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d5j7b46">
+		<a class="author" href="https://www.reddit.com/user/scriminal" target="_blank">scriminal</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This thread is too far gone and no one will read this, but in short, fiber is not inherently faster than copper.  There are many ways to cram <em>more</em> data down a fiber, but an IP packet moving over a fiber will move at the same speed it does over copper.  As to the more part, there are things like Dense Wave Division Multiplexing (DWDM) that let you put 40 or 80 signals down a single fiber in a way you can never do on copper.  There are also things like Quadrature amplitude modulation (QAM), which is how your cable modem works in part, that function over copper and fiber.  Source: I do this for a living.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d5iakel">
+		<a class="author" href="https://www.reddit.com/user/anonymoushero1" target="_blank">anonymoushero1</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's not sending you information <em>faster</em> but rather its sending you <em>more information</em> at a time, which means more total data transmitted over a given period of time, and that's typically what we refer to as &quot;faster&quot; </p>
+<p>The reason it sends you more information at a time is, as others have described, it is very insulated against noise and other external factors. </p>
+<p><strong>I like bad analogies so here you go</strong></p>
+<p>Imagine if I have 50 eggs and my goal is to take them 100 yards as fast as I can, and the goal is to get them there without breaking them.</p>
+<p>First time I try I am given nothing.  I use my shirt as a &quot;pouch&quot; and fill it up with the eggs and then run. A lot of the eggs bounce/fall out as I'm running and half of them are broken or missing when I get there.  </p>
+<p>Second time I try I am given metal box to put them in. While running the eggs bounce around inside the box and about 1/3 of them break. </p>
+<p>Third try I am given a thick plastic bag.  I fill it up with the eggs and only 4-5 of them fall out the top on my way there. Nearly all the eggs made it safely.</p>
+<p>-I can run near the speed of light. </p>
+<p>-I am your ISP</p>
+<p>-Eggs are data</p>
+<p>-My shirt is DSL</p>
+<p>-Metal box is coax</p>
+<p>-Plastic bag is fiber</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d5j5hb9">
+		<a class="author" href="https://www.reddit.com/user/Byron33196" target="_blank">Byron33196</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The number of wrong answers on this thread is truly epic.</p>
+<p>Here is a really simple ELI5 answer:</p>
+<p>A fiber optic line can transmit much more information per second than a typical copper line, whether twisted pair or coaxial.</p>
+<p>On a twisted pair or coaxial cable, the signal is sent as a radio frequency signal, and the maximum frequency such a cable can transmit is measured in gigahertz, or billions of cycles per second.</p>
+<p>Light is also a radio frequency signal, but it is at a much higher frequency, measured in terahertz, or trillions of cycles per second.
+Because fiber optic lines transmit light, which is at a much higher frequency, it allows for transmitting a larger signal.  The size of a signal is measured in bandwidth, and the bandwidth of a fiber optic signal can be many orders of magnitude larger than a signal can be on an twisted pair or coaxial cable.</p>
+<p>Each bit of data is not sent faster one way versus the other, but by sending more of them simultaneously, the fiber optic signal transmits much more data in the same amount of time.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -20,4 +114,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/4tlpo9" onclick="return false"><span>show</span></a>
 </li>

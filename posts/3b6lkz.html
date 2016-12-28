@@ -45,14 +45,57 @@
 			<span class="tags tag-Computing">Computing</span>
 			<a href="/posts/3b6lkz" onclick="return false">Why is it that the de facto standard for the smallest addressable unit of memory (byte) to be 8 bits?</a>
 		</h2>
-		<span class="date">2016-11-16</span>
+		<!--<span class="date">2016-11-16</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Is there any efficiency reasons behind the computability of an 8 bits byte versus, for example, 4 bits? Or is it for structural reasons behind the hardware? Is there any argument to be made for, or against, the 8 bit byte?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="csjnoms">
+		<a class="author" href="https://www.reddit.com/user/kenshirriff" target="_blank">kenshirriff</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Back in the 1950s and 1960s, computers used whatever word size was convenient, resulting in word sizes that seem crazy today, like 37 bits. If your missile needed 19 bits of accuracy to hit its target, then you'd use a 19 bit word. Word sizes I've come across include 6, 8, 12, 13, 16, 17, 18, 19, 20, 22, 24, 26, 33, 37, 41, 45, 48, 50, and 54. <a href="http://www.righto.com/2015/03/12-minute-mandelbrot-fractals-on-50.html#ref9" target="_blank">Details here</a>. It seems like the word length should be a power of two, but there's no real advantage unless you want to encode bit operations in your instruction set.</p>
+<p>6 bits was a popular size for business computers because it could handle alphanumerics, e.g. the IBM 1401, which I've used a lot recently. This encoding was BCDIC (which predated EBCDIC).</p>
+<p>There's a good reason why computers didn't use any more bits in the word than necessary: cost. In 1957, core memory cost more than ten dollars per bit (in 2004 dollars). So using 8-bit words instead of 6-bit words would cost you a fortune. A few years later, the 12,000 character memory expansion for the IBM 1401 cost $55,100 (more than $400,000 in current dollars), and was a unit the size of a dishwasher. At these prices, if you can use 6-bit characters, you're not going to pay for 8-bit characters.</p>
+<p>For a while, <em>byte</em> referred to the group of bits encoding a character, even if it wasn't 8 bits. (This seems so wrong nowadays.) The IBM Stretch standardized on an 8-bit byte and power-of-two word length, and this became dominant with the IBM 360. (I think this also was a key factor for hexadecimal replacing octal.) Now, it's almost unthinkable to have a word length that's not a power of two.</p>
+<p>Looking at more recent computers, Intel's iAPX 432 processor had variable-length instructions. This is normal, except the instructions took a variable number of bits, not a variable number of bytes! An instruction could be from 6 to 321 bits long, so instructions were packed together overlapping byte boundaries. Not surprisingly, the iAPX 432 was a disaster.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="csjb260">
+		<a class="author" href="https://www.reddit.com/user/MrFurrypants" target="_blank">MrFurrypants</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There really isn't a definitive reason.  There were other architectures that had different data unit structures but because of marketing or user friendliness or whatever reason, systems that used 8 bits won out and became standard.</p>
+<p>At the time 8 bits was convenient because using binary to interpret them it provided for 255 characters which was enough for the alphabet in upper and lower case and most of the special printable characters that were thought to ever be needed.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="csjck3a">
+		<a class="author" href="https://www.reddit.com/user/xXxDeAThANgEL99xXx" target="_blank">xXxDeAThANgEL99xXx</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Early computers were slow enough that even simple working with text was a thing for which you wanted to heavily optimize. Very early computers used 4-bit bytes for binary-coded-decimal numbers (each byte containing one decimal digit and special arithmetic instructions that maintain that encoding) and 6-bit bytes for text (64 possible symbols).</p>
+<p>The 8-bit byte was established by IBM System/360, as the designers thought that users might want to use lower-case letters as well, while also allowing using decimal arithmetic with 2 decimal digits per byte.</p>
+<p>Using larger bytes would be just wasteful, so this explains why 8 bits was chosen as being as large as reasonably possible.</p>
+<p>Now why we want as large as possible bytes in the first place (or, in other words, why don't we use sub-8-bit addressing): there are two main reasons, first, the smaller is the addressable unit, the less memory you can address using your fixed-size address. For instance, if your address size is 16-bit and your unit is byte, you can address 65536 bytes, if you wanted to have individual bits addressable then you could only address 8192 bytes. Or, to look at it from another direction, if you usually address stuff in multiples of 8 bits, but allow per-bit addressing, then the three lower bits in every address are usually all zeroes and therefore wasted.</p>
+<p>Second reason is related to low lever hardware architecture, it's the <a href="https://en.wikipedia.org/wiki/Physical_address#Unaligned_addressing" target="_blank">unaligned addressing</a> problem. Imagine an 8-bit processor, which means that it does basic arithmetic on bytes. You have instructions like &quot;load this byte into the accumulator register&quot;, &quot;add that byte to the accumulator register&quot; and so on. For loading data from memory the processor has 8 input wires, that split and split and split until they reach each of the 8-bit memory cells, when the processor wants to read some byte it activates exactly one such 8-bit cell and it sets up the bit values on the wires.</p>
+<p>Now imagine if the memory was bit-addressable. The old system in the new terminology only allowed connecting inputs 0-7 with memory bit cells 0-7, or 8-15, or 16-23, and so on. So each memory bit had a physical wire going to exactly one processor input (shared with other corresponding bits in other memory cells for most of the way, of course). Now if you want to allow connecting inputs 0-7 with bits 1-8 or 2-9 etc, then either you have to have 8 times more wires (grossly inefficient, nobody does that) or a separate memory controller of sorts that first loads bits 0-7, then bits 8-15, then picks bits 2-9 from that into its own temporary storage and finally connects that to the processor's inputs. Which is complicated and also pretty inefficient.</p>
+<p>The unaligned addressing problem actually rears its ugly head in modern CPUs as well all the time: a 32-bit CPU would naturally prefer to address 4-byte words instead of individual bytes. Some simpler/more special purpose CPUs (like Playstation3's Cell) throw an exception on unaligned access, older/simpler x86 CPUs just degrade performance, higher-end CPUs have complicated enough memory machinery that they manage to mostly hide the cost of unaligned accesses (but SSE instructions throw an exception instead).</p>
+<p>On a side note, some microprocessors also have bit-manipulation instructions that are allowed direct access to a special range of bit-addressable memory (which is also byte-addressable, that is, bytes 32-47 are also addressable as bits 0-127 in 8051 for example).</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="csjgb9f">
+		<a class="author" href="https://www.reddit.com/user/CaptainFairchild" target="_blank">CaptainFairchild</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A tangential fact.  As most of the replies have said, the byte wasn't always 8 bits and doesn't have to be.  Network protocols were created around the realization that the definition of a byte for the source computer may be different for the destination.  Hence why data speeds are measured in Megabits per second (Mbps) or Gigabits per second (Gbps).  Note that the b is lower case.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">3 more answers...</a>
@@ -60,6 +103,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/3b6lkz" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

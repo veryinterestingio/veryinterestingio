@@ -44,14 +44,58 @@
 		<h2>
 			<a href="/posts/3wn253" onclick="return false">Why is a password managing program recommended for extra password security? Doesn't that just give a hacker a single place to get all of my passwords at once if they get through?</a>
 		</h2>
-		<span class="date">2016-11-17</span>
+		<!--<span class="date">2016-11-17</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Why is a password managing program recommended for extra password security? Doesn't that just give a hacker a single place to get all of my passwords at once if they get through?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="cxxfab5">
+		<a class="author" href="https://www.reddit.com/user/GaidinBDJ" target="_blank">GaidinBDJ</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Password managers are useful because they can allow you to use much more secure passwords as opposed to passwords that are easier to remember and, probably, easier to guess.  It means that when as password database gets stolen, it will take significantly longer for brute-force methods to get your password.</p>
+<p>It's safer because when people are looking to break into accounts they generally don't care which accounts they get.  They just run the whole list looking for people who did use easy passwords and then seeing what they can steal from the related accounts.  They're not targeting you directly.  Someone who is targeting you directly and get can get access to your computer (either physically or via the internet) with enough access to do something like steal your password manager file will probably be able to circumvent any passwords you chose anyway.  </p>
+<p>Even if they do get the file, most password managers use <em>very</em> robust encryption.  For example, 256-bit Twofish (like is used in Password Safe) is essentially impossible to break on any meaningful timeline even with massive computing resources.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cxxiwwj">
+		<a class="author" href="https://www.reddit.com/user/meatlump" target="_blank">meatlump</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>To sum up and add a couple of things.</p>
+<p>Password managers make it easy to use long difficult passwords because you don't have to remember them, just the one long difficult password for your password manager.</p>
+<p>They have tools to generate long passwords with lots of odd characters, not the general replace A with @, e wtih 3 stuff we usually use.</p>
+<p>In addition to this I use them to remember my answers to security questions. According to my bank, my mother's maiden name is not Smith it is #$dTs@[j48t.</p>
+<p>Security questions are easily discoverable and thus of very little security. My answers to what is my favorite book and where did I go to school are long strings just as complex as my passwords. And all I have to remember is one hard password for the password manager.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cxy2nel">
+		<a class="author" href="https://www.reddit.com/user/admiralkit" target="_blank">admiralkit</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I read through some of the responses earlier, but wanted to illustrate some background on this issue that I hadn't seen covered (so apologies if I'm duplicating anyone here).</p>
+<p>There's an old saying by a bank robber when asked why he robbed banks where he explained that he robbed banks because that's where the money was.  Likewise, when thieves want account information, they go where the accounts are.  Very few attacks are focused on an individual target (known as spear-phishing) trying to break into their accounts.  The biggest cyberheists happen on the other side of the transaction fence - with the vendors.</p>
+<p>If I want to steal the money you have in your bank, attacking your bank directly would take a lot of time and effort.  Banks don't always do technology very well, but they take direct attacks pretty seriously and work to keep people out of their networks.  So instead of attacking the bank, I'd attack <a href="https://en.wikipedia.org/wiki/2011_PlayStation_Network_outage" target="_blank">another large retailer who handles financial transactions.</a> From there I could harvest personal details including login information, and that's where the weak spot is - people frequently use the same login information across multiple sites.</p>
+<p>So once I hack some company and steal their databases, I have a lot of information that needs sorted.  The usernames are probably in clear text, which means I've got one of the two keys needed to unlock your account.  Then I grab the password database and look at it.  If the company doesn't do security well, the passwords will be in clear text as well because it saves computing power and storage space to do it that way.  I then try that account pairing against multiple services, such as banks and e-mail providers, to see if that username and password combo get me in to any sites.</p>
+<p>If the company takes their security even modestly seriously, though, they'll encrypt their passwords.  What this means is that when you type in your password, it runs it through an algorithm such as an <a href="https://en.wikipedia.org/wiki/MD5" target="_blank">MD5</a> hashing process that converts your password to a jumble of letters, numbers, and characters.  This is (currently) a one-way process - you can't unhash information after it's been hashed to get the original input.  Then when you log in again in the future, the site hashes your password and compares the newly hashed password against what it has stored - if it matches, you're in.  If you type in the hash, the login server will hash that and give you a whole new sequence of letters and numbers, so having the hash doesn't just let you log into a site.</p>
+<p>What cybercriminals have done is create indexes of hash codes to their input values.  If I set my password to &quot;password&quot; and they get the hash, they'll compare the hash to this index and say, &quot;Aha! The corresponding password for the hash l;j34rjnacjuioh49j is 'password'!&quot; and then try that information against all sorts of other sites.</p>
+<p>What password managers do is create extremely rare and complex passwords that aren't in the dictionary, and create a lot of them.  When every site has its own unique password, getting a password from one site that only works on that site makes it very unlikely to be worth spending the time to brute force/reverse engineer on its own, so the cybercriminals move on to other easier targets.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cxxkhfe">
+		<a class="author" href="https://www.reddit.com/user/3226" target="_blank">3226</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There was a <a href="https://www.youtube.com/watch?v=U4oB28ksiIo" target="_blank">great talk from a hacker whose computer got stolen</a> discussing his process of retrieving it. He managed to get as far as keylogging and screenshots, but was still having trouble as the guy has a password manager, so the keylogger and screenshots didn't reveal any of the passwords.  </p>
+<p>In that respect, it worked very well. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">3 more answers...</a>
@@ -59,6 +103,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/3wn253" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

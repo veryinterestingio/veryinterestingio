@@ -45,14 +45,78 @@
 			<span class="tags tag-Technology">Technology</span>
 			<a href="/posts/57k9a8" onclick="return false">Why is it impossible to generate truly random numbers with a computer? What is the closest humans have come to a true RNG?</a>
 		</h2>
-		<span class="date">2016-11-17</span>
+		<!--<span class="date">2016-11-17</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Why is it impossible to generate truly random numbers with a computer? What is the closest humans have come to a true RNG?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="d8sojf5">
+		<a class="author" href="https://www.reddit.com/user/Bojodude" target="_blank">Bojodude</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The issue stems from the fact that there is nothing random about your computer. Everything a computer does is simply arithmetic operations. So you want a mathematical function that can create a random number.</p>
+<p>Okay well, a function takes and input and gives you an output, with your output being your random number. But that would mean that your output is somehow related to your input. By that logic, if your output is truely random, then your input must be truly random. You can see we've arrived at the same problem, so we're out of luck in that department.</p>
+<p>So we can't get a really random number because our computer can only do math, but we can get a pseudorandom number that kind of gives us a random number. There are a few ways of doing this, but a popular way is using the current time as your &quot;input&quot; value. Then your function takes that input, does some mathemagic, and spits out an output. How &quot;random&quot; your output ends up being is directly related to how good your function is.</p>
+<p>You could have a function that takes today's date and outputs the current hour as your random digit. Obviously that's a terrible way of doing it. Perhaps your function can be summing all the numbers in the date, diving by 4, then adding 18 then dividing by 3, then rounding up to the nearest integer. That might get you something more useful, but you can still probably do better.</p>
+<p>One of the best ways I've seen random numbers generated is by having an input value that comes from outside the machine. In this case, the input seed would be a measurement of the background static noise on a certain radio frequency as measured above the lab. This is a fairly decent way of ensuring you have a fair, random number.</p>
+<p>Of course there are other, and some definitely better, ways of generating numbers as I'm sure people will point out, but the gist is that you need an outside source of random info to give you that &quot;seed&quot; of randomness that you can grow into a usable value.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d8sovmz">
+		<a class="author" href="https://www.reddit.com/user/wordfountain" target="_blank">wordfountain</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Computers are designed to be deterministic. That means they will always do the same thing when given an instruction. Randomness is the exact opposite of this. Thus, the only 'true' sources of random data are external to a computer. </p>
+<p>Casinos, for example, have a CCD (charge-couple device; basically the sensor from your digital camera) in a heavily shielded box, and they poll that CCD for values several times a second. Cosmic radiation, bits of static, random other shit creates charges in parts of the CCD and not in others, and that 'noise' is the source of their random data. </p>
+<p>There are methods for grabbing similar data from the CPU itself, but the attacks against those all boil down to the sentence &quot;If I can control all the other tasks the CPU is doing, then I can predict the random data...&quot; And that is true because, as I said, CPUs are designed to be deterministic.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d8souuq">
+		<a class="author" href="https://www.reddit.com/user/pirround" target="_blank">pirround</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A computer is primarily a machine that takes and input, does a calculation, and produces and output. This will never produce a random output, unless it has a random input.</p>
+<p>However, some of those inputs are slightly random, generally when people get involved. The time of day when you turn the computer on -- it's probably always around 9:00, but the exact second or millisecond is random. (In technical terms we talk about how many &quot;bits or entropy&quot; there are in the measurement.)</p>
+<p>When you move the mouse, the exact pixel it moves to is random. By collecting a lot of measurements with some randomness, it's possible for the calculation to combine them in a way that the output is truly random. Doing this requires correctly estimating how random different measurements are, so if the mouse moves because of a script written to automate the computer configuration then the estimate could be wrong. The clever part is that if the calculation is done right then adding non-random data doesn't hurt anything, so generally the computer collects a lot more entropy than it needs.</p>
+<p>In Linux there is a part of the operating system that constantly collects these measurements so it can always produce truly random output. Of course once you've collected 100-200 bits of entropy, then you can use a pseudo random number generator for everything, since it's practically impossible to figure out what the input was or predict what the output will be. (In technical terms /dev/urandom is just as secure as /dev/random after it is properly initialized.)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d8srlr3">
+		<a class="author" href="https://www.reddit.com/user/erabeus" target="_blank">erabeus</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A lot of good explanations here about the deterministic nature of computers and why they don't generate random numbers. I'm surprised about the little mention of quantum mechanics, though, which as far as we know is truly random.</p>
+<p>Heat flow and atmospheric noise can produce some very random data, but whether they are truly random is iffy and depends on what kind of thermal/atmospheric system you are look at.</p>
+<p>Nothing beats quantum mechanics when it comes to random generation.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d8sp46r">
+		<a class="author" href="https://www.reddit.com/user/kpl12" target="_blank">kpl12</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In theoretical computer science, there is a concept called <a href="https://en.wikipedia.org/wiki/Kolmogorov_complexity#Definition" target="_blank">Kolmogorov complexity</a> that helps us define what it means for a string to be <em>random</em>. Basically, the Kolmogorov complexity of a string <em>s</em> is the <em>size of the smallest program required to produce s</em>.</p>
+<p>Here's an example:</p>
+<ul>
+<li>String 1: &quot;abcabcabcabcabcabcabcabcabcabc&quot;</li>
+<li>String 2: &quot;asdfgvcdertbvnmerticofhgtewqsx&quot;</li>
+</ul>
+<p>While both strings are 30 characters long, the first can be simply described as &quot;abc 10 times&quot;, while there is no &quot;compact&quot; way to describe the second. Intuitively, string 2 is more random than string 1, because it's much easier to construct a set of instructions (aka a program) to generate String 1.</p>
+<p>The only way that we could define a <em>truly random</em> string is to write down the string itself; if there were a (deterministic) program that could produce it for us, then the string is no longer truly random by definition. So if we'd like a &quot;random number generator&quot; program to generate random numbers on demand, it would have to be able to generate an infinite number of random numbers. And because the Kolmogorov complexity of this infinite string of numbers is as long as the string itself, the program would need to take up infinite space.</p>
+<p>In real life, we use pseudo-random number generators, which take advantage of some amount of randomness or entropy from the program's surroundings, and often a user-specified &quot;seed&quot;. But, given identical initial conditions, the program would produce identical output. So while the numbers are often &quot;random enough&quot; for our use, they are not truly random.</p>
+<p><a href="https://www.random.org/" target="_blank">random.org</a> generates random numbers via atmospheric noise and has passed a number of statistical tests. You can read some of their analysis <a href="https://www.random.org/analysis/" target="_blank">here</a>.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -60,6 +124,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/57k9a8" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

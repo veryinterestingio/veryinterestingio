@@ -4,7 +4,7 @@
 		<h2>
 			<a href="/posts/2ioobz" onclick="return false">How/why do old games like Ocarina of Time, a seemingly massive game at the time, manage to only take up 32mb of space, while a simple time waster like candy crush saga takes up 43mb?</a>
 		</h2>
-		<span class="date">2016-11-24</span>
+		<!--<span class="date">2016-11-24</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
@@ -12,7 +12,76 @@
 <p>Edit: great explanations everybody! General consensus is art = space. It was interesting to find out that most of the music and video was rendered on the fly by the console while the cartridge only stored instructions.  I didn't consider modern operating systems have to emulate all their predecessors and control multiple hardware profiles... Very memory intensive. Also, props to the folks who gave examples of crazy shit compressed into &lt;1mb files. Reminds me of all those old flash games we used to be able to stack into floppy disks. (penguin bowling anybody?) thanks again! </p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="cl40987">
+		<a class="author" href="https://www.reddit.com/user/KahBhume" target="_blank">KahBhume</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A large chunk of a game's size comes from things like textures and audio files. Older games had very small, simple textures if they used them at all. In contrast, newer games tend to use high-resolution images that take dozens, hundreds, or even thousands of megabytes just by themselves. Likewise, audio in old games was pretty simple. Older systems synthesized sounds, allowing the game to just supply some basic instructions to control them. Now, audio is typically recorded and stored with the game, making the overall size larger.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cl41kme">
+		<a class="author" href="https://www.reddit.com/user/mredding" target="_blank">mredding</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Former game dev here,</p>
+<p>Assets (art, models, and music) take up the majority of the memory of any game. Ocarina of Time didn't have a lot of assets. Many of the models are low polygon by today's standards and few are textured (graphics applied to the model surfaces).</p>
+<p>Much of the coloring is polygon coloring and gradients, and that's been hardware accelerated since about the time hardware acceleration existed; the hardware driver combined with the video processor instruction set can fill in the video buffer with simple colors and gradients when it fills the polygons. If you look at the screenshots, you'll see that the colors are mostly flat and simple.</p>
+<p>Some of the textures, looking at screenshots, look to be generated. Procedural generation is a technique where you let program instructions compute the texture at run-time instead of having to store a graphic file. Such textures are algorithmic patterns, and you can make a lot of patterns this way. There are a few iconic &quot;noise&quot; functions that generate patterns with interesting properties that have their own name, brown noise, white noise, perlin noise... And you can use a small hand full of these patterns to produce grass, hair, water caustics, clouds, rocks, wood, and more.</p>
+<p>It's a bit more of a modern technique to generate these textures right in the video buffer during rendering; back in the day especially, but still today, too, it would be more common to generate these graphics in a texture buffer, and then apply that to the model. The whole point is that you can store the instructions to generate a texture (bytes) in less space than you can store the texture itself (several megabytes). Artist drawn textures are saved for where they're really needed.</p>
+<p>Another example of this technique is Final Fantasy 7. The backgrounds are HUGE and highly detailed graphics while the models are 99.999% polygon art. The <em>only</em> texture applied to any of the models were the eyes.</p>
+<p>Music undergoes the same procedural compression. That's basically what MIDI is all about. It's a series of &quot;vectors&quot; that indicate a direction and a magnitude, and equations that describe the waveforms of instruments. You just can't beat the size of synthesizer data with compression techniques. Of course, the quality of the audio is limited by the quality of the synthesizer, and there are just some things that can't easily be synthesized.</p>
+<p>Candy Crush, by contrast, is all artist assets, specifically BITMAPS. That means there is a definite value for every pixel in the graphic, and the graphic is a fixed size. If you want to scale the graphic to be bigger or smaller, you have two options: you either interpolate the graphic in a scaling algorithm which will inevitably result in noise artifacts, making the graphic unacceptably pixelated and ugly in a hurry, or you store multiple versions of the same graphic for every resolution your game supports. Guess which technique King decided to go forward with...</p>
+<p>The problem is especially bad for mobile devices like Android phones or Apple products. For a given platform, they have one program release, and that single program has to support every device and their native resolution, so the vast majority of the content in that program will never be used, and the program doesn't have the ability to dump the graphics it will never use, nor is it desirable in case the hardware changes and the install doesn't. The iPhone version, for example, has graphics support for every iPhone, every tablet, and everything that runs iOS and OSX, since these apps also run native on your laptop.</p>
+<p>They could potentially use vector graphics, as those are instructions that tell a render engine how to draw a 2D graphic; they scale perfectly, but vector graphics are notoriously slow because they require many many instructions and layers if you want a high level of detail. To render vector graphics in situ would be infeasible. They could instead pre-render vector graphics into a texture buffer as I suggested Ocarina did, but we're talking different levels of complexity here, noise is extremely fast to generate, vector graphics aren't. The load times would be unacceptable.</p>
+<p>The other thing to consider is that memory copies are more energy conservative than CPU cycles on mobile devices, so they'll gladly sacrifice your storage space for battery life. I don't know if MIDI would be cheaper on a mobile device than decoding compressed audio, but I've never seen a game use compressed audio (whenever I've looked, at least). This spares CPU cycles for rendering, and on mobile devices, again, saves battery life. On a PC, we consider memory to be basically infinite, so there's no need to conserve memory, and compression loses quality, which we don't want. MIDI is employed where there is hardware acceleration on platforms with limited resources, otherwise there is no need to bother.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cl4b1ms">
+		<a class="author" href="https://www.reddit.com/user/FoodTruckForMayor" target="_blank">FoodTruckForMayor</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>tl;dr: Windows is big because it includes the stuff to pretend to be dozens of versions of previous operating systems and computers from the last three decades.</p>
+<hr />
+<p>To address the operating systems part of your question, modern Windows is huge because it supports old programs and hardware.</p>
+<p>Microsoft's early operating systems (DOS) could fit entirely on a single side of a floppy disk, taking up a few hundred kilobytes. </p>
+<p>In the 1980s, there was basically one processor, one kind of disk, one graphics card, one keyboard, one mouse, etc. and a small number of ways to access each. Hardware that was different or newer could usually pretend to be the older standard hardware and work with older other hardware and operating system versions. To use the full features of new hardware, the hardware manufacturers would provide special software in the form of drivers that added interfaces and other features to the operating system.</p>
+<p>Different hardware manufacturers used different drivers, even for the same kind of hardware. So, if a video game writer wanted to write a game that used graphics on a Cirrus video card, and on an IBM video card, and on a different version of the IBM video card, the game itself would need special programming specifically for each video card. As the number of devices (printers, mouses, video cards, disks, sound cards, etc.) increased, it became increasingly difficult for software authors to write and test software for all the possible devices and combinations of them. So, more and more of the software interfaces to hardware get built into the operating system in standard ways. </p>
+<p>Similarly, on the software side, there are only so many efficient ways to draw boxes, write text, calculate angles on graphs, etc., and programmers' time is better spent not reimplementing the same algorithm for each program (taking up disks and memory with each version), so standard functions like for math, handling text, generating graphics, etc. became standardized in function libraries that included in, or added to the operating system.</p>
+<p>At the same time, the amount of memory and CPU capabilities increased. When memory was $100s per KB, no one would design an operating system to handle more than a few MB. In order to use memory, a program or operating system needs to know the location of memory to write to it, or read from it. So each location in memory has an address. If you have 64 KB (65,536 bytes) of memory, you need five decimal digits (00000-65535) to refer to any byte of memory. If you have 1 MB (1048576 bytes) of memory, you need seven decimal digits to refer to any particular byte of memory. If you have 1 GB of memory, you need 10 decimal digits (0,000,000,000-1,073,741,823) to refer to any particular byte of memory. Since each digit of a memory address also takes up memory, it is wasteful to reserve more digits than necessary to address all the memory that could be available in a system. But because the amount of memory available on a common system keeps increasing, the operating system needs to be able to deal with those different memory models. [e: Later operating systems and hardware would change to addressing <em>pages</em> of 0.5 or 4 KB of memory at a time in order to keep the addresses short and efficient. It also became possible and more efficient to communicate with some devices like video cards and disk drives by writing to and reading from memory. These hardware advances required the operating system to change as well.] Similarly, new CPUs have new capabilities and models that the operating system must deal with, while keeping compatibility with older programs.</p>
+<p>Since the 1980s, there have been approximately: a dozen major x86 CPU architectures by Intel, AMD, Cyrix, and others; half a dozen ways to write device drivers; and a dozen sets of function libraries supplied by Microsoft, each with a few versions (e.g., OpenGL, MFC, DirectX). Windows itself split into two desktop families (3.1/95/Me and NT/2K/XP/W7/W8) and some others, and ran on non-x86 CPUs for a time. Due to drama with IBM and other companies, Windows is/has also been compatible with programs written for particular versions of another operating system (OS/2) and standards (POSIX, Java). </p>
+<p>Windows 8 can run many programs written for DOS and MS operating systems since DOS, by pretending to to be older versions of Windows or DOS through virtual machines, compatibility layers, [e: emulation of hardware and software] and other ugliness.</p>
+<p>Of consequence, most of a modern in service Windows 8 installation's disk space is used by compatibility things like winsxs (Windows side-by-side) and syswow64 (Windows on Windows), Microsoft.NET (a function library), inf (device driver information and other unholy things), and copies of Windows installer files (because DVD drives are becoming less common).</p>
+<p>If you don't plan on adding or changing hardware on your system, and if you don't need to run older applications, a basic W7 or W8 desktop installation will fit in ~1 GB (there are online tools of questionable legality to make Windows &quot;lite&quot; installations for that purpose). Microsoft officially offers Windows on embedded devices (cash registers, etc.) where the hardware and software needs are known in advance, so that all the unnecessary cruft can be stripped out.</p>
+<p>[e: By comparison, the installed size of Mac OS X is around 5 GB, approximately the size of winsxs. Apple can be a bit slimmer by sacrificing compatibility with hardware and applications that are more than around six years old. There is zero chance of success when attempting to run an app written for Mac OS 8 from the late 1990s on a Mac OS 10 machine, while most Windows 95 apps that don't do weird hardware stuff will at least start up enough to complain about user accounts being in the wrong place. </p>
+<p>On the Linux side, there are many full GUI distributions that fit on a 650 MB CD or even an old 64 MB memory card and don't take up much runtime memory. The choice of available applications might be limited, though, unless you add/compile libraries and applications on your own.]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cl4101i">
+		<a class="author" href="https://www.reddit.com/user/TheAmazingJPie" target="_blank">TheAmazingJPie</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Firstly, imagine you're going on a holiday, you have a small suitcase which can only hold so much clothing, to make sure your stuff fits you can take less of it or fold it up neatly or even buy one of those vacuum zip packs that compress your clothes. You manage to fit everything in thanks to some masterful packing but you are wary that you might not have been able to and you buy a bigger suitcase for next time. Now with the large suitcase you can comfortably fit all your clothes into the case with room to spare, even if you just threw your clothes in from a distance.</p>
+<p>It's similar with digital storage, people only had a minuscule amount of storage space available. Software engineers were particularly skilled in reusing assets (Taking less clothes.) and sacrificing quality for lower size (like folding your clothes except with a trade off). Nowadays, developers have gigabytes of storage available to them they can fill their game with higher quality, uncompressed assets and don't have to be as savvy about reusing them.</p>
+<p>That's not to say that current game developers are not as good as old ones but the amount of game that you could get on an N64 cartridge is impressive.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cl40y49">
+		<a class="author" href="https://www.reddit.com/user/dbratell" target="_blank">dbratell</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In addition to what others have already written (gfx and audio requiring a lot of space), as games got bigger and there were more and more people involved in making the games, the programmers have moved to ever more abstracted development methods, and the more layers there are between programmer and hardware, the larger the program becomes.</p>
+<p>There is also a difference in available hardware. Where Ocarina of Time used 90% of the hardware it ran on (a number I made up), Candy Crush Saga might use 10% of the hardware it has available (also a made up number). Seen that way, it is a more lightweight program.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -20,4 +89,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/2ioobz" onclick="return false"><span>show</span></a>
 </li>

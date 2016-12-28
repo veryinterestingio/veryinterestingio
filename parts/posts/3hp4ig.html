@@ -5,7 +5,7 @@
 			<span class="tags tag-Mathematics">Mathematics</span>
 			<a href="/posts/3hp4ig" onclick="return false">If I flip a coin 1,000,000 times, what are the odds of it beings heads AND tails 500,000 times?</a>
 		</h2>
-		<span class="date">2016-11-16</span>
+		<!--<span class="date">2016-11-16</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
@@ -14,7 +14,91 @@
 <p>This got me thinking - is there a probability of this difference being exactly 0? How would it be possible to work it out, and is there a name for this kind of probability?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="cu9az4f">
+		<a class="author" href="https://www.reddit.com/user/Rannasha" target="_blank">Rannasha</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>What's important to realize is that the probability of every sequence with the same &quot;outcome&quot; (total # of heads in a given # of trials) is the same. HHTT is as likely as HTHT or TTHH.</p>
+<p>So to compute the probability of landing 500,000 heads in 1,000,000 trials, you have to calculate the probability of obtaining 1 particular sequence with this outcome and then multiply it be the number of different sequences with the same outcome.</p>
+<p>The sequence of first landing 500,000 heads and then 500,000 tails is such a sequence. The odds of getting it are 0.5^500,000 * (1 - 0.5)^500,000 = 0.5^1,000,000</p>
+<p>The number of sequences of 1 milion flips with exactly 500,000 heads is given by the so-called <a href="https://en.wikipedia.org/wiki/Binomial_coefficient" target="_blank">binomial coefficient</a>, which in this case evaluates to 1000,000! / (500,000! <em> 500,000!) and which is an enormous number (unsurprisingly). (The &quot;!&quot; symbol denotes the factorial which is the product of all numbers less than or equal to the given number, so 4! = 4 </em> 3 <em> 2 </em> 1 = 24)</p>
+<p>Regular calculators can handle neither the extremely low probability of a single sequence or the very large number of possible sequences with the same outcome. So we go to Wolfram Alpha:
+<a href="http://www.wolframalpha.com/input/?i=0.5%5E1000000+*+Combinations%281000000%2C500000%29" target="_blank">http://www.wolframalpha.com/input/?i=0.5%5E1000000+*+Combinations%281000000%2C500000%29</a></p>
+<p>The result: about 0.08%</p>
+<p>Note that the above also holds for situations where the outcome of an individual trial is not a 50-50 split between two options. It can also be used for things like calculating the chance of throwing exactly 100 6's in 600 dice rolls (spoiler alert: it's 4.37%)</p>
+<p>The general formula to compute the chance of M successes happening in N trials where in a single trial the probability of success is P is:
+P^M <em> (1 - P)^(N - M) </em> N! / (M! * (N - M)!)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cu9fvf0">
+		<a class="author" href="https://www.reddit.com/user/_ProjectEuler_" target="_blank">_ProjectEuler_</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Look up Bernoulli random trials. </p>
+<p><a href="https://en.wikipedia.org/wiki/Bernoulli_trial#Example:_tossing_coins" target="_blank">https://en.wikipedia.org/wiki/Bernoulli_trial#Example:_tossing_coins</a></p>
+<p>This is the same as asking the probability of exactly 500,000 successes in 1,000,000 trials given an individual success probability of 50% per trial.</p>
+<p>(1000000 choose 500000) x (.5)^(500000) x (1-.5)^(1000000 -500000) = 0.00079788436133175...</p>
+<p>General formula for k successes in n trials given probability p: </p>
+<p><strong>(n choose k) p^(k) (1-p)^(n-k)</strong></p>
+<p>(n choose k) ways to pick which k trials will be successful.</p>
+<p>p^k because those k trials must be successes, which occurs with probability p each.</p>
+<p>(1-p)^(n-k) because there are n-k trials left that must be failures, and those n-k failures must fail with probability (1-p) each.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cu9gzzq">
+		<a class="author" href="https://www.reddit.com/user/runedot" target="_blank">runedot</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Using R, you can use dbinom to get the answer in a more elegant way that doesn't use massive factorials.</p>
+<p>The arguments are: (how many successes, how many trials, probability of success), e.g.</p>
+<pre><code>dbinom(1, 1, 0.5)</code></pre>
+<p>Means getting 1 head in 1 coin toss (with probability of heads = 0.5). Answer is...</p>
+<pre><code>0.5</code></pre>
+<p>No surprises there. On to your question:</p>
+<pre><code>&gt; dbinom(5 * 10^5, 10^6, 0.5)
+[1] 0.0007978844</code></pre>
+<p>Which agrees with what everyone else said (0.08%).</p>
+<blockquote>
+<p>I then carried on refreshing the formula and the difference didn't come out at 0 for quite a while, but was always between -2,500 and +2,500.</p>
+</blockquote>
+<p>Because it's R, I can also look at this really easily. Let's generate some values around 500,000. I'm going to go with 5,000 in either direction, to ensure it captures your 2,500 interval and then some. Getting 1001 points between 495,000 to 505,000 should be enough to give a smooth plot.</p>
+<pre><code>&gt; x = seq(from = 5 * 10^5 - 5000, to = 5 * 10^5 + 5000, length = 1001)
+&gt; plot(x, dbinom(x, 10^6, 0.5), type = "l")</code></pre>
+<p>This is what that looks like: <a href="http://i.imgur.com/p8TyBDi.png" target="_blank">http://i.imgur.com/p8TyBDi.png</a></p>
+<p>So even +/- 2,000 is probably a good enough interval. But I'm using R, I can do better. Let's do an actual interval. By using qbinom instead, I can specify quantiles. So if I want to know the central 95% probability, I can do this:</p>
+<pre><code>&gt; qbinom(c(0.025, 0.975), 10^6, 0.5)
+[1] 499020 500980</code></pre>
+<p>This means that if you did 1,000,000 coin flips (with a fair coin, probability of heads = 0.5), 95% of the time you will get between 499,020 and 500,980 heads. Let's try some more quantiles:</p>
+<pre><code>&gt; qbinom(c(0.005, 0.995), 10^6, 0.5)
+[1] 498712 501288</code></pre>
+<p>99% of the time you will get between 498,712 and 501,288 heads.</p>
+<pre><code>&gt; qbinom(c(0.00005, 0.99995), 10^6, 0.5)
+[1] 498055 501945</code></pre>
+<p>99.99% of the time you will get between 498,055 and 501,945 heads. These are still only 3,890 apart, so a +/- 2,000 interval is good enough 99.99% of the time.</p>
+<p>Edit: Oops, OP was talking about <em>difference</em> being +/- 2,500, but I was talking about +/- 2,000 from the centre (which will mean a +/- 4,000 difference). +/- 2,500 difference is good enough for 95% though:</p>
+<pre><code>&gt; diff(qbinom(c(0.025, 0.975), 10^6, 0.5))
+[1] 1960</code></pre></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cu9dylj">
+		<a class="author" href="https://www.reddit.com/user/bgog" target="_blank">bgog</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Just a note.  The random number in excel are not true random trials.  They are pseudo-random numbers which are generated by a deterministic mathematical progression.</p>
+<p>The progression is started with a 'seed'.  The seed can be anything and in software the current time is often used (but not for cryptography).  This progression gives very random 'feeling' results, however if you start with the same seed, you will always get the same progression of random results.</p>
+<p>If you have ever played a multiplayer strategy game such as Starcraft, each computer is actually running the full simulation in lock-step.  They all start with the same random 'seed' and thus generate the same results. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cu9mcd7">
+		<a class="author" href="https://www.reddit.com/user/fenton7" target="_blank">fenton7</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This is a Binomial distribution. You can compute this in Excel fairly easily since, happily, it has support for Binomial built in:</p>
+<p>=BINOMDIST(500000,1000000,0.5,FALSE)</p>
+<p>Exact result is 0.079788436133175000000000%</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -22,4 +106,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/3hp4ig" onclick="return false"><span>show</span></a>
 </li>

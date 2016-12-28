@@ -5,14 +5,68 @@
 			<span class="tags tag-Mathematics">Mathematics</span>
 			<a href="/posts/4zqby2" onclick="return false">Is there a formal way of deciding what fraction of a game is chance?</a>
 		</h2>
-		<span class="date">2016-11-16</span>
+		<!--<span class="date">2016-11-16</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>The card game of &quot;war&quot;, in which players flip cards and compare their values without ever making any decisions is clearly entirely probabilistic, (each player will win half the time, as long as the deck is perfectly shuffled before each game.) The game of chess has no probability involved because the game state is entirely dependent on input from the players. These are examples of games at the extreme ends of the scale, but is there a way of assigning a specific value of how much probability plays a part in a game for those that are in between the extremes?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="d6ygv8m">
+		<a class="author" href="https://www.reddit.com/user/HarlequinNight" target="_blank">HarlequinNight</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This is just an aside I thought you might enjoy. Richard Garfield, the creator of Magic the Gathering, often talks about the importance of having some random elements because it allows losers to blame it on bad luck, and winners to claim it was all skill. This makes it easier to keep playing and not feel bad for losing too much.</p>
+<p>He goes on to describe two hypothetical games to show extreme version of combining skill and luck. The first is Rando-Chess. In Rando-Chess both players play an entire game of Chess. At the end they roll a 6 sided dice. If it is 3 or higher, the winner of the Chess game wins, otherwise if it is a 1 or 2, the loser of the Chess game wins. Basically the entire skilled chess game is a preface to having slightly better dice odds. </p>
+<p>The second example is &quot;guess the nth digit of Pi&quot;. It is a totally probabalistic outcome to ask what the 11 millionth decimal of Pi is, but most people just guess a random number. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d6y06ov">
+		<a class="author" href="https://www.reddit.com/user/Zbignich" target="_blank">Zbignich</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'm not sure how developed the concept of <em>chanciness</em> is. There is a paper by Jakob Erdmann from the Friedrich-Schiller-Universitat that deals with the concept. <a href="https://www.minet.uni-jena.de/preprints/erdmann_09/chanciness.pdf" target="_blank">Here is the pdf link.</a></p>
+<p>Their goal is to create an algorithm for automatically determining the extent of chance and skill in a game.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d6y5ru6">
+		<a class="author" href="https://www.reddit.com/user/bluesam3" target="_blank">bluesam3</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Some random thoughts (initially restricted to 2-player games, but easy enough to generalise, I think): </p>
+<p>Consider a game G between two players. Player A takes a random decision, distributed evenly from all possible available moves. Player B always takes the move that gives them the greatest probability of winning the game in every situation. Define the chance fraction C(G) of the game to be 2P, where P is the probability that player A wins. In a perfectly random game, Player A will win exactly 50% of the moves (since there's no better decision than random chance available), so C(G) would be 1. In a game with zero chance, player A will win something extremely close to 0% of the games (that is: exactly 0 unless there exists a winning strategy for A from the start position, in which case it's the chance that A accidentally plays that winning strategy). </p>
+<p>Advantages: Works, pretty unambiguously determines the level of chance in the game. Can be approximated by having the best players available play against random steppers. Matches intuition of what it should be. </p>
+<p>Disadvantages: Ludicrously difficult to calculate precisely for games that aren't extremely simple. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d6y92xy">
+		<a class="author" href="https://www.reddit.com/user/sirgog" target="_blank">sirgog</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Never seen it formalized, but the best measure is the standard deviation in tournament equity given a set prize structure and a mixed skill playerbase.</p>
+<p>Example - 64 players bet$1 each, winner takes all, single elimination.</p>
+<p>If the game is pure chance, each player's tournament equity is $1. 1 in 64 chance to win.</p>
+<p>If the game is pure skill, for example an arm wrestle best of 17 where players are fully rested each round, the strongest person has equity of $64 and everyone else none.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d6y823b">
+		<a class="author" href="https://www.reddit.com/user/etotheipi1" target="_blank">etotheipi1</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>One way to go about it would be to set up a round-robin tournament and then measure its non-transitivity: number of 3-cycles (i.e. A beats B, B beats C, C beats A) in the tournament.</p>
+<p>If we have a height-comparing competition, then the taller person would always beat the shorter person, so the transitivity of the tournament would be 0. However, if we have a rock-paper-scissors tournament with N people, you would expect to see roughly N^(3)/24 3-cycles. Games with some luck and some skill would fall somewhere in the middle.</p>
+<p>I once gave a talk on this graph theory topic and got this question: &quot;couldn't we use this to measure how certain sports are more luck based than others?&quot;</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -20,4 +74,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/4zqby2" onclick="return false"><span>show</span></a>
 </li>

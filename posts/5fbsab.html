@@ -45,14 +45,71 @@
 			<span class="tags tag-Computing">Computing</span>
 			<a href="/posts/5fbsab" onclick="return false">What causes the randomness of internet speeds, even on Ethernet?</a>
 		</h2>
-		<span class="date">2016-12-01</span>
+		<!--<span class="date">2016-12-01</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>What causes the randomness of internet speeds, even on Ethernet?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="daja934">
+		<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are many factors that come into play in internet connections, almost too many. The fact is, we have been studying the internet as long as it existed, and there are multiple papers published every year on traffic statistics, models, case studies on specific use cases, new protocols and protocol enhancements, census data, performance analyses, client characteristics, etc. Since our networks constantly change, their behaviour also does so. Characteristics of traffic of DSL users today may not be the same in 5-10 years, and has changed a lot in the last 10-15.</p>
+<p>Given the question is so broad, there is a lot of things to be said, so I'll stick with the most well-established ones.</p>
+<ol>
+<li>
+<p>Typical DSL clients' web traffic has a few interesting characteristics:</p>
+<ul>
+<li>your upstream bandwidth limits your downstream throughput <a href="https://pdfs.semanticscholar.org/45bb/4eda79f40960749ba4dd7386ffa661de965f.pdf" target="_blank">Charzinski, 2000</a></li>
+<li>for some ISPs, there is an observed drop in performance early in the morning and late in the evening, performance variability increases for <em>all</em> ISPs during peak hours <a href="http://conferences.sigcomm.org/sigcomm/2011/papers/sigcomm/p134.pdf" target="_blank">Sundaresan et al, 2011</a></li>
+<li>the <em>last-mile latency</em> and jitter are lower than upstream, and losses are usually bursty - if you lose one packet, it's more likely you'll lose the next one, too</li>
+<li>excessive buffering tends to increase latency, just like insufficient buffering, but tends to increase jitter, contrary to insufficient buffering (a phenomenon aka &quot;bufferbloat&quot;)</li>
+<li>there is no single best ISP for everyone</li>
+</ul>
+</li>
+<li>The principal someone behind the &quot;randomness&quot;, or to put it differently the exhibited negative impact, is <em>self-similarity</em>. Self-similarity is the property of a time series (in this case) to exhibit the same characteristics in varying scales. As a result, these series exhibit bursty behaviour at a wide variety of scale. Surprisingly, this was shown for Ethernet as far back as 1995 by <a href="http://ccr.sigcomm.org/archive/1995/jan95/ccr-9501-leland.pdf" target="_blank">Leland et al</a>, and <a href="http://www.cs.bu.edu/~crovella/paper-archive/self-sim/journal-version.pdf" target="_blank">Crovella &amp; Bestavros</a> showed its adverse effects on HTTP traffic.</li>
+</ol>
+<p>I will stop here, as I realise I've spent about an hour trying to summarise this stuff in my head and only typed a handful about it, and I've left out huge amounts of literature on wireless &amp; mobile networks, medium differences, caching, and network churn. If you have any specific questions ask away and I'll do my best to answer or at least point you to relevant literature.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="daj2yei">
+		<a class="author" href="https://www.reddit.com/user/giant_panda_slayer" target="_blank">giant_panda_slayer</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>One factor is that when you are on the Internet you typically are using TCP. What TCP does is continually try to send more data. When the maximum is reached and the network is full a loss event will occur. When it does TCP will cut the amount of data it is trying to send, typically it will cut down to nothing and increase exponentially, or it will cut in half and increase linearly. This will continually happen and so the speed will always fluctuate.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="daj7i2i">
+		<a class="author" href="https://www.reddit.com/user/salyut3" target="_blank">salyut3</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are going to be many factors involved. The main ones are going to be the medium the signal is travelling through, the route and network congestion.
+Say you want to watch a Youtube video and the video wont load fast enough. Lets first assume your internet bandwidth is more than capable of handling the data.
+The location of that video could be  on the other side of the world. When a request comes from your computer to view that video it starts a complicated series of events. ***Very simplified version - An electrical signal from router to the ISP, the ISP to their other routers, those routers to other ISP routers, then to undersea cables, then to international ISP, then through their network, then through to other networks they have data agreements with then finally to the server that is hosting the video. And thats just to start the process. To watch the entire Youtube video this process must take place in a back and forth motion at the speed of light until the data has been received.
+The cable you just used to watch that video could be 1000's of miles long. It could pass through Turkey who currently has a fibre break and are re-routing the traffic causing congestion. It could may have rained somewhere along those 1000's of miles and caused one of the pits to fill with water (a pit is a junction where the street cables meet), there could be a ship's anchor that has just cut the undersea cable, there could be a foreign submarine tapping that undersea cable causing the electrical signal to weaken etc. etc. etc. As you could imagine there virtually an unlimited number of things that can go wrong. Another big one which doesnt get much mention is human error. A lot of slowness of your internet could be caused by somebody within your ISP pressing the wrong button on the keyboard. Oops somebody within your ISP just tried to migrate a bunch of services to a shinny new piece of hardware and it didnt work out. Trust me, that happens all the time.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="daj9jvu">
+		<a class="author" href="https://www.reddit.com/user/anamorphism" target="_blank">anamorphism</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>this is a good starting point: <a href="https://en.wikipedia.org/wiki/Network_congestion" target="_blank">https://en.wikipedia.org/wiki/Network_congestion</a></p>
+<p>congestion is probably the leading cause of the 'randomness' of network speeds. others have brought it up but didn't really explain it too well.</p>
+<p>network hardware has limitations just like any other hardware; there's only a certain amount of traffic it can handle.</p>
+<p>think of it like a funnel. you are capable of producing liquid at a rate of a liter per second. the funnel may be able to handle 10 liters per second. if you're the only one using it, sweet, everything works great. but then 10 other people also start using the funnel at a liter per second. now the funnel is trying to handle 11 liters per second and things start backing up.</p>
+<p>this is the basic idea behind distributed denial of service attacks. you have a bunch of connections that can produce liquid at a certain rate and you get enough of them to send everything at a single funnel until it gets backed up and eventually fails.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dajbddj">
+		<a class="author" href="https://www.reddit.com/user/lampotron" target="_blank">lampotron</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>On the ISP side, utilization rates are making a comeback. In the early 90s, it was a big deal but tapered off with advances in data transfer. Now with all the streaming going on coupled with population growth, carrier over-utilization is a thing again.  I work in management for a cable company. It doesn't happen too often (maybe once every couple of months), but when it does....it's catastrophic. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -60,6 +117,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/5fbsab" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

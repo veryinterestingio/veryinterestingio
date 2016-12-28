@@ -45,14 +45,150 @@
 			<span class="tags tag-Mathematics">Mathematics</span>
 			<a href="/posts/4e5z3i" onclick="return false">Can you represent PI in a finite number of digits in any number system?</a>
 		</h2>
-		<span class="date">2016-11-16</span>
+		<!--<span class="date">2016-11-16</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>From a computer science course I know that you cannot represent the number 1/10 in a binary number system. But you can do it in a decimal number system. Is there a system where you can represent PI in a finite amount of digits?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="d1xbckw">
+		<a class="author" href="https://www.reddit.com/user/Midtek" target="_blank">Midtek</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Of course, we could always use base pi to represent numbers, with which pi has the trivial representation &quot;10&quot;. But surely non-integer bases are not what you are talking about. (They're also a lot of trouble anyway. For instance, if the base is algebraic then some numbers can actually have infinitely many expansions that all terminate.)</p>
+<p>If the real number <em>x</em> has a finite expansion in some <em>integer</em> base <em>b</em> &gt; 1, then <em>x</em> is equal to</p>
+<blockquote>
+<p>x = a<em><em>n</em></em>b^(n)+a<em><em>n-1</em></em>b^(n-1)+...+a<em><em>0</em></em>+a<em><em>-1</em></em>/b+a<em><em>-2</em></em>/b^(2)+...+a<em><em>-m</em></em>/b^(m)</p>
+</blockquote>
+<p>with a<em><em>k</em></em> some integer between 0 and <em>b</em>-1. This expression can just as well be written as</p>
+<blockquote>
+<p>x = M/b^(m)</p>
+</blockquote>
+<p>where M is some integer. Therefore, <em>x</em> must be rational. Since pi is irrational, there is no integer base in which pi has a finite expansion.</p>
+<hr />
+<p><strong><em>edit:</em></strong> So I came back to 27 new messages and 1500 upvotes. I did not think this topic interested that many readers. But good to see! Follow-up to some common questions and comments:</p>
+<h2>How does non-integer base representation work?</h2>
+<p>First, distinguish between a number <em>x</em>, which can be defined and exists independently of its representation and &quot;<em>x</em>&quot;, which is a numeral or representation of <em>x</em> in a certain base. To make clear that I mean a specific base representation I will enclose an expression by quotation marks if the base is clear or, if I want to denote the base explicitly, I will write a subscript after the digits. So the expression 23<em><em>10</em></em> means &quot;23 in base 10&quot; (the number 23) and the expression 23<em><em>4</em></em> means &quot;23 in base 4&quot; (the number 11).</p>
+<p>Non-integer base representation works just how any integer base works. Fix your base <em>b</em> &gt; 1. The &quot;digits&quot; of your representation are all non-negative integers <em>less than</em> <em>b</em>. Then the representation</p>
+<blockquote>
+<p>&quot;d<em><em>n</em></em>d<em><em>n-1</em></em>...d<em><em>1</em></em>d*<em>0</em><em><strong>.</strong>d</em><em>-1</em><em>d</em><em>-2</em>*...&quot;</p>
+</blockquote>
+<p>(where each d<em><em>j</em></em> is a digit) is the number</p>
+<blockquote>
+<p><em>x</em> = d<em><em>n</em></em>b^(n)+d<em><em>n-1</em></em>b^(n-1)+...+d<em><em>1</em></em>b^(1)+d<em><em>0</em></em>+d<em><em>-1</em></em>b^(-1)+d<em><em>-2</em></em>b^(-2)+...</p>
+</blockquote>
+<p>The digits can be found recursively using a <em>greedy algorithm</em>.</p>
+<p>Let's do an example to make this clear. Since our base is b = π, our possible digits are {0, 1, 2, 3}. Now pick your favorite number <em>x</em>. For sake of clarity, I am going to let <em>x</em> = 8. Note that π^(2) &gt; 8, so the first digit of our representation is in the &quot;tens&quot; place. We have</p>
+<blockquote>
+<p>[8/π] = [2.546...] = 2</p>
+</blockquote>
+<p>(The notation [.] means that we round down to the nearest integer.) So the &quot;tens&quot; digit of 8 in base-π is just &quot;2&quot;. Okay. Now we subtract off what we have so far, and then divide by the next power down.</p>
+<blockquote>
+<p>[(8-2π)/1] = [1.716...] = 1</p>
+</blockquote>
+<p>So the &quot;ones&quot; digit of 8 in base-π is &quot;1&quot;. Now subtract off what we have so far again, and divide by the next power down.</p>
+<blockquote>
+<p>[(8-2π-1) / π^(-1)] = [2.252...] = 2</p>
+</blockquote>
+<p>So the &quot;tenths&quot; place of 8 in base-π is &quot;2&quot;. Subtract off again and divide by the next power down.</p>
+<blockquote>
+<p>[(8-2π-1-2π^(-1)) / π^(-2)] = [0.791...] = 0</p>
+</blockquote>
+<p>So the &quot;hundredths&quot; place of 8 in base-π is &quot;0&quot;. Next. Subtract off, divide by the next power down.</p>
+<blockquote>
+<p>[(8-2π-1-2π^(-1)-0π^(-2)) / π^(-3)] = [2.486...] = 2</p>
+</blockquote>
+<p>So the &quot;thousandths&quot; place of 8 in base-π is &quot;2&quot;. At this point I think you get the idea. So far, we have that</p>
+<blockquote>
+<p>8<em><em>10</em></em> = 21.202...<em><em>π</em></em></p>
+</blockquote>
+<p>If you want to keep going, WolframAlpha is more than happy to do it for you.</p>
+<blockquote>
+<p><a href="http://www.wolframalpha.com/input/?i=8+in+base+pi" target="_blank">8<em><em>10</em></em> = 21.20211200210000003...<em><em>π</em></em></a></p>
+</blockquote>
+<h2>Non-integer bases are a bit bizarre</h2>
+<p>Some terminology if you are not familiar:</p>
+<blockquote>
+<p>A real number is <em>algebraic</em> if it is the root of a polynomial with integer coefficients. Otherwise, the number is transcendental.</p>
+<p>Suppose <em>x</em> is algebraic. The minimum degree of all polynomials for which <em>x</em> is a root is called the <em>degree</em> of <em>x</em>. So if <em>x</em> is algebraic of degree 7, then any polynomial for which <em>x</em> is a root must be at least degree 7.</p>
+</blockquote>
+<p>Some properties of representations in different types of number bases:</p>
+<ul>
+<li>
+<p><strong>Integer base:</strong> All numbers have at most two expansions. If a number has only one expansion, it must be infinite. If a number has two expansions, then one expansion terminates and the other expansion ends in an infinite trail of digits equal to <em>b</em>-1. For example, &quot;1&quot; and &quot;0.999...&quot; are equivalent base-10 representations of the same number, just as &quot;1&quot; and &quot;0.2222...&quot; are equivalent base-3 representations of the same number.</p>
+</li>
+<li>
+<p><strong>Transcendental base:</strong> Just as with integer bases, some numbers have terminating expansions and some don't. However, a number can have infinitely many expansions. If a number has a terminating expansion, then it has only one terminating expansion. (But the number can still have infinitely many infinite expansions.) It is possible (actually, typical) for a number to have uncountably many infinite expansions.</p>
+</li>
+<li><strong>Algebraic base (of at least degree 2):</strong> Every number has at least one expansion.. and that's all you can really say. If a number has a terminating expansion, it has infinitely many terminating expansions (see below for an example). So this type of number base is particularly pathological since not even terminating expansions are unique.</li>
+</ul>
+<p>Interestingly, note that there is no base in which <em>all</em> numbers have a unique expansion.</p>
+<p>Okay, now for an example with an irrational, algebraic base. Let <em>b</em> be the unique real root of the equation</p>
+<blockquote>
+<p>b^(3) = b^(2)+b+1</p>
+</blockquote>
+<p>(For reference, the root is approximately <em>b</em> = 1.8393, which means that the valid digits in this base are {0,1}.) Then the number b^(3) has (at least) <em>two</em> representations: &quot;1000&quot; and &quot;111&quot;. In fact, we can use the equation above to write <em>any</em> power of <em>b</em> as a sum of other powers of <em>b</em> with coefficients that are valid digits. For example, multiply the equation by b^(-2) to get</p>
+<blockquote>
+<p>b = 1+b^(-1)+b^(-2)</p>
+</blockquote>
+<p>So then the number <em>b</em> has the representations &quot;10&quot; and &quot;1.11&quot;. Essentially, in this base, whenever there is a string &quot;1000&quot; anywhere, we can always replace it by &quot;0111&quot;. For example, consider the number <em>x</em> = <em>b</em>+1 (approximately 2.8393), which has the representation</p>
+<blockquote>
+<p><em>x</em> = 11<em><em>b</em></em></p>
+</blockquote>
+<p>We can write this instead as</p>
+<blockquote>
+<p><em>x</em> = 10.111<em><em>b</em></em></p>
+</blockquote>
+<p>Then we can shimmy over the last &quot;1&quot; to get</p>
+<blockquote>
+<p><em>x</em> = 10.110111<em><em>b</em></em></p>
+</blockquote>
+<p>Shimmy it over again to get</p>
+<blockquote>
+<p><em>x</em> = 10.110110111<em><em>b</em></em></p>
+</blockquote>
+<p>..and, well, you get the picture. We have an infinite sequence of representations, all of which terminate and all of which represent the same number. This is a general phenomenon for any algebraic base of degree at least 2. (Note though, the greedy algorithm explained in the previous section always gives a unique expansion. In the previous example, it gives <em>x</em> = 11<em><em>b</em></em>. So we can always canonically choose a unique expansion even if there are infinitely many by just declaring <em>the</em> expansion to be that which is given by the greedy algorithm.)</p>
+<h2>Irrationality and base representation</h2>
+<p>There seems to be some confusion between the definition of a rational number and theorems characterizing rational numbers in terms of base representations. The <em>definition</em> of a rational number is:</p>
+<blockquote>
+<p>A real number <em>x</em> is <em>rational</em> if it can be expressed as the ratio of two integers. Otherwise, it is <em>irrational</em>.</p>
+</blockquote>
+<p>The word &quot;rational&quot; literally means &quot;quality of a ratio&quot;. So the numbers 2/3, 9/10, and 1235325423/122145268 are all rational. The numbers √(2), <em>e</em>, and <em>π</em> are irrational. (Proofs that they cannot be expressed as fractions of integers are readily available online.) <strong>Note that the definition of rational makes no reference to number base at all.</strong> Whether a number is rational is not dependent at all on the number base.</p>
+<p>However, we do have the following theorems:</p>
+<blockquote>
+<p>If a number <em>x</em> has an eventually periodic expansion in some integer base <em>b</em> &gt; 1, then <em>x</em> has an eventually periodic expansion in all integer bases <em>b</em> &gt; 1.</p>
+<p>A number <em>x</em> is rational if and only if its expansion in some integer base <em>b</em> &gt; 1 is eventually periodic.</p>
+</blockquote>
+<p>(&quot;Eventually periodic&quot; includes &quot;terminating&quot; because a terminating expansion can always be followed by an infinite trail of repeating 0's.) The first theorem means that we can strengthen the second by replacing the word &quot;some&quot; with &quot;all&quot;. </p>
+<p>Note that these are theorems that relate rationality to their representations in number bases. They are not the definition of a rational number. Also note that the theorem specifically talks about <em>integer</em> bases. For non-integer bases, the theorem is not true. For example, π is irrational, but its representation in base-pi is &quot;10.0000....&quot; which is eventually periodic.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d1xk07t">
+		<a class="author" href="https://www.reddit.com/user/aManAgeNotGiven" target="_blank">aManAgeNotGiven</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Skimmed and didn't see this point: he didn't say any base system he said any number system. Graphing in radians came to my mind immediately. Pi is a fixed ratio that you can express and work with without decimals using its symbol. I know that's not really the question but I thought it was a way of looking at it.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1xp7yx">
+		<a class="author" href="https://www.reddit.com/user/green_meklar" target="_blank">green_meklar</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>That depends what you mean by 'number system'.</p>
+<p>A 'rational' number is a number that can be expressed as a ratio of two finite integers (that is to say, one finite integer divided by another finite integer). For instance, 14/5 is a rational number; expressed in our base ten place-value notation it is 2.8, terminating after two digits (all further digits would just be 0, so we leave them out). 46/33 is also a rational number, but expressed in our base ten place-value notation it is 1.3939393939 and so on with copies of '39' repeating infinitely.</p>
+<p>Then there are 'irrational' numbers. These are all the numbers <em>other than</em> the rational numbers (that is to say, for a given irrational number, there are <em>no</em> two finite integers that, when divided by each other, produce that number). For instance, the square root of any whole number that is not a perfect square is necessarily irrational. √2, √5, √3000, and so on. It so happens that there are many <em>more</em> irrational numbers than rational numbers. This seems a bit counterintuitive considering that there are infinitely many of both; after all, doesn't infinity always equal infinity? No, as it turns out, the infinity that represents the amount of irrational numbers is <em>infinitely bigger</em> than the infinity representing the amount of rational numbers.</p>
+<p>Now, although our usual place-value notation uses an integer (ten), there's no reason in principle that you couldn't use a non-integer rational number, or even an irrational number. If we used 2.6 instead of ten, then '10' would mean 2.6, '100' would mean 6.76, '20112' would mean 102.7552, and so on. And if we used pi, then '10' would mean pi, '100' would mean pi^(2), and so on. So clearly, in a base pi notation, pi has a finite amount of digits.</p>
+<p>However, there are some interesting relationships that hold between rational and irrational numbers and place-value notations based on them. Specifically: In <em>any</em> rational base, <em>any</em> rational number will have a pattern of digits that either terminates or eventually starts repeating infinitely; and in <em>any</em> rational base, <em>any</em> irrational number will have a pattern of digits that continues infinitely without repeating. (The converse does <em>not</em> hold: For instance, in base √2, the number 4 has a finite number of digits since it's represented as 10000, but pi still extends infinitely without repeating.)</p>
+<p>So the short answer to your question is: Yes, but <em>only</em> in irrational bases, and only <em>particular</em> irrational bases at that. (Or, of course, in a variety of number notations that aren't place-value systems at all.)</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d1xkmle">
+		<a class="author" href="https://www.reddit.com/user/Arancaytar" target="_blank">Arancaytar</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Not in any rational base.</p>
+<p>If you took a rational base r (including any integer base), then if there were a finite number of digits such that pi = a + b/r + c/r² + d/r³ + ..., then you could expand the whole thing to (ar^n + br^(n-1)+cr^(n-2)+dr^(n-3)+...)/ r^n , which is a rational fraction. That can't exist.</p>
+<p>However, you <em>could</em> theoretically use an irrational base: In base pi, pi would simply by 10.</p>
+<p>(I'm not quite sure what would happen in something like base 2*pi.)</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">3 more answers...</a>
@@ -60,6 +196,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/4e5z3i" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

@@ -4,14 +4,183 @@
 		<h2>
 			<a href="/posts/5h8wfa" onclick="return false">Who makes PC Viruses, Why, and How do they work?</a>
 		</h2>
-		<span class="date">2016-12-11</span>
+		<!--<span class="date">2016-12-11</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>And are AntiVirus actually useful?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="daygpib">
+		<a class="author" href="https://www.reddit.com/user/Workacct1484" target="_blank">Workacct1484</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Ok so you say Virus, I think you mean Malware. I'll get into that later.</p>
+<p>Now let's break it down:</p>
+<ul>
+<li><strong>WHO:</strong></li>
+</ul>
+<p>Lots of people. Sometimes it's the military (Stuxnet), sometimes it's a kid bored in his basement, sometimes is a researcher who breaks quarantine, sometimes it's a criminal. Anyone with the power to program can write malware.</p>
+<ul>
+<li><strong>WHY:</strong></li>
+</ul>
+<p>The big factors are as follows: </p>
+<ul>
+<li>Money - Duh</li>
+<li>Power - Usually this is your nation state sponsored. Cripple the enemies computers, win the information, win the war.</li>
+<li>Prestige - I hacked google! I am awesome! Everyone bask in my awesomeness!</li>
+<li>Challenge - The best way to find a security hole in an appliance? Tell pentesters it's hack proof. We infosec people love a good challenge</li>
+<li>
+<p>Politics - Wikileaks. Someone at the DNC didn't like what they were doing &amp; so leaked information. <strong>OR</strong> (depending who you believe) the Russians hacked it.</p>
+</li>
+<li><strong>HOW:</strong></li>
+</ul>
+<p>Here is where we need to break it up.</p>
+<ul>
+<li>Virus</li>
+</ul>
+<p>A virus is a computer program that hijacks another program. On their own they are harmless, and they don't really travel. Rather once on a machine, they look for their intended victim. They hijack the code through a variety of exploits too deep for ELI5 and make it do something else.</p>
+<p>And example: Stuxnet.</p>
+<p>Stuxnet hijacked the Command And Control (CNC) coding for uranium centrifuges. See to get weapons grade uranium, you spin uranium gas at <strong>VERY</strong> precise speeds, for very long times. Filtering out what you need.</p>
+<p>What Stuxnet did was inject itself between the CNC node, and the Server. What happened next went like this:</p>
+<ul>
+<li>Server: Hey CNC node, spin at 100</li>
+<li>Stuxnet: Got it boss!</li>
+<li>Stuxnet: Hey CNC node, it's server, spin at 150</li>
+<li>CNC node: Got it boss</li>
+<li>Server: Hey CNC node, just checking in. You're spinning at 100 right?</li>
+<li>Stuxnet: yeah boss!</li>
+<li>Stuxnet: hey CNC node, spin at 75. (lol)</li>
+</ul>
+<p>A virus needs a host program, just like a virus needs a host cell.</p>
+<hr />
+<ul>
+<li>WORM</li>
+</ul>
+<p>A worm is a program that runs on it's own. It can spread on its own via email, via web, or hitching a ride on that shady porn sites video.</p>
+<p>A worm can do almost anything, as it is it's own program. Sometimes it exploits a known hole &amp; runs. Sometimes it tries to trick you into thinking it is another legitimate program (these are called trojans). But they all do something bad.</p>
+<p>The most common we see now are keyloggers, which record your keystrokes &amp; then send them back home to be analyzed for credit card numbers &amp; other info, and cryptolockers. Cryptolockers encrypt your files, and tell you to send money to someone to get the password.</p>
+<p>It would be like if I took your phone, put a password on it, and said &quot;I'll give you the password for $20&quot;</p>
+<p>Worms live. They can act on their own, they travel on their own. Like a worm parasite. </p>
+<p>Worms can also carry viruses.</p>
+<hr />
+<ul>
+<li><strong>ANTI-VIRUS:</strong></li>
+</ul>
+<p>Or rather anti-malware.</p>
+<p>These do work. But none are perfect. They use two methods of detection:</p>
+<ul>
+<li>Signature based detection.</li>
+</ul>
+<p>Every file has a signature. Called a hash. This is a one way function that creates a unique (or nearly unique) code.</p>
+<p><a href="http://www.miraclesalad.com/webtools/md5.php" target="_blank">Try it out:</a></p>
+<p>&quot;This is a sentence&quot; has a hash of: 09e720276ad42173bf2723f7fc050f49</p>
+<p>&quot;This is a sentence.&quot; has a hash of: d15ba5f31fa7c797c093931328581664</p>
+<p>See what a difference just a &quot;.&quot; makes?</p>
+<p>Well there are <strong>HUGE</strong> databases of hashes. And when you download or run a program, the AM will check the has of the program against a known malware database. If there's a match, it sets off an alarm &amp; goes into action stopping it.</p>
+<p>The weakness here is what we call 0-days. What happens if you're hit before the database is updated? Sadness. Sadness happens.</p>
+<hr />
+<p>Anomaly  detection.</p>
+<p>This is the other method of detection. Your AM will build a baseline of what is normal. When something exceeds this, it will trigger a response.</p>
+<p>If you never use your computer between 2 and 6am, but all of a sudden after downloading &quot;Free willies.avi&quot; your CPU and network usage starts to spike to 100% at 3 am. Well something isn't right, and it will take action.</p>
+<p>The weakness here is what happens if the malware is smart, and some of them are, and sleeps while it builds a profile on you, or slowly ramps itself up so it doesn't trigger the alarms unto the baseline is adjusted? Sadness. Sadness once again. Like Latvian christmas with no potato.</p>
+<hr />
+<p>It is always better to have one than to not. I recommend Microsoft Security Essentials. Malware Bytes. Or Kaspersky for the average user.</p>
+<p>But the best protections you have are yourself. Don't click that email link from Kunta Kintae. Don't go to that shady Latvian torrent site &quot;Movies-for-taters.lu.ro&quot; And please, run an ad blocker. Ads are a <strong>HUGE</strong> malware vector.</p>
+<p>If you have any other questions I'll be happy to answer. I do this stuff for a living.</p>
+<hr />
+<p>Here's one of my favorites:</p>
+<pre><code>:(){ :|:&amp; };:</code></pre>
+<p>This is called a forkbomb. Like a fork in the road, a fork bomb splits. Imagine telling your computer to open a program, that opens itself again, forever. That is what this does. Your computer will quickly ruun out of memory &amp; CPU processing ability, and lock up.</p>
+<p>It's <em>relatively</em> harmless, so I feel comfortable sharing it here. Also it's probably the most well known.</p>
+<p>I'll break it down for you!</p>
+<ul>
+<li>:()</li>
+</ul>
+<p>Create a function (program) called &quot;:&quot;</p>
+<ul>
+<li>{ :|:&amp; };</li>
+</ul>
+<p>Tell that function to open itself. Load a copy of itself into it &quot;&amp;&quot; do so in the background so it can't be easily killed.</p>
+<ul>
+<li>:</li>
+</ul>
+<p>Do it. Do it now.</p>
+<p>So that program runs, and opens a copy of itself. Which runs, and opens a copy of itself. Which runs, and opens a copy of itself... until your computer can't do it anymore. Well until your computer can't do <em>anything</em> anymore.</p>
+<p>EDIT:</p>
+<p>/u/random_access_cache did mention gold-level comment. Just a preemptive request. If you do feel like gilding this, please just donate to the Free Software Foundation instead , I dont need gold, do some actual good :) <a href="https://www.fsf.org/" target="_blank">Link</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dayaz3u">
+		<a class="author" href="https://www.reddit.com/user/bizitmap" target="_blank">bizitmap</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Hi! I work for a company that make an antivirus, along with some other products.</p>
+<p>Viruses exist to make money. They do this by snooping for credit card numbers, encrypting your data and holding it hostage until you pay, and other fun scams. Because they're often deployed internationally, catching online criminals is very difficult because law enforcement agencies aren't working tightly-enough together to pull it off.</p>
+<p>&nbsp;</p>
+<p>Antivirus programs are useful, assuming they're setup properly and kept up to date. There's two popular methods to bust bad bugs: fingerprinting and heuristics. For fingerprinting, there's a database containing samples of part of viruses. The program scans your computer and looks for matches. </p>
+<p>Heuristics is watching for suspicious behaviors. When a program doesn't present a GUI, doesn't register itself properly with Windows, runs from user-owned folders instead of proper system folders, listens for remote commands...all are considered suspicious and the more a utility does, the more strikes against it until the program decides it's probably bad and needs to stop.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dayb4ip">
+		<a class="author" href="https://www.reddit.com/user/Kaerit" target="_blank">Kaerit</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><strong>Who:</strong> Mostly people who know how to code and want to get information about people or just damage a computer.
+<strong>Why:</strong> As I said before, to damage computer, get information, try to get money (Ransomware).</p>
+<p><strong>How:</strong> There's a plenty ways how they work.
+<em>Ransomware</em>, for example blocks completely the computer encrypting files with a password and making it unaccessible to the host. You get a bitcoin account and you are asked to pay a certain amount of money (if you have  this kind of problem NEVER PAY. Just call the police)</p>
+<p>A <em>trojan</em> is a virus which will let remote access to the person who infected it allowing him to do whatever he wants. Just as if he was in front of the computer.</p>
+<p>A <em>worm</em> --- barbodelli will explain it nice here down!</p>
+<p>Edit: I forgot about antivirus. Yes they are useful. They work with a big database of virus around the world and are able to detect them before they do serious damage. Anyway the best antivirus, is you.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="daybf3b">
+		<a class="author" href="https://www.reddit.com/user/theXpanther" target="_blank">theXpanther</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><strong>Why make viruses?</strong></p>
+<p>Because lots of stuff on your computer is actually valuable. A common type of virus is called &quot;Ransomware&quot; where the virus encrypts your hard-drive and you need to pay the hackers to be able to decrypt it again.
+Many viruses are after your personal information. Stolen identities can be sold for a lot of money on the black market. Viruses can steal your passwords, your documents, your nearly finished thesis on the ideal antivirus, or anything of value online.
+There are many more types of viruses, including adware, Trojans, keyloggers, etc, but all of them want to make money.</p>
+<p><strong>How do viruses work?</strong></p>
+<p>Viruses are just computer programs, so sequences of instructions to your CPU. That means a virus can do almost anything your CPU can do once it is loaded. Many viruses set themselves up to trigger when your computer starts up, and run quietly in the background until they have finished their work.</p>
+<p><strong>Do Aniviruses work?</strong></p>
+<p>Your operating system is more important than your antivirus. If you have system folders set to the right permissions, it's very hard for a program to edit them, and viruses are forced to move to more visible places like your start menu startup folder, where you can easily see them. Still, I recommend using a virus scanner just to check your downloads for common viruses and Trojans. That will only work when it's up to date though.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="daykdqf">
+		<a class="author" href="https://www.reddit.com/user/AliceInWondermall" target="_blank">AliceInWondermall</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I can give you what I know. My person I live with works in something called InfoSec and a big part of his job is actually finding exploits in various systems.</p>
+<p>To answer &quot;who writes a virus?&quot; you have to start at what a virus is.</p>
+<p>A virus/mallware/trojan/some kind of malicious code/etc is at it's core an &quot;exploit&quot;. Something not malicious but still falls under this umbrella is send out a .bat file to someone with this script: </p>
+<blockquote>
+<p>shutdown-s -t 60</p>
+</blockquote>
+<p>All this does is just make the computer shut down after 60 seconds. But for a non-technical user, a .bat file is a non-descript file. And if you get it sent to you in the mail, and it's name is &quot;Picture of my new dog&quot; then sure, they'll click on it. And if you think &quot;Most people wouldn't open a picture from someone they don't know.&quot;</p>
+<p>Sure. But when you receive an email, the name you see is meaningless. It's kind of useless information. You could easily use PHP to send out an email that gives you the name of someone else.</p>
+<p>But how would you find out that person's family memebers' names?</p>
+<p>Facebook. Go on Facebook, type in &quot;Angela&quot;, pick one from the list, view her friends, pick one of those names and in PHP send an email to her with from the firstname.surname@randomemail.com and you have successfully tricked like half the email using population into clicking on whatever you linked to in that email.</p>
+<p>So if a .bat file can contain instructions for Windows to do things, and downloading that .bat file can do really bad things to your computer, what would a good, well-trained Anti Virus do? Well. It would look at the name of the file. It would see that it has the extension .bat and it would say &quot;No. Hold up. This shit ain't right. Why you be downloadin' .bat files from the internet, son? You betta' get ready for some flamin' hot digital hemorrhoids if you wanna open this mofo up. Tell you what. You don't download this shit. Imma take it away from you and put it in a vault. Here. See? Safe. Peace out.&quot;</p>
+<p>Now. Why would someone write a .bat file that does something bad? Why would they want to mess with your computer.</p>
+<p>Well. Most wouldn't. In fact, <em>a lot</em> of work goes into making the viruses as difficult to notice as possible. The viruses are (usually) designed to not impact you computer at all. All they do (the good ones) is sit quietly and do things like send ads to your friends. Use your current session authentication to encrypt a bunch of files on your PC and then ask for a ransom (granted this one you will notice). Some just log data and send it back to a database for whatever random use.</p>
+<p>There is also such a thing as an exploit kit. This is something targeted specifically to get into your computer one way or another by using known exploits in the older versions of software. If you have an older Java version then maybe there is a know exploit for it that has been patched in the new version. But you never updated. And you accidentally click on a file with the name: &quot;HotSexySluts.png&quot; but whose real name is &quot;HotSexySluts.png.exe&quot;.</p>
+<p>Who? Random people. Depends on what the virus is. Or even - depends on the method of attack. A virus is a tool for an attack, rather than the attack itself a lot of the time.</p>
+<p>Does antivirus work? Yes.</p>
+<p>Why? For the ad viruses - money. For the ransom viruses? Money.</p>
+<p>Then there are viruses that make your unit part of a network of computers that contribute minutely to a DDoS (denial of service attack). That is done for either money (sometimes bot nets are hired or rented) or just because someone got pissed off at someone else.</p>
+<p>For the viruses that make your screen change wallpaper to a dick? I don't know. Just for the lulz. To see if they can. To do some damage.</p>
+<p>Some viruses aren't really viruses, just user errors. Like sending you to a page that looks identical to Google but has the domain name &quot;asoidnaisnfoaings.net&quot; or something where they want you to &quot;Reset your password&quot; by entering your current password once.</p>
+<p>I don't know if this helps. I don't know that much about it tbh, just what I read and am told.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -19,4 +188,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/5h8wfa" onclick="return false"><span>show</span></a>
 </li>

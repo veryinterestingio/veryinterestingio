@@ -46,6 +46,11 @@ $(document).on('click', '.post h2', function(e) {
 	}
 })
 
+$(document).on('click', '.post .show', function(e) {
+	var $post = $(this).closest('.post')
+	post.expand($post)
+})
+
 $(document).on('click', '.post .collapse', function() {
 	var $post = $(this).closest('.post')
 	post.collapse($post)

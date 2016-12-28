@@ -44,14 +44,110 @@
 		<h2>
 			<a href="/posts/4702vu" onclick="return false">How do hackers find/gain 'backdoor' access to websites, databases etc.?</a>
 		</h2>
-		<span class="date">2016-11-17</span>
+		<!--<span class="date">2016-11-17</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>What made me wonder about this was the TV show Suits, where someone <em>hacked</em> into a university's database and added some records.</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="d098ay7">
+		<a class="author" href="https://www.reddit.com/user/thargoallmysecrets" target="_blank">thargoallmysecrets</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Gunna try doing this like ELI10.  Back door access is just a way of saying &quot;not-expected&quot;access.  Sometimes its still done through the front door, and sometimes its through a window.  </p>
+<p>Something like the front door would be if your Mom told you you could have one glass of coke, and you went and got the big glass flower vase, and poured 6 cokes into it.  By following the rules in an unexpected way, you've tricked the machine.  When mom asks you later how many glasses of coke you had, (of course with her trusty polygraph), you can truthfully answer, &quot;One&quot;.   This might be like an SQL injection.  Instead of answering *1+ 5+8=__ with &quot;14&quot;, you might answer with &quot;14&amp;OUTPUT_FINAL_ANSWER_LIST&quot;.  Since it has no spaces and starts with numbers, it might satisfy the rules.</p>
+<p>Another way would be if your Mom said you could invite some friends over to play.  After the 5th friend walks in, your Mom declares, &quot;That's it, not another kid walks through that door!&quot;  If you open a window and let Johnny climb in with his crayons, technically you didn't break the rules (for the eventual polygraph) AND when you and your 5 friends go downstairs for homework, Johnny can color all over the walls without someone suspecting he's there.  This is as though you made new login names and used one of the names to give another person administrative, or Mommy, rights.  Sometimes you need to make a new login screen, or just knock open a hole in the wall and cover it with a poster, but the idea is still to break the intention of the rules while following them to the letter.</p>
+<p>What's also important to remember is this goes very smoothly when someone lives in the house already, but becomes much harder when you're trying to get into a stranger's house.  You might have to try to sell them cookies or magazines and then write down where the windows are.  Or you might have to offer to clean their whole house for only $5, and then leave a window unlocked for your friend to come back later.  Getting inside is a major step.</p>
+<p>*Obligatory EDIT: First Reddit Gold for explaining a computer science topic in an understandable way means my degree wasn't for nothing! Thanks. Apparently 4th grade math was, though.  Glad you all caught my OBO error.  Finally... RIP my inbox.</p>
+<p>Edit2:  Added two posts I found particularly good ELI10 additions.<br />
+/u/Tim_Burton 's <a href="https://www.reddit.com/r/explainlikeimfive/comments/4702vu/eli5_how_do_hackers_findgain_backdoor_access_to/d09am8m" target="_blank">post</a>  and also, /u/candybomberz <a href="https://www.reddit.com/r/explainlikeimfive/comments/4702vu/eli5_how_do_hackers_findgain_backdoor_access_to/d09ijnq" target="_blank">mentioned</a>  that it's not easy to simply seal off every metaphorical window and door, as then you live in a brick box.  Asking the right questions in the polygraph test, or using <a href="http://www.coastalwindows.com/uploads/header/3-Coastal-Jalousie-Window-b.jpg" target="_blank">better windows</a> would help, but it's always going to be a battle of the wits. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d09d8w8">
+		<a class="author" href="https://www.reddit.com/user/My-Fake-Life" target="_blank">My-Fake-Life</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You're 5 so I'm going to lay this out simply.</p>
+<p>You have a board with a round hole, a square hole, and a triangle hole. You possess a round object, a square object, and a triangle object.</p>
+<p>You'd assume this is easy enough to solve, things SHOULD work as they were intended, but maybe you're a little shit and stick the triangle object in the square hole and realize it fits.</p>
+<p>Developers should never assume that everyone will use their product as intended. If hackers can find a way to mess with the system in a way it's not intended for, they can push their limits and find further issues/vulnerabilities.</p>
+<hr />
+<hr />
+<p>Look how much you've grown! Let me explain this again for a common website vulnerability.</p>
+<p>Let's say you had a line of code that needed to search a database, and the query (the command you send the DB to request information) is sent as a line of text. The following line of code is not real, it's simplified to explain. Let &quot;$X&quot; be the variable input.</p>
+<hr />
+<p><strong><em>How it's intended to be used:</em></strong></p>
+<p>When the website asks you to type your username, it sets $X to &quot;giantdorito&quot;</p>
+<p>When the code wants to request more information about the username, it sends:</p>
+<pre><code>query("Find $X;")</code></pre>
+<p>Which looks like</p>
+<pre><code>query("Find giantdorito;")</code></pre>
+<p>And that will pull up all your information behind the scenes.</p>
+<hr />
+<p><strong><em>Hacker Use:</em></strong></p>
+<p>When the website asks you to type your username, a hacker types in something like, &quot;giantdorito; Delete giantdorito&quot;</p>
+<p>When the code wants to request more information about the username, it sends:</p>
+<pre><code>query("Find $X;")</code></pre>
+<p>Which looks like</p>
+<pre><code>query("Find giantdorito; Delete giantdorito;")</code></pre>
+<p>And that will pull up all your information behind the scenes. But then the next command that comes after the &quot;Find&quot; function will delete all the information about the user!</p>
+<p>This is called SQL Injection, and is a very common problem. Developers assume people will ONLY type their username into that text box. You never should, you should always write your code to clean the text input of any nasty extra code.</p>
+<hr />
+<hr />
+<p>Other problems are more technical. Try setting your iPhone's year to 1970. Actually, don't, it'll brick (or disable) your phone. Why? Because it's another type of issue that is commonly exploited in other systems. iPhone's minimum date is July 1st, 1970, any date before that is invalid, and Apple assumed nothing bad would happen if they allowed you to go before that date.</p>
+<p>That may not have any real use for a hacker, my main point here is that the reason hackers can do things is because developers don't always check their work.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d098z5x">
+		<a class="author" href="https://www.reddit.com/user/MrjB0ty" target="_blank">MrjB0ty</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I have to disagree with a few people here; backdoors are not always intentionally coded into websites by the developers. There are usually a few simple steps to hacking; recon being the first and most important. As someone who works in information security I can tell you that almost all attacks begin with vulnerability scanning using a tool such as nessus. This will run a series of scripts against a target site or server looking for vulnerabilities in the code of the site, which can include but in no way is limited to XSS or SQL injection. If the scanner picks up a vulnerability it is possible to exploit this by various means (depending on the vulnerability) for example a site that does not enforce input validation on its login fields may be succeptible to SQL injection which can then be exploited to login as the admin of the site or another user. Once an attacker has gained or escalated their privileges to a sufficient level they may be able to do something such as install a command prompt with a different name such as abcdefgcmd.exe in a directory on that server. The reason for the unusual name is so that any monitoring appliances running on the server will not detect the usual &quot;cmd.exe&quot; being run on the server when executed. Once the attacker has installed the new executable in a random, publicly accessible directory on the server. They can logout and send requests through to the server to execute the command shell. And that is ONE way that it's possible to install what can be considered a backdoor.
+As mentioned in other comments social engineering is another very common method, as the weakest aspect of any organisation's security is always the human aspect.
+There are hundreds of different ways to hack a site or server but it all boils down to finding a vulnerability, exploiting it and escalating your privileges to a high enough level to be able to manipulate the system.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d0998i2">
+		<a class="author" href="https://www.reddit.com/user/MrB398" target="_blank">MrB398</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>One time I was able to exploit a popular shopping cart to purchase any items I wished, at whatever price I wished.</p>
+<p>They have since fixed this window, so an example of the process was as follows:</p>
+<ul>
+<li>Load up your cart with expensive items. Like 10 laptops, etc</li>
+<li>Apply a 10% off promo code</li>
+<li>Remove expensive items from the cart</li>
+<li>The 10% discount dollar amount remained applied</li>
+<li>Add new items you want to your cart</li>
+<li>Enjoy massive discount</li>
+</ul>
+<p>With a little basic math, I was able to buy anything I wanted for any amount I wanted. To avoid instant detection, I discounted items around 90% instead of going all out free.</p>
+<p>All in all I got about $4,000 worth of solid merchandise for about $300 over the span of 3 months.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d094vqz">
+		<a class="author" href="https://www.reddit.com/user/SheHadToAsk" target="_blank">SheHadToAsk</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Back doors are intentionally implemented by the creator of the software. It can be done with good intentions, such as an ISP wanting their support staff to be able to get into your router when you call them for help or it can be done with malicious intentions such as an employee wanting to get back at some company. No matter the intentions it's a bad idea that gives anyone who finds it access.</p>
+<p>Websites today are usually hacked using something called SQL (database) Injection or Cross Site Scripting (SQLi or XSS).
+SQLi can happen for instance when a login form does not sanitize its input and you can enter a character which ends the SQL statement that the website is supposed to run and instead continues to run the code you enter into the form.
+So instead of making it check if your password matches the one in the database, you can make it check if 1 is equal to 1 and since that's true it continues to log you on to the site.</p>
+<p>XSS often appears on sites where users can publish content, such as comments, when that content can contain code. You can then add some JavaScript to go along with your comment which can be used for anything from creating a pop-up in the browser of users who read the comment, to stealing their browser cookies in order to hijack their login session and pretend to be them.</p>
+<p>When you hear of big hacks targeting some corporation or government entity it is most often done through social engineering. That basically means you talk your way in. In practice it could mean that you get someone at the company to use a usb stick with your malicious code on it or something as simple as calling and pretending you're the CEO asking for the password, which was the case when one of the largest intelligence contractors in the US was hacked a few years back.</p>
+<p>edit: corrected the difference between sqli and xss.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -59,6 +155,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/4702vu" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

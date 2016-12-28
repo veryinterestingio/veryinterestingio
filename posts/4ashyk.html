@@ -44,14 +44,58 @@
 		<h2>
 			<a href="/posts/4ashyk" onclick="return false">How does reverse image search work?</a>
 		</h2>
-		<span class="date">2016-11-17</span>
+		<!--<span class="date">2016-11-17</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: How does reverse image search work?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="d134zk1">
+		<a class="author" href="https://www.reddit.com/user/SebboNL" target="_blank">SebboNL</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Damn good question!</p>
+<p>Google searches the internet all the time and stores their findings in a huge database (this is called &quot;indexing&quot;). They stumble onto a lot of different images that way. Everytime they find a picture, they take as much data as they can from that image and store it. One of these bits of data is the file's &quot;checksum&quot;. That's when you take a file and add all the bits and bytes that make up the file together according to a specific calculation - usually a so-called &quot;hash function&quot;, which is more or less unique for that particular file. The amount of possible permutations is enormous - we're talking about sextillions or septillions of different images before you're likely to find a reoccuring checksum (a so-called &quot;collision&quot;). </p>
+<p>Now, say that you want to know the origin of a certain picture. You upload the image and Google calculates the file's checksum. This checksum is then compared to the checksums google already has in their databases, and any hits are shown in your browser. The downside of this method is that if an image is altered even slightly, it's checksum will be vastly different. So, cropping or resizing would make a picture &quot;unique&quot; again in this respect. That's why Google came up with other aspects of pictures to index as well - colors, hue, saturation and EXIF-data (the metadata stored with digital photographs) are indexed as well, as is the context in which a picture is placed on a website - this may help personalize the results to some extent.  </p>
+<p>All of these combined form a scorecard, and the most likely &quot;hits&quot; are shown. This enables reverse image searches to be succesful most of the time. Quite cool stuff, huh?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d134xep">
+		<a class="author" href="https://www.reddit.com/user/brazzy42" target="_blank">brazzy42</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are 2 parts to it:</p>
+<ul>
+<li>From each image, a &quot;fingerprint&quot; is extracted, something that describes the image as uniquely as possible but doesn't change when the image is manipulated (e.g. resized or changed to a different format with a lower color depth).</li>
+<li>Have an index that allows you to search through millions of fingerprints efficiently to find the closest match to the fingerprint of your search image (the &quot;efficient&quot; part is where it gets complicated).</li>
+</ul>
+<p>This is the stuff of active research, many people are trying to find newer and better algorithms for this.</p>
+<p>A very simple fingerprint algorithm would be to resize the image to a very low resolution, e.g. 3x3 pixels with 6bits of color depth, i.e. you have 9 pixels and each can have one of 64 colors. And the search would return all images that are identical when resized to that format, which means they have a similar average color in each of the 9 parts that are sized down to 1 pixel.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d13ctb0">
+		<a class="author" href="https://www.reddit.com/user/lovethebacon" target="_blank">lovethebacon</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A reverse image search is known as a Content Based Image Retrieval system. This is the topic of active research.</p>
+<p>An image can be characterized by a set of features. This could be texture, gradients, colours or shapes, or a combination of all of these. These features can be extracted, stored in a database and indexed for later search.</p>
+<p>Exactly how you decide that two images are similar depends on your algorithms.</p>
+<p>Exactly what these features look like, depends on what approach you use. OpenCV implements a number of these approaches, which are described at <a href="http://docs.opencv.org/3.0-beta/doc/py_tutorials/py_feature2d/py_features_meaning/py_features_meaning.html#features-meaning" target="_blank">http://docs.opencv.org/3.0-beta/doc/py_tutorials/py_feature2d/py_features_meaning/py_features_meaning.html#features-meaning</a>.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d13khua">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>One way is take an images and break it up into small equal size square chunks.  Take an average of the colors in that chunk.</p>
+<p>Now you get a new picture and do the same.  Search your list for images that share the same values as the new one. </p>
+<p>The smaller the square chunk the more refined and better your results.  </p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">3 more answers...</a>
@@ -59,6 +103,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/4ashyk" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

@@ -45,7 +45,7 @@
 			<span class="tags tag-Technology">Technology</span>
 			<a href="/posts/5g1ug7" onclick="return false">If I open an .exe file in a text editor, what am I seeing?</a>
 		</h2>
-		<span class="date">2016-12-05</span>
+		<!--<span class="date">2016-12-05</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
@@ -54,7 +54,45 @@
 <p>When I open an .exe file in Notepad, though, it's like the character map puked all over my screen; it's just a random hodgepodge of letters and numbers and ASCII characters and whatnot. What's the actual data I'm looking at? Is this assembly (or machine code)? If not, how does my computer make sense of it? If so, why does it look the way it does as opposed to a list of assembly instructions?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="daotkfq">
+		<a class="author" href="https://www.reddit.com/user/moom" target="_blank">moom</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You're looking at machine code (or, in some cases, something akin to it - more on that later).  The assembly commands (like &quot;mov&quot;) are translated into numbers before being stored in an exe.  Let's say that &quot;mov&quot; is the number 78 (I'm totally making that specific number up).  Then a 78 goes into the exe.</p>
+<p>But it's not the text character &quot;7&quot; followed by another text character &quot;8&quot;.  It's a single byte with the value 78.  That is, eight bits, 01001110.  And your text editor doesn't understand that (in an exe) the byte with value 78 means &quot;mov&quot;.  It only understands what the byte with value 78 means in text files, not exe files.  And in a text file, <a href="http://www.asciitable.com/" target="_blank">a byte with value 78 means the text character &quot;N&quot;</a>.  So it shows you an N.</p>
+<p>The N is basically your text editor's best guess -- but a totally wrong guess -- as to what 78 means.  All the other characters that it shows you are also best-but-totally-wrong guesses, and so your text editor winds up showing you a bunch of garbage.  This is because you're asking your text editor to show you a file that it doesn't understand the meaning of - i.e. it's not a text file.</p>
+<p>I've breezed over some stuff here, due to it being ELI5.  A couple of them briefly:</p>
+<p>(1) It's not necessarily really machine code.  Machine code is stuff that your computer's processor directly understands.  It might be a more intermediate thing.  For example, when you write code in the Java language, and compile it, it does not get compiled to stuff that your computer's processor directly understands.  It gets compiled to stuff that the &quot;Java Runtime Engine&quot; directly understands.  When you run a Java program, you're actually running the JRE, which is then translating the compiled stuff into machine language on the fly.  But anyway, it's the same idea: Your text editor doesn't understand Java bytecode, and so winds up showing you junk.</p>
+<p>(2) The &quot;78 is N&quot; thing is if the text file is in <a href="https://en.wikipedia.org/wiki/ASCII" target="_blank">ASCII</a>.  Nowadays <a href="https://en.wikipedia.org/wiki/Unicode" target="_blank">Unicode</a> is more common, but it's the same basic idea, and ASCII is easier for a high-level explanation.  Similarly &quot;8 bits&quot; for an instruction is not likely on a modern processor, but it's the same idea.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="daothew">
+		<a class="author" href="https://www.reddit.com/user/OozeNAahz" target="_blank">OozeNAahz</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You will see an attempt by the editor to display data as characters when the data doesn't represent characters.  This is akin to putting playdough in an easy bake oven and expecting the result to be a cake.  </p>
+<p>To correct you a bit, the compiler actually reduces everything to machine code when building an executable.  Machine code is kind of a step below assembly.  So MOV ax,data is actually converted to just a string of numbers when it actually gets executed.  Assembly is not that different than programming in C, it is just a whole lot more low level.  </p>
+<p>So when you actually open the exe, you are actually viewing the actual bytes of the compiled program in its purest form, the machine code.  Those bytes are not in ASCII, they are just bytes.  Because you asked Notepad to open it, it will do its best to interpret those bytes as ASCII.  But since ASCII has a lot of non printable characters in it, or characters that are symbols of some sort, the odds of seeing any text that is readable is pretty slim.  And even if text exists in the application, depending on how the word boundry for the app works out, it may have the bytes of the text offset a bit so that you don't even see that text as text. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="daotp4x">
+		<a class="author" href="https://www.reddit.com/user/42N71W" target="_blank">42N71W</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>To clarify, even a programmer would not be able to make any sense of what you see in notepad when you open an exe.  It's like asking a musician why compact discs sound scratchy when you play them on a turntable.</p>
+<p>If a programmer wanted to know what an exe file is doing, he would use a utility called a disassembler (such as gnu objdump) which would convert it back to the &quot;mov ax,data&quot; type text.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="daowpy2">
+		<a class="author" href="https://www.reddit.com/user/re-bugging" target="_blank">re-bugging</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Actual ELI5: remove all the spaces from a piece of text, then split that solid line of into words of length 8 letters. Your words are now just chunks of 8 letters which just happen to be the next 8 characters of data in the line. They mostly won't make sense, but some might. The point here is the understand that process, not the result. </p>
+<p>Do the same with a sequence of numbers of varying length - remove the spaces and chunk into 8 digit numbers. You get new numbers with different values which are composed of the next 8 numbers in the line.</p>
+<p>The exe is read a string of numbers as I just described in the previous paragraph. The text editor is reading it and chunking into units of fixed length, then converting those numbers into a corresponding character. The exe is also an encoding of the assembled machine instructions which are of varying length. If you were to put the exe into a disassembler, it would know the length of the instruction and display it property based on the instructions it decoded. The text editor is not doing that, it's doing the chunking I described above. </p>
+<p>Those new numbers are random and often don't map to a real character, which is why you see mostly spaces and characters outside the normal a-z 0-9 range. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="daotacw">
+		<a class="author" href="https://www.reddit.com/user/Moezambiq" target="_blank">Moezambiq</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The assembly instructions aren't saved as text. You're seeing binary machine instructions as parsed by an ascii or unicode table, which shouldn't be expected to have any rhyme or reason to them. It's more or less like assigning the numbers 1-26 to the alphabet and putting a bunch of random numbers through that decoder. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -62,6 +100,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/5g1ug7" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

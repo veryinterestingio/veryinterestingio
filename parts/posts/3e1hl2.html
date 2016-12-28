@@ -4,14 +4,65 @@
 		<h2>
 			<a href="/posts/3e1hl2" onclick="return false">Why is it that a fully buffered YouTube video will buffer again from where you click on the progress bar when you skip a few seconds ahead?</a>
 		</h2>
-		<span class="date">2016-11-16</span>
+		<!--<span class="date">2016-11-16</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Edit: Thanks for the great discussion everyone! It all makes sense now.</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ctaxuxf">
+		<a class="author" href="https://www.reddit.com/user/PelicansAreStoopid" target="_blank">PelicansAreStoopid</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I think OP is asking why if you click ahead in the progress bar to a spot that has already been buffered (eg 15seconds ahead in a 2min buffer) the buffering immediately starts again at the spot you clicked on, so that the other 1m45s of your buffer is gone and has to be redownloaded. And similarly if you click on a spot that's already been played (eg 15 seconds back), you lose the entire 2min buffer. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ctaowp3">
+		<a class="author" href="https://www.reddit.com/user/x0acake" target="_blank">x0acake</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Since 2013, youtube doesn't preload the entire video anymore thanks to a feature called &quot;DASH playback&quot; (Dynamic Adaptive Streaming over HTTP). It makes youtube less of a bandwidth hog by only preloading a small portion of video at a time.</p>
+<p>You might be able to disable DASH via a plugin: <a href="http://lifehacker.com/preload-entire-youtube-videos-by-disabling-dash-playbac-1186454034" target="_blank">http://lifehacker.com/preload-entire-youtube-videos-by-disabling-dash-playbac-1186454034</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ctaqohx">
+		<a class="author" href="https://www.reddit.com/user/that_fury" target="_blank">that_fury</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>As far as I can tell, when streaming a video it may start off at 480p. As the video plays, it starts to buffer a higher 720p. This process may have started 5 seconds into the video, but in an attempt to avoid interrupting your playback it starts loading the 720p video from the 20 second mark.
+If you happen to skip forward within that 20 second window of 480p video, it will attempt to load the video from that point in 720p, thus resetting the buffered video.
+This is a side effect of YouTube's adaptive streaming.
+Hope this answers your question!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ctaqzsu">
+		<a class="author" href="https://www.reddit.com/user/doppel" target="_blank">doppel</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>YouTube does not actually pre-buffer the entire video anymore. With the advent of HLS (HTTP Live Streaming) and DASH (Dynamic Adaptive Streaming over HTTP), most on demand videos are actually played back in the same manner as livestreaming.</p>
+<p>The browser receives a manifest of all the chunks of video (usually 2-10 seconds in length each) along with different resolutions for each chunk. The player then loads the current chunk + a few more in advance but will not download the entire list. Previously it was one big video file and the browser would happily load the entire file.</p>
+<p>The only different between live and on demand is that the manifest file for live streaming is updated as more video becomes available, whereas the manifest for on demand stays the same.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ctas1fw">
+		<a class="author" href="https://www.reddit.com/user/titterbug" target="_blank">titterbug</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Disclaimer: I'm not a Youtube engineer and have no particular knowledge beyond what I have guessed and accidentally gotten right.</p>
+<p>Now then. There are a couple of reasons for this. As mentioned, Youtube no longer gathers a long buffer, as they determined that most people have enough bandwidth to stream their video instead. For the few people that don't have enough bandwidth, Youtube added an adaptive quality feature that automatically makes the video shit if your internet isn't as good as they think it should be. </p>
+<p>Because the video quality can keep changing for people with sub-par internet, and because the people with fast internet don't care, Youtube figured that storing the video for seeking purposes isn't worth the effort to program or the space that buffer takes up. If they allowed you to skip a few seconds forward, would they then have to allow you to skip one second back as well in case you overshoot? It's just easier to toss everything.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -19,4 +70,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/3e1hl2" onclick="return false"><span>show</span></a>
 </li>

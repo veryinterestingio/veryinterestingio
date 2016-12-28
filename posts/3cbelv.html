@@ -44,7 +44,7 @@
 		<h2>
 			<a href="/posts/3cbelv" onclick="return false">Can anyone explain Google's Deep Dream process to me?</a>
 		</h2>
-		<span class="date">2016-11-17</span>
+		<!--<span class="date">2016-11-17</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
@@ -52,7 +52,82 @@
 <p>EDIT: Thank you all for your excellent responses. I now understand the basic concept, but it has only opened up more questions. There are some very interesting discussions going on here. </p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="csu1vyq">
+		<a class="author" href="https://www.reddit.com/user/Dark_Ethereal" target="_blank">Dark_Ethereal</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Ok, so google has image recognition software that is used to determine what is in an image.</p>
+<p>the image recognition software has thousands of reference images of known things, which it compares to an image it is trying to recognise.</p>
+<p>So if you provide it with the image of a dog and tell it to recognize the image, it will compare the image to it's references, find out that there are similarities in the image to images of dogs, and it will tell you &quot;there's a dog in that image!&quot;</p>
+<p>But what if you use that software to make a program that looks for dogs in images, and then you give it an image with no dog in and tell it that there is a dog in the image?</p>
+<p>The program will find whatever looks closest to a dog, and since it has been told there must be a dog in there somewhere, it tells you that is the dog.</p>
+<p>Now what if you take that program, and change it so that when it finds a dog-like feature, it changes the dog-like image to be even more dog-like?
+Then what happens if you feed the output image back in?</p>
+<p>What happens is the program will find the features that looks even the tiniest bit dog-like and it will make them more and more doglike, making doglike faces everywhere.</p>
+<p>Even if you feed it white noise, it will amplify the slightest most minuscule resemblance to a dog into serious dog faces.</p>
+<p>This is what Google did. They took their image recognition software and got it to feed back into it's self, making the image it was looking at look more and more like the thing it thought it recognized.</p>
+<p>The results end up looking really trippy.</p>
+<p>It's not really anything to do with dreams IMO</p>
+<p>Edit: Man this got big. I'd like to address some inaccuracies or misleading statements in the original post...</p>
+<p>I was using dogs an example. The program clearly doesn't just look for dog, and it doesn't just work off what you tell it to look for either. It looks for ALL things it has been trained to recognize, and if it thinks it has found the tiniest bit of one, it'll amplify it as described.
+(I have seen a variant that has been told to look for specific things, however).</p>
+<p>However, it turns out the reference set includes a heck of a lot of dog images because it was designed to enable a recognition program to tell between different breeds of dog (or so I hear), which results in a dog-bias.</p>
+<p>I agree that it doesn't compare the input image directly with the reference set of images. It compares reference images of the same thing to work out in some sense what makes them similar, this is stored as part of the program, and then when an input image is given for it to recognize, it judges it against the instructions it learned from looking at the reference set to determine if it is similar.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="csue96j">
+		<a class="author" href="https://www.reddit.com/user/Bangkok_Dangeresque" target="_blank">Bangkok_Dangeresque</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Figured I may as well try to ELY5 too, because I'm bored and this stuff is cool:</p>
+<p>Imagine there's a table in front of you, and on that table are a number of flowers in pots. Those flowers are different in height, in color, in smell, and other features. They also have a little tag on them that says what it's called (&quot;Tulip&quot;, &quot;Rose&quot;, etc).  Now I'm going to give you a challenge; I pull a flower out of a bag and put it on a table, and this flower <em>does not</em> have a name tag on it. </p>
+<p>Can you tell me what kind of flower it is? How would you do that, assuming that you knew absolutely nothing about flowers before today?</p>
+<p>Well, you'd probably look at all of the other flowers on the table that are identified by name, and try to figure out what makes flowers with the same name similar. For example, all of the flowers on the table that are red are called &quot;Roses&quot;. If a new flower comes along that is also red, you might guess that it's a rose too, right? But let's say that the flower is yellow, and on the table there are two types of yellow flower, called &quot;Sunflower&quot; and &quot;Dandelion&quot;. Just using color to guess may only help you name it correctly half of the time. So what do you do?</p>
+<p>You'd have to make use of a number of the features of the flowers you've already seen (color, smell, height, shape, etc) in order to guess, and you could 'weight' the importance of some characteristics over others. Those weights would be a fixed set of rules that you could use with every new flower that you're shown to try to predict what kind of flower it is. If those weights turn out to be bad predictors of the flower name, you could try new weights. And you could keep trying new weights until your rules guess correctly 99% of the time.</p>
+<p>This is remarkable, because no one had to give you a taxonomy or guidebook to identifying flowers. You simply took the information that was available, and used your intelligence to create a set of rules that helped you understand new data moving forward.</p>
+<p>But let's say I wanted to reverse engineer your rules. You can't just explain them to me. Not really. It's just a mental model you've put together in your head, and you might've even invented adjectives that you can't possibly convey to someone else. It's all personal impressions. So what can I learn from you? </p>
+<p>If I give you a blank piece of paper, and tell you &quot;use your rules to draw me a Daffodil&quot;, you probably won't succeed.  You're not an artist, and you don't have a complete mental picture of all of these flowers; you just put together a set of rules that used some standout, relative features to differentiate between flowers. But what if I started you off not with a blank piece of paper, but with a picture of the stars at night? Then you'd at least have somewhere to begin, a scaffold on which to apply your rules. You could squint your eyes and sort of decide that <em>that</em> group of stars is like the bulb shape, and <em>these</em> stars are X inches away from the bulb, so they must be a daffodil stem etc. You could sketch out something that, in your imagination, kinda captures the essence of a daffodil, even if it looks really weird.</p>
+<p>Let's say, then, that I took your drawing, held it behind my back, and put it right back in front of you and said &quot;Okay, where's the daffodil?&quot; Well, now it's obvious to you. You just drew a thing that you'd kinda consider a daffodil. You can point to it, and see features that your rules apply to. I tell you to draw it again using that image as a starting point, and the shape, size, and other features of the daffodil start to come into greater clarity. And then you draw it again, and again, and again. Eventually, I can look at your drawing and understand what your conception of a daffodil is, as well as how much information/detail your rules about daffodils really captured.</p>
+<p>Why was this useful? Well, let's say that the daffodil that you drew has a weird protrusion on it that kind of looks like a bumblebee. I'd scratch my head and wonder why you think a daffodil has a bee-limb attached to it. I might then look at the table and notice that all of the daffodils I've shown you have bees buzzing around them. Remember, you knew nothing about flowers (or bees) before this, so if you saw 10 daffodils and each one had a bee on/near it, and if no other flowers had bees on them, your rules for positively identifying a daffodil may heavily weight the presence of a bee. Your rules have a bee in them, so you drew a bee, even though I wanted you to draw just a daffodil. I'd learn that in the future, if I want you to correctly understand daffodils, I should make sure there aren't any bees on them. What if a bee landed on a rose? You might think that rose is a daffodil by mistake. If it's important to me for some reason that you can accurately tell the difference between roses and daffodils all the time, this insight will help me to better train you.</p>
+<p>Now I want to try a different experiment. Instead of giving you a picture of the stars and asking you to draw a daffodil, I give you a starry page and ask you to draw whatever flower it is that you think you see. Maybe it's a daffodil, maybe not. Maybe you squint and - not prompted to think it's a daffodil - decide you sort of see an orchid. You draw your essence of an orchid, and I give you that image back and ask you to do it again, and again, until your rules about orchids are clear. Which is mildly interesting. I could show you different patterns of stars and you might show me different flowers. Is this useful to me? Who knows. I know a little bit more about how your brain works than I did before.</p>
+<p>Now I want to try yet another experiment. Instead of a picture of stars, I give you a picture of Sir Paul McCartney, and ask you to find the flower. Obviously this is a weird thing for me to ask. Way weirder than using stars for an abstract connect-the-dots. But like a good little test subject you just apply the rules like you're told. Maybe in his eyes you see something that triggers your rules about orchids, and his lips trigger your rose rules. So you trace the outlines/shapes over his face. I give you the image back and you trace more deliberately. And again. Until finally you've created a trippy-ass picture of Sir Paul with orchids for eyes and roses for lips, and I have to say &quot;What's wrong with your brain, man?! You're an insane person! Just look at this, are you on drugs?!&quot;</p>
+<p>And THAT, my friend, is what Google engineers who are pulling in $150k+ spent their time doing to their computers. They let a computer create a set rules on hundreds of thousands, if not millions, if not billions of images to identify virtually everything. Dogs. Buses. Presidents. Pumpkins. Everything. And then they wanted to reverse engineer the rules because they were curious. Would the computer's rules reveal themselves to be similar to how a human brain works, or reveal something about cognition? Would it be incomprehensible? Could we use whatever we find to come up with better ways to train the computers, or even better ways to create rules (i.e. machine learning algorithms)? Who knows. All we know for sure is that the images they got were bizarre and discomfiting and really, really interesting.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="csu48t2">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>c/p'ed from the last time I answered this:</p>
+<p><a href="http://googleresearch.blogspot.com/2015/06/inceptionism-going-deeper-into-neural.html" target="_blank">http://googleresearch.blogspot.com/2015/06/inceptionism-going-deeper-into-neural.html</a></p>
+<p>There's several things that are going on in that blog post, but here's what's basically going on.  So Google created a program that can recognize objects and things in images.  This is something that is very, very, very hard for computers to do, because there's not really any defined guidelines for how to recognize things - is it the way pixels of different colors are positioned relative to one another?  Is it the way that lines decide images into shapes?  Is is a certain structure, of other objects?  This is really really really hard to do. So what Google did is they didn't really teach the computer to recognize things.  Instead, they taught the computer to learn.  Then they said &quot;Here's a picture and this is what's in it&quot; and let the computer come up with its own guidelines.  But the thing is so complicated they didn't totally understand what those guidelines were.  So they came up with some tests to try and get an idea of what the computer had actually taught itself.  One of those ways was saying &quot;Here's a picture.  Look for things that kinda look like &lt;X&gt; and make them slightly more prominent.&quot;  So they did that over and over and over again on the same picture and they could get an idea of what a computer things that object looks like - for example, they gave the picture a computer of static and told it to look for dumbbells.  What it came up with was a whole lot of dumbbells, but every dumbbell also had an arm involved, meaning that the computer thought the dumbbells had to have an arm attached, because it only every saw dumbbells with arms attached to them.  Now, when they gave the computer actual pictures - not static, and told it to look for things that were not in the picture, or they gave it the same image way too many times, the computer started seeing things where there wasn't anything really, because it'd say &quot;oh, this clump of pixels looks sliiightly like &lt;X&gt;, I'll make it look a tiny bit more like &lt;X&gt;&quot; and when you do that 3.2 million times you start seeing things. Similarly, the programmers would give the computer a picture and say &quot;Look for things in the photo.  When you recognize something, make it look slightly more like what you thought it was.&quot;  Again, do that over and over and over and you start seeing things in a clear blue sky.  It's not that the computer is broken or doing stuff wrong, it's that the programmers, by making the computer have these feedback loops, were screwing around with its sensory perception, much like LSD or other hallucinogenic drugs screws with a human brain's sensory perception, making us see things that aren't there because we convince ourselves that something is there and then we see it and we're really convinced and we see it more.  It's a really cool look into the mind of this computer that taught itself, though.  </p>
+<p><strong>tl;dr: google programmers made their self-learning computer hallucinate so they could understand what it taught itself but programmers get bored easily so then they decided to put it on drugs.</strong></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="csvrbya">
+		<a class="author" href="https://www.reddit.com/user/bsac69" target="_blank">bsac69</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I just can't get over how similar this is to tripping on lsd. Now what if they implemented this into an oculus rift or a pair of <a href="https://en.wikipedia.org/wiki/Bionic_contact_lens" target="_blank">these</a>? Give it a few years and I bet &quot;cyber tripping&quot; will actually be a thing!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="csu1l7u">
+		<a class="author" href="https://www.reddit.com/user/Emilbjorn" target="_blank">Emilbjorn</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Basically the idea is to build a system that looks at a lot of photos while telling it what the photo contains, and from that data builds a model of what an object looks like. Then you can use the system to find out what objects are present in new unknown pictures</p>
+<p>The dream images you have seen is obtained by feeding the system an unknown picture asking it &quot;What is present in this picture?&quot; and &quot;If an object is recognised, then enhance the characteristics of said object.&quot; Then the picture is fed though the system again with the same prompts. As anything that was vaguely observable before now will be more obvious to the system, the same objects get further enhanced. After a number of these iterations, the pictures get really funky.</p>
+<p><a href="http://googleresearch.blogspot.dk/2015/06/inceptionism-going-deeper-into-neural.html" target="_blank">The google research blog</a>  has a fantastic article about this with some nice picture examples.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -60,6 +135,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/3cbelv" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

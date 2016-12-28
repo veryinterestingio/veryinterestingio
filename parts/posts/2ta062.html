@@ -5,7 +5,7 @@
 			<span class="tags tag-Mathematics">Mathematics</span>
 			<a href="/posts/2ta062" onclick="return false">Is Chess really that infinite?</a>
 		</h2>
-		<span class="date">2016-11-16</span>
+		<!--<span class="date">2016-11-16</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
@@ -17,7 +17,94 @@ And, what does that number mean? (i.e. grains of sand on the beach, or stars in 
 As there are many legal moves in a game of chess but often only a small set that are logical, is there a way to determine how many of these games are probable?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="cnx36zt">
+		<a class="author" href="https://www.reddit.com/user/TheBB" target="_blank">TheBB</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Shannon has estimated the number of possible legal <em>positions</em> to be about 10^(43). The number of legal <em>games</em> is quite a bit higher, estimated by Littlewood and Hardy to be around 10^(10^5) (commonly cited as 10^(10^50) perhaps due to a misprint). This number is so large that it can't really be compared with anything that is not combinatorial in nature. It is far larger than the number of subatomic particles in the observable universe, let alone stars in the Milky Way galaxy.</p>
+<p>As for your bonus question, a typical chess game today lasts about 40­ to 60 moves (let's say 50). Let us say that there are 4 reasonable candidate moves in any given position. I suspect this is probably an underestimate if anything, but let's roll with it. That gives us about 4^(2×50) ≈ 10^60 games that might reasonably be played by good human players. If there are 6 candidate moves, we get around 10^(77), which is in the neighbourhood of the number of particles in the observable universe.</p>
+<p>The largest commercial chess databases contain a handful of millions of games.</p>
+<p><strong>EDIT:</strong> A lot of people have told me that a game could potentially last infinitely, or at least arbitrarily long by repeating moves. Others have correctly noted that players may claim a draw if (a) the position is repeated three times, or (b) 50 moves are made without a capture or a pawn move. Others still have correctly noted that this is irrelevant because the rule only gives the players the <em>ability</em>, not the <em>requirement</em> to make a draw. <strong>However</strong>, I have seen nobody note that the official FIDE rules of chess state that a game is drawn, period, regardless of the wishes of the players, if (a) the position is repeated <em>five</em> times, or if (b) <em>75</em> moves have been made without a capture or a pawn move. This effectively renders the game finite.</p>
+<p>Please observe <a href="http://www.fide.com/component/handbook/?id=171&amp;view=article" target="_blank">article 9.6</a>.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cnxcquy">
+		<a class="author" href="https://www.reddit.com/user/garrettj100" target="_blank">garrettj100</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Just for fun, let's do the Shannon calculation.  The absolute basic, highest possible estimate of the total number of permutations says that the board is an 8x8 grid and each piece can occupy any of those 64 spots on the board.  There are 32 pieces, occupying 64 candidate spots, so the answer'd be:</p>
+<ul>
+<li>64^32 = 6.3 * 10^57 possible game states.</li>
+</ul>
+<p>Now, this is wrong, for a great many reasons, not the least of which is that it treats every piece as distinct, so pawn A occupying e4 and pawn B occupying f4 is treated differently from A &amp; B occupying f4 and e4, respectively.  It also allows for pieces to occupy positions that is impossible, like a pawn on the first rank or a &quot;black&quot; bishop on a white square.  It also fails to account for squares being occupied: You can't have two pieces at the same location.</p>
+<p>If we <em>only</em> eliminate the taking-up-the-same-square error we get:</p>
+<ul>
+<li>64! / 32! = 4.8 * 10^53 possible game states.</li>
+</ul>
+<p>But we can do better.  The total number of game states for one side can be modeled this way:</p>
+<ul>
+<li>T = A^K <em> A^Q </em> A^N <em> A^R </em> A^B * A^P</li>
+</ul>
+<p>...where A^K is the total number of candidate positions for the King, A^Q for the Queen, etc...</p>
+<ul>
+<li>A^K = 64</li>
+<li>A^Q = 63</li>
+<li>A^N = ( 62*61 )/2</li>
+<li>A^R = ( 60*59 )/2</li>
+<li>A^B = ( 29 * 29 )</li>
+<li>A^P = ( 56 <em> 55 </em> 54 <em> 53 </em> 52 <em> 51 </em> 50 * 49 )/8!</li>
+</ul>
+<p>Note, it really doesn't matter whether I allocate the King's spot or the Queen's spot first.  There'll be a 64 term in there for the first piece you allocate.  There'll be a 63 in there for the second.  That's the total number of states for one side of the board.  We can calculate the other side, roughly the same way, just starting at 48 available spots instead of 64.</p>
+<ul>
+<li>T^w = 1.612 * 10^22</li>
+<li>
+<p>T^b = 7.491 * 10^19</p>
+</li>
+<li>T^0 = 1.20 * 10^42</li>
+</ul>
+<p>But we can still do better, because we are only considering the states where all 32 pieces are still on the board!  What happens when there are 31 pieces on the board, and one is missing?  Well, we can do the calculation 31 more times, but that's a daunting task, and we can probably make a simplification.  We can note that taking a single piece away reduces the number of permutations by a factor of 32 (the last piece we place adds 32 permutations).  We can also note that there are 32 differerent pieces we can take away at that point.  That means the number of states with 31 pieces on the board is roughly equal to the number of states with 32 pieces on the board.</p>
+<p>It does get more complicated, though.  For 30 pieces we reduce the number of permutations by 33 <em> 32, while we multiply that by the number of pieces that could be removed by 32 </em> 31.  So for 30 pieces it's the original estimate times 31/33.  For subsequent combinations, it's 31<em>30/33</em>34, 31<em>30</em>29/33<em>34</em>35, etc...</p>
+<p>So the new total would be given by:</p>
+<ul>
+<li>T^' = T^0 <em> ( 1 + 32/32 + (31 </em> 32)/(32 <em> 33) + (30 </em> 31 <em> 32)/(32 </em> 33 <em> 34) + (29 </em> 30 <em> 31 </em> 32)/(32 <em> 33 </em> 34 * 35)... )</li>
+</ul>
+<p>I plugged this into a computer program, because I can't think of a quick and easy way to calculate it, and I got 6.03, so now our new (and final) estimate is:</p>
+<ul>
+<li>T^' = T^0 <em> 6.03 = 7.24 </em> 10^42</li>
+</ul>
+<p>Very, very close to the Shannon estimate.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cnxeoda">
+		<a class="author" href="https://www.reddit.com/user/SneerValiant" target="_blank">SneerValiant</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Anything combinatorial gets really big really fast. The interesting thing for me is actually how SMALL chess really is. Lets use the 10^42 number people are throwing around.</p>
+<p>10^42 &lt; ( 2^4 )^42 therefore 10^42 &lt; 2^168</p>
+<p>An RGB pixel on your monitor can display 2^24 colors. If we line up 7 pixels in a row, the number of color combinations we can display is ( 2^24 )^7 which is 2^168.</p>
+<p>This means we only need seven pixels to enumerate every legal position in chess.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cnx6sjp">
+		<a class="author" href="https://www.reddit.com/user/turquoiserabbit" target="_blank">turquoiserabbit</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Depending on which rules you are following chess can be actually, truly infinite if you aren't following any of the rules regarding <em>stalling</em>. Since players can alternately move their pieces back and forth between two squares without making any progress that means a game can last forever.</p>
+<p>I believe most official rules institute bans on these sorts of things after a certain number of stalling moves but it varies how many are allowed depending on the ruleset.</p>
+<p>More interesting would be asking how many moves can be made in <em>timed</em> chess matches. These matches have a set amount of time for each player and if that player's time runs out they loose. Common times are 60 seconds, 5 minutes, 20 minutes, etc.</p>
+<p>In 60 second games for example, total playtime cannot exceed 2 minutes. If the players are exceedingly fast for every move and each use exactly 1/4 of a second per move the total possible number of moves would be:</p>
+<p>120(seconds) x 4(moves a second) = 480 total moves.</p>
+<p>According to <a href="http://www.chess.com/chessopedia/view/mathematics-and-chess" target="_blank">this source</a> most games only last 30-60 moves and the number of possible positions for that many moves is already extremely huge, but the article also mentions how many likely <em>logical</em> moves that contains - somewhere between 2 - 4 million. So for 480 total moves the total number of <em>legal</em> moves is unreasonably high.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">3 more answers...</a>
@@ -25,4 +112,5 @@ As there are many legal moves in a game of chess but often only a small set that
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/2ta062" onclick="return false"><span>show</span></a>
 </li>

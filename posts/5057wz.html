@@ -45,14 +45,110 @@
 			<span class="tags tag-Technology">Technology</span>
 			<a href="/posts/5057wz" onclick="return false">Why is AC better than DC ?</a>
 		</h2>
-		<span class="date">2016-11-24</span>
+		<!--<span class="date">2016-11-24</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Why is AC better than DC ?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="d71jwu9">
+		<a class="author" href="https://www.reddit.com/user/Hypothesis_Null" target="_blank">Hypothesis_Null</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><em>Edit</em> - This was supposed to be a supplemental post to others, not make it as a high top-level comment.  So here's an ELI5 explanation people would expect from it.  More mathematical explanation has been pushed below that.</p>
+<p>When you want to transfer electrical power, you have to push electricity through a wire to reach its destination.  As electricity flows through a wire, it heats it up slightly.  This is how a light bulb works - electricity flowing through a very thin wire heats up the wire until it glows.</p>
+<p>We're going to think about it like water.  If we want to transfer energy with water, we need to put it under pressure (blowing through a straw) and we need to move it through a pipe.  The more water we move under a given pressure, the more energy we'll transfer.</p>
+<p>Water flows through pipes.  Bigger pipes let water flow easier.  The reason is that water rubs up against the sides and friction causes it to slow down.  Larger pipes have a lot more area that isn't rubbing up against the sides.  Think a soda straw versus a coffee straw - a coffee straw is a lot harder to drink with, or to blow air through.</p>
+<p>But the friction between the water and the side of the pipe also depends on how <em>fast</em> the water is going.  If the water is moving slowly, not much heat is generated.  As the water moves faster, a lot more heat is generated and energy is wasted.</p>
+<p>So ideally we'd like to transfer our water slowly through large pipes to deliver it over long distances.  But since it's a long distance, we can't afford to make the pipe that large.  So the pipe has to be fairly small and thus we need to make sure the water moves <em>very</em> slowly.</p>
+<p>Going back to electricity, water pressure is like Voltage, and the speed of the water is like Current.  Current times voltage equals how much power we're transferring.  So if we increase the pressure by a factor of 10 - increase the voltage, we can drop the speed of the water - the current by a factor of 10.  If we multiply the voltage by <em>one million</em> we can drop the current to <em>one millionth</em> of the original speed and still transfer the same energy.  At those super-slow speeds, the water rubbing against the pipe isn't going to waste any energy at all.</p>
+<p>AC power lets us use a cool device called a transformer that lets us take in voltage and current on one line, and output a different voltage and current with the same total power on another line.  We can't do this efficiently with DC power.  So we use AC power because we can step up the voltage to super-high levels, and drop the current to a trickle.</p>
+<hr />
+<p>Large number of correct answers - but none are describing the mathematics of why, so I thought I'd add it.  The Short version is that resistive loss of power transmission is a function of resistance in the wire, multiplied by the square of the current.  So high current leads to <em>very</em> high resistive losses heating up the power line and wasting energy.  Some examples:</p>
+<p>Power (energy in a set amount of time) is a function of the voltage on the power line multiplied by the current.  So if I wanted to run a winch that lifted up a 1kg weight at 1 meter per second, I'd need a motor than ran on 10 volts of DC power with a current of 1 amp.</p>
+<blockquote>
+<p>Electric Power Draw:<br />
+10Volt x 1Ampere = 10 Watts = 10 joules/second.   </p>
+<p>Potential Energy of Weight:<br />
+1m/s x 1kg x ~10m/s^2 = 10 Nm/s = 10 joules/second</p>
+</blockquote>
+<p>So they're balanced.  However, if I had a motor than ran off of a 20 Volt power, it would need only draw 0.5 Ampere.  At 100 Volts, it'd need draw only 0.1 Ampere.</p>
+<p>Then the question goes to power distribution. Why is there a limit to how far we can deliver electricity from a power plant?  We have to run electricity through wires.  And when we run electricity through a wire, it heats up slightly and loses some energy.</p>
+<p>That power is equal to the resistance in the wire multiplied by the <em>square</em> of the current.  RI^2 = resistive loss.</p>
+<p>So lets change our example above a little bit.  Now we're lifting huge wrecking ball that weighs 10,000kg.</p>
+<p>To lift it at 1meter/sec would require 100,000 joules/sec or 100Kilowatts.  Using our 10 Volt motor, we would need to draw 10,000 Amps.</p>
+<p>Now lets say that the we have a very thick wire that is 10 meters long, and has 0.0001 Ohms of resistance per meter.  So almost no resistance.  </p>
+<blockquote>
+<p>Overall resistance R = 10m x 0.0001Ohm/m = .001Ohms<br />
+Overall Current = 10000 Amps<br />
+Resistive Power Loss = 0.001O x 10000A x 10000A = 10^5 W or <em>100 Kilowatts of power as waste energy!</em></p>
+</blockquote>
+<p>We're burning as much energy just <em>transferring</em> the power to the motor as we're actually using for the motor.</p>
+<p>So lets switch our 10 Volt motor out for a 100 Volt Motor.  The power demand remains at 100 Kilowatts.  </p>
+<blockquote>
+<p>100,000KW = 100Volts x ?Ampere<br />
+current I = 1000Amps</p>
+<p>Resistive Heat Loss = 0.001 Ohms x 1000Amps x 1000Amps = 1000 Watts = 1 Kilowatt of waste heat.</p>
+</blockquote>
+<p>Still a lot of waste, but it's actually manageable now.  we're only spending 1% of our power draw heating up the wire during transmission.</p>
+<p>If we used a 1000 Volt motor, we'd only pull 100 Amps and our restive heat loss would be 10 Watts across the whole thing.  A tenth of the energy spent on an incandescent bulb, spread over 10 meters.  The wire wouldn't even be warm in your hand.</p>
+<p>So clearly, when transferring power with electricity, we need to keep the current as low as possible because the energy lost is a function of current-squared.  We also can't make the resistance too low because thick wire becomes prohibitively expensive over millions upon millions of meters of power lines.</p>
+<p>So if we want to transmit, say, 1 Gigawatt 10 kilometers from a power plant to a city, with 6 gauge wire (1 Ohm per kilometer), we need to figure out how bad that will be.</p>
+<blockquote>
+<p>P = 1 Billion Watts<br />
+R = 10 Ohms</p>
+</blockquote>
+<p>If we step the voltage up to 1 Million Volts, we'd still have 1000 Amps of current, and would lose 100 Megawatts of power - 10% to heating up the power line.</p>
+<p>If we get up to 10 Million Volts, we'd need 100 Amperes, and now our losses are 10 x 100 x 100 = 100 Kilowatts of loss.  Which is still a ton of energy, but its spread out over 10 kilometers and represents only one ten-thousandth of the energy transferred as a loss. </p>
+<p>As others have repeatedly said, AC power lets us use transformers, which very easily and efficiently let us maintain the <em>power</em> of electricity flowing, but trade voltage for current.  So I can transfer the energy of a circuit running at 10 volts with 100 amps into a circuit running with 1000Volts at 1 Amp.  Or 1 Million Volts at 1 miliAmp.</p>
+<p>So for power distribution in our country, we generate power at a station, we step it up to hundreds of thousands of volts and transfer it across the country on those <em>massive</em> high-voltage power lines.  Those lines go to a few dozen sub-stations located around your town, that step the voltage down to ~10,000Volts.  That energy is carried along power lines to neighborhoods, where every 1 to 5 houses share a small green box somewhere that transforms the voltage down to 120 Volts, which is then delivered to your wall outlet.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d7187q5">
+		<a class="author" href="https://www.reddit.com/user/edman007-work" target="_blank">edman007-work</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's not really, with practically everything, DC is a better choice (lower losses, higher transmission efficiency, and easier to interface with modern systems). There are two main exceptions, with AC a transformer can be used to change the voltage (DC requires a relativity complex circuit) and with AC a generator and motor do not require a <del>commentator</del> commutator or any circuit other than three windings. This is not true for DC.</p>
+<p>The major downside of DC is that the electronics to change the voltage (required to long distance transmission) have only existed at a commercially acceptable price for maybe 10 years. When they built the grids they were simply not an option (doing it with DC back then would require a motor-generator set at every house, which are expensive and fail often).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d71ad44">
+		<a class="author" href="https://www.reddit.com/user/annomandaris" target="_blank">annomandaris</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The main benefit is that you can easily change voltages/amps with AC using a transformer.</p>
+<p>Voltage and Current have inverse relationship, but power used/lost depends mostly on current, so being able to transport it as a very high voltage, and very low current means you can use much smaller wires, which cost a LOT less when your talking about miles and miles.  Then substations you transform it to medium voltage, then low voltage at all your houses, and businesses etc. </p>
+<p>With DC switching between voltages takes much more complex equipment thats more likely to fail, AC only takes some wires rapped around a bar of iron, so its relatively cheap, and unlikely to fail.</p>
+<p>Source EE working in power distribution.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d71qzgt">
+		<a class="author" href="https://www.reddit.com/user/Angel-Kat" target="_blank">Angel-Kat</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>AC isn't &quot;better&quot; than DC. In fact most modern electronics use DC for good reason! So why do our homes have AC not DC going to them? Because it's easier to transport than DC power!</p>
+<p>The reason it's easier to transport is due to two components of electricity called voltage and amperage. Voltage is like the potential energy of electricity, and amperage is the current or ability to do work. The total amount of power in a wire is a product of voltage and amperage. However, only amperage determines the thickness of the wire used to transfer electricity.</p>
+<p>Some people use a water-pipe analogy to explain electricity, but instead, I want you to think about raised aqueducts like what you might find in ancient Rome. Voltage would be how high the aqueducts are from the ground, and amps are like the speed the water flowing through it.</p>
+<p>The benefit to AC is that it's easy to step up and step down the voltage. So it's like raising or lowering the aqueducts. When we lower an aqueduct, the water flows downhill and speeds up. In other words, stepping down AC voltage increases its current or amperage!</p>
+<p>A city is a big place, and it requires a lot of power! Power can be thought of as a product of amps and voltage. However, the more amps you send through a wire, the bigger wire you need to handle all that current. A city's worth of amperage over a 120 volt line would require cables thicker than cars!!! Going back to the aqueduct example, the more water that flows through an aqueduct, the bigger you have to make it.</p>
+<p>Luckily, an inventor named Tesla had an idea! Why not send electricity at a really high voltage and relatively low amperage, then use transformers to step down the voltage and raise the amperage at the destination?! That way, a big power plant can send power to an entire city using relatively thin wires. </p>
+<p>Since AC is easier to step up and step down the voltage compared to DC, all our homes receive AC power. If we used DC power instead, we would have needed power plants on every block. </p>
+<p>If you pay attention to your surroundings, I'm sure you'll find lots of transformer boxes around your town converting higher voltages to lower voltages so each home can get the power it needs. These transformer boxes are easiest to work with AC power, and thus, all our homes run on AC. :)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d71jfd1">
+		<a class="author" href="https://www.reddit.com/user/ApatheticAbsurdist" target="_blank">ApatheticAbsurdist</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If the real question is why do we use AC, the answer is transformers. It's relatively easy for the power company to send power at tens of thousands of volts over high power lines to travel far distances with little loss, then have it go through a transformer to drop it to step it down to a more useful voltage (that won't blow up every device in your house or cause it to jump through the walls and kill you, but has the downside of not traveling as efficiently) closer to your house. You can transform DC voltages but the circuitry is more complex and difficult to do with very large amounts of power like the electric company delivers to all the houses in a city.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -60,6 +156,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/5057wz" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

@@ -45,7 +45,7 @@
 			<span class="tags tag-Technology">Technology</span>
 			<a href="/posts/5gu74d" onclick="return false">Why do we only sometimes use 'www.' in front of web addresses? Isn't it redundant at this point?</a>
 		</h2>
-		<span class="date">2016-12-09</span>
+		<!--<span class="date">2016-12-09</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
@@ -54,7 +54,86 @@
 <p>Is it necessary to specify the world wide web anymore? Why do we continue to differentiate between two arbitrarily different addresses?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dav7a35">
+		<a class="author" href="https://www.reddit.com/user/Hobadee" target="_blank">Hobadee</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Lets first look at a url.  Let's take this one:
+<a href="https://www.reddit.com/r/explainlikeimfive/" target="_blank">https://www.reddit.com/r/explainlikeimfive/</a></p>
+<p>This is actually comprised of several parts.  The first part is the &quot;https://&quot;.  That denotes that we are using the HTTPS protocol.  The second part is &quot;www.reddit.com&quot;.  That denotes the server.  The final part is &quot;/r/explainlikeimfive/&quot;.  That is the directory on the server we are going to.</p>
+<p>Since your question was about the second part, let's take a look at how names on the internet work.  The only way computers can communicate online is with IP addresses, which look something like this: &quot;151.101.65.140&quot;.  (That's actually Reddit's IP address, BTW)  Since it would be a pain in the butt to remember that and type it in all the time, we have what is called DNS.  Think of it like a phone book; when your computer wants to know where to find &quot;www.reddit.com&quot; it looks it up in a phone book (DNS server) and gets the address.  Your computer can now communicate with the Reddit servers and get the page it wants.</p>
+<p>But what about the &quot;www&quot; part?  Well, since a single server will frequently serve multiple web pages, there needs to be a way to distinguish them all.  In the early days of the internet, servers couldn't handle much, so a single server would only usually server a single companies site.  (Today they can handle hundreds of sites all at once.)  When your web browser goes to &quot;www.reddit.com&quot; it will tell the server it's looking for &quot;www.reddit.com&quot;, so the server can serve you Reddit goodness instead of &quot;someotherboringsite.com&quot;.  The www portion is often used to distinguish between several different services a single company might offer.  For example, &quot;mail.google.com&quot; will redirect to gmail, and &quot;drive.google.com&quot; sends you to google drive.  &quot;www&quot; is the de-facto service for a companies front-page.  www.reddit.com will take you to the Reddit homepage and www.google.com will take you to the Google homepage.  This has long been the case, but recently we see companies who only offer one service, such as twitter, dropping that standard and assuming that someone accessing &quot;twitter.com&quot; wants the twitter homepage.  Conversely we see companies like Reddit sticking with the de-facto standard and prepending &quot;www&quot; onto requests for &quot;reddit.com&quot;</p>
+<p>At the end of the day, it's really just what the IT team and management decide to do.  There is no requirement one way or the other, it's a matter of preference and branding.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dav70w9">
+		<a class="author" href="https://www.reddit.com/user/dzielin" target="_blank">dzielin</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The existing answers are not exactly correct.  It isn't about looking clean, or browser tricks.  The real answer is that it is a result of server configuration.</p>
+<p>This may be oversimplified a bit, but web servers don't really care about the web address.  That's not actually how you address a specific machine on the internet.  Instead, machines are addressed using an &quot;IP Address&quot; (216.58.192.206, for example, belongs to google).  Since this is clumsy at best, someone had the idea of using domain names.  Domain names are the main part of web addresses (anything before the initial /), and not including the protocol (http://, https://, etc).  google.com, for example.  </p>
+<p>To associate domain names with server IP addresses, we use &quot;domain name resolution.&quot;  It is essentially just a set of servers on the internet whose job it is to convert domain names to IP addresses.  You create &quot;DNS&quot; entries to associate your specific domain name.  If you owned google.com, you might have a DNS &quot;A&quot; record (one which associates domain -&gt; IP address) that points from google.com -&gt; 216.58.192.206.</p>
+<p>Interestingly, there are other types of DNS entries.  One interesting one is a CNAME entry.  Instead of pointing at an IP, it points to <em>another</em> domain.  Common (modern) behavior of the &quot;www&quot; subdomain is to redirect to the main domain name.  This is usually done as follows:</p>
+<p>Example:</p>
+<pre><code>A google.com -&gt; 216.58.192.206
+CNAME www.google.com -&gt; google.com</code></pre>
+<p>As you can see, www.google.com -&gt; google.com -&gt; 216.58.192.206.  Sometimes instead of doing it this way, an administrator will set an A record only for the www subdomain.  This is why sites sometimes won't respond when you don't use the www.</p>
+<p>Example:</p>
+<pre><code>A www.google.com -&gt; 216.58.192.206</code></pre>
+<p>In this example, you can probably see that DNS resolution of &quot;google.com&quot; would fail, because there is no DNS entry for it.</p>
+<hr />
+<p>As far as the redirections go, that's done by the server.  The browser requests &quot;google.com.&quot;  And, because google.com has their DNS set like in the first example, the server receives the request.  But it responds to the request by saying &quot;hey, try www.google.com instead.&quot;  When the browser receives this response, it does exactly as it was asked.</p>
+<p>Requesting <a href="http://reddit.com/" target="_blank">http://reddit.com/</a> returns a response including:</p>
+<pre><code>location:https://www.reddit.com/</code></pre>
+<p>This tells the browser to navigate to that page instead.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dav93g5">
+		<a class="author" href="https://www.reddit.com/user/loljetfuel" target="_blank">loljetfuel</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This is largely because the 'www' was intended, once upon a time, to be significant, and people have different ideas about whether it still is.</p>
+<p>In the early days of the Internet, the Web didn't even exist, and those subdomains (like 'something.twitter.com') let you connect to different parts of an organization's Internet-facing network. In many cases, the bare address ('twitter.com') didn't have <em>any</em> service on it. In others, it might point to a server that had some default service on it (e.g. Telnet or Gopher or the like).</p>
+<p>When the web came around, people followed this convention by using 'web' or 'w3' or 'www' for subdomains that provided Web pages.</p>
+<p>The web, though, fairly quickly became the main service of the Internet. Almost everyone had a web page as their &quot;default service&quot;; at first, that meant that if people omitted the 'www', the server at 'twitter.com' was likely <em>redirect</em> (kind of like forwarding a letter or phone call automatically) the browser to 'www.twitter.com'. Reddit still follows that convention.</p>
+<p>Over time, more people either decided to have 'twitter.com' and 'www.twitter.com' type addresses simply point to the same place, while others argued that 'www' was so much a default that we shouldn't use it anymore, so if people try, they will redirect them to just plain 'twitter.com'. Basically, those people agree with you that it's &quot;redundant at this point&quot;. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dav6u25">
+		<a class="author" href="https://www.reddit.com/user/TheConfirminator" target="_blank">TheConfirminator</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Not exactly ELI5 but:</p>
+<p>The www is a relic from when there were different computers/servers controlling different aspects of web services.</p>
+<p>Let's say you have a domain, example.com. In the past, you might have the following servers (hosts) that were physically different machines:</p>
+<p>Web Server - www.example.com</p>
+<p>Mail Server - mail.example.com</p>
+<p>File Server - ftp.example.com</p>
+<p>Those names translated to different IP addresses and directed traffic to the correct machine.</p>
+<p>Nowadays, much of the time, these are the same machine. They can automatically identify what service you want (web page, mail, etc) so it's not exactly necessary to have those host names anymore.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dava4su">
+		<a class="author" href="https://www.reddit.com/user/eqleriq" target="_blank">eqleriq</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>this is what happens when you ask engineers for a simple answer.</p>
+<p>The simple answer is &quot;you can make it do either, and it doesn't matter at all.&quot;</p>
+<p>the www originated as a distinguisher between www.yoursite, ftp.yoursite, news.yoursite and so on, to tell people what service to expect. </p>
+<p>in fact the original intention, and first website, was to use info, and here it is:</p>
+<p><a href="http://info.cern.ch/hypertext/WWW/TheProject.html" target="_blank">http://info.cern.ch/hypertext/WWW/TheProject.html</a></p>
+<p>Being a web designer since the beginning, I will say that having www.website.com was more noticeable in text than website.com would be. EG, reddit is autoparsing the stuff starting with www in my browser. Especially with the opening up of words for TLDs ... is it easy to notice Visit mysite.online?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -62,6 +141,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/5gu74d" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

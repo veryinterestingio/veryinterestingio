@@ -45,7 +45,7 @@
 			<span class="tags tag-Physics">Physics</span>
 			<a href="/posts/41sgzw" onclick="return false">How much work does it take to send a packet across the internet?</a>
 		</h2>
-		<span class="date">2016-11-16</span>
+		<!--<span class="date">2016-11-16</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
@@ -54,7 +54,76 @@
 <p>thanks everybody, i see it's a complicated question, and i like the material answers that were provided. to those who answer along the lines of &quot;it takes no extra work since the network is always active&quot;, then my question becomes &quot;what is the energy cost of a packet's worth of activity?&quot;.</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="cz5ae5k">
+		<a class="author" href="https://www.reddit.com/user/mrweinerslav" target="_blank">mrweinerslav</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I've worked as an architect on the largest transit ISP backbones, both as an operator and as an equipment manufacturer.  I'm interpreting &quot;work&quot; as classical electrical power (watts).</p>
+<p>There are two broad classes of power consumption in network equipment (both switching/&quot;routing&quot; and optical transmission).  The first is passive power.  This is what's needed to keep the lights on: the transmission lasers themselves, the baseband modulation, the keepalive frames, power conversion losses, fans, the routing protocols and monitoring software, etc..  This is the amount of power consumed (work performed) even when there are no customer packets on the network whatsoever.  And it is a very high amount of power.  It's so high because all of the circuits, all of the silicon in the systems is powered and contributing to transistor gate leakage current, which relative to number of gates is going up with every new Si process (e.g. worse at 22 nm than at 90 nm).  The second class of power consumption is active power, which is the extra power consumed by switching transistors on and off, and which goes up as the packet processing load on the devices increases.  This is also very high, but anecdotally, may in many cases only contribute 20% of the total power (e.g. zero packets per second is 80% of max, and line-rate PPS is 100%).  As another commenter said, it would be obtuse to look only at the active power; the network was built at great expense expressly to deliver your packet.  I'll consider both.</p>
+<p>The total power consumed per unit of packet forwarding capacity has consistently decreased since the beginning of the Internet, thanks to Moore's Law.  The discussion about copper vs. fiber is mostly irrelevant, since today copper is only used for the last mile (e.g. DOCSIS over coax or ADSL over UTP) or in the datacenter where the packets originate (again not a great distance).  The specification for total power per unit of full-duplex capacity on a router product that was just introduced in December, 2015 is 0.3 W/Gb/s (that's passive and active power at 100% load, using very recent silicon from Broadcom).  The Internet at large is made up of older generations of silicon/equipment, plus lots of stuff on the edge that's not as efficient, so let's multiply that by 10 (more than three Moore's Law generations) to average it out and assume it's 3 W/Gb/s globally.  Note this is per &quot;hop.&quot;  You can use a full-duplex spec as the cost to transit one hop, because you're going into one port and out of another (same as two packets ingress/egress on the same FDX port).  The other contributor to power is the optical transmission system.  Usually the total contribution to power from these systems is less than that from the switching layer, so let's say it's 2/5 and round up to 5 W/Gb/s.</p>
+<p>Hop counts calculated by others are mostly correct.  A dozen or so is typical.  Not all hops have the same power consumption profile, because some are core equipment at massive scale that efficiently do 0.5 W/Gb/s or better, while other hops are access network equipment at smaller scale (per device) that may do 15W/Gb/s or worse.  Ok, 5 W/Gb/s, and 12 hops.  Let's say that your access modem or ONT plus home router adds another 10W/Gb and take it up to 15 W/Gb/s.</p>
+<p>But how many &quot;packets&quot; in a gigabit?  We have something called IMIX, which is nothing more than a real-life traffic profile.  There is no single IMIX, because it depends on what applications the users of a particular ISP use the most.  Video applications send a lot of packets at the MTU (1500 bytes path MTU for almost all Internet conversations), with a lot of GETs (HTTP) and ACKs (TCP) sprayed around in smaller packets (&lt;200B).  IMIX for a typical residential ISP profile, end-to-end is around 800 bytes.  So let's assume our packet is that big.  1 Gb/s gives us about 156,000 packets per second (800B each).</p>
+<p>All together now. 15 W/hop <em> seconds/Gb </em> 12 hops * 1/156,000 Gb/packet = 1.2 mW-s/packet = 1.2 mJ/packet. </p>
+<p>EDIT: Made a mistake in unit analysis; thanks, /u/bitwiseshiftleft.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cz4z92s">
+		<a class="author" href="https://www.reddit.com/user/the_doozer" target="_blank">the_doozer</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A hop count of 3.5 is far too low: here in Toronto 3.5 doesn't get me outside my providers network.</p>
+<p>I think the confusion is AS-paths vs hops... An AS is generally a company or provider (hence Autonomous system) so the paper is basically saying your traffic crosses (on average) 3.5 companies. </p>
+<p><a href="http://nrlweb.cs.ucla.edu/publication/download/281/garyglcm98.pdf" target="_blank">http://nrlweb.cs.ucla.edu/publication/download/281/garyglcm98.pdf</a> and <a href="http://circuit.ucsd.edu/~massimo/ECE158A/Handouts_files/hop-count.pdf" target="_blank">http://circuit.ucsd.edu/~massimo/ECE158A/Handouts_files/hop-count.pdf</a> would put the  average hop counts in the 12 to 17 range. </p>
+<p>Those hops, as others have mentioned are larger and more powerful. Think 100Gbps and 2000 watts (<a href="http://www.cisco.com/c/en/us/products/collateral/routers/12000-series-routers/product_data_sheet0900aecd8027c8dd.html" target="_blank">http://www.cisco.com/c/en/us/products/collateral/routers/12000-series-routers/product_data_sheet0900aecd8027c8dd.html</a>) gives you a lower power cost per router hop per packet.</p>
+<p>IPv6 doesn't change the router-structure of the internet (much, we're ignoring NAT and end users here) it is just another addressing system so it doesn't really impact the result. </p>
+<p>And bits per packet is closer to 12000 (roughly 1500 bytes, less a bit because you have headers in there. But also less more because we're also not taking into account overhead due to encapsulation that might be on your home DSL line for instance)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cz4v1su">
+		<a class="author" href="https://www.reddit.com/user/VirtualMachine0" target="_blank">VirtualMachine0</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Thanks to IPV6, your average path length is probably diving down toward 3.5. In your endpoint, you're probably spending 20 Watts moving your data around, and that's millions of bits per second. Power loss is ideally something like 1% on good wires per hundred km. The largest packet you can move is 65kb.</p>
+<p>Let's assume you're moving one max size packet a thousand kilometers on a 20Mbps line.</p>
+<p>So, we get: 20 Watts/ router <em> 3.5 routers  </em> .99^10 percentage loss / 20 Mbits/s *65000 bits/packet ....</p>
+<p>That's .2 Joules.</p>
+<p>Sources:
+path length: <a href="https://labs.ripe.net/Members/mirjam/interesting-graph-as-path-lengths" target="_blank">https://labs.ripe.net/Members/mirjam/interesting-graph-as-path-lengths</a></p>
+<p>Transmission loss: <a href="https://en.m.wikipedia.org/wiki/Electric_power_transmission" target="_blank">https://en.m.wikipedia.org/wiki/Electric_power_transmission</a></p>
+<p>The rest is either simple to look up or an educated guess.</p>
+<p>Quick edit: it's less than one ten-thousandth the caloric value of a Tic Tac.</p>
+<p>Big edit: I knew that I was off a fair bit, because I was using home routers, power line approximations versus fiber, and finding an edge-to-edge average path length is, well, difficult. OP asked for a Fermi-style approximation, and I tried to deliver on that. Given all the great comments on improving the estimate, I can't wait to read through them and see where the real answer lies! ^^^^plus-thanks-for-gilding</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cz4y47r">
+		<a class="author" href="https://www.reddit.com/user/John_Barlycorn" target="_blank">John_Barlycorn</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'm not sure your question is answerable in any meaningful way. Network hardware uses basically the same amount of power weather your packet traverses it or not. The actual reasons power consumption increases under load are vast and complicated. I can tell you based on my experience in this stuff, that most ISPs/Networking companies consider power consumption the very least of their concerns. They'll dump any and all power saving modes, sleep modes, install every line card the thing can hold, etc... as long as it increases speed or reduces maintenance time. (i.e. we're plugging that line card in now, even if no-one will use it for 6 months, because if we don't we'll have to reboot the switch when we do and that's bad) </p>
+<p>Here's some info on just how complicated your question is:
+<a href="http://sysnet.ucsd.edu/~pmahadevan/publications/FinalVersion_Networking2009.pdf" target="_blank">http://sysnet.ucsd.edu/~pmahadevan/publications/FinalVersion_Networking2009.pdf</a></p>
+<p>I think a better question is: &quot;How much <em>more</em> power does the networking equipment my path is routed through use when I send a packet across the internet&quot; and the answer to that would most probably be &quot;None&quot; </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cz4yhij">
+		<a class="author" href="https://www.reddit.com/user/ewand" target="_blank">ewand</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Energy use of Internet communication has been studied <a href="http://people.eng.unimelb.edu.au/rtucker/talks/files/Tucker_ECOC2008.pdf" target="_blank">here</a> and <a href="http://nordman.lbl.gov/docs/lanzisera_aceee2010.pdf" target="_blank">here</a> among many other places. The better papers are behind paywalls!!!</p>
+<p>The best answer is to take the total energy a user is responsible for in a year and divide by the amount of data they use to get J/bit or something. </p>
+<p>Spitballing based on the citations, looks like under 100kWh per year per home. Say you watch an hour of netflix (or porn) a day and use no more data, that's about <a href="http://www.gci.com/kb/netflix-movie-and-data-usage" target="_blank">a GB a day</a>. </p>
+<p>Comes out to about 100uJ/bit. Or really nothing. This excludes data center energy use, but this has been <a href="https://www.nrdc.org/energy/files/data-center-efficiency-assessment-IP.pdf" target="_blank">pretty well characterised</a> as well. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -62,6 +131,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/41sgzw" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

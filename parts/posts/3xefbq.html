@@ -4,7 +4,7 @@
 		<h2>
 			<a href="/posts/3xefbq" onclick="return false">How do people learn to hack? Serious-level hacking. Does it come from being around computers and learning how they operate as they read code from a site? Or do they use programs that they direct to a site?</a>
 		</h2>
-		<span class="date">2016-11-17</span>
+		<!--<span class="date">2016-11-17</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
@@ -12,7 +12,97 @@
 <p>EDIT2: Thanks for the massive response everyone! Looks like my Saturday is planned!</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="cy4bqcz">
+		<a class="author" href="https://www.reddit.com/user/TheeMarquisDeCarabas" target="_blank">TheeMarquisDeCarabas</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>PART 4</p>
+<p>The attacker might choose to setup a simple TFTP/DHCP server with no gui and some preset configs. Now they set an image to be pulled off of a website that will be loaded should a system PXE boot and request instructions (a pre-built example is KonBoot <a href="http://www.piotrbania.com/all/kon-boot/" target="_blank">http://www.piotrbania.com/all/kon-boot/</a> though some modifications would be necessary). This essentially modifies the Windows kernel when booting to allow ANY password to be entered at prompt and accepts it as the valid password. The hacker could locate an Admin system (using information from the enumeration stage) and trick the system when it reboots to apply updates in the night (again very common) to load this evil PXE image. They then have administrative control over a system, and are able to backdoor it, perhaps place a malicious Windows Service DLL that is set to load via rundll at boot time or something... options are endless. As an admin, the hacker can now use PSEXEC or WMI or basically whatever they want to control remote systems. Using a tool like Mimikatz (<a href="https://github.com/gentilkiwi/mimikatz" target="_blank">https://github.com/gentilkiwi/mimikatz</a>) they could dump the admin's clear text credentials from memory (on the next reboot, not when Konboot or the custom tool has modded the kernel) and use those to access the domain controller. From there, they can create a new user as an admin, so when this is logged it won't necessarily appear suspicious, and make any administrative modifications they require with the stolen admin account. They can also delete logs when they perform admin functions, making it much harder to figure out what's going on. Now, they give permissions to their regular user to access source code repositories. As the user was created under the &quot;Developers&quot; OU, and the company has many developers, no one is likely going to notice this, at least not for several months (honestly they probably won't ever with most companies, even if they are checking for things like this). The hacker has now owned a user, an admin, the network, and has the source code which is what we are concerned with. They showed how an entire set of control instances were not effective at preventing a breach, and using methods that would not have been detected by a vulnerability scanner, by running a point and shoot tool, or if the scope was restricted to 50 systems. </p>
+<p>The point I am making (in this incredibly long winded comment/rant) is that saying &quot;You need to understand how something works&quot;, though perfectly valid, is not all encompassing of what it takes to become a hacker. Knowing what SQL injection is, or how to run a vulnerability scanner, or tool like metasploit does not make a hacker. Obsession, pure Obsession is what makes a serious hacker. You have to WANT to rip everything apart, to find every logic flaw. If you have that personality type, the rest is a natural consequence (like learning to code etc.). I say this because this is always what is missed in these types of answers, or movies. If you want the closest to reality version of a hacker, watch Mr. Robot. Not saying the hacks are all good (though they are almost all rooted in truth, some even being easily duplicated (<a href="http://null-byte.wonderhowto.com/how-to/mr-robot-hacks/" target="_blank">http://null-byte.wonderhowto.com/how-to/mr-robot-hacks/</a>) but the personality of Elliot is pretty much bang on. Not every good hacker is going to have such serious social problems, but I guarantee you every one of us gets that &quot;itch&quot; he talks about. An itch in your brain you can't scratch until you have found every flaw in an argument.</p>
+<p>If you are curious about some good resources to get started, I linked to several things in the comments. If you want some more guidance (goes for anyone) feel free to PM me. Or if people are interested, Id be happy to deliver a comprehensive hacking 101 course via a blog or something that doesn't just tell you what to do, but explains why and how to do something. I would need sometime as I am pretty busy at the moment. If people hate this comment because it so damn long, please downvote me into eternity.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cy3wur4">
+		<a class="author" href="https://www.reddit.com/user/sdururl" target="_blank">sdururl</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Hacking is the second side of a coin.</p>
+<p>To find exploits, you need to understand how something works.</p>
+<p>For example, to do sql exploits, you need to know the syntax and all the common mistakes that developers make during development. Such as adding unsanitized user input to their queries.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cy4ke8d">
+		<a class="author" href="https://www.reddit.com/user/fynx07" target="_blank">fynx07</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Pretty late to the game and I see they have done a good job answering your questions already, but I want to use an analogy for you to put this in to true ELI5 connotation. </p>
+<p>Let's say you own your house, or at the very least have lived in your place of residence for a good while. You see more and learn more about it the more you are around it. I.e. You start to notice how many windows and doors you have. You notice where the ventilation shafts for the AC and heat enter and leave the building, you notice creaky floor boards, loose paneling on the walls, etc. You end up getting pretty familiar with the flaws in your house. Take a look around, see how many windows you leave unlocked, or if you lock up your doors when you leave etc. Do you leave a spare key around outside somewhere? Are there loose panels that would allow you to pry them open and slip in to the walls, or vent shafts that you could crawl through to get in effectively bypassing said window and door locks?</p>
+<p>Now let's think about all these other buildings around you. Hey, they have doors and windows too. They have places where ventilation shafts enter and exit the building. Sure they may not be identical to your own building, but you have seen enough of your own to know fairly well how these work and how you could potentially exploit them on these other buildings. Do other people leave spare keys hidden in a hide-a-key rock or under the door mat?  Did someone accidentally leave a door unlocked? Did someone not realize a window lock wasn't engaged like they thought? How easy are those vent shafts to pry open etc. You get the point.</p>
+<p>Hacking computers is fairly like that. You take some basic stuff usually with open source or what have you that you can borrow or 'rent' if we are keeping up the building analogy. You study this, learn where the flaws are and what to look for like we did with our houses. Now you realize that a lot of software uses same or similar coding styles.</p>
+<p>In the end, it's not Quite that simple, but for analogy and ELI5 sake, this is a good way to explain it.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cy4okx8">
+		<a class="author" href="https://www.reddit.com/user/BraveNewCurrency" target="_blank">BraveNewCurrency</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><blockquote>
+<p>How do people learn to hack?</p>
+</blockquote>
+<p>First, you have to understand software.  Software is like roads. Most people only have a car, so they can only travel on the existing paved roads. But Programmers own bulldozers, so they can pave new roads.  (But notice that even bulldozers have limitations when they encounter a mountain or a lake.)</p>
+<p>Second, you have to define what you mean when you say 'hack'. I'll explore 3 different meanings:</p>
+<p>1) Every computer system has an &quot;administrative&quot; area where the owners can manage the system. For example, Customer Service at an e-commerce website will need to be able to create/modify an order without payment. Logging in with a stolen password is considered 'hacking'.</p>
+<p>You might say &quot;that's cheating&quot; because it's not technical. (I.e. You didn't create any new roads, just used an existing road by following another car closely.)</p>
+<p>But the truth is that obtaining a password is often the simplest way in. (Sometimes it's as easy as calling Customer Service and saying you're from the IT department an you need their password.)  This is called <strong>Social Engineering</strong>, and it's an amazingly effective technique. To learn this technique, you just need to understand people and do a little bit of acting. (But it's just as illegal as the other techniques -- the law doesn't care how technical or non-technical you are.)</p>
+<p>On the other hand, everyone should <em>know</em> about these techniques, because the only way to fend them off is knowledge and training.</p>
+<p>2) If someone finds a security hole in a system, they can write some software to take advantage of it. (This is called an &quot;exploit&quot;). Running existing exploit software doesn't take much knowledge, just like driving on an existing road.</p>
+<p>The people who run exploit software (without knowing why it works) are called  <strong>script kiddies</strong>.</p>
+<p>For some exploits, you may need to know your way around the <a href="https://en.wikipedia.org/wiki/In_the_Beginning..._Was_the_Command_Line" target="_blank">command line</a> and how to compile software (since people who write new exploits don't always have time to make a nice GUI).</p>
+<p>Running exploit software is the easy part. The hard part is finding an obtaining it in the first place. Some exploits are only found on black market trading boards for millions of dollars, while others are <a href="https://en.wikipedia.org/wiki/Metasploit_Project" target="_blank">Open Source and come with a nice GUI</a>.</p>
+<p>3) The last category is the creation of brand-new exploits. This is making new roads with a bulldozer. (I assume this what you mean by &quot;Serious-level hacking&quot;).</p>
+<p>Since exploits are software, the first requirement is to be a programmer. But not just any programmer will do. You have to be a <em>curious</em> programmer. You need to learn everything you can about the low-level workings of computers. Learn all the languages you can. Learn about Virtual Machines, Debuggers, Disassemblers, <a href="http://lcamtuf.coredump.cx/afl/" target="_blank">Fuzzers</a>, Linkers, Reverse Engineering, etc. Learn and understand every buzzword. Most of all, you need to be familiar with the literature for <a href="http://blog.invisiblethings.org/2015/10/27/x86_harmful.html" target="_blank">PC Security</a> or <a href="https://www.owasp.org/index.php/Top_10_2013-Top_10" target="_blank">website security</a>. You never know what piece of information will help.</p>
+<p>Even this is not sufficient. It's easy to work on something for months or years and not make any headway. For every interesting finding, you can be sure there are 1000s of wasted hours of uninteresting findings. Sometimes bugs <a href="http://www.slideshare.net/symantec/infographic-shellshock-bashbug-the-25-year-old-bu" target="_blank">lurk for years</a> and are only discovered accidentally.  It's not really that different from being a scientist. (Except you are discovering mistakes of other people instead of fundamental constants of the universe.)</p>
+<blockquote>
+<p>Does it come from being around computers and learning how they operate</p>
+</blockquote>
+<p>Well, it's really easy to &quot;be around computer&quot; and never know how they work. You have to have a really curious mind, and learn lots of useless things, and practice learning new things all the time.</p>
+<p>In fact, people get the wrong idea about programmers because every movie shows them typing in front of a computer.  A real programmer spends a lot of time thinking with a pen and paper, trying to understand a problem deeply before writing a line of code.</p>
+<blockquote>
+<p>as they read code from a site?</p>
+</blockquote>
+<p>I'm not sure what you mean here, but I assume you mean like reading a manual? There are no instructions on how to make a new exploit. It's like asking for a simple way to write a novel. It takes a combination of originality, knowledge and hard work. There are no short-cuts, there are no formulas.  Learning is good, but you can never be sure if it will actually help you or not.</p>
+<blockquote>
+<p>Or do they use programs that they direct to a site?</p>
+</blockquote>
+<p>Well, if you run an existing program you are a Script Kiddie. But when creating new hacks for getting into a website, your browser is often the only tool you need.  Sometimes you might write a few small scripts to automate the testing of your theories.  But 99% of the exploit is the understanding of the problem (&quot;this site uses CBC mode, but the first block contains mostly known-plaintext data&quot;).   Once you know that, writing the exploit is very fast. Most exploits are less than a page of code.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cy4jquo">
+		<a class="author" href="https://www.reddit.com/user/CunningLogic" target="_blank">CunningLogic</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Since the top comment is a person that doesnt know the different of an exploit and a vulnerability, I'll let a real hacker comment (I think I can call myself a real one, maybe its just my ego or maybe im cocky. maybe all 3).</p>
+<p>Please note i just rolled out of bed, my grammar is going to suck, I'll probably make mistakes in this, and I probably won't fix them.</p>
+<p>I'm a &quot;mobile security researcher&quot;, I write software exploits for a living. Sometimes as part of an audit (as a proof of concept), sometimes to sale to an org/agency, sometimes to sell to the public (see <a href="http://theroot.ninja" target="_blank">http://theroot.ninja</a>), sometimes for shits and giggles (if you have rooted an Android phone in the last 4/5 years, good chance I wrote or helped write the exploit you used).</p>
+<p>I learned out of a need. I had bought a phone that needed to be rooted (jailbroken equiv for Android) to allow VPN and remove the god awful Amazon mp3 app. YEARS ago some programming experience in VB, and I had decades of &quot;tinkering&quot; to get things to work how I wanted.</p>
+<p>I sat down and learned Java, dalvik (Android's &quot;java assembly&quot; language), some C, some arm assembly. I read lots of source code, read lots about Android, and linux's security freatures. Then I started tinkering. Trial and error. Reading. Buying new phones as I bricked them.</p>
+<p>For those interested, here are some training material of our's, some recent disclosures, and a cringe worthy video of Tim and I talking about obfuscation and hacking the blackphone (I was sick, and a little hung over in the video, forgive me).</p>
+<p><a href="http://theroot.ninja/PAE.pdf" target="_blank">http://theroot.ninja/PAE.pdf</a> - Training I gave at Blackhat 2014
+<a href="https://github.com/rednaga/training" target="_blank">https://github.com/rednaga/training</a> - Training Tim, Caleb and I gave at Defcon 2015</p>
+<p><a href="https://www.youtube.com/watch?v=vLU92bNeIdI" target="_blank">https://www.youtube.com/watch?v=vLU92bNeIdI</a> - Defcon 2014, Tim and I talking about hacking the blackphone, and obfuscation. Mostly obfuscation. Not the best video, but the content of the talk is legit.
+<a href="http://theroot.ninja/disclosures/TRUSTNONE_1.0-11282015.pdf" target="_blank">http://theroot.ninja/disclosures/TRUSTNONE_1.0-11282015.pdf</a> - Recent Trustzone vuln beaups used in our unlock program </p>
+<p><a href="http://theroot.ninja/disclosures/desire310disclosure.pdf" target="_blank">http://theroot.ninja/disclosures/desire310disclosure.pdf</a> - HTC vuln/ exploit from earlier this year </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -20,4 +110,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/3xefbq" onclick="return false"><span>show</span></a>
 </li>

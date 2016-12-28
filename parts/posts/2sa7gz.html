@@ -4,14 +4,94 @@
 		<h2>
 			<a href="/posts/2sa7gz" onclick="return false">Why do online videos stream flawlessly on my computer but why do GIFs seem to load like a 1080p movie through a 56k modem?</a>
 		</h2>
-		<span class="date">2016-11-24</span>
+		<!--<span class="date">2016-11-24</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="cnnn3wa">
+		<a class="author" href="https://www.reddit.com/user/agent86ix" target="_blank">agent86ix</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>tl;dr: GIF is an image compression format, which isn't really suited well to compressing video data.  Basically the only advantage is that browsers support the format natively without loading plugins.  Actual videos compressed with video encoders are way more efficient.</p>
+<hr />
+<p>In an animated GIF, each frame of the animation is encoded as a separate file, and then the files are more or less just stuck together in the final animation.  You can do something similar with JPEG (Motion JPEG), although it's not supported by browsers in quite the same way as GIFs.</p>
+<p>Also GIFs do a better job of compressing line art rather than photographs.  Thus, making a video out of GIF images yields pretty poor compression anyhow.</p>
+<p>In an encoded video file, the video compressor takes into account that successive frames are (probably) related to each other.  The first frame is encoded completely, in a similar (but more advanced) method as a JPEG might be.  However, the next frame is typically encoded as just the difference from the first frame to the second.  This is way more efficient for most videos where motion happens slowly.</p>
+<p>Say the video is of a ball falling.  </p>
+<p>In an animated GIF, each frame is a standalone, complete picture of the ball and any surroundings.  It's compressed rather poorly, and a lot of redundant information is sent, so each individual frame is very large.</p>
+<p>In a video encoded with a video codec (MPEG1, MPEG2, MPEG4, h.264, h,265, etc), the first frame is compressed somewhat similarly to a JPEG.  Then the second frame basically says &quot;see the region of the first frame where the ball is?  Move that down a bit.  Fill in the background with this information.&quot;  - This frame is <em>way</em> smaller and easier to transmit than the first frame.  It's also easier and faster to decode.</p>
+<p>There are some drawbacks to the video compression approach, but in general it does a way better job of representing the video data with way fewer bits.  </p>
+<hr />
+<p>EDIT: Wow, this is getting a lot of attention :) I left out a lot of stuff to keep the answer simple, but I'm getting pinged about a lot of the same things over and over, so here's a few quick additions:</p>
+<ul>
+<li>Yes, compression algorithm differences matter as well.  I said something to this effect, but to extend: GIF uses a compression method that works well for color patterns, and video encoders use something that works better for photographs/live video.  I didn't try to explain DCT/Quantization/entropy coding since that's a super technical topic for ELI5.</li>
+<li>Yes, GIF can represent a simple delta between two frames.  However, in the case of video data, it is rare that this is useful.  Someone asked for a more detailed explanation of this, <a href="http://www.reddit.com/r/explainlikeimfive/comments/2sa7gz/eli5_why_do_online_videos_stream_flawlessly_on_my/cnnww5o" target="_blank">my response is here</a>.</li>
+<li>Yes, there may be other factors at work besides the bitrate/coding issues.  I think it is safe to say that GIF is a terrible video compression format, and that's probably the root of many other issues.  However, I haven't profiled browsers to see where they spend time decoding animated GIFs.  I made a list of other places that could be inefficient <a href="http://www.reddit.com/r/explainlikeimfive/comments/2sa7gz/eli5_why_do_online_videos_stream_flawlessly_on_my/cno3pp1" target="_blank">here</a>.  </li>
+<li>Yeah, your &quot;five year old didn't understand this&quot; el-oh-el :P  If my 7-yr-old had the interest I'd try to explain it to him and get his feedback, but I think he'd rather play LEGO.</li>
+</ul>
+<hr />
+<p>EDIT 2: A couple more things people are asking/mentioning:</p>
+<ul>
+<li>Several people have mentioned HTML5 Video and WebM as alternatives to animated GIFs.  There's a lot of back-and-forth, legal issues, competitors refusing to agree and so forth that is really hampering the HTML5 video tag.  <a href="http://en.wikipedia.org/wiki/HTML5_video" target="_blank">Wikipedia has a long article on the subject.</a>  We've had better video technology than GIF for years and GIF is still going strong.  I think we're stuck with it, despite it being a terrible technology for the problem.  (See also: practically every other technology used on the web)</li>
+<li>A common question is &quot;So does this mean that simpler videos with less movement will be encoded to smaller file sizes?  Or that complex or really random videos make larger or less efficient video files?&quot;  The answer to this somewhat depends on the encoder settings, but in general the answer is yes. If you encode a simple video with little motion it will take less data than a more complex video with a lot of motion and random stuff going on.  Modern video encoders are tuned towards encoding video sequences from cameras. They make assumptions based on what the real world looks like most of the time, and use those assumptions to compress more efficiently.  They also take into account what our eyes are good at seeing.</li>
+</ul></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cnnrt65">
+		<a class="author" href="https://www.reddit.com/user/AGreatBandName" target="_blank">AGreatBandName</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Short answer: videos use better compression techniques than GIFs. GIF was originally designed as a still image format, with the animation capability kind of shoehorned in later. Video uses compression techniques that were designed specifically for video. This means the file size of a GIF is much bigger than an equivalent video (often 5x to 10x bigger), so it takes much longer to download.</p>
+<p>Long answer: Think of a GIF like a flipbook. It's a series of still pictures that when played quickly, look like a video. You need to download each one of those still pictures. Each frame is compressed, but little is done to take advantage of the fact that one frame is probably very similar to the next frame (there are some minor optimizations done though -- for instance if the background of a frame doesn't change at all from one frame to the next, that background won't be sent to you every time).</p>
+<p>Video uses much better compression techniques. Each frame is compressed like in a GIF, but frames are also compared to the one before and the one after. Just like in a GIF, if the background doesn't change it won't be sent to you every time. But there are also more clever things that can be done -- say a car is moving from left to right in your video. Video compressors will basically say &quot;hey that car that was over there in the last frame, just move it to the right 5 pixels&quot;. So you take the image of the car you already have, shift it to the right, and that's your next frame. GIF can't do this. Since a lot of video consists of smooth motion similar to this, videos compress very well. This is called <a href="http://en.wikipedia.org/wiki/Motion_compensation" target="_blank">motion compensation</a>.</p>
+<p>There are a number of other issues at play here too:</p>
+<ul>
+<li>
+<p>The compression technology used by GIF is far older than modern video compression, so that the compression achieved by each individual frame is better with modern videos. The LZW compression technique used in GIF is 30+ years old, for instance.</p>
+</li>
+<li>
+<p>GIF uses lossless compression, whereas most videos use <a href="http://en.wikipedia.org/wiki/Lossy_compression" target="_blank">lossy compression</a> -- basically the video compressor throws away data that you're probably not going to notice anyway. And even if you do notice it, chances are it's still good enough to get the point across. (JPEG is another example of a lossy compression scheme that you're probably familiar with.)</p>
+</li>
+<li>Along with this, video compressors throw away some color information as well. This one is harder to explain easily, but basically your eye is better at noticing changes in brightness rather than changes in color. So the compressor looks at the brightness and color of every pixel. When it comes time to write out the video, it stores the brightness for every pixel, but only stores the color for every 4th pixel. The other 3 pixels share that same color. Hopefully that made some amount of sense. It's called <a href="http://en.wikipedia.org/wiki/Chroma_subsampling" target="_blank">Chroma subsampling</a> if you'd like to read more.</li>
+</ul>
+<p>All that adds up to better compression for video, which means smaller file sizes, which means faster downloads.</p>
+<p>Edit: wording</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cno8cmj">
+		<a class="author" href="https://www.reddit.com/user/neon_overload" target="_blank">neon_overload</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><strong>To put it simply:</strong> GIF is a very poor compression format for video.</p>
+<p>Like, 50 times poorer.  A video of decent quality would take around 50 times the file size as an animated GIF as it would as a video (such as MP4/h.264 or WebM).</p>
+<p>So when your GIFs are taking ages to load, it's because you're downloading literally 50 times the amount of data for roughly the same quality video.</p>
+<p>Note: 50 times is just a ballpark figure, and the true value depends on many, many factors.  Proper video codecs make use of two types of compression: lossy block based DCT compression, like JPEG, plus motion estimation, which is the bit that finds similar image sections in previous frames, moves them, and uses that as the basis for the new frame.  The amount you save by using a proper video compression format will vary according to the complexity of motion in your clip and how well it compresses with this type of block based DCT compression.  There's also the problem that it's hard to compare quality between the two, because they distort in quite different ways: GIFs remain sharp but have dithering or banding, videos will blur but need no dithering.  So the 50:1 estimate is a VERY VERY rough ballpark figure making a bunch of ass-umptions about individual circumstances.</p>
+<p>Services like GFYCAT tell you how much file size you spared compared to a GIF.  Note that these services tend to degrade the quality (eg resolution) before compression and for various reasons the ratio will be usually less than 50:1.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cnnnkdf">
+		<a class="author" href="https://www.reddit.com/user/cpu5555" target="_blank">cpu5555</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Video streams encode data more efficiently than GIF files. Video streams are designed to play right away. Therefore, the video starts playing even though it is still loading. Videos use lossy compression. This works by having the encoder strip out data and leaving the decoder to estimate the missing values. The GIF on the other hand strips out data without leaving the decoder to make up the missing values. This is considered wasteful by today's standards. The GIF is less optimized for immediate playback. You often have to load it entirely to play it.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cnocrmm">
+		<a class="author" href="https://www.reddit.com/user/Pixelpaws" target="_blank">Pixelpaws</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Possibly slightly above ELI5 level, but <a href="https://www.youtube.com/watch?v=blSzwPcL5Dw" target="_blank">this video from Computerphile</a> does a pretty good job explaining the advantages and disadvantages of using GIFs versus actual video formats.</p>
+<p>tl;dw version: GIFs were never designed for video; they were meant for simple animations. GIFs actually made a lot of sense back when CPUs were slow, but as a tradeoff for them being easy for your computer to process, they take up a lot of extra space. That extra space means you have to wait longer for the GIF to download than you'd have to wait for a properly-compressed video in a format designed for videos.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -19,4 +99,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/2sa7gz" onclick="return false"><span>show</span></a>
 </li>

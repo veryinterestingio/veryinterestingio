@@ -44,14 +44,62 @@
 		<h2>
 			<a href="/posts/3ldqjw" onclick="return false">When you play a game like chess against a computer on &quot;easy,&quot; does it simply look at less possible moves/scenarios or does it actually try to lose?</a>
 		</h2>
-		<span class="date">2016-11-16</span>
+		<!--<span class="date">2016-11-16</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Edit: Well thank you all for your responses! I did not expect this to reach the front page while I slept, and I will not be responding to several dozen similar explanations. Thank you all, I definitely understand the concept behind this better now.</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="cv5fz9j">
+		<a class="author" href="https://www.reddit.com/user/Delehal" target="_blank">Delehal</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><blockquote>
+<p>does it simply look at less possible moves/scenarios</p>
+</blockquote>
+<p>Usually this one.</p>
+<p>Most chess programs work by calculating the &quot;value&quot; of various pieces and positions. Each piece is worth some points by itself, with bonuses or multipliers for useful board positions. A position will be worth more points if it threatens your pieces or defends the computer's pieces. The computer looks at all possible moves, usually looking several moves into the future, and makes a tactical decision based on the highest point value.</p>
+<p>As the computer checks more and more moves, the number of possibilities increases exponentially. There may be 10 possible moves in one turn, then 100 possible moves in the next, then a thousand, then 10 thousand. Because of this, computers are very good at estimating the next several moves, but have a harder time beyond that. Some chess players who specialize in playing against computers have learned to capitalize on this weakness.</p>
+<p>By limiting the computer's ability think ahead, you can vastly change the difficulty of playing against it.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cv5h0u7">
+		<a class="author" href="https://www.reddit.com/user/websnarf" target="_blank">websnarf</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The easiest way to make a computer chess program have an &quot;easy&quot; level, is, indeed, to decrease the number of positions they look at per move.  However, some more sophisticated programs, actually insert moves they know are mistakes periodically.  This second strategy makes for a more believable kind of game (that's how top humans play -- perfect or near perfect for most of the game, sprinkles with errors every few moves.)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cv5leng">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Easiest way for an engine to play easier is to do more prunning or less branching.</p>
+<p>Say it can search 13 moves ahead in a given time frame. Instead on &quot;easiest&quot;  it'll just search 1 move ahead or 2 then stop evaluating.</p>
+<p>Another option is some engines try to impersonate certain players or have different styles, so the style might be set with really oddball evaluation data. </p>
+<p>Source: chess developer for 20 years</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cv68qs2">
+		<a class="author" href="https://www.reddit.com/user/Matetricks" target="_blank">Matetricks</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There's actually a variety of ways of restricting a chess engine's playing ability. The way a program calculates a position is through evaluating the value of future positions that can occur from a given moveset. For example, in the starting position the engine will spend some time looking different starting moves and may go 10-15 moves deep into the line. The engine truncates its evaluation once it reaches a point where either the branching factor becomes too large or if the position has a clear advantage/disadvantage. The branching factor is the rate at which the set of possible positions grow. In chess, the number of possible positions grows exponentially as there are many potential moves in any given position.</p>
+<p>Now, you can restrict a computer's playing style in 3 different ways. One obvious way is to restrict the depth that the engine calculates. If the computer normally evaluates the position several moves deep, you can limit it to only calculate 1 move (in chess engine terms, this is called a half ply; a full move consists of one move by white and one move by black and is considered 2 plies). Clearly, if the computer is only evaluating after a single move it won't do a great job in finding a good move.</p>
+<p>Another way is to limit the time the computer has to calculate. This is quite similar to the prior example, but in this case the engine may not even get to calculate the move it wants to. In the prior example, the computer would look at all possible moves one move deep. If you restrict the time it has to think, it might not even get to all of the moves.</p>
+<p>The final way is by choosing suboptimal moves. When the computer evaluates a position, it ends up ranking all possible moves from best to worst. Depending on the setting of the engine it's possible that it is purposefully selecting moves that are close to the bottom of the ranking.</p>
+<p>I've seen engines that use these individual settings and even combinations of the three. </p>
+<p>source: national master, programmer</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">3 more answers...</a>
@@ -59,6 +107,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/3ldqjw" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

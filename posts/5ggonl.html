@@ -45,7 +45,7 @@
 			<span class="tags tag-Technology">Technology</span>
 			<a href="/posts/5ggonl" onclick="return false">How is the HTTPS handshake kept secret?</a>
 		</h2>
-		<span class="date">2016-12-07</span>
+		<!--<span class="date">2016-12-07</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
@@ -58,7 +58,71 @@
 <p>So how is the handshake kept secret?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="das9nky">
+		<a class="author" href="https://www.reddit.com/user/buried_treasure" target="_blank">buried_treasure</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Here's a reasonable analogy:</p>
+<p>Imagine that you want to exchange a secret message with someone, who lives on the other side of the country, using the public mail service.</p>
+<p>The only tools you both have at your disposal are an infinite supply of boxes (made of some magical unbreakable material), an infinite supply of unpickable self-locking padlocks which can be used to lock the boxes, and one key, which can be used to unlock any of those padlocks. For each of you the key you have will only unlock your padlocks, nobody else's.</p>
+<p>So you take one of the boxes, put one of your padlocks in it, you <em>don't</em> lock the box, and you send that to your friend.</p>
+<p>When your friend receives it, he puts the instructions about what secret code you'll use into the box along with one of his padlocks, and then locks the box <em>with your padlock</em>. He can no longer open the box because it's locked with your padlock, and importantly nobody else can open the box even if they intercept it while it's in the postal system.</p>
+<p>When you finally get the box, you have the only key in the entire world that is able to open the box. You open it, take out his padlock, write an acknowledgement that you've received the message safely and securely, and put that into another box that you lock with <em>his</em> padlock. Now <em>you</em> can't re-open the box (nor can anyone else) -- only when your friend receives it can it be opened.</p>
+<p>And that's the basis of public-private key encryption key exchange. You encrypt (lock) the message using the <em>other person's public key</em> which means the other person is the only one who can unlock it, because they have the private key. </p>
+<hr />
+<p>(Small print -- the above isn't a perfect analogy, in particular at the initial stage the first padlock you send to your friend is vulnerable to being intercepted en route and replaced with a different padlock belonging to someone who wishes to intercept &amp; read all the communication between the pair of you: this technique is known as a &quot;man in the middle&quot; attack. To get round this in the real world the initial communication is signed by a certificate issued by a trusted authority, which guarantees to the recipient that the message they receive is the same as the one that was sent).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dasj0po">
+		<a class="author" href="https://www.reddit.com/user/Klaxon5" target="_blank">Klaxon5</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This <a href="https://www.youtube.com/watch?v=3QnD2c4Xovk" target="_blank">video</a> provides a great analogy using paint.</p>
+<p>Let's say that you and I want to have a secret paint color that the two of us know about, but nobody else does. How is that accomplished? First we agree on a common color, say a nice fuschia. Anyone listening in will know the exact fuschia we agreed upon, but that's ok. </p>
+<p>Next we each pick a secret color that we don't tell anyone about - including each other. Now I mix the fuschia with my secret color and you mix it with yours and we trade the resulting mixtures. It is really easy for us to mix the paints, but you can't unmix paint!</p>
+<p>The final step is I take your mixture (fuschia + your secret color) and blend it with my secret color. You blend my mixture (fuschia + my secret color) with your secret color.</p>
+<p>We now both have the same color, but nobody can know about it except us.</p>
+<p>There are mathematical functions that work in analogous ways, easy to calculate in one direction but very hard to calculate in another. So a similar process can exist for numbers.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="das2w92">
+		<a class="author" href="https://www.reddit.com/user/blablahblah" target="_blank">blablahblah</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>With the algorithms we use, there are two different numbers involved: one number is used to encrypt, and a different number is used to decrypt. It's nearly impossible to find the decryption number given the encryption number. One computer generates both numbers and sends the encryption number to the other computer.</p>
+<p>At that point, the other computer can use that encryption number to create messages that only the first computer can decrypt. It doesn't matter if every malicious actor in the world is listening in on that key transmission, the only thing they'll learn is how to send encrypted messages to the first computer, not how to read the messages.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="das30cb">
+		<a class="author" href="https://www.reddit.com/user/Schnutzel" target="_blank">Schnutzel</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The handshake involves a <a href="https://en.wikipedia.org/wiki/Key_exchange" target="_blank">key exchange</a> mechanism such as <a href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange" target="_blank">Diffie-Hellman</a>. Basically with this mechanism the two sides generate some random numbers and perform some calculations with them, resulting in a value that both sides know but anyone eavesdropping can't calculate from the information that they intercepted.</p>
+<p><a href="https://www.reddit.com/r/explainlikeimfive/comments/5egkay/eli5_the_deffiehellman_key_exchange/" target="_blank">Here's a thread where I explain how Diffie-Hellman actually works.</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="daskc0g">
+		<a class="author" href="https://www.reddit.com/user/sacundim" target="_blank">sacundim</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are two major ways.  The first, and currently most popular, is to use the <a href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange" target="_blank">Diffie-Hellman key exchange</a> algorithm.  See <a href="https://www.youtube.com/watch?v=3QnD2c4Xovk" target="_blank">this layperson's explanation video</a>.</p>
+<p>The older way is to use <a href="https://en.wikipedia.org/wiki/Public-key_cryptography" target="_blank">public-key encryption</a> in the following way:</p>
+<ol>
+<li>The client (that is, your web browser) requests the server's <strong>public key</strong>.</li>
+<li>The server sends its public key back.</li>
+<li>The client verifies that the public key it just received really belongs to the server it's talking to.  (<a href="https://en.wikipedia.org/wiki/Public_key_infrastructure" target="_blank">That's another long topic.</a>)</li>
+<li>The client generates a random encryption key, called the <strong>session key</strong>.</li>
+<li>The client encrypts the session key with the server's public key.</li>
+<li>The client sends the encrypted session key to the server.</li>
+<li>The client and server now encrypt and decrypt the communications' content with the session key.</li>
+</ol></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -66,6 +130,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/5ggonl" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

@@ -5,14 +5,83 @@
 			<span class="tags tag-Engineering">Engineering</span>
 			<a href="/posts/5j2imn" onclick="return false">How can a hacker be tracked after he's hacked a system?</a>
 		</h2>
-		<span class="date">2016-12-21</span>
+		<!--<span class="date">2016-12-21</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: How can a hacker be tracked after he's hacked a system?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dbd4o49">
+		<a class="author" href="https://www.reddit.com/user/swimbikerunrun" target="_blank">swimbikerunrun</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In a bigger company, there's more security appliances and more systems in general to get from outside -&gt; inside.</p>
+<p>Let's say I'm the yahoo hacker, and I know they keep the data in a database. Now, supposedly the hackers had proprietary code, so they knew exactly what server the database with the passwords were kept.</p>
+<p>In order to connect to that Server, I'd have to first log into the network. The firewall is the first 'stop' my connection makes. It logs my IP address, a few other bits of info, and then let's me continue into the network.</p>
+<p>Each network wire that connects me like tree vines through a jungle makes note of where I'm from and where I'm going. At this point, it's dots on a treasure map. </p>
+<p>I then have to go from the &quot;DMZ&quot; network to their &quot;Production&quot; network. As much as we try to keep the networks separate, there's ALWAYS a link. The server I authenticate with in the DMZ network logs the credentials I used, time &amp; date, etc. </p>
+<p>Same thing happens when I log into the Production network. Then, once I'm in there, I log into the Database server and run a script to export a bunch of files that contain the passwords.</p>
+<p>Now I'm ready to leave. I run a script that has a 30 second (or whatever) timer. I disconnect from each system and use that script. This 'clears' the logs from MOST devices. But it's not a golden ticket. It doesn't work on everything because the company has a 3rd party app that is creating a map of my connection -and every connection- that I couldn't have predicted existed. </p>
+<p>Either way, no one is dumb enough to hack it from their house so it looks like I came from ____. </p>
+<p>So the security guys say &quot;ok, he used JDoe's account to login. Obviously JDoe's credentials were stolen. Let's see if he was phished&quot; (most common way)</p>
+<p>They get their email engineers to begin searching JDoe's email. They have a 3rd party application that will grab every link, attachment, and file that was sent to and from him, and then automatically start crossing off the ones that are save. Then they notice, like the Podestra emails, links that are uncommon. Links I've either never received before, or are flagged by the 3rd party as suspicious. </p>
+<p>Now they see that {email address}, someone I've communicated in the past with, sent me a phishy email and I thought it was legit. </p>
+<p>Now they trace the network at Bob's company, and so on. </p>
+<p><strong>Source:</strong></p>
+<p><strong>15 yrs in IT infrastructure.</strong></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dbcvz0h">
+		<a class="author" href="https://www.reddit.com/user/Miliean2" target="_blank">Miliean2</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You can look at styles and methods of one hack and associate it with the same methods being used in other hacks with known attackers. For example, certain malware programs are known to be Russian others are known to be American. Once you know the attack methods, you can often know the attacker. </p>
+<p>The hacker could of made a mistake and left traced that they were there.  Those logs might be viable to trace the hacker's origin. </p>
+<p>You can trace the released information backwards.  Find out who has the information now, then find out where they got it from and so on until you arrive at the hacker. </p>
+<p>If you have access to the routing infrastructure of the internet (like the US government does) then you might have the ability to track historic traffic. Giving you the ability to tell who was sending packets to where at what times. </p>
+<p>Or it could be ways that we simply aernt aware of.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbd6sdh">
+		<a class="author" href="https://www.reddit.com/user/donnerpartytaconight" target="_blank">donnerpartytaconight</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A lot of hackers use pre-designed systems which follow certain patterns of attacks (of which there are a lot of different ones, some to gain access, some to confuse the other system, some to make the other system fail, etc.). Moving data over a network requires addresses. Where the data is going to as well as coming from. There are ways to obscure the actual addresses, but not all systems are fooled all the times. Most systems that may be targeted have many layers of defenses, some allow penetration into a false area of the target system while alerting the system to the attack, almost like a honey-pot. Since a lot of the attacks and defenses are automated, and not occurring while a guy with busted glasses sits in a former Russian missile bunker while twirling a pen and typing with one hand (Thanks, GoldenEye for that image) they are extremely quick and it will require the study of network records to figure out not only if there was an attack (or hack) but from where.</p>
+<p>u/miliean2 does a pretty good job of breaking down styles and footprints. There is a lot of fascinating techniques if you are into cryptology or tech in general. If OP isn't too busy being Pres Elect.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbeizwy">
+		<a class="author" href="https://www.reddit.com/user/Not_Teerent" target="_blank">Not_Teerent</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'll try and list off several methods of tracking a hacker. I apologize if this gets too complex. As a person in the comment has previously stated, it is very hard to simplify this kind of topic:</p>
+<ol>
+<li>
+<p>Most businesses, schools, etc. have a server that logs information about accounts that were accessed (if there is network-based computer OS logging), messages about the actual network (if some syslog server is in place; this value can be changed based on severity on devices from most higher-tier companies), etc. These messages should always be timestamped if there is an option. If some guy at a business just got laid off, and takes his anger out on the network or system in general (but unintelligibly uses his own Windows account), the account log is timestamped, and is very easy to figure out who did it. If the account used is not the account of the person that hacked it, the second point can be used to track them.</p>
+</li>
+<li>
+<p>If someone else hacked another person's account for some malicious reason (delete all files and such), they can be tracked through a combination of an IP address, the address used when data is travelling over a device such as a router, or another device that has the ability to connect 2+ distinct networks of hosts (called LANs), and the MAC address, the &quot;permanent&quot; address of a device that is used to uniquely identify it. If a static IP system is being used (IP addresses on each system will remain the same unless changed), then logs can be used to simply map the IP address to the corresponding computer or device. If a dynamic system is being used (IP addresses are &quot;leased&quot; and can change), you can find the MAC address of the device that is being used by looking up the IP address of the traffic, and seeing what MAC address that IP address is leased to. Another way of doing this is simply using a packet sniffing tool such as Wireshark to look at the source MAC (if the user decides to do something involving the network).</p>
+</li>
+<li>
+<p>If the hacker has administrative control, they could change their IP address and spoof their MAC address (change it to make it look like a different device). This is when you may have to investigate the system that was hacked up-close rather than remotely to check for any evidence of who did it (known as &quot;digital forensics&quot;). In order to cover their tracks, the hacker may completely erase all contents on the hard drive of the device. Even a formatted drive may still have traces of data, which can be recovered using certain tools and analyzed; the only true method to prevent recovery is by physically shattering the disk platters inside the hard drive. </p>
+</li>
+<li>The biggest misconception I hear when it comes to Internet anonymity is that VPNs completely hides the identity of the source. This is simply NOT TRUE. Although decent VPNs can tunnel traffic to mask the source's identity, a tunnel still has a beginning and an end. By analyzing traffic at one end of a tunnel, the source interface of the tunnel (the port on something like a router that is mapped to the start of the VPN) can be found through extensive tracking of sequence numbers and the IP addresses combined with them after the data is unencrypted. The source IP address is a big indicator of whether the VPN is site-to-site (a dedicated one between two branches of a company), or remote-access (where one of the two sides remotely connects to the VPN via the Internet). If it is the first choice, one of the company branches can contact the other for help identifying the hacker. If it the second choice, the IP address can be looked up and given to the appropriate authorities to carry out legal processes.</li>
+</ol>
+<p>Didn't mean to make it this long, but I kind of got into it a bit too much. Hope this helps!</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbdi9r7">
+		<a class="author" href="https://www.reddit.com/user/T_away_444" target="_blank">T_away_444</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Throw away, because.</p>
+<p>This is quite a complex topic so ill try my best at the ELI5.  I had something written about 5 times but deleted it because it was too detailed and complex.</p>
+<p>Everything you do on a system leaves evidence.  Using digital forensics you can find that evidence.  Computer systems and networks are pretty complex but the reality is that it is really hard to hide everything on a system.  Even if you think you have cleared everything something is usually left behind.  Using appropriate evidence collection you can gather all sorts of good info.  Looking into the tools used (are they custom or widely available), information targeted, vulnerabilities used, connection information, and other evidence you can paint a pretty decent picture.  The tools or vectors that are used are often repeated , somewhat of a script and once they have been identified can act like a fingerprint.  If you know doing x y and z with tools a and b (on a very simple level); and it works and is effective, it will likely be repeated.  No one wants to reinvent the wheel every attack, especially because many attacks will fail so the attacker needs to be persistent.  If you can identify what attacker repeatedly takes those steps and no one else does, you can with a degree of certainty stipulate who is behind the actions.</p>
+<p>You gather evidence from the system regarding tools, files, connections.  You gather packet captures if they are available of network data, you work with ISPs and hosting providers.  You gather all of this data to paint the picture.  This helps with attribution of the attacker.  Information is shared between companies, governments, etc. to gather this information and evidence.  Once you have the bigger picture you can plug smaller pieces in to figure out which picture it belongs to.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -20,4 +89,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/5j2imn" onclick="return false"><span>show</span></a>
 </li>

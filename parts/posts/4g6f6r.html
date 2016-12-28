@@ -4,14 +4,67 @@
 		<h2>
 			<a href="/posts/4g6f6r" onclick="return false">How come solid state drives (SSDs) are mostly only available at storage spaces of 64, 128, 256gb and hard drives are available at more &quot;rounded&quot; spaces like 150, 500, 600gb, etc.?</a>
 		</h2>
-		<span class="date">2016-11-17</span>
+		<!--<span class="date">2016-11-17</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Sorry if this is terribly worded, but I couldn't think of a good way to word this.</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="d2eyhhp">
+		<a class="author" href="https://www.reddit.com/user/Koooooj" target="_blank">Koooooj</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Let's say you have a swimming pool and you want to fill it with candy.  How many pieces of candy fit?  Maybe it's 1,000,000 pieces.</p>
+<p>You decide that you want to fit as many pieces of candy into the pool as possible without making the pool bigger, so you make the candy smaller (to your five-year-old self a piece of candy is a piece of candy, no matter what size it is).  You start finding ways to make the candy smaller and smaller until you can fit 1,500,000 pieces of candy in your swimming pool.  You tell all your friends about that feat, then you go back and try making smaller and smaller pieces of candy.</p>
+<p>That's an analogy for the manufacture of hard drives:  there's a certain physical space that they have and they're trying to fit as many bits on a platter as possible.  When they hit certain milestones they push that design into production.  There's no preference for numbers that are nice and round in binary, so they stick to numbers that are nice and round to humans.</p>
+<hr />
+<p>Now imagine you go into the candy production business. You release a pack of candy that has 8 pieces of candy in it.  It's popular, but all the kids on the block want more pieces of candy.  To satisfy that demand you release a package that just has two of the previous packages in it, wrapped together.  This new 16-piece package sells great, so you fix up your machines to make the 16- piece packages the standard.</p>
+<p>Over time the demand for candy increases so you do just what you did before:  you tie two packages together and sell that as a new product.  Now you're selling 32-piece packages (which we know are just two 16-piece packages tied together, each of which are two 8-piece packages).</p>
+<p>Repeat this cycle several times.  As you move to larger and larger packages you streamline the packaging for the smaller packages (&quot;this unit not marked for individual sale&quot;).  Eventually you're selling 64-billion-piece packages and 128-billion-piece packages (where &quot;billion&quot; here is actually 1024*1024*1024).</p>
+<p>This is the analogy for flash memory (SSD) as well as things like RAM.  You have a design for a single bit of data storage, then you copy/paste that and add a bit of control logic and you have a two-bit memory cell.  Then you copy/paste that and add a bit of control logic and you have a 4-bit memory cell.  Repeat that process a few dozen times and you may arrive at an 8 GB memory chip.  Put a few of those on a board with some control logic and you have a 64 GB drive.</p>
+<hr />
+<p>The real key difference between these two setups is that with hard drives you have a blank slate on which you try to write as much as will fit, while with flash memory you're constructing the memory cells individually using a repeating pattern.  </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d2f68db">
+		<a class="author" href="https://www.reddit.com/user/ITGSeniorMember" target="_blank">ITGSeniorMember</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>HDD and SSDs have different architectures. If they were a type of lego, HDD are build with a load of pieces of length one. You can put them together to make larger pieces of arbitrary length to the people who make them go for nice round numbers (500Gb, 1000Gb, 2Tb etc).</p>
+<p>SSDs have pieces that are cheaper and easier to make in length two. Not only that, but it's cheaper and easier to make a piece of length 4 than is is to make 2 pieces of length 2. That scales up in powers of 2 so 1 piece that's 128 long is cheaper than 2 pieces 64 long and way way cheaper than 64 pieces that are 2 long. The difference is so big that a 512Gb SSD is probably an order of magnitude cheaper than a 500Gb one because that would require the following pieces, 1x256, 1x128, 1x64,1x32,1x16 and 1x4. </p>
+<p>edit: spelling</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d2f5jb5">
+		<a class="author" href="https://www.reddit.com/user/patchwork_Signals" target="_blank">patchwork_Signals</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Hard drives store information on spinning discs. The discs store bits (1s and 0s) by flipping magnetic dust so one pole or the other faces the reader. This coating of dust isn't perfect, which affects things like how big and how far apart patches of dust representing those bits have to be. Discs with better coatings can have more data, or be read more quickly, or last longer.
+It's easy to see how this results in a huge range of &quot;uneven&quot; sizes.</p>
+<p>Hard drives organize data in strings very much like a CD or vinyl record. There are magnetic heads which function like a laser or needle, reading and writing data as the platter spins underneath it. It reads and writes more or less in sequence.</p>
+<p><em>EDIT: yes, the layout is in concentric circles. I felt the linear nature of an HDD operation would be easier to understand as record-like. I did not mean to make that statement outright</em></p>
+<p>In contrast, solid state drives use a bunch of memory chips that are organized into grids, with addresses. Many columns can read or write simultaneously, and all can be accessed on short notice, and this is why SSD are so responsive.</p>
+<p>Anyways, the reason SSD use specific sizes? Their memory chips work directly with processors that handle data in sections. These are 8, 16, 32, 64, 128, 256, or 512 bits in length (some power of 2). I'm sure you can see how this results in very specific storage capacities.</p>
+<p>SSD with something like 100GB capacity are almost always actually 128GB units - this is due to over provisioning, which sacrifices storage space in favor of durability and performance.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d2ezz6g">
+		<a class="author" href="https://www.reddit.com/user/JakenVeina" target="_blank">JakenVeina</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A traditional hard drive is an analog device. It contains as many platters as they can fit into a case, made up of magnetic material.  The precision of the mechanical arm that moves to certain positions on the platters and measures or changes the magnetivity of the small are of the platter near the head, and the precision of the magnetic components in the head itself, determine how many bits of data can be fit into a HDD. As such, the tendency is to go with nice base-10 numbers that we're all familiar with. There's also the &quot;customer feels like they're getting more than they really are&quot; factor, since 1TB in base-10 is a fair bit less than 1TB in base-2.</p>
+<p>SSD's are fundamentally digital devices that operate in base-2 math at their very core. Making a 1000GB SSD would actually be detrimental to the design, as mapping the address space to run from 0x0000000000 to 0xE8D4A40FFF would require far more complex circuitry than mapping to 0xFFFFFFFFFF.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">3 more answers...</a>
@@ -19,4 +72,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/4g6f6r" onclick="return false"><span>show</span></a>
 </li>

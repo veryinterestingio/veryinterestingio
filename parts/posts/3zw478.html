@@ -4,14 +4,102 @@
 		<h2>
 			<a href="/posts/3zw478" onclick="return false">How can a 4K video look clearer on a 1080p display even though there aren't as many pixels on the 1080p display to show more detail in the 4K video?</a>
 		</h2>
-		<span class="date">2016-11-17</span>
+		<!--<span class="date">2016-11-17</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Long title, but yeah, how is it possible.</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="cypsej0">
+		<a class="author" href="https://www.reddit.com/user/MissArelin" target="_blank">MissArelin</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There's also this thing called Chroma subsampling. There are many ways of encoding color into the video (RGB, YCbCr, CMYK...). Videos usually use YCbCr, which has three components, Y being luma, and Cb and Cr being the blue and red differences. We know that our eyes are capable of differencing different intensities of luma, but we are not that effective with the blue and red differences. Chroma subsampling takes this into account and makes the pixels share their Cb and Cr with the three neighboring pixels, while having a unique luma for each one. About the 4K looking clearer than 1080p, there is an explanation related to the chroma subsampling. As the 4K videos have 4 times the amount of pixels in a 1080p screen, there is a relation of 4 pixels to 1, so those 4 pixels are merged into a single one, with the best possible color representation. In the end, every single pixel is going to have its unique Luma, as before, but also its unique Cb and Cr components.</p>
+<p>There's this video which explains it really well: <a href="https://www.youtube.com/watch?v=kIf9h2Gkm_U" target="_blank">https://www.youtube.com/watch?v=kIf9h2Gkm_U</a></p>
+<p>This is my first time explaining something in this subreddit, so sorry if I was too technical; I'll try to explain it again if someone did not understand it correctly. </p>
+<p>Edit: Added the video link.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="cypx9bf">
+		<a class="author" href="https://www.reddit.com/user/CigarTime" target="_blank">CigarTime</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Ok this is the second time in a week where the most upvoted answer is wrong.   </p>
+<p>It has nothing to do about bitrate. The correct answer is already here in this thread.   </p>
+<p>/u/MissArelin
+<a href="https://www.reddit.com/r/explainlikeimfive/comments/3zw478/eli5_how_can_a_4k_video_look_clearer_on_a_1080p/cypsej0" target="_blank">https://www.reddit.com/r/explainlikeimfive/comments/3zw478/eli5_how_can_a_4k_video_look_clearer_on_a_1080p/cypsej0</a></p>
+<p>/u/UniqueNameIdentifier
+<a href="https://www.reddit.com/r/explainlikeimfive/comments/3zw478/eli5_how_can_a_4k_video_look_clearer_on_a_1080p/cypufvi" target="_blank">https://www.reddit.com/r/explainlikeimfive/comments/3zw478/eli5_how_can_a_4k_video_look_clearer_on_a_1080p/cypufvi</a></p>
+<p>/u/michaelrcarroll
+<a href="https://www.reddit.com/r/explainlikeimfive/comments/3zw478/eli5_how_can_a_4k_video_look_clearer_on_a_1080p/cypsvq3" target="_blank">https://www.reddit.com/r/explainlikeimfive/comments/3zw478/eli5_how_can_a_4k_video_look_clearer_on_a_1080p/cypsvq3</a></p>
+<p>I sell apples<br />
+Some kid comes to me and asks for 16 green apples and he's really specific. If they aren't the same color of green he won't buy it. I look through all my apples and find 4 different color of green, I pick 4 apples of each 4 colors. Now, if I just leave the different color of apples grouped together in the box the kid will see they're different. So I arrange them in alternating order like this.  </p>
+<p>G1 G2 G1 G2<br />
+G3 G4 G3 G4<br />
+G1 G2 G1 G2<br />
+G3 G4 G3 G4  </p>
+<p>This is the 4K.  </p>
+<p>The kid looks at the box and tells me he can see that I'm trying to trick him so he'll only buy 4 apples of the same green and goes home with the G1 apples. This is the HD.  </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cypufvi">
+		<a class="author" href="https://www.reddit.com/user/UniqueNameIdentifier" target="_blank">UniqueNameIdentifier</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's mostly down to downsampling, where every pixel in the final Full HD resolution gets its pixel information from 4 pixels. Just like Apple does with their Retina displays.</p>
+<p>So when you downsample 4K down to Full HD it will appear sharper and preserve details better. It also improves color subsampling from 4:2:2 (or 4:2:0) to 4:4:4.</p>
+<p>But what does that mean? H.264 and other compression techniques uses something called YcbCr (Y = luma, cb = blue and Cr = Red) to encode RGB color values. Think of this like 3 separate transparent layers, where one layer has the luminance data (imagine a picture in black and white), the next layer contains all the blue data and the last layer all the red data. So when you combine these layers on top of each other you see a color image in RGB color space.</p>
+<p>Let's decipher those numbers. Imagine looking at a matrix of 4 x 4 pixels each with a Y value, a cb (U) value and a Cr (V) value.</p>
+<pre><code>YUV YUV YUV YUV
+YUV YUV YUV YUV
+YUV YUV YUV YUV
+YUV YUV YUV YUV</code></pre>
+<p>If you look at the first row you can see 4 of each, 4 Y's, 4 U's and 4 Vs. This represents a 4:4:4 image and is considered the holy grail. This is how we see things.</p>
+<p>In a 4:2:2 color subsampling you throw away half of your color data and the same 4 x 4 pixels would look like this:</p>
+<pre><code>YUV Y   YUV Y
+YUV Y   YUV Y
+YUV Y   YUV Y
+YUV Y   YUV Y</code></pre>
+<p>You can clearly see that we now have 4 Y's, 2 U's and 2 V's in a single row, thereby missing half the color data (blue and red data) compared to the example above.</p>
+<p>If we, however, downsample the video from 4K to Full HD we would use an 4 x 4 array to represent a single pixel in the final image.</p>
+<pre><code>YUV Y   YUV Y   YUV Y   YUV Y
+YUV Y   YUV Y   YUV Y   YUV Y
+YUV Y   YUV Y   YUV Y   YUV Y
+YUV Y   YUV Y   YUV Y   YUV Y
+YUV Y   YUV Y   YUV Y   YUV Y
+YUV Y   YUV Y   YUV Y   YUV Y
+YUV Y   YUV Y   YUV Y   YUV Y
+YUV Y   YUV Y   YUV Y   YUV Y</code></pre>
+<p>Huzzah! We now have 4 U's and 4 V's in a single row again.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="cyq20ts">
+		<a class="author" href="https://www.reddit.com/user/urtext" target="_blank">urtext</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I've never wanted to be one of those annoying people correcting others on Reddit, but as a guy shooting a film in 4K at the moment I thought I could offer the things I know.</p>
+<ul>
+<li>
+<p>Like many have said, bitrate and resolution are different. The number of pixels has nothing to do with the amount of data used per second to render those pixels.</p>
+</li>
+<li>That said, 4K footage should be shot with higher bitrates to cover the amount of pixels.</li>
+</ul>
+<p>And I'm going to offer a perspective that many will disagree with. 4K video <em>doesn't</em> look clearer on 1080p. With this film, I'm currently working on both 4K monitors and HD monitors, using both 4K master files and HD 'dubs' of the footage. Through an HD monitor you'd be <em>really</em> hard pressed to tell the difference between the 4K and the HD files.</p>
+<p>And even more controversially, we see <em>problems</em> coming from the 4K to HD conversion. Moiré, or that 'fly-screen' effect, is more pronounced in a 4K to HD conversion and must be carefully managed. Also, in terms of bitrate, a 50mbps HD file is cleaner than a 50mbps 4K file. If you want 4K, you must quadruple the bitrate to get the same quality in HD.</p>
+<p>Pushing a 4K video through an HD display means you are relying in your TVs downconverting to reduce the image. Watching the HD file in the first place means you are relying on the post-production houses advanced 4K--&gt;HD process, which can clean up a lot of these downconversion problems.</p>
+<p>I don't know enough about watching 4K files online, but my guess is the moment you click 4K it indicates to the website (Youtube etc.) to use a very high bitrate that, even when converted down to HD, is a higher relative bitrate than what the HD stream was.</p>
+<p>But as a guy working with huge 4K files and huge HD files, on both 4K and HD displays, I can tell you that displaying 4K through 1080p monitors only produces problems, not advantages.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">3 more answers...</a>
@@ -19,4 +107,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/3zw478" onclick="return false"><span>show</span></a>
 </li>

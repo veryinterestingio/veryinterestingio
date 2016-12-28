@@ -45,14 +45,40 @@
 			<span class="tags tag-Physics">Physics</span>
 			<a href="/posts/5fp09w" onclick="return false">How does Nasa communicate with their spacecrafts when they are in deep space?</a>
 		</h2>
-		<span class="date">2016-12-03</span>
+		<!--<span class="date">2016-12-03</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>How does Nasa communicate with their spacecrafts when they are in deep space?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dalyhvd">
+		<a class="author" href="https://www.reddit.com/user/ericGraves" target="_blank">ericGraves</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you have any interest in deep space communications coding, either history or theory, then you should read  <a href="http://www.isiweb.ee.ethz.ch/archive/massey_pub/pdf/BI321.pdf" target="_blank">Deep Space Communications and Coding: A marriage made in heaven by James Massey</a>. Wanted to put this up front. </p>
+<h2>Original post</h2>
+<p>In the same way your router communicates with your computer. Only, the antenna are directional and <strong>much</strong> bigger. I can't speak to what is physically happening when we send electromagnetic waves into space, but I can speak to one extremely crucial aspect - error correction coding.</p>
+<p>So we use electromagnetic waves, but at those extreme distances, there are going to be a large number of errors. This is problematic, since in deep space, acknowledgement based schemes are impractical due to latency (and because they are generally sub-optimal for point to point communication). So, you have to get it right the first time, but for every 10 bits you send, you only receive 6 correctly. We could build bigger and stronger antennas or up the transmitting power, but those become impractical for the sizes needed to reduce the error rates. The only efficient solution is therefore error correction codes. </p>
+<p>Deep space communication is almost perfectly modelled by a bandlimited <a href="https://en.wikipedia.org/wiki/Additive_white_Gaussian_noise" target="_blank">AWGN</a> channel. Which means, the <a href="https://en.wikipedia.org/wiki/Shannon%E2%80%93Hartley_theorem" target="_blank">Shannon Hartley Theorem (which is only for bandlimited AWGN channels)</a> directly applies. And what is really cool about memoryless (for which AWGN is generally a subset of) channels, is the <a href="http://users.ecs.soton.ac.uk/rm/wp-content/BER5000.jpg" target="_blank">bit error rate Waterfall curves associated with most error correction codes</a>. In essence, there is a threshold, above which probability of error decreases exponentially quickly with respect to the <a href="https://en.wikipedia.org/wiki/Signal-to-noise_ratio" target="_blank">SNR</a>.</p>
+<p>The types of error correction codes have changed over the years, and in the mid 90s we finally found implementable codes which could reach the Shannon limit. Specifically, <a href="https://en.wikipedia.org/wiki/Turbo_code" target="_blank">turbo codes</a>. Before that, we used sub-optimal schemes, and just added extra redundancy to compensate. One example is <a href="https://en.wikipedia.org/wiki/Voyager_2" target="_blank">Voyager 2</a> which uses a <a href="https://en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction" target="_blank">Reed-Solomon Error correction code</a>. </p>
+<p>For more reading on this, it is my pleasure to present <a href="http://www.isiweb.ee.ethz.ch/archive/massey_pub/pdf/BI321.pdf" target="_blank">Deep Space Communications and Coding: A marriage made in heaven by James Massey</a>. It is important to note, <a href="https://en.wikipedia.org/wiki/James_Massey" target="_blank">James Massey</a> was a prominent information theorist (won the Info Theory societys top award). So having such a well written article, from such a giant in the field... well... its pretty cool.</p>
+<p>Edit-- Wanted to emphasize the important part.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="damu715">
+		<a class="author" href="https://www.reddit.com/user/mrxcol" target="_blank">mrxcol</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Isn't it possible to have something like a mesh network between all satellites ? I mean there are many other satellites out there, some of them closer to the voyager than earth so maybe a mesh could help. Anyone knows why they're not doing that ?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">1 more answer...</a>
@@ -60,6 +86,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/5fp09w" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

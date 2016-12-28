@@ -45,14 +45,130 @@
 			<span class="tags tag-Technology">Technology</span>
 			<a href="/posts/5iczeq" onclick="return false">How are CPUs made?</a>
 		</h2>
-		<span class="date">2016-12-17</span>
+		<!--<span class="date">2016-12-17</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Say there's a brand new cpu out on the market. How does it go from being an idea, to a finished, working cpu? Also what makes it superior to other cpus; new competition and older models?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="db7ekaa">
+		<a class="author" href="https://www.reddit.com/user/princeSShitler" target="_blank">princeSShitler</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In order to understand how a CPU is made, we need to look at how really any <a href="https://inst.eecs.berkeley.edu/~ee127a/book/login/Images/gp_dig_ckt_ex_gates.png" target="_blank">digital circuit</a> is made into a <a href="http://sub.allaboutcircuits.com/images/04287.png" target="_blank">silicon wafer</a> to be placed onto a <a href="http://www.epectec.com/images/pcb-electrical-engineering.jpg" target="_blank">printed circuit board</a> or even just a &quot;black plastic box with exposed pins&quot; (<a href="https://cdn.sparkfun.com/assets/7/a/6/9/c/51c0d009ce395feb33000000.jpg" target="_blank">integrated circuit</a>) as this is how most digital circuits appear to us by the time we interact with them.</p>
+<p>If you follow the link attached to &quot;digital circuit&quot; you'll see shapes you may or may not be familiar with, these are called logic gates. </p>
+<p>A digital circuit takes input signals and produces output signals, on a conventional CPU with hundreds of gold pins sticking out of the bottom the only way to know which pin provides which signal is to read the documentation provided by the manufacturer, something only those who will be designing motherboards for these processors would do.</p>
+<p>The specifics of what the CPU does doesn't really matter to answer this question, but it's important to think about the CPU as a device that, based on certain inputs, where an input is either ON or OFF and cannot hold any other value, needs to provide predictable output signals that get routed to other things on your motherboard like your memory (RAM), your PCI bus that may contain a graphics card, sound chips, the BIOS chip, SATA devices and dozens of other peripherals that we expect to work 100% of the time.</p>
+<p>With this in mind, a modern day CPU is clearly a product of decades of refined methodology about how computers should be designed to interact with many different components at once, but perhaps more impressive than that is the advanced manufacturing that allows designing a new CPU to be done in (roughly) the following steps:</p>
+<ol>
+<li>
+<p>HDL design and design verification. HDL stands for Hardware Description Language; new digital circuits actually can be written in code and tested using simulation software such as Modelsim or Quartus. Verilog is an example of a commonly used Hardware Description Language.</p>
+</li>
+<li>
+<p>Synthesis, Netlist Generation and Post-Synthesis Verification. The issue with an HDL design is that it's often far more abstracted than discrete logic gates. A synthesis tool is needed to turn the HDL code into a massive list of pure logic gates and simple components, this list is still HDL code and therefore can be simulated using the same simulation software as the original design. The post-synthesis netlist will be tested to make sure timings are met (if you know much about electronics/electricity in general, parasitic capacitances on wires can be an absolute nightmare to deal with at these small scales!). It has taken a long time to create software that accurately portrays how a physical circuit will behave, so it's crucial that the engineers provide the software with the correct information (i.e. what kind of transistor is going to be used, what should be the delays for each logic gate) so that in the event that the device is manufactured, it actually works as it did in development.</p>
+</li>
+<li>
+<p>Device Layout. Now that we have a list of all of the components that are needed for this design, we need to physically lay them out so that it can be manufactured. This means that we will need to turn those logic gate symbols into actual blocks of transistors, and connect these blocks together in the same way that they are virtually connected in software. Let's say we have a highly modular design, CPU cores are module A, and there are four types of caches B, C, D, and E. Let's say this is a new i7 processor and there are 8 module A's. Maybe each core gets its own B cache, but all of the cores share caches C, D, and E. As you may be starting to gather, routing all of these modules together is certainly non-trivial and needing to create long wires to connect things can actually throw off the timings and render the design useless! </p>
+</li>
+<li>Manufacturing. This is where my knowledge of making CPUs comes to an end. As far as I know, the physical layout can be manufactured through a combination of exposing certain wavelengths (think laser-etching) of light to refined-silicon ingots that have been sliced extremely thin. The exposed areas can then be exposed to a chemical so that the material is removed and then certain areas of the silicon are &quot;<a href="https://en.wikipedia.org/wiki/Doping_\(semiconductor\)" target="_blank">doped</a>&quot; with phosphorus/boron (many others) to be slightly more positive or negative, as silicon as an element has 4 valence electrons which can be considered electrically neutral. This concept is the basis of how any semiconductor-based circuit functions.</li>
+</ol>
+<p>This is as much as I know as an undergraduate (5 semesters) Computer Engineering student.</p>
+<p>An interesting anecdote: normally a company like Intel will try to make as many of the best processors they can, but due to small imperfections in the manufacturing process not all wafers perform similarly, the ones that don't perform as well just have the dodgy cores disabled and get sold as i3s and i5s!</p>
+<p>EDIT: Thanks a lot for the gold, this is my first noteworthy comment. I had to update the image for &quot;digital circuit&quot; with something new as the first one died (if anyone is even still around to read this).</p>
+<p>One thing I'd like to mention to anyone who sees this update is to read some of the comment replies, a few individuals have offered great supplementary information to what I have provided. Also, I realize this answer makes an assumption that the reader knows what role a CPU plays in a computer, if you know your computer has a CPU but aren't sure what exactly it does, think of it as the brain, where, a brain is processing inputs and making decisions on what outputs to send, just like a human brain!</p>
+<p>To learn more about computers it can often require a highly intimate conversation that's catered to what each of us might already know. I hope this has inspired some of you to learn more! (:</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="db7l65v">
+		<a class="author" href="https://www.reddit.com/user/ERRORMONSTER" target="_blank">ERRORMONSTER</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Nobody's really gotten into chip manufacturing so I'll get into that a bit. Everything else has been covered.</p>
+<p>Silicon is melted down into a vat with some intentional impurities (dopants.) A silicon crystal (a &quot;seed&quot;) is dipped into the molten silicon and slowly drawn out. As the seed is drawn out, the molten silicon grows the seed into an ingot. The ingot is spun as its drawn out. The process looks something like <a href="http://www.processpecialties.com/graphics/siliconpull297.gif" target="_blank">this</a>. The ingot, when finished, is about 3-4 feet long and weighs around 250 kg.</p>
+<p>From here out, the work is done in clean rooms. One piece of dust can ruin a wafer. The ingot is sliced using diamond-tipped or wire saws into blank wafers. These wafers are buffed and polished to as perfect a surface as possible. If a polished wafer were scaled up to the size of a football field, the height from the highest peak imperfection to the lowest trough imperfection would be a few millimeters.</p>
+<p>Various process are used to essentially 3D print the pieces of the circuit onto the wafer, including:</p>
+<ul>
+<li>
+<p>photo-lithography: liquid photo-resist is deposited onto the wafer. Light is shined onto the wafer using a template of the design to be imprinted on the current layer (the substrait). Depending on whether positive or negative photolith is being done, either the resist will harden under UV light or will harden without the light. Whatever resist has not cured will be washed away, leaving what is essentially a mould (the &quot;mask&quot;) of the substrait to be created. <a href="http://britneyspears.ac/physics/fabrication/Image46.jpg" target="_blank">Image</a></p>
+</li>
+<li>
+<p>ion beam implantation: ions are blasted at the substrait to dope the Silicon to create P and N-type semiconductor. These can be made next to each other to create transistors (a PNP &quot;sandwich&quot; of semiconductor will be called a &quot;p-type transistor&quot;, similar NPN &quot;n-type&quot;) these transistors are creatively connected together to create logic gates, which make computers work.</p>
+</li>
+<li>
+<p>molecular beam epitaxy and chemical vapor deposition: metals are heated up into a gas and pushed into a vacuum to deposit on the wafer and substrait, creating the &quot;traces,&quot; or actual wires inside the chip.</p>
+</li>
+<li>
+<p>thermal oxidation: the wafer is heated in an oxygen rich environment to create silicon dioxide, which will insulate the substrait and various traces from touching each other.</p>
+</li>
+<li>etching: strong, concentrated acid is used to dissolve the cured photo resist and any extra materials that have deposited on it after the substrait has been built. Another insulating material might be deposited over the entire wafer, followed by the wafer being ground and polished until contacts from the initial substrait are visible to make contact with the next layer of substrait. Etching can also be used to essentially &quot;dig&quot; into the wafer where resist is not protecting it.</li>
+</ul>
+<p>Between pretty much every step, the wafer is polished and ground in order to make sure the heights of everything are as expected and contact between layers is available where it needs to be. A single wafer for a one layer chip might go through photolith, CVD, etching, more photolith, ion beam implantation, more CVD, more etching, more photolith, thermal oxidation, and more etching. <a href="http://www.lithoguru.com/images/lithobasics_clip_image004.gif" target="_blank">This</a> is all done to create one layer of troughs in the wafer. Imagine doing all these steps for every set of jobs that needs to be done for every layer of the chip.</p>
+<p>I definitely missed some stuff, so feel free to add more if anyone knows this stuff better than me. Or ask questions and I'll do my best to answer.</p>
+<p><a href="https://youtu.be/gBAKXvsaEiw" target="_blank">10 min video showing the above steps with animations</a> </p>
+<p>One CPU might be better than another due to several factors. The layout might be more efficient with less heat losses, allowing the clock speed to be increased (which increases heat losses), making the CPU faster, without damaging the components. It might also use a better manufacturing process with tighter tolerances, allowing better design and performance. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="db7jnr8">
+		<a class="author" href="https://www.reddit.com/user/compaqdrew" target="_blank">compaqdrew</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I used to work at a major CPU manufacturer.  Very possible that something I worked on is sitting on your desk.  (These are my own views not the views of any employer.)</p>
+<p>Design/manufacturing CPUs at scale is really a very, very, very large machine.  If we are talking about a major chip, there are tens of thousands of people, maybe a hundred thousand, in different places all over the world that are involved at some stage of the process.  </p>
+<p>To give you some sense of the scale of it, in addition to the obvious things like design and actually running a factory, there are a lot of other pieces of the puzzle.  Example, the manufacturing tolerances of CPUs are so tiny (on a molecular level, really) that basically something goes wrong with every part.  So, as a stage in the assembly line, each chip is tested, and a decision is made about how to sell it (e.g. 1 of 4 cores doesn't work  – sell as a 3-core chip).  Just testing CPUs as they come off the assembly line is a whole business unto itself.  To get some idea of the scope <a href="https://www.youtube.com/watch?v=0UolOTYkBKI" target="_blank">see one of the machines in action</a>.  A major manufacturer would have many <em>distinct</em> test stages in their pipeline, so what goes in as one part may come out as 50+ after sorting through dozens of machines.  And that is just the testing piece of the puzzle.</p>
+<p>But to answer the question you asked:</p>
+<blockquote>
+<p>How does it go from being an idea, to a finished, working cpu?</p>
+</blockquote>
+<p>Generally, somebody sees a market opportunity based on some combination of the current product and projections about what the competitive landscape will be 6 months from now.  e.g., you notice that a lot of people are asking for 4-core chips, you wonder if the trend would continue for 6 cores but nobody knows.  So you go to the engineering team, one third of them splinter off into some <a href="http://arstechnica.com/gadgets/2016/12/amd-zen-performance-details-release-date/" target="_blank">crazy-ass 8-core moonshot that requires years of R&amp;D</a>, another third of them try to squeeze 2 cores into the free space in the next die shrink and decrease the error rate so they won't be disabled on the assembly line, and one third of them works on removing silicon that &quot;nobody uses&quot; and emulating in software to free up space.  One of those projects will fail, one will basically work but can't be manufactured reliably and so it becomes a specialist part until somebody figures out how to do it reliably, and one of them becomes a mass-market part.  And that's basically how new CPUs are made.</p>
+<p>I guess what I'm trying to say is, it is a lot of iterating on existing designs.  A major design company might have somewhere between 1-3 &quot;master&quot; designs and be working on 20 different &quot;projects&quot; that tweak some piece of the master design that individually are in some stage between whiteboard and manufacturing.  But nobody tries to design a chip from scratch, that's too hard. It is all about how to lay out some section of the master design more efficiently etc.</p>
+<blockquote>
+<p>what makes it superior to other cpus; new competition and older models?</p>
+</blockquote>
+<p>Well in addition to e.g. specs, there are a lot of things consumers don't normally think about.  The primary customer for CPUs are OEMs (e.g. Dell, Apple) that are buying 10s of millions of units.  So &quot;superior to other CPUs&quot; means in practice superior <em>for Dell</em>, so things like a low failure rate, diagnostic tools, good documentation, thermal limits / clearance are really important and those may not be the primary purchase drivers for the enthusiast market.</p>
+<p>There are also a lot of &quot;specialist&quot; markets, for example &quot;extreme conditions&quot; (think fire/police/military/space) or special workloads (say you run a popular cloud-computing service and need a CPU you can split to 36 tenants) where the difference is somewhere between just testing the chip more thoroughly to adding unique features for the segment.  The enthusiast market (e.g. &quot;Intel Extreme Edition&quot; &quot;AMD FX&quot;, ) are really just &quot;yet another specialist market&quot; that is sold at retail instead of to OEMs.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="db7u304">
+		<a class="author" href="https://www.reddit.com/user/dakami" target="_blank">dakami</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This is ELI5, so I'm going to explain things a little differently.</p>
+<p>A CPU is, in a very real sense, an extremely small photo, printed on rock.  The process of printing this photo isn't completely different than what we used to do to print film -- make a negative, shine light through it, use various chemicals to make the image stick.  We even do things similar to drawing on top of the picture, of course at a much smaller scale.</p>
+<p>What's special is, when you run electricity through this &quot;rock photo&quot;, weird things happen.  Sometimes the power goes through, sometimes it doesn't.  That's because Silicon -- rock -- is a semiconductor.  It's not random, there are rules.  What we burn onto the rock, decides how the CPU works.</p>
+<p>It's worth noting that there are layers to a chip, sort of like layers to a cake.  Photos are flat, but there's a little bit of 3D to CPUs.  This is a thing the printing process allows, and is definitely used.</p>
+<p>It's also worth noting that not every photo comes out!  So we print many, many photos onto a big surface -- a &quot;wafer&quot; -- and then see what actually worked.  We do something called &quot;binning&quot; too, where the really high quality &quot;pictures&quot; sell for more than the stuff that's slightly imperfect.  Sometimes we even print extra stuff onto the chip, so that imperfections can just be skipped over.</p>
+<p>At this point, heat is the major factor limiting what a chip can be made to do, so disabled components aren't a performance loss because we couldn't run power through the entire chip anyway.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="db7envz">
+		<a class="author" href="https://www.reddit.com/user/haidynre" target="_blank">haidynre</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You start with sand.
+React it with HCL to get a liquid. Strain and vaporize it to get rid of impurities. Flow the vapor through heated graphite to get deposits of elemental silicon.</p>
+<p>Once you get enough elemental silicon, heat it up until its a liquid. Difuse boron gas through the mixture to make initial doping levels. Take a silicon crystal that has the right orientation and dip it into the mixture. Rotate and pull it out. As the silicon around the crystal cools, it matches the orientation of the crystal and forms a bigger crystal.</p>
+<p>The rotations cause the cooling silicon to form into a collumn as it is pulled upwards. Eventually you end up with a REALLY BIG COLLUMN with a point on one end.</p>
+<p>Cut your collumn into very thin circles called wafers. (Right now, ours are p-type because of the boron we put in earlier.) This is where the real magic begins.</p>
+<p>The air will create a resistive coating of oxide around the semiconductor. We will now apply a series of masks on the wafer to make the chip itself.</p>
+<p>Lets make some mosfets. Heat up the wafers to drive off moisture. Apply a thin layer of compound (photoresist) that reacts when exposed to UV light. Shoot light at it with the right pattern to create some areas where the resist is cured and some where it is not. Dump the wafer in a solution that removes the non-cured photoresist. Push hot vapors of aluminum or manganese toward the cooler wafer. They will only reach areas where the photoresist was removed. This created the n-wells for our p- mosfets.</p>
+<p>Let the oxide grow back and deposit a layer of polysilicon to act as our gate insulator for the mosfet. Apply a mask that only covers the gates, and etch away the rest of the oxide with short wave uv light. Now push hot vapors of Boron toward the wafer to create higher concentrations of boron on both sides of the pmos gate.</p>
+<p>Repeat the whole Boron thing we just did with aluminum to create npn gates.</p>
+<p>Push hot nitrogen toward the wafer, apply the photoresist and etch it away to make insulating boundaries between the p/n regions and the gates.</p>
+<p>Deposit metal on to the substrate. Apply photoresist. Etch it away to make conductive metal that goes to the different gates.</p>
+<p>TLDR: sand -&gt; purify -&gt; molten SI -&gt; doped molten SI -&gt; giant collumn -&gt; cut into wafer -&gt; apply photoresist -&gt; cure photoresist -&gt; remove uncured photoresist -&gt; etch photoresist -&gt; deposit stuff -&gt;repeat the photoresist stuff a lot</p>
+<p>Newer cpu = more detailed photoresist = smaller mosfets = more mosfets that are better </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -60,6 +176,7 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/5iczeq" onclick="return false"><span>show</span></a>
 </li>
 		</ul>
 	</div>

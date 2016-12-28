@@ -5,14 +5,91 @@
 			<span class="tags tag-Technology">Technology</span>
 			<a href="/posts/58p9qk" onclick="return false">What the DDoS attack on DynDNS is and why it's causing Internet failure.</a>
 		</h2>
-		<span class="date">2016-11-24</span>
+		<!--<span class="date">2016-11-24</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5:What the DDoS attack on DynDNS is and why it's causing Internet failure.</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="d928sue">
+		<a class="author" href="https://www.reddit.com/user/stvhl" target="_blank">stvhl</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>DNS is the internet's way of finding which server handles a request for a certain URL. For example &quot;this server (represented by an IP address) contains www.reddit.com&quot;. Some people describe it as the phonebook of the internet.</p>
+<p>An attack on a DNS provider like DynDNS means that nobody (e.g. your web browser) knows how to handle a request for &quot;www.reddit.com&quot;. They don't know how to find the server that contains the site. The reddit servers could be functioning fine but there isn't any way to access them.</p>
+<p>There are multiple DNS servers (technically your router is a DNS server) but they usually end up asking one of the big guys (such as DynDNS) for the answer. If one of the big guys goes down, a lot of sites suddenly become impossible to locate. If, however, you switch your DNS server to something like Google (who have a global DNS server) or OpenDNS, some of the sites that were down would work.</p>
+<p>In the future I'd love to see a distributed DNS implementation. I studied with some guys who investigated it but not sure how far it got. DNS is definitely a bottleneck in the architecture of the internet as there are a few big providers who, if attacked, have a huge effect on everyone.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d92k8b8">
+		<a class="author" href="https://www.reddit.com/user/liberty_me" target="_blank">liberty_me</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Imagine you have a friend named Dyn with super great memory. Everytime you need someone's phone number, you ask your friend for it. Need Bill's number? No problem, just ask Dyn. Need Sam's number? Just ask Dyn. You don't know people's phone numbers, but you know their names, and that's enough for Dyn.</p>
+<p>Now imagine someone wants to be an asshole, so they take up all of Dyn's time asking for numbers they don't really care about. Dyn doesn't have time to answer your questions anymore.</p>
+<p>That's what DNS is - a way to translate names we can remember to IP addresses we would have a hard time remembering. Dyn is one of the major DNS players in the internet, and all of Dyn's time and resources were being taken up so it couldn't answer you (I.e., a distributed denial of service attack).</p>
+<p>Edit: Thanks autocorrect - Dyn, not Dan.</p>
+<p>Edit 2: Wow! This blew up and is my highest rated comment yet. Thanks guys! Following up with a bit more info in case you want more details on denial-of-service (DoS) attacks and distributed denial-of-service (DDoS) attacks. I kept the explanation above as ELI5 as possible, but there are actually two different types of DoS attacks. The explanation above is more inline with a DoS attack. <a href="https://www.reddit.com/user/mount2010" target="_blank">/r/mount2010</a> has a <a href="https://www.reddit.com/r/explainlikeimfive/comments/58p9qk/eli5what_the_ddos_attack_on_dyndns_is_and_why_its/d92w8vz/" target="_blank">great explanation on DDoS</a>:</p>
+<blockquote>
+<p>A DDOS is much rather like:
+Someone wants to be a asshole, so they go ask all their friends to ask Dyn about numbers they don't care about.
+In this case, the &quot;friends&quot; were &quot;internet of things&quot; (devices with connection to the Internet) that were used to spam DynDNS.</p>
+</blockquote></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d92rvft">
+		<a class="author" href="https://www.reddit.com/user/ajc820" target="_blank">ajc820</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Putting DNS aside as it has been touched on, the questions of 'how' and 'why' this attack is so large relates to the Internet of Things and the 'Mirai' malware currently infecting small devices connected to the internet. These devices include CCTV cameras, wearable technology, TVs and other devices we hook up to the net. Approximately 6 million of these are estimated to be connected each day. </p>
+<p>On September 20, <a href="https://krebsonsecurity.com/2016/09/krebsonsecurity-hit-with-record-ddos/" target="_blank">krebsonsecurity</a> (a security researcher's website, and the source of this info) was hit with a record-breaking attack of ~620Gbps on Akamai. Akamai are the cloud cache for Krebs website, who ultimately kicked his site off their service. Note: they were providing it free, and it was affecting other customers.</p>
+<p>Now typically, attacks of this size rely on 'DNS reflection', a method whereby consumer and business routers equipped with DNS servers are misconfigured to allow queries from anywhere on the net (and hence malicious requests made from these routers seem to come from a reasonably trustworthy source). A relatively small attack of this nature is amplified by crafting DNS queries such that while the requests flowing in from a malicious attacker on the net, and out from these routers, are relatively small (in terms of data size), the request generates a response 60-70 times that size from the server that the queries are ultimately sent to. Therefore, a relatively small number of breached routers can generate a large attack. </p>
+<p>However, in this instance, the attack did not rely on DNS reflection. Instead, it was mostly comprised of requests made from hundreds of thouands of tiny devices. </p>
+<p>Around September 21/22, OVH (a French hosting company) was hit with the biggest DDOS known to date (~1.5 Tbps), roughly doubling the size of the attack on Krebs, and again coming from <a href="https://twitter.com/olesovhcom/status/779297257199964160?ref_src=twsrc%5Etfw" target="_blank">IoT devices</a></p>
+<p>On October 16, the <a href="https://github.com/jgamblin/Mirai-Source-Code" target="_blank">source code</a> of the Mirai malware used to attack Krebs on Security and OVH was publically released (but not on github, thats just a mirror). It's now linked to the current attacks on DYN.</p>
+<p>Along side co-ordinating the attacks, the Mirai malware scans the internet for devices with default passwords in order to use them to launch these attacks. </p>
+<p>disclaimer: not into security, just summarising what I've read. Please let me know of any errors.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d92lou5">
+		<a class="author" href="https://www.reddit.com/user/joatmon-snoo" target="_blank">joatmon-snoo</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Two bits of important info you need up-front:</p>
+<ol>
+<li>
+<p>DDoS: imagine someone getting texts from tens of hundreds of thousands of people.</p>
+<p>No matter how fast you are at answering phone calls, or however many heads and phones you have, you can only respond to so many people so quickly. That's a DDoS: you overwhelm a server with a ton of information (generally requests of some sort), which can make the server misbehave in all sorts of ways.</p>
+</li>
+<li>
+<p>DNS: when you want to text John Doe, you have to look up John Doe's phone number to send him a text.</p>
+<p>Same thing happens when you type &quot;reddit.com&quot; or &quot;google.com&quot; into your browser's address bar: it has to look up the address of a server which hosts said website. That's DNS: the way you translate a website URL into the address of a server that hosts the website.</p>
+</li>
+</ol>
+<p>There are different levels of DNS providers, and what happened today was that one of the major DNS providers saw a massive DDoS attack for just over 6.5 hours. The result: if you tried to go to &quot;www.reddit.com&quot;, &quot;www.twitter.com&quot;, &quot;www.spotify.com&quot;, or anything of the sort while the attack was going on, your request for a server address got lost in the DDoS attack, and so even though there wasn't anything wrong with the websites themselves, your browser couldn't figure out how to <em>get</em> to the websites.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d92jory">
+		<a class="author" href="https://www.reddit.com/user/awesometographer" target="_blank">awesometographer</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you're on reddit, you've probably seen the term &quot;hug of death&quot; when a bajillion redditors go and see a -usually- low traffic website, which crashes the site.</p>
+<p>This happens cause the places that host these websites can't handle that many people, so it starts denying service.</p>
+<p>DNS, Domain Name Service, is the thing that translates www.google.com into a thing the internet can understand. If you put 216.58.195.68 into your address bar, it will go to google. People can remember google.com easier than 216.58.195.68 - DNS is the translator.</p>
+<p>Bad people are giving the translator a hug of death.</p>
+<p>You know where you want to go, the interwebs can get you there, but you don't speak internet, so you can't go some places right now.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -20,4 +97,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/58p9qk" onclick="return false"><span>show</span></a>
 </li>

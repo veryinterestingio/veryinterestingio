@@ -5,14 +5,89 @@
 			<span class="tags tag-Technology">Technology</span>
 			<a href="/posts/4psgnr" onclick="return false">Why is it so hard to make walking up or down stairs in video games look natural?</a>
 		</h2>
-		<span class="date">2016-11-24</span>
+		<!--<span class="date">2016-11-24</span>-->
 		<span class="is-new">NEW</span>
 	</div>
 
 		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Why is it so hard to make walking up or down stairs in video games look natural?</p></div></div>
 
 	<div class="comment-section">
-		<div class="answers-placeholder"></div>
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="d4nvykx">
+		<a class="author" href="https://www.reddit.com/user/RibsNGibs" target="_blank">RibsNGibs</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Even if you slow the gait to the right speed, making an animation cycle that goes up stairs smoothly has some unique issues which make it difficult.</p>
+<p>To start with, this is why it's easy to animate walking on flat ground: to make a character walk on flat ground, typically you make a <a href="http://games.ucla.edu/resource/walk-cycles/" target="_blank">walk cycle</a>, which is just a single step (starting with left foot forwards, then right foot forwards, the left foot forwards again), which you can loop over and over again. If your character walks at 3 mph you just make sure that in your animation cycle that the foot planted on the ground moves backwards relative to the body at exactly 3 mph. That way, when you later slide the character on the ground and play the animation, the forward movement of the character and the backward movement of the foot cancel out and it looks like the foot is planted firmly on the ground.</p>
+<p>Ok, so how do you go about doing that for climbing stairs? Well, you can say: he climbs the stairs at 2 mph and the stairs will be at a 30 degree angle, so when we make the animation cycle, we make sure that the feet move backwards and down at exactly 2 mph at 30 degrees. So now you think, when I slide the character up the stairs, the up and forwards motion of the character and the back and down animation of the foot will cancel out, making the foot look like its firmly planted on the stair.</p>
+<p>But let's look deeper:</p>
+<p>What if instead of walking up the stairs straight, I walk up at a slight angle? Even if I just am drifting from one side to the other at 10 degrees off from &quot;right up the center of the stairs&quot;, that means after 5 feet of walking, I'll be about 5.5 inches lower than I would have if I had gone straight, which means my foot animation will have gotten off-sync and out of phase with the stairs (the feet will plant 5.5&quot; inside the stair instead of on the surface).</p>
+<p>What happens if I stop halfway up the stairs? If you're walking on flat ground and stop, you can just quickly go to a standing/idle animation where you stand and then start again when the user starts walking again, and it doesn't really matter where or how you do it, but if you stop walking up the stairs, you might stop in a place where the body is in a very awkward pose. You can quickly snap to a standing animation, but what if that is halfway between stairs? You can adjust the position forwards or backwards or settle the character at a better vertical height so that your foot IK doesn't look weird, but what happens when you start walking again? You will have a hard problem getting the cycle in phase with the graphical stairs again. </p>
+<p>What do you have your character colliding/navigating on? Usually you just collide with a ramp so that the character slides up smoothly while the feet try to make contact with the stairs, but as we've seen there are all sorts of issues with lining the feet up in phase with the stairs. You can collide with the stairs themselves, but then the character will slide horizontally until they hit the next stair, at which point they will snap instantly up one stair height.</p>
+<p>Another issue is that if you make your animation cycle so that it is tuned nicely so it looks like the feet are contacting the stairs firmly, all the stairs in your game now have to be the same height per stair and the same angle, or your animation will break.</p>
+<p>The other option is the make a very complex, adaptable animation system which does a bunch of natural movement blending and IK mixing and stuff I don't understand to make everything automatic no matter what surface the character is walking on, like GTA5, which looks fantastic. But a system like that is hard.</p>
+<p>I think most game devs could do it if they really tried, but it's a really hard problem and it doesn't buy you very much; your ninja samurai zombie pirate game isn't improved significantly with better foot-stair contact and animation, so most people won't bother putting in the extra man-months of work into fixing it. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="d4ny3i9">
+		<a class="author" href="https://www.reddit.com/user/iScoopPoop" target="_blank">iScoopPoop</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>video game animator here! :)</p>
+<p>Characters in games are moved programatically not through the animation.  The animation is just there to let the player know what the character is doing.  99% of video game engines will move the character in a straight, linear motion.  So when a character walks upstairs, it's just moving diagonally up at a constant speed.  It's incredibly time consuming for an animator to match the animation to the linear motion for several reasons:</p>
+<ol>
+<li>
+<p>Unless there's only one single instance of using the stairs, going up and down the stairs will usually be a variable.  You don't know how many steps each stairs has unless the animator makes an animation for each character matched to each set of stairs.  It can be done, but it takes a long time.  Most animators just create 1 looping animation which can then be used for every time the player goes up the stairs.</p>
+</li>
+<li>It's also difficult for an animator to create a looping animation without being able to first get the angle and speed the program is using for moving the character, and then sort of &quot;counter animating&quot; to adjust for the program's movement code.  Again, it can be done, but then that animation will only look nice for that specific stairs.  There's little reason to go through so much effort to create stair-walking-up animations for each set of stairs when you can just create one loop and apply it generically to all of them.</li>
+</ol>
+<p>In very large companies such as Ubisoft, Activision, EA, etc... where they have an army of animators, they do have the time and the budget to create animations for very specific purposes, such as Batman's cape when he punches using Punch1, then Punch variation 2, then Punch variation 3, etc...  Smaller companies simply do not have time to dedicate their animator to do these very minute detailed animations that only fit one specific purpose.  Larger companies can.  </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d4nvi5t">
+		<a class="author" href="https://www.reddit.com/user/piddlystains" target="_blank">piddlystains</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'm not sure I have a good answer to this but I'll try.</p>
+<p>The most common answer is simple: most stairs are not stairs but transparent slopes over the stair models. This is why a lot of video games characters glide up stairs -- it's easier to just have them walking up an incline than it is to have them walk up stairs. This is very common. Dark Souls 3, which came out like 2 or 3 months ago, does this. By making stairs act simple as slopes, you save time and money because you don't need to create a unique animation for this scenario.</p>
+<p>The second answer is touched upon in the (as of writing) top-post. Animation isn't realistic looking. One of the things people don't like about Sonic is the comparatively real time it take for Sonic to transition from walking to running in the 2D games. Compare that to Mario, he transitions from walking to sprinting a lot quicker. Now compare that to Prince of Persia, which uses rotoscoped animation. It moves beautiful and realistically, but controls clunky. Players prefer responsiveness as a rule. Recreating realistic movement isn't responsive. So animation has a cartoony quality to it -- it looks better if the movement is stylized. Transitions between different animations are often non-existent. Part of the reason is for responsiveness; though some delay is needed for a game to feel right, platformer characters often slide to a stop, for example. It's a balancing act.</p>
+<p>But to add to this, there's other things that need to be considered. Grand Theft Auto IV built up hype with it's procedural animation and one of the things previews talked about was that characters actually walked on stairs. My understanding on this part is a bit fuzzy, so someone can enlighten me here. But my understanding is that they basically have software that they program so it has a rough idea of how bodies move and can look at how pre-built animations look like to come up with what animation should look like. So GTAIV and GTAV have comparatively realistic looking stair animations. They are also very clunky when on-foot. </p>
+<p>Why?</p>
+<p>If you come to a full-stop for whatever reason (collide with another object) while on stairs, it takes longer to get back to your full-speed because that's it works in real-life. If you run up stairs, stop part way up, and start running again, you will probably be quite a bit slower. </p>
+<p>But uncanny valley also comes into effect big-time. If you are running up or down stairs, how do you do it? You probably skip steps. You hop over steps as you go up the stairs to take two or three at a time or you barrel down the stairs and jump past the last few. That doesn't happen -- and shouldn't happen -- in a video game where we value responsiveness. Running down stairs by skipping steps makes it impossible to stop if you need to (you'll probably just trip and die if you try). In a video game we want to be able to stop immediately. There can be no realistic transition from barreling down the stairs to stopping dead in your tracks and ducking down for cover. This is why characters &quot;running&quot; down the stairs in GTA games looks so silly -- no one sprints down the stairs like they do, but it's the closest analogue you can have that still allows for some measure of responsiveness.</p>
+<p>Which leads to the final point -- you cannot JUST have stair walking animations in most games. If Dark Souls 3 had good stair-walking animations, it would also need good stair-fighting animation. You'd need good crouch-walking animations for going up and down stairs in shooters. Which is another thing, we walk up and down stairs in ways that look very different. Thus if I was sword fighting upwards or downwards on a staircase, all the animations would need to be different. This is a ton of extra work for something that, honestly, almost never matters. So it saves time and money to just say &quot;stairs are slopes&quot; because most people won't notice or care.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d4nh9h6">
+		<a class="author" href="https://www.reddit.com/user/Unseenmonument" target="_blank">Unseenmonument</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For one it has to do with the fact that most video game characters don't move at a normal/natural pace. Because of this the game models transition from a run/walk to walking/running up stairs will look weird unless you have the game character go up the stairs two or three steps at a time. And even then you'll have problems.</p>
+<p>Simply put... The pace at which most people go up stairs, and which looks normal/natural to us, isn't conducive to a stimulating gameplay environment.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="d4o9kaq">
+		<a class="author" href="https://www.reddit.com/user/TheUmptyFlump" target="_blank">TheUmptyFlump</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I was a video game programmer for part of my career and spent some time working on animating a companion character for a game set in the sky. There are already some good answers in this thread covering the essentials of why this is hard, but here are some details from this game based on my experience and fuzzy memories.</p>
+<p>There are three disciplines contributing to the stair walking / running of a character: the programming (or what you get from the game engine), the environment art, and the animations. All three need to come together to make this look not terrible. It’s not easy.</p>
+<p>This game was based on a modified version of the Unreal Engine, so some of this may not be applicable to other games. The ‘character’ that moves through the world is represented by a vertical capsule with a fixed point to indicate where it touches the ground. It slides through the world at different speeds based on the movement of the player character.</p>
+<p>Like the character, the environment art, in this case the stairs, has collision geometry that is usually not the same as the visual geometry. Stairs are often modeled as ramps. Where the ramp is placed relative to the stairs will affect how the character interacts with it.</p>
+<p>The characters usually have two basic stair animations: walk and run. The animators create cycles based on a fixed speeds (walk and run) and have some control over where the character is placed in the capsule relative to the fixed ground point.</p>
+<p>Given these systems, here are some issues you may encounter when trying to get characters to move on stairs…</p>
+<p>At best, the speed of the character is going to be either a walk or a run. But the character may approach the stairs straight on, or at some arbitrary angle. The animations are made with the character going straight up the stairs, but when this angle of approach changes, the feet may no longer line up with the stairs. This can lead to or exacerbate other issues. If the stairs are very wide or the character speed can vary, it can be even worse.</p>
+<p>The environment art needs to be consistent. In other words, the angle of incline for the stairs needs to match the animation. If the incline can vary, this requires more animations or more tolerance of bad results. In this game, we standardized on incline angles for the art.</p>
+<p>Where the collision geometry (the ramp) sits relative to the stairs is important too. Imagine a board laid over some stairs. The character’s capsule ground point slides along that. You can set the character lower relative to the ground point so that the feet get closer to the stairs. Or you could move the ramp into the stairs and adjust the ground point in the animation. These are a couple controls you have to work with. Depending on how you set this up you’ll see the feet intersecting with the stair geometry sometimes.</p>
+<p>If you start messing with where the character intersects the ground in the stair animations, then you have to blend with the flat ground animations at the top and the bottom of the stairs. This can cause weird artifacts too.</p>
+<p>If you use IK (inverse kinematics) to try to stick the feet to the stairs, you have to throw out the ramp geometry and use the visual geometry for collision. This is a performance hit and not something you want to do. Even then, you don’t have a physical shoe to work with, but the bones (usually one or two points) from the animated character to use as points of contact with the stairs. These are the points of contact with the ground, not the bottoms of the feet, so you can see the feet pass through steps as the engine tries to attach the foot to the step. This can get really weird. Depending on how you damp the IK or adjust the animations or the geometry, you can get really funky pops as the character’s legs stick (and possibly stretch) and release from the steps, or even the vertical parts of the steps in some cases. Depending on the animation’s ground point or the angle of approach, all of your careful tuning can go out the window. It can get even worse if you are trying to physically simulate a dress on the character, with the legs popping through the cloth or causing high velocity reactions, but that is not very common.</p>
+<p>It would be possible to severely restrict movement allowed on stairs to reduce or eliminate these issues, but that would break the player’s immersion in the game. That is worse than the artifacts, so we live with those instead.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
 		<div class="more-less">
 			<a class="collapse" href="javascript:void(0)">collapse</a>
 			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
@@ -20,4 +95,5 @@
 			&nbsp;
 		</div>
 	</div>
+	<a class="show" href="/posts/4psgnr" onclick="return false"><span>show</span></a>
 </li>
