@@ -1,0 +1,63 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/emul4tion" target="_blank">emul4tion</a>
+			<div class="markdown"><blockquote>
+<p>I don't know anything about mouse movements as a factor.</p>
+</blockquote>
+<p>I'm sure they at least do <em>some</em> basic mouse movement checks.</p>
+<p>For example:</p>
+<ul>
+<li>
+<p>If your mouse teleports to the checkbox, that's bullshit</p>
+</li>
+<li>
+<p>If your mouse moves in a <strong>perfectly</strong>, 10000000% straight line, at a constant speed, to the checkbox, that's bullshit</p>
+</li>
+<li>If your mouse movement speed perfectly follows a known function/equation ( <a href="http://easings.net/" target="_blank">http://easings.net/</a> ), that's bullshit</li>
+</ul></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ccai" target="_blank">ccai</a>
+			<div class="markdown"><blockquote>
+<p>If your mouse teleports to the checkbox, that's bullshit</p>
+</blockquote>
+<p>Would that not allow for touch screen devices to enter a site with the checkbox style reCAPTCHA?  You don't normally drag your finger across the screen to press/click on something on a tablet.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mrkkucera" target="_blank">mrkkucera</a>
+			<div class="markdown"><p>Whenever I get this checkbox on mobile it also gives me the image selecting. So I guess it sees that my &quot;cursor&quot; teleported and gives me the harder task </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Makeshiftjoke" target="_blank">Makeshiftjoke</a>
+			<div class="markdown"><p>Your device sends a message to the server telling it what kind of device it is, the broswer its running, its OS, and other things like screen size and even location. If you were using touch input, the web page pretty much always &quot;knows&quot; that.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/emul4tion" target="_blank">emul4tion</a>
+			<div class="markdown"><p>i was specifically referring to when the cursor instantly goes to it as soon as the page loads, but yes, they probably do have an exception for touchscreen devices. </p>
+<p>then again, this would allow for scripts to spoof touch input, but captchas adapt to new circumvention techniques.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thatcoldguy" target="_blank">thatcoldguy</a>
+			<div class="markdown"><p>WE ARE PERFECTLY CAPABLE BUT CHOOSE NOT TO DEBASE OURSELVES WITH KNOWLEDGE OF WHAT A TACO BELL SIGN LOOKS LIKE</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kain_niaK" target="_blank">Kain_niaK</a>
+			<div class="markdown"><p>Correct. Mouse movement is never a factor in these for various reasons. This is how it works. It's a JavaScript based CAPTCHA.</p>
+<p>Since most spambots do not execute JavaScript and can not identify the correlation between the displayed text and the DOM or required actions they can not click on the checkbox.</p>
+<p>Please note that there is no checkbox at all, it is just a div element with some CSS styling. Spambots are trying to fill the form input elements, but there is no input in the CAPTCHA. The check mark is just another div (css class).</p>
+<p>When you click on the box an ajax request notifies the server that the div was clicked and the server stores this information in a temporary storage (marks the token: this token was activated by a human). When you submit the form, a hidden field sends the token which was activated, then when the server validates the form information it will recognize that the token was activated. If the token is not activated, the form will be invalidated.</p>
+<p>The steps in bullet points:</p>
+<ul>
+<li>
+<p>Generate a unique identifier and add it to the form with a hidden input</p>
+</li>
+<li>
+<p>Render a checkbox on the site (without using the <input> element, possibly using <div>) and add the previously generated identifier to it (you can use the html5 data-* attributes)</p>
+</li>
+<li>When the user clicks on the checkbox, send an ajax request to the server and validate the CAPTCHA, if it is valid mark it as in use. (Show the result - identifier is OK/not OK - to the user)</li>
+<li>
+<p>When the user sends the form, the form's data contains the identifier. Check it once more, it should exist and it should be in in use state.</p>
+</li>
+<li>If all validations are passed, the form's data is ready to use/process
+You can bind the identifier to the user's session, IP address, and/or you can use time limits to improve security.</li>
+</ul></div>		</li>
+					</ul>
+	

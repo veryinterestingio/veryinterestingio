@@ -1,0 +1,90 @@
+<li class="post" data-handle="5kep53">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/5kep53/eli5_why_cant_bots_check_i_am_not_a_robot/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<a href="/posts/5kep53" onclick="return false">Why can't bots check 'I am not a robot' checkboxes?</a>
+		</h2>
+		<!--<span class="date">2016-12-29</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Why can't bots check 'I am not a robot' checkboxes?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dbng1y2">
+		<a class="author" href="https://www.reddit.com/user/reifenstag" target="_blank">reifenstag</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>actually, clicking the box is a rather trivial part of what those CAPTCHAs are looking for.  What they're actually looking for are things like:</p>
+<p>did the 'user' instantly move their mouse to the exact coordinates of the box, or did they traverse thru the page like a human would?  </p>
+<p>is the user scrolling to the box, or are they remotely executing javascript to trigger a scroll to the box?</p>
+<p>how long after page load did the user find the box? Too quickly is obviously a red flag, but taking too long is also. commonly, to get around reCAPTCHA you'll need to find out 4-5 areas to click in addition to the initial click. The way that most people do this is using CAPTCHA services, which are real people solving them and returning the answer to you (i.e. for a text captcha, you'd send them the image and they'd send back the letters/numbers).  The way you do this with reCAPTCHA is sending a screenshot of the computer, and you are returned the coords that you're supposed to click on to answer the question properly. [e: apparently this method is old, and a new method where the CAPTCHA is actually served up to the person within the service that will solve it for you!] However, it usually doesn't take a legitimate human 5 minutes to answer a few questions about 9 images.  if you take too long, they'll make you do another image check challenge.</p>
+<p>basically, it's really, really difficult to make a bot move the mouse, scroll, and react naturally to a page load. and even if you do manage to fool reCAPTCHA, you'll be thrown to a few image tasks which may serve to block you out from the website completely, due to the reasons mentioned above.</p>
+<p>e: as others have mentioned, this type of stuff is only part of what reCAPTCHA relies on to determine human/non-human - particularly, your referring information &amp; whether or not you have a logged in Google account.</p>
+<p>e2: there are a bunch of people claiming that mouse movement tracking is impossible to do. in chrome, hit ctrl+shift+j, paste</p>
+<blockquote>
+<p>onmousemove = function(e){console.log(&quot;mouse location:&quot;, e.clientX, e.clientY)}</p>
+</blockquote>
+<p>in, and hit enter. then move the mouse. it's easily done.</p>
+<p>e3: there are <em>still</em> a ton of people claiming that I just made up the ability to track end user mouse movements. <a href="http://www.javascriptsource.com/page-details/mouse-coordinates.html" target="_blank">http://www.javascriptsource.com/page-details/mouse-coordinates.html</a> is another example</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dbnfsh5">
+		<a class="author" href="https://www.reddit.com/user/Bojodude" target="_blank">Bojodude</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Google is great at keeping its algorithms a secret, so we'll probably never know for sure, but we can make some guesses. </p>
+<p>One thought is to track a users mouse and keyboard actions and see if that is consistent with a human, but I'm not entirely sure this is the system that it uses since it would be easy to replicate such actions with a simple bot.</p>
+<p>I'm partial to the idea that Google is taking advantage of it's massive database of what you've been doing on the web the last few minutes. Have you checked your GMail? Made some Google searches for a new cat sweater? That's all stuff a human would do, and I am able to associate your captcha request with your previous internet requests and see you're probably human.</p>
+<p>Of course, if this is a brand new computer connecting from an IP that has just been assigned, you probably don't have the sufficient background for Google to think you're human, so you'll receive a more difficult captcha to solve.</p>
+<p>This means that if a bot was to check off that box, it wouldn't follow the history pattern we associate with a human and Google would return a further captcha check which the bot would fail. Usually these secondary captchas are going to be some sort of computer vision problems that would involve far too much resource intensive computing to solve.</p>
+<p>Edit: Here's a Google blog that gives you a bit of info (but of course nothing particularly useful) <a href="https://security.googleblog.com/2014/12/are-you-robot-introducing-no-captcha.html" target="_blank">https://security.googleblog.com/2014/12/are-you-robot-introducing-no-captcha.html</a></p>
+<p>Edit2: Somebody tried to see if they can pretend to be a bot and see what would happen. Turns out that without having sufficient history, he was blocked out of a site he could normal access without captcha: <a href="http://security.stackexchange.com/a/101906" target="_blank">http://security.stackexchange.com/a/101906</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbnn8py">
+		<a class="author" href="https://www.reddit.com/user/fd1760" target="_blank">fd1760</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[Correct me if I'm wrong here]</p>
+<p>As far as I've heard, Google is able to replace an actual CAPTCHA with this simple textbox only if they know enough stuff about you - This little checkbox is basically a plugin from google, thus (via cookies, sessions, knowing your IP etc) google knows on what pages you surfed in the time before arriving at that CAPTCHA. Knowing that you surfed for dank memes for the past 3 hours, Google can be pretty sure you're not a robot - having to actually click on that box is basically only for &quot;enabling&quot; that plugin.</p>
+<p>If google doesn't know enough about you, they will by the way simply show the original reCAPTCHA, where you solve OCR (or street number recognition) tasks for Google (Streetview). You can simply test that by restarting your router, using incognito mode and going to a website using reCAPTCHA.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbnfcey">
+		<a class="author" href="https://www.reddit.com/user/seglda" target="_blank">seglda</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I don't know anything about mouse movements as a factor.</p>
+<p>I DO know that specifically for the Google CAPTCHAs, it checks if you're logged in to a Google account and if your account has had suspicious activity recently. If no suspicious activity has been logged, you'll simply receive the check box, if there has, or you're not logged in, you'll get a more difficult prompt, such as the picture matching. </p>
+<p>Try going to a site with a check box in an incognito tab and you'll see for yourself! </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbnogs9">
+		<a class="author" href="https://www.reddit.com/user/BlueSergal" target="_blank">BlueSergal</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I actually read a paper about fooling the recaptcha system awhile ago.</p>
+<p>When you get the check box you're getting one of several possible &quot;challenges&quot;. To get the box challenges you must pass automated tests such as checks for common frameworks commonly used with bots, not being from an IP that's failed a challenge or answered too many boxes on other web sites among other things. As mentioned above once the chance of you being a bot is assessed to be low before page loads then you get a simple challenge. Depending on these pre assessed factors (some which are only known to google) the difficulty of the captcha is determined.</p>
+<p>So as mentioned above clicking the check box is easy and there are minimal protections such as mouse movement patterns and timings however, by the time you get the check box challenge it's been determined that the odds of you being a bit are so low that the test it's self can afford to be weak.</p>
+<p>In this case text is the hardest challenge, images the medium challenge and the check box the minimal challenge. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/5kep53" onclick="return false"><span>show</span></a>
+</li>
