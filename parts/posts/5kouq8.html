@@ -1,0 +1,88 @@
+<li class="post" data-handle="5kouq8">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/5kouq8/how_true_is_ohms_law/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Physics">Physics</span>
+			<a href="/posts/5kouq8" onclick="return false">How true is Ohm's law?</a>
+		</h2>
+		<!--<span class="date">2016-12-31</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I've almost never got a perfect straight line while plotting a V/I graph even under lab conditions.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dbpjvhl">
+		<a class="author" href="https://www.reddit.com/user/Midtek" target="_blank">Midtek</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Ohm's Law is not a law derivable from Maxwell's equations, but rather just a description of how many materials behave, derived directly from experiment only. (There is some justification for it though from an atomic perspective.) All materials will disobey Ohm's Law past their dielectric breakpoint. There are also materials that just simply don't obey Ohm's Law even under a weak electric field (e.g., semiconductors), and they are said to be <em>non-ohmic</em>.</p>
+<p>Also note that if you are measuring resistance in a lab and not controlling for joule heating, you will find that <em>V</em> is not a linear function of <em>I</em> simply because the resistance (say, of a bulb) increases with temperature, which itself increases with current. Hence <em>V</em> = <em>I</em>*<em>R</em>(<em>I</em>), with <em>R</em> a strictly increasing function of <em>I</em> (i.e., not constant). This is not necessarily a violation of Ohm's Law though, because the full statement of Ohm's Law has the caveat that it applies to a circuit element <em>in a given state</em>, in particular, at constant temperature. </p>
+<hr />
+<p><strong>edit:</strong> Some clarification is needed here since many of the comments are getting some things wrong, <em>seemingly</em> contradicting me, or just outright contradicting me.</p>
+<p>In many physical systems, we have some set of equations that hold no matter what (e.g., Maxwell's equations in classical electrodynamics, or Navier-Stokes equation in fluid dynamics, or Vlasov-Maxwell equations in plasma physics). Often our set of equations is not <em>closed</em>, which roughly means we have more variables than equations. The problem of closure is particularly notorious in plasma physics. So we need to supplement our equations with what are called <em>constitutive relations</em>. These are equations that hold only for a specific material and only under certain conditions or approximations. They allow us to add enough equations to our system of equations to make it solvable.</p>
+<p>For instance, in fluid dynamics we may use the approximation that the fluid is Newtonian, which gives us a constitutive relation for the Cauchy stress tensor, the viscosity tensor, and the velocity field. (We may even <em>further</em> approximate the fluid as homogeneous and/or isotropic, which gives us a further constitutive relation that simplifies the form of the viscosity tensor.) There would still be the issue possibly of closing the equations with a proper constitutive relation for the pressure.</p>
+<p>In electrodynamics, one such constitutive relation we can impose is Ohm's Law, which is <strong>J</strong> = σ<strong>E</strong>, where σ is a <em>fixed</em> number. This is a fine enough approximation for a wide variety of media. Of course, if you want to be more accurate or if you are investigating a regime in which Ohm's Law is not true for a material for which it usually is, we may write that <strong>J</strong> = <strong>σ</strong>.<strong>E</strong>. Here <strong>σ</strong> is a rank-2 tensor, and this is a more general constitutive relation. (See /u/RobusEtCeleritas's <a href="https://www.reddit.com/r/askscience/comments/5kouq8/how_true_is_ohms_law/dbpvwmn/" target="_blank">post below</a> for some more details.)</p>
+<p>Of course, we can always make up whatever constitutive relation we want. But if it gives us nonsense results or results that very badly approximate our problem, it won't get used much, if at all. Ohm's Law is a good approximation for many media, in particular, many simple circuit elements for which the temperature (and other state parameters) do not vary too much. So Ohm's Law gets used quite a bit. </p>
+<p>Some of the confusion in the other comments I think lies in treating (or mistreating) Ohm's Law as a <em>definition</em>. For instance, we <em>define</em> a Newtonian fluid to be a fluid such that <strong>τ</strong> = <strong>μ</strong>.(<strong>∇**</strong>v<strong>), where </strong>μ<strong> is a <em>fixed</em> rank-4 tensor. But it's just a constitutive relation and we know that not all fluids will obey this equation. Similarly, we <em>define</em> an ohmic medium to be a medium such that </strong>J<strong> = σ</strong>E**, but it doesn't hold for all media. In that sense, Ohm's Law is absolutely true always because it's just a definition. Anything that violates Ohm's Law is just a non-ohmic medium. </p>
+<p>Finally, note that the electrical resistance <em>R</em> of a circuit element is <em>defined</em> as the ratio of the voltage <em>V</em> and current <em>I</em> through that same element. Of course, there is no reason to believe that <em>R</em> is constant or even independent of either <em>V</em> or <em>I</em>. So in that sense the equation V = IR is <em>always</em> true no matter what. But that equation is <em>not</em> Ohm's Law. Ohm's Law is <em>specifically</em> the statement that <em>R</em> is independent of both <em>V</em> and <em>I</em> (but may still depend on other state parameters such as temperature and strain), i.e., that V and I are <em>proportional</em>. And so Ohm's Law is emphatically not always true.</p>
+<p>The same exact phenomenon occurs in elastics. We can <em>define</em> a Hookean body to be a body such that <strong>σ</strong> = -<strong>k</strong>.<strong>ε</strong>, where <strong>k</strong> is a <em>fixed</em> rank-4 tensor (here <strong>σ</strong> is the stress tensor and <strong>ε</strong> is the strain tensor). In one dimension, this reduces to F = -kx, where <em>k</em> is a constant. This is just the usual <em>Hooke's Law</em> you learn in high school physics. But no one in their right mind is going to say something like &quot;Hooke's Law holds for all elastic bodies&quot;. That's just absurd. It's only a constitutive relation between the stress and strain that just so happens to be a good approximation for a wide range of materials.</p>
+<p>Ohm's Law <em>feels</em> different to a lot of people because, frankly, I think they forget that the equation V = IR on its own is a definition of <em>R</em> and <em>not</em> Ohm's Law. (Note that Hooke's Law F = -kx is not used as the definition of anything, since <em>F</em> and <em>x</em> can and are defined completely independently of springs. Electrical resistance, on the other hand, needs to be defined in terms of circuit elements.)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dbpkr21">
+		<a class="author" href="https://www.reddit.com/user/anomalous_cowherd" target="_blank">anomalous_cowherd</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Remember that real world materials almost never behave 'perfectly', there are manufacturing tolerances as well as all the other effects such as inductance, capacitance, temperature induced changes,etc,etc.</p>
+<p>Things like Ohms law are totally correct for ideal components, and are close enough to be useful as long as certain factors aren't in play. For example, wires can be treated as having zero resistance unless you have massive currents or very low voltages. Wire wound resistors can be treated as pure resistors as long as you don't have or don't care about AC frequency responses, etc.</p>
+<p>Learning where these things matter and where they don't is a good chunk of learning to be an electronics engineer, but in my experience it isn't taught explicitly, you just pick up a feeling for it as you go.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbpxobr">
+		<a class="author" href="https://www.reddit.com/user/D-Juice" target="_blank">D-Juice</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Did you allow for the temperature coefficient of resistance? It's never (?) exactly zero and not always very linear.</p>
+<p>TCR has become really useful for e-cigarettes in the last couple of years because the changing resistance allows the (average) temperature of the heating coil to be measured via V/I, so newer tech can produce vapour at a set temperature and prevent wicks from burning if they dry out. This page provides some handy data for the various metals used in e-cigarettes: <a href="http://www.steam-engine.org/wirewiz.asp" target="_blank">http://www.steam-engine.org/wirewiz.asp</a> It's a bit confusing because it's used for designing heating coils - just choose a metal from the box below the plot and it'll give you the plot for it (if available) and the box on the left will repopulate too. </p>
+<p>Kanthal, the default, has a TCR very close to zero (hence the near horizontal graph) - its stability is one reason why it is so good as a heating wire. The other wires listed all have a positive TCR (because it would be dangerous to use a wire where the resistance decreased whilst drawing current from a lithium battery) but it can be negative, eg carbon fibre. <a href="http://www.engineeringtoolbox.com/resistivity-conductivity-d_418.html" target="_blank">The Engineering Toolbox</a> has a useful page.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbpz1h3">
+		<a class="author" href="https://www.reddit.com/user/divinesleeper" target="_blank">divinesleeper</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Ohm's law is absolutely true, because it's meant as a defining law.</p>
+<p>There's a quantum mechanical theory where you use transmission and reflection probabilities in an electron's path to connect microscopic theory to resistivity (and hence Ohm's law), but that's beside the point.</p>
+<p>Ohm's law is defined to be true.</p>
+<p>Your confusion stems from the fact that <strong>resistance is not always constant over time</strong>. This does not violate Ohm, it just makes R an R(t). <strong>Your resisting element warms up as current travels through, modulating the resistivity</strong>, and hence the resistance.</p>
+<p><a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/resis.html" target="_blank">Here you can find the relation between resistance and resistivity</a>. </p>
+<p>Of course there are probably also other measuring artefacts, depending on your equipment, but I imagine heating of the resistor is the most important one.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbpn8sg">
+		<a class="author" href="https://www.reddit.com/user/rumborak" target="_blank">rumborak</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's an unfortunate label since &quot;law&quot; seems to imply it can't be violated, whereas it obviously can by many side effects.</p>
+<p>It's somewhat similar to Hooke's Law in that it holds to reasonable accuracy within a certain range. Outside of that it will display nonlinear behavior.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/5kouq8" onclick="return false"><span>show</span></a>
+</li>
