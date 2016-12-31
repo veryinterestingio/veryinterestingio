@@ -1,0 +1,168 @@
+<li class="post" data-handle="5kohsr">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/5kohsr/eli5_how_do_zip_files_compress_information_and/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<a href="/posts/5kohsr" onclick="return false">How do zip files compress information and file sizes while still containing all the information?</a>
+		</h2>
+		<!--<span class="date">2016-12-31</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: How do zip files compress information and file sizes while still containing all the information?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dbpmy3r">
+		<a class="author" href="https://www.reddit.com/user/h4xrk1m" target="_blank">h4xrk1m</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><em>For this explanation to make sense, it's important that you know what bits and bytes are, and how a computer uses them to store information. This is a topic of its own, and you can find ELI5 threads that explain it.</em></p>
+<p>A simple algorithm is counting how many there are of each byte in a set of data. Remember that a byte consists of 8 bits. You then replace the most common byte with a single bit, 1. The second most common one is replaced by two bits, 01. The third most is replaced by 001, etc.</p>
+<p>In the end, you end up with a lookup table, and a bit pattern.</p>
+<p>The string &quot;AAABBC&quot; looks like this in binary (in bits, with added spaces for easier reading):</p>
+<pre><code>01000001 01000001 01000001 01000010 01000010 01000011
+A        A        A        B        B        C          </code></pre>
+<p>But if we replace every occurrence of the most common pattern, &quot;01000001&quot; with just 1, etc, we end up with something that looks like this (still with added spaces):</p>
+<pre><code>1 1 1 01 01 001
+A A A B  B  C</code></pre>
+<p>Since a byte is 8 bits long, and we have 10 bits here, our result would be two bytes:</p>
+<pre><code>11101010 01000000
+AAAB B C   (Padding)</code></pre>
+<p>We have effectively compressed 6 bytes down to 2.</p>
+<hr />
+<p><strong>Edit, and some possibly interesting points:</strong></p>
+<p>It's important to remember that to be able to unzip a file, you must keep track of which replacements you've made. Somehow, you have to remember that 1 corresponds to 01000001. In this particular algorithm, you can declare a dictionary by first listing how many items are in the list, then all the items in the list itself, and finally the zipped string.</p>
+<p>In the case above, this would result in the following:</p>
+<pre><code>Length   A        B        C        AAAB B C   Padding        
+00000011 01000001 01000010 01000011 11101010 01000000
+(The length being 3.)</code></pre>
+<p>This means that out of our original string, which was 6 bytes long, we've now zipped it down to 2 bytes, but we also added 4 bytes of data to know what the zipped portion means.. :)</p>
+<p>What does this mean? Well, it means that it's not always useful to zip data. Very small amounts of data, or data that is very diverse, could end up being no smaller, or sometimes even bigger than the unzipped version.</p>
+<p>The algorithm still works, though. We could pack a few more A's into this, and still keep the size at 6 bytes, for example.</p>
+<pre><code>AAAAAABBC</code></pre>
+<p>would turn into</p>
+<pre><code>Length   A        B        C        AAAAAAB  B C  Padding        
+00000011 01000001 01000010 01000011 11111101 01001000</code></pre>
+<p>which is still only 6 bytes, but we've packed 9 bytes into it. We could add another 3 A's, and it would still be only 6 bytes:</p>
+<pre><code>AAAAAABBCAAA</code></pre>
+<p>would turn into</p>
+<pre><code>Length   A        B        C        AAAAAAB  B C  AAA
+00000011 01000001 01000010 01000011 11111101 01001111</code></pre>
+<hr />
+<p><strong>Another quick edit:</strong></p>
+<p>I should mention here that this algorithm is a slight variation of something called Huffman's algorithm. Huffman is used in combiantion with LZ77 in zip files.</p>
+<hr />
+<p><strong>Thanks for the gold, kind redditor \^\^</strong></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dbpltgw">
+		<a class="author" href="https://www.reddit.com/user/green_meklar" target="_blank">green_meklar</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A lot of the data computers regularly deal with is not random, but has various more or less obvious patterns in it. If you know what patterns to expect (say, by already seeing some of the data, or by knowing what sort of data it is), then you can use that knowledge to convert large patterns into smaller symbols and then add a decoding instruction to the file to convert the smaller symbols back into the larger patterns, and if the patterns occur frequently enough, the space you save by converting them into smaller symbols outweighs the size of the decoding instruction.</p>
+<p>Here's an example: Imagine that you took a TXT file of one of Shakespeare's plays, analyzed it, and found that the letter 'z' appears 2000 times and the two-letter sequence 'th' appears 5000 times. In that case, you could switch all the original 'z' for 'th', and all the original 'th' for 'z', and put a note at the beginning of the file saying 'before reading this, replace all the 'z' with 'th' and vice versa'. By replacing the occurrences of 'z' with 'th' you increase the size by 2000 letters, but by replacing the occurrences of 'th' with 'z' you <em>decrease</em> the size by 5000 letters, and because the note is only 65 letters long (counting spaces and punctuation), you end up with a TXT file that is smaller than the original by 2935 letters but can still be precisely reconstructed into the original by following the instructions in the note. You've taken advantage of the fact that 'th' occurs especially frequently (and 'z' especially <em>in</em>frequently by comparison) to produce a file that ultimately says the same thing (assuming the note is followed correctly by whoever reads it) but has fewer letters in it.</p>
+<p>The actual techniques used by modern data compression software are more advanced than this, but the basic idea, that of finding patterns and encoding them using smaller amounts of information, is the same.</p>
+<p>Note that <em>not all</em> types of data have patterns that you can take advantage of in this way. In particular, data that has <em>already</em> been compressed using a technique like this tends to have fewer patterns in it than the original version.</p>
+<p>(This is a copy+paste of a <a href="https://www.reddit.com/r/explainlikeimfive/comments/3ymt63/eli5_how_can_the_3gb_zip_i_download_turn_into_7gb/cyess3t/" target="_blank">previous post</a> I wrote on the subject, so I apologize if it doesn't seem written precisely to address your question. If you have further questions about these techniques or their mathematical limitations, or any clarification of the above, ask away.)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbptsu1">
+		<a class="author" href="https://www.reddit.com/user/TheCarbLawyer" target="_blank">TheCarbLawyer</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I wanted to reply because the top explanations are very different from ZIP and do not capture what makes ZIP special. One top explanation is RLE (run length encoding) and teaches how to replace strings like &quot;RRRRRGGGBB&quot; with &quot;5R3G2B&quot; (5 Rs, 3 Gs, and 2Bs). RLE is simple, but is not ZIP, and unlike ZIP, cannot effectively compress strings like RGBRGBRGBRGB... Another top explanation is dictionary-based compression, where long bit patterns are replaced with much smaller offsets into a dictionary. Then the dictionary and the smaller offsets are stored together, ready to be decompressed by looking up each offset in the dictionary they were stored with. This is also not ZIP and I think does not explain what makes ZIP really magical and elegant. ZIP is special because like dictionary compression it performs an effective substitution-based compression, and so is more effective than RLE, but unlike dictionary compression, it does not have to store the dictionary alongside the compressed output, making it much more efficient than dictionary compression in the end (the dictionary is quite large).</p>
+<p>ZIP uses a sliding window. It scans over the uncompressed data from start to finish with a fixed-sized window and prints out the compressed data to a separate output file. So it might make more sense to say ZIP encodes rather than compresses the original input file, as the input file is left untouched while ZIP is running, and instead a new encoded (compressed) output file is constructed alongside the original uncompressed file. What ZIP will do is try to replace each string in the uncompressed input file by printing a much smaller offset to the compressed output file. Each time ZIP does this we say it is &quot;replacing&quot; the string from the input file. The key idea in ZIP is to replace the string just beyond the sliding window with a pointer to a matching string found within the sliding window, and then move the sliding window forward to encompass the string we just replaced, and kick out a string from the sliding window to keep the window a fixed size:</p>
+<pre><code>uncompressed input, with window ending at '|', valid strings to point at are 0, 1, 2, and 3:
+|(3)RBGR(2)RRR(1)R(0)BBB|RBGRBBBRRRGBG...
+
+compressed output, with window ending at '|', strings replaced with pointers into window:
+|RBGRRRRRBBB|302GBG...
+
+move window in input forward now...
+RBGRRRRRBB|(3)B(2)RBGR(1)BBB(0)RRR|GBG...
+
+move window in compressed output forward now...
+RBGRRRRRBBB|302|GBG...</code></pre>
+<p>If a string cannot be matched up with a string within the window, that string is not replaced, but instead becomes a valid string to point at within the sliding window, hopefully helping to compress later strings. This also means that when starting compression, the window is empty, and it cannot replace strings with smaller pointers as there are no valid strings to point at yet. ZIP has to &quot;get started&quot;. Once it encodes some data however, it has built up enough contents for its sliding window of valid pointers and is able to achieve good compression from then on.</p>
+<p>The most elegant thing about ZIP is during decompression, the contents of the sliding window where the values of the valid pointers are stored is always decompressed first, so subsequent pointers can always be decompressed. This is very roughly like surfing, where the decompression of data is like the wave, and the end of the sliding window, where we are replacing compressed pointers with their original pointer values is like the surf board. We complete decompression when the surf board reaches the shore. Since the 'dictionary' (the wave front) is built dynamically during decompression, there is no need to store it with the compressed output.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbppgki">
+		<a class="author" href="https://www.reddit.com/user/SpongederpSquarefap" target="_blank">SpongederpSquarefap</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Stealing this answer from <a href="https://www.reddit.com/r/explainlikeimfive/comments/1dshk6/eli5_a_file_is_often_compressed_to_smaller_size/" target="_blank">this thread</a></p>
+<p>Credit to /u/sje46 </p>
+<hr />
+<p><strong>Non-Compressed</strong></p>
+<p>That Sam-I-Am!<br />
+That Sam-I-Am!<br />
+I do not like that Sam-I-Am!<br />
+Do you like green eggs and ham?<br />
+I do not like them, Sam-I-Am!<br />
+I do not like green eggs and ham!<br />
+Would you like them here or there?<br />
+I would not like them here or there.<br />
+I would not like them anywhere.<br />
+I do not like green eggs and ham.<br />
+I do not like them, Sam-I-Am.  </p>
+<h2>Total Characters = 322</h2>
+<p><strong>Compressed</strong></p>
+<p>1=hat<br />
+2=Sam-I-Am<br />
+3=I do not like<br />
+4=green eggs and ham<br />
+5=you like<br />
+6=here or there<br />
+7=I would not like them<br />
+T1 2!<br />
+T1 2!<br />
+3 t1 2!<br />
+Do 5 4?<br />
+3 4!<br />
+Would 5 them 6?<br />
+7 6.<br />
+7 anywhere.<br />
+3 4.<br />
+3 them, 2.  </p>
+<p>Total Characters = 186.  </p>
+<hr />
+<p>Compression rate = 58%.  Would almost certainly get much better as you go throughout the story.</p>
+<p>EDIT: Total characters for compressed version was actually 186, not 210.  Sorry about that.  Also, thanks for the BestOf!</p>
+<hr /></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbpgtvs">
+		<a class="author" href="https://www.reddit.com/user/TreeForge" target="_blank">TreeForge</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Image if you had a long paragraph and then try to find all the repeated word or phrases. For each repeated word or phrase, you replace the word or phrase with a lookup. Then you only need to write the repeated word or phrase once and from then on every spot you would write the shorter lookup. This is how files are zipped. </p>
+<p>Example</p>
+<p>1 - word or phrase</p>
+<p>2 - repeated </p>
+<p>3 - lookup</p>
+<p>4 - you</p>
+<p>5 - then</p>
+<p>6 - write</p>
+<p>7 - and</p>
+<p>8 - the</p>
+<p>Image if 4 had a long paragraph 7 5 try to find all 8 2 1s. For each 2 1, 4 replace 8 1 with a 3. Then 4 only need to 6 8 2 1 once 7 from 5 on every spot 4 would 6 8 shorter 3. This is how files are zipped.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/5kohsr" onclick="return false"><span>show</span></a>
+</li>

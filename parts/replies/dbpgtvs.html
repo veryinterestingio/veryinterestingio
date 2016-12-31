@@ -1,0 +1,75 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thephantom1492" target="_blank">thephantom1492</a>
+			<div class="markdown"><p>That is a proper ELI5 imo. That word list is called a dictionary, and on some programs you can select the size of it. The bigger the dictionary size the more the compression (in theory). There is also another compression trick: &quot;repeat this x times&quot;.</p>
+<p>Also, do not put jpeg in the same category, as it appear to not have lost any info, but did some pretty damaging tricks to get rid of lots of info (like the human eye is very sensitive to the luminance (black and white) but not quite to the chrominance (color), so it basically encode each luminance info for each pixels, but do it for only 1 on 2 pixels for the color info, Plus, it will change the colors if the pixels are close in colors, because the human eye is bad at finding very small difference. Now you have a few pixels that are identical, &quot;this color, repeat x time&quot;. MP3 do simmilar things too: remove the info that the human ear won't notice much, if any. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/panker" target="_blank">panker</a>
+			<div class="markdown"><p>JPEG uses a cosines transform to find the frequency spectrum of images and then basically filters out high frequencies. Unfortunately some images have high frequency information in them and when decompressed they get artifacts. The artifacts are ringing effects from the filters known as the Gibbs phenomenon. This is why you shouldn't use jpg for things like logos. The sharp corners of lettering and 1 pixel transitions between colors will artifact on decompression. Use png for those instead. Photographs generally have lots of noise that is invisible and can be filtered out safely so jpg works well.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PlayMp1" target="_blank">PlayMp1</a>
+			<div class="markdown"><p>Do we have any other decent lossy image compression algorithms in development that don't have some of these weaknesses? All these methods in this thread - zip, jpg, MP3, etc. - are all pretty old now, you'd think we'd have something better in the works...</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VoidKatana" target="_blank">VoidKatana</a>
+			<div class="markdown"><p>TIFs are what we use in my Journalism class. JPEGs also always degrade in quality everytime someone edits them, so to keep our pictures sharp and detailed, we always convert them to TIFs after editing.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eviforums" target="_blank">eviforums</a>
+			<div class="markdown"><p>You must have a very smart 5 year old</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SLy_McGillicudy" target="_blank">SLy_McGillicudy</a>
+			<div class="markdown"><p>Awesome follow-up to a great explanation.  I was immediately wondering about what happens to mp3s </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gyroda" target="_blank">gyroda</a>
+			<div class="markdown"><p>Mp3s and jpgs are both examples of &quot;lossy&quot; compression, where some of the detail/information is lost.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DonRobeo" target="_blank">DonRobeo</a>
+			<div class="markdown"><p>I always looked at zip files as sorta being like furniture bought from Ikea crammed neatly into a thin box.  It's a huge simplification, I know, but I like some of that mixed in with an ELI5...as long as there are explanations like /u/TreeForge made before it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/UrbanPugEsq" target="_blank">UrbanPugEsq</a>
+			<div class="markdown"><p>MP3 uses the concept of spectral masking aka lateral inhibition. </p>
+<p>Break all the sounds in a song up into individual frequencies (this is a Fourier transform). Then, if there's a high volume frequency right next to a low volume frequency, don't include the low volume frequency in the output file. </p>
+<p>Your ears ignore the low volume frequency anyway.  Inside your ear there are a bunch of little mechanical receptors that respond only to particular frequencies, all aligned in order.  And, they try to turn the ones next to them off. So, you really only &quot;hear&quot; the one that's loudest.  </p>
+<p>MP3 exploits this. </p>
+<p><a href="https://en.m.wikipedia.org/wiki/Lateral_inhibition" target="_blank">https://en.m.wikipedia.org/wiki/Lateral_inhibition</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ziggurism" target="_blank">ziggurism</a>
+			<div class="markdown"><blockquote>
+<p>the bigger the dictionary, the more compression (in theory)</p>
+</blockquote>
+<p>Be careful. There is a tradeoff between dictionary size and compression. If you make your dictionary too big, then many of the items will have little repetition, hurting your compression. Also your dictionary may exceed the uncompressed data in size if it is too big. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dascandy" target="_blank">Dascandy</a>
+			<div class="markdown"><p>But that only works if you build a table ahead of time. Most compressors actually find them at runtime:</p>
+<blockquote>
+<p>Image if (you)^4 had a long paragraph (and)^7 (then)^5 try to find all (the)^8 (repeated)^2 (word or phrase)^1 s. For each 2 1, 4 replace 8 1 with a (lookup)^3. Then 4 only need to (write)^6 8 2 1 once 7 from 5 on every spot 4 would 6 8 shorter 3. This is how files are zipped.</p>
+</blockquote>
+<p>Same info, same compression, but no explicit lookup. Just back-referring to the previous time I said something. The former is called LZ78-derived, and this form is called LZ77-derived - and they've been shown to achieve the exact same compression.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Attainted" target="_blank">Attainted</a>
+			<div class="markdown"><p>Fair, but it took me less thinking to understand the parent's explanation.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LeoRidesHisBike" target="_blank">LeoRidesHisBike</a>
+			<div class="markdown"><p>And, the &quot;dictionaries&quot; are often self-referencing: since 2 1 is a repeated sequence, it could be 9. </p>
+<p>Example</p>
+<p>9 - 2 1</p>
+<p>They also can use math formulas, since all data is basically a series of numbers. A formula can provide extreme compression...</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gyroda" target="_blank">gyroda</a>
+			<div class="markdown"><p>For example, a Googol (1 followed by 100 0s) is 101 characters if written out in decimal but can be written 10^100 in 6 characters. That's less than 6% of the original size with no information lost.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sour_cereal" target="_blank">sour_cereal</a>
+			<div class="markdown"><p>I <em>was</em> going to call you out on on 10\^100 being 5 characters. o^o^p^s</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
