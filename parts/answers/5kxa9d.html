@@ -1,0 +1,55 @@
+<div class="answers">
+	<div class="answer" data-handle="dbrj36l">
+		<a class="author" href="https://www.reddit.com/user/wfaulk" target="_blank">wfaulk</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In my mind, there are two categories of unusable characters: reserved characters and the rest of them, which I'll call disallowed characters.</p>
+<p>Reserved characters are characters used by the filesystem itself.  For example, most Unix filesystems separate directories/folders by using a slash ('/'), and mark the end of a name using a null character (0x00).  They don't allow you to use these characters because using them would be stepping on the toes of how the filesystem itself stores data about filenames. (In regards to the slash, it really has more to do with how the OS delimits paths rather than the filesystem itself.)</p>
+<p>Other characters are arbitrarily disallowed, usually to avoid confusion.  In Windows, those characters include the asterisk('<em>'), question mark('?'), doublequote('&quot;'), less than ('&lt;'), greater than ('&gt;'), and pipe ('|').  While these characters don't mean anything special to the filesystem itself, they mean special things to the command shell.  In order to prevent a user from getting in a confusing situation where a file is named &quot;`</em>.txt<code>" and then running "</code>del *.txt<code>" ends up deleting more files than intended, Windows decided to prevent the user from getting in this situation by preventing the use of those characters in filenames.  (Unix systems do not have this restriction.)  I suspect that Windows also includes ('/') in this category.  It looks like the backslash ('\\') directory delimiter, but it's probably avoided because command options are started with a slash, as in "</code>dir /w`&quot;.</p>
+<p>Windows also disallows the colon (':'), which has special meaning to the OS.  It actually indicates that the name that preceded it is a device.  Drive letters are the obvious examples, but there are a number of others, including &quot;CON&quot; (the console), &quot;LPT1&quot; (through at least 3, which are printers), &quot;PRN&quot; (also a printer), and some others that I'm forgetting.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dbra69e">
+		<a class="author" href="https://www.reddit.com/user/MrMeltJr" target="_blank">MrMeltJr</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Some special characters mean something in the code used to make the file system. It would be possible to make the system work around this, but it's easier and safer to just prevent you from using such characters.</p>
+<p>For example, a filepath might be C:\Users\MrMeltJr\Photos\pepes\le_rarest_pepe.jpeg</p>
+<p>This means that the file le_rarest_pepe.jpeg is in the folder pepes, which is in the folder Photos, which is in MrMeltJr, which is in Users, which is on the C drive. Now, if I named the file le\rarest\pepe.jpeg, the computer would now think it's a file called pepe.jpeg in a folder called rarest, which is in a folder called le, and so on. But none of those folder exist, so it can't find the file. Like I said, it's possible to code things so that it can tell the difference between weird file names and actual filepaths, but it that would make the system slower (since it has to run through those extra checks every time you do pretty much anything with any file) and it's less reliable (since it's just more opportunities for something to go wrong). Safer and easier to just prevent those characters from being used.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbr9uql">
+		<a class="author" href="https://www.reddit.com/user/Schnutzel" target="_blank">Schnutzel</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Because those characters have special meanings. For example '/' is used as a directory separator, so if you were to allow it in a filename, there would be no way to determine whether the path &quot;abc/xyz&quot; refers to the file named &quot;abc/xyz&quot; or the file names &quot;xyz&quot; in the directory &quot;abc&quot;.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbrkctb">
+		<a class="author" href="https://www.reddit.com/user/ailyara" target="_blank">ailyara</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>While most of these explanations are mostly correct, the real answer is you can put those characters in filenames if you know how by escaping them, at least on certain filesystems, but I don't recommend it because it just causes problems. </p>
+<p>For example, if I want to name a file &quot;*&quot; on Ext2 in Linux:</p>
+<pre><code># touch \*
+
+( \ is the escape char )</code></pre></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbrar8w">
+		<a class="author" href="https://www.reddit.com/user/alexeyprog" target="_blank">alexeyprog</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Operating system uses this characters as templates. For example, for searching files by parts of its name, for redirecting input/output streams, and as path delimiters.</p>
+<p>If you want to find some files on your disk but can't remember how used word 'color' or 'colour', you can use this template: &quot;colo?r&quot; (without quotes and with question mark).
+Here question mark used as replacement for one symbol (any allowed) or its absence. Results can be: &quot;color&quot;, &quot;colour&quot;, &quot;colo7r&quot;, etc.</p>
+<p>Slash/Backslash symbols used on different platforms (windows/Linux/web) as path delimiters.
+Windows: &quot;C:\games\game1.exe&quot; - sounds like &quot;go to 'C:' (look at another special symbol) drive then 'games' directory inside and find file named 'game1.exe'&quot; inside this folder.
+Linux: &quot;/usr/bin/games/game1.exe&quot; - means the same but Linux isn't using drive letters.
+Web: &quot;ftp://pub/docs/doc56.txt&quot; - 'ftp' is a file transfer protocol, 'pub' and 'docs' are folders, 'doc56.txt' is a filename.</p>
+<p>Definition of some symbols can be different for different contexts. You can find all of the symbols and its description and use-cases by googling.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
