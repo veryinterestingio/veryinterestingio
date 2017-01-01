@@ -1,0 +1,70 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheCid" target="_blank">TheCid</a>
+			<div class="markdown"><blockquote>
+<p>Say your first click reveals a lone 1. What's the best way to proceed? Should you hunt down the 1? Should you click somewhere else randomly?</p>
+</blockquote>
+<p>Your optimum play is whatever has the least chance of you blowing up. So you have a 1/8 chance of exploding if you click around the 1, and a (m-1)/(n-9) chance of blowing up when you click anywhere else, where m is the number of mines (OP said 99) and n is the number of tiles (OP said 480). So 1/8 is .125, 8/471 is 0.169 (edit: this is wrong, see below); so you're better off clicking somewhere away from the 1 in an attempt to get more information. I'd imagine clicking two or three squares away would be optimum, in an attempt to maximize the odds of getting more usable information; but in the end you'll find yourself in a position where there are computable plays before needing to resort to guessing, and then you can pick the line with the best chance of not blowing up.</p>
+<blockquote>
+<p>How do you account for every kind of advanced technique, like looking at many adjacent markers to figure out which spots can or cannot have mines?</p>
+</blockquote>
+<p>Perfect play would use all of them, and would go through all of them before even <em>beginning</em> to guess. Unfortunately, you often have to make a couple of guesses before you can start making evaluations.</p>
+<hr />
+<p>In reality, though, OP is only looking for the ones which have indeterminate positions on the board in the first place. There are patterns of mines which will always be indeterminate; you could then just calculate the odds of those patterns appearing. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Aurora_Fatalis" target="_blank">Aurora_Fatalis</a>
+			<div class="markdown"><blockquote>
+<p>So 1/8 is .125, 8/471 is 0.169; so you're better off clicking somewhere away from the 1 in an attempt to get more information.</p>
+</blockquote>
+<p>What?</p>
+<p>It's supposed to be 98/471 = 0.208 &gt; 0.125, so you should click near the 1. No idea where you got 0.169 from.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheCid" target="_blank">TheCid</a>
+			<div class="markdown"><p>Yeah, you're right. I clearly got something crossed up when going back and forth between my post and the OP. </p>
+<p>In any case, the general principle stands - you minimize the risk you take. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Aaron_Lecon" target="_blank">Aaron_Lecon</a>
+			<div class="markdown"><p>You have just described the greedy algorithm way of doing things, where at each step, you minimise the probability of immediately losing. However, you are wrong to assume that the greedy algorithm is optimal for this because your moves are NOT independent from one another. When you open one square, you'll get information about other squares and that changes future moves.</p>
+<p>Here's a counter example to the idea that the greedy algorithm is the best one at solving minesweeper:</p>
+<p><a href="http://imgur.com/a/FsJeE" target="_blank">http://imgur.com/a/FsJeE</a></p>
+<p>The best square to click when in that situation is actually one that has 2/3 of being a mine, even though there are safer squares with only 1/2 of being a mine.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheCid" target="_blank">TheCid</a>
+			<div class="markdown"><p>Fair. You could go N levels deep and use a greedy algorithm over the estimated probability over those N levels without dying (if solving for the entire board is intractable, which it may well be for a large enough board); you're right that a greedy algorithm with a depth of 1 is suboptimal.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sirgog" target="_blank">sirgog</a>
+			<div class="markdown"><p>Minimizing risk on your next move is not necessarily correct (although in the case of a lone 1, it is - I believe the optimal play is to click a diagonally 'adjacent' cell).</p>
+<p>It is always optimal to process all perfectly known cells but the optimal play may vary once risky moves enter the equation. After all, it's better to take one 30% chance of losing where you will be able to proceed if you are safe, than it is to take a 20% chance, succeed, learn nothing, and have to take another 20% chance of losing.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheSilicoid" target="_blank">TheSilicoid</a>
+			<div class="markdown"><blockquote>
+<p>Say your first click reveals a lone 1. What's the best way to proceed? Should you hunt down the 1? Should you click somewhere else randomly? Should it be a combination of the two? Can you generalize this into any scenario that requires guessing (e.g. a good strategy might have you only guess based on estimated probabilities of hitting a mine at a given spot, given known information about adjacent markers and the number of mines remaining in the game). How do you account for every kind of advanced technique, like looking at many adjacent markers to figure out which spots can or cannot have mines? You might not realize it, but there's a ton of complexity to this game, and even coming up with a good general strategy for playing Minesweeper would be difficult. Trying to prove your strategy was the solution would be even harder. Then and only then could you understand how often &quot;perfect play&quot; will succeed at the game.</p>
+</blockquote>
+<p>These probabilities can trivially be calculated by computers. Brute forcing every game may be impractical, but a Monte Carlo approach using the probabilistically optimum moves is easy.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mikegrann" target="_blank">Mikegrann</a>
+			<div class="markdown"><p>See my edit for a more concrete example of why this approach doesn't necessarily reflect perfect play. In a game as complex as Minesweeper, always choosing an immediate probability optimum isn't necessarily a solution. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheSilicoid" target="_blank">TheSilicoid</a>
+			<div class="markdown"><p>That's a good point, but what you're describing is just the need for a slightly more advanced heuristic that is based on the potentially revealed pieces. This kind of calculation is also trivial for computers for a game as simple as minesweeper.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/exmachinalibertas" target="_blank">exmachinalibertas</a>
+			<div class="markdown"><blockquote>
+<p>In game theory, a solution to a game is optimal if it perfectly maximizes your chances of winning. </p>
+</blockquote>
+<p>That's only true if you're playing against a perfect opponent.  Maximizing your expectation in a game is not the same as playing optimal.  If you were playing rock paper scissors against somebody who always threw rock, your best strategy would be to always throw paper, but optimal would still be 1/3, 1/3, 1/3.</p>
+<p>If your opponent can change his strategy to advance himself against the strategy you're using, then your strategy is not optimal.</p>
+<p>An optimal strategy is the perfect defense.  Which is often not the most profitable exploitive strategy.</p>
+<p>That said, I really like your comment and don't want to nitpick too much.  Your explanation of the difficulty of deriving starting game strategy is really good.</p></div>		</li>
+					</ul>
+	

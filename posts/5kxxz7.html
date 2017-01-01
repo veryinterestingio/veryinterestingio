@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>Is it possible to calculate the average chance of winning a 16x30 game of Minesweeper with 99 mines, assuming perfect play?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="5kxxz7">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/5kxxz7/is_it_possible_to_calculate_the_average_chance_of/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Mathematics">Mathematics</span>
+			<a href="/posts/5kxxz7" onclick="return false">Is it possible to calculate the average chance of winning a 16x30 game of Minesweeper with 99 mines, assuming perfect play?</a>
+		</h2>
+		<!--<span class="date">2017-01-01</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I saw <a href="https://i.reddituploads.com/ffe020fb521848acb34fcee55b56fd4b?fit=max&amp;h=1536&amp;w=1536&amp;s=72bd2cb0210e6543af44d4ad7ba62ab3" target="_blank">this frustrating windows Minesweeper picture</a> on /r/gaming, and it got me thinking that it must be a statistical impossibility to maintain a 100% win rate, even with perfect play on that &quot;expert&quot; 16x30 grid of minesweeper with 99 mines. No matter how perfectly you play, some games will force you to occasionally have to make a guess, as is the case in the image that I linked too.</p>
+<p>If we can assume that we have a perfect player, who always makes the most highest probability selections (in other words, if there is a 100% &quot;safe&quot; square, it will always pick that before attempting to guess on a 50/50 safe square, and if there is a square that has a 2/3 chance of being safe, it will pick that before picking a square that has a 50/50 chance of being safe, then what would percentage of wins would the &quot;perfect player&quot; most likely approach?</p>
+<p>Other assumptions:</p>
+<ul>
+<li>
+<p>The first click will never result in a mine exploding --&gt; the game is generated AFTER you click your first square.</p>
+</li>
+<li>
+<p>Mine placement is completely random, except for the first clicked square.</p>
+</li>
+<li>The Mines can not change position after the board has been determined on the first click.</li>
+</ul>
+<p>Thanks Reddit!</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dbrnx8i">
+		<a class="author" href="https://www.reddit.com/user/Alexbrainbox" target="_blank">Alexbrainbox</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Easiest way I can think of solving this would be to take a Monte Carlo Method approach:</p>
+<ol>
+<li>Code the AI to play Minesweeper</li>
+<li>Code the generator to construct levels</li>
+<li>Run on millions of test cases to get a near estimate.</li>
+</ol>
+<p>This is a standard approach for &quot;hard&quot; games (ones with nontrivial rule sets and sequencing) though there may be mathematical simplifications to make this actually provable.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dbrqybs">
+		<a class="author" href="https://www.reddit.com/user/Mikegrann" target="_blank">Mikegrann</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Can you describe this perfect play? In game theory, a solution to a game is optimal if it perfectly maximizes your chances of winning. But even coming up with a candidate solution for a game like Minesweeper is difficult. </p>
+<p>Say your first click reveals a lone 1. What's the best way to proceed? Should you hunt down the 1? Should you click somewhere else randomly? Should it be a combination of the two? Can you generalize this into any scenario that requires guessing (e.g. a good strategy might have you only guess based on estimated probabilities of hitting a mine at a given spot, given known information about adjacent markers and the number of mines remaining in the game). How do you account for every kind of advanced technique, like looking at many adjacent markers to figure out which spots can or cannot have mines? You might not realize it, but there's a ton of complexity to this game, and even coming up with a good general strategy for playing Minesweeper would be difficult. Trying to prove your strategy was the solution would be even harder. Then and only then could you understand how often &quot;perfect play&quot; will succeed at the game. </p>
+<p>For reference, in total there are (480 choose 99) or about 5.6x10^104 possible game boards. That's a lot of possibilities to account for - far too many to have a computer actually check them all. </p>
+<p>EDIT: My scenarios clearly were too simplified (yes, you go for a spot adjacent to the 1), so try this one on for size. You've reached a scenario where you have to guess because there are no spots that can be determined as either 0% or 100% chance of a mine. Almost everyone so far has been fixating on probabilities, assuming that the optimal strategy will be to always guess at the least likely spot, because it has the least chance of blowing up and immediately ending the game. However, I suggest that sometimes, it will be better to guess at a higher-probability spot. What if one of those spots has a small chance of containing a mine, but clicking on it wouldn't reveal enough information to allow you to continue, so you'd then have to make another guess. Meanwhile, you could have originally chosen a more illuminating but higher probability spot. </p>
+<p>In the first strategy, although you are always guessing &quot;optimally&quot;, you might be exposing yourself to unnecessary risk. The combination of multiple guesses might make you more likely to explode than taking the second strategy and making only a single, more effective, yet higher probability guess. </p>
+<p>As a more concrete example, revisit the lone 1 scenario. Is it truly better to click on one of the adjacent tiles? Or is it better to click on a tile a short distance away in order to gain a better understanding of the game board? What nearby tile do you choose? Can you mathematically prove one or the other gives you better chances of success on average? </p>
+<p>This is just one such complication. Yes, you could use a Monte Carlo approach to approximate the win percentage of a player who always chose the probability-optimal tile. But this won't necessarily constitute a solution to the game, as there are many other strategies which may beat this immediate optimum over the long run. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbrw3l6">
+		<a class="author" href="https://www.reddit.com/user/isikbala" target="_blank">isikbala</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>As far as I can tell, you're basically asking &quot;How many indeterminate positions do you encounter, given a random starting point?&quot;. Turns out there are a LOT of ways to have indeterminate positions, but if you pick only the most likely ones (The ones you've probably seen yourself) it should be computable from there.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbsc930">
+		<a class="author" href="https://www.reddit.com/user/wizmut" target="_blank">wizmut</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's rare to not have to make a guess in an expert game - I'd wager in less than 5% of boards.  People who play for speed always guess when it's faster - even if you could uncover tiles later that make the solution apparent. (source: my best time is 70)</p>
+<p>Needless to say, the new version with a pop-up after every game is unplayable.</p>
+<p>In order to have the best chance of winning, though, you couldn't simply rely on which square had the best odds.  Often times, if you say have a small square revealed or a wall going from one side of the board to another, the best 'odds' may be any square in the great grey sea.  But some of these squares will synergize better with the squares you've already revealed.</p>
+<p>Also, it might be a technical note but in at least one version of the game, the board is generated before the click and is then possibly modified by the location of the first click.  A cheat that changes the upper-left pixel of the monitor demonstrates this.  I'm not sure how the new mine is chosen - randomly or the first available space.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbsg1k2">
+		<a class="author" href="https://www.reddit.com/user/somedave" target="_blank">somedave</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Plenty of minesweeper games result in you losing on the first move, which is about 20% for the situation you suggested, but I don't think that dominates.  Also there is a chance the first square you pick leads to you having to guess again.  </p>
+<p>I think it would be very complicated to exactly calculate what you are saying as it also relies on you &quot;solving&quot; minesweeper (generating a perfect algorithm for winning) which I believe is an NP complete problem.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/5kxxz7" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
