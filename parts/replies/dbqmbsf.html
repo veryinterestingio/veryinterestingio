@@ -1,0 +1,116 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/functor7" target="_blank">functor7</a>
+			<div class="markdown"><p>Note the mechanism behind this is related to, but separate from, differentiation. </p>
+<p>Instead of the derivative operator f'(x), you have the <a href="http://mathworld.wolfram.com/FiniteDifference.html" target="_blank">Finite Difference Operator</a> f^([1])(x)=f(x+1)-f(x). This can be repeated multiple times, just like derivatives can, to get higher-order differences f^([k])(x). The finite difference doesn't follow the power rule that derivatives do. But if f(x)=x^(n), then f^([k])(x) is a polynomial of degree n-k. This means that f^([n])(x) is a polynomial of degree 0, which means it is a constant and you can show that f^([n])(x)=n!. This end result coincides with derivatives, but it takes a different route and it's important to distinguish them.</p>
+<p>For example, if f(x)=x^(5), then </p>
+<ul>
+<li>
+<p>f^([1])(x) = (x+1)^(5)-x^(5) = 5x^(4) + 10x^(3) + 10x^(2) + 5x + 1</p>
+</li>
+<li>
+<p>f^([2])(x) = 20x^(3) + 60x^(2) + 70x + 30</p>
+</li>
+<li>
+<p>f^([3])(x) = 60x^(2) + 180x + 150</p>
+</li>
+<li>
+<p>f^([4])(x) = 120x + 240</p>
+</li>
+<li>f^([5])(x) = 120 = 5!</li>
+</ul>
+<p>This is the actual process that the OP is doing, not derivatives. Compare this to what happens to f(x)=x^(5) when we take repeated derivatives:</p>
+<ul>
+<li>
+<p>f'(x) = 5x^(4)</p>
+</li>
+<li>
+<p>f''(x) = 20x^(3)</p>
+</li>
+<li>
+<p>f'''(x) = 60x^(2)</p>
+</li>
+<li>
+<p>f''''(x) = 120x</p>
+</li>
+<li>f'''''(x) = 120 = 5!</li>
+</ul>
+<p>It is much simpler and immediate that you get factorials from derivatives, but it is not so with the difference operator. There's actually an entire kind of &quot;finite calculus&quot; that you can make using difference operators rather than derivatives. There are analogs for everything in calculus. For instance, <a href="https://en.wikipedia.org/wiki/Finite_difference#Newton.27s_series" target="_blank">Newton Series</a> are a finite-difference analog to Taylor series and there's a pretty simple <a href="http://mathonline.wikidot.com/the-fundamental-theorem-of-the-calculus-of-finite-difference" target="_blank">analog of the Fundamental Theorem of Calculus</a>.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/billdroman" target="_blank">billdroman</a>
+			<div class="markdown"><p>You can show that you get factorials with the difference operator without all of the machinery. Just prove this fact:</p>
+<ul>
+<li>When you take the finite difference of a polynomial with highest-degree term cx^n you get a polynomial with highest-degree term cnx^n-1</li>
+</ul>
+<p>Then you know that after applying the operator n times to x^n you'll get a polynomial w/ highest degree term n!, which is a constant, so there are no other terms. Sometimes you can get by by throwing a lot of information away.</p>
+<p>Edited to fix formatting. Is there a way to write subscripts on reddit?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chipaca" target="_blank">chipaca</a>
+			<div class="markdown"><blockquote>
+<p>Is there a way to write subscripts on reddit?</p>
+</blockquote>
+<p>no, but Unicode has <code>₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎ₐₑₕᵢₖₗₘₙₒₚᵣₛₜᵤᵥₓₔᵦᵪᵧᵩᵨ</code> which might get you by.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/InfanticideAquifer" target="_blank">InfanticideAquifer</a>
+			<div class="markdown"><p>There is if you're willing to only be understandable to those of us with a browser extension that renders LaTeX! </p>
+<p>So, not really. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/WormRabbit" target="_blank">WormRabbit</a>
+			<div class="markdown"><p>Follow-up question: in high-brow algebraic geometry we have a universal geometric approach to differential equations via the theories of crystalls and d-modules, however over Z they are nothing like the difference equations. Arguably the theory of difference equations is even more important than that of differential equations. Does it have a similar geometric definition (some &quot;difference delta-modules&quot;)?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/functor7" target="_blank">functor7</a>
+			<div class="markdown"><p>I don't know any interpretations of it at the level of something like d-modules. Though, there are <a href="https://en.wikipedia.org/wiki/Difference_algebra" target="_blank">Difference Algebras</a>, with Difference Varieties, which are analogous to Differential Algebra. At an even more basic level, they play a fundamental role in p-adic analysis as Newton Series are the &quot;correct&quot; p-adic analog to Taylor series.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ZahidInNorCal" target="_blank">ZahidInNorCal</a>
+			<div class="markdown"><p>I don't totally get the distinction you're drawing here. I think I understand what you're saying, but doesn't OP's example show that the Finite Difference Operator and differentiation are not just related, but the same thing? If I think about a derivative as describing a rate of change, the subtraction he's doing sounds like a derivative to me.</p>
+<p>Is the difference (no pun intended) that OP is looking at integers rather than infinitesimally small intervals?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/functor7" target="_blank">functor7</a>
+			<div class="markdown"><blockquote>
+<p>Is the difference (no pun intended) that OP is looking at integers rather than infinitesimally small intervals?</p>
+</blockquote>
+<p>Yes, and that's a huge difference. One requires limits to talk about and one requires nothing more than simple arithmetic. </p>
+<p>In the Finite Difference, you are taking two points that are separated from each other and seeing how the function changes between those two points. Generally, we can look at f^([1])<em><em>h</em></em>(x)=f(x+h)-f(x), so we also don't divide by h to get the ratio as we do in derivatives, the difference is the <em>absolute</em> difference rather than relative difference. But we are allowed to look at the absolute difference because the points are separated from each other, if we just took the limit of the absolute difference as h-&gt;0 then we'd just get 0, which doesn't say anything. In Derivatives, we see what happens to the relative difference as the points become arbitrarily close. That is, we get rid of the separation. If you just plug in h=0 into (f(x+h)-f(x))/h, then you get 0/0, which is undefined, so we need to include the extra information of taking a limit. </p>
+<p>One compares separated points, one uses limits.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EarlGreyDay" target="_blank">EarlGreyDay</a>
+			<div class="markdown"><p>not x!   .   if it's x^n , the nth derivative will be constant and equal to n!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RA_Carson" target="_blank">RA_Carson</a>
+			<div class="markdown"><p>Start with x^n</p>
+<ul>
+<li>
+<p>derive nx^(n-1)</p>
+</li>
+<li>
+<p>derive that to get n (n-1) x^(n-2)</p>
+</li>
+<li>
+<p>derive that to get n (n-1) (n-2) x^(n-3)</p>
+</li>
+<li>
+<p>repeat until (n-n) = 0</p>
+</li>
+<li>
+<p>final calculation will be n (n-1) (n-2) (n-3) ... (1) x^0</p>
+</li>
+<li>
+<p>x disappears in a puff of <del>logic</del> math (x^0 is always 1)</p>
+</li>
+<li>note equivalence to factorial sequence e.g. 6x5x4x3x2x1x1 = 6! = 1x2x3x4x5x6</li>
+</ul></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eigenburg" target="_blank">eigenburg</a>
+			<div class="markdown"><p>Quick question, if you work backwards, you find 1!=1, and you need to perform the bottom out method for x^1 1 times, however, for x^0, you perform the method 0 times, but 0! is defined as being equal to 1. Is there any reason for why it breaks down at 0?</p></div>		</li>
+					</ul>
+	

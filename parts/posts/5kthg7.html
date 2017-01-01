@@ -1,0 +1,132 @@
+<li class="post" data-handle="5kthg7">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/5kthg7/does_this_number_have_a_name/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Mathematics">Mathematics</span>
+			<a href="/posts/5kthg7" onclick="return false">Does this* number have a name?</a>
+		</h2>
+		<!--<span class="date">2017-01-01</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I would be more specific in the title, but it would be too incomprehensible and cut-short probably. It will take some explanation before I get to my question again but it's there:</p>
+<p>I was working on a math puzzle a while back where I had to guess the next number in a series. The given series was &quot;1, 4, 9, 16, 25, 36, 49, __&quot; and I had to guess the last number. I guessed correctly, but instead of intuitively realizing that the pattern was &quot; x^2 &quot;, I found the answer via another method.</p>
+<p>I found the differences between the adjacent numbers in the series, i.e. 4 - 1 = 3, 9 - 4 = 5, so on, and used those to create a new series: &quot;3, 5, 7, 9, 11, 13&quot;. I then performed the same operation on that line, finding the differences between adjacent numbers and then using those to create a new line: &quot;2, 2, 2, 2, 2&quot;.</p>
+<p>I thought this was interesting, because by performing this differences method twice on my given series, I was able to bottom-out/hit a ceiling at the number 2*. The number 2 was useful, because I could then work my way back down/up (depends on how you write it down, I guess) to find the next number in the series: 64.</p>
+<p>I decided to try this again on a new, related series. I made the series &quot;1, 8, 27, 64, 125&quot; ( x^3 ) and resolved to use the same differences method on this line. The first time yields: 7, 19, 37, 61&quot;; the second time yields: &quot;12, 18, 24&quot;; the third time bottoms out at: &quot;6, 6&quot;.</p>
+<p>So ( x^2 ) bottoms out at 2<em>, and ( x^3 ) bottoms out at 6</em>.</p>
+<p>I continued this with ( x^4 ): &quot;1, 16, 81, 256, 625, 1296, 2401&quot;. The differences method yields: &quot;15, 65, 175, 369, 671, 1105&quot;; again, and it yields: &quot;50, 110, 194, 302, 434&quot;; again, and it yields: &quot;60, 84, 108, 132&quot;; again, and it yields: &quot;24, 24, 24&quot;.</p>
+<p>So ( x^4 ) bottoms out at 24*.</p>
+<p>Finally, my question: Is there a name for these bedrock numbers that I've marked with the asterisks? </p>
+<p>Additionally, I would like to know: is there reading material on the matter? Is there a more elegant way of finding the bedrock number that underlies a given exponent?</p>
+<p>tl;dr:</p>
+<p>2 underlies ( x^2 ),
+6 underlies ( x^3 ),
+24 underlies ( x^4 ),
+and so on, for reasons explained above.
+Why?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dbqoqd6">
+		<a class="author" href="https://www.reddit.com/user/LetEpsilonBeLessThn0" target="_blank">LetEpsilonBeLessThn0</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><blockquote>
+<p>Is there a more elegant way of finding the bedrock number that underlies a given exponent?</p>
+</blockquote>
+<p>Yes, for x^n the number you're looking for will be n!, which is shorthand for n * (n-1) * (n-2) *....*3*2*1.</p>
+<p>For example, x^7 would end up with the number 7! = 7*6*5*4*3*2*1 = 5040</p>
+<h2>To see why:</h2>
+<p>Focus on x^2 to start. </p>
+<p>To generalize the difference between consecutive items in the sequence, we have:</p>
+<p>(x+1)^2 - x^2</p>
+<p>Do some algebra and get:<br />
+<strong>2</strong>x^<strong>1</strong> + 1</p>
+<p>Repeat the process:</p>
+<p>[2(x+1) + 1] - [2x+1]<br />
+= 2</p>
+<p>So there's your 2.</p>
+<hr />
+<p>Now we do this with x^3:</p>
+<p>(x+1)^3 - x^3<br />
+= <strong>3</strong>x^<strong>2</strong> + 3x + 1</p>
+<p>Repeat the process:<br />
+[3(x+1)^2 +3(x+1) + 1] - [3x^2 + 3x + 1]<br />
+= <strong>6</strong>x^<strong>1</strong> + 6 </p>
+<p>Repeat the process:<br />
+6(x+1) + 6 - [6x+6]<br />
+= 6 [aka <strong>6</strong>x^<strong>0</strong>]</p>
+<h2>Making sense of it:</h2>
+<p>Notice that I've bolded a few coefficients and exponents in the above section. As you go through the repetitive process, you see that your highest power term always gets canceled out in the algebra. In the x^3 example, you start with 1x^3 being your highest power term. Then you do the difference process and you end up with 3x^2 being your highest power. Then you do the difference process again and you end up with 6x^1 being your highest power. Then you do it once more and 6x^0 is your highest power. </p>
+<p><strong>In the x^3 example, do you see how the highest power term goes like this as we go through all the steps:</strong></p>
+<p>x^3<br />
+3x^2<br />
+6x^1<br />
+6x^0</p>
+<p><strong>So the general pattern is:</strong><br />
+x^n<br />
+nx^(n-1)<br />
+n(n-1)x^(n-2)<br />
+n(n-1)(n-2)x^(n-3)<br />
+.<br />
+.<br />
+.<br />
+n(n-1)(n-2)...3*2*1</p>
+<p>which is the formula we talked about up top.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dbqmbsf">
+		<a class="author" href="https://www.reddit.com/user/CogMonocle" target="_blank">CogMonocle</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's just the result of taking the derivative repeatedly. Your final sequence (2, 6, etc.) will be x! (factorial of x) </p>
+<p>Taking the derivative of a polynomial reduces the exponents by one, then multiplies the terms by the original exponent. </p>
+<p>If f(x) = x^2<br />
+f'(x) = 2 * x<br />
+f''(x) = 2</p>
+<p>If g(x) = x^3<br />
+g'(x) = 3 <em> x^2<br />
+g''(x) = 6 </em> x<br />
+g'''(x) = 6</p>
+<p>So each consecutive exponent would result in factorially increasing numbers. 1 <em> 2 = 2, 2 </em> 3 = 6, 6 <em> 4 = 24, 24 </em> 5 = 120, 120 * 6 = 720</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbqhpj3">
+		<a class="author" href="https://www.reddit.com/user/WealthyOtter" target="_blank">WealthyOtter</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>That's called a second difference. For y=x, the first differences will be constant. For y=x^2 , second differences will be constant and so on. That's how you can tell from a table of value if a graph is linear, quadratic, cubic, quartic, quintic etc.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbqs8hy">
+		<a class="author" href="https://www.reddit.com/user/nmhnmhnmhnmh" target="_blank">nmhnmhnmhnmh</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Thank you ALL for your responses. The answers to my questions are way more complicated (superficially at least) than I initially expected. I will spend a good deal of tonight and tomorrow reading these responses and responding in turn. I appreciate it :)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbqse7l">
+		<a class="author" href="https://www.reddit.com/user/FromPhysicsWithLove" target="_blank">FromPhysicsWithLove</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Others have already answered your question, but I thought I'd add that the Online Encyclopedia of Integer Sequences (OEIS, <a href="https://oeis.org/" target="_blank">link</a>) is a good place to learn more about things like this. You type in a part of the sequence you're interested in (in this case, &quot;2, 6, 24&quot;) and hit &quot;Search&quot;. It gives you a list of all the sequences that contain the subsequence you entered, including their name, a short description of what they may represent, and some mathematical references.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/5kthg7" onclick="return false"><span>show</span></a>
+</li>
