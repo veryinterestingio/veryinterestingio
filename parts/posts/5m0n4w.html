@@ -1,0 +1,90 @@
+<li class="post" data-handle="5m0n4w">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/5m0n4w/eli5_why_is_it_impossible_very_difficult_to/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/5m0n4w" onclick="return false">Why is it impossible (very difficult) to reverse a password hash?</a>
+		</h2>
+		<!--<span class="date">2017-01-07</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I understand that a lot of sites store password hashes rather than actual plain text passwords. And when the user types in their password, the plain text is put through a hashing process (like MD5 or SHA-256) and then the output (the hash) of that process is actually used to authenticate the user. So when someone hacks a website they usually end up with hashed passwords rather than actual passwords.</p>
+<p>I've always heard that it is impossible (or at least so difficult it is practically impossible) to reverse the hashing process (i.e. you can't take a hash and turn it into plain text) unless you just brute force a ton of plain text strings and compare the hashes. </p>
+<p>So my question is, why can't hashing be reversed?</p>
+<p>Related question - could machine learning be used to reverse hashing? If a computer using machine learning tried to find patterns between hashes and respective plain text, could it get there eventually?</p>
+<p>Thanks!</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dbzvem9">
+		<a class="author" href="https://www.reddit.com/user/svartkonst" target="_blank">svartkonst</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Hashing is destructive. To take an easy example that's easier to wrap your head around, we can make our own hashing algorithm. </p>
+<p>For simplicity, imagine we have a password system where users have 4-digit pin codes as passwords.</p>
+<p>So a real simple hash would be something like this: </p>
+<ol>
+<li>Pick a number between 1111 and 9999 (3456)</li>
+<li>Multiply the number by itself (3456 * 3456 = 11 943 936)</li>
+<li>Store the last three digits as the password (936)</li>
+</ol>
+<p>Turning 3456 into 936 was real simple - Turning 936 into 3456 is very hard. </p>
+<p>Beyond that, there are a few not-to-rare caveats that occur, such as the need to use salts to prevent identical passwords from rendering identical hashes and avoid excessive truncation of both the input data and the stored hash. In our system above, for instance, any input that results in 936 will be a valid password, which means we have a high rate of collisions, which is bad. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dc0ubfs">
+		<a class="author" href="https://www.reddit.com/user/SushiAndWoW" target="_blank">SushiAndWoW</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><blockquote>
+<p>So my question is, why can't hashing be reversed?</p>
+</blockquote>
+<p>Because each calculation in hashing offers a single and straightforward option going forward; but multiple options in reverse.</p>
+<p>Have you heard of <a href="http://fluidpowerjournal.com/2013/10/teslas-conduit/" target="_blank">Tesla's valvular conduit</a> &ndash; a valve without moving parts? A hash function is hard to reverse for similar reasons. Each step is more difficult in one direction than the other. When you chain enough steps together, the difficulty multiplies in a way that flow in the wrong direction is close to impossible.</p>
+<p>Imagine you're at one of the source flows that join a large river. It's very straightforward to go downstream and end up where the river meets the ocean. Every turn is obvious - you always go downstream. However, if you're starting at the ocean, it's very difficult to go back to the place you started. Going up, you have to make countless decisions where the origin streams diverge, and it's highly unlikely you'll make all of them right unless you already know exactly where you're headed.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dc0c1uv">
+		<a class="author" href="https://www.reddit.com/user/burnmp3s" target="_blank">burnmp3s</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Let's say instead of your password, it's the city you live in that we are trying to verify. If I want to verify that you live in the place you lived before but I don't want to save your actual home city in a database for security reasons, I could calculate something based on your city instead.</p>
+<p>One easy thing to do would be to store how many miles away your city is from a given spot, such as Chicago. When you tell me your city again, I can calculate the distance from your city to Chicago and check that against the distance stored in the database. This isn't a great hashing scheme though because you can easily figure out all cities that are X miles away from Chicago and guess what city the person is from. You can make this kind of check harder by making the distance calculation more complex. So instead of just straight line distance, maybe you map an actual travel route between the two cities, then maybe add 1 to your distance count for every mile traveled North, subtract one for every mile traveled West, etc. Now when someone sees &quot;42&quot; in the database, it's not clear if the city is 42 miles North, or 70 miles North and 28 miles West, etc. Ideally, the results for your calculation seems like a random number, so that if one city's code is 122, a city right next to it could just as easily be 25 as 429, there should be no correlation between similarities in the city geography and the code you generate. As long as it's just a set of simple math operations to calculate that distance number, the system can easily create a code for any city and then recalculate the same code later to verify.</p>
+<p>There's still a problem though. Let's say New York's distance code is 149. Since this distance calculation itself isn't secret (if it works well it would be used for all kinds of websites and software), someone could just make a list of every major city and its corresponding distance code when compared to Chicago. So later if you find 149 in a leaked database, you know every user with that code is probably from New York. The solution is salting, which basically makes each calculation more unique. So instead of calculating distance from Chicago every time, you could calculate from a random city every time. Instead of user1:149, user2:149, user3:149, for three users from New York being stored in the database, it could be user1:149 from Chicago, user2:418 from Miami, user3:12 from San Francisco, so that now every user from New York has a different code stored. Now if someone wants to be able to know every user that lives in New York, they have to do the work of calculating the distance to New York from every other possible city that the system uses.</p>
+<p>Edit: Said hash where I meant salt</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dc0c2bv">
+		<a class="author" href="https://www.reddit.com/user/questfor17" target="_blank">questfor17</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>What is missing from all of the answers so far is a statement of just how hard cracking is.  A hash function is a mathematical function, or algorithm, that takes some string as input, and produces a number as output.  It has the property that given the same input, it produces the same output.</p>
+<p>A modern, cryptograhic hash function does this in a way that is hard to reverse.  That is, given the output if the hash function it is hard to find an input that, if run through the hash function, will produce that output.</p>
+<p>How hard?  Hard enough that mathematicians believe there is no algorithm for reversing the hash function that is faster than trying all possible inputs until you find one that works.  (Note: belief is not the same as proof.  No hash function has been proven to be this strong, yet.)</p>
+<p>The number of possible passwords is very, very large, so trying them all is not practical.  Nor will it ever be practical.</p>
+<p>Passwords as a system are widely regarded as no longer secure, but not because people can reverse the hash algorithms.  People have gotten too good at coming up with plausible passwords you might have used, or at stealing your password.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dbzxbzm">
+		<a class="author" href="https://www.reddit.com/user/kouhoutek" target="_blank">kouhoutek</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Two reasons.</p>
+<p>First, it is designed to be hard.  In mathematics, there are functions that get harder when you reverse them.  It is typically easier to multiply than divide, or to raise to a power rather than taking a root.  A well designed hash takes this to the extreme, and is a function that is computationally infeasible to reverse.</p>
+<p>Second, hashes lose information.  They aren't encoding the information, they are taking its fingerprint.  The best you can to is find one of the infinite number of strings that created that hash.  Now if that string turned out to be &quot;Password123&quot; and not &quot;a67ab5ba895526eb3a7695c7b16bd910&quot;, you could be reasonably sure you had the password...just not completely.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/5m0n4w" onclick="return false"><span>show</span></a>
+</li>
