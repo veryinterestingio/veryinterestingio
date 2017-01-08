@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5:How does SSL Certificates work exactly?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="5m473n">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/5m473n/eli5how_does_ssl_certificates_work_exactly/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/5m473n" onclick="return false">How does SSL Certificates work exactly?</a>
+		</h2>
+		<!--<span class="date">2017-01-08</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>How do they encrypt the data exactly and couldn't eventually be &quot;crackable&quot; </p>
+<p>Also, without the S. How would someone be able to gather the data once they're on your network / Host?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dc0x5ih">
+		<a class="author" href="https://www.reddit.com/user/orchlon" target="_blank">orchlon</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Say a website is using an SSL certificate. That certificate is just something that says something like &quot;I am reddit and nobody can impersonate me&quot;. Now obviously SSL certificates websites offer up can simply be copied, so to authenticate themselves, the certificate includes a public key, and they have their private key which isn't shared, and the keys are mathematically linked, but the one can't be derived from the other (feasibly) they can only be created together, and the odds of you randomly generating an already existing key is miniscule, and when something is encrypted with one key, the other can decrypt it, and vice versa.</p>
+<p>So what's to stop websites from simpy generating their SSL certificates? Nothing, so to actually prove that the website you're connecting to is the real deal, they have their certificates signed by a higher authority, and you automatically trust that authority, even though you have no idea because it comes preloaded in your browser. It's like government issued IDs, if someone shows you their driver's license, you have reasonable cause to believe their age on that card is the truth. The certificate authority signs other people's certificates with their own private key, which is also not shared, but can be verified with their public key.</p>
+<p>So how does signing work? It's basically hashing and encrypting put together. Hashing is a function where you take a block of data and trim it down to a unique result that it isn't feasible to find a different block of data that returns the same result, so hashing can't (generally) be broken. Then it works like this, websites have their certificate, the certificate authority hashes it, and then encrypts the hash with their private key, which in turn spits out the digital signature</p>
+<p>Now when you connect to a website, they serve you their signed certificate, which includes their public key and their digital signature which was signed by the certificate authority's private key, and you have the certificate authority's public key already preloaded in your browser. You take their certificate, hash it yourself, and then you take their digital signature, decrypt it with the certificate authority's public key. If they both match, then they're legit. Now this only proves that the website you're connecting to has a certificate that's correctly signed by a certificate authority. To prove that it is actually them you're connecting to, they send a verifiable block of data signed with their own private key, which you test with their public key. </p>
+<p>So at the end you have reasonable cause to believe that the website you're connecting to is who they say they are, and their story is confirmed by a higher authority at the same time. At this point you know you're actually connecting to the website you're trying to connect. So how is any further data you exchange protected?</p>
+<p>You generate a key, this time a symmetric key that's used for both encryption and decryption. You encrypt it with the website's public key and send it, and the website decrypts it with their private key, which only they can. This key can't be compromised because you confirmed the website's certificate (which contains their public key), and only that website can decrypt anything you encrypt with their public key, so at the end both you and the website have a key that was encrypted during transmission and it's used to encrypt any data you exchange from this point on.</p>
+<p>Which brings another question, after the certificate is verified why can't we just continue encrypting stuff with their public key? Why do we have to generate a symmetric key and send it to the server? Because while you'll be able to send data securely to the server, the server in turn can't because anything they encrypt with their public key will be readable by anyone, and also because the algorithm used for the public/private key encryption is very slow, so it's only used at the start, after a which a faster algorithm is used. What algorithm to use is decided during the initial phase by both the browser and server telling each other their capabilities.</p>
+<p>For some real world example, let's take reddit. If you click on the top left green locked key sign, you should be able to see reddit's certificate, and that it's signed by DigiCert Inc. If you go into more detail and view it, you should be able to see reddit's public key, and their digital signature signed by DigiCert Inc.</p>
+<p>Edit: Minor correction, thanks /u/a_2</p>
+<p>Edit2: Added another reason for using symmetric keys for encryption, arguable the main reason.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dc0upwf">
+		<a class="author" href="https://www.reddit.com/user/ichbinsilky" target="_blank">ichbinsilky</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's like passing encrypted notes back and forth to a friend in class. You use a cipher so the teacher or other students cannot read the message. Except your 3rd friend who is really good at math, created the cipher and is the only one who can verify if the note that you received was actually sent from your friend.</p>
+<p>It should be noted that you can trust this 3rd friend to verify the notes correctly because you guys have been best friends basically forever, and everyone else trusts him too because he is so trustworthy.  </p>
+<p>Edit: As a follow-up to your other questions, SSL is technically crackable, it's just not feasible to do so because with modern SSL, each packet would take days or weeks to crack. So the more feasible thing to do is setup a proxy server that intercepts SSL traffic, decrypts it, records it, and re-encrypts it the same way so the receiver never knows it was intercepted in the first place. Businesses do this to spy on their employees encrypted traffic, and the NSA basically does this at major internet relay points so they can spy on everybody. </p>
+<p>SSL just makes it so the average computer nerd can't spy on you, you have to have money to do it.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dc11lhw">
+		<a class="author" href="https://www.reddit.com/user/Flyberius" target="_blank">Flyberius</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This may no longer be the case, but this style of encryption was explained to me like this.</p>
+<p>Imagine you have a message and you want to send it to your mate.</p>
+<p>You have a box with the message inside.  You add a padlock to the box and lock it, then send the box to your mate.</p>
+<p>Your mate then adds his own padlock to the box and sends the box back to you, now with both locks locking it.</p>
+<p>You remove your padlock from the box and send the box to your mate (now only with their padlock locking the box).</p>
+<p>He removes his lock, opens the box and reads the message &quot;FU MFER!&quot;</p>
+<p>So, you've exchanged a message, no one in between was able to intercept it, and neither of you had to give each other sensitive stuff like keys and passwords.</p>
+<p>Replace the box with a packet of data (or a frame or whatever the term the network bods are using these days) and the padlocks with encryption and it's sort of the same thing.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dc1xv6n">
+		<a class="author" href="https://www.reddit.com/user/notblueclk" target="_blank">notblueclk</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Much of the public key encryption part of SSL has been covered.  However we should discuss SSL Offload and SSL Intercept, which are both methods that can be used for both legitimately and maliciously.</p>
+<p>SSL Offload is used to store the server's SSL private key and issue the server's public SSL certificate on a proxy device that is not the server itself.  There are multiple security and scaling reasons why a site may use a proxy to terminate SSL sessions.  For example, the proxy may be a load-balancer that is distributing traffic across multiple servers that share a common SSL certificate.  The proxy may also be a deep packet inspection device that needs to decrypt the SSL traffic and inspect it before it send it on to that actual server.  But with SSL Offload, the SSL certificate used belong to the intended server, even if it is stored on the proxy</p>
+<p>SSL Intercept does a similar function, except the SSL certificate belongs to the proxy device and not the end server.  For example, your company may want to inspect outbound SSL traffic from your computer, to ensure you and not transmitting sensitive information.  With SSL Intercept, the proxy device terminates your SSL session using its own certificate, inspects the unencrypted traffic, then re-encrypts the traffic into an SSL session with the actual server you're communicating with.  It may be that you company requires you to install its own SSL Cert Server certificate used to generate and sign the proxy's SSL certificate, so that you don't get a bunch of nasty warning messages about an unverified SSL certificate.</p>
+<p>Two other things to think about.  First, many Android/iOS apps use SSL to encrypt sessions, but rely on 'anonymous' SSL.  This is when neither the client nor the server verify the authenticity of the presented SSL certificate, they just do the encryption.  Unfortunately, anonymous SSL is a lot more common than people think, and is subject to man-in-the-middle attacks</p>
+<p>Second, many sites are now making use of certificate pinning, where a session to a server will fail unless the SSL session is verified end-to-end.  With certificate pinning, methods like SSL Offload and SSL Intercept will fail</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dc1wsxg">
+		<a class="author" href="https://www.reddit.com/user/Slypenslyde" target="_blank">Slypenslyde</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The certificate data you get from the website is one half of those friendship pendants, you know the kind that split in two and say &quot;BEST FRIENDS&quot; on them?</p>
+<p>The &quot;certificate authority&quot; holds the official other half of the pendant for whoever owns the certificate. So you take your half of the pendant to the certificate authority and ask them if it fits.</p>
+<p>If the two sides of the pendant match, you know for sure you must've got the original message from the real deal. If they don't match, you know someone tried to fake the pendant.</p>
+<p>If the pendant is very complex, with hundreds of tiny interlocking parts, then bad people can't make copies that fit the hidden half perfectly, even if they can steal your half. That's how the math behind SSL certificates work: the part you get combines with the other parts to make a &quot;whole&quot;, but the part you get isn't enough information to guess what the other part looks like. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/5m473n" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

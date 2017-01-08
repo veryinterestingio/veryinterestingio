@@ -1,0 +1,27 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/insanedruid" target="_blank">insanedruid</a>
+			<div class="markdown"><p>Good explanation!</p>
+<blockquote>
+<p>Which brings another question, after the certificate is verified why can't we just continue encrypting stuff with their public key? Why do we have to generate a symmetric key and send it to the server? It's because the algorithm used for the public/private key encryption is very slow....</p>
+</blockquote>
+<p>I think it's not only because of the speed. With the server's public key we can send data to it securely. But how does the server send data to us? I bet most of us don't have a certificate so the server can't use our public key. Using it's own private key? Everyone would be able to decrypt that data because the public key is, well, publicly known! </p>
+<p>Edit: One more small correction: The web site doesn't present a certificate to the CA.
+It presents information and public key to the CA. The CA add some information to it(like issuer information and issue number) and sign it. Those information and the signature combined is the certificate.</p>
+<p>Edit2: About certificate verification. After the hash of the certificate is verified, the expiration date and the revocation state of the certificate should also be checked. The revocation state can be checked with OCSP or CRL.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/orchlon" target="_blank">orchlon</a>
+			<div class="markdown"><p>Oh yeah, I totally blanked on that. That's the main reason why.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/a_2" target="_blank">a_2</a>
+			<div class="markdown"><p>Well written!<br />
+small correction though: &quot;and then you take their digital signature, decrypt it with the certificate authority's <del>private</del>public key&quot;</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/_WHO_WAS_PHONE_" target="_blank">_WHO_WAS_PHONE_</a>
+			<div class="markdown"><p>Can confirm, am Technical Support for DigiCert.</p></div>		</li>
+					</ul>
+		</ul>
+	
