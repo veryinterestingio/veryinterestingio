@@ -1,0 +1,44 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ZebraTank" target="_blank">ZebraTank</a>
+			<div class="markdown"><p>Is this because, if NP is a strict subset of EXPTIME, then all EXPTIME-complete problems cannot be in NP? And that most likely, NP is indeed a strict subset of EXPTIME?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/St4ud3" target="_blank">St4ud3</a>
+			<div class="markdown"><p>The Generalized version of Go is EXPTIME-complete. The Go on a normal size board is trivially solvable in constant time by looking at every possible state of the board and choosing the correct move. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/quasidor" target="_blank">quasidor</a>
+			<div class="markdown"><p>That's sorta like saying an array with 400 elements is trivially solvable in constant time by looking at every possible permutation of the array and choosing the sorted one.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/qwertilot" target="_blank">qwertilot</a>
+			<div class="markdown"><p>That's a 'mathematical' trivial - it means conceptually and says nothing at all about how easy it actually is to do in practice :) </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BlazeOrangeDeer" target="_blank">BlazeOrangeDeer</a>
+			<div class="markdown"><p>Which is still constant because the problem is not varying in size. The constant is still enormous. The point is that P and NP don't strictly apply to Go because normal games of Go never get bigger</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thephoton" target="_blank">thephoton</a>
+			<div class="markdown"><blockquote>
+<p>The Go on a normal size board is trivially solvable in constant time by looking at every possible state of the board and choosing the correct move.</p>
+</blockquote>
+<p>What's the complexity of the problem of generating the decision tree to enable the constant time solution? </p>
+<p>And how much storage is required to hold it?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/brinchj" target="_blank">brinchj</a>
+			<div class="markdown"><p>Constant time complexity can still be too slow for practical use when the constant is large. </p>
+<p>In this case, say we have an algorithm that enumerates all valid go positions and ranked them. Winner positions are best, positions that lead to them in next turn second best, and so on. </p>
+<p>Since the size of the problem is fixed on a specific board size, you could they that the algorithm that does this on a 19x19 go board is constant time.</p>
+<p>Or you could try to define the runtime in terms of board size, and it would not be constant.</p>
+<p>Since alpha go seems to play only the board size used at international tournaments, it's solving a special case which is fixed size. </p>
+<p>If you were going to run that algorithm that enumerates all positions, it would still take a very very long time to run, even if it is theoretically constant time, it is far from practically instantaneous.</p>
+<p>The number of go 19x19 board positions seems on the order of 10^172, so it would require a lot of computing time to go over them, and a lot of memory to keep track of them (far more than we have available to us).</p>
+<p><a href="https://en.m.wikipedia.org/wiki/Go_and_mathematics#Legal_positions" target="_blank">https://en.m.wikipedia.org/wiki/Go_and_mathematics#Legal_positions</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ManonMacru" target="_blank">ManonMacru</a>
+			<div class="markdown"><p>Si trivial that it needs a filthy meta-heuristic based on neural-networks to be solved.</p></div>		</li>
+					</ul>
+		</ul>
+	

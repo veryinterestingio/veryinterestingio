@@ -1,0 +1,137 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marnues" target="_blank">marnues</a>
+			<div class="markdown"><p>To be relevant to P vs NP, they would need to solve for a Go board of size <em>n</em>, correct?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/byllz" target="_blank">byllz</a>
+			<div class="markdown"><p>I'm not even sure Go is a NP problem.  For a problem to be NP, you need to be able to show that a putative solution is a solution in polynomial time.  In this case a &quot;solution&quot; would mean &quot;perfect strategy&quot;.   I certainly cannot think of a way of showing that a given strategy is perfect in polynomial time on the size of the board. You could play all games possible with that strategy, but that is going to be exponential on the size of the board, not polynomial. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheSlimyDog" target="_blank">TheSlimyDog</a>
+			<div class="markdown"><p>True. Games like Go and Chess are actually EXP. I didn't understand the difference at first but an easy way to figure it out is NP means the problem can be checked in P time so if you had a computer for every possible case and checked each case separately you could find a solution in P time.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/burning1rr" target="_blank">burning1rr</a>
+			<div class="markdown"><p>You are correct. Go is not P vs. NP, because if I gave you the solution, you would have to solve GO for yourself to prove my solution is correct.</p>
+<p>To be a P/NP problem, proving that my solution is correct would have to be significantly easier than solving Go yourself.</p>
+<p>In this case, a solution would be &quot;is there a set of moves that always results in a win, draw, or loss for a given player... And what are those moves?&quot;</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/potateN-" target="_blank">potateN-</a>
+			<div class="markdown"><p>Another problem is that just writing down the strategy needs to be polynomial in the size of the board. Not sure if that is even possible.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/burning1rr" target="_blank">burning1rr</a>
+			<div class="markdown"><p>No, not really. In fact, Go is an EXPTIME problem and not a P vs NP problem.</p>
+<p>P vs. NP. discusses the difference between verifying the answer vs searching out the answer. <em>(Edited for clarity)</em></p>
+<p>Here's an example of a P vs. NP. problem:</p>
+<p>NP: What are the factors of: 22,205,866,067,788,085,286,572,397,569,080,506,023?</p>
+<p>P: Are the prime numbers 2,412,156,870,089,525,543 and 9,205,813,412,526,495,361 factors of 22,205,866,067,788,085,286,572,397,569,080,506,023?</p>
+<p>Obviously, the 2nd question is much much easier to solve than the first. Is P=NP asks &quot;Is it possible to solve every NP problem in P time?&quot;</p>
+<p>Or in this case &quot;Is there a method to factor the NP number as quickly as validating the P numbers?&quot;</p>
+<p>Unsurprisingly, most folks think that P != NP. But we haven't absolutely proven this to be the case.</p>
+<p>Go is not a P vs. NP problem. For one, the complexity of solving GO increases exponentially with the size of the board, making it an EXPTIME problem.</p>
+<p>But the main reason it isn't P vs. NP is that if I were to give you the &quot;solution to go&quot;; you couldn't prove my solution is correct or incorrect without solving GO yourself.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mpo7" target="_blank">mpo7</a>
+			<div class="markdown"><p>Writing from my phone so forgive me.
+Why not simply state that GO is unrelated to the class of np complete problems? Instead of saying things like &quot;If I gave you the solution to go, you would have to check it yourself.&quot;? </p>
+<p>You are absolutely right that GO is not in the class of np complete problems.</p>
+<p>Let's set something straight because I think the OP is confused about this: NP means a non deterministic computer can solve the problem in polynomial time. </p>
+<p>Np complete problems are all related: if I solve one, I've solved them all. This is because each problem can be reduced to another one: I can logically demonstrate that if a solution exists to the graph clique problem, I can use that solution to solve all other np complete problems. </p>
+<p>Basically, I feel as though someone should have replied to the OP: &quot;Np vs P simply means we have a set of problems where all current attempts at deterministic algorithms cannot provide a polynomial time solution. Alpha go was consuming exponential time based upon that size of the input - it's just that the go board is small enough that this isn't too long for it to find a move good enough to beat the best humans.&quot;</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CarneDelGato" target="_blank">CarneDelGato</a>
+			<div class="markdown"><p>Isn't a winning move sequence easily verified in polynomial time?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/brockchancy" target="_blank">brockchancy</a>
+			<div class="markdown"><p>the most simplistic way I have heard it is (a or b) (not b) I want to copy and paste a line of reasoning if you could walk me through how I am thinking about it improperly I would appreciate it.  </p>
+<p>if you can plot wins and losses of played games then you can review that data. is its determined from the first move you review who wins? If so shouldn't every possible ungathered stat follow this same logic? is it possible to review information and not have it be determined? if its then there is a &quot;best&quot; play right? if a best play exists it must be describable in some way right?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Beetin" target="_blank">Beetin</a>
+			<div class="markdown"><p>Well lets hold on a moment. GO is a really bad example to use for P vs NP because we don't have a P time verification method. In fact, we have a way of even verifying that a given algorithm is optimal in GO, since the only goal is to win and you have to play against a second, also subjective algorithm. You'd have to prove that for every possible move it acts objectively optimally for any size of board, and prove it in P time. Which is the exact algorithm you set up to verify.</p>
+<p>Lets explain the P != NP problem again.</p>
+<blockquote>
+<p>Some problems can be answered by &quot;yes&quot; or &quot;no&quot;. &quot;Can this entire cake fit in my mouth&quot;, &quot;Can I color this graph with 2 colors so that no two adjacent colors are the same?&quot;</p>
+<p>Some of these problems take a polynomial time to complete: Do 2 n digit numbers, when added together, contain at least 4 different digits? You can solve and verify this in polynomial time (meaning the fastest growing term is at worst xn^y) by just adding the numbers and checking each digit, which is at most n+1. We call these P problems, and if they can be solved in P time, they can be verified in P time (just use the same algorithm you solved it with).</p>
+<p>Other problems we have found take a polynomial time to answer: Does there exists a method of adding and subtracting any n numbers in some way to equal 0. This is a yes, or no question. No matter how big n gets, its super simple to verify that a solution is correct or false. Just add the solution together and see if the result is 0. The problem is that we don't have a polynomial time method of solving this problem. As we increase the amount of numbers to combine, the possible combinations of adding and subtracting grows rapidly. Our algorithms take an exponential time to complete. So we call these types of problems NP. All P problems are clearly in NP, since they can be verified in polynomial time. But all NP problems are NOT yet in P, since we don't have a polynomial solution.</p>
+</blockquote>
+<p>Then there are even harder problems like NP-complete and still harder NP-hard problems.</p>
+<p>Regardless, the P != NP is asking: <strong>Does every problem which has a simple polynomial verification method also have a simple polynomial solution method.</strong> If that is the case then those problems like described about have much easier solutions that we haven't found (note, this is generally considered super duper unlikely).</p>
+<p>SO: back to your question:</p>
+<blockquote>
+<p>if it is truly unbeatable doesn't that mean Its effectively solving an NP problem in polynomial time?</p>
+</blockquote>
+<p>Go is a specific version of a general problem. Playing GO on a 4x4 board is similarly a specific version of the same general problem. The general problem is playing optimally in an nxn board.</p>
+<p>There are two issues with your statement. One is that we can't currently quickly verify that anyone ever plays GO optimally. More importantly though:</p>
+<p>Polynomial time doesn't refer to an actual specific amount of time (under 30 seconds per move, must be polynomial time!). It is better thought of as &quot;how shitty does this algorithm get at really really big numbers&quot;. So lets take two solutions. One takes 2^n milliseconds to come up with each optimal move. The other takes n^20 milliseconds to come up with each optimal move.</p>
+<p>So which solution is better? Well 2^n runs in exponential time while n^20 runs in polynomial time. But for the specific n = 19, it is much better to use the 2^n algorithm than the n^20 solution. So the fact that your algorithm runs quickly in a specific case doesn't mean shit for how it runs in the general case.</p>
+<p>For example (very simplistically and wrong), I have an algorithm that divides the 19x19 board into corners, edges, and center blocks of 2x2, 2x5, and 5x5 sections, respectively. It rapidly finds the best 3 sections to play in, then rapidly finds the best 3 2x2 square within those blocks to play in, then finds the best move in each block, then determines the best block.</p>
+<p>This might be hundreds of times faster than looking through each possible move since we quickly remove entire sections of the board. It is &quot;fast enough&quot; and &quot;optimal enough&quot; for our specific problem, but it would very quickly fail on larger boards.</p>
+<p>What we have done is what most NP problem algorithms do: Find a faster exponential solution than the naive approach. So instead of running at 40n^6n, our program runs at 12n^2n. It is a huge step up, and might be fast enough for a bunch of real world applications, but is still incredibly not P. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hook3d" target="_blank">Hook3d</a>
+			<div class="markdown"><blockquote>
+<p>In a certain sense it's an approximation algorithm, but it's not entirely clear to me what it's approximating because its objective is to beat its opponent, not to play a &quot;perfect&quot; game.</p>
+</blockquote>
+<p>Does implementing an AI to play Go boil down to a graph problem?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/psisquared2" target="_blank">psisquared2</a>
+			<div class="markdown"><p>Sort of. Games can be described with a <a href="https://en.wikipedia.org/wiki/Game_tree" target="_blank">game tree</a> which is a type of graph. Actually solving a game involves evaluating the game tree and deciding which player has a winning strategy at every (or at least the starting) point.</p>
+<p>The AI cannot do that. What AI's usually try do is try to get an advantage, which is sort of getting the game into a state where there are less (and more difficult to find) possible moves towards an opponent's win.</p>
+<p>In chess (where writing AI's is a lot easier) you implement a function that tries to judge how &quot;good&quot; a position is for you, so it tries to quantify your advantage. Such a function would be perfect if it just returns +infinity if you have a winning strategy, -infinity if the opponent has one, and zero if neither have one. In this sense you can say that an algorithm approximates a winning stategy.</p>
+<p>I read in AlphaGo they take a similar approach, but let the AI rate a given position.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/saynay" target="_blank">saynay</a>
+			<div class="markdown"><p>I think AlphaGo does both approaches. It first estimates a set of possible moves that look to give the best board position (a breadth search of the game tree), then for each of those moves its plays out possible future moves (a depth first search, kinda), then finally chooses the current move that looks to have the best future board position.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ikefalcon" target="_blank">ikefalcon</a>
+			<div class="markdown"><blockquote>
+<p>its objective is to beat its opponent, not to play a &quot;perfect&quot; game.</p>
+</blockquote>
+<p>If the machine continues to improve its ability to beat any opponent, doesn't that mean that it will approach &quot;perfect&quot; play?</p>
+<p>In chess, a computer evaluate each position with a number, and once it has evaluated to whatever limit their program allows, it selects the move that gives the best evaluation for the computer. I assume that Go computers give a similar metric. So, in that sense, can't we define &quot;perfect play&quot; as the play that maximizes the positional evaluation for each move? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ZorbaTHut" target="_blank">ZorbaTHut</a>
+			<div class="markdown"><blockquote>
+<p>If the machine continues to improve its ability to beat any opponent, doesn't that mean that it will approach &quot;perfect&quot; play?</p>
+</blockquote>
+<p>Approach, perhaps, but there's a world of difference between &quot;this Go AI is really good&quot; and &quot;this Go AI is provably perfect&quot;.</p>
+<blockquote>
+<p>In chess, a computer evaluate each position with a number, and once it has evaluated to whatever limit their program allows, it selects the move that gives the best evaluation for the computer. I assume that Go computers give a similar metric. So, in that sense, can't we define &quot;perfect play&quot; as the play that maximizes the positional evaluation for each move?</p>
+</blockquote>
+<p>No, because your evaluation may be (and likely is) imperfect.</p>
+<p>In theory, a perfect player can tell you exactly how many moves until they win, and point out which of your moves produces that best-case scenario. If you make any move besides that ideal move, the number of turns until the perfect player wins will decrease (sometimes significantly).</p>
+<p>Modern Go AIs - hell, modern chess AIs - can't do this. They may at some point be able to say &quot;hey, I found a mate in the next 23 moves&quot;, but they can't start from literally the beginning of the game and say &quot;worst-case scenario for me is that you tie in 80 moves&quot;, and then you make a single move, and it says &quot;that was the wrong thing to do, I win in 68 moves&quot;.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ikefalcon" target="_blank">ikefalcon</a>
+			<div class="markdown"><blockquote>
+<p>Modern Go AIs - hell, modern chess AIs - can't do this. They may at some point be able to say &quot;hey, I found a mate in the next 23 moves&quot;, but they can't start from literally the beginning of the game and say &quot;worst-case scenario for me is that you tie in 80 moves&quot;, and then you make a single move, and it says &quot;that was the wrong thing to do, I win in 68 moves&quot;.</p>
+</blockquote>
+<p>True, but significant progress has been made in this direction in chess. Perfect play <em>has</em> been solved for all positions with 7 or fewer pieces. That's a far cry from 32 pieces, but since chess is finitely complex, this will continue to improve as long as computing power continues increasing.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/atheisme" target="_blank">atheisme</a>
+			<div class="markdown"><blockquote>
+<p>If the machine continues to improve its ability to beat any opponent, doesn't that mean that it will approach &quot;perfect&quot; play?</p>
+</blockquote>
+<p>I think you are talking about two different types of 'perfection'.</p>
+<p>While this <em>practically</em> unbeatable machine plays <em>practically</em> perfect, it does not do so theoretically. </p>
+<p>What your previous commenter meant was that even this machine only looks at a tiny fraction of states, and could 'theoretically' be beaten (or forced into a draw) by a truly perfect machine, similar to forcing a game of Tic-Tac-Toe.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rwill128" target="_blank">rwill128</a>
+			<div class="markdown"><p>The answer to your question is no, we can't define &quot;perfect play&quot; that way. There's a specific and meaningful definition of perfect play. A little reading on the topic of game theory should turn up relevant information.</p>
+<p>The move that maximizes the positional evaluation is just that. In an unsolved game, there's no way of really knowing how close our strongest and most accurate positional evaluation comes to perfect play -- although in this case there are likely to be much, much higher levels of Go play than anything humans have seen or created. </p>
+<p>The same goes for chess, actually. Chess is far from &quot;solved&quot; in any strict sense -- people throw that word around far too casually. Chess computers are much much stronger than human opponents now, but they still beat each other -- indicating that exploitable mistakes are being made even in those games. </p>
+<p>And actually, strictly speaking, even if computer chess games had a 100% draw rate, that wouldn't necessarily mean they were playing perfectly. It would simply mean they were all close enough in strength that neither side was making an exploitable mistake that could be recognized as such by the other side.</p></div>		</li>
+					</ul>
+		</ul>
+	
