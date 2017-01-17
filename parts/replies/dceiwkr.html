@@ -1,0 +1,78 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/varikin" target="_blank">varikin</a>
+			<div class="markdown"><p>I want to expand on the SIMD part. This stands for Single Instruction, Multiple Data. A regular CPU is SISD, single instruction, single data. SISD is very general purpose. SIMD is not general purpose.</p>
+<p>So, say you have 2 million pixels (that is about 1080p, 1920 x 1080) and you want to apply the same filter to all of them, at the same time, 60 times a second. This is exactly what a GPU is build for. For example, you are playing a game and there is a red light, the GPU might be told, take these 2 million pixels (the multiple data), and apply 5% red (the single instruction) to all of them. The GPU will due that as a single operation. The CPU, on the other hand, will have to do that that operation (5% red) 2 million times in a row. If you want this done 60 times a second (60fps), do you want to do 60 operations on 2m pixels or 120m operations 1 pixel at a time? Of course this is a vast simplification, but you get the idea, right?</p>
+<p>Now, GPUs are used frequently for other things, like bitcoin mining, scientific analysis, and other number crunching. Basically, some people realized that a GPU is just a general purpse SIMD processor and much cheaper than &quot;proper&quot; SIMD processors. A good computer with a great GPU is under $2000. A &quot;proper&quot; computer for handling SIMD would probably start at 10 times that. So, 5% Red is really just math, right? So why not just do math? Lets say you want to do weather analysis. You have 2 million data points across the ocean and want to know how the wind affects that. That is the same as &quot;5% red to 2 million pixels&quot;, but in this case, 5% Red is add wind, and instead of pixels, you have the current state of different points of the ocean. Now this doesn't buy you much until you do this 60 times a second for a week. As for things like bitcoin, that is all math based. I haven't put much research into it, but I do now the math for it is easily broken up into SIMD patterns. </p>
+<p>Finally, the comment above mentions that CPUs are a lot smarter. A lot of that is to allow it to stop and resume a task. You have a browser running (with 10 tabs), an email client, word, spotify, etc all running at the same time. The CPU basically gives all them a 1ms to work, pause them, give the next a 1ms, pause, etc, then resume, work 1ms, pause, etc. Pausing and resuming is expensive, but it gives you a great experience. The GPU doesn't always care. Oh, you paused, it will throw away all that work. You want to resume? Start all over again. Again, vast over simplification. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Cantora" target="_blank">Cantora</a>
+			<div class="markdown"><p>Thanks for this eli5. Bunky_bunk made sense until point 3 and then it was all jargon. This actually makes real sense  to someone who doesn't understand the finer details of a cpu</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blue_system" target="_blank">blue_system</a>
+			<div class="markdown"><p>Very good meteorology example, this is exactly how GPUs are applied in real world applications. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ohdeerdog" target="_blank">ohdeerdog</a>
+			<div class="markdown"><p>Thank you for the ELI5 answer.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VehaMeursault" target="_blank">VehaMeursault</a>
+			<div class="markdown"><p>No offence, but you're introducing so many terms and acronyms without defining them that I have no clue what you're talking about. I get the gist of it, because I can read, but I don't feel like I can explain it to someone else now. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bunky_bunk" target="_blank">bunky_bunk</a>
+			<div class="markdown"><p>Or lets say it could of course be explained adequately to a layman, but that was not my intend. Let me try:</p>
+<ul>
+<li>
+<p>The gist of it is that the cores in a GPU are simpler, they cannot execute the wide range of complex instructions
+a CPU supports.</p>
+</li>
+<li>
+<p>A lot of logic gates in a CPU are there just to make one instruction stream (a single thread of execution) run as quickly
+as possible (analyzing dependencies between instructions to execute a serial set of instructions somewhat in parallel)</p>
+</li>
+<li>
+<p>Only algorithms that apply the very same instructions to multiple data words are suitable for a GPU. In real life programs
+only a rather small subset of algorithms work that way; only certain parts of a program where this property can be exploited
+are suitable to be executed on a GPU</p>
+</li>
+<li>in a processor, instructions have to be analyzed and decoded when they are executed. If you only decode and process the
+same instruction once and apply it to 32 data words, you will of course need less resources than if you decode and process
+32 different instructions to apply to 32 data words. In the first case you need 1 instruction decoder and processor and 32 registers,
+in the second case you need 1 instruction decoder and 32 registers.</li>
+</ul></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rlrgr" target="_blank">rlrgr</a>
+			<div class="markdown"><p>Thank you. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dwmfives" target="_blank">dwmfives</a>
+			<div class="markdown"><p>So with things like number crunching, a GPU is better at say, applying a formula to a shitload of values at once, rather than doing x+y+1=z, x+y+2=z one by one, which is what a CPU would do?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/karn1948" target="_blank">karn1948</a>
+			<div class="markdown"><p>This is an awesome answer, but I would make one note. I'm not sure that thinking of each core in the GPU as a CPU SIMD core is the most accurate- it's more like the entire GPU is a very very very wide SIMD unit. I say this because all cores have to execute the same instruction together. Even then, it's not particularly accurate. nVidia actually prefers to call their GPU's SIMT rather than SIMD, and you can read some more about the differences <a href="http://yosefk.com/blog/simd-simt-smt-parallelism-in-nvidia-gpus.html" target="_blank">here</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/staticrain2" target="_blank">staticrain2</a>
+			<div class="markdown"><p>Thank you for sharing! </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bunky_bunk" target="_blank">bunky_bunk</a>
+			<div class="markdown"><p>SIMT is just a variant of SIMD. You are still executing the same instruction on multiple data words,
+they just happen to belong to different threads. When your program is really optimal it will behave like
+a SIMD. Now GPUs allow to execute instructions not for all threads but for any subset of threads and
+some threads are idle for the duration of that one instruction. In the most common case all thread's data
+words will be involved and there will be no fundamental difference to a SIMD machine. Or lets say they
+are SIMD machines where you can select on a fine grain level which data lanes participate. Cause that
+is really what it boils down to. Those are not fully independent threads we are talking about, threads are
+more of an abstraction in this case to create a workable model for data organization.</p>
+<p>A GPU consists of a few dozen or so (pretty much) fully independent engines that are SIMD processors, usually something like 2048 bits wide (64 threads with 32bit data width). Each of those engines can and usually will
+execute a different instruction (from the same program - unless 2 of them happen to be at the same point in this program), or may even run entirely unrelated (or cooperating) programs.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hexafraction" target="_blank">hexafraction</a>
+			<div class="markdown"><p>I wouldn't consider an entire GPU as a very wide SIMD unit; there is finer granularity on how to assign tasks to smaller subdivisions of the GPU (which may themselves act as SIMD/SIMT cores).</p></div>		</li>
+					</ul>
+		</ul>
+	
