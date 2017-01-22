@@ -1,0 +1,137 @@
+<li class="post" data-handle="5ox11k">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/5ox11k/eli5_why_are_fire_animations_fogs_and_shadows_in/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/5ox11k" onclick="return false">Why are fire animations, fogs and shadows in video games so demanding for graphic cards?</a>
+		</h2>
+		<!--<span class="date">2017-01-22</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Why are fire animations, fogs and shadows in video games so demanding for graphic cards?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dcn31lj">
+		<a class="author" href="https://www.reddit.com/user/EdgeOfProphecy" target="_blank">EdgeOfProphecy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Imagine your graphics card is a famed renaissance painter named Giancarlo Pasquali Uberti sitting in a room. In this room is a canvas, paint, and a pneumatic messaging tube like they have at bank drive-thrus. Giancarlo also has a brother named Cirino Pasquali Uberti that he works with. Cirino can't paint, but he's great with customers and runs their shop. Cirino's job is to take orders for paintings, then send messages to Giancarlo that tell him what to paint. He can't fit big messages in the tube, though, it's real small, so each message tells Giancarlo how to paint a single object. A message might be like &quot;Paint an apple 50cm from the left edge of the canvas, 20cm from the top&quot;. Giancarlo is very fast, but it takes him longer to finish a painting if he has to paint lots of individual things (it wastes time writing a message, sending the message through the tube, opening it up, reading it), or if he has to paint a really big canvas.</p>
+<p>&nbsp;</p>
+<p>Now, Cirino and Giancarlo are pretty smart, and they've figured out some tricks to make paintings go faster. Cirino takes great notes while talking to customers, and knows how far away each object in the painting is supposed to be. This is known as its depth. While Cirino isn't a good painter, he's very organized, so he sorts the messages by depth, closest object to furthest, and throws away any objects that are hidden behind something else. The only messages he sends to Giancarlo are just those objects that will be seen in the painting. This is way faster! Giancaralo knows that it's in order, so he doesn't have to waste time painting things that overlap. Since it takes time to paint an area of the canvas (the bigger the area, the more time), this is very efficient. Giancarlo doesn't have to paint over the same spots on the canvas at all, he just paints every spot once.</p>
+<p>&nbsp;</p>
+<p>Then comes a job to paint a still life with a frosted glass vase in it. Cirino sorts everything, and realizes there's a problem. The glass vase is translucent, you can see through it, so it changes how stuff behind it looks since it isn't totally clear. No amount of sorting can fix this, and he eventually realizes that Giancarlo is going to have to paint over the same spot twice to get the right look (remember, he can only tell Giancarlo to paint one object at a time in his messages). The clever brothers think about this for a while, and come up with an idea.</p>
+<p>&nbsp;</p>
+<p>Their new plan is to work on the same painting twice. First, they do what they usually do, sort all the solid objects front-to-back, and only paint the ones that can be seen. Second, they sort all the see-through objects back-to-front and Giancarlo paints each one in order, still careful not to paint any that would be hidden behind a solid object. Sorting the see-through objects back-to-front makes sure they look right if two see-through objects overlap, like if you're looking at that frosted vase through a stained glass window. It wouldn't look right if they painted the vase in front of the window! The results look great, but it's a lot more work than just painting solid objects.</p>
+<p>&nbsp;</p>
+<p>Now, for just a single vase it's not so bad, but once you have a scene with lots of smoke, fog, shadows, etc, Giancarlo spends a lot of time going over and over and over spots he's already painted to build up these translucent layers. This slows things down, and it's a big reason why your GPU struggles with these sorts of effects.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dcmrkqw">
+		<a class="author" href="https://www.reddit.com/user/Pfardentrott" target="_blank">Pfardentrott</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's really hard to ELI5 graphics algorithms, but I'll do my best to keep it simple.</p>
+<p><strong>TL;DR:</strong> All those effects make the GPU do a bunch of work twice (or more) instead of once.</p>
+<p>Of the three special effects you list (fire, fog, and shadows), two of them are actually the same thing as far as a GPU is concerned: fire and fog are both examples of partially transparent objects, so I will group them together.</p>
+<p>The work a graphics card has to do to draw a scene can be broken roughly into two parts. The first part is the work it has to do for each 3D polygon (triangle) in the scene to determine which pixels that triangle covers. The second part is the work it has to do for each pixel to calculate the color and brightness of that pixel.</p>
+<p><strong>Transparent objects are demanding because they make the GPU process each pixel multiple times, multiplying the amount of work done in the per-pixel phase of rendering.</strong></p>
+<p><strong>Shadows are demanding because they make the GPU process each triangle multiple times, multiplying the amount of work done in the per-triangle phase of rendering.</strong></p>
+<p>Without transparent objects, there is exactly one surface visible at each point on the screen (disregarding anti-aliasing). Therefore the GPU only has to calculate light and color for each pixel once. With transparent objects like fire and fog you can see multiple layers at each point on the screen, so the GPU has to calculate light and color for each layer at each pixel, then blend them together.</p>
+<p>To draw shadows, the GPU has to draw the scene from the perspective of each light that casts shadows, just as if that light were actually another camera. It usually doesn't have to calculate any color from the light's perspective, but it still has to go through the process of drawing each triangle in the scene for every light.</p>
+<p>It turns out that many &quot;demanding&quot; effects in video games are slow because they multiply some part of the work of drawing a scene:</p>
+<p>Transparency: Multiplies per-pixel work in the areas covered by transparent things.</p>
+<p>Shadow Mapping: Multiplies per-triangle work (plus some extra work at each pixel).</p>
+<p>Anti-Aliasing: Multiplies per-pixel work at the edges of each triangle on screen.</p>
+<p>Global Illumination: Multiplies everything by everything else until your GPU catches on fire...</p>
+<p>If that all sounds confusing, that's because it is. I can try to clarify if anything about my wall of text is particularly unclear.</p>
+<p>Edit: I should mention that the problem of drawing pixels multiple times is called &quot;overdraw.&quot;</p>
+<p>Edit2: I should also mention that &quot;duplicate&quot; work was probably a poor choice of words. It's not redundant, it just has to process the same point multiple times instead of just once.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dcmu70i">
+		<a class="author" href="https://www.reddit.com/user/F0sh" target="_blank">F0sh</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><strong>TL;DR</strong>: Accurately simulating any 3D scene is impossible in a computer game. About 10^19 photons hit every square metre of earth during a single 1/60th of a second frame, so obviously simulating even a tiny fraction of the photons in a normal video game scene is just intractable. But a lot of simple stuff can be simulated in a way that looks good enough without doing it accurately. Fire, fog, shadows, refractive glass, mirrors and all kinds of other effects are stuff that <em>don't</em> work in this simple way of rendering things, so require a more complicated simulation to make them look any good. More complicated means more work for your graphics card. So the question might rather be: <em>why are things like rendering a chair in a room with two small lamps and no windows easy for graphics cards?</em> Below I will try to answer both questions.</p>
+<p><strong>More info:</strong> Traditional 3D rendering works backwards: you start at the virtual camera and, for each pixel you want to render, trace out a line until you hit an object - each line goes out at a slightly different angle for each pixel. You then look at the angle and distance from that object to every single light source in your scene and calculate how much light the object is receiving. Then, examine the material the artist gave that object and see how it reacts to light to determine what colour it is at that spot. You then draw that pixel that colour. (This is backwards because in reality, obviously, light travels <em>into</em> the camera, not out of it.)</p>
+<p>This requires you to trace lines to see what they hit exactly the same number of times as there are pixels in your image. For each pixel you also have to calculate distances and angles to exactly the number of lights in your scene, though games tend to use tricks to reduce this number (by making lights outside a certain distance not count, or by pre-calculating a lot of this information so some more can be skipped.) This is all quite doable and is represented in <a href="https://upload.wikimedia.org/wikipedia/commons/8/83/Ray_trace_diagram.svg" target="_blank">this diagram</a>.</p>
+<p>Now none of this allows you to render shadows: suppose you're calculating a certain pixel and calculating the distance and angle from the object in front of that pixel to the single light illuminating the scene. At no point do you check whether there's anything in the way which would prevent light from getting to that point. To do that you'd have to not just calculate the distance and angle, but trace another line to every light (the shadow ray in the diagram above) - that takes more calculations and makes it slower. Again there are tricks: you could say that only stationary objects and light sources can cast shadows, pre-calculate all that information and then you don't need to do it every frame in the game. But this of course doesn't look as good.</p>
+<p>Basically for the other things the answer comes down to the same thing: forcing the engine to trace more lines. Sometimes you're forced to trace lines from the light sources instead of from the camera - this is very wasteful as you have no idea which will end up hitting the camera (perhaps after bouncing off some objects); any that don't have no effect on the scene at all. You're forced to trace far too few to actually look good and hope you can smooth out the resulting mess to look decent. Other times, like with reflective surfaces, you have to trace the bounces off the objects. If you have two mirrors facing each other, you have to cut off the trace at some point, which will prevent the render taking an infinite length of time but result in a black spot in the mirror.</p>
+<p>How about fog? Basic fog is actually easy and used to be a way to make games run <em>faster</em> - when you worked out what colour a pixel should be by tracing out a line to the object in front of it, you'd also mix that colour with the fog colour according to how far the object is away from the viewer. Then at some far-away distance, all objects would be exactly the same colour, and you wouldn't have to do any further calculations. It could sometimes produce <a href="http://treditor.hu/7/gmac/nglemanual/weather09.jpg" target="_blank">weird effects</a> if the fog doesn't match up with the rest of the background. But real fog isn't like this - as light passes through it, it scatters, making things in fog look blurry. It's partially transparent, meaning you can see things on the other side, but also the fog at the same time. So suppose you run the above algorithm for fog: you trace out a line for a single pixel and discover the first thing it hits is a region of fog. You can't just colour that pixel according to the properties of fog, because then the fog would be opaque, so you have to first do the calculations for what is illuminating that little area of fog, and then continue calculating. A naïve approach would be to continue the line through the fog until it hits an opaque object, and mix the colour of the opaque object with the colour of the fog according to the distance of the line segment that passed through the fog, <a href="http://www.gamasutra.com/features/20011003/boyd_01.gif" target="_blank">like this</a>. Already this is more complicated, but this is not a perfect simulation. As I said, fog scatters light: each photon that passes through can be randomly disturbed so that it goes off at another angle. Also, the single line you trace through the fog might pass through a region which is shadowed - <a href="https://upload.wikimedia.org/wikipedia/commons/5/56/Fog_shadow_of_a_tree-crepuscular_rays.JPG" target="_blank">like in this photograph</a> and those patches should be darker than if you just treated every path through the fog of the same length the same. So what you really need to do is calculate the illumination at every single point through the fog, randomly make the line you're tracing bounce off somewhere else. Except you can't do it randomly because then each frame, and for each adjacent pixel, the angle would be different - you'd get a flickering mess of noise. Instead you want to simulate the fact that each pixel is the aggregate of billions of rays of light, and simulate that they're all bouncing at once! Of course, it's not possible to trace billions of lines for each pixel that hits fog, nor to calculate illumination at every point within it, so games use tricks, but to get the look correct, you still need to do a lot of extra calculation.</p>
+<p>If I may digress a little, the problem is that you can't treat things like fog as being <em>homogeneous.</em> For 3D that means you can't treat light going through it as having only two interactions: one at the beginning and one at the end. (In fact it would be better to just have one interaction!) The traditional approach to cheaply modelling transparent objects is to pretend that a ray of light passes into, say, a glass paperweight, changes angle once due to refraction, passes through the paperweight being continuously attenuated as it does so, exits out the other side and is refracted again. The ray of light does not change path inside the glass, it never encounters a bubble, trapped piece of dust or anything else. If you want to simulate this things that occur in a <em>heterogenous</em> transparent object, where interesting things may happen inside, you have to chop the object up into thousands of pieces small enough that you can't see them, and perform complex calculations as your ray of light passes through each tiny volume. This is a general problem in simulation: whenever you can't deal with something as being defined by a simple process inside it, a start and an end, things get hard.</p>
+<p><strong>Digression over:</strong></p>
+<p>Fire is like glowing fog, so it has a lot of the same problems, but it also represents something very hard: a light source with size. When you calculate the illumination of an object, it's much easier if you can pretend all the light from each source is coming from a single infinitely small point, rather than being spread over, say, the element of a lightbulb, or a fluorescent tube, or a whole fire. This is because to accurately simulate the illumination you'd need to act as if there were millions of tiny lights all over the surface of the object, and calculate how far and at what angle they were to the thing being lit up. Millions of lights means millions of calculations - which again is not possible, and again the tricks that can be used to fake it are still computationally expensive. But also if you want to simulate the way fire moves rather than just recording a video of it, that is a very difficult process. Again you are reduced to trying to simulate the fire as lots of tiny particles - but nowhere near as many particles as makes up a real fire. So you try to apply physical laws to the particles but they can't actually behave physically because they're too big or because information like the air currents in the environment is lacking. Usually people just use a recording with some tricks to make it look less like a recording.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dcmrpty">
+		<a class="author" href="https://www.reddit.com/user/Cinabaar" target="_blank">Cinabaar</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A lot depends on how all these elements are handled in a game.
+Best case scenario:</p>
+<ul>
+<li>The fire is a simple object, animated in a 3d program and let loose in the game. The animation loops and it's quite noticable but you can get away with it.</li>
+</ul>
+<ul>
+<li>
+<p>The fog is just things in the distance getting blurrier. Looks quite bad but it's cheap.</p>
+</li>
+<li>Only static (non-moving) objects cast shadows, no dynamic lights.</li>
+</ul>
+<p>This might sound like a lot of assumptions but it's not entirely unrealistic and there certainly are games which can use this simple model. It's very, very cheap.</p>
+<p>Worst case:</p>
+<ul>
+<li>
+<p>Fire is made using multiple particle systems including multiple types of flame, randomized smoke, lights, dust and small elements flying around wildly.</p>
+</li>
+<li>
+<p>The fog is also a large particle system with added blur effects</p>
+</li>
+<li>Multiple lights with multiple dynamic objects casting dynamic shadows</li>
+</ul>
+<p>This model is used in games with better graphics and there are multiple performance concerns. I won't go into the details but the main issue is that many of the effects require multiple passes which basically means the image you finally get on the screen needs to be drawn multiple times by the GPU. First object geometry, then lighting, then shadows, then particles, then special effects like antialiasing, bloom, ambient occlusion etc. and if you have a lot of those they can easily become a GPU bottleneck.</p>
+<p>Source: Make games.
+Tried to be ELI5 I know this is an oversimplification.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dcnbetc">
+		<a class="author" href="https://www.reddit.com/user/BeBeBoomBox" target="_blank">BeBeBoomBox</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The shortest and simplest ELI5 I think is that, as in real life:</p>
+<ul>
+<li>Fire generates light.</li>
+<li>Fog blocks and alters light.</li>
+<li>Shadows are cast by light from different sources.</li>
+</ul>
+<p>All these things either generate or alter light and dynamic light calculations are complex and grow exponentially with the amount of light sources and alteration sources present.</p>
+<p>the addition of 1 light source does not just add one light source or one more shadow to a scene, an additional light source interacts with the other light sources and every new light source or alteration in the available light alters the effects of every other light source or alteration in the available light.</p>
+<p>A really simplistic analogy on the scope of adding just one light source or alteration to light is this:</p>
+<p>Imagine counting to 9.</p>
+<p>You can do that in 9 counts and it'll take you under 10 seconds.</p>
+<p>Now add 1 more digit.</p>
+<p>Now you have to count to 99, which takes a lot longer, around 1 and a half minute.</p>
+<p>Now add another digit.</p>
+<p>Now you have to count to 999, which will take you around 17 minutes.</p>
+<p>Now another one.</p>
+<p>Now you have to count to 9999, which will take you over 2 and a half hours.</p>
+<p>And so on.</p>
+<p>Similar complexity exists in calculating the effects of light sources in 3D.</p>
+<p>In 3D Processing there are a ton of shortcuts and tricks to limit how large an impact a single light source has, but the effect will still be great with every one you add.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/5ox11k" onclick="return false"><span>show</span></a>
+</li>

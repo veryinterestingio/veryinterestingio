@@ -1,0 +1,168 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cocompadres" target="_blank">cocompadres</a>
+			<div class="markdown"><p>Pfardentrott has a great explanation, and I would like to expand on it a little bit. Fog isn't always expensive to render, distance based fog is very cheap to render. With distance based fog the GPU simply shades pixels with a fog color based on how far away they are from the camera. That's why even older systems like the N64 used fog to improve performance... in a sense. They would increase the amount of distance based fog in a scene which would decrease how far the player could see. This allowed developers to reduce the number of pixels they would need to draw, because if the player can't see something, there's no need to draw it. Here's a pic of Turok from the N64 a game that used distance based fog heavily:</p>
+<p><a href="https://upload.wikimedia.org/wikipedia/en/b/b0/Turok-_dinosaur_hunter-gameplay.png" target="_blank">wikipedia</a></p>
+<p>and Superman 64 a game famous for its overuse of distance based fog.</p>
+<p><a href="http://www.nintendojo.com/wp-content/uploads/2014/04/Superman1-640x324.png" target="_blank">nintendojo</a></p>
+<p>The performance hit from fog effects comes when artists want to portray the effect of a &quot;rolling&quot; fog, where you see the fog move. To create this effect artists use what are called billboard polygons. These flat surfaces always face directly at the camera no matter what angle it's facing. In the game the they will always be rendered on a flat 3D plane directly facing the camera. No matter what direction the camera is facing the billboard will always have a shape similar to my awesome text-art box below:</p>
+<pre><code>    ┌──────────────┐
+    │              │
+    │              │
+    │              │
+    │              │
+    │              │
+    └──────────────┘</code></pre>
+<p>When most modern GPU's render a scene, they start drawing it back to front. Meaning they start with the pixels that are farthest away from the camera and end with the pixels closest to it. Modern GPUs also have logic to avoid drawing pixels that are blocked by other pixels directly in front of them. This increases performance.</p>
+<p>Some rendering pipeline exposition: </p>
+<p>Let's assume that you are in a game standing outside of a building. You position the camera (&lt;) so it's facing the building:</p>
+<pre><code>                  │ │   office lights
+                  │ │   
+                  │W│   
+your eyeball: &lt;)  │A│   
+                  │L│   
+                  │L│
+                  │ │   office chairs
+                  │ │   
+                  │ │   ugly carpeting</code></pre>
+<p>Let's assume this building has no windows, this means that the inside of the building is completely occluded, or blocked, by the wall between the camera and the buildings interior. For most modern GPU's this scene will be drawn very quickly because it will most likely not draw any of the pixels behind the buildings exterior wall.</p>
+<p>Now let's punch a hole in the wall so we can see through into the building</p>
+<pre><code>                  │ │   office lights
+                  └─┘   
+
+your eyeball: &lt;)        the day they fired Gary
+
+                  ┌─┐
+                  │ │   office chairs
+                  │ │   
+                  │ │   ugly carpeting</code></pre>
+<p>Because there is no wall occluding the interior of the building the GPU will now draw everything inside it. This will probably take more time to draw than just the boring flat exterior wall of the building, but probably not much more. Because the GPU is still only drawing each pixel, for the most part, only once. Now let's replace the hole in the wall with a window like so:</p>
+<pre><code>                  │ │   office lights
+                  └─┘   
+                   │  
+your eyeball: &lt;)   │     office window
+                   │ 
+                  ┌─┐
+                  │ │   office chairs   
+                  │ │
+                  │ │   ugly carpeting</code></pre>
+<p>So now to draw the scene the GPU draws:</p>
+<ul>
+<li>the entire office interior </li>
+<li>then it draws the window in front of it. </li>
+</ul>
+<p>This means that it's drawing a lot of pixels two times!</p>
+<p>Back to the fog and fire effects. Many artists use <strong>billboard particles</strong> to create rolling fog and fire/smoke effects. Like the window in our example above these billboard particles are transparent. Which means they get drawn on top of everything that is behind them. in addition to that many fog/fire/smoke effects use multiple billboard particles to create these effects, and each of those particles get drawn on top of the other particles for that effect. So lets say you are looking at a large smoke plume, and the artist decided to draw it with 9 smoke particles. Looking at the scene from the side it looks kind of like this:</p>
+<pre><code>                  1    2    3    4    5    6    7    8    9
+                  ┌────┬────┬────┬────┬────┬────┬────┬────┬──── Puffy Smoke Plumes
+                  │    │    │    │    │    │    │    │    │
+                  v    v    v    v    v    v    v    v    v
+
+                  │    │    │    │    │    │    │    │    │     Alien space navy laying waste to the Earth 
+                  │    │    │    │    │    │    │    │    │
+                  │    │    │    │    │    │    │    │    │
+                  │    │    │    │    │    │    │    │    │
+your eyeball: &lt;)  │    │    │    │    │    │    │    │    │     Alien army thirsty for your blood 
+                  │    │    │    │    │    │    │    │    │     
+                  │    │    │    │    │    │    │    │    │
+                  │    │    │    │    │    │    │    │    │
+                  │    │    │    │    │    │    │    │    │     NPC Corpses</code></pre>
+<p>so to draw this scene the GPU will draw the following items in this order</p>
+<ul>
+<li>the alien space navy, the alien army, and the NPC corpses</li>
+<li>Puffy Smoke Plume 9</li>
+<li>Puffy Smoke Plume 8</li>
+<li>Puffy Smoke Plume 7</li>
+<li>Puffy Smoke Plume 6</li>
+<li>Puffy Smoke Plume 5</li>
+<li>Puffy Smoke Plume 4</li>
+<li>Puffy Smoke Plume 3</li>
+<li>Puffy Smoke Plume 2</li>
+<li>Puffy Smoke Plume 1</li>
+</ul>
+<p>Meaning that it must draw some pixels to the screen 10 times, 1 for the aliens and corpses and then 9 just for the smoke effect. Since doing something 10 times takes longer than doing the same thing only once, using particle effects can really slow things down.</p>
+<p>-edit... everything</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Pfardentrott" target="_blank">Pfardentrott</a>
+			<div class="markdown"><p>Yea I decided to skip distance fog since my reply was getting long enough already. My description of overdraw only applies to particle/billboard fog.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SinaSyndrome" target="_blank">SinaSyndrome</a>
+			<div class="markdown"><p>Similar to my reply to /u/cocompadres, i would have gladly continued reading. Thanks for all the information though!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cocompadres" target="_blank">cocompadres</a>
+			<div class="markdown"><p>I figured as much, it's a large confusing subject and these are reddit replies.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SinaSyndrome" target="_blank">SinaSyndrome</a>
+			<div class="markdown"><p>That was an interesting read. Thanks. </p>
+<p>I felt like it stopped abruptly though. I would have gladly continued reading. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/larry2kwhatever" target="_blank">larry2kwhatever</a>
+			<div class="markdown"><p>But what about blast processing?
+/s</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cocompadres" target="_blank">cocompadres</a>
+			<div class="markdown"><p>Good point! I forgot to mention all of this is irrelevant if we're talking about the Sega Genesis/Mega Drive. Because as we all know: no processor is as powerful as Sega's late 80's/early 90's marketing department.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Desperado2583" target="_blank">Desperado2583</a>
+			<div class="markdown"><p>Wow, very cool thanks. What about reflections? Like in a chrome bumper. Would it redraw the entire scene from the bumpers perspective and only show you part of it? Or somehow only redraw the perspective you'll see? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Pfardentrott" target="_blank">Pfardentrott</a>
+			<div class="markdown"><p>It depends. For flat mirrors, games will often render from the mirror's perspective. For other things, they will use cube-maps, which are sort of omni-directional cameras hovering in mid-air, which you can use for nearby reflections. Games with cars will often have one cube-map following each car around to get nice reflections off the paint. Other games will have one cube-map in each room for approximate reflections on smaller objects.</p>
+<p>Lately the fanciest trick is to use &quot;screen-space&quot; reflections, which trace rays through the depth buffer to find which other pixels on screen will appear in a reflection. It's really fast, but it can't show anything that is off-screen (usually falls back to a cube-map).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DdCno1" target="_blank">DdCno1</a>
+			<div class="markdown"><p>This excellent study of GTA V's graphics rendering tech has a very nice illustration of how cubemaps work and how they can be used (among other things):</p>
+<p><a href="http://www.adriancourreges.com/blog/2015/11/02/gta-v-graphics-study/" target="_blank">http://www.adriancourreges.com/blog/2015/11/02/gta-v-graphics-study/</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PM_Me_Whatever_lol" target="_blank">PM_Me_Whatever_lol</a>
+			<div class="markdown"><blockquote>
+<p>Other games will have one cube-map in each room for approximate reflections on smaller objects</p>
+</blockquote>
+<p>that explains the reflection in scopes in cs</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jacenat" target="_blank">jacenat</a>
+			<div class="markdown"><blockquote>
+<p>Lately the fanciest trick is to use &quot;screen-space&quot; reflections</p>
+</blockquote>
+<p>It really breaks immersion in FPS/TPS games where you tilt your your camera and light reflections on the floor vanish because they slide off the top of the frustrum. Alan Wake and BF would look infinitely better with either better blending or maybe selectively changing the frustrum and then crop the output image based on what could be reflected. But I guess that is yet to come.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BabyPuncher5000" target="_blank">BabyPuncher5000</a>
+			<div class="markdown"><p>They usually use cube maps, screen-space reflections, or a mixture of both.</p>
+<p>Cube maps just give you a basic imitation of a reflection, using a single texture made to vaguely resemble most areas of the level you're in. Location specific details, and in-game objects and characters are usually missing entirely from these reflections.</p>
+<p>Screen-space reflections simply take another part of the screen and re-draw it on the reflective surface with some filters and distortions to make it look like a real reflection. This works great for reflecting the horizon on a body of water, or small reflections on car windshields and puddles. The main drawback is that you are limited to reflecting only things that are already visible on screen. If you have a tall building that extends beyond the top of the players view, it's reflection will cut off in the lake you're looking at.</p>
+<p>If you want to see a game with screen space reflections that are poorly done, check out Final Fantasy XV. Look at the water underneath that beachside restaurant as you approach it early in the game and notice the palm tree shaped holes in the reflection.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MystJake" target="_blank">MystJake</a>
+			<div class="markdown"><p>And to offer a sort of side comment, the creators of the original Doom used line of sight to minimize the amount of rendering they had to do and make the game run more smoothly.</p>
+<p>In short, if your player character can't see a surface, it isn't rendered. If you're looking at a column in a square room, the wall chunks behind that column aren't actually &quot;created.&quot;</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SarcasticGiraffes" target="_blank">SarcasticGiraffes</a>
+			<div class="markdown"><p>So, ok, I'm not sure if anyone is gonna see this, but your post leads me to this question:  </p>
+<p>If 25 years ago the original Doom was the pinnacle of rendering technology, does this mean that in another 25 years we will have the hardware to do rendering as well as Doom (2016) did in comparison with the original? Or is all the math that a GPU has to do so infinite that it's just not going to happen?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Pfardentrott" target="_blank">Pfardentrott</a>
+			<div class="markdown"><p>The pace at which computer hardware is getting faster has slowed down recently, so don't expect the same relative gains unless there is a major breakthrough. Maybe when VR gets really good we could consider that the same kind of leap in realism, even if the hardware doesn't get exponentially better.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FenPhen" target="_blank">FenPhen</a>
+			<div class="markdown"><p>I believe this is called <a href="https://docs.unity3d.com/Manual/OcclusionCulling.html" target="_blank">occlusion culling</a>.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MystJake" target="_blank">MystJake</a>
+			<div class="markdown"><p>That's the term!</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
