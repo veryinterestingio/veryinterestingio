@@ -1,0 +1,56 @@
+<div class="answers">
+	<div class="answer" data-handle="dcrweu7">
+		<a class="author" href="https://www.reddit.com/user/Romwil" target="_blank">Romwil</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Unfortunately no - and it's the same problem we have with our own reality. :) </p>
+<p>With any instruction you execute, the response returned may only be what the emulator you didn't/ couldn't know was running wants you to know. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dcrzs9h">
+		<a class="author" href="https://www.reddit.com/user/dale_glass" target="_blank">dale_glass</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>No, not even what you said. A computer can quite easily lie about quite a few things, and often does for backwards compatibility reasons.</p>
+<p>There's nothing that says that a computer must allow software to interrogate it about its capabilities, either. It's perfectly possible to have a computer that has no straightforward way of asking how much RAM it has, other than trying to write to an address and seeing what happens, while accounting for that addresses might wrap around at some point.</p>
+<p>In fact, the ability to figure out what's inside a computer is quite new. In the 90s and earlier configuration used to be a lot trickier because there wasn't an easy and convenient way of asking the computer what sound card it had inside. Code wanting to do autodetection had to very carefully try to poke at things to figure out whether there was a soundcard at a given IRQ, DMA and IO addresses, and hope that this wouldn't happen to send a signal to something else, which might get misinterpreted in some awful manner -- from a crash to disk corruption.</p>
+<p>And then there's emulation, which can go really far. With console emulators you usually have the emulator not only emulate the hardware and instruction set, but also the timing and various hardware glitches. Some things like precise timing can be hard to emulate, but only for practical reasons, and not because it's impossible. An emulator could achieve absolute perfection and make it impossible for a program running inside to determine it's being emulated.</p>
+<p>Now if you're familiar with virtualization, today most systems don't try to hide their existence, but even there you see this: If you assign a VM 1GB and 2 cores of a 64GB, 32 core machine, as far as the software running inside can tell, you only have 1GB and 2 cores, as well as a Cirrus video card and Realtek network card, neither of which you probably physically have, but that for whatever reason turned out to be convenient to emulate.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dcssnxc">
+		<a class="author" href="https://www.reddit.com/user/cthulu0" target="_blank">cthulu0</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>No.</p>
+<p>Lets take the simplest case imaginable. Imagine a voltage source V driving one end of resistive divider (two equal R's in series). The only available output to be probed is the point between the 2 resistors. This output, when unloaded, will generate an output voltage of V/2.</p>
+<p>Now imagine if you didn't know the structure of this circuit, but rather only had access the output node. Furthermore suppose the only diagnostic tools (UNDER SOFTWARE CONTROL) you had are :</p>
+<p>1) hang a known current load on the output node and use a volt meter to measure the resulting voltage of the output node.</p>
+<p>AND</p>
+<p>2) attach a known voltage source to the output node and use ammeter in series to measure the current that sinks into the voltage source.</p>
+<p>Could you use the above to determine the structure of the circuit ,i.e. that is a voltage source V driving 2 series R??</p>
+<p>No because the voltage divider has an equivalent circuit called a Thevenin equivalent (in this case a voltage source of V/2 with single resistor of value R/2 between the voltage source and output node).</p>
+<p>Neither of the  two probing instruments listed  in #1 and #2 can distinguish between the original 3 component circuit and the functional equivalent 2 component circuit.  </p>
+<p>There is also a Norton equivalent for the original circuit (composed of a current source and resistor in parallel) that also mimics the original circuit.  And again the instruments cannot distinguish between the two, as long as it has access only to the output node.</p>
+<p>Note the  original circuit and its  Thevenin and Norton equivalents are truly different implementations.  The original circuit actively consumes power even if the output node has nothing attached to it, whereas the Thevenin equivalent consumes no power.</p>
+<p>Note that if we had access to all 3 node in the original circuit, then we could distinguish among the 3 different implementations.</p>
+<p>This is just a 3 component circuit. A computer has ~1 billion transistors and other components and only  limited &quot;output&quot; nodes to probe.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dcs95xt">
+		<a class="author" href="https://www.reddit.com/user/is_reddit_useful" target="_blank">is_reddit_useful</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Yes, but in a very limited way. You can query using methods which are meant for identifying components, like the CPUID instruction for identifying the CPU, scanning the PCI bus, or reading RAM SPD EEPROM. You can run various benchmarks which could help you determine things like the size of caches, or hint what algorithm could be used for some complex instructions whose execution time varies. You can also explore behaviour which is undocumented, insufficiently documented or potentially buggy. Differences in this kind of behaviour can be used to identify hardware and sometimes gain a bit of insight about how it's implemented.</p>
+<p>This all gives very minimal information compared to the complexity of a modern CPU. There are also all sorts of variations that are possible without affecting behaviour, so you cannot detect them.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dcses04">
+		<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><blockquote>
+<p>You can obviously find out a few basic things about hardware you're running with software programs; the amount of RAM channels, control operations on the microprocessor, etc,</p>
+</blockquote>
+<p>No, you can <em>query</em> your hardware's controller(s) for those. They make their best efforts to give you accurate information, but even h/w controllers can malfunction and be misconfigured.</p>
+<blockquote>
+<p>but how much further could you theoretically go in determining exactly the structure/nature of the circuits on which the software is running?</p>
+</blockquote>
+<p>This I don't know. I would be surprised if there were any research along these lines.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
