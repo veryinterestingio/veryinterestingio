@@ -1,0 +1,21 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EmperorBarryIV" target="_blank">EmperorBarryIV</a>
+			<div class="markdown"><p>When set onto the lowest possible graphical settings on the same resolution on the same system, I've found that Skyrim Special Edition runs better than Skyrim Legendary Edition, on a system with 4gb of Ram and a low end graphics card. Why do you think that is? Literal curiosity.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gnonthgol" target="_blank">Gnonthgol</a>
+			<div class="markdown"><p>There can be multiple reasons for this. When system interrupts take place the CPU switch to the OS to handle the interrupt, but it does not switch the address space as that takes some time and the interrupt handler is supposed to be very fast. So to be able to handle the interrupt the OS will configure the address space of all the processes to have some of the OS memory. So even if you have 4GB of memory in a 32 bit machine a single process can usually not address all of it since the OS will allocate a lot of your addresses. In addition address space does not only include the memory but also all devices connected directly to your motherboard. So you can map parts of the hard drive or the graphics memory to your address space. So even if you can technically address 4GB of memory a lot of the addresses are used for other things.</p>
+<p>In addition to the switch to 64 bit there are also other improvements to the game to make it run better. There is a lot of techniques we have figured out after the initial release of Skyrim that can not be used to make the game run better.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/no_real_username" target="_blank">no_real_username</a>
+			<div class="markdown"><p>There could be several explanations:</p>
+<ul>
+<li>it's possible that they've just taken the time to optimize the game further.</li>
+<li>the differences between 32-bit and 64-bit code makes some things inherently more efficient, providing a minor speedup for free. (In other ways, it may slightly harm performance because some types of data grow twice as big, which puts pressure on caches and requires more data to be loaded from memory, but it is possible/likely that the pros outweigh the cons for Skyrim)</li>
+<li>It is possible, but unlikely, that the 32-bit version was only actually able to use 2GB of RAM. This is a default setting on Windows that is necessary for some older (badly written) applications. 32-bit applications have to actively opt-in to use the full 4GB. Most likely Skyrim already did this, but I haven't checked.</li>
+<li>When running as a 32-bit application, they only had access to a total of 4GB of memory, but even within that, they had to be conservative. If they ever hit that ceiling, the application would just crash, so they had to lowball it and avoid ever coming <em>close</em> to the 4GB ceiling. So in practice, many games try to never use more than 2.5-3.5GB, just be safe. But as a 64-bit application, this hard limit is gone. It's ok if they use 4.1GB of memory, even though the system only has 4GB of RAM. Then Windows will just to swap some data out to disk temporarily, so it might cause a bit of a slowdown, but it won't crash. So the game can actually utilize the full 4GB and doesn't have to play it safe.</li>
+</ul></div>		</li>
+					</ul>
+		</ul>
+	

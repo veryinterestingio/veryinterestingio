@@ -1,0 +1,43 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MyVeryUniqueUsername" target="_blank">MyVeryUniqueUsername</a>
+			<div class="markdown"><p>That's a great answer, thank you! I thought there was a lot more work involved.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pdpi" target="_blank">pdpi</a>
+			<div class="markdown"><blockquote>
+<p>However, the effect of this is negligible for Skyrim, because the program didn't really have a need for 64-bit arithmetic in the first place.</p>
+</blockquote>
+<p>In fact, naively replacing 32-bit arithmetic with 64-bit arithmetic all over the place would actually slow things down for no good reason.</p>
+<p>However, there is one specific place where recompiling a 32-bit program  as 64-bit will net you a performance advantage: x86-64 adds some more general-purpose registers (basically, the absolute fastest type of storage in your computer, where the processor keeps the data it's working on for the fastest operation possible), which potentially means fewer memory accesses (likelier than not, just cache hits, but still more expensive than registers)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/no_real_username" target="_blank">no_real_username</a>
+			<div class="markdown"><blockquote>
+<p>which potentially means fewer memory accesses (likelier than not, just cache hits, but still more expensive than registers)</p>
+</blockquote>
+<p>Yep. On the other hand, pointers being 64 bits wide also means they'll take up more cache space, which might result in <em>more</em> memory accesses. The overall effect can go either way (although I'd generally expect 64-bit code to be a few percent faster all in all), but I've also seen code that became a bit slower when compiled as 64-bit.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jaegermeiste" target="_blank">Jaegermeiste</a>
+			<div class="markdown"><p>If their coordinate system is integer based, 64 bits goes a long way to alleviate some hackery/record keeping required to track locations in extremely large worlds. That being said, if that was the case in the original 32 bit code they could have achieved most of the necessary precision with a double.</p>
+<p>I doubt that the 64 bit arithmetic matters much. More likely that the advanced SIMD instructions are used to speed up parallel vector calculations (partially goes with having more registers). There are many, many vector and matrix calculations in a 3D game, though many of those tend to be handled by the GPU, depending on the engine architecture. In the Skyrim case, (conjecture here) they could have pushed some GPU load back to the CPU, say for skinning, and freed up GPU cycles for the newer shaders. </p>
+<p>Big win is access to &gt;4Gb of memory. More stuff in RAM, especially if streamed and prefetched, means reduced loading times. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pdpi" target="_blank">pdpi</a>
+			<div class="markdown"><p>Yeah, I was mostly pointing out that there's <em>other</em> avenues for performance gains than just &quot;more memory, or arithmetic on pretty large integers&quot;. Whether that actually pans out in practice is highly dependent on the exact details of the application.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/XsNR" target="_blank">XsNR</a>
+			<div class="markdown"><blockquote>
+<p>assuming the source code is of half-decent quality</p>
+</blockquote>
+<p>So they probably had to do quite a lot of work then</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kittycatbutthole1369" target="_blank">kittycatbutthole1369</a>
+			<div class="markdown"><p>Well he's talking about code quality not necessarily the bugginess.  </p>
+<p>Stuff like using size_t instead of specific sizes like int or long will compile differently on 32 bit or 64 bit.  And has nothing to do with the amount of bugs...</p></div>		</li>
+					</ul>
+		</ul>
+	

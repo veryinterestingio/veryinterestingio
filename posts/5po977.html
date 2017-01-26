@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: Skyrim got a revamped version. It is the same game but with better graphics. One of the new features is the 64 bit engine. What did the programmers have to do? Rewrite the whole game? What is the difference between 32 bit and 64 bit from that perspective?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="5po977">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/5po977/eli5_skyrim_got_a_revamped_version_it_is_the_same/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/5po977" onclick="return false">Skyrim got a revamped version. It is the same game but with better graphics. One of the new features is the 64 bit engine. What did the programmers have to do? Rewrite the whole game? What is the difference between 32 bit and 64 bit from that perspective?</a>
+		</h2>
+		<!--<span class="date">2017-01-26</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Skyrim got a revamped version. It is the same game but with better graphics. One of the new features is the 64 bit engine. What did the programmers have to do? Rewrite the whole game? What is the difference between 32 bit and 64 bit from that perspective?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dcsl6b4">
+		<a class="author" href="https://www.reddit.com/user/no_real_username" target="_blank">no_real_username</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Answering one bit at a time:</p>
+<blockquote>
+<p>What is the difference between 32 bit and 64 bit</p>
+</blockquote>
+<ul>
+<li>When your CPU runs in 64-bit mode, it gains access to a number of new instructions, which, taken together, may allow certain computations to be performed more efficiently. (Much of it is to do with the width of data being operated on. As a simple example, if your 32-bit application needs to add two 64-bit integers together, it doesn't have a single instruction for that. It has to emulate it through several 32-bit additions). However, the effect of this is negligible for Skyrim, because the program didn't really have a need for 64-bit arithmetic in the first place.</li>
+<li>It also gives the CPU access to twice as many registers (where data is stored while the CPU is working on it. A larger number of registers means less need to read/write data from/to memory), and that might speed up the game by a few percent. This probably won't have a huge impact, but it's something.</li>
+<li>Finally, it allows the application to use more than 4GB of RAM (which is all you can normally access from a 32-bit application). This has the potential to dramatically cut down on loading times. In the 32-bit version as you moved around the world, different parts had to be unloaded from memory, in order to make room for the parts you were entering. Now that the game can use as much memory as it likes, the game doesn't need to do that at all. (Of course the data still have to be initially loaded from the disk, and depending on how much RAM you have, it may still not be possible to fit <em>everything</em> into RAM, but at least the game can hold a lot more than 4GB of data in memory at the same time. The effect of this is twofold: it can cut down on loading times as I described above, but it also gives them the breathing room they need to upgrade the graphics. Higher resolution textures or more detailed models all take up more memory. In the 32-bit version, that would have to push something else out, causing even <em>more</em> swapping data back and forth between memory and harddrive. But in the 64-bit version, there's room for this.</li>
+</ul>
+<blockquote>
+<p>What did the programmers have to do?</p>
+</blockquote>
+<p>They <em>had</em> to do very little. It is quite easy to convert a 32-bit program into a 64-bit one. They likely needed to fix a few bits of code but assuming the source code is of half-decent quality most of it should <em>just work</em>, and then just compile the code again, telling the compiler to build a 64-bit application instead of a 32-bit one.</p>
+<p>So the mandatory work likely wasn't much.</p>
+<p>But then comes all the optional work, which I hinted at above: if they just did the lazy solution, they'd end up with a 64-bit application which had access to all the RAM in your machine, but which still <em>tried</em> to stay within 4GB. So they'd have to rewrite the code that loads/unloads assets to no longer be so strict about unloading assets.</p>
+<p>There may also have been some performance tuning, because the code performs a bit differently when it runs as 64-bit code.</p>
+<p>And then of course, any graphical enhancements probably required changes to their rendering engine, shaders would have to be rewritten and so on.</p>
+<p>But all of that is basically optional; not something they <em>had</em> to do in order for Skyrim to work as a 64-bit game, but rather rewriting bits of the game to take advantage of what 64-bit gives them and to make the game prettier and better.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dcsy10g">
+		<a class="author" href="https://www.reddit.com/user/Splice1138" target="_blank">Splice1138</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It should also be noted that most game studios use revisions of the same engine for multiple games. <a href="https://en.wikipedia.org/wiki/Creation_Engine" target="_blank">Creation Engine</a> was used for Skyrim and Fallout 4, so any improvements they made for Fallout 4 were certainly rolled into Skyrim SE.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dcsph5f">
+		<a class="author" href="https://www.reddit.com/user/CptnNsan0" target="_blank">CptnNsan0</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They updated the lighting and water in the new game, but that's really about it graphically. The 64 bit engine allows for access to more memory, but perhaps more importantly, it gives Modders a much more stable experience with far less crashes compared to the 32 bit version.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dcsk7z3">
+		<a class="author" href="https://www.reddit.com/user/Gnonthgol" target="_blank">Gnonthgol</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>64 bit computers use an extended instruction set and both new and extended registers to be able to more efficiently work with 64 bit numbers and to allow an application to use 64 bit memory addresses. For the most part the switch from 32 bit to 64 bit is handled by the compiler that compiles your source code to machine code. There can be some issues in the code but it is easy to fix in most cases.</p>
+<p>The biggest advantage to 64 bit for most games is that they can address more memory. 32 bit address allows you to address 4GB of memory. Most games are using more graphics that that and will run out of addressable space. One reason to make the game 32 bit is to allow it to run under older systems and force the developers to make the game handle low memory situations. They could have two different versions of the game from launch but that could be difficult to manage. Upgrading an old game to 64 bits allows them to add more detailed graphics that would not be able on the old, but this is not available to those with low memory systems.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dctcjx0">
+		<a class="author" href="https://www.reddit.com/user/jochance" target="_blank">jochance</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For posterity, here is the literal difference in making something 32 vs 64 bit...</p>
+<p><a href="http://imgur.com/a/DiGuE" target="_blank">http://imgur.com/a/DiGuE</a></p>
+<p>As explained, there's really more to it than that if you want it to actually be much of a worthwhile change. About the only thing you get for &quot;free&quot; is more RAM to use and it really makes the most sense when it probably isn't &quot;free&quot;. If you weren't having to deal with your code not consuming too much before, you probably aren't going to benefit. If you were, then to go 64, you'll need to change that code.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/5po977" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
