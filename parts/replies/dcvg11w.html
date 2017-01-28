@@ -1,0 +1,66 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ElMachoGrande" target="_blank">ElMachoGrande</a>
+			<div class="markdown"><p>Good explanation!</p>
+<p>Just one small addition which is often forgot when talking about significant figures: That logic only applies to measurements.</p>
+<p>Example: Say that I want to add up all for sides of a square. I measure one side to 5.12 m, then I do 4x5.12. The answer in this case is 4x5.12=20.48, which rounds to 20.5, as we want 3 sig figs. The 4 is not a measurement, we know there are exactly four sides, with infinite precision.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NuclearRobotHamster" target="_blank">NuclearRobotHamster</a>
+			<div class="markdown"><p>Just use &quot;x&quot; or you need to use &quot;\*&quot;  (which I had to type in as &quot;\\\*&quot;, which I had to......) otherwise you get italics </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ElMachoGrande" target="_blank">ElMachoGrande</a>
+			<div class="markdown"><p>Thanks, fixed it!</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hello_kitteh" target="_blank">hello_kitteh</a>
+			<div class="markdown"><p>Follow-up question: In statistics, whether we round 5 up or down depends on the preceding number: we round so that the preceding number is even.  For instance, 25 would round to 20 (because the 2 is even), and 35 would round to 40 (to turn the odd 3 into the even 4).  This keeps it balanced rather than always rounding up.  Would the same be true here?  Would 5x5 (=25) actually round to 20 when you adjust for number of sig figs?  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pyrespirit" target="_blank">pyrespirit</a>
+			<div class="markdown"><p>In physics, rounding is done based solely on the last digit, with the convention that 5 rounds up.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sinai" target="_blank">Sinai</a>
+			<div class="markdown"><p>Yes.  At least that's what I did on all my physics labs circa 2000 while getting a chemistry degree and a physics minor and this entire ELI5 has been driving me crazy because nobody has mentioned it.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hollth1" target="_blank">hollth1</a>
+			<div class="markdown"><p>To be fair, it's not that relevant to the OP's question. If they're unaware what sig figs are they probably do not know (or do not need to know) about different rounding conventions. I would see that as way beyond the level they are at, a bit like teaching calculus to somebody just learning algebra. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pyrespirit" target="_blank">pyrespirit</a>
+			<div class="markdown"><blockquote>
+<p>The notation &quot;5.0&quot; says something like, &quot;we're certain it is 5 centimeters and 0 whole tenths of a centimeter&quot;. Carrying it out further, &quot;5.01&quot; would be, &quot;5 whole centimeters, 0 tenths of a centimeter and 1 hundredth of a centimeter&quot;.</p>
+</blockquote>
+<p>Just a slight correct to an otherwise solid answer.</p>
+<p>Measurements are always estimated to one order of magnitude further than the limits of the tool used to take them.</p>
+<p>So in this case you've given, the ruler would have centimeter gradations, so you estimate the tenth centimeter figure; what you're saying is &quot;we're certain it's 5 centimeters, and we estimate that it's 0 tenths of a centimeter.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tevoul" target="_blank">tevoul</a>
+			<div class="markdown"><p>Not really correct.</p>
+<p>Depending on the instrument there is usually some estimation you can do, but nobody is going to be able to estimate to the next order of magnitude. If we look at measuring a line of O's with something with gradations like this:</p>
+<p>|     |     |     |     |</p>
+<p>OOO</p>
+<p>There is no way that you would be able to accurately measure that out to a tenth of one of those gradations. You could probably estimate to the nearest half (i.e. that line of three O's is 2.5 units long) but that's about the best you could do.</p>
+<p>When you get down into the nitty gritty, significant figures is a good rough way to gauge error but what you actually need to do is look at error as it's own value. With our particular system if you were confident you could report the value to the nearest half unit, then the error of the measurement would be +/- 0.25 units - because you are just rounding to the nearest half then you could be higher or lower than the reading by that amount and still round to the same place.</p>
+<p>(If you want to get even more technical your error would actually be +/- 0.3 because your error shouldn't have more significant figures than your measurement accuracy).</p>
+<p>Then if you wanted to calculate another value based on a series of measurements, you would need to stack and propagate the error from each measurement into the final value. The total error in the final value determines how many significant figures you should be reporting the final value as.</p>
+<p>To go back to the 5x5=30 example, because there is no reported accuracy to the 5 values and we don't have more info on the measurement instrument the assumed error would be +/- 0.5 (because any farther than that and it would be rounded to either 4 or 6). When you multiply values with error, you add the % that the error makes up of the total measurement (i.e. 0.5 is 10% of 5, thus error makes up 10% of each measurement and adding those together your calculated value will be made up of 20% error). The calculated value is 25 +/- 20%, or 25 +/- 5. This means that because of our measurement error the true value could be anywhere between 20 and 30.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pyrespirit" target="_blank">pyrespirit</a>
+			<div class="markdown"><blockquote>
+<p>There is no way that you would be able to accurately measure that out to a tenth of one of those gradations. </p>
+</blockquote>
+<p>...</p>
+<p>I said <strong>estimate</strong> not <strong>accurately measure</strong>. You can't just swap out words to tell me I'm wrong.</p>
+<p>In the example given, you would <strong>measure</strong> to the nearest gradation - 3, and then <strong>estimate</strong> the next order of magnitude - the 0.1 gradation level - which I'd put as 0.5, but someone else may put as 0.4, 0.6, or something else.</p>
+<p>Then you'd do error analysis to determine the limits to which that estimation is accurate.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
