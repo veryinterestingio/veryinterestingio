@@ -1,0 +1,156 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dutra1" target="_blank">Dutra1</a>
+			<div class="markdown"><p>You could use the wasted numbers to reduce the scope of the rerolls. Take the numbers 201 to 210, that were previously wasted. Each one now corresponds to a different 10-number section.</p>
+<p>So if you roll 201, if know the result will be between 1 and 10, and if you roll 203, it will be between 21 and 30. This makes it so that you only need to roll two more die to find your number.</p>
+<p>Of the 36 possibilities of the two die, assign 30 to the 10 numbers like you did in your example. Of the 6 wasted, you can use 5 to further restrict the scope to pairs of numbers. After that, a single roll should do.</p>
+<p>I'm suspect this should have lower expectancy, but I'm not sure how to calculate it.</p>
+<p>EDIT: This was all in decimal base.</p>
+<p>Also, this still keeps some wasted numbers, it just reduces them. So you could potentially need infinite rolls. I wonder if there's a method with a hard cap of rolls.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rufus_Reddit" target="_blank">Rufus_Reddit</a>
+			<div class="markdown"><blockquote>
+<p>...  I wonder if there's a method with a hard cap of rolls. ...</p>
+</blockquote>
+<p>You can't have a method with a uniform distribution that is guaranteed to terminate in a finite number of rolls, because any method that is guaranteed to terminate in N rolls can be turned into a method guaranteed to terminate in exactly N rolls.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kvothealar" target="_blank">Kvothealar</a>
+			<div class="markdown"><p>I like this one. Roll 3 D6. Read them left to right as 3 base 6 numbers. Divide the number by 2 and round down.</p>
+<ul>
+<li>0 and 0.5 count as 0.</li>
+<li>100 and 100.5 count as 100.</li>
+<li>101+ means you reroll. </li>
+</ul>
+<p>That way there are 2 digits for each number, so no rounding bias. </p>
+<p>Using some quick program to convert it to decimal would be the best. </p>
+<p>Here's some terrible phone-typed pseudocode.</p>
+<pre><code>Function[i,j,k]
+Value = Floor[ ( i 6^2 + j 6^1 + k 6^0 )/2 ]
+If Value &lt; 101,
+    Print[Value]
+Else
+    Print["Reroll"]
+End
+
+Disp["Enter the three dice rolls from left to right:"]
+a=input[]
+b=input[]
+c=input[]
+Function[a-1,b-1,c-1]</code></pre></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ScottyDntKnow" target="_blank">ScottyDntKnow</a>
+			<div class="markdown"><p>outside the box thinking here... what if with one roll of the dice you increase possible outcomes by using the orientation of the numbers on the side.  so if you roll a 1, and the 3 is facing away from you this is one state, making 4 possible states per face, or 24 possible outcomes from a single dice.</p>
+<p>edit thought, rolling onto a slanted surface with an edge would guarantee that one of the side faces is flush to the wall, so you don't end up having to guess which face is pointing away from you like you might on a flat surface </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/orthopod" target="_blank">orthopod</a>
+			<div class="markdown"><p>How about this for outside the box.</p>
+<p>Throw the die onto a 100 spaced roulette wheel.  </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hamlet_d" target="_blank">hamlet_d</a>
+			<div class="markdown"><p>I would say roll regularly once (1-6), that would give you a group (you ultimately discard the 6).  So the groups would be 1-24,25-48,49-72,73-96, 97-120, based on 24 outcomes per die on the second roll, if higher than 100, discard.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Midtek" target="_blank">Midtek</a>
+			<div class="markdown"><p>How is this different from or better than the method I already described?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kvothealar" target="_blank">Kvothealar</a>
+			<div class="markdown"><p>Exactly the same. I got a bit lost reading yours but I liked it. </p>
+<p>So I commented to support it, reworded it a bit, and added some pseudocode.</p>
+<p>Also you seemed to edit your comment a bunch since I commented.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blisstake" target="_blank">blisstake</a>
+			<div class="markdown"><p>Why not have the 100 place mark work like 1=0, 2=1, 3=0, etc to reduce reroll and save ram space? (Albeit not much)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kvothealar" target="_blank">Kvothealar</a>
+			<div class="markdown"><p>I'm not sure I follow. Could you elaborate?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ericGraves" target="_blank">ericGraves</a>
+			<div class="markdown"><p>edit - In more detail (this was an old post I wrote awhile back).</p>
+<p>edit2- Had error in my code, not my explanation. </p>
+<p>The most efficient method is due to <a href="http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=556116" target="_blank">Han and Hoshi</a> (and accompanying <a href="http://algo.inria.fr/seminars/sem94-95/hoshi.pdf" target="_blank">summary</a>) which give a general algorithm to generate a random variable with distribution Q, using observations from independent random variables with distribution P. </p>
+<p>On average to generate n values distributed according to Q, you will need between n H(Q)/H(P) and n H(Q)/H(P) + 3 values distributed according to P, where H is the <a href="https://en.wikipedia.org/wiki/Entropy_%28information_theory%29" target="_blank">Shannon entropy</a>. In this case that simply amounts to   log(100)/log(6).</p>
+<p>To use this method, start with rolling dice, and keep track of which roll you are on. Treat your roll as if you were counting in base 6 (and treat a roll of 6 as if it were 0), that is if you first rolled 1, then 5, then 6, 4, 2,3, your number would be (1)6^5 + (5) 6^4 + (0) 6^3 + (4) 6^2 +(2) 6^1 + (3) 6^0. </p>
+<p>Now, let n be the number of rolls so far, and x be your base 6 sequence enumeration, and 10^y be the numbers needed. You keep rolling until <del>these two</del> conditions occur:</p>
+<ul>
+<li><del>6^(n) &gt; d (that is 6^(rolls) &gt; d )</del> </li>
+<li>there exists a multiple of d between x and 6^(n).</li>
+</ul>
+<p>When both of those conditions are met, then pick x mod 10^y. </p>
+<p>I wrote some matlab/<a href="http://octave-online.net/" target="_blank">octave</a> code for the process. Running simulations,</p>
+<p>Old incorrect code:</p>
+<pre><code>x = [];
+y = 0;
+d = 100; 
+do
+    x = [floor(rand(1)*6),x];
+    z = sum(x.*6.^([1:length(x)]-1));
+        if 6^length(x) - z &gt; d;
+            pin = mod(z,d);
+            y = 1;
+        end
+until(y==1)
+pin</code></pre>
+<p>New correct code</p>
+<pre><code>x = [];
+y = 0;
+d = 100; %Ending distribution
+s = 6;     % Starting distribution 
+do
+    x = [floor(rand(1)*s),x];
+    z = sum(x.*s.^([1:length(x)]-1));
+        if z &lt; s^length(x) - mod(s^length(x), d);
+            out = mod(z,d);
+            y = 1;
+        end
+until(y==1)
+out</code></pre></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Midtek" target="_blank">Midtek</a>
+			<div class="markdown"><p>This sounds a lot the method I had already come up with actually, and then generalized to a <em>d</em>-sided die. It is different though, but I'm pleased to see I was on the right track.</p>
+<blockquote>
+<p>On average to generate n values distributed according to Q, you will need between n H(Q)/H(P) and n H(Q)/H(P) + 3 values distributed according to P, where H is the Shannon entropy. In this case that simply amounts to log(100)/log(6).</p>
+</blockquote>
+<p>Thanks for the link to that paper. Good read.</p>
+<p>If I'm reading the paper correctly, then the number of rolls required is the random variable <em>L</em>, whose expected value should be bounded between H(q)/H(p) = log<em><em>6</em></em>(100) = 2.57 (equation 2.4) and H(q)/H(p) + 6/5 = 3.77 (equation 3.1).</p>
+<p>Equation 3.1 in the paper only guarantees the <em>existence</em> of an RNG that gives that tight upper bound, but does not explicitly construct it. The algorithm described later that you have summarized has a looser upper bound but has the advantage of already being constructed and not being too hard to implement anyway. In particular, the algorithm for a 6-sided die should give, according to equation 4.10, an upper bound of log<em><em>6</em></em>(100)+6/5+log<em><em>6</em></em>(2) = 4.16.</p>
+<p>Is that all correct? If so, it seems you just misread or mistyped the equations when you wrote the upper bound as H(q)/H(p)+3 (looks like you were assuming a 2-sided coin flip).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ericGraves" target="_blank">ericGraves</a>
+			<div class="markdown"><p>Have an answer now to the question of the optimum expected value, for generating a [; d ;] sided dice given an [; s ;] sided dice. The minimum expectation possible is</p>
+<pre><code>[; E = d \sum_{j=1} j s^{-j} x_j  ;] </code></pre>
+<p>where [; x_j ;] are the integers in the base s representation of [; d\^{-1} ;], that is</p>
+<pre><code>[; d^{-1} = \sum_{j} x_j s^{-j}, ;]</code></pre>
+<p>where [; x_j \in { 0,1,\dots, s-1 } . ;] In this case the minimum is around 3.16. It took me forever to see this, but better late than never. How you divide it up and do the actual mapping is immaterial as long as they have the correct number of sequences of a given length. Once again in this case, every one of the outcomes between 0 and 99 must be assigned 2 sequences of length 3, 5 sequences of length 5, 4 sequences of length 6, 3 sequences of length 7, 2 sequences of length 8 and so on. </p>
+<p>edit- Forgot to mention why. Let [; x_{j,q} ;] represent the number of [; j ;] length sequences that result in outcome [; q ;]. Clearly because every outcome must have probability [; d\^{-1} ;] we have</p>
+<pre><code>[;  \sum_{j} x_{j,q} s^{-j} = d^{-1}.~~~\mathbf{(1)} ;]</code></pre>
+<p>Next observe that</p>
+<pre><code>[; E = \sum_{q=1}^{d} \sum_{j} j x_{j,q} s^{-j}  = \sum_{q=1}^{d}d^{-1} \left( d  \sum_{j} j x_{j,q} s^{-j} \right). ~~~\mathbf{(2)};]</code></pre>
+<p>The average must be greater than or equal to the minimum element, and therefore we focus on minimizing [; d  \sum_{j} j x_{j,q} s\^{-j} ;] subject to Equation <strong>(1)</strong>. Observe that [; x_{j,q} \in {0,1,\dots,s-1 }. ;] Indeed, suppose this were not true and the minimum had a [; j;] such that [; x_{j,q} \geq s ;], and set  </p>
+<pre><code>[; \hat x_{i,q} = \begin{cases} x_{j-1,q} + 1 &amp; \text{ if } i = j-1 \\ x_{j,q} - s  &amp; \text{ if } i = j \\ x_{i,q} &amp;\text{ otherwise } \end{cases} .;]</code></pre>
+<p>Since    </p>
+<pre><code>[; \sum_{j} \hat x_{j,q} s^{-j}  = - s s^{-j} + s^{j-1 } +  \sum_{j} x_{j,q} s^{-j} = d^{-1} ;]</code></pre>
+<p>but</p>
+<pre><code>[; \sum_{j} j \hat x_{j,q} s^{-j}  = - j s s^{-j} + (j-1) s^{j-1 } +  \sum_{j} j x_{j,q} s^{-j} = -s^{j-1} +  \sum_{j} j x_{j,q} s^{-j}, ;] </code></pre>
+<p>we must conclude that the sequence [; x_{j,q} ;] does not lead to the minimum subject to equation <strong>(1)</strong>. Since this is a contradiction, it must be [; x_{j,q} \in {0,1,\dots,s-1 }, ;] for all [; j ;]. And the minimum [; x_{j,q} ;] must therefore be the greedy expansion of [; d\^{-1} ;] in base [; s ;]. </p>
+<p>There exists a uniquely decodable code which obtains the minimum  by the converse of the Kraft Inequality since</p>
+<pre><code>[;  \sum_{q = 1}^{d} \sum_{j} x_{j,q} s^{-j} = \sum_{q= 1}^{d} d^{-1} = 1. ;]</code></pre></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ericGraves" target="_blank">ericGraves</a>
+			<div class="markdown"><p>You are correct. The algorithm is not optimal in general, just bounded from optimal. And the +3 does come from 2-sided coin flip. In truth, I just did not remember the correct result. When I wrote that up, I wanted to link to something people could read. <a href="https://books.google.com/books?id=U3zpCAAAQBAJ&amp;lpg=PR11&amp;ots=O3yUZ8serI&amp;dq=information%20spectrum%20methods%20chapter%202&amp;pg=PA106#v=onepage&amp;q=information%20spectrum%20methods%20chapter%202&amp;f=false" target="_blank">What I was referencing was actually from T.S. Han's book <em>Information Spectrum Methods</em> (Page 104)</a>. </p>
+<p>In fact, that tight upper bound can in general only be achieved when the number of generated values is allowed to go to infinity. In that sense, their result is basically n H(Q)/H(P) ( 1 + O(n^(-1)) ), and the ratio between that optimal goes to zero. This is typically tight enough for the purposes of information theory.</p>
+<p>On final note, this is still an &quot;active&quot; area of research. <a href="http://ieeexplore.ieee.org/document/7541834/" target="_blank">For instance there was a paper last year on the subject</a>.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
