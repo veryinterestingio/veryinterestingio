@@ -1,0 +1,107 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jupiter20" target="_blank">Jupiter20</a>
+			<div class="markdown"><p>There is this awesome programming language called Haskell, where you can experiment with this, you could also define multiplication or exponentiation...</p>
+<pre><code>data Peano = Z | S Peano    // "a number is either zero or succesor of a number"
+plus x y = case x of
+    Z -&gt; y
+    S n -&gt; S (plus n y)</code></pre>
+<p>Then you can do &quot;plus (S Z) (S (S Z))&quot; and you would get &quot;S (S (S  Z))&quot;</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SBareS" target="_blank">SBareS</a>
+			<div class="markdown"><p>As an aside, if you like the idea of <a href="https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence" target="_blank">proving theorems by programming</a>, you can try a dependently typed language, like the Haskell-based language Agda:</p>
+<pre><code>--First let us define natural numbers
+data Nat : Set where
+  zero : Nat       --Zero is a natural number
+  suc : Nat -&gt; Nat --Every natural number has a successor
+one = suc zero --definition of 1
+two = suc one  --definition of 2
+
+--Addition gets defined as follows
+_+_ : Nat -&gt; Nat -&gt; Nat
+zero + y = y
+(suc x) + y = suc (x + y)
+
+--Now let us define equality
+data _==_ {A : Set}(x : A) : A -&gt; Set where
+  refl : x == x --Everything is equal to itself
+
+--Finally, let us prove a theorem
+--Types are propositions
+--Objects of a type are proofs of the proposition
+thm : (one + one) == two --thm is a proof of 1+1=2
+thm = refl               --and here is the proof</code></pre>
+<p>Of course, this is not much different from what we can already do at runtime in Haskell. However, Agda's type-checker allows us to check proofs statically (that is, if your proof compiles then it is correct), and it can also prove more powerful theorems, like:</p>
+<pre><code>--first let us prove a simple lemma
+suc-subs : (x y : Nat) -&gt; x == y -&gt; suc x == suc y
+suc-subs x .x refl = refl
+--This can of course be generalized to any type 
+--and any type from that function
+
+--then we can prove a less trivial theorem
+plus-assoc : (x y z : Nat) -&gt; ((x + y) + z) == (x + (y + z))
+plus-assoc zero y z = refl
+plus-assoc (suc x) y z = suc-subs ((x + y) + z) (x + (y + z)) (plus-assoc x y z)
+--this is a proof by induction on x, 
+--using our lemma for the inductive step</code></pre></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lunaprey" target="_blank">lunaprey</a>
+			<div class="markdown"><p>Why does every natural number have a successor?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/klod42" target="_blank">klod42</a>
+			<div class="markdown"><blockquote>
+<p>Addition is another couple axioms, which give it inductively as n+0=n and n+S(m)=S(n+m).</p>
+</blockquote>
+<p>Addition isn't axioms, it's a function defined recursively. The only axioms are 0, succ and their properties. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Evning" target="_blank">Evning</a>
+			<div class="markdown"><blockquote>
+<p>n+S(m)=S(n+m)</p>
+</blockquote>
+<p>can you expand on that? i could never understand </p>
+<blockquote>
+<p>1 + 1</p>
+<p>= 1 + S(0)</p>
+<p>= S(1 + 0)</p>
+</blockquote>
+<p>when adding the element '1' to itself, and replacing the element '1' with its S(0) notation, how can we expand the S() notation over to the element.</p>
+<p>i suppose in my head</p>
+<p>1 + 1 is mathematical</p>
+<p>but </p>
+<p>1 + S(0) reads more like a statement and we are to subsitute '1' back into place of 'S(0)' for the line to become mathematically feasible.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/klod42" target="_blank">klod42</a>
+			<div class="markdown"><p>It's a recursive definition. We define operation + : N^2 -&gt; N, so that:</p>
+<p>n + 0 = n<br />
+n + S(m) = S(n+m)</p>
+<p>These two parts work together to describe the operation for every pair of natural numbers. For example, if we have 5+3, 3=S(2) by definition, so </p>
+<p>5+3 = 5 + S(2) = S(5+2) = S(5+S(1)) = S(S(5+1)) = S(S(5+S(0))) = S(S(S(5+0))) = S(S(S(5))) = S(S(6)) = S(7) = 8</p>
+<p>I'm not sure what you're asking about 1+1, but I hope this clarifies:</p>
+<p>1+1 = 1+S(0), because 1 is defined as S(0),<br />
+1+S(0) = S(1+0), because of the second part of definition for +.<br />
+S(1+0) = S(1), because of the first part of definition for +,<br />
+S(1)=2, because 2 is defined as S(1).</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SOberhoff" target="_blank">SOberhoff</a>
+			<div class="markdown"><p>If there's nothing much to prove, then why did it take Russel/Whitehead 360+ pages to do so in their Principia Mathematica?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sharlinator" target="_blank">Sharlinator</a>
+			<div class="markdown"><p>It didn't take 360 pages to prove that 1+1=2, it took all those pages to do the necessary groundwork to be able to formally define what &quot;1+1=2&quot; means from first principles.</p>
+<p>When you start from Peano arithmetic you already assume all sorts of previous knowledge, eg. what is a set, what is a function, etc.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TwoFiveOnes" target="_blank">TwoFiveOnes</a>
+			<div class="markdown"><p>Peano arithmetic doesn't really rely on sets though. It's just a collection of axioms which we believe (or accept in practice) to accurately capture what the natural numbers should be. It also is the case that there's a model of PA in set theory, by 0={}, S(n) = {n}.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
