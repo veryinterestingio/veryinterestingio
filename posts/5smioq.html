@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: How does the physical infrastructure of the internet actually work on a local and international level to connect everyone?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="5smioq">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/5smioq/eli5_how_does_the_physical_infrastructure_of_the/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<a href="/posts/5smioq" onclick="return false">How does the physical infrastructure of the internet actually work on a local and international level to connect everyone?</a>
+		</h2>
+		<!--<span class="date">2017-02-10</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: How does the physical infrastructure of the internet actually work on a local and international level to connect everyone?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ddgknvs">
+		<a class="author" href="https://www.reddit.com/user/Lookitsaplane" target="_blank">Lookitsaplane</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The coaxial (cable)/twisted pair (ADSL) leaves your house and goes to a building that's nearby (a mileish) called a Central Office (CO). These cables are buried underground, usually down the street in front of your house or alleyway, or carried on poles if you get your telephone or cable that way.  </p>
+<p>In the CO all of the copper lines from all of the houses in the area come together and are plugged into some devices there. The step from the local office to your house is called the &quot;last mile&quot;.</p>
+<p>These devices detect amplitude (how big) and/or frequency (how often) changes in the voltage on the line and convert it into digital data (ones and zeros). This process is called demodulation. </p>
+<p>From here your data is lumped together with all the other data coming into the CO and sent over a fibre optic line, usually buried under the street or hung on a pole, to a big data center where your ISP's routers are. Fibre optics can go very far, so there are usually only a few of these big data centers in a city. These data centers are physically connected to one another with buried fibre optic cables, and then one or more of the data centers in each city are directly connected to one or more of the data centers in neighbouring cities. So the fibre goes from your neighbourhood CO a mile or so away to a much bigger building somewhere in the city, which then has connections to other data centers in the city and in neighbouring cities.</p>
+<p>Electrical signals are converted into light using a transceiver. The light then bounces down the fibre optic line to the transceiver on the other end, where it's turned back into electrical signals.</p>
+<p>In the data center your ISP's routers look at the data. Routers are responsible for moving data between different networks. They look at the destination IP address and figure out which IP network the data is destined for. Then they look at these big tables (500,000+ entries) that match each IP network to an ISP based on the ISP's autonomous system number (ASN), which is how the internet sees an ISP. You see &quot;Verizon&quot;, the internet sees ASN 701. Having it's own ASN, and having a copy of the table listing all of the IP network to ASN assignments is basically what makes an ISP an ISP (well, that and connecting to other ISPs). Once the router knows which ASN the data has to go to, it looks for the edge router that is closest to the destination ASN, and then sends the data bouncing through its data centers, city by city, until it gets to that edge router. More about edge routers later.</p>
+<p>ISPs connect to one another by burying fibre optic cable from one of their own data centers to an internet exchange (IX), which is a place where a bunch of other ISPs have agreed to drag fibre lines to as well. For obvious reasons, ISPs will also just designate one of their own data centers a Point of Presence (POP) and &quot;allow&quot; other ISPs to bring fibre cables there and rent rack space in the building. </p>
+<p>ISPs themselves, or companies that specialize in this, will also sometimes bury cables directly between IXs and POPs that are far apart (e.g. on different continents). These connections can be very, very long and very, very expensive. They will bury it over land or sea, farmland, forest, mountain, coral reef or deep ocean. These lines are usually one big continuous unbroken link, minus a few repeaters/amplifiers/regenerators which keep the signal strength up, and go for thousands of miles. </p>
+<p>In an IX or POP, which is basically a warehouse, each ISP is given space on computer racks in the building. So your ISP has brought their fibre optic cable hundreds of miles from their data center to the IX or POP and routed it through the building to their racks. They then place their edge router in the rack and hook up their backhaul fibre cable to it. A physical fibre optic or copper cable is then ran from your own ISPs edge router, through the building, to the other ISPs edge router, which is connected to its own long distance fibre cable back to that ISP's data centers. <del>And that's how babies are made</del></p>
+<p>Edge routers tell whatever ISP they are connected to which IP networks your ISP owns, and then, importantly, they also usually say which additional ISPs your ISP is connected to as well.</p>
+<p>ISPs will then sign agreements between themselves regarding how much, if anything, they will charge one another for data going between them, and whether or not they are allowed to send data only to that particular ISP, or if they are allowed to also send to ISPs that THAT ISP is connect to as well. This is called peering.</p>
+<p>It should go without saying, this is a huge simplification and stereotypification of something that can go a billion different ways.</p>
+<p>One usual variation is that there are companies that specialize in burying fibre optic lines between IXs and POPs, so that if ISP A wants to talk directly to ISP B, but is far away from ISP B, they can pay to use part of one of these companies fibre lines to get from an IX where ISP A is to an IX where ISP B is, rather than paying to construct their own long distance cable.</p>
+<p><em>Edit</em> I realize this is more of a ELI 1st year college student... but there you go...</p>
+<p><em>Second Edit</em> Obligatory thank you for the gold, kind stranger. May your internet be forever fast and reliable...</p>
+<p><em>Third Edit(s)</em> Good points from some great folks that newer implementations of DSL move the aggregation point (where your DSL line ends and your data is sent onwards over fibre optics) much closer to you and it is likely just a cabinet down the block. This makes things faster for you. Also remembered what a CMTS was, corrected a few typos, and added a few terms.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ddgo9rt">
+		<a class="author" href="https://www.reddit.com/user/Redisintegrate" target="_blank">Redisintegrate</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This is complicated.  There are lots of different things going on at the same time.</p>
+<p>The analogy with letters by /u/Atzen doesn't really match how it works, unfortunately.  It's a little more like phone numbers and a phone book.  But I'm going to strip out the analogies.</p>
+<p><strong>DNS:</strong>  Let's start with typing in something like <a href="http://www.example.com/cheese.html" target="_blank">http://www.example.com/cheese.html</a> into your browser.  A certain part of that, www.example.com, is the <em>domain name</em> which tells you which computer has what you're looking for.  But the domain name is not enough, it's like knowing a person's name.  What you really want is something like a phone number or address.  The post office doesn't know how to deliver a letter to &quot;Joe&quot; and the phone company doesn't know how to route a call to &quot;Joe&quot; either.  So the first step is to look www.example.com up in a directory and you get an IP address, like 192.168.200.5.  Now you can send packets of data to that address.</p>
+<p><strong>Routing:</strong> So your computer sends a packet to 192.168.200.5.  Let's say your computer has an address of 10.1.2.3.  First, it checks if the address is on your network.  Maybe your network has addresses like 10.X.Y.Z, but 192.168.200.5 doesn't look like that, so your computer needs to send the packet to a router that will send it to the right network.  Maybe the router has address 10.0.0.1.  So your computer sends a packet to 10.0.0.1, with the instructions &quot;please send this to 192.168.200.5 for me&quot;.</p>
+<p>Your router is dumb, and only knows that it should send everything over your internet connection to your ISP.</p>
+<p>At your ISP, there are some smarter routers.  One of them will get the packet, and look at it, and say, &quot;I know where the 192.168 network is, I'll send it that way.&quot;  Your ISP isn't connected directly to that network, so it takes a few hops and visits a couple more routers along the way.  Later on, a router might say, &quot;192.168, that's me! Actually, 192.168.200 is its own network, but I know where that is&quot;.  Eventually, you'll get to the 192.168.200 network, and the router will just send your packet straight to its destination.  Each router only has a little bit of information.</p>
+<p>(There are other ways to route packets… sometimes you take a smart router, have it write some instructions on a packet, and then send the packet to a bunch of dumb routers which just read the instructions written on the packet.)</p>
+<p>If you want to see exactly which routers you use, try running a terminal command like <code>traceroute www.example.com</code></p>
+<p><strong>Connections:</strong> Routers are connected to each other mostly through fiber optic cables buried in the ground.  This is super expensive but very fast and reliable.  Some connections go across the country, or across the world, and some connections just go to other parts of the city.  They mostly work the same way: you take a router, give it a little bit of information like &quot;192.168 is that way&quot;, &quot;10.0 is over there&quot;, &quot;172.16 is behind you&quot;.</p>
+<p>However, it gets a fair bit more complicated when you realize that for every router and piece of fiber optic cable, somebody <em>owns</em> that piece of equipment, and wants to get paid for letting you use it.</p>
+<p>The way it works is each company builds out their own networks, and then the networks get connected to each other at special places.  So maybe I have my own network, CoolNet, and I run fiber optic cables from Seattle to Portland, San Francisco, Los Angeles, and San Diego.  Then another company, AwesomeCom, runs a cable from San Francisco to Reno to Salt Lake City.</p>
+<p>If you're Kirkland, WA and make a video call (Facetime / skype whatever) to your uncle in Provo, UT, your packets goes through a few networks.</p>
+<ul>
+<li>
+<p>First, it goes through your home WiFi network.</p>
+</li>
+<li>
+<p>Then it goes to your ISP's network.  Your ISP has a bunch of cables going from their buildings to their customer's houses, and a cable which goes to Seattle (plus a few backup cables).</p>
+</li>
+<li>
+<p>Once in Seattle, it goes to what's called a &quot;colocation facility&quot;.  It's a building, or maybe a couple floors of an office building, where everybody connects their networks together.  Your ISP has a cable that goes here, and they have a router inside the building.  They rent space from the colocation owner.  The colocation facility has its own little network inside.</p>
+</li>
+<li>
+<p>Since CoolNet also has cables going to the Seattle colo facility, your packet now goes through CoolNet.  I can't connect you to Provo, but I can send your packet to another colocation facility, this one in San Francisco, CA.</p>
+</li>
+<li>
+<p>Now AwesomeCom carries it to a colo facility in Salt Lake City, UT.  (AwesomeCom and CoolNet are both huge networks, so we have a &quot;peering&quot; agreement where we can just send packets through each other's networks for free, since it's good for both of us.)</p>
+</li>
+<li>
+<p>And your uncle's ISP carries it to Provo, UT.</p>
+</li>
+<li>And your uncle's router will send it to your uncle's iPad or whatever.</li>
+</ul>
+<p>If you are running a business and want a website that's easy to access, a great way to do that is put your computers inside a colocation facility.  That way, your servers will have like 20 internet connections, instead of just one or two, and it will be easy to access.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ddgmcwf">
+		<a class="author" href="https://www.reddit.com/user/imatripandahalf" target="_blank">imatripandahalf</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Network engineer here in the Portland, OR area.</p>
+<p>Internationally, you have few grade 1 providers such as L3 networks, XO communications, ATT, Verizon, etc.  Pretty much old school telco providers that have the scratch $ to invest in high speed cabling.  Most of this cabling is fiber optic bundles of a few strands to several thousand strands. Each pair of strands can currently carry up to (theoretical max at this time) 255Tbit per second, but most pairs are currently carrying 100Gbit and are aggregated together into a single connection for trans continental or trans oceanic crossings.</p>
+<p>They essentially hop along the shortest path of each respective network from router or Layer 3 switch (which is also a type of router) to the next and often utilize border gateway protocol (BGP) and Open Shortest Path First (OSPF) which is are algorithms that find the shortest paths on networks. BGP is self healing and automatically detects accidental fiber cuts or outages due to hardware failure.</p>
+<p>Think of these as &quot;upstream&quot; networks as most international traffic terminates at these types of carriers.</p>
+<p>Going down to more the local level, there are usually major network hubs in the world.  Examples of this are:  Seattle, Portland, San Francisco, Los Angeles, New York, London, (Fortaleza, Brazil), (Seixal, Portugal), (Mumbai, India), Hong Kong, Tokyo, (Pusan, S. Korea) etc.  There are more worldwide, but I only usually deal with US based carriers as my work only serves US needs since it has to do with a national healthcare network.</p>
+<p>These terminate all of these high speed connections to lower level providers like your Comcast, Time Warner, ATT, British Telecom, Telekom, etc. distribute their private and public networks which then resell the upstream bandwidth to individual customers.</p>
+<p>Here in Portland specifically, there are roughly 2 single buildings that if, were destroyed would probably knock the whole state of OR offline because almost everything downstream flows through them and are the terminus for most of the networks from CA and WA and far east.</p>
+<p>This reselling of bandwith is sometimes done on an oversubscribed method. They sell more than they have. This is where you get into instances of &quot;slow&quot; internet locally and used to happen a lot more than it does now, but is still an issue in a lot of places. The carrier simply does not purchase enough upstream bandwidth to carry all of their customer's data.</p>
+<p>This is where caching nodes come in, such as Akamai, Amazon cloud, Microsoft Cloud, Netflix etc.  These are geographically disbursed data centers that basically have local copies of all content on the internet that people are trying to access.  For instance, someone in San Jose, CA wants to Netflix &quot;stranger things&quot; they get it straight from Netflix's data-center near San Jose.  But then Joe in the UK wants to watch it, that data is sent from San Jose to somewhere in London to a cache node at super high speed and then stored there. Joe doesn't notice this but now that it's stored locally in London's cache node, everyone else on that node has access to it without having to make additional pulls from the original and thus slowing down the internet as a whole.</p>
+<p>Some 3rd world countries that have extreme restrictions on what their people can access, such as North Korea, use deep packet inspection and firewalls to say what people can access. This also results in them usually only having one single point of internet coming into the country which can be knocked out easily if someone gets out with a backhoe and digs up the fiber cable.</p>
+<p>EDIT: forgot OSPF and little odd and end items</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ddgbae1">
+		<a class="author" href="https://www.reddit.com/user/Azten" target="_blank">Azten</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Of course there is more to it than this, but it gives you an idea of routing and priority.  When visualizing the routing protocols I try to turn it from data packages into real packages (mail), imagine this scenario.  There is a post office at each local, city, region, country.  </p>
+<p><strong>Case 1</strong>
+The example address of  3805 S Keystone Ave, Indianapolis, IN 46227 USA  going to 1400 E Hanna Ave, Indianapolis, IN 46227 USA.</p>
+<p>When the letter is given to the clerk at &quot;Indianapolis, IN 46227&quot;.  They recognize that the destination is already from their routing point and just puts the letter back in the out box.  The local mailman knows about &quot;1400 E Hanna Ave&quot; and proceeds to drive to the destination.</p>
+<p><strong>Case 2</strong>
+The example address of  3805 S Keystone Ave, Indianapolis, IN 46227 USA  going to 87-135 Brompton Rd, Knightsbridge, London SW1X 7XL, UK</p>
+<p>The clerk at &quot;Indianapolis, IN 46227&quot; sees this is for a different City and sends it up to state level.  The clerk at &quot;Indiana&quot; sees this is for a different country and sends it up to the National level.  The clerk at &quot;USA&quot; Sees this is for &quot;UK&quot; and then sends it to their routing hub.  From there &quot;England&quot; down to &quot;London&quot;, then finally to &quot;Knightsbridge&quot; Which hands it to the mailman that goes to 87-135 Brompton Rd for delivery.</p>
+<p><strong>Edit:</strong> Adding a data visualization of the <a href="https://en.wikipedia.org/wiki/Internet_backbone#/media/File:Internet_map_1024.jpg" target="_blank">Internet backbone</a> from the <a href="https://en.wikipedia.org/wiki/Internet_backbone" target="_blank">wikipedia</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ddgo3w3">
+		<a class="author" href="https://www.reddit.com/user/doreynir" target="_blank">doreynir</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>As far as the global internet infrastructure is,</p>
+<p>A device can connect to the internet and transmit data via an <strong>Internet Service Provider</strong> or <strong>ISP</strong>. Some examples of ISPs would be companies like Verizon or AT&amp;T (these companies provide in the U.S.). These ISPs house their own data communication facilities called <strong>Points of Presence</strong>, or <strong>POPs</strong>, in local regions. These POPs just houses racks of routers and modems. Each POP gathers the data received from local users' devices and transmits this data further out in the internet infrastructure. And this works vice versa - POPs receives data from further out of the internet and sending them to their locally connected devices. The POP's functions are analogous to those of a local post office, but by using <a href="https://en.wikipedia.org/wiki/Modem" target="_blank">modems</a> and <a href="https://en.wikipedia.org/wiki/Router_(computing)" target="_blank">routers</a>.</p>
+<p>The physical means for the data to travel between device and POP and then onwards, I'm not sure, but it varies depending on the existing local infrastructure and what the ISP can make use of.</p>
+<p>So what happens beyond the POP?<br />
+These POPs, which belong to ISPs, are linked together with other POPs from other ISPs (by, again depending on the existing local infrastructure) along with data centers owned by governments and large organizations, at <strong>Internet Exchange Points</strong> or <strong>IXPs</strong>. IXPs houses <a href="https://en.wikipedia.org/wiki/Network_switch" target="_blank">network switches</a>. Just as POPs are like local post offices, the IXPs are like the larger sorting offices. (No single organization owns an IXP. The ISPs and other participants voluntarily agrees to link together for the sake of serving their customers and lowering costs, practicing what is known as <a href="https://www.youtube.com/watch?v=i5oe63pOhLI" target="_blank">peering</a> . <strong>You can check out an interactive map of the IXPs around the world by TeleGeography <a href="http://www.internetexchangemap.com/" target="_blank">here</a></strong> </p>
+<p>The IXPs are then connected to other IXPs through <a href="https://en.wikipedia.org/wiki/Internet_backbone" target="_blank">internet backbones</a>. An internet backbone is made of fiber optic cables serving as principal routes for data to transmit at high capacity. Many of these fiber optic cables - <a href="http://apps.washingtonpost.com/g/page/business/a-connected-world/305/" target="_blank">more than 550,000 miles of cable - are buried under sea to connect IXPs worldwide</a>. <strong>You can check out an a interactive map of the undersea fiber optic cables <a href="http://www.submarinecablemap.com/" target="_blank">here</a></strong> also by TeleGeography. </p>
+<p><strong>TL;DR</strong>
+<strong>Globally: From device to local Point of Presence(racks of routers and modems) via an Internet Service Provider, to Internet Exchange Point(racks of network switches), to an internet backbone(under sea fiber optic cables), is how information is sent. Then from the internet backbone, it is received at a different IXP, POP, and finally device somewhere else on the globe.</strong></p>
+<p>Another key aspect of the internet infrastructure is how the information is sent – for example, a data file is not sent whole like mail. You should look up <strong>I.P. address</strong> and <strong>data packets.</strong></p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/5smioq" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
