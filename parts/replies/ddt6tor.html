@@ -1,0 +1,39 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/oh_my_apple_pie" target="_blank">oh_my_apple_pie</a>
+			<div class="markdown"><p>But how does a switch know that 0 = turn on? The old way of physically moving (and removing?) a wire makes sense (sort of), but what is making power stop and start (I'm assuming that's what's going on?) when you are no longer physically moving the wire? And how do patterns of power/no power result in output? For example, how does it know that 01100011 means &quot;c&quot;?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/duhcartmahn2" target="_blank">duhcartmahn2</a>
+			<div class="markdown"><p>So modern computers are made with transistors.  Basically, you can think of them as a valve in the middle of a pipe.  When you input a 1 to the valve (tansistor) It opens and electricity flows past the valve.  If you connect one end of the pipe to electricity, when you open the valve (transistor), electricity will flow out the other side.  If you use this plumbing analogy, you can start to understand how you can make logical functions out switches.  </p>
+<p>Now, you are thinking about moving wires, which is a very old way to do it.  These days we have materials called semiconductors that open or close when you apply electricity to them.  Essentially, it's an electronic switch with no moving parts.</p>
+<p>For instance if you put two valves on the same pipe one after the other, valve 1 AND valve 2 would have to be open for electricity to flow out the other end.  This is a logical AND function that can be phrased as &quot;If A=1 and B=1, then output 1, otherwise output 0&quot;.  If you have two pipes each with one valve, and they connect with a Y into a single pipe, electricity flows out the end if either A OR B is open.  This is another logical function that can be phrased as &quot;if A=1 or B=1, then output 1, otherwise output 0&quot;.  Now, you can make A and B statements, and get your answer of AND and OR with the result of the output.</p>
+<blockquote>
+<p>how do patterns of power/no power result in output</p>
+</blockquote>
+<p>So this is all very abstract, and you have to think hard about how a computer gets questions.  So lets talk about how a computer could turn a C on a keyboard into binary, into a letter C on a screen.</p>
+<ul>
+<li>You press the key on the keyboard</li>
+<li>There is a series of switches that have the logical function of &quot;If A is pressed, OR B is pressed, OR C ... OR Z is pressed, output 1&quot;</li>
+<li>That output is the on switch for the keyboard letter circuit</li>
+<li>So since C was pressed, that is the 3rd letter, so the keyboard letter circuit gets 00000000000000000000000100 (3rd input is 1 for C)</li>
+<li>The circuit then uses some fancy boolean logic with AND gates, OR gates, and inverters to turn that 26 letter string into 00000011, or binary for 3, which corresponds to C in our convention.</li>
+<li>That circuit outputs a 1 to signal that it got a new input, and then outputs the code for the letter (binary 3).</li>
+<li>That 1 signal is the on switch for the display circuit.</li>
+<li>the display circuit then turns that binary 3 into the character C by turning on and off individual lights.  </li>
+</ul>
+<p>So this was all how the idea of a computer works.  It's just a lot of turning a 1 into a series of 1s and 0s that mean something unique.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/oh_my_apple_pie" target="_blank">oh_my_apple_pie</a>
+			<div class="markdown"><p>Thank you for this. I think I'm starting to wrap my brain around it. &quot;C&quot; is 00000011 which is shorthand for 00000000000000000000000100. &quot;C&quot; is that pattern because back in the day, a person decided that would be the pattern. The computer doesn't actually &quot;know&quot; that it's &quot;C&quot;. All it does is send electricity through (flip) semiconductors (switches) resulting in specific patterns (output). I press &quot;C&quot;, the key taps a circuit resulting in triggering the &quot;1&quot; output from the logic function for C, which sends that signal to my computer which then sends a pixel on/pixel off pattern to my monitor, which displays a &quot;C&quot;. A computer is not a box of magic, it's a box of switches.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/malaclypz" target="_blank">malaclypz</a>
+			<div class="markdown"><p>You should be teacher.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IDidNaziThatComing" target="_blank">IDidNaziThatComing</a>
+			<div class="markdown"><p>I wrote a post explaining it with vacuum tubes. Look up how they work, since they are much larger and more visual, visceral.  Then assume the magical invisible transistors are doing the same thing.</p></div>		</li>
+					</ul>
+		</ul>
+	
