@@ -1,0 +1,52 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jean-Baptiste_Lamarc" target="_blank">Jean-Baptiste_Lamarc</a>
+			<div class="markdown"><p>Could someone create a programmable processor that has like the PS2 processor instruction, Dreacast, N64, etc. and then let you plug it into your PC by USB and then let the games all run perfectly?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/yummyyummybrains" target="_blank">yummyyummybrains</a>
+			<div class="markdown"><p>Individually? Maybe. A lot of those chipsets are still covered by patents, and the originators have no interest in producing or supporting an official effort. As for a single chip that can replicate all of those other chips at the hardware level. Absolutely not. Each one of the chips you mentioned are wildly different from each other, and having a single chip that could read instructions at the hardware level, and be interoperable is simply not possible.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lanstari22" target="_blank">lanstari22</a>
+			<div class="markdown"><blockquote>
+<p>As for a single chip that can replicate all of those other chips at the hardware level. Absolutely not. Each one of the chips you mentioned are wildly different from each other, and having a single chip that could read instructions at the hardware level, and be interoperable is simply not possible.</p>
+</blockquote>
+<p>It is possible for an FPGA to do this. Whether it is practical is a different question.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chrissilich" target="_blank">chrissilich</a>
+			<div class="markdown"><p>Also, if you get to the point where you can replicate a chip with an external chip, you've just made a compatible chip, not an emulator. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CNoTe820" target="_blank">CNoTe820</a>
+			<div class="markdown"><p>Why would you have to do it &quot;at a hardware level&quot;, couldn't you do the translation in microcode?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/insideoutfit" target="_blank">insideoutfit</a>
+			<div class="markdown"><p>Simple workaround: buy a PS2, a Dreamcast, and an N64. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Junduin" target="_blank">Junduin</a>
+			<div class="markdown"><p>You need a PS2 (at least the bios files, which only comes with the PS2) to emulate one unless going the jolly roger route. The problem is that old hardware fails or is too damn slow for modern tastes. Games save and load in a mere blink with my PC while I have time to write this comment and then some doing the same operation on PS2.</p>
+<p>Of course, this is back when was willing and able to play video games. It's all (NSFW) /r/freecitiesgame now IF I have the time for it.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RainaDPP" target="_blank">RainaDPP</a>
+			<div class="markdown"><p>I'm not sure, but I don't think that would necessarily help. I'm pretty sure any processing done on that processor would still have to be translated for the main CPU so that RAM and GPU cycles can be properly allocated. You could give it its own memory and gpu... but at that point you probably wouldn't be able to power it over USB, so you'd have to include a power supply, and at that point you've basically just created a Retron without any media slots.</p>
+<p>That's assuming it's possible to offload processing to a peripheral on the USB bus. And, of course, assuming my above scenario is wrong and that it is possible to offload processing, there would definitely be much higher latency than a normal CPU, because the USB bus is much slower than any of the CPU buses.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dood98998" target="_blank">dood98998</a>
+			<div class="markdown"><p>What about a pcie emulator that could then pass outputs to something a gpu and cpu could display and/or control?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/alltheacro" target="_blank">alltheacro</a>
+			<div class="markdown"><p>This is a partially correct answer. Modern processors are orders of magnitude faster in terms of how fast they can perform instructions and move data in and out of memory/storage. The overhead of 'translation' is more than covered for.</p>
+<p>The problem stems from functions that are performed by the console's hardware. To dumb it down using early consoles and arcades- they had hardware dedicated to handling sprites (ie small graphic like a baddie, or an item, or the player's character.) The game's code shoves the sprite data at this hardware unit and gives a command like &quot;make it go up 5 pixels&quot; or &quot;make it flash 5 times.&quot; Which is, say, a handful of CPU instructions, and meanwhile the CPU is free to do other things while the sprite flashes/moves.</p>
+<p>A PC has no equivalent hardware, so you have to write software functions to handle moving the sprite around, and those functions could be hundreds of lines of code - so you expand the amount code that has to be executed by the CPU. And game companies have people who are very, very good at writing code; software emulators are written by and large by hobbyists who aren't necessarily well-versed in algorithms and how to implement a function as fast as possible on a particular computer architecture or OS.</p>
+<p>The PS2 console also has a bare-bones operating system that is specifically designed to handle only the functionality that is required, and respond in real-time. Your PC is running a lot of extra stuff and is much more general purpose - though a number of operating systems do have at least some sort of real-time capability. Linux, for example, used to have a separate kernel fork for real-time-dependent software (mostly audio.) Now it's integrated into the main kernel.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Girlinhat" target="_blank">Girlinhat</a>
+			<div class="markdown"><p>Imagine you have a guy on a bicycle.  Now imagine you have a guy on a motorcycle, and you tell him, &quot;I want you to act like a bicycle&quot; so the motorcycle guy strips down his engine and puts the foot crank on the wheel so he can sort of pedal.  It's the worst version of a bicycle and it doesn't work as a bicycle very well, despite a motorcycle being 'better' than a bicycle.</p></div>		</li>
+					</ul>
+	

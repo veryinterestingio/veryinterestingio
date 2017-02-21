@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: Why is it so hard to emulate (for example) PS2 games smoothly in a &quot;basic&quot; computer even tho they're way more powerful than the console?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="5upjg3">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/5upjg3/eli5_why_is_it_so_hard_to_emulate_for_example_ps2/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/5upjg3" onclick="return false">Why is it so hard to emulate (for example) PS2 games smoothly in a &quot;basic&quot; computer even tho they're way more powerful than the console?</a>
+		</h2>
+		<!--<span class="date">2017-02-21</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Why?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ddw65jx">
+		<a class="author" href="https://www.reddit.com/user/Kirkleon_" target="_blank">Kirkleon_</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are already a lot of good answers here, but I wanted to add something that a lot of them seem to be missing. Yes, it requires a <em>lot</em> of overhead to convert the instructions used on PS2 hardware to normal PC hardware, but there's something else that makes it difficult as well. The ELI5 of that being, imagine how hard it would be to translate someone very, very quickly speaking Mandarin at you, to someone who only speaks German, while you yourself are a native English speaker. And you have to be exactly correct, and really, really fast.</p>
+<p>However, what people are missing is the fact that the PS2 (or any console) has a very specific way of doing essentially everything. The memory is laid out in a certain way, disks are accessed in a certain way, instructions are executed in a certain way, etc. And, because console games are developed to only run on that <em>specific</em> console, they will often take advantage of those things. To borrow my metaphor from before, two people speaking in the same language to each other will very frequently use idioms and common sayings, that are total nonsense to a non-fluent speaker! Being able to translate those idioms (or, in the space of emulators, all of the strange quirks of memory and hardware) perfectly, into something that a non-speaker understands, is imperative in being a good translator. </p>
+<p>The same is true of the emulator. If a game takes advantage of a certain way of handling memory on a console, that same handling method <em>must</em> be present in the emulator, or the game will not function. And some of those special methods are inefficient to implement, so it further slows down an already arduous translation task. </p>
+<p>EDIT: Obligatory &quot;this blew up.&quot; I recommend checking out r/emulation if you want to learn more in depth about emulators! Also I recommend <a href="https://dolphin-emu.org/blog/2016/09/06/booting-the-final-gc-game/" target="_blank">this</a> article on how hard it was for the most prominent Game Cube emulator to boot a specific game. Further down I also link <a href="https://youtu.be/-AoHGJ1g9aM" target="_blank">this</a> talk on why the PS4 is an incredibly weird machine, and so would be extremely hard to emulate.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ddvv7ap">
+		<a class="author" href="https://www.reddit.com/user/Hurricane_32" target="_blank">Hurricane_32</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The emulator has to translate the CPU instructions of the console and game you're emulating into something your own computer's CPU can understand. Then, the emulator also has to take your input from the computer and turn it into something else that the emulated CPU can understand as well. This all requires a TON of processing power. </p>
+<p>A very good analogy is to imagine the console and computer are two different people who are talking to eachother, but speak two completely different languages. In this case, the emulator is the translator, which can be slow.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ddw05am">
+		<a class="author" href="https://www.reddit.com/user/AbsentGlare" target="_blank">AbsentGlare</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The difference in hardware is the issue. The PS2 game was developed to run on PS2 hardware. This hardware natively supports a set of instructions; simple instructions like move, add, or subtract are widely supported, but instructions like division may not be. The difficulty is when the PC doesn't support all the same instructions as the PS2. When an instruction isn't natively supported, it can be emulated using a large number of other instructions. Even a subtle difference can require a large number of extra steps to accommodate. The downside of emulation is that the number of instructions to be completed necessarily increases, often dramatically.</p>
+<p>What it really boils down to is optimization.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ddw0pl5">
+		<a class="author" href="https://www.reddit.com/user/LunarDelta" target="_blank">LunarDelta</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The PS2 in particular takes more power to emulate smoothly due to the complexities of the Emotion Engine. It's much less like a normal computer than the Gamecube, and even now we still have to use hacks and workarounds to get some games working properly. Some games (most notably, the Ratchet and Clank series of games) are virtually unplayable. Edit: (According to u/JMC4789 this particular issue was not due to the EE! That being said, emulating such a system is still a chore when compared to the relatively more normal Gamecube or Wii, which had CPUs based on the Power architecture).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ddw82xa">
+		<a class="author" href="https://www.reddit.com/user/ZippyDan" target="_blank">ZippyDan</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>^(I don't think metaphors made using &quot;languages&quot; really convey the difficulty of emulating one piece of hardware on another, because we already use the metaphors for &quot;languages&quot; in computing, and they equate to programming languages.  Converting from one coding language to another can be a challenging task, akin to translating from archaic Latin to modern Mandarin, but at least you're still communicating from the same species to the same species - human to human.  We generally think the same way, our brains function the same way, and we have lots of experience doing language translation.  Using language translation as a metaphor for computer only really gets us as far as trying to convert Cobol to C++ while still using an x86 system.)</p>
+<hr />
+<p><strong>ELI5</strong>:</p>
+<p>Imagine you put your brain into a centipede.</p>
+<p>Your brain is way more powerful than a centipede's brain.</p>
+<p>But you have no idea how a centipede's body works.  You've never had to move dozens of legs simultaneously (or in a rythmic pattern) before.  </p>
+<p>The way a centipede moves is as foreign to you as the way it thinks and communicates.  This is so far beyond simply translating a language.  This is translating an entire way of thinking and perceiving and organizing the world around you before you can even begin to hope to understand centipede communication.</p>
+<p>To do anything as a centipede, you'd basically have to learn to emulate a centipede's brain.  Imagine how difficult that would be for you, even though your brain is probably several dozens of orders of magnitude more powerful.</p>
+<p>A computer basically has to emulate the brain <em>and the body</em>, <em>and the language</em> of the centipede, <em>without fully understanding every detail</em>* about how the brain and body works, and the computer is only, maybe, an order of magnitude (or two or three) more powerful than the system it is trying to emulate.</p>
+<hr />
+<p>*^(Emulators often have to do a lot of <em>guessing</em> achieved via reverse-engineering, but we don't usually have complete engineering plans of the hardware that is being emulated.  That lack of complete understanding is often why emulators don't get everything &quot;just right&quot; - because they're doing a poor job of pretending to be a centipede.  Sometimes, even when we do have complete understanding, hardware limitations prevent perfect emulation.  Just like you might completely understand a dance move in theory, but not have the actual skills to pull it off in practice.  Even if someone gave you a complete schematic of a centipede's brain, you probably still wouldn't be able to emulate it in real time because even as simple as it is, it would still be mindboggling complex, and your brain couldn't handle it even though your brain is significantly more complex.)</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/5upjg3" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

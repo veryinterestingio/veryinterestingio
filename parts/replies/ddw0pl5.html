@@ -1,0 +1,43 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JMC4789" target="_blank">JMC4789</a>
+			<div class="markdown"><p>Note: Gamecube/Wii (the internals are close enough that I'm not going to differentiate,) is difficult for its own reasons.  It really just depends on how precisely a game relies on hardware, timings, etc. as to how hard it is to emulate.  zFreeze, MMU, Cache Reliance, External Framebuffer usage, the starlet coprocessor on the Wii, and much more have been or still are stumbling blocks for Dolphin.  There's still a lot of unsolved issues; so I wouldn't call the GameCube or Wii Normal.</p>
+<p>Dolphin blog (full disclosure, I'm a writer there!) has a lot of documentation on the various challenges that particular games have presented with how they use the hardware.  The same goes for PS1, PS2, N64, SNES, and everything else.  While we're <strong>ultimately</strong> trying to emulate the hardware, some behaviors that games do break our assumptions or require features that we simply cannot emulate (or emulate realistically to the satisfaction of performance needs.)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LunarDelta" target="_blank">LunarDelta</a>
+			<div class="markdown"><p>Well, when I said normal, I meant relatively normal. I suppose what I mean is, if no emulators existed, and two groups, a PS2 group and Gamecube group, came to me and asked me to participate in emulator development, based on what I know of the two systems I'd probably go with the Gamecube group. I didn't mean to imply that system was so easy or transparent it had no challenges of its own. Zfreeze in particular seems to have been a huge pain. It doesn't really have any equivalent in modern PCs, does it? I was super stoked when it was finally announced they had found a fix that offered good performance. That, and whatever it was that was causing the bounding box problems. Those damn punies were such a pain...</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JMC4789" target="_blank">JMC4789</a>
+			<div class="markdown"><p>Bounding Box was just inaccurately implemented.  The Hardware Bounding box solution is great (requires OpenGL 4.4 or D3D11/12/Vulkan though), but, sometime I'd like to see a new software solution since the results will vary based on the GPU/Drivers right now.</p>
+<p>zFreeze was one of those interesting cases where the problem was partially in understanding how it worked and what games were doing with it.  Not understanding that is what led to a lot of the troubles.</p>
+<p>There are so many great challenges with every emulator.  If a GC group and a PS2 group were starting today, the only reason that GC is far, far, far easier is because the GameCube/Wii have easy homebrew access and tons more documentation.  Running homebrew on a PS2 is so much more annoying, and there isn't an infrastructure.</p>
+<p>Best way to long-term improve PS2 emulation is by making tons of hardware tests and figuring out the unknowns based on hardware, instead of waiting for a game to break on something.  And that just doesn't seem to be something that's happening.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JMC4789" target="_blank">JMC4789</a>
+			<div class="markdown"><p>The reason why Ratchet and Clank were unplayable due to performance issues have nothing to do with the emotion engine.  The problem with lack of support for GPU mipmapping in the hardware GPU backends.</p>
+<p>That has been solved recently so the games are more or less playable.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LunarDelta" target="_blank">LunarDelta</a>
+			<div class="markdown"><p>Ah, that's good to know. I never really knew quite why the issues existed, but it's good to know they're better now.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JMC4789" target="_blank">JMC4789</a>
+			<div class="markdown"><p>Yeah; the emotion engine and, hell, every CPU core on the PS2 is problematic due to various reasons.  The most common reason is that the PS2 CPU cores will round differently than our processors; and emulating that is a pain.  Many of the rounding behaviors are undocumented and are even nonsensical, and if they don't match our processor's rounding, then all of the sudden you have to do trickery which slows down your emulation to do it right.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/david_bowies_hair" target="_blank">david_bowies_hair</a>
+			<div class="markdown"><p>The Emotion Engine seems more like an early SoC device. Is that part of what makes it so difficult to emulate?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/arbee37" target="_blank">arbee37</a>
+			<div class="markdown"><p>Early?  There were microcontrollers in e.g. Mattel Electronics Handheld Football in the late 70s, which effectively were SoCs.  MAME emulates several dozen of 'em nowadays.</p>
+<p>EE's rough because the MIPS part isn't standard, VU0 and VU1 are just plain weird (and you <em>have</em> to emulate the pipelines on them for games to run glitch-free), and the whole system is quite flexible (there's I think 4 or 5 possible data paths for getting data into the GPU).</p></div>		</li>
+					</ul>
+		</ul>
+	
