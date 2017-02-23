@@ -1,0 +1,66 @@
+<div class="answers">
+	<div class="answer" data-handle="ddzch1z">
+		<a class="author" href="https://www.reddit.com/user/capn_hector" target="_blank">capn_hector</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Short answer: it knows you want to restart because up until you actually do the restart it can remember things, including whether you clicked &quot;shutdown&quot; or &quot;restart&quot;.  If you tell it to restart, it doesn't actually turn off power - it just wipes the CPU back to a &quot;clean&quot; state.</p>
+<p>Long answer:  Your OS will shut down normally (flush writes to disk, park the drives, etc).  However, while doing so it will also know whether it's going for a halt or a restart.  </p>
+<p>Once it's finished shutting down, the processor will then send an ACPI command to the motherboard.  Again, depending on the shut-down mode you've selected, this will either be a &quot;shutdown&quot; command or a &quot;restart&quot; command.  </p>
+<p>In the case of a shutdown command, the CPU basically tells the motherboard to turn off the power supply.  You wouldn't want your power supply running all the time and consuming power, so normally only a small part of the power supply is turned on while idling.  When your motherboard wants power turned on it completes a circuit which tells the power supply to turn on power to the rest of the system.  Normally this is when you push the power switch - but modern motherboards can start themselves on a timer, or from a USB event (clicking the mouse), or from a <a href="https://en.wikipedia.org/wiki/Wake-on-LAN" target="_blank">network command from a remote computer</a>.  During shut-down, it simply breaks this circuit and the power supply turns off.</p>
+<p>If it wants to do a restart instead, the CPU executes an instruction which returns everything to the &quot;default&quot; state.  This clears all the registers, the internal modes (by default every CPU boots up in <a href="https://en.wikipedia.org/wiki/Real_mode" target="_blank">an ancient mode</a> that would let it boot very old operating systems), the cache, etc.  It's just like the CPU had just had power applied to it. </p>
+<p>In theory there's no reason you couldn't actually have the system shut off and set a start timer for one second later (since the motherboard can start the system on a timer).  It's just easier and faster to reset the CPU.</p>
+<p>One problematic area can be the other components in your system.  The CPU may be wiped clean, but things like your graphics card's frame-buffers will not be.  Some applications (particularly games) won't wipe their window buffer before they start - so while they're loading it may display a picture of the FreakyMidgets.com page you were on before you did the restart.  Memory, also, is pretty notorious for having the ability to hold data for much longer than its specs would imply (especially if you hit it with something ultra-cold like liquid nitrogen).</p>
+<p>On the software side of things - one interesting aspect of modern OSs is they never really &quot;shut down&quot;.  It used to be that when you shut your computer down all the operating system internal code (the kernel) would have to be re-initialized from scratch.  This takes a really long time, several seconds even on a fast computer.  So modern OSs (Windows 8 and up) will actually write the kernel's state to disk before they shut down.  Then they will just load the kernel state from disk rather than set everything up from scratch.  This is the &quot;Fast Boot&quot; mode, officially called Hybrid Boot because it's a hybrid of a shutdown and a hibernate.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ddz9j6z">
+		<a class="author" href="https://www.reddit.com/user/MTSL-Mantra" target="_blank">MTSL-Mantra</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The parts of the motherboard which control these things (power control, etc) are aware of whether they are performing a &quot;hot&quot; or a &quot;
+cold&quot; start. Cold starts are coming up from no power to the machine, when you physically give the start signal to a powered off machine, and the machine completely initializes itself from nothing.</p>
+<p>When you perform a soft reset, or a hot reset, you aren't reinitializing the hardware of the machine quite the same way. Some of the management controls just roll back to a certain point of their power-on cycle (we'll call it step 2, whereas step 1 is actually providing power to everything) and kicks the BIOS off and back into your operating system.</p>
+<p>Because a soft reset like when you do a &quot;restart&quot; command never interrupts power to your computer, the management controllers can influence how they turn back on.</p>
+<p>If you want to think of it in a flowchart kind of way, hitting the power button initiates step 1 of the power on process, and the power controller(s) will provide power to all of the peripheral devices to get them initialized. Step 2 will load firmware/BIOS and run them to get everything on the motherboard synchronized with eachother. A soft reset would skip step 1 and go right to step 2, because it knows step1 is already done.</p>
+<p>that's a very simplified (to the point of some minor inaccuracies or assumptions based on computer architecture) explanation. Source: am computer engineer for a company that makes embedded processor boards.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ddzaaq3">
+		<a class="author" href="https://www.reddit.com/user/satysin" target="_blank">satysin</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It doesn't actually turn off. </p>
+<p>Back in the 90s you would often see a message like &quot;it is now safe to turn off your computer&quot; as the computer didn't actually have the ability to power off. It was usually a physical switch. </p>
+<p>Then some power management features were designed and made standard. This was know as ACPI and one of those features was to do a full shutdown of the machine so that &quot;it is now safe to turn off&quot; message was relegated to the past. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ddz23jm">
+		<a class="author" href="https://www.reddit.com/user/Tarkhein" target="_blank">Tarkhein</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The computer never fully turns off. So long as the power supply is connected to power, it'll deliver standby power to the motherboard. </p>
+<p>Once you tell it to restart, it'll shutdown the operating system and then send a reset signal to the motherboard which is, as I described, still powered on. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="de0016j">
+		<a class="author" href="https://www.reddit.com/user/monsto" target="_blank">monsto</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Lots of really good answers here, but nobody mentions one thing</p>
+<h2><strong>B</strong>asic <strong>I</strong>nput <strong>O</strong>utput <strong>S</strong>ystem</h2>
+<p>ELI5
+The BIOS is the thing that makes it take a few seconds before you get the windows logo. It checks to see whats connected, what the processor is and it's timing, and a couple other things. It can do that because it is a processing system separate from the CPU and the OS. When you tell the computer to restart, the OS tells the BIOS &quot;Hey we need to restart&quot;. The BIOS then shuts down (not off) everything except the power, and then when everything has reported back &quot;I'm down&quot;, the BIOS triggers the restart.</p>
+<p>Remember when you added RAM to the computer that message you got?</p>
+<blockquote>
+<p>System memory changed from 512KB to 640KB. Continue? (Y/n)</p>
+</blockquote>
+<p>That was the BIOS. Windows has no idea how much RAM there is, nor most things about the hardware attached to the system, until the BIOS decides to tell it. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

@@ -1,0 +1,50 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SpongederpSquarefap" target="_blank">SpongederpSquarefap</a>
+			<div class="markdown"><blockquote>
+<p>On the software side of things - one interesting aspect of modern OSs is they never really &quot;shut down&quot;. It used to be that when you shut your computer down all the operating system internal code (the kernel) would have to be re-initialized from scratch. This takes a really long time, several seconds even on a fast computer. So modern OSs (Windows 8 and up) will actually write the kernel's state to disk before they shut down. Then they will just load the kernel state from disk rather than set everything up from scratch. This is the &quot;Fast Boot&quot; mode, officially called Hybrid Boot because it's a hybrid of a shutdown and a hibernate.</p>
+</blockquote>
+<p>One more thing to add to this</p>
+<p>When you press &quot;Restart&quot; in Windows it does just that: a full power cycle</p>
+<p>When you shut down it does this hybrid shut down. This can cause a few problems since the kernel state is being saved to the disk, so if there was a problem in the kernel it will just re-appear when you turn it back on.</p>
+<p>This is why your IT guy will usually ask if you restarted or turned it off then back on.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IamKroopz" target="_blank">IamKroopz</a>
+			<div class="markdown"><p>This is on latest windows? Is there a way to force full shutdown then?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Glowshroom" target="_blank">Glowshroom</a>
+			<div class="markdown"><p>Yeah, disable Quick Startup in the Power Options. This solved an issue with my GPU interacting with hibernation mode in a weird way, making it stay in a lower power state after hibernation. Now it works just fine, and my PC still starts up in less than 20 seconds.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/feliscat" target="_blank">feliscat</a>
+			<div class="markdown"><p>It is only on if you have hibernation enabled.  You can check and see if you have it set up on Windows 10 by going to &quot;Power Options&quot;, then &quot;Choose what the power buttons do&quot;.  Click the &quot;Change settings that are currently unavailable&quot; and it'll be at the bottom as a checkbox along with a few other options.   It's called fast startup.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Treyzania" target="_blank">Treyzania</a>
+			<div class="markdown"><p>You can also just hold shift before going to shutdown the computer.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NoRodent" target="_blank">NoRodent</a>
+			<div class="markdown"><p>In my experience it causes problems so I always disable the fast startup anyway. On an SSD the difference in boot time is negligible.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gsfgf" target="_blank">gsfgf</a>
+			<div class="markdown"><p>So, just to be clear, on Windows, restart actually restarts the machine and is the one you should use if it's being screwy?  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ricardo1701" target="_blank">Ricardo1701</a>
+			<div class="markdown"><p>yes</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/b_coin" target="_blank">b_coin</a>
+			<div class="markdown"><p>To be pedantic, when you tell the ACPI that you want to reboot it is flipping a single pin on the CPU which instructs the system to do to a warm reboot.  That is jump to a specific circuit that skips some initialization steps (different on every motherboard) but mostly walks though clearing out registers, memory, etc etc and then enters a specific memory point utilized by the BIOS to start booting the system.  </p>
+<p>Shutdown triggers ACPI to talk to your power supply to power down and thus powers off your system.  Your system never actually powers off entirely and drops down to a very very low power state, something around the lines of 1-5 watts depending on your computer.</p>
+<p>Source: Computer engineering 101 from 17 years ago.  I can finally say the class was useful for something :D</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Telogor" target="_blank">Telogor</a>
+			<div class="markdown"><blockquote>
+<p>So modern OSs (Windows 8 and up) will actually write the kernel's state to disk before they shut down.  Then they will just load the kernel state from disk rather than set everything up from scratch.  This is the &quot;Fast Boot&quot; mode, officially called Hybrid Boot because it's a hybrid of a shutdown and a hibernate.</p>
+</blockquote>
+<p>It's important to note that this does not apply to a restart.  A restart will actually do a clean boot and reload everything from files instead of loading from the cache.  That's why, if you ever have an issue with a computer running Windows 8 or higher, they tell you to do a restart instead of a shutdown.</p></div>		</li>
+					</ul>
+	

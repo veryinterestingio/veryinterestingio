@@ -1,0 +1,45 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Isvara" target="_blank">Isvara</a>
+			<div class="markdown"><blockquote>
+<p>It can do that because it is a processing system separate from the CPU and the OS.</p>
+</blockquote>
+<p>This is a bit of an odd statement -- one of those that's so unusually worded as to be neither wrong nor right. To be clear, the BIOS is a piece of software that runs on the CPU just like the OS does.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/monsto" target="_blank">monsto</a>
+			<div class="markdown"><p>Yeah I was trying to keep it eli5 and make the point that it uses the processor in it's most basic mode, usually well beneath what a modern OS would use. And obtw, it doesn't require whatever your OS is.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/never_again_this_mes" target="_blank">never_again_this_mes</a>
+			<div class="markdown"><p>Is this so?</p>
+<p>I did a bit of research and it looks like the BIOS is just FW that's memory mapped to be the first introduction that the CPU executes, it looks like it's just the boot-loader. I'm not sure how relevant this is once the operating system starts running?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nipsen" target="_blank">nipsen</a>
+			<div class="markdown"><blockquote>
+<p>Is this so?</p>
+</blockquote>
+<p>:) great question. And no and yes. The bios used to be a only bootstrapper to enable the computer to boot from any of the IO devices. So the bios would start, do the self-test routine (POST), and launch some form of bootloader. The &quot;bios&quot; and hardware variables would then be set once in the hardware interpretation layer, and would never actually have any sort of api intended for program or runtime access towards itself. Any system variables would be set via environmental switches that then some device-driver or other would take into account on the program interpreter layer (so that you'd have, in this abstraction, hardware layer-&gt;bios-&gt;OS&lt;-&gt;program layer, with the program layer containing certain system-functions that would access the hardware layer on specific addresses).</p>
+<p>Later (with for example acpi for switching devices on and off or putting the computer to sleep in various different states, waking it up again), an amount of these functions have become either abstracted away into more (or less) reliable OS functions (see: IRQ). Or else removed altogether, by convention, or through a more sane and secure platform philosophy. In the sense that you can still access direct memory areas, and allow a program to do it without checking if you're making a mess in the process. But certain areas are occupied by reserved OS-layer functions. And on the other end, accessing protected bios functions or memory areas (which should rather be more correctly called &quot;firmware&quot;, like you say) is going to be treated by said firmware logic running in the interpreter layer next to the hardware layer.</p>
+<p>That then now all of a sudden functions as an interpreter layer for higher level abstractions and processes, rather than just a bootstrapper.</p>
+<p>So the question here is, I guess, really what happens when you just turn the power on from the psu. And what happens when you decide to start the boot. Which is that when the power on the mainboard turns on, some amounts of basic routines will start, usually on their own integrated circuits. Switches will be electrified so they can be semiconducted, or something along those lines. And some of the logic that used to be ran once the bios booted is actually running at this point (such as listening to certain events on the bus for, say, wake-signals, errors, etc). Depending on which year we're talking now, ram can be maintained but not yet read, or parts of the bus can read parts of the memory areas, etc.</p>
+<p>And this is typically the state the computer will enter when you turn it off via (electronic) switch, or via software command.</p>
+<p>Meanwhile, the bios still will launch it's own self-test and then another layer of for example an EFI-boot, that then in turn can load any amount of OSes, or Windows via it's own bootloader that becomes another abstraction layer again.</p>
+<p>So yes, the bios still exists in a sense, and it will run self-tests and provide bootstrap functionality and IO control. But some if not most of these routines are actually run the instant the 5v current is put on the mainboard nowadays, which happens when you hit the power-switch on the psu.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/monsto" target="_blank">monsto</a>
+			<div class="markdown"><p>The BIOS runs before any bootloader. Otherwise, you wouldn't be able to tell the computer what drive to boot from with completely blank/new disks in the system.</p>
+<p>On some older proprietary machines (HP for example), there was an actual hd partition that complemented a hardware bios where there was a limited proprietary version of winxp installed... yeah it was pretty stupid. But, of course, you don't need that much/kind of functionality in a bios.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dark_Ninjatsu" target="_blank">Dark_Ninjatsu</a>
+			<div class="markdown"><p>This should be higher up. Why is this down? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/monsto" target="_blank">monsto</a>
+			<div class="markdown"><p>Because I took too long to reply. </p>
+<p>It's why i made the BIOS definition so big... may be it'd stand out a little and get some bumps.</p></div>		</li>
+					</ul>
+		</ul>
+	
