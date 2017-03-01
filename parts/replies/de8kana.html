@@ -1,0 +1,74 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/vingnote" target="_blank">vingnote</a>
+			<div class="markdown"><p>Add to that the fact that the pressure-voltage analogy only works in horizontal flow with no change in section area. That's because the energy of a fluid can be stored as gravitational and kinetic as well as &quot;pressure energy&quot; (which is actually work done at the boundaries). To solve a hydraulic circuit, we have to work out the dissipative or irreversible effects, which have a fair analogy with ohmic resistances in electrical circuits if we restrict it to the laminar regime as you mentioned, <em>and</em> also the reversible transformations, which are the redistribution of the total mechanical energy into pressure, potential energy and kinetic energy according to the changes in height and cross-section area. For those, there is no fair analogy as far as I'm aware.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Zelrak" target="_blank">Zelrak</a>
+			<div class="markdown"><p>Couldn't you model the part of your pipe that changes height by a battery with a voltage difference set by the size of the change in height?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/vingnote" target="_blank">vingnote</a>
+			<div class="markdown"><p>Yes. The analogy does work if you consider <em>mechanical energy</em> (pressure, kinetic and potential) instead of pressure only as the analog of voltage. You can then solve the entire system and calculate the pressure locally <em>after</em> knowing the position and velocity at each point. The only problem I think is when you have some fixed-pressure boundary condition, contrary to a fixed-voltage condition in an electrical circuit. I don't think you can work out the analogy there.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/knook" target="_blank">knook</a>
+			<div class="markdown"><p>And in fact there are many time where wires must be treated not as a simple conductor but you must consider the associated capacitance and inductance as well.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hav3_Y0u_M3t_T3d" target="_blank">Hav3_Y0u_M3t_T3d</a>
+			<div class="markdown"><p>I'm realizing that I can gauge how far in my studies I am by how far I can read and understand this sub, in this case up to &quot;laminar&quot; haha</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wasmic" target="_blank">wasmic</a>
+			<div class="markdown"><p>Laminar simply means layered - in this case, the 'layer' of water closest to the walls of the pipe flow slowest, and the layers closer to the middle flow faster. They all flow in the same direction, and water only flows in the direction of the pipe.</p>
+<p>If you increase the flow rate a lot, the flow will become turbulent instead, flow resistance increases, and the analogy used here breaks down. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ccrmalite" target="_blank">ccrmalite</a>
+			<div class="markdown"><p>Not really there yet, though am I right thinking that laminar implies &quot;low order&quot; in its governing equations? It's also interesting to see the jargon word &quot;regime&quot; here, does this have to do with Reynolds number or something else?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/munkijunk" target="_blank">munkijunk</a>
+			<div class="markdown"><p>Simply put, any reduced dimensional analogy such as using 0D (ie with no spatial component) or 1D (ie having only the legth spatial component) electrical representions for flow cannot account for viscous losses resulting in the more complex 3D domain. </p>
+<p>That is far from saying they are not without merit. In bioengineering, 0d representions are used regularly to model blood flow in the body with very accurate results. Indeed, it is possible to mix 0D, 1D and 3D repressions of different parts of the body all coupled together to achieve a very detailed full body representation of blood flow, with complex things like the action of the heart and lungs being represented with simple 0D elements, and blood flow in a region which may be diseased representated by a 3D model. The great advantage is that the models are complex where they need to be, and computationally efficient where they don't.</p>
+<p>Also should say, vessel compliance can be represented by capacitors and fluid momentum by inductors which can give a better 0D/1D representation.</p>
+<p>Source: PhD in blood flow modelling.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dickferret" target="_blank">Dickferret</a>
+			<div class="markdown"><p>What do you mean by &quot;3D&quot; models?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/w1th0utnam3" target="_blank">w1th0utnam3</a>
+			<div class="markdown"><p>If you have 1D model of a pipe (or a vein) it means that you treat each variable (velocity, pressure, etc.) like it is uniform over a cross section of the pipe and it only changes with the direction of the pipe. So your variable (pressure...) would be a function <code>f(x)</code>. A 2D model may for example mean that your flow is rotational symmetric, i.e. you have a uniform value for each radius of a cross section and it changes with downstream distance and distance from the center of the pipe. So your variable might be a function <code>f(x,r)</code>. Now in the 3D case all spatial dimensions are resolved and there may be different values at all points of a cross section, i.e. <code>f(x,r,phi)</code>. </p>
+<p>Like already stated before, it may be sensible to model the pipe/vein as 1D because you can simplify many effects to a 1D model in these regions but there may be other parts of the system where you have to consider complex effects that are only accounted for when using a model which permits changes of the variables in all directions.</p>
+<p>For example: You want to simulate the behavior when fluid from a pipe splashes into a pool. The volume of the pool and all the &quot;splashes&quot; require a 3D model but the flow in the pipe may be considered as 2D (rotational symmetric). So you have the values <code>f(x_end,r)</code> of the variable at the end of the pipe along the radius of the endsection of the pipe. Now we want to connect the 2D and the 3D model, so we simply model the pipe exit as a circle in the 3D model with different values at different radii but the same values along a circular line. Now we have a 3D model of the pool with input (boundary) values from the 2D model.</p>
+<p>And why do we do this? For each spatial dimension that is resolved additional equations have to be solved to get the values of the variables. Furthermore you have to generate a grid where you compute these values because a computer cannot compute the values at every imaginable position inside the problem domain but just at discrete points (discretization and meshing). Obviously you don't want to do unnecessary work and therefore you usually want to reduce the dimensions of the model.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/munkijunk" target="_blank">munkijunk</a>
+			<div class="markdown"><p>When doing simulations, models are always simplified in some way. When we say 0D this means that all of the spatial elements of length in all directions are being ignored, when we say 1D we mean that we represent one dimension as a line, 2D we represent the domain as a flat plane and in 3D we mean that we are doing our best to represent the model as it appears in the real world with 3 dimensions in x, y and z. </p>
+<p>In truth we actually have to make big simplifications still because in the real world things are infinitely resolved and no matter how powerful your computer, it is not possible to do the calculations to solve the system, so what we do is break down the domain into smaller chunks and then we solve for each little chunk using what's called a mesh. That said, even though we are only getting an approximation of what's going on, so long as you set things up properly the approximation does a very good job of describing the real world thing.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Zelrak" target="_blank">Zelrak</a>
+			<div class="markdown"><blockquote>
+<p>The analogies generally break down if you move away from this regime.</p>
+</blockquote>
+<p>Isn't that just because electrons are in a low-Reynolds number flow regime in regular circuits? If you want to study a plasma of electrons then you do need full fluid dynamics.</p>
+<p>Fluid dynamics is the effective theory of mass transport -- it doesn't know anything about a particular system except through a few parameters you input. (Edit: See eg: <a href="https://arxiv.org/abs/1107.0731" target="_blank">https://arxiv.org/abs/1107.0731</a>)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/basssnobnj" target="_blank">basssnobnj</a>
+			<div class="markdown"><p>Actually, fluid mechanics is <em>momentum</em> transport. Mass transport is what is commonly known as diffusion. At least that's how it was  broken it down in my chemical engineering curriculum when I was in college 20+ years ago.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Astrokiwi" target="_blank">Astrokiwi</a>
+			<div class="markdown"><p>It's somewhat arbitrary I guess. You kinda need mass, momentum, and energy equations, plus an equation of state. But the Navier-Stokes equations, which are often considered &quot;the&quot; fluid dynamics equations, are momentum equations. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bradorsomething" target="_blank">bradorsomething</a>
+			<div class="markdown"><p>This is rather off the cuff, but wouldn't high Reynolds number flow be analogous to high frequency AC current, with similar turbidity effects?</p></div>		</li>
+					</ul>
+		</ul>
+	
