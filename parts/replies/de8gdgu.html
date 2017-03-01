@@ -1,0 +1,66 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/brainstretcher" target="_blank">brainstretcher</a>
+			<div class="markdown"><p>So does that mean every machine that can access internet has an IP address? If not, how exactly is the online activity traced back to a certain individual? </p>
+<p>Follow up question, how does VPN prevent the possibility of tracing online activity back to you?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eurodditor" target="_blank">eurodditor</a>
+			<div class="markdown"><blockquote>
+<p>So does that mean every machine that can access internet has an IP address?</p>
+</blockquote>
+<p>Yes, but not necessarily a &quot;public&quot; IP address. There are two types of addresses : public (&quot;external&quot;) and private (&quot;internal&quot;).</p>
+<p>Think of it like phone numbers. In huge companies, sometimes you can reach this or that office by calling 1234 or 4855. Nobody can reach the office from that number from outside of the building though. This is what a private IP is like. It will often (but not always) look like 192.168.1.5 for example.</p>
+<p>To communicate with the internet, though, you do need a public IP address. So that other machines on the internet can find a way to reach through to you. In a typical, home internet connection, this will often be your modem/router who will have this public IP.</p>
+<p>It will then be responsible for dispatching everything to and from the correct computers with their private IP address.</p>
+<p>This works with another number, named a port. Let's take a typical example : you have a computer and a smartphone connected to your modem-router. Your modem-router is connected to the internet.</p>
+<p>Your computer wants to talk with google.com, whose IP is 216.58.209.238. Let's say your computer private address is 192.168.1.1 (it has no public address), your modem-router has a private address 192.168.1.255 and a public address given by your ISP, 202.55.168.47.</p>
+<p>So your computer wants to talk to 216.58.209.238 on port 80. The computer goes :</p>
+<p>&quot;Hey, that's 192.168.1.1 on port 1234, trying to reach 216.58.209.238 on port 80. Yo man, what's up?&quot; and will be waiting for an answer from Google toward 192.168.1.1:1234.</p>
+<p>Your modem-router receives the request and rewrites it on the fly as is : &quot;Hey, that's 202.55.168.47 on port 5678, trying to reach 216.58.209.238 on port 80. Yo man, what's up?&quot; and sends it to Google. At the same time, it writes the following &quot;okay, if I receive an answer from Google who says it's an answer to a request on port 5678, I know it corresponds to this specific request&quot; (the router keeps track of everything it rewrites on the fly to know which answer should be forwarded to which machine).</p>
+<p>The modem-router will then receive an answer from Google going &quot;Hey, that's 216.58.209.238 (Google) on port 80, talking to you guy from 202.55.168.47 on port 5678, I'm fine thanks, wanna search for porn or something?&quot;. It will rewrite it on the fly as &quot;Hey that's 216.58.209.238 (Google) on port 80, talking to you guy from 192.168.1.1 on port 1234, I'm fine thanks, wanna search for porn or something?&quot; and send it back to your computer, which will remain oblivious as to the whole modification stuff that happened at your modem-router level (and probably the same was done by Google with its own network).</p>
+<p>This is called Network Address Translation and is used all the time because there just aren't enough IPs (at least on the version 4 of the protocol) for everyone.</p>
+<p>In the end, your computer doesn't have a public, unique IP, but your internet connection, through your modem-router, has one. And your ISP knows whose subscriber it gave which unique public IP address, so you can be held legally accountable in case your download of &quot;midget latex milf gets banged by gmo buffalo&quot; is deemed to violate some copyright. At least, it's easy to correlate a public IP to an identity on a home connection. It can be harder when one public IP is shared by 2000+ computers in a big company.</p>
+<p>EDIT: All this only matters for the Internet Protocol version 4 (IPv4). With IPv6, there are so many addresses available that the whole NAT stuff becomes useless and every single machine can have its own public address, including your fridge, your fork and each one of your beer cans. IPv6 is not widely deployed yet though, so NAT still remains relevant as of today.</p>
+<blockquote>
+<p>how does VPN prevent the possibility of tracing online activity back to you?</p>
+</blockquote>
+<p>A VPN acts like a right-hand man somehow. Instead of saying &quot;Hey, it's 192.168.1.1 calling 216.58.209.238, can I have some porn?&quot;, you go &quot;Hey, it's 192.168.1.1 calling 144.209.16.8 (your VPN), can you ask Google if he has some porn plz?&quot;</p>
+<p>That way, Google will think the request comes from the VPN, and your ISP thinks you're only requesting stuff from your VPN, not from Google : just encrypt your communication with your VPN and your ISP becomes oblivious. As for Google, they know your dirty request, but they don't know who you are (well at least they don't know your IP, they might recognize you anyway because you're logged in with your GMail account or something). Your VPN knows everything though, so you have to be able to trust he won't snitch on you. In this regard, the VPN basically becomes, for all intent and purpose, your virtual ISP.</p>
+<p>EDIT: Woah! My first gold ever! And it was my real birthday just yesterday! Thank you kind stranger!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/brainstretcher" target="_blank">brainstretcher</a>
+			<div class="markdown"><p>&quot;Can you ask Google if he has some porn?&quot; was wittily elucidating. </p>
+<p>I can see the anonymity increasing the larger the public network is. But if I understand this correctly:</p>
+<blockquote>
+<p>At least, it's easy to correlate a public IP to an identity on a home connection. It can be harder when one public IP is shared by 2000+ computers in a big company.</p>
+</blockquote>
+<p>Does this mean that if a visitor, who is connected to your private home wifi, downloads illegal rabbit porn on your network, the owner (you) of the private wifi will be held accountable? </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jack_BE" target="_blank">Jack_BE</a>
+			<div class="markdown"><p>To continue the post office analogy</p>
+<p>Think as a VPN (with proxy) as you putting your mail enveloppe inside another enveloppe and not sending it straight to the destination but to an inbetween address instead. The letter arrives at the inbetween address, reads the address of the letter inside, then puts the letter in a new enveloppe and sends it to the destination with the inbetween address as return address. For return mail it does the reverse. This way the mail traffic is hard to track and the &quot;envelopped in an enveloppe&quot; also can't be snooped on (encryption, but this translates badly into the mail analogy).</p>
+<p>Every machine on the internet needs a unique address. For IPv4 the &quot;public&quot; addresses are pretty much gone and we have relied on something called NAT or Network Address Translation to allow for example you to connect a lot of devices in your home to the internet with only 1 public address by having a router inbetween that gives your machines locally unique (as in: within your own little network they are unique), but not globally unique (as in: most private networks give out the same addresses) &quot;private&quot; addresses that where the router then does an on the fly address replacement for incoming and outgoing traffic.</p>
+<p>This will change with IPv6. IPv6's address space is gigantic and it has no notion of &quot;private addresses&quot;, so all machines will be publicly addressable. This is why a good firewall and network security of devices is 10 times more important in IPv6, which is the de facto protocol used in &quot;Internet of Things&quot; stuff.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Urzafigs" target="_blank">Urzafigs</a>
+			<div class="markdown"><p>Yes every machine has an IP.  This can currently be from IPv4 or IPv6.  We have run out of useable addresses in IPv4, if every internet capable device were to log in simultaneously then we far exceed the IPv4 address space.  However IPv6 incorporates hexidecimals, read this as base 16, instead of base 10, or base 2.  This gives us enough address space for the foreseeable future. </p>
+<p>VPN masks your traffic from end to end. It's the other end that does all the work.  So you may be at home logged into your French vpn looking at risky pictures of Thomas the train, they see it as a French ISP/provider.  Your connection to the French VPN is seen, but no one knows what activity you are doing.  ELI5: Like the magic doors in Monsters Inc.  </p>
+<p>Its inherently bad business for a VPN provider to give up what kind of activity you are doing.  They are after all in the privacy business.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pdpi" target="_blank">pdpi</a>
+			<div class="markdown"><blockquote>
+<p>However IPv6 incorporates hexidecimals, read this as base 16, instead of base 10, or base 2. This gives us enough address space for the foreseeable future.</p>
+</blockquote>
+<p>This makes absolutely no sense. IPv6 just uses 128-bit addresses instead of the 32 bits used by IPv4, thus allowing 2^96 ~= 8 x 10^28 times more addressses.</p>
+<p>There's no other fundamental difference between the two address schemes, and there is, in fact, a specific 96-bit mask in IPv6 for mapping IPv4 addresses.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/madRealtor" target="_blank">madRealtor</a>
+			<div class="markdown"><p>I work in IT Security. While the postal address might be a convenient metaphor, it is not precise. It doesn't address IP spoofing, WiFi hijack, connection hijack, VPNs, etc.</p></div>		</li>
+					</ul>
+	
