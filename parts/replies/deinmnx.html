@@ -1,0 +1,96 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PiratePolitics" target="_blank">PiratePolitics</a>
+			<div class="markdown"><p>Although it's important to note that we can shrink the wavelengths that we use to create virtually infinite more radio channels. It would require better hardware, but we wouldn't exactly &quot;run out&quot; ever.</p>
+<p>Edit: as some people pointed out, what I meant was to reduce the range of frequencies for each channel. It's also been pointed out that doing so would reduce the bandwidth and is this not useful beyond a certain extent (certainly not &quot;infinite&quot;). I'll be more clear in the future about my level of expertise on the subject :)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pm_your_lifehistory" target="_blank">pm_your_lifehistory</a>
+			<div class="markdown"><p>Yes but Doppler shifting would eventually become an issue at velocities that humans tend to move at. As is all the other factors such as multiple reflections and scattering. If you look at a signal on a spectrum analyzer it really is more like fuzzy than you might expect.  The hardware could be perfect but the path would still be non-ideal. So there is a finite limit. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dankmemesteelbeams" target="_blank">Dankmemesteelbeams</a>
+			<div class="markdown"><p>But then we could just add accelerometers to help calculate and compensate for the Doppler shifting?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gullex" target="_blank">Gullex</a>
+			<div class="markdown"><p>It already is an issue. As a ham radio operator I can tell you how difficult it is to adjust for doppler shift when working a satellite. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RoboErectus" target="_blank">RoboErectus</a>
+			<div class="markdown"><p>Use sdr, decode everything in the time and frequency range it could be, only keep the stuff you really care about.  Everything shifting up or down doesn't really matter because you're basically decoding every possibility and only returning what has the particular bitstream you're looking for.</p>
+<p>So instead of &quot;tune to and play whatever is at 25mhz&quot; you're saying &quot;permutate all signals (and augment with possibilities of reflections) between 20-30 MHz  and return the stream that has this checksum I'm looking for.&quot;</p>
+<p>This seems like a really good problem for a semi supervised neural network.  At some point it just becomes an engineering problem.  It's log(n) time complexity.  Once you get close to the right actual frequency you can narrow the search space and predict what the next part of the signal will be based on what you already know about it.</p>
+<p>This is basically one part TOR, one part VoIP, one part machine learning.</p>
+<p>Still not infinity.  But orders of magnitude more information transmission than we currently use.</p>
+<p>But I don't really know shit about analog signals.  And I hit my head pretty hard snowboarding earlier.  And I'm drunk.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/freyyr" target="_blank">freyyr</a>
+			<div class="markdown"><p>The actual answer, which for some reason nobody has provided you with yet, is multiple-access schemes.</p>
+<p>You are thinking in terms of separating communications channels by frequency. This isn't the only answer.</p>
+<p>You can share a channel by using time division multiple access (TDMA) - basically, assign time slots to users and have them share the channel in time.</p>
+<p>However, there is a <em>very</em> elegant solution called code division multiple access (CDMA). In CDMA, users are assigned a chipping code which is combined with each bit of the outgoing data stream. This has the effect of significantly broadening the bandwidth of the signal, so you might assume this is counterproductive.</p>
+<p>However, these chipping codes have the property of extremely low cross correlation between them. Without getting into the math, this essentially means that the receiver can pull out individual streams and completely ignore the effects of other users on the signal - as those signals aren't correlated, they fall away into the noise.</p>
+<p>It's difficult to go into more details without getting to mathy, but this video does a good job of the very basics: <a href="https://youtu.be/XJ81CuujwYE" target="_blank">https://youtu.be/XJ81CuujwYE</a></p>
+<p>The big advantage to all this is that a number of users can happily share a single frequency slice without mutual interference and without complicated TDMA negotiation schemes. Of course, this does come at cost of receiver complexity. That said, 3G/LTE phone standards do it this way and do so for a reason.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/a_legit_account" target="_blank">a_legit_account</a>
+			<div class="markdown"><p>LTE does away with CDMA in favor of OFDMA/OFDMA.  Technology moves too fast, now MIMO is what we should be talking about, but I don't understand the math of spatial diversity.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Woomy69" target="_blank">Woomy69</a>
+			<div class="markdown"><p>This is one of those comments where I'm not sure whether you're alluding to very sophisticated engineering concepts or you have no idea what the hell you're talking about.</p>
+<p>I'm going to assume the latter since &quot;shrinking the wavelength&quot; literally means increasing the frequency and that's not really a viable option. there's a reason that the only cellular carrier at 2.5 ghz is sprint and nobody is going higher than that.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hypothesis_Null" target="_blank">Hypothesis_Null</a>
+			<div class="markdown"><p>On the up-side, if we start making cellphones use gamma-rays, they'll finally start causing brain cancer.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/astrawnomore" target="_blank">astrawnomore</a>
+			<div class="markdown"><p>I assumed he meant shrink the range of frequencies used per channel , enabling more channels in a set band.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chairfairy" target="_blank">chairfairy</a>
+			<div class="markdown"><blockquote>
+<p>there's a reason that the only cellular carrier at 2.5 ghz is sprint and nobody is going higher than that</p>
+</blockquote>
+<p>What is that reason?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thephantom1492" target="_blank">thephantom1492</a>
+			<div class="markdown"><p>That is true, finite ressources. However, there is way to make up some more space. First, the services using some portion of the RF spectrum can be recycled. Sometime the standards change (ex: analog tv became digital). Those standards can free up space or 'virtually' free up some. For example, a single analog tv channel, which is 6MHz wide, can be freed up for 2 HD digital channels or I think it is 5 standard definition digital channels, or 3 SD + 1 HD. The digital tv signal is compressed, thru take less bandwidth. In 50 years, what they could do is simply replace the codec used for a new, more efficient one, which may be able to provide 3-4 HD channels? Or they could say: Ok look, each channels are using half the bandwidth, so let's split the band in two. And now you get twice as many independant channels since they are now 3MHz wide instead of 6MHz. Or maybe that in 50 years that broadcast tv will be completly gone, so all that airspace is now free to reuse for other stuff. OR maybe that there will be simply less broadcast tv channels and reuse part of that spectrum. This already happened btw. Channel 1 has been killed and reassigned for two way radio communication. Channel 37 as been killed because it conflict with radio astronomy. Channel 52-83 reassigned for cellphone.</p>
+<p>So really, what they will do is simply reassign some frequency band to other services, use better spectrum management, compress the data more, use more time sharing stuff (like cellphones, they transmit in burst, several cell can now transmit on the same frequency, one at a time, in their own time slot) and other stuff to put more in less.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ThatDamnFloatingEye" target="_blank">ThatDamnFloatingEye</a>
+			<div class="markdown"><p>You mention the conversion of analog to digital television. Can you explain more about what took the place of the old analog channels? Is this the reassignment for channels 52-83 for cell phones or did that happen pre-conversion? Is the 3G/4G stuff running on that portion of the spectrum now?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thephantom1492" target="_blank">thephantom1492</a>
+			<div class="markdown"><p>The conversion just changed the standard. It use the same frequency. The next band to go will most likelly be the channel 2-13, which are VHF (54-216MHz). The remaining use UHF. </p>
+<p>The 52-83 happened way before.
+Channel 52 = 698-704MHz.
+Channel 69 = 800-806MHz
+Channel 83 = 884-890MHz</p>
+<p>As you can see, reassigned for cellphone use.
+3G does run off those, LTE I beleive it is in the 1700/2100MHz but I am unsure.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/yuppiepuppie" target="_blank">yuppiepuppie</a>
+			<div class="markdown"><p>What is stopping some nation say, North Korea, from creating a device that takes up a large amount of the spectrum?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jandrese" target="_blank">jandrese</a>
+			<div class="markdown"><p>Radio waves don't interfere forever.  They would cause problems for their neighbors but most of the world would be unaffected.  How much of a problem they cause depends on the frequencies they use and how much power they transmit.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/F0sh" target="_blank">F0sh</a>
+			<div class="markdown"><p>Depends on the frequency. Shortwave radio travels across entire continents and oceans.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zetadin" target="_blank">zetadin</a>
+			<div class="markdown"><p>Would that not be radio jamming, and so considered an act of war?</p></div>		</li>
+					</ul>
+		</ul>
+	
