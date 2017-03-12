@@ -1,0 +1,55 @@
+<div class="answers">
+	<div class="answer" data-handle="depl2o5">
+		<a class="author" href="https://www.reddit.com/user/pseudopad" target="_blank">pseudopad</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They use the same general architecture as typical PCs, just in much greater quantities, and higher quality components.</p>
+<p>Their RAM almost certainly is of the ECC variety, which is basically the same type of RAM technology as used in normal PCs, except they have an additional chip on them that calculates checksums, to ensure that no memory corruption goes unnoticed.</p>
+<p>They usually use special motherboards that can hold 4 or more CPUs each, and often several hundred gigabytes of RAM. The CPUs they have often has a lot more cores than consumer models too. Intel's high-end server CPUs can have 18 cores each. However, if you really wanted to, you could still get one of these 18-core CPUs, put them on a motherboard with one single CPU socket, install windows and play counterstrike on it, if have more money than you have sense.</p>
+<p>Several motherboards with several CPUs each are then connected together with an extremely high-speed network link.</p>
+<p>In general, supercomputers operate in the same way as regular computers, but they're just hundreds, or thousands of semi-independent computers that are linked together into a cluster, and software written in a way that divides up the computing tasks into segments, and feeds a number of segments into each cluster node.</p>
+<p>When it comes to storage, supercomputers don't typically require an enormous amount of actual storage. The actual data sets aren't necessarily extremely big in size, they just require extremely complex calculations to be performed on them.</p>
+<p>If you have enormous computers that are mainly used to store enormous amounts of data, such as facebook storing every single picture and video anyone has uploaded, the term for these things are datacenters, not supercomputers.</p>
+<p>At <a href="https://www.top500.org/" target="_blank">https://www.top500.org/</a> you can see the current toplist over the worlds biggest supercomputers, how many CPUs they  have, and how high maximum performance they have. The current leader is in China, and has 10,649,600 cores in total.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="deplgpq">
+		<a class="author" href="https://www.reddit.com/user/mredding" target="_blank">mredding</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Super computers today consist of compute nodes, which are mostly like individual computers. Each node has a number of processors, with a number of cores, and their own RAM, and a couple network cards. There are nodes dedicated to the networking, essentially a switch or router, to ferry work and data to each compute node. The thing with the compute nodes is they're not stand alone, they're not each running their own operating system. The compute nodes have no need for video cards (though there may be some sort of primitive console access for diagnostics) or necessarily for hard drives (though there may be one as a cache).</p>
+<p>So you can take your notion of ram and processors, and just multiply it by the number of nodes.</p>
+<p>There are other characteristics, and that has to do with topology. This is an issue with your computer, too, about where CPU cache is, the memory controller, the north and south bridge, and other aspects. For a super computer, the complexity of connecting all these nodes becomes a significant factor. The technology may not exist to have a central dispatch to some 40,000 processors totaling some 10 million cores as exists in the current world's largest super computer. So there tends to be a number of hops and different routes so data can get from any processor to any processor as fast as possible.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="depl4ye">
+		<a class="author" href="https://www.reddit.com/user/Phage0070" target="_blank">Phage0070</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Supercomputers are generally built to the particular specifications of their application, which means they don't have any well defined specifications. You might for example have a render farm for a movie production team which is optimized for video rendering, or you might have a computer which simulates molecular interactions in order to do pharmaceutical research. While both of those applications require far more computing power than the average computer the types of computation differ and the setup would differ.</p>
+<p>Some supercomputers can perform up to <del>96</del> 93 PFLOPs, or 96 quadrillion floating point operations per second (a quadrillion is 1,000,000,000,000,000). </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="depxcmx">
+		<a class="author" href="https://www.reddit.com/user/Daxarhagron" target="_blank">Daxarhagron</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I've worked in this field and provide some answers.</p>
+<p>RAM/HDD size is different depending on the architecture of the supercomputer. Most of them use a cluster of individual nodes (~2x CPUs up to 32, ~minimum of 256 GB RAM, fabric interconnect, management/login networking) or build them into a monolithic, singly addressable pool of CPUs and RAM . So you would log in to some systems (I think SGI?) and you'd be presented with a couple hundred cores and terabytes of RAM. The separated nodes use a message passing interface or remotely and directly address the memory when the compiler and application running the processing is configured. This allows all the nodes to know every part of the workload and can communicate as one. The multiple interconnects are usually Infiniband, a custom interconnect (used by Cray and some others) or the faster ethernet (think 100 gigabit or higher) and require all of those connections are bonded together in order for that one node to not slow down the nodes in the current workload.</p>
+<p>I hope I broke it down and kind of explained the reason for the RAM separation at least.</p>
+<p>For HDD, they're usually hosted on large storage area networks which are an entire system dedicated to providing ones and zeros to the supercomputer cluster as fast as it can. These are usually whole server cabinets of drives or increasingly solid state storage. They then connect to the interconnect directly (or through filesystem servers (usually a dedicated supercomputer node) that manage the clustered storage  and have petabytes available in a high performance capacity directly through the nodes' interconnects.</p>
+<p>I've touched on a couple implementations, as there are other ways and locations for storage to be accessed or physically stored.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="deprknb">
+		<a class="author" href="https://www.reddit.com/user/skuzylbutt" target="_blank">skuzylbutt</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Absolutely. Supercomputers are mostly made of consumer parts.</p>
+<p>A typical supercomputer is, in essence, a number of regular computers connected via a network. These are called nodes. Each node will have the usual processor speed, number of cores, ram. However, they usually use top of the line setup (ie 4x24 core setup, up to terrabytes of ram), but the specific setup depends on if it's set up for data heavy, memory heavy or CPU heavy tasks. The HDD is usually on a network and shared among these nodes, and is usually huge and set up for hugely parallel reads and writes, so files might take longer to open initially, but can have data firehosed into them.</p>
+<p>The important extra parameter is the network. The speed and latency of the network is very important, as is the shape of the setup. Nodes that are close together, in some sense, might be directly connected, so messages sent between them are sent quickly. Nodes that are far apart might be indirectly connected, so messages need to make several &quot;hops&quot; to go from one to the other, meaning they're sent more slowly.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
