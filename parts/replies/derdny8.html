@@ -1,0 +1,49 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chaikowsky" target="_blank">chaikowsky</a>
+			<div class="markdown"><p>This is incredible. Would this map of the waveform generated from the query match with any kind of humming? I mean what if I was out of key?</p>
+<p>EDIT: I haven't read the links you included, will definitely take a look, thanks! </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Astrolabeman" target="_blank">Astrolabeman</a>
+			<div class="markdown"><p>There is something else at work here that people haven't mentioned yet, and that's the Fourier Transform.  In brief, the Fourier Transform takes a a complex signal and breaks it down into a combination of simple signals (imagine a bunch of sinusoidal waves added together to create a complex wave that doesn't look like it actually has any sense to it.  I've included two pictures here.  The first shows three different waves being added together to create a complex wave.  The second shows the output of a Fourier Transform, which creates a graph of the amplitude and frequency of the different simple waves that make up the complex waveform.  </p>
+<p><a href="http://imgur.com/a/z2Ww5" target="_blank">http://imgur.com/a/z2Ww5</a></p>
+<p>This is important to understand because music recognition software like Spotify and others will use Fourier Transforms to identify the song being listened to based on the results from the Fourier Transform (along with some other signal processing on the side).  Here's a really interesting article talking about it.<br />
+<a href="http://gizmodo.com/digital-music-couldnt-exist-without-the-fourier-transfo-1699155287" target="_blank">http://gizmodo.com/digital-music-couldnt-exist-without-the-fourier-transfo-1699155287</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bitwiseshiftleft" target="_blank">bitwiseshiftleft</a>
+			<div class="markdown"><blockquote>
+<p>This is incredible. Would this map of the waveform generated from the query match with any kind of humming? I mean what if I was out of key?</p>
+</blockquote>
+<p>Not without a lot of work, no.  It's kind of like comparing a photograph to a child's drawing of the same scene.  For reference, check out <a href="http://willdrevo.com/public/images/dejavu-post/spectrogram_no_peaks.png" target="_blank">this spectrogram</a> of a song (from <a href="http://willdrevo.com/fingerprinting-and-audio-recognition-with-python/" target="_blank">this article</a>).  That's what comes out of your Fourier transform.</p>
+<p>In the Shazam case, you're trying to compare two songs, or two spectrograms, which are almost an exact match.  This can be done with basic signal processing techniques, eg correlation; it's just a matter of how to make it fast.</p>
+<p>In the case of humming, you aren't looking for an exact match.  You immediately run into several problems:</p>
+<ul>
+<li>The person humming will produce a completely different spectrogram.  Their voice is different, they aren't singing, and they don't have a band behind them.</li>
+<li>You need to figure out, at least roughly, the melody the person is humming.</li>
+<li>To make the search fast, you also need to figure out the melody of the actual song.</li>
+<li>Each instrument is playing a different note.  Each note produces a bunch of lines in the spectrogram (harmonics), depending on the instrument.</li>
+<li>When someone sings, the pitch of their voice changes to make the words, even though they're only singing one note.</li>
+<li>The person singing is probably off-key.  They probably don't have the intervals right either.</li>
+<li>The person singing is probably singing at the wrong speed.  They probably don't have the rhythm perfectly right either.</li>
+<li>Your melody extraction program probably didn't get the melody quite right, at least not thoughout the whole song.</li>
+</ul>
+<p>Overall, it's a considerably harder problem.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dogtacomeaat" target="_blank">dogtacomeaat</a>
+			<div class="markdown"><p>You mean pitch not volume. The real answer is a mathematical algorithm. Like all search software it compares the information you are providing against its database. </p>
+<p>After reading so many EL5 that look like Thesis abstracts Ill do my best in keeping with the spirit of this reddit.</p>
+<p>Instead of thinking about music think about a drawing. It would be the same idea as a software trying to figure out a picture you drew by hand. </p>
+<p>It would look at your shape and compare it to its database full of pictures to see where your shape fits best and would give you its closest match.  </p>
+<p>When you hum you are drawing the melody shape which you can think of as the fingerprint. Just try and picture that show CSI that your mom and dad watch, but the computer is doint that stiff with music.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bitwiseshiftleft" target="_blank">bitwiseshiftleft</a>
+			<div class="markdown"><p>Query by humming is actually much, much more difficult than song recognition like Shazam.</p>
+<p>In the case of Shazam, you have the exact same song played the exact same way (give or take small differences due to the audio system).  If there are many instruments or voices playing at once, they are all playing exactly the same way in the reference and in the sample your phone picks up, up to the limits of your microphone and the nearby acoustics.  You can compute a spectrogram, and it will look very similar for the reference and the sample.  You can correlate reference and sample, and they will correlate extremely well.  If you wanted to be dumb and slow, you could just correlate the sample with every song in the reference library (using a Fourier transform), and you'd reliably get the right answer.  The fingerprinting thing is an important optimization, but conceptually the problem isn't very hard.</p>
+<p>For query by humming, none of this works.  Untrained people usually aren't very good at humming, and humming produces somewhat complicated harmonics; the case is a little simpler for whistling but not by much.  The person humming the song probably won't be doing it at the exact same tempo as the original, and may not have a very good sense of rhythm.  They also might not have the melody quite right.  So you end up knowing what notes in the song go up or down, and a very rough guess of how much they go up or down and of how long the notes are.</p>
+<p>On the reference side, things are just as hard but for different reasons.  You have a song, possibly with lots of instruments (each of which has harmonics, so it's not 100% easy to tell what note is being played), and possibly one or more voice lines.  Voice lines are complicated because people are singing, so the pitch goes all over the place.  You have to have some idea of what the melody is, and even if you knew what notes were being played, picking out the melody requires some music theory.  You'll have some idea of the rhythm, but possibly different instruments are playing at different rhythms.</p>
+<p>To get QBH working, they probably had to start with the guts of a voice recognition system, and then do a ton of R&amp;D on top of that.</p>
+<p>Source: Some friends and I tried to implement this in college on a whim, maybe in 2004 or so.  We kinda got it half working with help from a prof that did speech recognition, but it was never reliable.</p></div>		</li>
+					</ul>
+	
