@@ -1,0 +1,28 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheGamingWyvern" target="_blank">TheGamingWyvern</a>
+			<div class="markdown"><p>Something to note is that &quot;1000s of tests&quot; may actually be too much. Often, when we are writing tests for specific modules (called &quot;unit tests&quot;, you try your best to cover the edge cases, and use maybe a couple of random-ish values as well. Its often a waste of time and computing power to test 1000s of arbitrary inputs.</p>
+<p>For example, say we wanted a module that multiplies two numbers together. It makes sense to test some of the more unique cases (multiply some numbers by 0, multiply negatives with each other, multiply with overflow, etc), and have a couple of inputs for each case. If we know that 2x3 and 5x4 work, we can reason assume any two positive numbers (that don't overflow) will work as well.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheOnlyMego" target="_blank">TheOnlyMego</a>
+			<div class="markdown"><p>And that's where the concept of test coverage comes in. In an ideal world, your unit tests would cover every line of code and every branch of every conditional. In reality though, not every piece of code needs coverage (debugging code isn't as important for test coverage), and it's hard to increase coverage past a certain point (80% is &quot;good enough&quot; for a lot of teams/projects, because it's easier at that point to patch bugs one-by-one than to write test cases that increase coverage). Software that runs unit tests and reports coverage statistics makes this a lot easier.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheGamingWyvern" target="_blank">TheGamingWyvern</a>
+			<div class="markdown"><p>I want to add that test coverage isn't the end all be all. 100% coverage does not mean you covered all relevant test cases.</p>
+<p>For example, in my multiplying example above, if I forgot to check for overflow, then I can still get 100% coverage and have that glaring bug in my code.</p>
+<p>Also, I kinda disagree with &quot;80% is good enough.&quot; 100% unit test code coverage is not that difficult to achieve, and really should just be done for all code you write.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Lettit_Be_Known" target="_blank">Lettit_Be_Known</a>
+			<div class="markdown"><p>So the harder question is, when my module relies on your module which has members I need to know and call... I can't do that.  How do you resolve these issues, since much of a program will take objects as their parameters....</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MrQuizzles" target="_blank">MrQuizzles</a>
+			<div class="markdown"><p>The degree upon which two components depend on each other is called coupling. There's various techniques to reduce coupling between components so that changes in one component won't require changes in another. Mostly, proper encapsulation and layering of code will insulate one component from changes in another. Use of things like non-static global variables, non-explicit side-effects, and action-at-a-distance increases coupling dramatically and is frowned upon.</p>
+<p>Sometimes there's no choice but to require cascading changes (like if you're adding a new data point to the spec, that change will most likely be reflected in all layers of the logic). In those cases, the software engineers designing the application should be aware of which components depend upon the parts being changed, and they can direct their team to make changes accordingly.</p></div>		</li>
+					</ul>
+		</ul>
+	

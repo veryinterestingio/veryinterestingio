@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>[ELi5] When writing a really big piece of software, how do the large numbers of programmers involved make sure they don't break everybody else's bits of code every time they change something in their little bit?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="5z0kzm">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/5z0kzm/eli5_when_writing_a_really_big_piece_of_software/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/5z0kzm" onclick="return false">[ELi5] When writing a really big piece of software, how do the large numbers of programmers involved make sure they don't break everybody else's bits of code every time they change something in their little bit?</a>
+		</h2>
+		<!--<span class="date">2017-03-15</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>[ELi5] When writing a really big piece of software, how do the large numbers of programmers involved make sure they don't break everybody else's bits of code every time they change something in their little bit?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="deunxqe">
+		<a class="author" href="https://www.reddit.com/user/Reinboom" target="_blank">Reinboom</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Every studio does something different from each other, and so it seems most answers will be slightly different from each other.</p>
+<p>In general, the most important thing to know is that things will and do get broken. Ideally, those things are then fixed before it impacts others much.</p>
+<p>I will step through each individual piece that's gone through for at least where I work (which is specifically with Video Games). This will likely be a very very long post, so I'll try to simplify each piece down for the ELI5:</p>
+<blockquote>
+<p><strong>The Main Steps</strong></p>
+</blockquote>
+<ol>
+<li>
+<p><strong>Space.</strong> Room to work in. When there's a lot of code to work with, it's much easier for programmers to work on parts of the code where other programmers aren't touching it as often. If you think of programmers in a large house both building the house and building things in the house, the larger the house is then the easier it is to have a couple rooms to yourself or a small group of people.</p>
+</li>
+<li>
+<p><strong>Isolation.</strong> Rooms try to stay mostly to themselves. You don't want to have your ceiling staying up because you put a log wedged into the cabinet in the next room. Especially if programmers work only on a single room at a time, they might not realize the random log in <em>their</em> room is important and that they shouldn't move the cabinet. It's better to build supports in your room for your ceiling.</p>
+</li>
+<li>
+<p><strong>Modularity.</strong> You don't always know what the rooms next to your room might be, or if they might need to be replaced. So code makes things modular to deal with this, saying &quot;there are 3 doors. They are these sizes and at these locations&quot;. Where those doors go to can change.</p>
+</li>
+<li>
+<p><strong>Compiler</strong> (this one will be more specific and definitely not shared by all codebases). Strangely, this massive house everyone is working on only <em>describes</em> the house. Which is why modularity (3) or isolation (2) is so important. You can't always easily see what your room will actually touch until the whole house comes together. There's this thing called a compiler that actually takes all the descriptions of room and builds a house out of it. The compiler will complain when things don't quite connect where they should, or where the modularity says something is wrong, because the compiler can't finish it's job. (Jargon note: There are actually a few pieces in this - such as the linker or preprocessor - and the compiler is just one of these pieces. Programmers a lot of times just group them all together to save time when talking.)</p>
+</li>
+<li>
+<p><strong>Unit tests.</strong> There's a lot of pieces that require very very specific things that it must do. To keep running with our house analogy, this may be to say that a specific breaker switch controls the electricity to only a few specific rooms in the house. Or that a faucet always gives the same heat when turned on to the same angle each time. In code, this is usually complicated functions that bare most of this wait. Instead of having to check all of these things that are easy to miss, unit tests are made that checks these things for you. They're just more code that you say &quot;I expect this to always do these things when this happens to it. Check that for me every time I use the compiler.&quot; And they do. Thank you unit tests. In my experience though, unit tests can't cover even a tiny bit of the range of inputs a video game has possible, so in our case these aren't good enough.</p>
+</li>
+<li>
+<p><strong>Personal Check.</strong> After the compiler puts everything together, each programmer can walk through the house themself and just check if everything seems to be in place, and then specifically check out the room they were working on and see if it's hooked up correctly for themselves. A lot of times, programmers will make their own tools to let them cheat around their room to make this type of check faster. For games, let's say you're working on a new way to purchase items, you might give yourself a tool that let's you freely make money. That kind of thing. (There's more code to prevent these tools from going out to everyone)</p>
+</li>
+<li>
+<p><strong>Functional Tests.</strong> Unit tests (5) like to check very small pieces, but a large part of the house can be checked all at once with something called functional tests. Functional tests look at how something should work in general, rather the specifics. In our house, they could ensure things like... starting from the front door, can you still eventually make it into the attic? This helps for cases where someone might remove a door somewhere, for their own good reasons, but fail to see the big picture somewhere else. These also occur automatically, but in our code base it's usually after the programmer has committed the code - so that the programmer doesn't have to wait on these tests (they can take awhile).</p>
+</li>
+<li>
+<p><strong>QA - Quality Assurance.</strong> There's a large group of people who are really good are doing all these different types of checks themselves as well, predicting what types of changes might break what, or even being very clever at breaking the code in ways nobody else thought to try. These are QA. Tests (like unit tests and functional tests) are only as good as a programmer can predict the program might work, but breaking something can be more extensive a job than what the programmer might consider. In those cases, QA is specialized in finding out where other problems might lie.</p>
+</li>
+<li>
+<p><strong>Build Pipeline.</strong> Hinted with the fuctional tests bit, there's computers specially setup to do the compiler (4), unit tests (5), and functional tests (7) all on their own. A lot of people can be changing a large part of the house at once and need to have their changes all at similar times. This can create times where personal checks and running your own compiler doesn't catch problems that might arise from two different changes not liking each other. Build machines do the steps above with everyone's code (who put their code in) to provide their own versions of the checks.</p>
+<p>a. <strong>Build Pipeline - Multiple Operating Systems.</strong> This is a special note for game dev. Operating systems, like Windows XP, Windows 7, OSX 10.6, etc. can all be quite different from each other. Thing of these like broad locations your house can be built on, with the more different the operating system the more different the location. If you're constantly checking if your house might work in a forest, there might not be something you noticed when your house is on a tall barren mountain. Or underwater. Operating systems get very different. The &quot;big ones&quot; should be checked yourself, but build machines and QA (Compatability) can help to fill in the gaps.</p>
+</li>
+<li>
+<p><strong>CI - Continuous Integration.</strong> (Blah that term sounds technical). CI is something of a philosophy that some studios have and a way of setting up the build pipeline (9). CI is the idea that, two sets of eyes is better than one set, and this can only get better from there. When you put code in the shared place so that a build pipeline can use it, it's <em>possible</em> that can be one of many places with many different build pipelines. Historically, this is how a lot of code bases worked, you would have teams with their own build pipelines who would then eventually do a large push of all of the changes they did in the last few months (or years) from their builds to the big central build. This was called &quot;integration&quot;. CI just says &quot;Hey everyone, just put all your stuff in the central spot and figure out some other way to hide it.&quot;. This means that while everyone is walking through their spots in the house, they might be more likely to see other problems for someone else more often. More eyes.</p>
+</li>
+<li>
+<p><strong>Playtests.</strong> (Game dev specific, kinnnnd of. Just called different things elsewhere.) If you're building a fun house, play in that fun house to make sure it's actually fun and working the way it should be - and that no random spike it sticking out under a trampoline. It's better for you to get hurt than your players. Game programmers make sure to play where they build.</p>
+</li>
+<li><strong>Large Testing Environments.</strong> Beta testing. Similar to CI (10)'s mentality of &quot;the more eyes, the better&quot;, programmers try to get lots of different potential home owners to try out their house for awhile just to get more eyes. And, more importantly, more environments - locations - where the house could be. Again, this provides more opportunity for something bad to occur and for someone to see it and report it.</li>
+</ol></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="deucttr">
+		<a class="author" href="https://www.reddit.com/user/Sanders0492" target="_blank">Sanders0492</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Large-team software stuff sucks unless you have a strong leader delegating well-communicated and specific tasks.</p>
+<p>In software, abstraction is important. In other words, for two parts of a program to work together, they just have to know how to talk to each other - they <em>don't</em> have to know how the other part actually works internally. In other words, the two parts have to know how to &quot;interface&quot; with each other.</p>
+<p>Imagine I had a method/function called 'add' that would accept two numbers and add them together. To call the function, id say add(3, 5) and the result would be 8. I have no clue how it adds those two numbers, and quite frankly I don't really care as long as it works.</p>
+<p>So if I create the basic (theoretical) design of the software, I can design all of the interfaces (the function names, the parameters and their types, and what type of item the function returns as a result) and hand out chunks of the program for people to code. If you write my add() function, you can make it work internally however you want as long as you follow the requirements I gave you (that it accepts two integers, and returns the sum of the two integers). And that way I can assign Tim another part of the code that will constantly use your add() function. He will write his code assuming that your add() function will work. Then, everyone puts the code together and tests it. It won't work because that's how life goes. Fix the errors one by one with tons of testing in between. </p>
+<p>Of course, this is definitely overly simplified, but hopefully it gives you a small hint. The other important part is extreme communication and frequent meetings. Incremental deadlines are helpful, but are hardly met. Lastly, it's good to have a leader supervise everyone else.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="deubkqk">
+		<a class="author" href="https://www.reddit.com/user/krystar78" target="_blank">krystar78</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>you do it by modularizing your code.   your own module takes X input and makes Y output.  you can have an automated test that provides various X inputs and validates Y output.   run it thru 100's and 1000's of different X's and make sure it comes out to the correct Y's.</p>
+<p>then your module plugs into my module.  my module takes A's inputs and makes B outputs.  in order to do so, it takes the A's and uses some parts of it as X to call your module.  and when it gets back the Y, my module does something to it and makes a B output.   </p>
+<p>another set of tests run thousands of A inputs and validates that output is correct B.   </p>
+<p>whenever the next time you change your module, we'll rerun all the 1000 tests for your module as well as my module.   </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="deuftty">
+		<a class="author" href="https://www.reddit.com/user/SlowStop23" target="_blank">SlowStop23</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's been said multiple times, but software is built in modules that have contracts. &quot;I accept this, and I give that back.&quot; You can change anything so long as the contract remains unchanged. If you change the contract you (potentially) need to update everything that uses that contract.</p>
+<p>When ordering a pizza you don't need to worry that you might not know how anymore because they changed how their ovens work. So long as the contract remains the same you don't need to relearn how to order a pizza. If they changed the contract, like for example, no longer accepting cash, then you would need to make changes yourself.</p>
+<p>Code needs to be written in understandable components or it gets very messy very fast. I've worked with code like that and it takes ten times the brain power and time to get anything done. When code is broken down into manageable pieces with a single purpose it's beautiful. It doesn't matter how big the total software is if it's just a bunch of tiny parts. When working on something you should only need to know how that one tiny part has to work. It's as if the software only consists of that tiny part.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="deub6b4">
+		<a class="author" href="https://www.reddit.com/user/GotPerl" target="_blank">GotPerl</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In we'll run projects they use tests to ensure this. They write test code that validates the way the program works. That way if something changes they can rerun the test suite and see if there is anything amiss. </p>
+<p>This helps a lot but it isn't perfect. There is still human quality assurance that happens to catch unintended things. Even this isn't perfect, and that's how you get bugs in your program. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/5z0kzm" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
