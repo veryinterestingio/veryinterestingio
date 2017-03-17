@@ -1,0 +1,80 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SchighSchagh" target="_blank">SchighSchagh</a>
+			<div class="markdown"><blockquote>
+<p>I don't think you would want to use it as a random number generator, because it's still a well known sequence of numbers and you don't really want that when you are trying to get random numbers.</p>
+</blockquote>
+<p>If you don't need cryptographic properties, then it being a well known sequence is fine. For example, if you're making a game or something like that, then it would get the job done. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Glitch29" target="_blank">Glitch29</a>
+			<div class="markdown"><p>The bigger problem is that if you've got some function calculating pi to generate randomness, that function is going to take up more memory and more computation time each successive time it is called.</p>
+<p>There are just better algorithms available that produce the desired result in constant time and memory.</p>
+<p>Edit: For clarity, there are algorithms which can compute individual digits of pi with a theoretically a finite number of memory addresses.  In practice, they require increasingly large numbers at those memory addresses, so an increasing number of bits are still needed to accommodate them.  Additionally, those algorithms incur significant performance costs to gain ability to compute pi in parallel.  They'd be poor choices for this sort of task.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jackmusclescarier" target="_blank">jackmusclescarier</a>
+			<div class="markdown"><p>Surprisingly, this is false. There are algorithms to compute digits of pi without computing any of the previous digits. <a href="https://en.m.wikipedia.org/wiki/Approximations_of_%CF%80?wprov=sfla1" target="_blank">Wikipedia link</a>.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ematap" target="_blank">ematap</a>
+			<div class="markdown"><p>This is incorrect. There are algorithms for calculating the nth digit of pi using constant memory.</p>
+<p>Edit: Link <a href="https://en.wikipedia.org/wiki/Bailey%E2%80%93Borwein%E2%80%93Plouffe_formula" target="_blank">https://en.wikipedia.org/wiki/Bailey%E2%80%93Borwein%E2%80%93Plouffe_formula</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IIIMurdoc" target="_blank">IIIMurdoc</a>
+			<div class="markdown"><p>You could so easily store the first 10,000 digits in an array and loop an index over it without noticable affect to the observer.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/klfwip" target="_blank">klfwip</a>
+			<div class="markdown"><p>In some cases, it being a well known number is actually desirable - <a href="https://en.wikipedia.org/wiki/Nothing_up_my_sleeve_number" target="_blank">https://en.wikipedia.org/wiki/Nothing_up_my_sleeve_number</a> sometimes you just want a sequence of random numbers, but also make it clear to the audience that you didn't really have a choice in what they would be. (Picking initial digits of a famous number like e or pi is a good way to do this)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bluexavi" target="_blank">bluexavi</a>
+			<div class="markdown"><p>It's a perfect random number generator if you start from the end and work backwards.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OpticalDelusion" target="_blank">OpticalDelusion</a>
+			<div class="markdown"><p>Follow-up question(s). Would this be a property of the number that is independent of its base representation? If I convert to base 2 or base 12 does it still appear to be evenly distributed? Is it possible to construct a base for pi with the explicit intention of seeing some digits with higher density?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SEDFTW" target="_blank">SEDFTW</a>
+			<div class="markdown"><p>That's actually part of one definition for randomness in numbers; the probability for each digit in the number is equal to 1/n for any base n.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Farmer771122" target="_blank">Farmer771122</a>
+			<div class="markdown"><p>I don't see how it could.   Check this out : <a href="http://www.eveandersson.com/pi/precalculated-frequencies" target="_blank">http://www.eveandersson.com/pi/precalculated-frequencies</a></p>
+<p>As you increase the number of digits, the frequency distribution becomes more and more even.   I don't see a way that could be a result of the fact that it's base 10.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hydropos" target="_blank">Hydropos</a>
+			<div class="markdown"><p>Doesn't changing bases rely on the sequence, not just the frequency, of digits?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/functor7" target="_blank">functor7</a>
+			<div class="markdown"><p>It doesn't transfer between bases. The number</p>
+<ul>
+<li>0.1234567891011121314151617181920...</li>
+</ul>
+<p>is normal in base 10, but not normal in others. We predict that pi is normal in <em>all</em> bases.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/boredatworkbasically" target="_blank">boredatworkbasically</a>
+			<div class="markdown"><p>I just want to clarify something real quick. In counts of things numbers are not random correct. I thought that the largest digit  has a bias for the smaller numbers (1,2,3) over the larger values (8,9). </p>
+<p>I've heard that looking at the statistical distribution of the largest digits can help determine forged finances since a human will tend to an even distribution of the leading number being a 9 vs a 1 whereas in populations (such as a population of money) the 1 should pop up much more often.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bradn" target="_blank">bradn</a>
+			<div class="markdown"><p>Yep, classic accounting trick to detect amateur book cookers.  It basically derives from how larger numbers tend to increase faster, and they spend less time with a higher leading digit and therefore there's less probability of seeing them.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sara-34" target="_blank">sara-34</a>
+			<div class="markdown"><p>Can someone answer if this is true?  I don't have the background to know.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zebediah49" target="_blank">zebediah49</a>
+			<div class="markdown"><p>E: <a href="https://en.wikipedia.org/wiki/Benford%27s_law" target="_blank">Benford's Law</a>.</p>
+<p>It's because numeric distributions tend to be logarithmic, rather than linear.</p>
+<p>In other words, $9,XXX is approximately as likely (a little more, but not by that much) a number as $10,XXX.  $11,XXX is again a little less likely than $10k+, but similar and then there's 12-19K. When you add up all those options, they're significantly more likely than $9,XXX -- but they all begin with a '1'.  Yes, if you keep going, you get to the $90,XXX series -- but the numbers get rarer as you keep increasing in value, so that $90k series is &quot;worth&quot; less than the $10k series -- it's closer to worth as much as the $100k series.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GoAheadMakeMySplay" target="_blank">GoAheadMakeMySplay</a>
+			<div class="markdown"><p>Yes this is true when looking at things like populations, financial accounts, etc., but I don't see how it would apply to the digits of pi.  See <a href="https://en.m.wikipedia.org/wiki/Benford's_law" target="_blank">Benford's Law</a>.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
