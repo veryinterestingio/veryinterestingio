@@ -1,0 +1,96 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/branfili" target="_blank">branfili</a>
+			<div class="markdown"><p>The classic game consists of a 4x4 grid.</p>
+<p>In a perfect game, you would lose the game by having these blocks in order:</p>
+<p>2, 4, 8, 16, ..., 2^(16)</p>
+<p>That is the case because you have no moves left, and no duplicate blocks during the loss.</p>
+<p>max_score = s(2) + s(4) + ... s(2^(16))</p>
+<p>The following recursion is the score that you get by assembling a 2^(x) block:</p>
+<p>s(2) = 0</p>
+<p>s(2^(x)) = 2 * s(2^(x-1)) + 2^x</p>
+<p>That is because you need 2 smaller blocks to get the next block.</p>
+<p>By writing a quick python script we get the max score of <del>1835012</del> 3932100. </p>
+<p>EDIT: Formating </p>
+<p>EDIT 2: Better explanation</p>
+<p>EDIT 3: Finally, a correction of the score, as pointed by the u/zardeh    </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zardeh" target="_blank">zardeh</a>
+			<div class="markdown"><p>One mistake: the classic game spawns 2 or 4 blocks randomly, if you get lucky and the last few blocks are all 4s, you can nearly double this score.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/branfili" target="_blank">branfili</a>
+			<div class="markdown"><p>Oh, yeah, forgot about that.</p>
+<p>Thanks!</p>
+<p>So, the perfect perfect game could have blocks</p>
+<p>4, 8, ..., 2^(17)</p>
+<p>max_score = s(4) + s(8) + ... + s(2^(17)) - 16 * s(4)</p>
+<p>due to the lucky 4s spawning at the last minute</p>
+<p>and the max score is 3932100.</p>
+<p>EDIT: 4s are spawning at the last minute every time</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Exodus100" target="_blank">Exodus100</a>
+			<div class="markdown"><p>Isn't the whole idea that everything is <em>literally</em> doubled?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kogasapls" target="_blank">kogasapls</a>
+			<div class="markdown"><p>Are you making a significant assumption in saying such an end-board is achievable?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/branfili" target="_blank">branfili</a>
+			<div class="markdown"><p>Due to the game randomly choosing a tile to place a new 2/4 block, it's mathematically possible, although highly unlikely, for such an end position to be achieved.</p>
+<p>Also, as u/zardeh has pointed out, there have been instances of such endings. (unless, of course, the photo is photoshopped, but I don't think so)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/komodo-dragon" target="_blank">komodo-dragon</a>
+			<div class="markdown"><p>Nice work through. I was trying to do it in my head. But it is certainly better to write it out like that.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zardeh" target="_blank">zardeh</a>
+			<div class="markdown"><p>So, lets make some assumptions to make this easier and get an upper bound:</p>
+<p>in 2048, you can only get 2 or 4 tiles, so we'll assume that every tile is a 4 to make our jobs easier. Then there's a good answer on <a href="https://stackoverflow.com/questions/22803247/in-the-game-2048-what-is-the-biggest-theoretical-tile" target="_blank">stackexchange</a> that makes the math easier, but basically 2^17 is the largest tile, and the best board would be</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">A</th>
+<th style="text-align: center;">Nice</th>
+<th style="text-align: center;">Game</th>
+<th style="text-align: center;">Of</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">32</td>
+</tr>
+<tr>
+<td style="text-align: center;">512</td>
+<td style="text-align: center;">256</td>
+<td style="text-align: center;">128</td>
+<td style="text-align: center;">64</td>
+</tr>
+<tr>
+<td style="text-align: center;">1024</td>
+<td style="text-align: center;">2048</td>
+<td style="text-align: center;">4096</td>
+<td style="text-align: center;">8192</td>
+</tr>
+<tr>
+<td style="text-align: center;">131072</td>
+<td style="text-align: center;">65536</td>
+<td style="text-align: center;">32768</td>
+<td style="text-align: center;">16384</td>
+</tr>
+</tbody>
+</table>
+<p>That would carry a hefty score, looks like <a href="http://d3dsacqprgcsqh.cloudfront.net/photo/aD0pWvN_700b.jpg" target="_blank">this</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sheazer" target="_blank">Sheazer</a>
+			<div class="markdown"><p>I still haven't been able to double the 8192 tile.  I've come close so many times!</p></div>		</li>
+					</ul>
+		</ul>
+	

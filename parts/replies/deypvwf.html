@@ -1,0 +1,189 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/iSuggestViolence" target="_blank">iSuggestViolence</a>
+			<div class="markdown"><p>Watch this talk: <a href="https://fsharpforfunandprofit.com/rop/" target="_blank">https://fsharpforfunandprofit.com/rop/</a></p>
+<p>TL:DW;
+Imagine that, as a part of a program that can read in a chess board as a string, you are writing a function that takes in a character, and returns a Piece, <code>readCharToPiece</code>.</p>
+<p>What do you do if you read a character that doesn't correspond to a piece, assuming you want the caller to deal with error handling? Return nil? Maybe there's a better way.</p>
+<p>If you wanted to describe the input/output of the function, you might say &quot;It takes in a character, and it might output a Piece&quot;. The &quot;might&quot; there is the <strong>context</strong> of the output.</p>
+<p>In Haskell talk, the function signature of <code>readCharToPiece</code> is <code>Char -&gt; Maybe (Piece)</code>, so now any calling function knows that <code>readCharToPiece</code> can return <code>Some Piece</code> or <code>None</code>. If you try to call <code>readCharToPiece</code> without handling what happens if it returns <code>None</code>, your program won't compile because that's a possible bug, and it violates the contract of the type signature.</p>
+<p>This is a bit of an oversimplification, but the point is this: just use monads and you'll get it eventually.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/andrybak" target="_blank">andrybak</a>
+			<div class="markdown"><blockquote>
+<p>the point is this: just use monads and you'll get it eventually.</p>
+</blockquote>
+<p><a href="https://e.xtendo.org/monad#1" target="_blank">The Monad Fear talk</a> (note: not a monad tutorial!) makes a similar point: don't try to learn monads from theory to practice. Start by using examples of monads, then, when one understands the similarities, with enough practice, the generalization in form of the monad typeclass just clicks.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/iSuggestViolence" target="_blank">iSuggestViolence</a>
+			<div class="markdown"><p>Another good post about this is <a href="https://byorgey.wordpress.com/2009/01/12/abstraction-intuition-and-the-monad-tutorial-fallacy/" target="_blank">the monad tutorial fallacy</a>.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ppd_guy" target="_blank">ppd_guy</a>
+			<div class="markdown"><p>this just seems like a language-level construct for handling null return values</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/iSuggestViolence" target="_blank">iSuggestViolence</a>
+			<div class="markdown"><p>Sort of? Because it's encoded this way, as a value in a context, you can have all sorts of standard functions that operate on this type of thing, like fromMabye, mapMaybe, and standard monad functions like mapM, fmap, bind, return, etc. Also, this makes <code>readCharToPiece</code> a good citizen of the type system.</p>
+<p>I'm just using it as an example of how monads are actually used, and Maybe is one of the simplest examples. lists are also basically monads, even if it doesn't spell it out or take advantage of it in other languages.</p>
+<p>Also, Just because it's in a context doesn't mean it's a monad. It also has to satisfy the monad laws, which is a fancy way of saying you need to be able to do certain kinds of things to it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wyager" target="_blank">wyager</a>
+			<div class="markdown"><p>It's not language-level; you actually define monads in plain old code. </p>
+<p>Also, there's <em>one</em> monad people use to safely replace null, and that's usually called Maybe. You can use what's often called Either to replace exceptions. You can use something called Writer to replace logging. Basically, any language feature that usually sucks and people get annoyed with, you can do a better job of by replacing it with a monad. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jaked122" target="_blank">jaked122</a>
+			<div class="markdown"><p>A monad isn't a low level construct, not in the way that I've ever heard low-level being used.</p>
+<p>It's a type of wrapper that allows for encapsulation, for example the IO monad in Haskell is a wrapper that allows Haskell to obtain the usage of side effects that would normally be unavailable to a pure functional language.</p>
+<p>The reason that this mechanism is preferred in Haskell over other methods is that it allows the language to be extended without adding more complex syntax transformation methods such as what is available in lisp.</p>
+<p>For example, Haskell also has Parsec, which uses this approach to build in some really nifty parsers to be defined without breaking the syntax expected in Haskell.</p>
+<p>Anyway, I'm not terribly good or familiar with Haskell, so if that's relevant to your studies, the <a href="https://en.wikipedia.org/wiki/Monad_\(functional_programming\)" target="_blank">Monad</a> page has a more thorough explanation, mostly as it pertains to Haskell.</p>
+<p>I've also found a blog post about the relevance of <a href="https://bartoszmilewski.com/2011/07/11/monads-in-c/" target="_blank">monads to C++ template metaprogramming</a>. </p>
+<p>There are other ways to deal with the problem that Monads solve, I know even less about those than I do about Monads, so I can't help you with those, but in imperative programming, which C++,Python, Java, and most other languages that you'll use throughout your career fall into monads aren't that relevant.</p>
+<p>They are relevant in highly formal languages, such as Haskell, where side-effects aren't allowed unless they are wrapped up in a container that provides guarantees about the way code will work. </p>
+<p>This sort of guarantee are a big part of what makes functional programming attractive, as they tend to emphasize that one action will not affect another unless the output of that action is related to the input of the other.</p>
+<p>Without Monads or Uniqueness Types, or effect systems (both of which provide some of the same things as a monad), providing that sort of guarantee can make some code very difficult to write. </p>
+<p>Why it can pertain to C++ is very simple. C++ is a hard language. It provides comparatively few guarantees of being able to determine &quot;correctness&quot; in the same way that Haskell can. Using these techniques can <em>force</em> the compiler to test for correctness using it's fairly sophisticated type system(though you'll likely write most of the code yourself).</p>
+<p>This is useful for large programs which are harder to maintain due to their complexity.</p>
+<p>For other languages, I can't really say. Functional programming tends to be possible in nearly any language with functions as first class datatypes(you can pass them around), and this often leads to fairly compact code. Linq expressions in C# and VB can be thought of in this way, as, I am told, can the Java Streams library.</p>
+<p>The reason that you might want to use Monads in a language that doesn't use them in its own syntax and construction is similar, the paradigm can help keep the code orderly, and that's worth quite a bit for large programs.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pasteleiro" target="_blank">pasteleiro</a>
+			<div class="markdown"><p>/u/Mr_Cromer</p>
+<blockquote>
+<p>It's a type of wrapper that allows for encapsulation, for example the IO monad in Haskell is a wrapper that allows Haskell to obtain the usage of side effects that would normally be unavailable to a pure functional language.</p>
+</blockquote>
+<p>This is a misunderstanding. </p>
+<p>The <strong>type constructor</strong> <code>IO</code> encapsulates side effects. So a type <code>IO T</code> encapsulates 'actions' with a return type <code>T</code>.</p>
+<p>That's it, no monads are required to talk about side effects in Haskell. And in fact <code>IO</code> was introduced in Haskell before monads.</p>
+<p>In Haskell, <code>Monad</code> is a class. This is an abstraction. Type constructors belong to a class, implement certain operations satisfying certain properties.</p>
+<p>So <code>IO</code> being monad essentially means there is a join operation that merges actions of actions, and a unit operation encapsulating pure values into actions, satisfying certain associative and identity properties. </p>
+<p>The monad aspect merely specifies that you have certain operations available that satisfy certain algebraic properties. So once you know something is a monad you immediately know you can manipulate it in a certain way.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jaked122" target="_blank">jaked122</a>
+			<div class="markdown"><p>Thank you, it's helpful for you to correct me on this.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mr_Cromer" target="_blank">Mr_Cromer</a>
+			<div class="markdown"><p>Thanks very much for the answer! While I can't claim to have understood everything, you've certainly given me enough of an anchor to continue my research with.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jaked122" target="_blank">jaked122</a>
+			<div class="markdown"><p>Thank you, but again, I'm not really sure I understand them enough myself.</p>
+<p>If you want a really thoroughly correct answer you might find people better able on /r/haskell, or maybe /r/haskellquestions, which their sidebar recommends.</p>
+<p>Both of those subs are really proud of their language and the power that it possesses.</p>
+<p>If you end up finding that Haskell isn't quite to your taste, then there's Scala which is the other language that I notice on that wiki article which makes use of monads. The subreddit for Scala isn't quite unsurprisingly /r/Scala</p>
+<p>Both languages seem to have a very strong following, though I've noticed that the mathematics majors I've had the pleasure of working with prefer Haskell, though Scala seems to have dominance in software engineering.</p>
+<p>If you became proficient with either (or even better both), you could probably find jobs where each is used, if that's a concern you have.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+			<div class="markdown"><p>Bartosz Milewski's page is quite simply a heaven for any programmer. I can't recommend it enough.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wyager" target="_blank">wyager</a>
+			<div class="markdown"><p>Professional Haskeller here (as in, it's my job to write Haskell code). </p>
+<p>A monad is any data structure that has the following operations defined on it :</p>
+<pre><code>return :: a -&gt; m a</code></pre>
+<p>Which, as a first crutch intuition, takes some object and wraps it up in monad <code>m</code>, and</p>
+<pre><code>bind :: m a -&gt; (a -&gt; m b) -&gt; m b</code></pre>
+<p>Which, as a first crutch intuition, takes some value wrapped up in a monad <code>m</code>, unwraps it, and uses it as the argument to a function that returns another value wrapped in the same monad <code>m</code>. A monad also has to follow certain laws called the &quot;monad laws&quot; which basically just specify the correct behavior of these operations. </p>
+<p>Now, you're probably still wondering &quot;what the hell is this good for?&quot; - fair question!  </p>
+<p>Basically, what strongly typed functional programmers have realized over the years is that this abstraction is, for some reason, <em>really good</em> at representing a <em>ton</em> of things, from side effects to state management to exception handling to parsers to concurrency. It's hard to predict in advance if something works nicely as a monad; many of these things have been found by accident. </p>
+<p>Some common misconceptions as to what monads are good for include:</p>
+<ul>
+<li>
+<p>&quot;They're for sequencing events.&quot; This is wrong. Only a few special monads do this. </p>
+</li>
+<li>
+<p>&quot;They're for managing state.&quot; Again, only a few monads do this. </p>
+</li>
+<li>&quot;They're for I/O.&quot; Same as above. It's like saying &quot;wheels are for roller skates&quot;: technically true, but that's only one specific use. </li>
+</ul>
+<p>Now, you may be wondering why one would bother with all of this instead of just doing I/O and sequencing and exceptions and stuff like Python or Java or whatever. Well, the short answer is that monads just <em>work nicer</em>. They are much more explicit about everything (don't confuse explicit with verbose; they are not verbose), which some people don't like, but the upside is that their behavior is very very clear and they are very easy to manipulate and do useful things with. You can do cool things with monads like combine them together. Let's say you wanted to write some code that had exception handling (for this example, exceptions will be Strings), had some state &quot;AppState&quot; it kept track of, and could do IO actions like reading files. Here's a monad that lets you do all three of those: </p>
+<pre><code>type MyMonad a = StateT AppState (ExceptT String IO) a</code></pre>
+<p>Now you can write code that reads/writes/modifies your AppState, throws exceptions, or does IO. </p>
+<p>What's cool is that the code you write will just be a plain old Haskell object. Let's say it returns an <code>Int</code>; then it will have type <code>MyMonad Int</code>. You can do whatever you want with that piece of code: pass it around, run it, send it to another thread. </p>
+<p>So the TL;DR answer is &quot;they're useful&quot;, although it's tricky to explain exactly how in a short answer. </p>
+<p>If you want specific monads to look at, check out Maybe, Either, and State. They are all very simple. I also wrote a fairly beginner-friendly article a while back that was well received and might help you: <a href="http://yager.io/Distributed/Distributed.html" target="_blank">http://yager.io/Distributed/Distributed.html</a></p>
+<p>It's not actually about monads, but it goes over why and how you might want to use monads for a specific example program. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wanderingtuna" target="_blank">wanderingtuna</a>
+			<div class="markdown"><p>Oh damn, I remember reading your article about Go. Recently been using it, finding the lack of generics...strange and unexplainable.</p>
+<p>What kind of stuff are you writing in Haskell for your job, if you don't mind me asking?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wyager" target="_blank">wyager</a>
+			<div class="markdown"><p>Ah, cool! I work in consulting. Just got done with a high-security web server job. Now doing a job with FPGA acceleration. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/robotreader" target="_blank">robotreader</a>
+			<div class="markdown"><p>Would it be fair to say that a primary use of monads is to make context explicit for type-checking?  Or is there some actual computational benefit?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Derpscientist" target="_blank">Derpscientist</a>
+			<div class="markdown"><p>You program towards that interface and can use libraries that work on that interface. A simpler and related example is that natural numbers form a monoid under addition. The monoid laws are kindergarten math.</p>
+<pre><code>+ a 0 = a.
++ 0 a = a.
++ a (+ b c) =  + (+ a b) c.</code></pre>
+<p>Now if we have a list of integers we can write the code to perform the summation on them using just the addition operation and empty element. But this can be made generic into a fold operation. You can use this to quickly define product, maximum, and minimum. Beyond primitives though you can fold data structures. For instance lists form a monoid under concatenation, with empty list being the 0 type. The fold function falls out of it. In this case the fold function takes list of lists and turn them into a single list. But fold isn't tied to datastructures. I could express adding my business' items to parcels as a monoid, with an empty cardboard box and a packer. Anything that you can define a empty and an operand that behaves according to those laws has a fold.</p>
+<p>Back to monads. A simple but useful example of a monad is the Result type. Result can be either a success of type T or a failure of type F. Suppose I wrote a function that helped dogs overcome shyness. This could succeed and return a dog, or it could fail and you have to immediately call the owner to pick them up and submit a report. The result type would be written as &quot;Result Dog Report&quot;, where the type is left or right depending on the circumstance. Great. Now your dog clinic is offering services improving dog breath, but it can fail. The return type is again &quot;Result Dog Report.&quot; And so on in the dog clinic. Each stop takes a dog and returns a Result Dog Report. If anyone messes up the doggo goes home.</p>
+<p>The implementation of &quot;bind&quot; in the monad interface is a function that takes a function as an argument like &quot;dog -&gt; Result dog report&quot; and applies it to the &quot;Result dog report&quot;. Likewise you could have a perfect worker that takes just turns a dog into a &quot;result dog&quot; all the time. This is called &quot;return.&quot; Anything that satisfies a bind and a return forms a monad. It turns out there's a lot of problems that can be expressed using this. We have some context that we want to chain together. Not just error types or resource management or data structures. It could be business logic or a render loop. A whole bunch of functions naturally fall out of </p>
+<p>The same fun goes for functors, arrows, zippers, and lenses. You don't use the types to validate your logic, you use them to implement your logic for you using higher abstractions.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wyager" target="_blank">wyager</a>
+			<div class="markdown"><p>It's not really about the type checker. It's more about convenience. Let me give an example. Let's say you wanted to write some code that manipulates a state type S. So you have some functions that take a state S, manipulate it, and return a new S as well as something else. So your functions have types like this:</p>
+<pre><code>f :: S -&gt; (S, Int)</code></pre>
+<p>In this case, f does something to the state (or leaves it alone) and also returns an Int. </p>
+<p>Then, if you want to also use some function</p>
+<pre><code>g :: S -&gt; (S, Bool)</code></pre>
+<p>after using f, you can do it like</p>
+<pre><code>foo :: Int -&gt; Bool -&gt; String
+
+fThenG :: S -&gt; (S, String)
+fThenG s = let
+    (s', n) = f s
+    (s'', b) = g s'
+    in (s'', foo n b)</code></pre>
+<p>This works, but you'll notice that A) it's ugly and B) if you have lots of functions, keeping track of all those s, s', etc variables is going to get really old really fast. So what we do instead is define </p>
+<pre><code>data State s a = State (s -&gt; (s,a))</code></pre>
+<p>So now we have </p>
+<pre><code>f :: State S Int
+g :: State S Bool</code></pre>
+<p>We've wrapped the old f and g functions up in this &quot;State&quot; type. </p>
+<p>Now, what we can do is define operations</p>
+<pre><code>bind :: State s a -&gt; (a -&gt; State s b) -&gt; State s b
+return :: t -&gt; State s t</code></pre>
+<p>Now, we can express our earlier code like this:</p>
+<pre><code> fThenG :: State S String
+ fThenG = bind f (\n -&gt; bind g (\b -&gt; return (foo n b)))</code></pre>
+<p>Note that </p>
+<pre><code>\x -&gt; do stuff with x </code></pre>
+<p>Is just a lambda function with x as an argument. </p>
+<p>This is still pretty damned ugly and not much better than the old thing, but what we can do is use syntactic sugar to get the ugly thing I just wrote from </p>
+<pre><code>fThenG :: State S String
+fThenG = do 
+    n &lt;- f
+    b &lt;- g
+    return (foo n b)</code></pre>
+<p>Ok, now it should be a lot clearer what we're doing. We're getting the return values of f and g, feeding them into foo, and returning that result. But note, now, that there are no more mentions of s, s', s''! This is because the &quot;bind&quot; function takes care of them automatically when combining &quot;State s a&quot; objects (which are again just wrappers around (s -&gt; (s,a)) functions). </p>
+<p>So basically we've got a syntactically nice way of dealing with those state manipulation functions. Note that &quot;bind&quot; and &quot;return&quot; are just the Monad functions, so you can write code in this style for any Monad. </p>
+<p>Now, you may still be wondering &quot;What's the point of this? I don't have to do this in Python/Java/etc.&quot;. Well, the answer is that, compared to those two languages, Haskell is extremely simple. It has very simple semantics where all the information you need is in scope. There's no worrying about variables changing value or mutable references. It turns out that the semantics of a statement like &quot;x = x + 5&quot; in Python are, in fact, very complicated. You can explain it to a human fairly easily, but formalizing it for something like a type theory is quite challenging. Since Haskell's whole point is the nice type system, it sticks with pure and straightforward semantics. So, if you want to be able to write code like &quot;x += 5&quot;, you have to do it yourself! And the way people do this is the state monad. It lets you write imperative-looking code despite being built out of pure functions. </p>
+<p>So, TL;DR version:</p>
+<ol>
+<li>Make state explicit</li>
+<li>Turns out it's annoying to work with</li>
+<li>Use Monads and do-notation to make it both explicit and fairly easy to read/write. </li>
+</ol>
+<p>If this seems excessive to you, that's a reasonable opinion. Many would say &quot;just use an imperative language and be done with it&quot;. But the safety and maintainability benefit of being explicit should not be understated. It's also worth noting that this is the story of <em>just one</em> monad. There are many other monads that do similarly useful things, and are defined in similar ways. </p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

@@ -1,0 +1,69 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sudo_scientific" target="_blank">sudo_scientific</a>
+			<div class="markdown"><p>From a physics perspective, we most often model <a href="https://en.wikipedia.org/wiki/Harmonic_oscillator#Simple_harmonic_oscillator" target="_blank">simple harmonic oscillation</a> as the underlying mechanism for generating EM waves. In a harmonic oscillator, there is a force that counters any displacement from equilibrium, known as the restoring force. A <em>simple</em> harmonic oscillator is one in which this restoring force increases linearly with displacement. The equation of motion that describes such a system is sinusoidal.</p>
+<p>Thanks to some mathemagics, we can take our knowledge of simple harmonic oscillators and apply it to <em>any</em> periodic wave we want. This is thanks to two lovely properties of sines: <strong>completeness</strong> and <strong>orthogonality</strong>. This allows us to use <a href="https://en.wikipedia.org/wiki/Fourier_analysis" target="_blank">Fourier Analysis</a> to decompose any periodic function, even something like a <a href="https://en.wikipedia.org/wiki/Square_wave#Fourier_analysis" target="_blank">square wave</a>, into a bunch of sine waves.</p>
+<p>edit: Forgot to mention that it is easy to model an electron bound to an atom as a simple harmonic oscillator because the perturbation from equilibrium is generally small enough relative to its distance from the nucleus that the change in force can be approximated as linear</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Spanone1" target="_blank">Spanone1</a>
+			<div class="markdown"><p>What do completeness and orthogonality mean in terms of sine waves?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IAMAHEPTH" target="_blank">IAMAHEPTH</a>
+			<div class="markdown"><p>Completeness is sort of that you can take any smooth function and represent it as an infinite sum of sine waves; that they can be used as a basis from which to construct all normal functions.</p>
+<p>Orthogonality in this sense means that you can choose an infinite set of sin functions where they are independent from eachother; that is, if you integrate the product of two of them over all space they are either 1 if they are the same, or 0 if they are not. So if your set of sins is : {S1,S2,S3,S4...} where maybe S1 = 2.0<em>sin(4.0</em>x) or something like that, then Integral[S1*S2 dx] = 0,</p>
+<p>This means if you have some other function that can be represented as a sum of these sins : F = a<em>S1 + b</em>S2 + c*S3....</p>
+<p>Then you can pick out &quot;a&quot; by doing Integral[F<em>S1], because all of the others will be 0, and you'll just have a</em>Integral[S1*S1], which will just be some normalization.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/throwdemawaaay" target="_blank">throwdemawaaay</a>
+			<div class="markdown"><blockquote>
+<p>is there any intuitive reasoning why the ratio of sides in a triangle change in exactly the same proportion that a wave changes?</p>
+</blockquote>
+<p>Sin() and cos() have a much bigger role in mathematics than just letting you calculate the sides of triangles. Check out better explained's page on <a href="https://betterexplained.com/articles/intuitive-understanding-of-eulers-formula/" target="_blank">Euler's Formula</a>.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FailSnailV2" target="_blank">FailSnailV2</a>
+			<div class="markdown"><p>Electrical sine waves are beneficial for many reasons. However it is not the case that all electric/electromagnetic waves are sinusoidal. There are tons of different kinds of waves such as square, sawtooth, modified sine, etc. The type of wave depends on the application. Electrical sine waves are used predominantly in power distribution (3-phase power) because offsetting each wave by 120° results in the sum of the voltages at any time to be 0. Thus there will be no current flowing back on a common neutral.</p>
+<p>Back to your question there are vector math benefits to choosing sinusoidal waves as opposed to another kind of wave. However electrical waves aren't always inherently sinusoidal </p>
+<p>Sorry I'm on mobile, let me know if anything is unclear or needs to be explained.</p>
+<p>Source: Am electrical engineering student.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Michaelm2434" target="_blank">Michaelm2434</a>
+			<div class="markdown"><p>I think he meant electromagnetic waves as in physics (i.e. Maxwell's equations, etc.), not as electrical impulses in electrical engineering. So do electromagnetic waves propagating through <em>space</em> actually look like sine waves. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dutchguilder2" target="_blank">dutchguilder2</a>
+			<div class="markdown"><p>Energy can be transmitted through electro-magnetic waves. Electro-magnetic waves are propagated as a stream of individual photons. Photons move in a straight line. The intensity of the electrostatic and magnetic fields at the position of the photon oscillate in the shape of a sine wave. The more energy a photon has, the faster its EM fields oscillate.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/navier_stroke" target="_blank">navier_stroke</a>
+			<div class="markdown"><p>Well any &quot;non-sinusoidal&quot; signal can be represented by a Fourier series (sum of sine waves). So in theory and in practice, you can't distinguish wether of not a signal would actually be some arbitrary shape or if it is just a sum of a bunch of sine waves.
+Source: Am mathematical physicist.
+Disclaimer, I could be wrong. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cottonycloud" target="_blank">cottonycloud</a>
+			<div class="markdown"><p>Not all functions can be represented by a Fourier series. There are certain conditions that must be fulfilled, known as <a href="https://en.wikipedia.org/wiki/Dirichlet_conditions" target="_blank">Dirichlet conditions</a>. However, the signals you actually care about pretty much satisfy these conditions. </p>
+<p>Disclaimer: Did terrible in circuits</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/goalieca" target="_blank">goalieca</a>
+			<div class="markdown"><p>Pretty much true. Electrical engineering often does everything in the Laplace domain. Makes things a lot easier if you do math on frequencies and phases. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/throwdemawaaay" target="_blank">throwdemawaaay</a>
+			<div class="markdown"><blockquote>
+<p>However it is not the case that all electric/electromagnetic waves are sinusoidal. There are tons of different kinds of waves such as square, sawtooth, modified sine, etc. </p>
+</blockquote>
+<p>Any of these other waveforms can be exactly described as a sum of sinusoidal components.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/snailiens" target="_blank">snailiens</a>
+			<div class="markdown"><p>From what I understand, <em>anything periodic</em> can be described as a sum of <em>anything periodic</em>. </p>
+<p>So you could even go backwards, and describe a simple sine wave by using sums of ridiculously complex periodic function like electron density along one direction of a crystal!</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

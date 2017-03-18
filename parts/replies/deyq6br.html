@@ -1,0 +1,134 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/guyfleeman" target="_blank">guyfleeman</a>
+			<div class="markdown"><p>Computing has a long history of what is known as bootstrapping. Bootstrapping, in this context, refers to putting a state of computing in a higher level of abstraction. Abstraction is important because a programmer should not worry about the location of a transistor in the processor die. Once we bootstrap another layer of abstraction, we prefer never to return. Each layer has college educated experts making it the best it can possibly be without impacting a higher layer. I will answer the question by describing what I know as significant steps in bootstrapping a modern system from raw materials up.</p>
+<p>&nbsp;</p>
+<p><strong>Digital Foundations</strong></p>
+<p>The foundations of modern systems are digital. This means the data we care about is always true or false. Consider a system running on 3.3 volts. A digital true (1) might by any wire with a voltage over 1.5 and a digital false (0) might be a wire with a voltage below 1.5. Our world does not exist in digital, which is why true and false each have a range. Dealing with the reality of making digital exist in an analog world is the job of an Electrical or Computer engineer. I will talk more about this later.</p>
+<p>&nbsp;</p>
+<p><strong>The Diode</strong></p>
+<p>The first critical component we use in constructing a computer is a diode. A diode is an electrical component that only allows electrical current to flow in one direct. A diode works by creating seas and holes of electrons. You can read more about how diodes work on the Wikipedia page.</p>
+<p>&nbsp;</p>
+<p><strong>The Transistor</strong></p>
+<p>The transistor is really the bread and butter of digital electronics. Transistors are essentially built from two diodes. Therefore a transistor is bootstrapped from diodes. </p>
+<p>A transistor acts like a switch. You can think of a transistor like a light switch, where we have three pins. One is the source that is or is not allowed to flow. This is like the power coming from the street to your light switch. The second is is the output. This is the destination of the source. The third is the control line. The control like is like your hand, that switches the switch on or off. Because the control line is also electrical, this allows the output of one transistor to affect the control of other transistors. This is essential to understanding how components are built on top of transistors.</p>
+<p>&nbsp;</p>
+<p><strong>The Logic Gate</strong></p>
+<p>Basic logic gates can be constructed from about a dozen transistors or less depending on the gate. Therefore, logic gates are bootstrapped from transistors. A logic gate performs a logic operation. </p>
+<p>The basic logic operations are AND, OR, and NOT.
+&nbsp;</p>
+<p>true and true = true, true and false = false, false and false = false
+&nbsp;</p>
+<p>true or true = true, true or false = true, false or false = false
+&nbsp;</p>
+<p>not true = false, not false = true
+&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>The Component and Persistence</strong></p>
+<p>Now that we can logic, we can bootstrap useful components. This is first level of abstraction where the computer really starts to come together.</p>
+<p>First lets discuss persistence. Using logic gates we can create a component called a latch. A latch can store a single a digital value, called a boolean or binary value. Because this value is stored, it persists and is the most fundamental building block of memory. The name changes here from digital to boolean because we are out of the realm of construction and into the realm of logic and very very low level software. </p>
+<p>We can also use logic to create something like an adder that adds two numbers and produces a sum output.</p>
+<p>Imagine we have 4 latches that stores a binary number. Now connect the output of the latch to an adder. Wire the second input of the adder to a constant value of 1. Connect the adder's output back the latch. Now the latch represents a state, and every time a clock fires the state is incremented by 1. The current state determines the next state. We now have a computer, that exists entirely in hardware. It does one thing and accepts no input.</p>
+<p>&nbsp;</p>
+<p><strong>ISA</strong></p>
+<p>Now we leave the realm of hardware for the first time. We of course want to be able to interact with and moditfy the system. Enter software! Because software is non physical, we can define behavior dynamically. But wait. How does this software ever even get loaded? How does the processor read software?</p>
+<p>We need to begin by defining the lowest level interface to the software, called the Instruction Set Architecture or ISA. The ISA consists of instruction, that do one very simple thing. For exmaple, we might have an ADD instruction, a AND instruction, among others. In modern systems, an instuction is 32 or 64 bits. Each region of the bits denotes the type of instruction. Assume the processor has 32 lateches that store this instruction. The instruction currently being run is now the state, and since the state persists is can impact the future behavior of the processor. Assume the state is an ADD instruction. This tells the processor to activate the adder component, while disbaling the others such as the AND logic.</p>
+<p>&nbsp;</p>
+<p><strong>The Boot Code</strong></p>
+<p>Now that we have an interface to the hardware, called the ISA we can write software the process or can run. You probably refer to your computer as booting when it is starting. This is actually short for bootstrapping, becuase the software is bootstrapping itself onto the hardware for the first time. The initial code that is run is called the BIOS and changes very infrequently. It resides permanantely (sort of) burned into a chip on the physical machine. It will search for deivces like thumb drives and hard drives marked with a magic number (yes, this is a technical term). The magic number means a storage device contains an operating system like Windows, OSX, or Android. Execution is transfered to this operating system. The OS is still communicating with hardware through the ISA.</p>
+<p>&nbsp;</p>
+<p><strong>The Operating System</strong></p>
+<p>The Operating System or OS, si responsible for the communicating with the reset of the system. We still have a keybaord, mouse, screen, webcam, video card, wifi card, etc that we need to be able to use. The OS is signficantly larger than the boot code and is now prepared to talk with all of this. It contains the user interface and environment and will present this to the user when ready.</p>
+<p>&nbsp;</p>
+<p><strong>Userspace</strong></p>
+<p>Now the OS has put the machine into a state where a user can interact with it, the user has control over the machine. You can choose to install software like browsers and games. This software, depending on the language, either communcates directly through the OS or through the ISA. However, the OS now has protective measures over which parts of the ISA can be run and when. This prevents malicious userspace software from corrupting the machine's state.</p>
+<p>&nbsp;</p>
+<p><strong>Conclusion</strong></p>
+<p>Wow, so if you've made it this far I'm really impressesed. I few disclaimers, the steps I've described are the most basic and easiest, not necessarily the fastest. Since speed is so important, real implementation will probably vary. I've also omitted a lot of detail, obviously. If you are interested in any of this consider taking a college level systems class. I hope this was easy enough to follow. If you have question or have clarifications to suggest please comment below and I'll do my best to patch things up.</p>
+<p>-Cheers</p>
+<p>Edit: formatting</p>
+<p><strong>EDIT 2: Thanks for the gold kind stranger! This is my first gilded post!</strong></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Amadameus" target="_blank">Amadameus</a>
+			<div class="markdown"><p>Holy crap, thank you for answering SO MANY of the fundamental questions I've always had about computers!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ELFAHBEHT_SOOP" target="_blank">ELFAHBEHT_SOOP</a>
+			<div class="markdown"><blockquote>
+<p>Computing has a long history of what is known as bootstrapping.</p>
+</blockquote>
+<p>This actually reminds me a lot of the <a href="https://en.wikipedia.org/wiki/OSI_model" target="_blank">OSI model</a> for networking. It relies on the same principles of having layers that people perfect while not disturbing the other layers. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/guyfleeman" target="_blank">guyfleeman</a>
+			<div class="markdown"><p>Exactly. Actually, the intro to system course at my college throws in OSI at the end as an extra example of why big architectures need completely independent layers. </p>
+<p>Also, after switching to CS I'd argue this principle is lost to some degree. CS (unless you study architectures) doesn't really clearly explain the the OS/userspace isolation mechanisms and why they exist. As such, a lot of new CS folks write garbage software architectures. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GaiusCoffee" target="_blank">GaiusCoffee</a>
+			<div class="markdown"><p>I understand Logic Gates, Excel has those. I got lost at &quot;Component and Persitance&quot;, specifically</p>
+<blockquote>
+<p>Using logic gates we can create a component called a latch. A latch can store a single a digital value, called a boolean or binary value.</p>
+</blockquote>
+<p>How?^^^Magic?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JokeSlayer21" target="_blank">JokeSlayer21</a>
+			<div class="markdown"><p>A latch (also known as a flip flop) is a few gates arranged together to make a system with some inputs and an output. The latch will retain the output it has until it is 'clocked', meaning it is told to read the inputs and determine what the output should be. Depending on the gates inside, the flip flop will output different things.</p>
+<p>As far as the storing values goes, gates can be arranged to constantly output a value after receiving an input pulse. <a href="https://www.codeproject.com/KB/openGL/CircuitEngine/06_SRLatch.jpg" target="_blank">This diagram</a> shows a NAND storage system, a system of gates that outputs a value 0 or 1 at Q based on a pulse from the set or reset pins. When neither set or reset are active, the gates still hold their value because of how the gates react to inputs.</p>
+<p>So that's how gates and latches can hold a value. I hope that helped.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Anthonian" target="_blank">Anthonian</a>
+			<div class="markdown"><blockquote>
+<p>e 4 latches that stores a binary number. Now connect the output of the latch to an adder. Wire the second input of th</p>
+</blockquote>
+<p>Let me try to explain. You have transistors that can hold data (0 or 1). Once you can hold data, you can arrange those transistors to sort of make a chain of data, for example 110101011. This is called a register. By inputting voltage impulses, you can write a 1 or 0 into the chain. Do you know how all modern processors have a thing called the &quot;clock&quot;? </p>
+<p>Well, that clock tells you how many voltage impulses happen every second (few billion), which means that for every second that passes, you can write billion ones and zeroes into this chain. This is huge amount of information and this is important because computers basically do very simple things very fast, key word being fast.</p>
+<p>You can also arrange transistors to add numbers. How? We already said that transistors are a switch, and there is a way to connect many of these switches so that when you let current flow through this circuit with switches, you can get 2 states in the back of the circuit. No current (1), or some current (0), depending on which switches were open or closed. This circuit is called an adder. So, adder takes 2 numbers, for example a 000 and 111 from those chains that hold numbers that we mentioned earlier (current flows into adder on 000 parts, and does not flow on 111 parts), and adder spits some other currents on its end, and those resultant currents that came out is our number! In this case it would be a 111, or number 7 in binary. </p>
+<p>To make it clearer, let's say you want to do 0+1. On adder input, current flows into adder to represent &quot;0&quot; , and does not flow to represent &quot;1&quot;. Adder output has also 2 &quot;places&quot; where current can flow, and the resulting currents will make a 01, which is 1.</p>
+<p>Now we can store numbers, and add numbers. Adders also work by voltage impulses, so you can store and add billions of numbers per second. To put things into perspective, adder takes about 30 transistors, a register takes about 30 also. A modern CPU has few billion transistors, so imagine how many adders and registers that is!</p>
+<p>So how does this translate into magic that you can see with your eyes right now? This is hard part to get becuase it's built upon many decades of abstraction. Nowadays programmers dont need to know how computers works, which is ironic. This is all because of abstraction. What is abstraction? If you are an early programmer, you would know how every bit is cylced through your processor. You look at transistor level. Add some abstraction, now you are looking at logic gates. Add some more abstraction, you are now looking at adders and registers. Add even more abstraction, you are now looking at special units, for example arithmetical-logical unit. </p>
+<p>Add huge amounts of abstraction and you can type INT 5 in some programming language. Computer has just stored a number 5 (which is a decimal number) in its memory , it recognized INT (integer), which are letters! Keep in mind that computer only works in binary, there are no decimal numbers, and god forbid letters. Do you understand how abstraction made things magical, computers can understand decimal numbers, even letters! </p>
+<p>Best analogy I can think of is human body. Today you just type &quot;run&quot; and human will run. In the old days you would need to tell every cell in humans body when to release energy to make a running motion. Tedious thing for certain, which is exactly why we use abstraction.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/guyfleeman" target="_blank">guyfleeman</a>
+			<div class="markdown"><p>So each OR gate has two inputs and one output right? Assume you have two or gates. You can actually connect the output of each to the input of the other. The hardware state will settle. Giving current to one of the two OR gates will set that side high. The other side will be low. Give current to the opposing side and the whole state reverses. Choose one OR output as the circuit output and you now have the simplest latch you can construct. Hope this makes sense. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DizzyEwok" target="_blank">DizzyEwok</a>
+			<div class="markdown"><p>If you want to look into it on a transistor level, you need to start with semiconductor devices and how silicon lets us make electronic switches (transistors). <a href="https://ecee.colorado.edu/~bart/book/contents.htm" target="_blank">This might be a good start.</a></p>
+<p>Once you have transistors down, you can see how these switches can be combined to do logical operations - AND, OR, NAND etc. With a combinational logic circuit, you can start to do things like arithmetic.</p>
+<p>Logic blocks like this can be combined together with a number of other components to form a CPU. Look into courses in Computer Architecture to see how this works. Modern CPUs are quite complex, but simpler systems like ARM chips are possible to understand.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/1bc29b36f623ba82aaf6" target="_blank">1bc29b36f623ba82aaf6</a>
+			<div class="markdown"><p>I don't have any good sources for the actual electrical part but once you get to the stage of having logical 0s and 1s then <a href="http://nand2tetris.org/" target="_blank">http://nand2tetris.org/</a> is excellent learning material to understand how ALU's and CPU's are actually composed of very basic building blocks.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xPURE_AcIDx" target="_blank">xPURE_AcIDx</a>
+			<div class="markdown"><p>Instead of ARM, i found the 8-bit AVR platform to be a great place to learn about cpu architecture and embedded systems.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xxkid123" target="_blank">xxkid123</a>
+			<div class="markdown"><p>The textbook &quot;introduction to computing systems&quot; by patt and Patel is easily found online in PDF form. It explains starting from the simple circuit and transistor level how a simple CPU can be made (called the LC3 architecture and ISA) and programmed.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/UncleMeat11" target="_blank">UncleMeat11</a>
+			<div class="markdown"><p>Read CODE by Petzold. It is the best book ever written on the topic and is targeted at nonexperts. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/unknownmat" target="_blank">unknownmat</a>
+			<div class="markdown"><p>I want to emphasize this suggestion. I recently finished Petzold's <em>Code</em> and would recommend it to anybody seeking to understand the apparent &quot;magic&quot; of how a computer can work.</p>
+<p>This book encapsulated a good chunk of my undergrad in just a few short chapters. I particularly like the early subject progression. Each chapter builds on the last and you never get to a point where you are wondering &quot;Why is this relevant?&quot; This book does a good job of hand-holding you through the basics of arithmetic and branching and code execution. These topics are presented in a timeless manner that makes this book a classic. </p>
+<p>That said, the later chapters (e.g. Operating Systems, graphics) were not very good. These chapters stopped trying to explain the topic and switched into a brief and opinionated history from the perspective of 1999. They have not aged well.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/UncleMeat11" target="_blank">UncleMeat11</a>
+			<div class="markdown"><p>Yeah the book peters out towards the end. No disagreement there. </p>
+<p>But, for my money, it remains the best book ever written on the topic. I recommend it to everybody who asks me about the basics of computing. In 10 years of higher education in CS I've never come across a book that was anywhere close (even the highly regarded nand2tetris).</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PM_Me_Ur_AyyLmao" target="_blank">PM_Me_Ur_AyyLmao</a>
+			<div class="markdown"><p>I share your sentiments about the later chapters. Do you know any books that picks up where <em>Code</em> left off, so to speak? Something similar but with more emphasis on the details of operating systems.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
