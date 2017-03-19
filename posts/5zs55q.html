@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: If Pac-Man's maximum level is 255 because it's the highest decimal number you can store in 8-Bit binary, how come it can count the score up to millions in decimal even though it's still 8-Bit?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="5zs55q">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/5zs55q/eli5_if_pacmans_maximum_level_is_255_because_its/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/5zs55q" onclick="return false">If Pac-Man's maximum level is 255 because it's the highest decimal number you can store in 8-Bit binary, how come it can count the score up to millions in decimal even though it's still 8-Bit?</a>
+		</h2>
+		<!--<span class="date">2017-03-19</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: If Pac-Man's maximum level is 255 because it's the highest decimal number you can store in 8-Bit binary, how come it can count the score up to millions in decimal even though it's still 8-Bit?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="df169a5">
+		<a class="author" href="https://www.reddit.com/user/rockandroll1991" target="_blank">rockandroll1991</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The issue with the levels is a result of the 8-bit processor using a single byte (8-bits) to store the current level value. The score is a whole other animal. Depending on methods for display, two different solutions can be used. </p>
+<p>One of the solutions is space hungry and fast, while the other is less space hungry but requires more process time to display. The faster solution (used in many NES games, but would apply here) is to use a single byte to store each digit. The space is lost because you only need 4 out of the 8 bits to store binary coded decimal (BCD) values. Then all you need is a number of bytes to store data into that is equal to the number of digits that you need to be able to change. The other method (used by Vs.Duck Hunt for certain, but likely others as well) is to store BCD values of the 0-99 range in a single byte as it would use less memory, but the program would have to break each 4-bit component (nybble) of the number out for display reasons. This of course requires more process time to complete as you'd be not only breaking out the nybbles but then (possibly converting them into correct graphics data) and dumping that information to display memory. </p>
+<p>Trailing zeroes may not be stored in these ways as the game may never change those values. Simply put, if no earned score value is lower than 100, the two trailing zeroes are just plain text, which further reduces needed storage allowing larger numbers. This would result in needing only 5 bytes to store scores in the millions per method 1, and 3 bytes to scores in the millions per method 2.</p>
+<p>After all that, the final limiting factor is the display space to show the player the values in the memory. Even if you can store values in tens of millions (method two, assuming no score quantities under 100 pts.), you won't be use all the space if you can't display all the values on the screen.</p>
+<p>These are the common ways to do this as it simplifies the math routines needed to update the score information. </p>
+<p>Source: Know 6502 assembly language and have begun attempting to write a NES game on my own.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="df0ktuk">
+		<a class="author" href="https://www.reddit.com/user/drafterman" target="_blank">drafterman</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They only reserved 8 bits for the level, resulting in 255 being the maximum level. The maximum score for pacman is 3,333,360 points, but that limitation is determined by limited ways you can earn points to begin with. You need at least 21 bits to express 3,333,360, so it is likely that they reserved at least 24 bits (since bits usually come in multiples of 8) to store the score information.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="df1bjr9">
+		<a class="author" href="https://www.reddit.com/user/m477m" target="_blank">m477m</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Oh boy, you're one of today's <a href="https://xkcd.com/1053/" target="_blank">lucky 10,000</a>!</p>
+<p>The reason behind the kill screen is more complicated than simply wrapping around from 255 to zero. Here's a full explanation: <a href="http://www.donhodges.com/how_high_can_you_get3.htm" target="_blank">http://www.donhodges.com/how_high_can_you_get3.htm</a></p>
+<p>It's totally possible for an 8-bit processor to work with larger numbers than 0-255 - such as the Pac-Man score. The only restriction is that it has to deal with 8 bits <em>at a time</em>. For example, I used to program a Commodore 64 which had an 8-bit 6510 processor, and the way to do larger numbers was to use a &quot;low byte&quot; and a &quot;high byte.&quot;</p>
+<p>By using two bytes, you could represent 16-bit numbers: the high byte's eight bits represented the bits that stand for 256, 512, 1024, ..... to 32768; while the low byte's eight bits represent the 1, 2, 4, 8, 16, ... to 128. This way you could go not just from 0-255 (256 = 2^8), but from 0-65535 (65536 = 2^16).</p>
+<p>Using three, or four, bytes would allow for numbers up to 16.7+ million or 4 point something billion, respectively.</p>
+<p>Edit: oops, wrong link; that was for Ms. Pac-Man. I think the original is on that same site somewhere.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="df11213">
+		<a class="author" href="https://www.reddit.com/user/ricardoromero4444" target="_blank">ricardoromero4444</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They allocated 8 bits of memory to the level counter. That is, the level can be at max &quot;11111111&quot;binary.
+They allocated more than 8 bits of memory to the score counter, which is why it can go higher.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="df1jazv">
+		<a class="author" href="https://www.reddit.com/user/ElMachoGrande" target="_blank">ElMachoGrande</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Even on an 8-bit processor, you can handle larger numbers, but for each variable in the program, you decide how large it should be. So, they expected the core to be large, and used a large variable. They didn't expect anyone to beat 255 levels, so they used a small variable for that.</p>
+<p>Why not always use the largest variable available?</p>
+<p>Two reasons:</p>
+<ul>
+<li>
+<p>Speed. Since the CPU can only work with 8 bits at the time, every operation needs to be don on chunks of the variable, meaning more operations.</p>
+</li>
+<li>Memory. On these early systems, memory restrictions were a very real issue. Every byte counted, so programmers always strived to use the smallest variably available.</li>
+</ul></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/5zs55q" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

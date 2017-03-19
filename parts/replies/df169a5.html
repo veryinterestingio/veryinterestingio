@@ -1,0 +1,19 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/schmerm" target="_blank">schmerm</a>
+			<div class="markdown"><p>Why not use several fully-encoded bytes together to store larger integers (two could store 0-65535). Is there no ADC (add with carry) instruction on the 6502? I guess even if there were, decoding it into decimal for display purposes would be expensive (divide/mod by 10).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rockandroll1991" target="_blank">rockandroll1991</a>
+			<div class="markdown"><p>While you can use the fully encoded byte method (6502 does indeed have ADC instruction employed in a myriad number of BASICs on 6502 personal computers), the issue really is a matter of both necessity and speed, it isn't really necessary to get the storage quite that tight as you are only going to deal with a finite range of numbers (say 1-10,000 internally). If there was a need to work with very large numbers or decimals, any sort of complex math really (things you'd do with a computer, not a video game so much in those days), then you'd then want to use full encoding, but when you have a 1 MHz processor running something that is largely visual, it really becomes a matter of speed, effectively racing the screen blanking to prep the next frame, and when it comes to speed, the faster, the better. So, even though you can parse a fully encoded number back to a decimal view, it does take time (potentially too much time). To alleviate that issue of it being slow, we use a less efficient method of encoding the numbers (less compression), requiring simpler (and faster) means of breaking the numbers out to the display.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KaptainKlein" target="_blank">KaptainKlein</a>
+			<div class="markdown"><p>Is half of a byte really called a nybble?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rockandroll1991" target="_blank">rockandroll1991</a>
+			<div class="markdown"><p>Yup, threw me for a loop the first few times but they are indeed a four bit component of a byte. However, the values of each half varies depending on whether it's the high order or low order nybble. High order nybbles (the 1 in $12) will be equal to 16 (in decimal) and the low order nybbles (the 2 in $12) will be equal to 2 (in decimal).</p></div>		</li>
+					</ul>
+		</ul>
+	
