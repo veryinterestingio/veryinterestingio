@@ -1,0 +1,55 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tablesix" target="_blank">tablesix</a>
+			<div class="markdown"><p>how about if a large network of users were to act as proxies? Try to pair users to a single proxy ip for as long as possible, and only allow a small handful to pair to that ip. </p>
+<p>Hypothetically, if this network existed, how might it be defeated by Netflix?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Wolfturn" target="_blank">Wolfturn</a>
+			<div class="markdown"><p>Nice idea for a new style of VPN. But I dont think it would work, because what if someone used that VPN to download illegal content, and then it would get traced back to you. That could be a potential problem. </p>
+<p>How Netflix would track it? No idea if they could</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RiPont" target="_blank">RiPont</a>
+			<div class="markdown"><blockquote>
+<p>How Netflix would track it? No idea if they could</p>
+</blockquote>
+<p>Pretty easy with a probabilistic approach.</p>
+<p>1) Keep track of known VPN users and don't block them immediately.  They are now your <a href="https://en.wikipedia.org/wiki/Judas_goat" target="_blank">Judas Goat</a>.</p>
+<p>2) When these flagged users start coming in through new IPs, you flag those new IPs as suspicious.</p>
+<p>3) Examine traffic from these suspicious IPs. As /u/Lisurgec pointed out, any VPN or proxy leaves telltale marks in the raw traffic.</p>
+<p>4) Once you have identified IPs as known VPNs, you keep track of what users are using it for a while before blocking it.  These users are your next batch of Judas Goats.</p>
+<p>But then, there's the even easier way!</p>
+<p>In most countries, using a VPN isn't illegal by itself.  You hire a local for cheap (plus expenses) to sign up for as many VPN services as they can and sign into Netflix from a known account, then track that account's traffic all the way from the client to Netflix.  Gives you a very complete map of the VPN network when you control both the client and the destination.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/YetAnotherABDL" target="_blank">YetAnotherABDL</a>
+			<div class="markdown"><p>IIRC Media Hint used to do this is you were a free customer (They long ago went behind a pay wall) They also offered a paid service to companies that would use their customers to access websites autonomously so they could get a snapshot of what their website looked like from different places in the world and configurations.</p>
+<p>The downside would be Alice is the proxy and Bob is connecting to Netflix via Alice what happens to bob's proxy connection when Alice shuts down her computer at the end of her session, Alice temp disables the plugin (as it was a browser plugin iirc) because it is consuming too much bandwidth (Alice may be on a metered connection or just wants to use her full speed to download a large file) or if Alice simply closes her browser.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xenoterranos" target="_blank">xenoterranos</a>
+			<div class="markdown"><p>This is basically how parts of TOR work.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/vbpatel" target="_blank">vbpatel</a>
+			<div class="markdown"><p>So if I were to get a vps in another country and set up my own VPN, it would remain unknown and unblocked?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/YetAnotherABDL" target="_blank">YetAnotherABDL</a>
+			<div class="markdown"><p>Maybe. It's what I do and so far I've been ok. BUT you don't know who has had the IP before you. I've had issues in the past where I've span up a new VPS for a customer and its IP was email blacklisted because its previous user was a dick, you don't know until you get the IP to check. But with the cost of VPS's these days it wouldn't take long to find out if your blacklisted, destroy the VPS and spin up another and get another IP to try.</p>
+<p>I don't do any work for streaming services that geoblock but it would be fairly easy to blacklist the whole of lets say Amazon, Digital Ocean, Linode, OVH and Vultr's IP allocations then whitelist them as the need presents.</p>
+<p>It all depends on how much effort and resources providers such as Netflix want to put into defeating VPN's and their contractual obligations into defeating them. For example they might start auditing customers billing addresses (which could be pulled from the card data) to the libraries they are accessing and look into the addresses that customer is connecting from. Their contracts may say that as long as Netflix do a best effort in blocking the larger VPN's that advertise they can proxy Netflix (For example I watch a lot of Linus Tech Tips, their baked in ad's for a VPN provider used to advertise the fact that you could use the service to avoid geoblocking but their recent ad's have dropped that claim) then they are good and don't need to catch every &quot;VPNer&quot;. It then becomes a case of can Netflix be arsed to track down every VPNer as they have met their obligations.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blackmanrgh" target="_blank">blackmanrgh</a>
+			<div class="markdown"><p>Technically yes! I've done something similar to access Hulu from the UK.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/k0rm" target="_blank">k0rm</a>
+			<div class="markdown"><p>I thought IPv6 was going to allow for anyone to grab any address they want on boot. The address space is so large that collisions are improbable.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/YetAnotherABDL" target="_blank">YetAnotherABDL</a>
+			<div class="markdown"><p>But blocks of address are still allocated (like in IPv4) but much larger blocks can be allocated instead. A network may be allocated 2001:db8:1234:0000:0000:0000:0000:0000 and ends at 2001:db8:1234:ffff:ffff:ffff:ffff:ffff and a single customer on that network may be allocated 2001:db8:1234:0000:0000:0000:0000:0000 to 2001:db8:1234:0000:0000:0000:0000:ffff by that network which would give that individual customer 65,536 addresses.</p></div>		</li>
+					</ul>
+		</ul>
+	
