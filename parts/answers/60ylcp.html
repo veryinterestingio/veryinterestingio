@@ -1,0 +1,65 @@
+<div class="answers">
+	<div class="answer" data-handle="dfar47l">
+		<a class="author" href="https://www.reddit.com/user/rocketsocks" target="_blank">rocketsocks</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Sure, and one cpu does just that. But 64-bit code has several advantages. For one the address space is bigger, so you aren't limited to using only 4 gigs (in practice closer to 2 gigs) of ram and can use up to terabytes of ram for a single process if you want. For another the 64 bit instruction set is a bit better and more &quot;powerful&quot; in general. There are more registers, for example, and this enables 64-bit programs to achieve higher performance on the same cpu.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dfat6yx">
+		<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Today some CPU architectures offer backwards compatibility with 32-bit instruction sets. amd64 is binary-compatible with x86, AARCH64 (ARMv8-A) offers AARCH32 compatibility via exception level switching, MIPS64 also offers a compatibility mode with MIPS32, etc.</p>
+<p>An application developer has the choice of supporting only 64-bit or 32-bit environments. Doing so loses a market chunk, because people still own 32-bit computers, and can't (or won't) transition overnight. Therefore it's not a decision that makes market sense, but could be motivated by other reasons.</p>
+<p>A library developer has the choice of supporting only 64-bit or 32-bit applications. Doing so might prevent applications from using it, but this is somewhat contrary to what we develop libraries for: providing useful abstractions to application developers. What's more, if a library developer suddenly decides to discontinue their 32-bit library version, they create maintenance problems for applications which can't move to 64-bit environments, because they have 32-bit users they want to support.</p>
+<p>So, since we have CPUs which can execute 32-bit and 64-bit code, why do we distinguish between binary &quot;versions&quot;?</p>
+<p>The answer is the application binary interface (ABI). The ABI specifies how applications handle their low-level interaction, such as:</p>
+<ul>
+<li>how are values encoded,</li>
+<li>what types are natively supported, what are their formats and the sizes of values of each type</li>
+<li>the <a href="https://en.wikipedia.org/wiki/X86_calling_conventions" target="_blank">calling conventions</a> - how are functions called, who saves state where, who cleans up after whom...</li>
+<li>in what way the programs need to be set up in memory to be executed</li>
+<li>how loaders resolve symbols (and by extension, how compilers generate symbol references), which in turn defines how libraries work</li>
+<li>and many more</li>
+</ul>
+<p>So is there a reason ABIs for 32-bit and 64-bit applications differ so much as to be different? I'm glad you asked.</p>
+<p>One reason we want(ed) to leverage 64-bit architectures is to increase word sizes. Generally, that helps us process more data per unit of time, and thus increasing throughput for CPU intensive operations. To take advantage of this usefulness in user programs, we have to specify this change in type's width in the ABI, thus changing it.</p>
+<p>Another reason is to leverage a greater amount of addressable memory. As the range of possible memory values increases, our programs' symbol references have to be adjusted from a maximum of 32-bit width. Thus, the format of symbol references in binaries change drastically, and so must the ABI.</p>
+<p>There many more reasons which also reflect changes in the various ABIs, but I fear we may be getting too technical. I could go into depth for those interested, though.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dfass8z">
+		<a class="author" href="https://www.reddit.com/user/NotFakeRussian" target="_blank">NotFakeRussian</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Specifically with x86-64?</p>
+<p>x86-64 still implements the full 32 bit and 16 bit instruction set, so the CPU can run 32 bit code natively.</p>
+<p>The reason to recompile for x86-64 is to take advantage of the new 64 bit functions, bigger general purpose registers (64 bit), increased number of registers, larger address space, enhanced SSE instructions and NX bit.</p>
+<p>Not all of those features are strictly 64 bit, but were introduced at the same time. In a similar way to the SIMD enhancements have been introduced over time.</p>
+<p>What this means is that code can be optimised to run faster on x64, and programs can (more easily) address memory larger than 4GiB. For software that deals with large datasets (eg video, images, database), the increased virtual address space is very useful.</p>
+<p>The end result is, like code that has been optimised for SIMD, it runs faster if compiled for x86-64, and potentially makes some operations with large data feasible.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dfbcs3f">
+		<a class="author" href="https://www.reddit.com/user/DrColdReality" target="_blank">DrColdReality</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This happens to be exactly what I'm currently up to, converting a <em>horrifyingly</em> convoluted and poorly-written 32-bit code base to 64-bit.</p>
+<p>The main issue is greatly-improved performance. Modern CPUs have optimized 64-bit instructions and registers that can run much faster than their older 32-bit counterparts.</p>
+<p>And then there's the memory issue. In 32-bit programs, the size of a pointer is 32 bits, so the largest amount of memory that can be addressed is 4 GB (from 0 to 2^32 - 1). In the Windows world, each process gets its own <em>virtual</em> 4 GB address space, but only a little under 2 GB of that is available for the program writer to use, the rest is reserved for the OS.</p>
+<p>In 64-bit, pointers can theoretically address a whopping 16 EXAbytes. However, current versions of Windows restrict that to a 32 TB virtual memory space per process, with 16 TB available for the user.</p>
+<p>Right now, our code base is bashing right up against that 32-bit 2 GB memory barrier, and there's nothing that can be done to fix that, aside from using external storage as memory, which is many orders of magnitude slower than RAM. So, we're converting to 64 bit.</p>
+<p>Microsoft is said to be currently working on 128-bit Windows.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dfau47v">
+		<a class="author" href="https://www.reddit.com/user/RandomRobot" target="_blank">RandomRobot</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>When you compile a program, a LARGE bunch of stuff gets hard coded inside your resulting binary. Most of it takes form of relative addresses. For example, when you call function <code>foo</code>, the compiler knows that function <code>foo</code> is at that specific location inside your binary so execution flow can proceed correctly. This would be a problem if your binary gets very large. A 64 bits compiler would handle things smoothly, but how would it work when you &quot;downgrade&quot; to 32 bits?
+Then there is the problem of managing memory within the application. What if your program allocates huge chunks of memory, larger than 4GB? A 64 bits compiler would ok this operation, but once you execute that in a 32 bits environment, it will fail.</p>
+<p>Another problem is that the 64 bits architecture also creates new CPU instructions, because manipulating 64 bits at a time is now possible. </p>
+<p>This leads us to the problem of linking with 64 bits libraries. What if the 64 bits libraries need those operations? How can you tell from your program how an external library will use its memory and its instruction set?</p>
+<p>Long story short, 64 bits programs can do a lot more than 32 bits programs. Sure, it would probably be possible to add at least one layer of emulation to check / redirect those operations everywhere at run time, but it is rather complex, error prone and slow. Another solution would be to tell the compiler to avoid those situations, but it would result in creating a 32 bits program with a 64 bits compiler. Making those checks at compile time is much much easier and creates hard guarantees about your program behavior. This is why running 16 bits programs in a 32 bits environment is possible and likewise, running 32 bits programs in a 64 bits environment is also possible, but downgrading the architecture is not.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>

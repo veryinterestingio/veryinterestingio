@@ -1,0 +1,68 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tomtomtom7" target="_blank">tomtomtom7</a>
+			<div class="markdown"><blockquote>
+<p>There are more registers, for example, and this enables 64-bit programs to achieve higher performance on the same cpu</p>
+</blockquote>
+<p>It should be noted that 64-bit  is not always faster.</p>
+<p>64-bits also means that all pointers are twice as big which means data-structures are larger. </p>
+<p>Due to the high cost of cache-misses and page-swaps, larger data-structures tend to make software slower.</p>
+<p>Applications that don't use a &gt;4GB address space, can ofter be faster when compiled at 32-bit; this is one of the reasons that for instance, Visual Studio is still 32-bit.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nephros" target="_blank">nephros</a>
+			<div class="markdown"><p>Which is also the reason the Linux (and glibc, and gcc) people came up with the <a href="https://en.wikipedia.org/wiki/X32_ABI" target="_blank">&quot;x32&quot; architecture</a>: all the 64-bit instructions, but 32-bit addresses. In theory that should avoid the memory slowness problems and have all the benefits (registers, instruction set) of a 64bit CPU (but retains the 32bit/4G memory limit).</p>
+<p>Sadly, not much came of the idea as few people use it.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SynbiosVyse" target="_blank">SynbiosVyse</a>
+			<div class="markdown"><p>What about PAE for 32bit CPUs to get past the 4GB limit?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NilacTheGrim" target="_blank">NilacTheGrim</a>
+			<div class="markdown"><p>Right.  It's very important to point this out.  I recently wrote a program to perform some intense integer math to simulate something for a researcher -- and it didn't actually need to be 32-bit as all the simulation didn't need numbers larger than 1 billion.  The 32-bit version of the program performs about 10% faster -- likely due to it being able to hold larger parts of the program and data in the fastest level of the cache as it burns through its tight for() loops crunching numbers.</p>
+<p>But for things that really need to see large amounts of memory at once (like a game with big textures, or video editing or sound editing software, perhaps), then it pays to be able to see more than 2GB of memory at once even if you get more cache misses, and the 64bit version will be much faster.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rlp" target="_blank">rlp</a>
+			<div class="markdown"><p>32-bit integers are the same size on 32-bit and 64-bit, and the same amount of them should fit in cache under either architecture, unless you run into struct alignment issues.  I imagine the 32-bit compiler was just applying some different (not necessarily 32-bit specific) optimizations than the 64-bit compiler, and those happened to work better for your use case.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/2Punx2Furious" target="_blank">2Punx2Furious</a>
+			<div class="markdown"><p>So, could a program compiled in, say, 8-bits be even faster than a 32-bit program if done right?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BobHogan" target="_blank">BobHogan</a>
+			<div class="markdown"><p>Technically yes, under ideal circumstances. But there is no real world scenario where this would hold because of what happens in modern operating systems and applications. </p>
+<p>The amount of times that the CPU would have to refresh teh registers and cache, on top of a bunch of other instructions to do the work (which would need more than 8 bits to do almost everything) would end up making it significantly slower.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/snhmib" target="_blank">snhmib</a>
+			<div class="markdown"><p>The thing is that with 1 byte pointers you will have a whopping total 256 addressable bytes for your program :D</p>
+<p>Typically processors with 8bit registers (space for arithmetic operations) will have a larger data pointer register. So you'll have to use extra instructions to calculate memory addresses, possibly negating any time saved from cache misses.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rabid_Gopher" target="_blank">Rabid_Gopher</a>
+			<div class="markdown"><p>Just responding to the idea of it, I don't really know for sure.</p>
+<p>My understanding is that 32-bit programs have a significant number of more available instructions for more complicated tasks.  64-bit has more again, but most people don't use them so they don't worry about it.  If you wanted to compile an 8-bit program, you would need to make sure all of the commands you wanted to use were among the list of instructions on an 8-bit processor.  If that is the case, then probably faster yeah.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Osbios" target="_blank">Osbios</a>
+			<div class="markdown"><p>You do not get to use the full 4 GiB with 32 bit application. Because you have all the operationg system stuff and libraries mapped into the application address space. Also the address space will fragment and give you even less room to work with. And that is a very big issue that 64bit solves.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Avernar" target="_blank">Avernar</a>
+			<div class="markdown"><p>Actually, a 32-bit process under 64-bit Windows can use most of the 4GB address space, minus that used for libraries.  It needs to be compiled with the /LARGEADDRESSAWARE linker flag however</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EricPostpischil" target="_blank">EricPostpischil</a>
+			<div class="markdown"><p>This answer supports a reason to build for 64-bit, by presenting reasons why 64-bit may be better, but does not give any reason to build for 32-bit and hence does not answer the question why we must build for both.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Wynro" target="_blank">Wynro</a>
+			<div class="markdown"><p>You are right. I'm going to try to give a more complete answer.</p>
+<p>Basically, it all boils down to size. 32 and 64 defines some of the sizes of certain elements in a computer, like bus sizes (number of cables) and pointer sizes (size of RAM memory addressable, as OP commented) so its simply impossible to execute 64 bits in 32 bit architecture. Literally, it does not fit.</p>
+<p>The case of &quot;why not 32 bit in 64 bit?&quot; requires another explanation. Let's consider that you have a data structure with 2 pointers. In the case of 32 bit, the structure has 64 bits, where the first pointer starts in the bit 0 and the second pointer starts in the 32th bit. In the case of 64 bit, the structure has 128 bits, and the second pointer starts at the 64th bit. What happens when a 64 bit computer tries to read a 32 bit-adapted structure? It reads outside of the structure and stuff breaks.</p>
+<p>I'll try to format this better in the computer</p></div>		</li>
+					</ul>
+		</ul>
+	
