@@ -1,0 +1,36 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ex_fat_64" target="_blank">Ex_fat_64</a>
+			<div class="markdown"><blockquote>
+<p>Each of those modules contains 47,000 pixels (so 80 million total). The beams are manipulated so that they collide with each other 40 million times a second, so all 80 million pixels must be read 40 million times a second. </p>
+</blockquote>
+<p>Just checking the numbers on the above...</p>
+<p>Presuming every pixel is 1 bit, as a simplification to start, those 1 bit <em> 80e6 pixels </em> 40e6 per second = 32e14 bits per second = 400 TB per second.</p>
+<p>So ATLAS produces 400 TB of raw data per second? </p>
+<p>That seems awfully large to quickly get down to hundreds of MB even per second.</p>
+<p>Is it that only a subset of those 80e6 pixels fire? Or is my calculation wrong?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SantasDead" target="_blank">SantasDead</a>
+			<div class="markdown"><p>All of the pixels are not collecting or being exposed to data 100% of the time.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ex_fat_64" target="_blank">Ex_fat_64</a>
+			<div class="markdown"><p>Thanks. I thought so, but wanted to clarify.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/evensevenone" target="_blank">evensevenone</a>
+			<div class="markdown"><p>Yeah, unless something interesting happens the data never even leaves the module. Each module has 16 frontend chips with 2880 individual pixels each; they read each pixel and determine if something happened according to some threshold. Those chips send their data to another chip that decides what to forward out of the module.</p>
+<p>All that data eventually ends up in a computing cluster which combines data from all the modules and decides what to save. </p>
+<p>The modules themselves are pretty impressive because they've got to withstand the intense radiation and they're doing a non-trivial amount of computing.</p>
+<p>source: <a href="http://www.slac.stanford.edu/econf/C020909/mgspaper.pdf" target="_blank">http://www.slac.stanford.edu/econf/C020909/mgspaper.pdf</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blurpprulb" target="_blank">blurpprulb</a>
+			<div class="markdown"><p>You're not wrong, but /u/evensevenone was being a little misleading when they said 'all 80 million pixels must be read 40 million times a second'. As he mentioned later most of the events are thrown away, precisely because it is too much to keep everything. Roughly 100 thousand events per second pass a prelimnary selection. Then only ~1000 events per second are ultimately written to disk. </p>
+<p>Furthermore the preliminary selection does not readout all of the pixels in that the data is only ever stored on local electronics where it is buffered until it is either read out or thrown away. The pixels are not used at all in the first round of event selection. The vast majority of pixel data is thrown out within  a few microseconds of being recorded based on analysis of signals in other parts of the detector. There are plans to include pixel data earlier in this process, but even then it will not be at the full 40 MHz, and will target regions of particular interest for the event reading.</p>
+<p>Also because most pixels on a given event  do not get a signal above their threshold data compression can be done at a very low level on the raw events without losing any information.</p>
+<p>On the other hand its not true that pixel information is only one  bit, it tells you a bit more than just hit/no-hit (however there are other subsystems that use such a binary readout). And its worth remembering that the pixel system is just one subsytem of the detector. By the way what I've said is true for pixels, but not correct for other subsystems which are more involved in the preliminary decision making.</p>
+<p>In all the final data recorded to disk by ATLAS is ~1GB/s if I remember correctly. </p></div>		</li>
+					</ul>
+		</ul>
+	
