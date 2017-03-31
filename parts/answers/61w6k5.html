@@ -1,0 +1,47 @@
+<div class="answers">
+	<div class="answer" data-handle="dfi7wxn">
+		<a class="author" href="https://www.reddit.com/user/kwaaaaaaaaa" target="_blank">kwaaaaaaaaa</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'm going to assume you are talking about something like school workstations or business/office laptops. </p>
+<p>While true that there is a factor to defending against brute force attacks. These computers also tend to be part of a network where a single server has all the username and password stored. When you login, it will connect to the network and check with this server if your password is valid. Once confirms that it is a match, it stores this password temporarily on your computer. Now you're able to use the computer.</p>
+<p>So the next time you login with the <strong>correct password</strong>, it doesn't connect to the network, it just quickly checks if it matches the locally stored copy of the password. If it matches, you're good to use the computer. Because the speed it takes to check for a match on the computer is essentially processing speed, it feels almost instant.</p>
+<p>Now, lets say you type in the <strong>wrong password</strong>, what happens next? Well, it <em>still</em> checks with the locally stored copy, except this time, it <strong>doesn't match</strong>. So, since it doesn't match, <strong>one of two things must be true</strong>.</p>
+<ol>
+<li>
+<p>Your password is truly wrong.</p>
+</li>
+<li>Your password is actually correct, but the temporary copy stored on the computer is not up to date since the last time it connected.</li>
+</ol>
+<p>So it connects to the network server and checks. This extra step is what most people associate with the wrong password taking much longer, and especially exaggerated when the quality of the connection is slow.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dfhrnv7">
+		<a class="author" href="https://www.reddit.com/user/kouhoutek" target="_blank">kouhoutek</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Many computer systems put in a deliberate pause to make it harder for people to guess passwords.  If you can only make 10 guesses a minute, instead of 100, it makes it harder to get into the system.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dfhrxo7">
+		<a class="author" href="https://www.reddit.com/user/FoXERM" target="_blank">FoXERM</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They don't. They take longer on purpose in order to avoid people trying lots of passwords fast (bruteforce attack) to guess the correct one.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dfhrnr1">
+		<a class="author" href="https://www.reddit.com/user/WRSaunders" target="_blank">WRSaunders</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's an intentional delay, to make it take longer for an evildoer to guess the password.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dfils2w">
+		<a class="author" href="https://www.reddit.com/user/thsmrtone1" target="_blank">thsmrtone1</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Here is a different scenario than the ones listed in other comments. This scenario applies to very poorly coded applications with poorly set up databases. </p>
+<p>For username/password pairs stored in databases, a common (although inefficient) way to check for correct username/password is to send a query to the database like this: &quot;get me the record where username is 'x' AND password is 'y'&quot;. (For those familiar with SQL: SELECT * FROM users WHERE username = ? AND password = ?) The database first searches for usernames that match 'x' until one is found, then checks if the password for that record is equal to 'y'. The problem is that if the username matches, but password doesn't, it will continue looking for another username/password combo that does match, until it runs out of records in the database. For databases with TONS of records, this takes a long time.</p>
+<p>To cover my ass on this comment, let me reiterate that this situation applies to poorly coded applications and poor database configurations, but lets face it, there are a TON of those.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
