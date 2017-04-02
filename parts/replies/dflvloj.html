@@ -1,0 +1,105 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Whatofitpunk" target="_blank">Whatofitpunk</a>
+			<div class="markdown"><blockquote>
+<p>e largest decrease in privacy - don't be quick to embrace IPv6 if you're not randomizing your radio's MAC addresses on each tower/AP change. If the MAC stays</p>
+</blockquote>
+<p>This is ELI5. Can you at the very least explain the acronyms you're using? Seems like this explanation will only work for people who are already well versed in internet security.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Firehed" target="_blank">Firehed</a>
+			<div class="markdown"><p>(This is oversimplified to the point where it borders on being wrong)</p>
+<p>With IPv4 (the older standard), your house gets a single IP address (basically a phone number for computers)  that all of your devices share. This makes it hard for e.g. advertisers to know which device is being used and trace it to an individual person. </p>
+<p>IPv6 is a much longer number which we invented because we were running out of the shorter numbers that IPv4 used. Because it's so much longer, each connection to the internet has a range of numbers available and each device picks their own within the range. </p>
+<p>Many devices use their hardware ID (MAC address) to pick their IPv6 address, by literally adding it to the end. So if my MAC was 00:11:22:33:44:55, my IPv6 address might end up ending in :0011:2233:4455. MACs are, in theory, globally unique - so doing this is a tracker's wet dream. This wasn't even possible using IPv4, because the number couldn't hold enough (if it used the same format, it could only hold 8 of those 12 digits; IPv6 addresses are 32 digits long)</p>
+<p>Devices can be configured to not do this, making you much harder to track, especially if you move locations. It doesn't mean a whole lot for desktop devices, but can have huge implications for mobile phones and laptops. Most should do this by default at this point, but it's worth checking. Rule of thumb: keep your software up to date. </p>
+<p>Again, this leaves out a ton of detail to keep things simple. The digits aren't always numbers, there's cloning, NAT is a mess, etc. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ThimeeX" target="_blank">ThimeeX</a>
+			<div class="markdown"><p>Hmmm, are you sure about the whole MAC vs IPv6 thing? <a href="http://www.internetsociety.org/deploy360/blog/2014/12/ipv6-privacy-addresses-provide-protection-against-surveillance-and-tracking/" target="_blank">Here's an interesting article</a>.</p>
+<blockquote>
+<p>The engineers who created IPv6 were very concerned that IPv6 could be used in this way and so way back in 2007 they published RFC 4941 defining “privacy extensions for IPv6” autoconfiguration. This standard defines a mechanism where a device generates a random host address and uses that instead of the device’s MAC address.</p>
+<p>The device also changes that IPv6 address on a regular interval. The interval can be set to anything, but typically is configured on most operating systems to be one day. In mobile networks, the IPv6 address may change based on the link to which you are connecting, so as you move around you will be generating and using new IPv6 addresses all the time throughout the day.</p>
+<p>As we wrote about in a resource page about IPv6 privacy extensions, the following operating systems use IPv6 privacy extensions BY DEFAULT:</p>
+<ul>
+<li>All versions of Windows after Windows XP</li>
+<li>All versions of Mac OS X from 10.7 onward</li>
+<li>All versions of iOS since iOS 4.3</li>
+<li>All versions of Android since 4.0 (ICS)</li>
+<li>Some versions of Linux (and for others it can be easily configured)</li>
+</ul>
+</blockquote></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SRMustang35" target="_blank">SRMustang35</a>
+			<div class="markdown"><p>You may have oversimplified it, but myself as well as many others at least have a clue what you are talking about now compared to your previous comment.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Auxilae" target="_blank">Auxilae</a>
+			<div class="markdown"><blockquote>
+<p>but from a combination of the ISP's DHCP and DNS servers</p>
+</blockquote>
+<p>I'm a little confused as to how DHCP will be able to 'track' you. DHCP distributes IP addresses, and for common last-mile setup ISP's, once you have an IP address, it is usually set for many years unless there is a need to change it. DHCP for home routers is different than DHCP for ISP's. DHCP for home routers can move around internal IP addresses more easily, because the network scope is smaller (usually the network scope is a /24 class C, which provides 253 usable IP addresses for a DHCP to provide, or to set statically). So even if they can track internal private IP addresses, it can be easily changed and can be seen as unreliable.</p>
+<p>DNS too, is a little confusing as to how that itself will track you. DNS resolves hostnames to IP addresses, but it isn't accessed constantly, there is a local-cache stored inside the web browser which updates periodically (as in, once every X hours, usually once every 24 hours) (this is used to save bandwidth). Not only that, but you can easily change DNS servers (unless your ISP hijacks DNS anyway and still forces its own).</p>
+<p>The thing behind IP addresses is that you can't put a name behind an IP address. Companies will see your IP address, then use tracking cookies to see what websites you go visit. The only change in regulation is now that your ISP gets 'first picks' so to speak, to the data. Your data was already long before being tracked, even if you didn't realize it. There is just more hands in the pile, and frankly, internet privacy in a modern sense really doesn't exist anymore. </p>
+<p>You are constantly tracked from different ad networks, even if you have an ad-blocker, they still know exactly where you are because they see your IP address connecting to their ad servers initially, and then the physical ad itself gets hidden, but they still know you're there.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JPiratefish" target="_blank">JPiratefish</a>
+			<div class="markdown"><p>DHCP in IPv4 collects your client's MAC address - a unique-to-your-device code that is burned into it.  All network devices as unique assigned MAC addresses in them.</p>
+<p>Data collected during DHCP can tell me what operating system, what version, and a small handful of little tidbits about your rig.</p>
+<p>Fortunately, thanks to IPv4 having so few addresses, and for so many houses having DHCP inside their own private networks, ISP's only deliver DHCP to users routers in most cases.</p>
+<p>IPv6 is where this changes.</p>
+<p>MAC addresses are 48bits long - usually stated in the form of four quad-tets of hexadecimal numbers - like this: 1234:5678:90ab or as a six hex numbers like this 12:34:56:78:90:ab.  Every device that connects to a network must have a MAC address for that network connection.  All MAC addresses are hard-coded into the hardware you own - so if you don't override them, they can be used to uniquely identify your computer.</p>
+<p>IPv6 IP addresses are 128 bits long - 4x larger than IPv4's 32-bit addresses.</p>
+<p>In both IPv4 and IPv6, there are parts of the address that are used for the NETWORK are parts that are used for the CLIENTS.  The first parts of the address denote the network - and those can be traced to the network owners.  The second half of the IP address is assigned by the network owner (you) or by your network gear.  On private networks none of this internal stuff is exposed because of the network address translation (NAT) we all use to allow us to put all our stuff behind a single IPv4 IP address.</p>
+<p>So - for example - on my home setup I have the network 192.168.1.0 with 255 hosts available - so folks will have 192.168.1.4 and or 192.168.1.6, Etc.  When they go out to the Internet, my router converts their internal IPv4 address into an ISP-provided Internet address of 74.75.123.23 (for example).</p>
+<p>The IPv4 network is very small.</p>
+<p>In IPv6, the same home network - would have 64 bits of NETWORK address and 64 bits of CLIENT address.</p>
+<p>The most common IPv6 address assignment systems use your computers MAC address as part of the IPv6 address, with the addition of FFE0 in the third quad-tet.</p>
+<p>So, for example: Lets say that my laptop's network card has a MAC address of 55F0:FF11:2233.  I plug my network into an IPv6 setup and get an addresses.  My IPv6 IP will be something like this:
+D00G::F00D:<strong>55F0:FF11:FFE0:2233</strong></p>
+<p>Now here's where your privacy will be hit.  In the above IPv6 example address, the network was named D00G::F00D - this network address will change as I move from one network to another - however - the other part that uniquely identifies my network card will not change.</p>
+<p>So using this, if you use IPv6, and you're on my network - whether your wireless or wired - I can uniquely tell your devices from other folks devices.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Auxilae" target="_blank">Auxilae</a>
+			<div class="markdown"><blockquote>
+<p>The most common IPv6 address assignment systems use your computers MAC address as part of the IPv6 address, with the addition of FFE0 in the third quad-tet.</p>
+</blockquote>
+<p>In practice with modern operating systems, I have not seen this to be the case. What I have seen in practice is the use of temporary IPv6 addresses that are seemingly randomly-generated. This is why for example, even though I'm using the same exact computer, google shows two different IPv6 addresses connected to my email account in the past 24 hours: <a href="http://i.imgur.com/lTboIQC.png" target="_blank">http://i.imgur.com/lTboIQC.png</a> (and neither one is even close to my physical MAC address)</p>
+<p>If you do an ipconfig /all in command prompt, you'll likely see multiple IPv6 addresses yourself, with (Preferred) or (Deprecated) in parentheses.</p>
+<p>This change came from <a href="https://tools.ietf.org/html/rfc4941" target="_blank">RFC # 4941</a>:</p>
+<blockquote>
+<p>On other interface types, the interface identifier is generated through other means, for example, via random number generation.</p>
+</blockquote>
+<p>And to say DHCP is a little wrong, because it's actually SLAAC in many cases. Stateless Auto-Configuration is not DHCP. For IPv6, there is a specific type of DHCP called DHCPv6. Stateful DHCPv6 is stateful, and auto-configuration is stateless. There is also stateless DHCPv6, but it does not request an IP address - that still falls under SLAAC, instead, stateless DHCPv6 is used to obtain other normal things that an IPv4 DHCP can deliver for a request, such as DNS servers. Whereas a stateful DHCPv6 service provides everything, IP address, and extras, such as DNS.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Duke_Newcombe" target="_blank">Duke_Newcombe</a>
+			<div class="markdown"><blockquote>
+<p>First up - all SSL communications will be secure for the most part.
+Second - use of IPv6 will be the largest decrease in privacy - don't be quick to embrace IPv6 if you're not randomizing your radio's MAC addresses on each tower/AP change. If the MAC stays the same, then you will be clearly identifiable as you move from one network to the next - so advertisers and other tracking will know you, no matter your current network.
+1) Wait for your ISP to publicly state what they're going to sell and how they're going to sell it.
+2) Many ISP contracts do have clauses that protect users anonymity - those will have to change.
+3) The upcoming changes will not permit ISP's to become a Man-in-the-middle (MITM) for your SSL communications.</p>
+</blockquote>
+<p>All of these things require an &quot;opt-out&quot;--it requires the customer to &quot;do&quot; something to preserve their privacy.  The regulations that were supposed to take effect required an &quot;opt-in&quot; to allow ISPs to bundle and resell their personal internet usage info.</p>
+<p>Setting up VPN, Tor, and the like is a helluva lot to ask of grandma.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JPiratefish" target="_blank">JPiratefish</a>
+			<div class="markdown"><p>Agreed.  What scares me?</p>
+<p>What if Comcast offered two tiers of services - The Opt-out service and the Opt-in service.  The opt-outs of course paying probably 25% more per month, while the opt-in's pay only 10% less.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Duke_Newcombe" target="_blank">Duke_Newcombe</a>
+			<div class="markdown"><p>Agreed. What scares me?
+What if Comcast offered two tiers of services - The Opt-out service and the Opt-in service. The opt-outs of course paying probably 25% more per month, while the opt-in's pay only 10% less.</p>
+<p>/u/92lean actually advocates for this &quot;free market&quot; solution in this thread.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
