@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5:Why is Gmail still not end to end encrypted</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="62pvnb">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/62pvnb/eli5why_is_gmail_still_not_end_to_end_encrypted/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/62pvnb" onclick="return false">Why is Gmail still not end to end encrypted</a>
+		</h2>
+		<!--<span class="date">2017-04-04</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5:Why is Gmail still not end to end encrypted</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dfovl4j">
+		<a class="author" href="https://www.reddit.com/user/F0sh" target="_blank">F0sh</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><ol>
+<li>
+<p>GMail is an email provider, and has to work with other email providers. Even if they implemented end-to-end encryption, they couldn't use it with other providers unless those providers also used the same system.</p>
+</li>
+<li>
+<p>GMail's servers read your email to see whether they are spam, and to target adverts at you, and to provide fast, high-quality search of your emails. All of these are impossible if GMail can't read the email because it's encrypted.</p>
+</li>
+<li>If GMail stored your mail encrypted, as well as being unable to search it, it would all be unreadable if you lost your private key, or if you moved to a computer where you didn't have access to it. Storing it in the cloud would require another layer of interoperability (you'd need a way to get the key into GMail), unless Google itself stored the key, in which case Google could also decrypt your emails. If GMail stored the email unencrypted, there would be no point.</li>
+</ol>
+<p>It's good to compare the service with WhatsApp. WhatsApp does everything through your phone. If your phone is off or without internet, it doesn't work anywhere. This means they can store your key on the phone and have it only decrypt stuff on the phone. Because it's their own protocol they can build the key management right into it and don't need to worry about some other service not supporting the way they do encryption.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dfok3a7">
+		<a class="author" href="https://www.reddit.com/user/MashTheKeys" target="_blank">MashTheKeys</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Because it is email, and email cannot be end to end encrypted, without bringing in other technologies like PGP encryption.</p>
+<p>If you use HTTPS and/or SSL IMAP to access Gmail, the connection is &quot;end to end&quot; encrypted between the computer and the server.  However the server can read the contents of your email because that is how the email system was designed.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dfolt16">
+		<a class="author" href="https://www.reddit.com/user/blablahblah" target="_blank">blablahblah</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If it was end to end encrypted, either you'd have to manage the key yourself (and your email would all be lost if you lost the key) or the key would have to be stored on Gmail's servers encrypted with your password (and all of your email would be lost if you forgot your password- no such thing as a password reset for this). There is no way to make it &quot;just work&quot; with end-to-end encryption, and it turns out that ease of use and password resets are more important to more people than end-to-end encryption. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dfonl9e">
+		<a class="author" href="https://www.reddit.com/user/Sir_Aleister" target="_blank">Sir_Aleister</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Encrypting e-mail is easy, addon like [enigmail]( <a href="https://addons.mozilla.org/fr/thunderbird/addon/enigmail/" target="_blank">https://addons.mozilla.org/fr/thunderbird/addon/enigmail/</a>) for thunderbird do the job. </p>
+<p>The problem is that nobody uses encryption. If I send an encrypted e-mail te Jeanne Doe, she needs to be able to read it. It's not that hard (2 Buttons in enigmail) but already to complex for the average mail user.  The only encrypted e-mail I sent was something like &quot;<em>test post, do not answer</em>&quot; and the encrypted answer from my friend was &quot;<em>it's working</em>&quot; </p>
+<p>For Gmail the Gmail crypt plugin will do the trick, but again if none of your friend use it your screw. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dfong2h">
+		<a class="author" href="https://www.reddit.com/user/Turbosack" target="_blank">Turbosack</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are several reasons. One huge one I haven't seen mentioned is spam. A big selling point of Gmail is their great spam prevention, which only works based on Google's ability to read emails en mass and get feedback (whether from automated AI data mining or manual user reports) about whether or not certain types of email are spam. If they couldn't access the plaintext of your emails, then spam prevention could only be done client side, which would be much less effective (less processing power, delays incoming mail, can't share results with other users as easily, etc). </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/62pvnb" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

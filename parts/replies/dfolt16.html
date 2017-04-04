@@ -1,0 +1,33 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/American_Libertarian" target="_blank">American_Libertarian</a>
+			<div class="markdown"><p>This isn't necessarily true. A lot of messaging apps use end to end encryption which is entirely invisible to the user, for example. And authentication is a totally separate process from passing along data (emails). Whether the data flowing through the server from A to B is encrypted has no bearing on how a server stores or resets passwords. Even if youre talking about creating an encrypted link between the server and your host, that still doesnt affect password authentication. Encryption keys are invisible to the user and used on a hardware level. Usernames and passwords are a layer of abstraction above this. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blablahblah" target="_blank">blablahblah</a>
+			<div class="markdown"><p>The messaging apps that support end-to-end encryption are usually tied to a single device. The key is stored locally on the device. That doesn't work for Gmail, which needs to be read from multiple devices and from the web. </p>
+<p>The messaging apps that do support multiple devices, like iMessage, generate a new private key for each device that you own and send a separate copy of the message to each of your devices. The problem with this is that it means new devices are unable to read messages sent prior to their keys getting added to your profile. This is more acceptable for instant messenger than email since IMs are more likely to be considered ephemeral- people don't typically archive and search through old messages as much as they do with emails. </p>
+<p>Since end-to-end messages are, by definition, unable to be decrypted by the server, you can't just hand them the key and be done with it. Practically speaking, there are two ways to support multi-client end-to-end encryption. One, the key can be stored client-side and never touch the server, in which case the only way to view the messages on multiple devices is to transfer the key between the devices yourself. In this case, you can reset the password and still have your messages as long as you have the key, but if you lose the key, you can't read it and you can't read the messages on any devices that don't have your key. Or two, you can store the (strong) encryption key on the server, but encrypt it using your password (you don't want to use a password directly because it's not strong enough). When you want to view the messages, you download the encrypted blob from the server and use your password to decrypt the key locally, and then use the key to decode the encrypted messages. This is how Last Pass works, for example. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lovemonkeyz" target="_blank">lovemonkeyz</a>
+			<div class="markdown"><blockquote>
+<p>The messaging apps that support end-to-end encryption are usually tied to a single device. The key is stored locally on the device</p>
+</blockquote>
+<p>Not just that, but they don't offer end-to-end to any other platform than their own. People need to realise that email is simply a protocol used for transmitting messages, so if gmail started encrypting all their emails, then any email not sent to a gmail adress would be rubbish. Providing every email provider with a decryption key would defeat the point of encryption altogether. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KingdomOfBullshit" target="_blank">KingdomOfBullshit</a>
+			<div class="markdown"><p>What about OMEMO encryption?  This is for multiple endpoints.</p>
+<p>From Wikipedia:
+OMEMO is an extension to the Extensible Messaging and Presence Protocol (XMPP, &quot;Jabber&quot;) for multi-client end-to-end encryption developed by Andreas Straub. According to Straub, OMEMO uses the Double Ratchet Algorithm &quot;to provide multi-end to multi-end encryption, allowing messages to be synchronized securely across multiple clients, even if some of them are offline&quot;.[1] The name &quot;OMEMO&quot; is a recursive acronym for &quot;OMEMO Multi-End Message and Object Encryption&quot;. It is an open standard based on the Double Ratchet Algorithm and the Personal Eventing Protocol (PEP, XEP-0163).[2] OMEMO offers future and forward secrecy and deniability with message synchronization and offline delivery.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sy029" target="_blank">sy029</a>
+			<div class="markdown"><p>This is 50% of it. End to end encryption is not &quot;grandma friendly.&quot;</p>
+<p>The other 50% is that Google makes a ton of cash by reading your emails and using the data for advertisement. They couldn't do this if the server couldn't read it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/leonardo_pothead" target="_blank">leonardo_pothead</a>
+			<div class="markdown"><p>They should just have it as an Opt-In setting. Like 2-step verification.</p></div>		</li>
+					</ul>
+	
