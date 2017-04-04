@@ -1,0 +1,82 @@
+<li class="post" data-handle="62p5un">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/62p5un/if_i_roll_two_dice_what_is_the_average_number_of/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Mathematics">Mathematics</span>
+			<a href="/posts/62p5un" onclick="return false">If I roll two dice, what is the average number of rolls I need to perform to get all 36 combinations?</a>
+		</h2>
+		<!--<span class="date">2017-04-04</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I just did a few thousand simulations in matlab and got an average of about 150.2 attempts, or about 4.172 times the number of combinations. I was interested if there's an elegant formula to arrive at this number rather than brute-forcing it. </p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dfoapfh">
+		<a class="author" href="https://www.reddit.com/user/uh-okay-I-guess" target="_blank">uh-okay-I-guess</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This is called the <a href="https://en.wikipedia.org/wiki/Coupon_collector%27s_problem" target="_blank">coupon collector's problem</a>. (Think of buying cereal boxes, each of which has a random coupon at the bottom. How many boxes should you expect to buy until you collect them all?)</p>
+<p>There is actually an elegant formula: if there are N coupons (or rolls), then the expected number of attempts is:</p>
+<p>N*(1 + 1/2 + 1/3 + ... + 1/N)</p>
+<p>which, when N = 36, is 150.28. That's pretty close to the result you got from the simulation.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dfoqbie">
+		<a class="author" href="https://www.reddit.com/user/jambola2" target="_blank">jambola2</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>/u/uh-okay-I-guess's answer is exactly correct, but when you think of it, you can even understand <em>why</em> N(1 + 1/2 + 1/3.... + 1/N) is the number of attempts needed.</p>
+<p>It becomes easier if instead of looking at the number of rolls as a whole, you add up the average number of rolls to &quot;move&quot; from a number of combinations remaining to one less combination remaining.</p>
+<p>The first term is number of tries needed to move from 36 combinations remaining to 35. The second is the number of tries needed to move from 35 to 34... and so on until the last term you're looking at is the average number of rolls needed to get the one remaining combination.</p>
+<p>The first event always needs exactly 1 try, because everything you try always works. For the second one though, you have a 35/36  chance of getting it right each time you try, so you need on average 36/35 tries (because 36/35 tries * 35/36 likelihood = 1).</p>
+<p>The pattern continues. For the third event you have 34/36 good outcomes, and hence expected 36/34 tries on average.</p>
+<p>You're going to see this follows the pattern 36/36 + 36/35 + 36/34 + ..... 36/1 = 36(1/36 + 1/35 .... + 1), which is exactly the formula given.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dfoqetc">
+		<a class="author" href="https://www.reddit.com/user/Abdiel_Kavash" target="_blank">Abdiel_Kavash</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>What would the expected number of rolls be to get all the different sums (2 to 12) if you don't care about the rolls on the individual dice? I believe the coupon collector's problem assumes an equal chance of drawing each coupon, which would not be the case here.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dforrr9">
+		<a class="author" href="https://www.reddit.com/user/possiblywrong" target="_blank">possiblywrong</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>As others have already pointed out, this is the <a href="https://en.wikipedia.org/wiki/Coupon_collector%27s_problem" target="_blank">coupon collector's problem</a>, where the expected number of rolls (coupons) to get all n=36 equally likely rolls is</p>
+<pre><code>n * (1/1 + 1/2 + 1/3 + ... + 1/n)</code></pre>
+<p>or about 150.284 rolls.</p>
+<p>(I find it interesting that the Wikipedia link starts out by asking not for the <em>average</em> number of rolls, but the cumulative probability distribution: &quot;What is the probability that more than t sample trials are needed to collect all n coupons?&quot; ... then goes on to never answer that question.  More on that shortly.)</p>
+<p>Others have already asked what I think is actually the more natural problem here: suppose that we are only concerned with the <em>total</em> of the roll of the two (identical) dice, then what is the expected number of rolls to observe all totals from 2 through 12?  This problem is harder, since the individual outcomes are not equally likely.  One of several ways to approach this is using the <a href="https://en.wikipedia.org/wiki/Inclusion%E2%80%93exclusion_principle" target="_blank">inclusion-exclusion principle</a>, an alternating summation over each possible subset of roll totals, like this (in Mathematica source code):</p>
+<pre><code>f[p_List] :=
+ Total@Map[
+   (-1)^(Length[#] - 1)/Total[#] &amp;,
+   Subsets[p, {1, Length[p]}]]</code></pre>
+<p>which for the non-uniform distribution of roll totals 2 through 12 with 2 dice yields an average of about 61.2174 rolls.  (This is also the idea behind computing the CDF for the equally likely case.)</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dfp5aur">
+		<a class="author" href="https://www.reddit.com/user/promisedjoy" target="_blank">promisedjoy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>But what if, say, a 1 and a 6 is indistinguishable from a 6 and a 1? So there are fewer than 36 distinct combinations and they vary in their probabilities? What then? </p>
+<p>And what if it's just the <em>sum</em> of the two dice that is being recorded, so there are only 11 combinations?</p>
+<p>How does that change things?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/62p5un" onclick="return false"><span>show</span></a>
+</li>
