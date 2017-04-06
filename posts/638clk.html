@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: For the love of Graham Bell! Why have cell phone manufacturers not devised a way for a camera to shoot in landscape mode while the phone is vertical?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="638clk">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/638clk/eli5_for_the_love_of_graham_bell_why_have_cell/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/638clk" onclick="return false">For the love of Graham Bell! Why have cell phone manufacturers not devised a way for a camera to shoot in landscape mode while the phone is vertical?</a>
+		</h2>
+		<!--<span class="date">2017-04-06</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I literally cannot make any sense of this.  You hold the phone vertically 99% of the time, so wouldn't it make sense for the camera to shoot in a landscape format while you hold the phone in a natural manner?  It would essentially eliminate the influx of vertical pictures and videos.  Not to mention you have a much more positive purchase of the phone while it is vertical.  Is this idea really that far out there?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dfs4kce">
+		<a class="author" href="https://www.reddit.com/user/DoctorOddfellow" target="_blank">DoctorOddfellow</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Software solutions exist for this (see the <a href="https://horizon.camera/" target="_blank">Horizon</a> app), but the vertical vs horizontal problem is a hardware constraint that can only be partially solved by software.</p>
+<p>Just like film in a camera, the sensor that is used to capture an image is <em>physically</em> a rectangle. For usability, purposes the manufacturers align the rectangular shape of the sensor to the rectangular shape of the phone. I.e. the long axis of the physical sensor is parallel to the long axis of the phone. EDIT: I can't stress the usability issue enough. Having the long axis of the phone parallel to the long axis of the handset means the orientation of the phone <em>represents</em> the orientation of the sensor (and thus the photo). If the long axis of the phone were perpendicular to the long axis of the sensor, that would increase the cognitive load on the user. </p>
+<p>That means, in a phone that is held vertically (the long axis <em>of the phone</em> on the vertical), there are <strong>only three solutions</strong> to taking a photo with the long axis <em>of the sensor</em> oriented horizontally: </p>
+<ol>
+<li>
+<p>Manually turn the phone 90 degrees. Duh. </p>
+</li>
+<li>
+<p>Leave the phone oriented how it is and mechanically turn the sensor without the phone being moved. This is certainly mechanically possible, but would require additional components and a tiny motor to rotate the sensor inside of the phone before the photo is taken, either automatically or on demand. This doesn't happen because the value of doing this (over #1 above) isn't worth all the extra space in the phone this kind of physical mechanism would take up. </p>
+</li>
+<li>A software based solution, like the aforementioned Horizon app, which uses the phones' accelerometer to determine tilt and adjust <em>which</em> pixels on the sensor are being used to capture the photo. The downside to this approach is when the phone is held vertically (long axis of the phone on the vertical), the long axis of the photo sensor is still on vertical. The way the software gets a photo with an aspect ratio with the long axis of the photo on the horizontal is to ignore large portions of the sensor data. So when you're holding the phone vertically (or on an angle), an app like Horizon is only using a sliver of the middle section of the sensor to maintain the aspect ratio and orientation, and throwing away the rest of the sensor data. So you're giving up picture resolution and detail in favor of maintaining orientation. EDIT: <a href="https://horizon.camera/demo/" target="_blank">this demo of Horizon</a> makes it clear what data is being left out. </li>
+</ol></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dfs3i6d">
+		<a class="author" href="https://www.reddit.com/user/folterung" target="_blank">folterung</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's not that far out there, but as someone mentioned, the sensor is an issue. Sensors are rectangular, not square (assuming they are doing what most cameras do). </p>
+<p>So to shoot landscape while holding portrait, you'd need a bigger sensor. Then you'd need UI controls to determine when you wanted to do this, because sometimes you might want to shoot portrait, so it couldn't be an &quot;all the time&quot; situation.</p>
+<p>More trouble than it's worth, I expect.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dfsbqvy">
+		<a class="author" href="https://www.reddit.com/user/Heretic04" target="_blank">Heretic04</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A solution doesn't exist because there are times when shooting is portrait is wanted or necessary.</p>
+<p>The portrait/landscape video thing is like when someone shows you a video off their laptop.  Some people press play and then move the arrow off the screen and then some people press play and then leave the arrow right in the middle of the screen.  It's like, WTF?</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dfsft1y">
+		<a class="author" href="https://www.reddit.com/user/The_Last_Paladin" target="_blank">The_Last_Paladin</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I think everyone is looking at this from a technical perspective when really it's an intelligence issue. Back when phone cameras were first being designed, standalone cameras were still much more popular. It was assumed that people using their phone cameras would know which way to hold their phones to get the landscape shot, and for a while that assumption was true. Today the position is the opposite. Phones are expected to have a camera or two, and just as there is now a generation of people today who have no idea what the save icon in most word processor or graphics design programs is based on, so too are they unfamiliar with what were considered common sense practices with cameras ten or fifteen years ago.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dfs21oh">
+		<a class="author" href="https://www.reddit.com/user/Phage0070" target="_blank">Phage0070</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In addition to the issues actually viewing what you are capturing with the video or camera picture, there is the issue of image sensor size. What happens if you turn the phone sideways, do you now video in portrait? If not then your image sensor needs to be much larger than you actually use and much of what it could capture is thrown out to achieve the desired aspect ratio.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/638clk" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
