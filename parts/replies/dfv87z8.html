@@ -1,0 +1,54 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Virtualmikey" target="_blank">Virtualmikey</a>
+			<div class="markdown"><p>This is honestly the first time I've read something on this subject that I actually understood and comprehended.  Thank you. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OrnateLime5097" target="_blank">OrnateLime5097</a>
+			<div class="markdown"><p>If you are interested &quot;Code&quot; by Charles Petzold is a really good book. Goes from ground zero assuming no knowledge on electricity and builds up to the reader being able to design a 1970s computer.  Theoretically, I mean understanding the concepts and carrying out a project like that our different. I certainly changed the way I thought about computers. They went from magic boxes  to something that I could understand and build. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Greltam" target="_blank">Greltam</a>
+			<div class="markdown"><p>It's a good book. I'm just about through having to read it for college. My professor had us design an 8 bit computer in Mmlogic to really drive the understanding home.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/medicinetrain" target="_blank">medicinetrain</a>
+			<div class="markdown"><p>A single transistor doesn't allow you to do anything. A pair of transistors allows you to apply a NOT operation. 4 transistors for NAND or NOR operations, or 6 transistors for an AND or OR operations.</p>
+<p>EDIT: me being dumb</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/uniqueTakenUsername" target="_blank">uniqueTakenUsername</a>
+			<div class="markdown"><p>4 transistors are enough for a NAND and 6 transistors for an AND gate. <a href="https://sub.allaboutcircuits.com/images/04146.png" target="_blank">Look at this.</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/symmetry81" target="_blank">symmetry81</a>
+			<div class="markdown"><p>If you're talking about making a resilient TTL circuit you're absolutely right.  But if you're using RTL and are willing to connect logic inputs to your source or drain you can get things like (!A AND B) which I simplified to an 'and'.  In the modern world that sort of stuff isn't super common for good reason but even nowadays you'll see transistor arrangements sort of like that in, for example, the XOR full adder.  You can find a layout of one of those here:</p>
+<p><a href="http://www.cs.tufts.edu/comp/103/notes/Lecture13(Adders).pdf" target="_blank">http://www.cs.tufts.edu/comp/103/notes/Lecture13(Adders).pdf</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/medicinetrain" target="_blank">medicinetrain</a>
+			<div class="markdown"><p>You're right my mistake</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/neclimdul" target="_blank">neclimdul</a>
+			<div class="markdown"><p>It's been a while since I've thought about such things but if memory serves those designs would not be in a processor either because they require multiple clock cycles. Since transistors are cheap much more elaborate designs get used for most logic to use clock cycles and other considerations more efficiently.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lucc1111" target="_blank">lucc1111</a>
+			<div class="markdown"><p>Sorry to annoy you, but this seems like my opportunity to ask this question: how does the cpu store constants? Like, how does it know that &quot;00101&quot; is, for example, addition, and then executes the process to add two numbers? If I had an unpowered CPU, where is that data stored?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/symmetry81" target="_blank">symmetry81</a>
+			<div class="markdown"><p>The notion that addition instructions start with '00101' is hardcoded and shows up in the pattern of transistors (or other physical structures) in the CPU.  It's more complex in modern CPUs but in simple ones you might have lots of rules like 'if bit 0 and not bit 3 then send bits 7 through 13 to the register file to look up input A' and so forth.  When designing an instruction set like ARM or x86 or whatever the engineers have to think about how to make their instructions easy to decode in hardware but they have to balance that against trying to fit instructions in as few bits as possible so as not to take up too much memory or bandwidth.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/0goober0" target="_blank">0goober0</a>
+			<div class="markdown"><p>As someone else said, this is done in hardware. It's sort of like those coin sorters that have a ramp with different size holes. A dime will always fall in the first, smallest hole, and be transported to where dimes go. An instruction that starts '00101' will be funneled by hardware to the 'addition' path, where the rest of the instruction will be read in a similar way. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sluisifer" target="_blank">Sluisifer</a>
+			<div class="markdown"><p>There's an instruction decoder.  The data can be stored in a ROM on the chip, or in the circuit architecture itself.</p>
+<p>Ken Shirriff has a wonderful blog that goes through some processors in minute detail, down to the individual transistors.  Even if you don't understand all the details (unlikely you will unless you know a great deal about microprocessors) you can get a general idea of how it all works.</p>
+<p>This look at the ARM1 chip (and some contemporaries) specifically addresses instruction decoding.</p>
+<p><a href="http://www.righto.com/2016/02/reverse-engineering-arm1-instruction.html" target="_blank">http://www.righto.com/2016/02/reverse-engineering-arm1-instruction.html</a></p></div>		</li>
+					</ul>
+		</ul>
+	

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>CPUs carry out anywhere from 1 to 32 instructions per clock cycle; if so few instructions per clock cycle are being performed, what is the benefit to cramming billions of transistors onto one chip?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="63kuck">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/63kuck/cpus_carry_out_anywhere_from_1_to_32_instructions/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/63kuck" onclick="return false">CPUs carry out anywhere from 1 to 32 instructions per clock cycle; if so few instructions per clock cycle are being performed, what is the benefit to cramming billions of transistors onto one chip?</a>
+		</h2>
+		<!--<span class="date">2017-04-08</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>How would so few instructions involve so many transistors?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dfv87z8">
+		<a class="author" href="https://www.reddit.com/user/symmetry81" target="_blank">symmetry81</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A single transistor doesn't really allow you to do much, at most to take two bits and barely perform an AND or OR operation on them and only then if you're willing to throw in a resistor as well.  Lets say that you want to do somthing more complicated like add two 32 bit numbers.  The most transistor efficient way to do that without also adding resistors will take 16 transistors per bit or 512 transistors total.</p>
+<p>But you don't want a computer that only adds numbers.  You want a wide variety of instructions you can execute, you want some way of choosing what instruction you execute next, and you want to interact with memory.  At this point you're up to 10,000s of transistors.  That will give you a computer chip with the sort of performance you would have seen in the 1970s but with somewhat faster clock speeds because of our improved ability to work with silicon.</p>
+<p>Now lets say you don't want your entire operating system to crash when there is a bug in any program that you run.  This involves more transistors.  And you probably want to be able to start one multi-cycle instruction before that last one finishes (pipelining).  This might get you up to executing one instruction every other clock cycle on average.  That'll cost transistors as well.  This will grow your chip up to 100,000s of transistors and will give you performance like the Intel 386 form the mid 80s.</p>
+<p>But this will still seem very slow compared to the computers we use nowadays.  You want to be able to execute more than one instruction at a time.  Doing that isn't very hard but figuring out which instructions can be executed in parallel and still give you the right result is actually very hard and takes a lot of transistors to do well.  This is what we call out of order execution like what the first Intel Pentium Pro had in the mid 90s and it will take about 10 million transistors in total.</p>
+<p>But now the size of the pool of memory that we're working with is getting bigger and bigger.  Most people these days have gigabytes of memory in their computers.  The bigger the pool is the longer it takes to grab any arbitrary byte from it.  So what we do is have a series of pools, a very fast 10kB one, a slightly slower 100kB, a big 10MB one on the chip, and then finally your 8GB of main memory.  And we have the chip figure out what data to put where so that the most of the time when we go to look for some data it's in the nearby small pool and doesn't take very long to get and we're only waiting to hear back from main memory occasionally.  This and growing the structures that look forward for more instruction to execute are how computers changed until the mid 2000s.  Also going from 32 to 64 bits so that they could refer to more than 4GB of memory, the biggest number you can say in only 32 bits is 4294967296 so any memory location over that number couldn't be used by a 32 bit computer.  This'll get us up to 100 million transistors.</p>
+<p>And from the mid 2000s to the mid 2010s we've made the structures that figure out which instructions to execute next even bigger and more complicated letting us execute even more instructions at once.  As we grow performance this way the number of transistors we needs grows as the square of the performance, on average.  And we've added more cores on the same chips letting us grow performance linearly with transistors as long as software people can figure out ways to actually use all the cores.  And now we're up to billions of transistors.</p>
+<p>EDIT:  Clarified TTL versus RTL.</p>
+<p>EDIT2:  <a href="http://www.realworldtech.com/haswell-cpu/6/" target="_blank">Here's</a> a block level diagram of a modern core.  You can see even at that level just how complex it is.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dfv15am">
+		<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>My workstation has an 8-core CPU, each clocked at 3.4 GHz. That means if it carried out 32 instructions per cycle, it would be able to throughput:</p>
+<p>32 instructions × 8 cores × 3.4G/sec = 870.4 billion instructions /sec</p>
+<p>That's a lot.</p>
+<p>Besides the datapaths for instruction execution, what else is there on a CPU?</p>
+<ul>
+<li>Memory controller; translation of <a href="https://en.wikipedia.org/wiki/Virtual_memory" target="_blank">virtual addresses</a>, implements <a href="https://en.wikipedia.org/wiki/Paging" target="_blank">paging</a>, etc.</li>
+<li>Shared cache; while each core has its own (L1 and usually L2) cache, there's another layer shared across all cores</li>
+<li>I/O controllers</li>
+<li>Integrated graphics controller, possibly</li>
+<li>Parts <a href="https://en.wikipedia.org/wiki/Uncore" target="_blank">common</a> to the operation of all cores</li>
+</ul>
+<p>For an illustration of the relative size of those components in a model of e.g. Intel's i7 line, see <a href="https://www.cs.uaf.edu/2009/fall/cs441/proj1/russell/images/df94g6m6_4gxrw53gk_b.png" target="_blank">here</a>.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dfv9kt7">
+		<a class="author" href="https://www.reddit.com/user/randoogle_" target="_blank">randoogle_</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><ol>
+<li>
+<p>&quot;Instructions&quot; can mean a lot of things. Anything from adding two registers together, to doing complex DSP calculations, to reading from peripherals or memory, to all sorts of other things. Different processor architectures have different instructions, and a different amount of instructions too. More instructions means more transistors.</p>
+</li>
+<li>
+<p>A lot of the extra transistors are logic to allow the processor to execute instructions more intelligently. This includes things like caching, pipelining, branch prediction, out of order execution, hyperthreading, and others. For example, say you get an instruction to request a value from a peripheral (say, a video card). You know it's going to take tens of times longer for the video card to respond than it is for you to execute another instruction, so you grab the next instruction and start working on it while you're waiting for the answer from the video card. Then when the video card responds, you stop what you're doing and handle the rest of that instruction. All the reasoning to juggle those multiple things, and know whether or not the subsequent instructions rely on the answer from the video card, and what order will be the most efficient to execute instructions in while still returning a correct answer, takes extra logic (transistors). And this (overly simplified) example is just one technique out of many that modern processors use to be more efficient in execution.</p>
+</li>
+<li>Big caches, like what other people said. Caches are places to store data and instructions so that you don't have to wait for the latency of the RAM when you're requesting those things from memory. At the speed processors operate at, the latency of RAM is actually very significant, and a big part of it is due to the physical distance between the RAM and the chip, that is, because nothing can move faster than the speed of light. So caches are smaller, superfast memory banks that are on-chip so they have lower latency. And the fastest kind of memory is transistors.</li>
+</ol></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dfv0yq4">
+		<a class="author" href="https://www.reddit.com/user/noiwontfixyourpc" target="_blank">noiwontfixyourpc</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This is actually a pretty common question, and understandably so. It sounds to me as if you were asking:
+&quot;<em>My car has only 5 gears, what's exactly the benefit of more horsepower?</em>&quot;. I suck at metaphors, sue me.   </p>
+<p>I am going to disregard some things you've asked, for the sake of simplicity, but here goes:   </p>
+<ul>
+<li>more parallel processing possible (more cores, multiple ALUs, [pipelines]
+(<a href="https://en.wikipedia.org/wiki/Instruction_pipelining" target="_blank">https://en.wikipedia.org/wiki/Instruction_pipelining</a>) etc.)  </li>
+<li>more <a href="https://en.wikipedia.org/wiki/CPU_cache" target="_blank">cache</a> (faster memory access)      </li>
+</ul>
+<p>From a strictly physical view the transistors are more dense, which means they are generally faster and more efficient (dissipate less power and need less voltage to work). Forget the clock rates that are advertised nowadays, the marketing <del>leeches</del> people have hijacked it to advertise incorrect data.     </p>
+<p>In the end, it all boils down to two things: <strong>more memory</strong> and <strong>parallelization</strong> of tasks. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dfv9dg6">
+		<a class="author" href="https://www.reddit.com/user/MaroonedOnMars" target="_blank">MaroonedOnMars</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>the transistor counts go up when you:</p>
+<ul>
+<li>change the 'word' size (eg: changing from 32-bit to 64-bit computing)</li>
+<li>increase how much physical memory is supported by the CPU</li>
+<li>add new instructions to the chip, such as: MMX, AVX</li>
+<li>add new features to the ship (Integrated graphics)</li>
+</ul>
+<p>instructions also vary in turnaround time: <a href="http://www.agner.org/optimize/instruction_tables.pdf" target="_blank">http://www.agner.org/optimize/instruction_tables.pdf</a></p>
+<ul>
+<li>simple math instructions (such as adding/subtracting and bit shift operations) have a turnaround time of 1 clock cycles</li>
+<li>complex math instructions like trig functions might take over 300 clock cycles.</li>
+</ul>
+<p>what instructions are run can greatly vary the IPS amount</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/63kuck" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/noiwontfixyourpc" target="_blank">noiwontfixyourpc</a>
+			<div class="markdown"><p>Modern CPUs do <em>much more</em> work per cycle. Here's an example: Pentium 4 clocked at 3.4GHz (10 years old) and i7 clocked at 3.4 GHz. The formula (from my Uni days) is:<br />
+<a href="https://en.wikipedia.org/wiki/Instructions_per_second" target="_blank">IPS</a> (instructions per second) = sockets x cores/socket x clock x IPs/cycle    </p>
+<p>Pentium 4: 49,161 MIPS<br />
+Intel i7: 238,310 MIPS  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+			<div class="markdown"><p>Yes, instructions per second is a simplistic measure that leaves a lot of details out. Even on that basis, however, I wanted to show how /u/perigee392 's assumption of &quot;few instructions per clock cycle&quot; can scale massively.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Whiterabbit--" target="_blank">Whiterabbit--</a>
+			<div class="markdown"><p>what is a cycle? I always thought one cycle is one instruction? how do you do multiple instructions in one cycle? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MG2R" target="_blank">MG2R</a>
+			<div class="markdown"><p>Cycle == 1 clock period</p>
+<blockquote>
+<p>how do you do multiple instructions in one cycle?</p>
+</blockquote>
+<p>A processor core is a collection of <em>logical units</em> with the hardware to fetch, decode, and store instructions and their results. An example of a logical unit would be the ALU or <em>Arithmetic Logical Unit</em>, which is in charge of doing (you guessed it) arithmetic operations on integers. Another well-known logical unit is the FPU or <em>Floating Point Unit</em> which, in contrast to the ALU, works on floating point (decimal number) operations.</p>
+<p>Now, each and every processing core has the logical units. That means that you can actually perform multiple operations on a single core at the same time (e.g. doing 1+1 and 2.5-3.5 concurrently), if you have the hardware to fetch, decode, and store multiple instructions and results in parallel... which is exactly what CPU manufacturers do.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/symmetry81" target="_blank">symmetry81</a>
+			<div class="markdown"><p>A cycle is one oscillation of the clock that the computer runs on.  The earliest computers would generally take many clock cycles to execute a single instruction.  First the computer would load the next instruction over the memory bus.  Then it would load the data it needed to work on which might take a few clock cycles.  Then it might complete its operation in one clock cycle but many instructions, like division and multiplication, even today take multiple clock cycles.  Then it would have to write the result to memory which could take yet another clock cycle.  So it might take you 4 clock cycles just to add two numbers together and maybe 12 if you're doing something complicated.</p>
+<p>These days computers average 1 to 2 instructions per clock cycle depending on how complicated the code their working on is and how many branches there are compared to math operations.  Sometimes they're racing ahead at 4 operations per cycle and sometimes they're waiting around because they guessed wrong about whether to take a branch or because data they need to continue is far away in main memory.</p>
+<p>Inside them computer cores have different structures that can perform different operations.  One bit might load values into the core.  Another might be able to do multiplication.  Way back when people started to realize that if the next instruction was a load then you could then go and look at the instruction after it.  If that instruction was a multiplication and it didn't need the result of the load then you could just go ahead and give that to the multiplication structure and you could work on both in parallel.  These days computers have 2 or three copies of basically every structure they need and they look over 100 instructions ahead to find ones that they can execute now.  This involves guessing about whether they're going to take branches in the code or not but they're able to guess right 99% of the time and they're able to back out instructions they executed incorrectly when they're wrong.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ashandrik" target="_blank">Ashandrik</a>
+			<div class="markdown"><p>A cycle is made by the &quot;clock&quot; on the chip. I don't know if crystal oscillators are still used, but chips used to have a small crystal that when supplied with power would oscillate at a very precise frequency. In the case of the 3.4GHz CPU being discussed, it would oscillate 3.4 billion times per second. Each time the clock cycles, a burst of power is allowed through the chip and instructions are carried out.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wbotis" target="_blank">wbotis</a>
+			<div class="markdown"><p>I was selling Intel i7s at Geek Squad in 2012 but haven't really looked into CPUs since. Have processors not improved significantly in the last five years?  Or is there something I'm missing about 'modern' processors? </p>
+<p>Edit:  wow! Thanks for all the great responses. I wasn't expecting that much info. </p>
+<p>TLDR; clock speeds have stayed the same, the number of cores has increased, and power consumption has reduced. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Wardo89" target="_blank">Wardo89</a>
+			<div class="markdown"><p>Raw performance has stagnated the past few years, but power efficiency has been the focus instead, and that has increased dramatically. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gatortribe" target="_blank">Gatortribe</a>
+			<div class="markdown"><p>Over the last five years, no. An i7-7700k (2017) is only ~30% faster than an i7-3770k (2012). It's an improvement for sure, but it's not as much as you'd expect and is a testament to both Moore's law being less of a thing (Intel ended their tick-tock cycle) and a general lack of competition- AMD had given Intel zero reason to improve anything with how terrible their FX line was, although things could heat up with Ryzen in the mix. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Good_Will_Cunting" target="_blank">Good_Will_Cunting</a>
+			<div class="markdown"><p>There has been improvement but nowhere near the same scale you saw in the 5 years leading up to that. Just doing a quick bench comparison between a few high end chips from 2007-&gt;2012-&gt;2017 makes it very apparent:</p>
+<p>2007: QX6800 ($1100) - 1887 passmark score<br />
+2012: 3770k ($350) - 9800 passmark score<br />
+2017: 7700k ($340) - 12200 passmark score.</p>
+<p>So while you saw prices reduce by 4x &amp; performance go up by 5x between 2007 &amp; 2012 you saw prices more or less stagnate &amp; performance go up 1.2x between 2012 &amp; 2017. I've been using a 3770k since 2012 &amp; still haven't had a reason to upgrade while I used to keep a CPU at most 3 years before this one.</p>
+<p>The biggest changes you see these days are lower power consumption for the same performance &amp; increased core count. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/symmetry81" target="_blank">symmetry81</a>
+			<div class="markdown"><p>The 32 instruction number is for the full 8 cores.  Well, for Intel's chips post Hasewell you can decode up to 5 instructions per core per clock each cycle.  If a bunch of decoded instructions have been blocking on some memory operation you could in theory execute 8 instruction in one cycle, though that isn't sustainable.  And they you're limited to retiring (confirming as totally finished) 4 instructions per clock for each of the two threads the core can execute.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ArkGuardian" target="_blank">ArkGuardian</a>
+			<div class="markdown"><p>I thought each core has a single alu, how do they do multiple ones in a single core</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/symmetry81" target="_blank">symmetry81</a>
+			<div class="markdown"><p>By complicated logic that routes instructions (or instruction pieces) to the part of the core that can execute it.  The whole story is sort of complicated and there are multiple ways to accomplish it but the simplest one is called <a href="https://en.wikipedia.org/wiki/Scoreboarding" target="_blank">scoreboarding</a>.  Here's a diagram of a modern Intel core with all the different bits and execution ports: <a href="http://www.realworldtech.com/haswell-cpu/6/" target="_blank">link</a></p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Zeitsplice" target="_blank">Zeitsplice</a>
+			<div class="markdown"><p>And within the instruction pipeline, you've got a ton of stuff going on in a modern CPU (all of these per-core):</p>
+<ul>
+<li>Multiple instruction pipes, including your floating point unit (FPU). Upwards of 8 execution pipelines, each with their own internal registers.</li>
+<li>Branch predictors, which let you pipeline conditionals. Modern CPUs even have a predictor to predict which predictor to use.</li>
+<li>A reorder buffer to put things in order after you did out of order execution</li>
+<li>Instruction decoding is quite complex - x86 ops are converted into (potentially) multiple simpler instructions before they run on the processor proper.</li>
+</ul>
+<p>All of these take a lot of transistors, though they're dwarfed by L3 cache and controllers. You can see a visualization of all of this <a href="http://download.intel.com/pressroom/kits/corei7/images/Nehalem_Die_Shot_3.jpg" target="_blank">here</a>. My understanding is that: the execution cores are around the bluish boxes in the center - the chunks on the top and sides are graphics/io controllers, and the big arrays near the bottom are L3 cache.</p></div>		</li>
+					</ul>
+	
