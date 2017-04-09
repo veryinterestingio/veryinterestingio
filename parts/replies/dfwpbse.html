@@ -1,0 +1,73 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nerbovig" target="_blank">nerbovig</a>
+			<div class="markdown"><p>I'd also throw in that the domain may need to be restricted, too. A polynomial function will always end up going to positive or negative infinity eventually, so unless that's what would actually happen for this context, your function would only be useful for modeling the measured data and perhaps the immediate future.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rannasha" target="_blank">Rannasha</a>
+			<div class="markdown"><p>Yes, you are right. But since the OP mentions a curve drawn by hand on a piece of paper, a restricted domain is already implied.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nerbovig" target="_blank">nerbovig</a>
+			<div class="markdown"><p>Indeed it is! My bad.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fuarkistani" target="_blank">Fuarkistani</a>
+			<div class="markdown"><p>How is that implied? Sorry not understanding it.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gatherinfer" target="_blank">gatherinfer</a>
+			<div class="markdown"><p>This isn't the only way you can do it either -- you can <a href="https://en.wikipedia.org/wiki/Discrete_Fourier_transform" target="_blank">express it as a sum of sines</a>.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cochne" target="_blank">cochne</a>
+			<div class="markdown"><p>The DFT only applies to discrete periodic signals, so that wouldn't work.  You'd have to use the CTFT, in which case you could represent the curve as an INTEGRAL of infinitesimal sines and cosines.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ArchCypher" target="_blank">ArchCypher</a>
+			<div class="markdown"><p>Well, given that the curve is drawn on a piece of paper/ all we have is the signal itself, we'd have to sample it anyway -- we'd end up with a discrete aperiodic signal that we could then extend periodically, right? </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/besidehimselfie" target="_blank">besidehimselfie</a>
+			<div class="markdown"><p>Can I just take the part of the signal I care about and consider it periodic and then DFT?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/q2dominic" target="_blank">q2dominic</a>
+			<div class="markdown"><p>Well you can use any set of functions that are complete over function space ( sorry if my language is imprecise i only learned about this stuff in physics which often uses weird terminology ). For example you can use associated Legendre polynomials.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/I-amTheHype" target="_blank">I-amTheHype</a>
+			<div class="markdown"><p>Would I be wrong saying Fourier series could also be used to solve this?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gatherinfer" target="_blank">gatherinfer</a>
+			<div class="markdown"><p>The methods are all related, it depends on whether your curve is periodic or not.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Midtek" target="_blank">Midtek</a>
+			<div class="markdown"><blockquote>
+<p>The more points you take in your sample, the more precisely the approximating polynomial function will match the original curve. The requirement here is that the curve has at most a single y-value for each x-value and that it is smooth enough (specifically: infinitely differentiable).</p>
+</blockquote>
+<p>This is not actually correct. Requiring that the function be infinitely differentiable is much too strong of a condition. Only continuity is required. Given <em>any</em> continuous function <em>f</em> on a bounded interval [a, b], there is a sequence of polynomials p<em><em>n</em></em> (and we may take p<em><em>n</em></em> to have degree-<em>n</em>) such that p<em><em>n</em></em> converges to <em>f</em> <em>uniformly</em> on [a, b].</p>
+<p>(What you seem to want to say is that if a function is infinitely differentiable, then its sequence of <em>Taylor polynomials</em> will serve as a sequence of polynomials that converges to <em>f</em>, but not necessarily interpolate <em>f</em>? That's actually quite not true either, since the Taylor series of a function converges to that function only if the function is analytic, which is a stronger condition than being smooth.)</p>
+<p>Polynomial interpolation is a well-studied and still active area of research. If you are given <em>n</em>+1 data points on some interval [a, b], there is a unique degree-<em>n</em> polynomial that interpolates that data and thus may serve as an approximation to the function <em>f</em>. If you can sample the function at arbitrarily many finite points, you can construct a sequence of degree-<em>n</em> polynomials that interpolate the function at the respective sets of data. Note, however, that this sequence of interpolants does not necessarily converge to <em>f</em> as <em>n</em> --&gt; infinity. (But a sequence of polynomials, not necessarily interpolants of <em>f</em> at the given data, that <em>does</em> converge to <em>f</em> always exists as long as <em>f</em> is assumed continuous.)</p>
+<p>The naive way of approximating a given function on some interval [a, b] is to sample the function <em>f</em> at <em>n</em>+1 points and then find the unique degree-<em>n</em> polynomial interpolant by matching coefficients. That is, the polynomial is p<em><em>n</em></em>(x) = a<em><em>0</em></em>+a<em><em>1</em></em>x+...+a<em><em>n</em></em>x^(n), and the coefficients are unknown. Then <em>n</em>+1 data points give <em>n</em>+1 linear equations in <em>n</em>+1 unknowns. This systems has a unique solution as long the <em>x</em>-values of the data points are all different.</p>
+<p>This is actually an <em>extremely terrible</em> way to find a polynomial interpolant. Anyone who has done any numerical analysis will know that the monomial basis is ill-conditioned. The linear system you have to solve to find the monomial coefficients is a Vandermonde system, and the Vandermonde matrix in <em>n</em> variables has a condition number that scales faster than 2^(n). It's very bad. The system is numerically unstable for even moderately large values of <em>n</em>.</p>
+<p>The preferred way to do polynomial interpolation is to use an orthogonal polynomial basis, e.g. Chebyshev or Legendre polynomials. (Generally, any of the classical orthogonal polynomials on a compact interval will do the job nicely.) There is much literature and research on algorithms for interpolation, differentiation, integration, etc. with these orthogonal polynomials. I was lucky enough to work on some aspects of the <em>chebfun</em> open-source software for MATLAB which is now in version 5.5-ish and does pretty much everything you could ever want with numerical approximation. (I strongly encourage anyone working in numerical analysis to use chebfun.)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Wixler" target="_blank">Wixler</a>
+			<div class="markdown"><blockquote>
+<p>chebfun </p>
+</blockquote>
+<p>Hi, I was wondering if you might point me toward info about how to use chebfun in combination with the raw data from an oscilloscope. I want to go from a series of points to an equation but chebfun has way too many features, most I don't understand, for me to go through all the documentation. I don't mind looking up all the relevant info if I can just get a function name or concept name to start with.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheNTSocial" target="_blank">TheNTSocial</a>
+			<div class="markdown"><p>Isn't naively interpolating with higher degree polynomials a bad idea even if you could solve the linear system exactly (i.e. not have to worry about conditioning)? I recall an exercise in numerical analysis where we sampled points from something like a Gaussian on [-1, 1] and interpolated with higher and higher degree polynomials, and as the degree gets higher the polynomial has to &quot;wiggle&quot; more to go through the points, resulting in something that looks nothing like a Gaussian. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Midtek" target="_blank">Midtek</a>
+			<div class="markdown"><p>The issue is not the linear system cannot be solved exactly. It can be. The issue is actually the placement of the nodes for the x-values of the sampled data. Equispaced points (which corresponds to an underlying monomial basis) is the ultimate problem. Chebyshev and Legendre interpolation, however, are just fine. The nodes are not equispaced, and the fact that their density is highest at the endpoints of the interval is important.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
