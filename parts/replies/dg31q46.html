@@ -1,0 +1,77 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DaraelDraconis" target="_blank">DaraelDraconis</a>
+			<div class="markdown"><p>Side note: it's usually pretty easy for a human to find out which, if they're generally unsure, simply by going through the signup form with the same username.  If the username doesn't get rejected as &quot;taken&quot; (and most sites check that with AJAX trickery on the form rather than waiting for the user to click &quot;submit&quot;) then it's definitely wrong, and otherwise it's a valid username (but may not be <em>your</em> username, of course).  Generally applies to email addresses, too, especially if they're used as login credentials.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/the_monkey_of_lies" target="_blank">the_monkey_of_lies</a>
+			<div class="markdown"><p>This got me thinking, would it be easier for hackers to find some real accounts this way and then try to hack them instead of just going brute force on the login form straight away?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ngr900" target="_blank">ngr900</a>
+			<div class="markdown"><p>Nobody goes brute force on an online login form, ever. </p>
+<p>Even if you limited both the password and the login to 5 characters, using only lowercase and numbers, that's still 60 million combinations. Each. So 60 million times 60 million, 3.6*10^15.</p>
+<p>If, somehow, you had unlimited login attempts and no rate limiting, and you could just bombard the server with login attempts, say 10.000 a second, it would still take over eleven thousand years to check them all.</p>
+<p>In reality logins and passwords are much longer and l can use both uppercase and lowercase and symbols (don't forget that the amount of combinations grows exponentially here). Also, most websites have rate limiting (like only 5 login attempts a minute), and lock accounts with too many failed login attempts.</p>
+<p>That's just not how accounts get &quot;hacked&quot;. In most cases stolen accounts come from various leaks and phishing. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DaraelDraconis" target="_blank">DaraelDraconis</a>
+			<div class="markdown"><p>Not necessarily.  Those is-the-username-taken checks often take longer than a login attempt, probably intentionally in order to dissuade exactly that behaviour.  I wouldn't be at all surprised if they were usually rate-limited as well.</p>
+<p>But without such steps being taken?  Yes, potentially.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Maleus21" target="_blank">Maleus21</a>
+			<div class="markdown"><p>It depends on the web page honestly. I'm a pen tester, and I've used the techniques described here on many occasions. </p>
+<p>On most account creation pages, they have captchas, the &quot;I'm not a robot&quot; buttons. Those are to prevent memberships from bots to spam their customers or members. This also prevents hacking attempts, as it can't be easily scripted. </p>
+<p>I have used password reset fields though, as some sites don't incorporate those security measures on the &quot;forgot password &quot; pages, and allow for username enumeration on them. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thewaywegoooo" target="_blank">thewaywegoooo</a>
+			<div class="markdown"><p>You just rate limit the requests for username checks, checking usernames once every other second makes that almost useless. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DaraelDraconis" target="_blank">DaraelDraconis</a>
+			<div class="markdown"><p>Yes indeed.  The whole point of that comment is that <em>a human</em> can work out which one is wrong, but it's not practical to have a computer do it autonomously as part of a brute-force attack.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LORD_STABULON" target="_blank">LORD_STABULON</a>
+			<div class="markdown"><p>Heh, AJAX :) haven't heard term used in a while...</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CptSpaceToaster" target="_blank">CptSpaceToaster</a>
+			<div class="markdown"><p>Most websites currently are unable to tell if a password belongs to any account.  Sure... there might be multiple <code>password123</code>'s but most websites that try to be secure will add something unique to everyone's password (possibly part of their username, or date joined) which is referred to as <a href="https://en.wikipedia.org/wiki/Salt_(cryptography\)" target="_blank">&quot;adding a salt&quot; or &quot;salting&quot;</a> a password.  This means that if two people use the same password, the hashes stored server side will still look different. Even though your password might be <code>password123</code>, to the system it looks like <code>password123_MultiFazed</code>, and mine could look like <code>password123_CptSpaceToaster</code>.</p>
+<p>So practically, if you select a random password in a login system, but no username, then it can't figure out the unique bit to add back to the password (the salt) and will unlikely be able to identify who's logging in with just the password alone.</p>
+<p>You are 100% correct in the other case where you select a random username from a login system. Most login systems will choose to act in a neutral manner as you describe indicating the username may or may not exist for security purposes.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/justlikestoargue" target="_blank">justlikestoargue</a>
+			<div class="markdown"><p>I think best security practice currently is not to use their username or date joined as a salt, but rather a completely random string generated when they register and stored in the database. That was every user has a unique, random salt that isn't tied to them directly (a hacker could not come up with a salt generating function, for example.)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ttabts" target="_blank">Ttabts</a>
+			<div class="markdown"><p>This is true but it's only marginally better from a security perspective. Salts don't actually need to stay secret to fulfill their intended security goal, and in a scenario where the hacker has use for the salts (i.e. he has access to the hashed passwords) he probably already has the salts anyway.</p>
+<p>But salts are just meant to prevent a hacker from being able to do a dictionary or brute force attack on all users at the same time. Without salts, he could just calculate the hashes for common passwords and find the users with those hashes. With salts, he has to calculate likely hashes individually for each user he wants to target. This is achieved regardless of whether the hacker knows the salts.</p>
+<p>Really the salts just have to be random enough that you wouldn't be able to use a dictionary attack of &quot;common password+salt combinations.&quot; But making them completely random is just simple and obviously safe.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/absolutegigolo" target="_blank">absolutegigolo</a>
+			<div class="markdown"><p>There is actually a security technique in used computer science which purposefully slows sensitive requests like this down.</p>
+<p>For instance if a hacker tries a unregistered username and password combo and the request takes say a second less than a registered username and a wrong password combo. They know that the username they have just tried is invalid.</p>
+<p>It happens because password hashing functions are intentionally slow to make it more computationally expensive to brute force them. So some websites will look up the user in the database before they try and hash the password, and the database query will take much less time to produce an invalid result. Thus indicating that the username was invalid and they can move onto the next one. So it's a good idea to always hash the password even if you know the username is wrong.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/niosop" target="_blank">niosop</a>
+			<div class="markdown"><p>Typically the time taken to hash the password would be less than the latency of making two round trips to the database anyways.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MrQuizzles" target="_blank">MrQuizzles</a>
+			<div class="markdown"><p>Yeah, even with intentionally slow algorithms, the time taken to perform a single hash is pretty insignificant, like a millisecond. Where it matters is when you're trying to hash 1000000 things, which is usually an indicator of malicious intent. That millisecond then balloons into 1000 seconds, which is an eternity in the computer world when trying to perform just a million operations, as any would-be hacker will likely need to perform many millions more to find what they want. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/koresho" target="_blank">koresho</a>
+			<div class="markdown"><p>Not if you follow security best practices and use a large iteration count of your hash. </p>
+<p>On a login form at my company we have enough iterations to make a given login request spend 50ms hashing (while RTT to the DB is 2-7ms).
+Additionally if the user doesn't exist we force the server to wait 50ms before responding, even though it finished its &quot;user doesn't exist&quot; lookup in that 2-7ms. </p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

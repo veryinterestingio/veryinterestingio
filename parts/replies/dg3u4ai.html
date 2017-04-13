@@ -1,0 +1,138 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SirX86" target="_blank">SirX86</a>
+			<div class="markdown"><p>In reality you would usually query the database with: &quot;Give me the ID of the user whose username is <entered username> and whose (encrypted) password is <encrypted version of the entered password>&quot;. </p>
+<p>If the username and password match, you get one single user ID back, if they don't, you get no results. So if you wanted to know which of the two pieces of information was incorrect, you'd actually have to do <em>more</em> work.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KurrKurr" target="_blank">KurrKurr</a>
+			<div class="markdown"><p>Yes! Why not query for username AND password? The DB would handle this completely on its own. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mmarco94" target="_blank">Mmarco94</a>
+			<div class="markdown"><p>That's not possible if you use any serious hashing function</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VagSlayer9000" target="_blank">VagSlayer9000</a>
+			<div class="markdown"><p>Except the password should be hashed and salted not encrypted.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EqualResponsibility" target="_blank">EqualResponsibility</a>
+			<div class="markdown"><p>How do you have the most upvotes? I mean no disrespect, only that your example is quite incorrect.</p>
+<p>When we're talking about thin client / web browser applications, the username isn't checked if no password is entered. </p>
+<p>Here's the ELI5:</p>
+<ol>
+<li>Knock knock</li>
+<li>Who's there</li>
+<li>John</li>
+<li>
+<crickets> (no response.. person knocking remembers they must answer with full name and passpword)
+</li>
+<li>Knock Knock</li>
+<li>Who's there</li>
+<li>John Doe &quot;I like Salt and Hash browns&quot;</li>
+<li>You may enter.</li>
+</ol>
+<p>NOTE: One way hashing probably cannot be explained in a ELI5. But it is vital to understand them for this question. Databases of users and their &quot;passwords&quot; is an incorrect description. Databases never store passwords. And I will stick by <em>never</em>, as if you know a platform that sends you your password in a email when you ask to recover you need to immediately change your password to &quot;you all deserve what you get stop storing plain text passwords. Two way encryption is the same as storing it plain text.&quot; and then cancel your account. Im not joking. They have to know the key to decrypt it, which means it's &quot;written&quot; somewhere which means it's useless. Take this seriously. (A SME in Cyber Security, Intrusion detection, and hardening)</p>
+<p>Inside the clubhouse the kids didn't want each other to know the others password, so they only write down a simple hash of the password. Preface: I know this is two-way but pretend it's not) The kids take each letter and multiple it by two where each letter represents a number starting from 1. So an A becomes a 2 (B). B becomes a 4(D), and so on. Wrap the letters when it's more than your codec (set of available letters A - Z) This can easily be undone by dividing by 4 so pretend they can't do division. One way hashes are not simple all.</p>
+<p>That's about as much ELI5 as i can do at the moment. </p>
+<p>No website SHOULD EVER store your password. We don't need to. There are mathematical algorithms which produce something called a Oneway Hash. One way means it cannot be undone. So, the next thought might be: Woah, how do they know my password is correct. Short answer is they don't, they only know that the password you have produced the same Oneway Hash. The chances of collision is one in billions. One might think ahead and create all known hashes in the world. Smart kitty... It's called a Rainbow table. Gigabytes of prehashed passwords and passphrases which can be used to find A password which would produce the same hash value. This is only useful if one obtains the database of a website. This seems to happy a lot these days somehow. </p>
+<p>To prevent Rainbow tables from being useful, we start adding what's called a Know Salt to the password. Each user gets a new Salt, which is added to their password and then THAT is hashed. The salt has to be stored with the user but that's ok. It's there to stop prebuilt databases. Rebuilding these Rainbow databases is not trivial time wise.</p>
+<p>Now hopefully my joke about Salt and Hash browns makes sense.</p>
+<p>Here is a bulleted response assuming the website wasn't created by an organization looking to be sued:</p>
+<ul>
+<li>Validation and Verification are different steps.</li>
+<li>A website won't even ask the server if the username and password is correct unless both fields are filled out. Of course one can disable this or not do Validation.</li>
+<li>Verifying usernames and passwords isnt a simple compare check.
+<ul>
+<li>A username comes in, the very long unique Salt for that user is combined with the password and then hashed with security biased math called SHA-1 or SHA-256. (SHA-3 will be available soonish). </li>
+<li>Now the system has the username/id and a hashed password. It's a one line lookup in any RDBMS database system. One can even have the database do the hashing, salt combination, and lookup. SQL and modern databases support all that is needed. Don't reinvent the wheel on this stuff. It's almost guaranteed your RDBMS has everything you need. If it doesn't PM and ill write it Open Source MIT for you.</li>
+</ul></li>
+<li>The result is a simple result or no records found. At this point we can return to the browser a success or failure. Whether it's username or password doesn't really matter. </li>
+<li>That whole process is called Authentication. Meaning, do you even have an account.</li>
+<li>Then there is Authorization. Meaning, do you have the Rights to access what you're trying to access. Imagine a school login where Teachers can change grades and students can't. </li>
+</ul>
+<p>Why a Salt for EACH user? That way when two people use the same &quot;IloveGod&quot; password it will result in a different hash because of the salt.</p>
+<p>All cryptography goes out the window the moment we invent a turing complete quantum computer.. Keep that in mind. :p</p>
+<p>Ok, now forget all of this... why you ask? More likely, why the F would you write all this then ask to us to forget it. </p>
+<p>It's simple. We as a Digital society are moving away from the concept of Username and Password. We're getting more abstract and more secure. Log into your Google account. IT tells you if you're account is valid. But that violates all we just said? Well, I never said it, others did. Knowing the account to look up can give us different ways to login; via usb keys, passwords, passphrases, facial recognition, voice recognition, finger print. To do any of this it has to know which account to look up. Thus, one can go through and try random Google email addresses. For about three to five times before Google blocks you. That's the way they stop brute force attacks. Having to wait five seconds when you accidentally type in your password incorrectly for the third time isnt a big deal to a human, but it is to a software program. It goes from being able to guess passwords hundreds of times a second to one every five seconds, and it gets worse with each failed attempt. It's easier to social engineer someone to get what you want then brute force it.</p>
+<p>Microsoft Accounts work the same way. They tell you if it's a valid email up front. And it's fine because they have other methods in place. It doesn't matter if someone knows that account may be valid.</p>
+<p>The point here is that in the old days systems could be brute forced and it was wiser to not tell the user which one they got wrong AND if they relies on a single atomic (happening in one step) query, they won't know which failed without trying additional queries. It's a symptom of optimisation not security. A single query to the database is &quot;better&quot; then a lookup for the user, fail if not found, else check password, fail if not correct, else success login. </p>
+<p>Clear as mud? Some systems are written such they literally can't tell you which failed without changing their code. </p>
+<p>In the end, none of us should care. We SHOULD care if our OWN password is ever sent to us. It means the database did NOT hash it. Hashes cannot be undone. To the trolls; Don't confuse being able correctly guess a phrase which produces the same hash as that hash being reversed. I speak about this because a rather large security platform emailed me my password once and I called their CEO. It's THAT BAD to do this. Like making the fire escape open on the inside bad. Creating a death power cord bad. Putting one's own Social Security Number on the side of a Bus bad.. Remember that guy? And the identity protection company? Poor guy.</p>
+<p>When you hear about Sony being compromised, and others. Pray your password was hashed using the latest cryptography algorithms. And that you didn't use the same password everywhere.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Speicherleck" target="_blank">Speicherleck</a>
+			<div class="markdown"><p>I think you may have misunderstood OP's message. Or maybe I did.</p>
+<p>I don't see anything in his message implying the password is stored in plain text. I see a simplification of the process and a hint of the comparison but that is all.</p>
+<blockquote>
+<p>Also keep in mind that password validation both takes a lot longer than simply comparing two usernames (so long as passwords are even somewhat properly stored) and always takes roughly the same amount of time.</p>
+</blockquote>
+<p>This is correct. When you hash and salt a password + retrieve the actual hash from the database it should be roughly the same time in the same circumstances. Not to mention that the actual salting is usually costly by design to prevent creating rainbow tables. You can easily use a work factor for your hashing mechanism that can take 0.1s / 0.3s. So the point stands well with this. I feel like OP just didn't got into hashing details as it is not relevant to the answer, this being an ELI5.</p>
+<p>I'd argue that this attack is not reliable for website and not possible with a brute force but in other, more controlled environments, it's something that can happen. Besides there are a lot of &quot;IF&quot;s you have to assume about how the database works to pull this out, which might to be true and usually it's not really true. But you can deduce stuff based on running time. And you can definitely find out if a user exists in the database using this attack, even if the website does not provide you this info, for the (bad) example given in OPs message. This might leak an important piece of information.</p>
+<p>I get what you're saying, but for an ELI5 I feel like it is quite ok to say the database is storing user passwords. Sure, that is a salted hash, but regardless, is the user password. It may not be the exact text, just a representation of the user passwords, but in a simplified way is the password.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/demize95" target="_blank">demize95</a>
+			<div class="markdown"><p>Yeah, I definitely wasn't trying to say passwords were being stored in plaintext. In that case the timing wouldn't matter as much because network jitter would disguise the differences (although a sufficiently determined attacker who can spend a lot of time trying usernames and passwords can just calculate the probability based on testing known usernames against known invalid usernames, and that'll be enough to get some good information). </p>
+<p>Anyone actually developing a website hopefully already knows that they should be using a KDF or other algorithm specifically designed for hashing passwords. Hopefully.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/quantasmm" target="_blank">quantasmm</a>
+			<div class="markdown"><p>This is a rough attempt for an ELI16 for one way hashes. My example isn't complex enough<br />
+to exclude working backwards, but the hashing methods used IRL are &quot;similar&quot;  </p>
+<p>Assume passwords are lowercase only for my example.  </p>
+<p>Now define &quot;letter addition&quot; as if the letters were 1 - 26.<br />
+So b + b = d, and y + e = &quot;d&quot;, carry the &quot;1&quot;. (carry the &quot;a&quot;, if you will)<br />
+25 + 5 is 30, which is &quot;d&quot; after going &quot;1&quot; time around the alphabet.  </p>
+<p>Using this method, add your password &quot;beautiful&quot; to itself 5 times, shifting<br />
+it one letter each time:  </p>
+<pre><code>      beautiful  
+      eautifulb  
++________________  
+      gfvocoagn  
+
+      gfvocoagn  
+      autifulbe  
++________________  
+      hapxijmis  
+
+      hapxijmis  
+      utifulbea  
++________________  
+     acuyddvont  
+
+     acuyddvont  
+      tifulbeau  
++________________  
+     bwdeypxtoo  
+
+     bwdeypxtoo  
+      ifulbeaut  
++________________  
+     cfjzkrcuji  </code></pre>
+<p>Then take the last 6 characters only and your final hash is: krcuji  </p>
+<p>&quot;beautiful&quot; will always hash to &quot;krcuji&quot; using my crude method.  </p>
+<p>Imagine adding a salt, adding the result to itself shifted twice as well as the password again, and repeating this 100 times, so that the summations are huge. In the end, you'll have a 100 character string of gobbledygook, and you'll chop off probably 90 of the characters and keep only about 10. Now its easier to see why its not reversible.  </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/frisch85" target="_blank">frisch85</a>
+			<div class="markdown"><p>I've only read the first paraphrases but i can already agree to those. Passwords should never be stored <strong>as plain text</strong> and every developer doing so should be fired immediately. Password recoveries should always generate a random password that is only valid for a given amount of time. Can't make it in that time? No big deal, just ask yet for another one but also to note this makes the old random password obsolete.</p>
+<p>What's also important to note is that customers don't seem to understand this. Whenever i get a call on our service number and they ask for their password i reply </p>
+<blockquote>
+<p>i don't know your password but i can generate you a new one and send it to your email address</p>
+</blockquote>
+<p>Also it's much safer to never say that the password is wrong or that the username is wrong. Always say &quot;Password or Username is wrong&quot;, maybe &quot;Password and/or Username is wrong&quot; because if you say &quot;Username is wrong&quot; you are already giving out the information that the user exists which already narrows bruteforce combinations down.</p>
+<p>Not getting into bruteforce prevention here, that's another topic.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fidodo" target="_blank">Fidodo</a>
+			<div class="markdown"><p>It's not good security on many sites and this is actually a really big pet peeve of mine. If you're going to hide usernames you need to hide them everywhere and most sites don't do that, and any social site with public facing usernames can't do that. On lots of sites you can easily check if a username is available because they let you check on the sign up page (some even have live checking with unthrottled response times) and they also have profile pages that you can easily check for a 404.</p>
+<p>If you are a high security application like a bank then you need to be careful not to expose whether a username is taken anywhere, including the sign up page, your password reset form, and profile page URLs.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wdpttt" target="_blank">wdpttt</a>
+			<div class="markdown"><p>Or you dont login with your username, you login with another string.</p></div>		</li>
+					</ul>
+		</ul>
+	

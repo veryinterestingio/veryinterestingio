@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: For most websites, when you enter your login info incorrectly, why can't the website tell you specifically whether the username or the password is incorrect?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="64lfab">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/64lfab/eli5_for_most_websites_when_you_enter_your_login/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/64lfab" onclick="return false">For most websites, when you enter your login info incorrectly, why can't the website tell you specifically whether the username or the password is incorrect?</a>
+		</h2>
+		<!--<span class="date">2017-04-13</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>It usually only tells you &quot;your username or password is incorrect.&quot; </p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dg3u4ai">
+		<a class="author" href="https://www.reddit.com/user/demize95" target="_blank">demize95</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A side point I haven't seen anyone else mention yet:</p>
+<p>While it's good to return the same error message whether the username or password was wrong, there's another security consideration to take into account here: the time it takes to return that error.</p>
+<p>Imagine you're an attacker trying to brute force combinations on a website. All you know is whether the combination worked or not and how long it took for you to get the message. If the validation code looks something like this, then you can figure out more information than they intended (bolded lines are where a message is printed):</p>
+<ol>
+<li>Check if user exists</li>
+<li><strong>If user doesn't exist, print error</strong></li>
+<li>Get user's password</li>
+<li>Compare user's password with entered password</li>
+<li><strong>If both passwords match, print success</strong></li>
+<li><strong>Otherwise, print error</strong></li>
+</ol>
+<p>Looking at that logic, you can see that the error caused by an incorrect username is printed much earlier than the error caused by an incorrect password. Also keep in mind that password validation both takes a lot longer than simply comparing two usernames (so long as passwords are even somewhat properly stored) and always takes roughly the same amount of time. Because of this, if you can observe the timing of your requests, then you can determine, regardless of the text of the error message, whether the username you entered exists or not. This is called a timing attack, and security experts generally recommend mitigating it by always doing every step of the verification. </p>
+<p>Compare the above logic to this logic, which isn't vulnerable to the same timing attack:</p>
+<ol>
+<li>Check if user exists</li>
+<li>If user doesn't exist:
+<ol>
+<li>Get the string &quot;doesn'tmatter&quot; from the database</li>
+<li>Compare entered password to this string</li>
+<li><strong>Print error</strong></li>
+</ol></li>
+<li>Get user's password</li>
+<li>Compare user's password with entered password</li>
+<li><strong>If both passwords match, print success</strong></li>
+<li><strong>Otherwise, print error</strong></li>
+</ol>
+<p>If you're unfamiliar with databases and how passwords are stored, just know that step 2.1 is necessary in case of a database that takes a while to respond. Anyway, in this new one, we actually validate the entered password against an arbitrary string in the case the username's incorrect and then discard the result. Because of this, it should always take effectively the same amount of time to get all three options, leaving an attacker with no indication of whether a user exists or not.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dg3o774">
+		<a class="author" href="https://www.reddit.com/user/kodack10" target="_blank">kodack10</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For better security. Any information no matter how small could allow someone to game the system and brute force a login. </p>
+<p>Let me give you an example. Say that I really didn't like Joe Forman and I wanted to get into his facebook account but I don't know what his username is but I know a few email addresses he's used. </p>
+<p>Login: Jforman@.at.google.com
+bad username
+Login: Joe_f@.at.yahoo.com
+bad username
+Login: Lvs2@airmail.net
+bad password</p>
+<p>Aha. So Instead of not knowing what was wrong, now I know that lvs2@airmail.net is the right login. Now I can use other tricks to log in. I can try some commonly guessed passwords. I can go to a black hat web site and see if anyone with that email address ever had a password stolen, and hope they use the same password on other sites. </p>
+<p>I could google Joe Forman or that email, find out their birthday, maybe the name of their pet, favorite color from some questionnaire they took 5 years ago in a public forum. And I can use some of these to do a password reset &quot;What is your birthday? Your pets name?&quot; etc. </p>
+<p>Basically brute forcing an account is infinitely easier if you are able to get any pieces of information. It goes from impossible to hard, and hard is just a matter of patience and research. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dg31q46">
+		<a class="author" href="https://www.reddit.com/user/MultiFazed" target="_blank">MultiFazed</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They <em>can</em>. They just <strong>don't</strong>, because doing so is a security risk. If a hacker tries a username and password and gets back &quot;username is invalid&quot;, they'll move on to another username instead of wasting time on one that doesn't exist. And if they get back &quot;password is invalid&quot;,  they know that they have a real account, and can focus on trying to hack it.</p>
+<p>It's more secure to never confirm or deny that an account exists.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dg3wsds">
+		<a class="author" href="https://www.reddit.com/user/whiterook6" target="_blank">whiterook6</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This practice is somewhat misunderstood as a good security practice, under the principle that you cannot know if you've tried to hack with a correct email address (or username or id or whatever.) However there are other ways to verify the email address information you're providing--notably, by attempting to register that email address. The system will already tell you if an email is in use and as such there is no real security benefit to not revealing whether it's the username or password that is incorrect.</p>
+<p>To developers out there, the best security is a strong password with good salting/hashing, and preventing people from knowing whether it was their email or password that was incorrect is bad usability that only hurts people trying to log in, not scripts that probably already know which email is being sought.</p>
+<p>Edit: Take reddit for example: I (and really bad guys) can see all of your login names.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dg31q52">
+		<a class="author" href="https://www.reddit.com/user/GMOsYMMV" target="_blank">GMOsYMMV</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They are trying to make it harder for hackers. If the website specifies which info is wrong, then whoever's trying to hack into your account will be able to focus on changing that, rather than having to figure out which of the two is wrong.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/64lfab" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
