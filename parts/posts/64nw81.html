@@ -1,0 +1,68 @@
+<li class="post" data-handle="64nw81">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/64nw81/eli5_why_do_most_software_programs_web_browsers/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/64nw81" onclick="return false">[ELI5] Why do most software programs (web browsers, for example) display an error code that you have to look up instead of just telling you the error?</a>
+		</h2>
+		<!--<span class="date">2017-04-14</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>[ELI5] Why do most software programs (web browsers, for example) display an error code that you have to look up instead of just telling you the error?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dg3o15z">
+		<a class="author" href="https://www.reddit.com/user/TokyoJokeyo" target="_blank">TokyoJokeyo</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The use of error codes is considered a good practice in programming, because it allows different errors to be strictly defined and distinguished from one another. The name and explanation of that error can then be easily localized.</p>
+<p>For example, HTTP error &quot;404&quot; has a detailed specification indicating when it should be issued. It happens to be called &quot;Not Found,&quot; but a web site may choose to return a page with a different name and an easy-to-understand explanation if it wants to. Or a browser can choose to provide that information, even translate it based on the user's language. Either way, behind the scenes the web server and browser both understand just what is meant by &quot;404.&quot;</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dg3vx8p">
+		<a class="author" href="https://www.reddit.com/user/lol_admins_are_dumb" target="_blank">lol_admins_are_dumb</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In addition to what others said about users not being able to fix and therefore not really caring specifically about teh error, there's also the fact that other programs consuming the program you are using will look for those errors to handle them in specific ways. But they can't parse your error <em>message</em>, they need something easier to parse and more unique than that.</p>
+<p>Let's say the error was &quot;Page could not be located&quot; and you set up your browser to show a certain toolbar on invalid pages. Now let's say you decided to change the wording a bit to &quot;Page not located or inactive&quot;. Now all the code that was looking for your previous message has to update. By using special codes, it lets you change the human-readable side of things without impacting any consuming code.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dg47vre">
+		<a class="author" href="https://www.reddit.com/user/ksatia" target="_blank">ksatia</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Going against the grain of most here - as a software developer and a person experienced in software QA, I think it's bad practice to display an error code. When I'm writing code and dealing with catching errors, I generally display a human readable message about the error (easy for the consumer to understand) and often include the error code somewhere in there for a consumer to google. As for other devs working on the same codebase, I always print the localized description to the console so that when replicating bugs, they know exactly what's going on. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dg3z9bq">
+		<a class="author" href="https://www.reddit.com/user/Rmanolescu" target="_blank">Rmanolescu</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are a few reasons:</p>
+<ul>
+<li>unhandled standard errors - some web sites have <a href="https://www.reddit.com/uhdhjdjdf" target="_blank">custom 404</a> pages, while some let your browser handle it</li>
+<li>non-standard errors (getting a strange error like 452 on a web page). Your browser won't know what that is</li>
+<li>avoiding giving implementation details - ERR #587. It doesn't want to say &quot;Joe's code broke&quot;</li>
+<li>easy debugging - when you click too much on menu X and it crashes, it might give you error &quot;mX5clk&quot;. When you talk to customer support, they can quickly give you advice</li>
+</ul></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dg3pmzc">
+		<a class="author" href="https://www.reddit.com/user/Dodgeballrocks" target="_blank">Dodgeballrocks</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The error codes are not really for the users. They are for the application programmers and for programmers who write software that interacts with that application. </p>
+<p>The codes make it easy for diagnostic tools to track the errors. There really isn't a need for the code to explain in plain English what the issue is when it happens. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/64nw81" onclick="return false"><span>show</span></a>
+</li>

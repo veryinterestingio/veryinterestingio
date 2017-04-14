@@ -1,0 +1,33 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/komrade_koolkat" target="_blank">komrade_koolkat</a>
+			<div class="markdown"><p>Ok, just wondering why like on my Baconreader app it gives errors that are just numbers, rather than putting like 3 words to explain it with the code included.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TokyoJokeyo" target="_blank">TokyoJokeyo</a>
+			<div class="markdown"><p>The error numbers are useful. As for the lack of explanation, the developers may not think you need to understand, or didn't want to spend the time and expense on writing them.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/komrade_koolkat" target="_blank">komrade_koolkat</a>
+			<div class="markdown"><p>Alright thanks for the explanation</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OneAndOnlyJackSchitt" target="_blank">OneAndOnlyJackSchitt</a>
+			<div class="markdown"><p>In the case of software I've maintained, the user was never meant to see the error code.</p>
+<p>The class library threw exceptions when a function was called with incorrect values, per proper design. The app calling the function assumed it would always call the function with correct values due to the values being sanitized (the input fields would not accept incorrect value).</p>
+<p>Of course, someone else develops code that calls this function but fails to sanitize the fields. It makes it past the idiots in QA and the client starts getting an occasional &quot;An error has occurred: &quot; followed by the app closing.</p>
+<p>The developer didn't bother to implement exception filtering for the specific exception thrown by the class library and this exception didn't have a field for display text, is was simply &quot;ClassLibraryName.ValuesOutOfRangeException&quot;. So the default exception handler took over and displayed a message box that said &quot;An error has occurred: &quot; and executed the Finally block of the default exception handler.</p>
+<p>Tl;dr: There's so many people and departments involved in producing code. There's many many opportunities for errors (&quot;exceptions&quot; in programming terms) to be generated and many many opportunities for errors to be caught and displayed to the user in a meaningful way. A god QA team will catch most of the errors and get the developers to include friendly text with the error. Once in awhile, though, there's an error which isn't expected for some reason. These are the ones which either have really esoteric text which is only meaningful in the specific context of where the error occurred, or which only display a number, or which lead to the dreaded &quot;Unhandled exception has occurred in your application.&quot;</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/butsuon" target="_blank">butsuon</a>
+			<div class="markdown"><p>More and to the point, there are way more errors than you can even imagine existing. Like seriously, you don't want to know. You'll ever wonder how our society still stands. We need to number them because you can't name them.</p>
+<p>source: i know fortran.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ImprovedPersonality" target="_blank">ImprovedPersonality</a>
+			<div class="markdown"><blockquote>
+<p>The use of error codes is considered a good practice in programming, because it allows different errors to be strictly defined and distinguished from one another.</p>
+</blockquote>
+<p>But you don’t have to use error codes specifically. In languages capable of exceptions you’d use different exceptions (which are hopefully also much more meaningful than some error code).</p></div>		</li>
+					</ul>
+	
