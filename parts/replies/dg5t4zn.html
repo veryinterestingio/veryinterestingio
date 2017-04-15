@@ -1,0 +1,198 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/giltwist" target="_blank">giltwist</a>
+			<div class="markdown"><blockquote>
+<p>In some special cases, the filesize actually increases due to the rules I introduced to properly represent numbers and slashes.</p>
+</blockquote>
+<p>A great example of this is the Conway or &quot;See-it-say-it&quot; sequence.</p>
+<ul>
+<li>1 -&gt; &quot;There is one 1&quot; -&gt; 11</li>
+<li>11 -&gt; &quot;There are two 1's&quot; -&gt; 21</li>
+<li>21 -&gt; &quot;There is one 2 and one 1&quot; -&gt; 1211</li>
+<li>1211 -&gt; &quot;There is one 1, one 2, and two 1's&quot; -&gt; 111221</li>
+</ul></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kebble" target="_blank">Kebble</a>
+			<div class="markdown"><p>I'm also fond of the <a href="https://en.wikipedia.org/wiki/Kolakoski_sequence" target="_blank">Kolakoski sequence</a> that is its own run-length encoding</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/okraOkra" target="_blank">okraOkra</a>
+			<div class="markdown"><p>can you elaborate on this? do you mean the sequence is a fixed point of a RLE compression algorithm? this isn't obvious to me; how can I see this?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mandragara" target="_blank">mandragara</a>
+			<div class="markdown"><p>There's also a zip file out there that decompresses to a copy of itself</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/davidgro" target="_blank">davidgro</a>
+			<div class="markdown"><p>Does it ever successfully 'compress'?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Weirfish" target="_blank">Weirfish</a>
+			<div class="markdown"><p>For the sake of clarity, I'll delimit it a bit more. A pipe <code>|</code> separates the number of values and the value, and a semicolon <code>;</code> separates number-value pairs. So the examples given would be </p>
+<ul>
+<li><code>1</code> -&gt; &quot;There is one 1&quot; -&gt; <code>1|1;</code></li>
+<li><code>11</code> -&gt; &quot;There are two 1's&quot; -&gt; <code>2|1;</code></li>
+<li><code>21</code> -&gt; &quot;There is one 2 and one 1&quot; -&gt; <code>1|2;1|1;</code></li>
+<li><code>1211</code> -&gt; &quot;There is one 1, one 2, and two 1's&quot; -&gt; <code>1|1;1|2;2|1;</code></li>
+</ul>
+<p>Consider the example <code>1111111111111111112222222222</code>. This would compress to <code>18|1;10|2;</code> which is a lot shorter.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ardub23" target="_blank">Ardub23</a>
+			<div class="markdown"><p>Nope, <a href="https://en.wikipedia.org/wiki/Look-and-say_sequence#Growth" target="_blank">it keeps growing longer forever</a> unless the starting value is 22.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mrtyman" target="_blank">mrtyman</a>
+			<div class="markdown"><p>111221</p>
+<p>312211</p>
+<p>13112221</p>
+<p>1113213211</p>
+<p>31131211131221</p>
+<p>13211311123113112211</p>
+<p>11131221133112132113212221</p>
+<p>3113112221232112111312211312113211</p>
+<p>1321132132111213122112311311222113111221131221</p>
+<p>11131221131211131231121113112221121321132132211331222113112211</p>
+<p>Doesn't look like it</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BaneFlare" target="_blank">BaneFlare</a>
+			<div class="markdown"><p>Does your second example count as a higher value because it has two types of digits as well as two digits?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ericGraves" target="_blank">ericGraves</a>
+			<div class="markdown"><p>Zip has many different forms of lossless compression <a href="https://en.wikipedia.org/wiki/Zip_(file_format)#Compression_methods" target="_blank">(at least according to wikipedia)</a>. But the most common, deflate is based on a paper by Lempel and Ziv entitled <a href="http://ieeexplore.ieee.org/document/1055714/" target="_blank">a universal algorithm for sequential data compression.</a> The subsequent year, they released a similar paper for <a href="http://ieeexplore.ieee.org/document/1055934/" target="_blank">variable rate codes.</a> These algorithms are known as LV77 and LV78 respectively, and form the major basis for zip files. <a href="http://math.mit.edu/~goemans/18310S15/lempel-ziv-notes.pdf" target="_blank">Since those papers are pay-walled, here are some class notes describing the schemes pretty well.</a></p>
+<p>Universal source coding can be understood as an extension of the information theoretic standpoint on compression, in specific that <em>there is an underlying generating distribution</em>. If that assumption is indeed valid, then on average nH(P) bits are required to represent n symbols in the sequence, where H is the <a href="https://en.wikipedia.org/wiki/Entropy_(information_theory)" target="_blank">shannon entropy function</a> and P is the generating distribution. As an aside, particular LV77 really shines when the distribution can be represented by an ergodic process. Back to compression, there are many types of codes which achieve optimal compression, such as the <a href="https://en.wikipedia.org/wiki/Huffman_coding" target="_blank">huffman code</a> or the <a href="https://en.wikipedia.org/wiki/Shannon%E2%80%93Fano_coding" target="_blank">Shannon-Fano code</a>. But all of these codes <strong>require you to know the distribution</strong>.</p>
+<p>Obviously knowing the distribution is not always practically valid. Enter universal source coding which formulates the problem as &quot;I don't know what the underlying distribution is, but can I make a code which converges to it regardless without using too many extra symbols?&quot; And from the information theorists point of view, the answer is trivially yes. Take for instance a source where each symbol is generated IID according to some distribution which is initially unknown. If I were to look an the entire sequence in one go, I could simply estimate the distribution of the sequence and then use an optimal encoder that achieves the lower bound. I would still be required to also state which encoder I used. But for n symbols from a q-ary alphabet, the number of possible empirical distributions is at most n^(q), which takes at most q log(n) bits to store. Thus the overhead required to store n bits of our unknown sequence is n( H(P') + n^(-1) q log (n) ), symbols where P' converges to P asymptotically with n. And as a result we end up approaching the best possible compression rate, without knowing the source distribution to begin with.</p>
+<p>Of course, LV77 is a little more complicated, but really no different. LV77, more or less, uses <a href="https://en.wikipedia.org/wiki/Zipf%27s_law" target="_blank">Zipf laws</a>. More specifically, in an ergodic process the expected recurrence time of a symbol should be equal to the inverse of the probability of that symbol. And as such, the depth we need to observe to find the next symbol in the sequence should have a probability distribution that on average converges to the underlying process distribution. Lets look at an example,</p>
+<pre><code>AAABABBABBAABABABBBAAAB</code></pre>
+<p>which LV77 parses as </p>
+<pre><code>A, AA, B, AB, BABBAB, BA, ABAB, ABB, BAA, AB </code></pre>
+<p>and encodes as </p>
+<pre><code>(0,A),(1,1,2),(0,B),(1,2,2),(1,3,6),(1,3,2),(1,4,4),(1,8,3), (1,9,3),(1,6,2) .</code></pre>
+<p>In more detail, the encoder has not seen A before, and states so leaving A uncompressed. The next two entries are A, so the encoder notes first the <strong>number of symbols since the last occurrence of the next sequence</strong> and <strong>how many times the sequence occurs</strong>. It then sees B and notes it is a new symbol, and from there-on everything can be represented as conditional.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HoopyHobo" target="_blank">HoopyHobo</a>
+			<div class="markdown"><p>Any method of compression such as ZIP where you don't know what kind of data you're going to be compressing has to be lossless. Lossy compression requires knowing what the data represents so that you can ensure the end result actually resembles the uncompressed version. Images, audio, and video are really the only kinds of data than can be lossily compressed.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheoryOfSomething" target="_blank">TheoryOfSomething</a>
+			<div class="markdown"><p>I bet you could lossily compress English text. That's essentially what text message shorthand is. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rafv" target="_blank">Rafv</a>
+			<div class="markdown"><p>Time-series databases are also big on lossy compression. Time-series databases (OSIsoft PI, AspenTech IP21, etc) let you define flat bounds as well as general linear bounds where deviation from a flatline or linear trend is not significant. So if you have 100 data points but they're all in a line, you only need to store 2 points: the first and the last.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/savuporo" target="_blank">savuporo</a>
+			<div class="markdown"><blockquote>
+<p>images, audio, and video are really the only kinds of data than can be lossily compressed.</p>
+</blockquote>
+<p>This is incorrect. You can compress any kind of data where loss is accepted</p>
+<p>TL; DR No</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ScrewAttackThis" target="_blank">ScrewAttackThis</a>
+			<div class="markdown"><p>DEFLATE is LZ77 and Huffman Coding.  It's two forms of compression that can reduce repeating data in different ways.  Since you already went over LZ77, it's probably important to talk about Huffman Coding.  This isn't exactly ELI5, but here goes:</p>
+<blockquote>
+<p>AAAAABBBBCCCDDE</p>
+</blockquote>
+<p>The above string can be compressed by identifying symbols that are being used repeatedly and creating a &quot;code&quot; for each based on their frequency.  So if we count each symbol and how many times it appears, we end up with a frequency table that looks like:</p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>5</td>
+</tr>
+<tr>
+<td>B</td>
+<td>4</td>
+</tr>
+<tr>
+<td>C</td>
+<td>3</td>
+</tr>
+<tr>
+<td>D</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>The next step is to use this information to create a data structure known as a binary tree.  A binary tree is called that because 1) it looks like a tree and 2) each &quot;node&quot; has no more than 2 children nodes.  That means starting at the top node (root node), you can only ever go left or right.  The tree is constructed as such that the most frequently used nodes are closest to the root, while the least frequently used are farther.  Each symbol is considered a &quot;leaf&quot; node, meaning there are no children.</p>
+<p>Building this tree is half the fun/work of the algorithm.  To do this, we use another data structure known as a priority queue.  Simply explained, this is like having a group of people stand in line (queue) ordered by how young they are (priority).  It doesn't matter when they show up, if they're the youngest person then they go to the front of the line while the oldest is in the back.</p>
+<p>So to build the tree:  You initialize each symbol with its frequency as a node.  The node has no children, yet.  This makes our queue look like:</p>
+<pre><code>(E, 1), (D, 2), (C, 3), (B, 4), (A, 5)</code></pre>
+<p>We grab the first two and create a new node that only holds the sum of their frequencies.  Now we have a tree with 3 nodes total.  We add this back to the queue.  Remember, adding an item to this queue will place it in the correct order.  Now we just repeat this process like so:</p>
+<pre><code>1. (E, 1), (D, 2), (C, 3), (B, 4), (A, 5)
+2. (3, (E, 1), (D, 2)), (C, 3), (B, 4), (A, 5)
+3. (B, 4), (A, 5), (6, (3, (E, 1), (D, 2)), (C, 3))
+4. (6, (3, (E, 1), (D, 2)), (C, 3)), (9, (B, 4), (A, 5))
+5. (15, (6, (3, (E, 1), (D, 2)), (C, 3)), (9, (B, 4), (A, 5)))</code></pre>
+<p>Sorry that the textual representation isn't exactly clear.   But the final result looks like this: <a href="http://imgur.com/a/PA1td" target="_blank">http://imgur.com/a/PA1td</a>.  Side note: If the image doesn't exactly line up with my textual representation, that's fine.  Trees can generate differently when you end up with two symbols sharing the same frequency, but it doesn't really matter.</p>
+<p>Now here's where the beauty of the algorithm comes in.  This tree efficiently lets us creating codings for each symbol so that they're the smallest possible <strong>without</strong> being difficult to read (as in, there isn't ambiguity).  This is mathematically proven.  If you want to create a coding like this, Huffman's algorithm is it.</p>
+<p>To do this, we simply start at the root node and move to each leaf node, counting our moves along the way.  Going &quot;left&quot; is a 0, going &quot;right&quot; is a 1.  This produces an encoding table like so (using the image above):</p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>11</td>
+</tr>
+<tr>
+<td>B</td>
+<td>10</td>
+</tr>
+<tr>
+<td>C</td>
+<td>01</td>
+</tr>
+<tr>
+<td>D</td>
+<td>001</td>
+</tr>
+<tr>
+<td>E</td>
+<td>000</td>
+</tr>
+</tbody>
+</table>
+<p>Using this, we encode our original string <code>AAAAABBBBCCCDDE</code> to <code>1111111111110101010010101001001000</code>.  Hey, wait, why is that longer?  Well, good question.  The trick is that it's actually shorter as far as a computer is concerned.  To represent <code>A</code> in ASCII actually requires ~1 byte (8 1s and 0s).  We reduced each occurence of <code>A</code> to only two bits <code>11</code>.  So overall, we just compressed <code>AAAAABBBBCCCDDE</code> from 15 * 8 = 120 bits to only 33 bits.  That's a pretty massive difference.</p>
+<p>The drawback is that in order to decode <code>1111111111110101010010101001001000</code>, we need the tree we generated.  So unfortunately for small strings, you could potentially increase the size once you factor this in.  But with the tree, we simply read the encoded string from left to right in order to decode the bits back to their symbols.  So using the same image as before (<a href="http://imgur.com/a/PA1td" target="_blank">http://imgur.com/a/PA1td</a>) we can use it as a map.  For every bit, we go left or right.  When we get to a &quot;leaf&quot; node, we write that down and start back at the root.  Before we know it, we have our original string again!</p>
+<p>So how does LZ77 and Huffman fit together to form DEFLATE?  Well, I'm not 100% certain on those details.  I understand Huffman coding many times more than LZ77.  I believe the general process is that LZ77 reduces repeating strings as demonstrated above, and then those individual symbols are compressed with Huffman.  There's a little more to the algorithm that's necessary like how all of the information needed to properly decompress is stored and passed along.  But this is more structure related and kinda uninteresting.</p>
+<p>Final note: I want to emphasize something I said above.  &quot;This tree efficiently lets us creating codings for each symbol so that they're the smallest possible <strong>without</strong> being difficult to read (as in, there isn't ambiguity).&quot;  This is the key to huffman coding and why I find it such a cool algorithm.  If you look at the codes for each symbol, there's a special property that they have.  No whole symbol is a prefix of another.  What this means is that the code <code>A:11</code> does not exist in the start of any other code.  This means that reading the bits left to right, there's never any confusion while following the tree.  A code that would violate this property would be something like <code>Z:1</code> or <code>Y:00</code> since we couldn't tell if the stream of bits <code>001</code> is supposed to be <code>YZ</code> or <code>D</code>.</p>
+<p>e: Oh, this is /r/askscience and not /r/eli5</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wildjokers" target="_blank">wildjokers</a>
+			<div class="markdown"><p>It is &quot;LZ&quot; not &quot;LV&quot;.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ericGraves" target="_blank">ericGraves</a>
+			<div class="markdown"><p>Thanks for that, will edit later.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/halborn" target="_blank">halborn</a>
+			<div class="markdown"><blockquote>
+<p>(w/o quotes)  </p>
+</blockquote>
+<p>Just so you know, if you want to make text appear differently but without the use of quotation marks, you can use the <strong>`</strong> symbol on either side instead to invoke the 'code' format <code>like this</code>.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cuulcars" target="_blank">cuulcars</a>
+			<div class="markdown"><p>Heh, you escaped characters for a guy talking about escaped characters</p></div>		</li>
+					</ul>
+		</ul>
+	

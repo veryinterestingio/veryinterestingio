@@ -1,0 +1,43 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DatsButterBoo" target="_blank">DatsButterBoo</a>
+			<div class="markdown"><blockquote>
+<p>There are already some good explanations of compression. But that isn't the whole answer to, &quot;what is a zip file&quot;.</p>
+</blockquote>
+<p>True but based on the rest of his question it seems to be more of  &quot;What is a compressed file&quot; than &quot;what is a zip file&quot;.</p>
+<p>But your response has interesting information as well. </p>
+<p>I know tarballs but I was unfamiliar with <code>.a</code> files.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bg-j38" target="_blank">bg-j38</a>
+			<div class="markdown"><p>These days you'll mostly only see .a files as static libraries for programs. The program to access them is called ar and dates back to the very earliest days of Unix. It's mentioned in the Unix Programmer's Manual which Thompson and Ritchie published in 1971.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+			<div class="markdown"><p><code>ar</code> archives are in use in more than libraries, most prominently packages, e.g. for <a href="https://en.wikipedia.org/wiki/Ipkg" target="_blank">ipkg</a> or opkg.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheRaven1" target="_blank">TheRaven1</a>
+			<div class="markdown"><p>*her
+But when making the post I didn't know there was a difference! Now I do! And I understand the basics of both now :)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DatsButterBoo" target="_blank">DatsButterBoo</a>
+			<div class="markdown"><p>well as long as you got the help you need dudette that's the main thing.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Epistaxis" target="_blank">Epistaxis</a>
+			<div class="markdown"><blockquote>
+<p>Compression is a common feature for archive file formats, but is not required. Nor is an archive format required for compression. Classic Unix 'tar' and '.a' files are examples of archive formats that didn't include compression. And there are a variety of tools in Unix/Linux environments for compressing a single file without any kind of archive file format.</p>
+</blockquote>
+<p>Indeed, archiving and compressing are treated as separate tasks in Unix/Linux. If you only want to compress a single file, you might only compress it and not archive it. If you want to compress a few files, you might just compress each one individually rather than put them all together into an archive and then compress that. It's easier to stream through them in pipes that way. Archiving only really becomes necessary when you want to preserve a whole directory structure. However, if you have a large group of files that are already compressed, e.g. JPEG images, and you just want to make them into a single file for ease of storage/transport, you might actually put them together into an archive that isn't itself compressed in any way. (I have an instrument that generates tens of thousands of JPEGs every time it runs, and the mere act of creating all those inodes makes it a lot slower to copy them piecemeal than to copy one big file that contains them all.)</p>
+<p>So since compression is separate from archiving, most Unix/Linux compressors have an interesting property: if you concatenate two compressed files and then decompress the concatenated file, you get the same thing as if you concatenated the original uncompressed files. That is, if <code>smallfile1</code> contains the text</p>
+<pre><code>hello</code></pre>
+<p>and <code>smallfile2</code> contains the text</p>
+<pre><code>world</code></pre>
+<p>you can compress them individually to <code>smallfile1.gz</code> and <code>smallfile2.gz</code>, then concatenate those into a single <code>bigfile.gz</code>; when you decompress <code>bigfile.gz</code> you will get</p>
+<pre><code>hello
+world</code></pre></div>		</li>
+					</ul>
+	

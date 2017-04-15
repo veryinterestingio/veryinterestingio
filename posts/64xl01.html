@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>What is a &quot;zip file&quot; or &quot;compressed file?&quot; How does formatting it that way compress it and what is compressing?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="64xl01">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/64xl01/what_is_a_zip_file_or_compressed_file_how_does/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/64xl01" onclick="return false">What is a &quot;zip file&quot; or &quot;compressed file?&quot; How does formatting it that way compress it and what is compressing?</a>
+		</h2>
+		<!--<span class="date">2017-04-15</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I understand the basic concept. It compresses the data to use less drive space. But how does it do that? How does my folder's data become smaller? Where does the &quot;extra&quot; or non-compressed data go? </p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dg5t4zn">
+		<a class="author" href="https://www.reddit.com/user/Rannasha" target="_blank">Rannasha</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Compression is a way to more efficiently store data. It's best explained with a simplified example.</p>
+<p>Suppose I have a file that contains the string &quot;aaaaaaaaaaaaaaaaaaaa&quot; (w/o quotes). This is 20 characters of data (or 20 bytes using basic ASCII encoding). If I know that files of this type rarely contain anything other than letters, I could replace this string by &quot;20a&quot; and program my software to read this as an instruction to create a string of 20 a's.</p>
+<p>But what happens if I want to use the same function for something that does contain a number? Well, I could decide that any number that is to be interpreted literally, rather than as part of an instruction is preceded by a -symbol (and then add the special case of using \ whenever I want to represent a single ).</p>
+<p>In certain cases, where the file doesn't contain many numbers or slashes, the size of the file can be reduced by this shorthand notation. In some special cases, the filesize actually increases due to the rules I introduced to properly represent numbers and slashes.</p>
+<p>Next up a compression tool might replace recurring pieces of data by a symbol that takes up considerably less space. Suppose a piece of text contains many instances of a certain word, then the software could replace that word by a single character/symbol. In order to ensure that the decompression software knows what's going on, the file format could be such that it first includes a list of these substitutions, followed by a specific symbol (or combination thereof) that marks the actual content.</p>
+<p>A practical example. Lets use both of the previous concepts (replacement of repeated data in a sequence by a number and a single instance of that data and replacement of freqeuntly occurring data by a special symbol and a &quot;dictionary&quot; at the start of the file). We use the format &quot;X=word&quot; at the start of the text to define a substitution of &quot;word&quot; by symbol &quot;X&quot;, with the actual text starting with a !. We use the \ to indicate that the following character has no special meaning and should be interpreted literally.</p>
+<p>The text is:</p>
+<p>I'm going to write Reddit 5 times (RedditRedditRedditRedditReddit) and post it on Reddit.</p>
+<p>This line has 90 characters. Applying our compression algorithm, we get:</p>
+<p>$=Reddit!I'm going to write $ \5 times (5$) and post it on $.</p>
+<p>This line has 62 characters. A reduction of a third. Note that this algorithm is very simplistic and could still be improved.</p>
+<p>Another technique that can be used is reducing the size of the alphabet. Using standard ASCII encoding, 1 character uses 1 byte of space, but this 1 byte allows for 256 different characters to be expressed. If I know that a file only contains lowercase letters, I only need 26 different characters, which can be covered with just 5 out of the 8 bits that make up a byte. So for the first character, I don't use the full byte, but rather just the first 5 bits and for the next character, I use 3 remaining bits of the first byte and 2 bits from the next byte, etc...</p>
+<p>Now a file like this can only be interpreted correctly if the software on the other end knows it's dealing with a file that uses 5 bits to encode a lowercase letter. This is rather inflexible. So what I can do is to include a special header in the file, a small piece of data that contains the details of the encoding used, in this case it will mention that each character uses 5 bits and then has a list of all the characters that are used. This header takes up some space, so reduces the efficiency of the compression, but it allows the compression software to use any type of character-set that it likes, making it useable for any file.</p>
+<p>In reality, ZIP and other compression techniques are considerably more complex than the examples I've demonstrated above. But the basic concepts remains the same: Compression is achieved by storing existing data in a more efficient way using some form of shorthand notation. This shorthand notation is part of the official standard for the compression-system, so developers can create software to follow these rules and correctly decompress a compressed file, recreating the original data.</p>
+<p>Just like in my examples, compression works better on some files than on others. A simple text file with a lot of repetition will be very easy to compress, the reduction in file size can be quite large in these cases. On the other hand, a file that contains data that is apparently random in nature will benefit very little, if anything, from compression.</p>
+<p>A final remark. All of the above is about &quot;lossless&quot; compression. This form of compression means that the no information is lost during the compression/decompression process. If you compress a file and then decompress it using a lossless algorithm, then the two files will be exactly the same, bit by bit.</p>
+<p>Another form of compression is &quot;lossy&quot; compression. Where lossless compression tries to figure out how data can be stored more efficiently, lossy compression tries to figure out what data can be safely discarded without it affecting the purpose of the file. Well known examples of lossy compression are various file formats for images, sound or video.</p>
+<p>In the case of images, the JPEG format will try to discard nuances in the image that are not noticable by a regular human observer. For example, if two neighbouring pixels are almost exactly the same colour, you could set both to the same colour value. Most lossy formats have the option to set how aggressive this compression is, which is what the &quot;quality&quot; setting is for when saving JPEG files with any reasonably sophisticated image editor. The more aggressive the compression, the greater the reduction in filesize, but the more data that is discarded. And at some point, this can lead to visible degradation of the image. So-called &quot;JPEG artifacts&quot; are an example of image degradation due to the application of aggressive lossy compression (or the repeat application thereof, the image quality decreases every time a JPEG file is saved).</p>
+<p>edit:
+For a more detailed overview of the compression often used in ZIP files, see <a href="https://www.reddit.com/r/askscience/comments/64xl01/what_is_a_zip_file_or_compressed_file_how_does/dg60pjr/" target="_blank">this comment</a> by /u/ericGraves </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dg5z6ts">
+		<a class="author" href="https://www.reddit.com/user/ramennoodle" target="_blank">ramennoodle</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are already some good explanations of compression.  But that isn't the whole answer to, &quot;what is a zip file&quot;.  </p>
+<p>A zip file is  an <em>archive file</em> that also supports compression.  An archive file is a way of storing a collection of files (and directories, file names, and other data necessary to reproduce a subset of a file system) in a single file.  It is a convenient  way of packaging a bunch of files for archiving, sharing, etc.   </p>
+<p>Compression is a common feature for archive file formats, but is not required.  Nor is an archive format required for compression.  Classic Unix 'tar' and '.a' files are examples of archive formats that didn't include compression.  And there are a variety of tools in Unix/Linux environments for compressing a single file without any kind of archive file format.</p>
+<p>.zip files were the file format for a &quot;shareware&quot; DOS program from <em>1989</em> called pkzip, from a company named pkware.  Because it was functional and effectively free (and maybe because of the catchy name) it quickly grew to be a defacto standard.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dg5y2rq">
+		<a class="author" href="https://www.reddit.com/user/_Mr-Skeltal_" target="_blank">_Mr-Skeltal_</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Say you have the following sequence of data:</p>
+<p><code>Pizza Pizza Pizza Pizza Pizza Pizza Pizza Linguini Pizza Pizza Pizza Sub</code></p>
+<p>Let's shorten it by making a code.  We agree that in addition to the regular text we can use % to &quot;signal&quot; that the next value is a number that tells us how many times to repeat the following text in parentheses.  So now we have:</p>
+<p><code>%7(Pizza )Linguini %3(Pizza )Sub</code></p>
+<p>Much shorter!  We know to repeat Pizza 7 times, then Linguini once, and then another signal to repeat Pizza 3 times.</p>
+<p>We can also do:</p>
+<p><code>%7(Pizza )%1Linguini %3(Pizza )Sub</code></p>
+<p>That's pretty much the concept compression in a nutshell (and I've written code for decoding bzip data).  it is basically agreeing on code forms to shorten stuff, and implementing those tricks and techniques as part of a compression algorithm.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dg61udm">
+		<a class="author" href="https://www.reddit.com/user/frowawayduh" target="_blank">frowawayduh</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Let's compress OP's question by replacing certain 3 and 4 character sequences with a single character:  </p>
+<ul>
+<li>= &quot;ing&quot;<br />
+! = &quot;hat&quot;<br />
+% = &quot; is &quot;<br />
+Compressed:
+W!%a &quot;zip file&quot; or &quot;compressed file?&quot; How does formatt<em> it t! way compress it and w!%compress</em>? </li>
+</ul>
+<p>Original:
+What is a &quot;zip file&quot; or &quot;compressed file?&quot; How does formatting it that way compress it and what is compressing?</p>
+<p>In this compression, 23 characters were replaced by 7, a saving of 16 characters.  Because we chose a single character that never appears in the original text, our compression can be reversed without error.  There is some overhead, however, because we also need to send the translation key along with the message.  In very long messages, there are often large and frequent repetitions that can be squeezed down enough to be worth the overhead.  If the compression / decompression rules are built in to the software, there is no need to transmit the compression key.  </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dg61hcn">
+		<a class="author" href="https://www.reddit.com/user/scarabic" target="_blank">scarabic</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Here's a simple example. </p>
+<p>The number 7777722333333 can be expressed in fewer characters, like this:</p>
+<p>7(5)223(6)</p>
+<p>With the right &quot;decompressor&quot; program you could turn those parentheticals back into long strings of repetitive digits. </p>
+<p>Another example: when you take an audio file and &quot;compress&quot; it into an MP3, one of the first things that happens is that all frequencies beyond the human range of hearing are discarded. Don't need 'em. Makes your file smaller.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/64xl01" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
