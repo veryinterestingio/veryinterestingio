@@ -1,0 +1,46 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/voidesque" target="_blank">voidesque</a>
+			<div class="markdown"><p>Yep. I came here to see if anyone pulled the dickhead move of just pretending that the question is about digital audio instead...</p>
+<p>Aliasing in audio is fun because it just deals with the fact that we can't hear frequencies higher than 20 kHz, and the Nyquist/Shannon sampling theorem also applies. What this means, practically, is two things: first, that a sufficient rate at which we sample is necessarily at least 40kHz, and second, that we should kill frequencies over 20kHz with a filter, because they still make difference tones and create distortion.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wishthane" target="_blank">wishthane</a>
+			<div class="markdown"><p>Sorry, that's totally not what anti-aliasing is, at least from a computer graphics perspective. What you are talking about is solved by vertical sync (although I've heard the problem described as temporal aliasing), which solves the problem of the rendering process not necessarily having finished filling the buffer when the monitor gets it at whatever its clock is.</p>
+<p>Spatial aliasing is what happens when you render lines that are not the same shape (i.e. not axis-aligned) as the square pixels to the screen, since digital images are made up of an array of square pixels.</p>
+<p>Anti-aliasing attempts to solve this by smoothing the edges, often by blurring edges a little bit and/or adding subpixel rendering.</p>
+<p><a href="https://en.wikipedia.org/wiki/Spatial_anti-aliasing" target="_blank">https://en.wikipedia.org/wiki/Spatial_anti-aliasing</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KnowsAboutMath" target="_blank">KnowsAboutMath</a>
+			<div class="markdown"><blockquote>
+<p>Sorry, that's totally not what anti-aliasing is, at least from a computer graphics perspective.</p>
+</blockquote>
+<p>OK, so this thread is confusing the shit out of me. Does the original question even mention computer graphics?</p>
+<p>As I understood the term &quot;aliasing&quot;, it relates to effects connected to <a href="https://en.wikipedia.org/wiki/Aliasing" target="_blank">under-sampling in a Fourier context</a>. I believe this sense of &quot;aliasing&quot; <em>far</em> predates the <em>existence</em> of computer graphics.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nashvortex" target="_blank">nashvortex</a>
+			<div class="markdown"><p>You are exactly right. But computer engineering undergrad up there apparently never heard of aliasing other than the specific instance where it occurs on current display technology. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EclMist" target="_blank">EclMist</a>
+			<div class="markdown"><p>While his explanation really doesn't fit into the theme of ELI5, it is certainly not wrong. It describes the reason why all aliasing occurs even if the example used seem to be only talking about temporal aliasing. We all go through this in graphics programming and it can be confusing and misleading af to the laymen but this is certainly the foundation of spacial AA as well. </p>
+<p>This is explained in much greater detail in the book &quot;Real Time Rendering&quot; that I strongly recommend. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nashvortex" target="_blank">nashvortex</a>
+			<div class="markdown"><p>Dimensions, spatial or temporal, or otherwise are irrelevant to the idea of aliasing. </p>
+<p><a href="https://en.m.wikipedia.org/wiki/Aliasing" target="_blank">https://en.m.wikipedia.org/wiki/Aliasing</a></p>
+<p>As others have pointed out, you are talking about a very specific aliasing problem with regards to digital raster images. </p>
+<p>It is ironic, that some people here explain even this  issue as existing 'because pixels are square'. I ask them, would rectangular, hexagonal or circular pixels not have aliasing? Of course they would. </p>
+<p>Aliasing in raster images occurs because pixels have a finite and discrete size, thus making it impossible to render spatial signal variations smaller than pixel. Theoretically, for perfectly avoiding any kind of aliasing, you would need an infinite number of infinitessimally small pixels. It has nothing to do with the shape of the pixel. It has to do with size.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wishthane" target="_blank">wishthane</a>
+			<div class="markdown"><p>Right, but spatial aliasing is not caused by temporal sampling.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ds580" target="_blank">ds580</a>
+			<div class="markdown"><p>Thanks from a very confused engineering student wondering why everyone started with pixels.</p></div>		</li>
+					</ul>
+	

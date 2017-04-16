@@ -1,0 +1,72 @@
+<div class="answers">
+	<div class="answer" data-handle="dg8qpfu">
+		<a class="author" href="https://www.reddit.com/user/teaearlgraycold" target="_blank">teaearlgraycold</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><em>I copy-pasted this from an old post I made on /r/pcmasterrace</em></p>
+<p>To understand how anti aliasing works, I'm first going to explain why it is needed. First you need to know what a sample is.</p>
+<h3>How images are rendered</h3>
+<p>Imagine your computer is rendering an <a href="http://i.imgur.com/Y4gW0Qu.png" target="_blank">image of a tomato on top of a table</a>. In order to render the image each of the 1920 * 1080 pixels on your screen needs to have colors assigned to them. This isn't as easy as viewing a video or an image. The tomato can be viewed from any angle, and the pixels will need to be recalculated many times every second to produce a smooth animation.</p>
+<p>A sample is a light/color calculation that can be thought of as an infinitesimally thin ray of light. Imagine that you have a bunch of these rays of light, and pretend these light rays are 1-dimensional objects - lines - that are going straight through your screen. For those familiar with optics this is called normally incident. Most often each pixel will get one ray of light.</p>
+<p>Most often your computer runs a <a href="http://i.imgur.com/IG9pbks.png" target="_blank">single one of these rays through the middle of a pixel</a> (the surrounding pixels in that image are highlighted to make it easier to see the sample). When one of the rays hits an object in the game, it bounces off and goes back through the same pixel it came from, this time with the color of the object it hit. <a href="http://i.imgur.com/SK1vYX4.png" target="_blank">That ray then determines the color for the whole pixel</a>.</p>
+<h3>Why AA is needed</h3>
+<p>Now most of the time this works pretty well. If you have two pixels from the same object that are right next to each other - like two pixels on the inside of our tomato - they'll have pretty similar colors and the image will look smooth. However, when you reach the edge of this tomato, <a href="http://i.imgur.com/xSFk13p.png" target="_blank">you'll eventually find a pixel is no longer over top of the tomato</a>. The pixel on the left will be red like the tomato, but the one to the right of it will be brown like the table it's on. The difference in color is dramatic. The pixels are either on the tomato or not, there is no middle ground.</p>
+<p>The problem here is that the pixel's don't accurately represent what's going. If you look at the &quot;pixels&quot; drawn over <a href="http://i.imgur.com/rc3wMbi.png" target="_blank">the image of the tomato</a> you'll see that the area covered by the some of pixel has too much information to be conveyed by a single ray of light. On the right half of the pixel there's the table, and on the left half there's the tomato. Other pixels contain significantly less information. The pixels in the upper left corner of the image have fairly uniform colors throughout them, so when they are reduced to a single sample there is less information loss.</p>
+<p>The solution programmers have come up with this problem is what we call anti-aliasing. The game engine <a href="http://i.imgur.com/ip01OiT.png" target="_blank">takes more than one sample per pixel</a> (either one in each corner of the pixel, a few different samples in a grid formation, or sometimes even in random locations). Some will hit the tomato and some will hit the table. The colors are then averaged together to give you your final pixel color.</p>
+<h3>Types of Antialiasing</h3>
+<p>The method of AA that's the simplest to understand is called super sampling anti-aliasing (SSAA). It simply takes more than one sample in every pixel on the screen. Because sample calculations take a while to do, this form of AA is extremely taxing on your graphics card. You're essentially rendering the same screen multiple times.</p>
+<p>Another form of AA is called multi-sampling anti-aliasing (MSAA). This form of AA has an intelligent algorithm that finds out what pixels need more than one sample, and then simply does more samples on those pixels. This form of AA is much cheaper than SSAA and is also a lot more popular. MSAA doesn't work well for all games. Minecraft is the best example of a game where the edges of objects aren't the only thing that needs to be anti-aliased. Take a look at the insides of block textures. The game doesn't blur anything inside of blocks like most other games do, so SSAA is the best option for Minecraft.</p>
+<p>There are other forms of AA, but these two are the most popular and the simplest to describe.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dg8jsqh">
+		<a class="author" href="https://www.reddit.com/user/mwr247" target="_blank">mwr247</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Try taking some basic LEGO® bricks (let's use some black 2x2 blocks  for our example, part #3003) and try to make a diagonal line with them. You'll find the best you can do looks like a staircase with zigzaggy corners.</p>
+<p>Now step back and squint a bit so your vision is blurry. The further you are, the less you notice the pointy corners. If you were to do the same thing with DUPLO® bricks of the same 2x2 size and color (part #3437), you'de find a similar effect, but you'de have to be much farther away to make it look less zigzaggy.</p>
+<p>So how can we get rid of the zigzaggyness? One way, as we saw, is to use smaller bricks (pixels), which allow us to be closer. But there's also another trick you can use. Going back to your original smaller bricks (which are black, on your conviniently white table), start placing grey bricks so that they touch a black brick on two sides. You'll notice the line is bigger, but if you step back and squint, it'll look even less zigzaggy than before. That's because the grey is the color in between the line and the background, which means they blend together better when we look at them. This is a type of antialiasing.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dg87hvk">
+		<a class="author" href="https://www.reddit.com/user/Valtieri" target="_blank">Valtieri</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><strong>ELI5 Answer</strong></p>
+<p>Pixels are all square.  That means they are very good at drawing straight lines, but very bad at drawing curved and diagonal lines, because things start looking jagged.</p>
+<p>Anti-aliasing uses blur and smoothing to hide the jagged edges so that things don't look quite as pixelated.</p>
+<p><a href="https://qph.ec.quoracdn.net/main-qimg-10856ecbea4f439fb9fb751d41ff704a" target="_blank">Here is a good example side by side</a>.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dg92h8a">
+		<a class="author" href="https://www.reddit.com/user/cawfree" target="_blank">cawfree</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Aliasing happens when you try to describe something that changes rapidly, and you can't describe it fast enough. For example, imagine you're measuring a half a meter deep hole, and your measuring stick is only capable of measuring in full meters. Whatever measurement you leave with, you've lost information of the real size; you're left with an approximation. </p>
+<p>The same thing happens in sound. Say you want to measure a 10Hz wave (moves up and down ten times a second), but you are only capable of measuring it five times a second. You'll never get an accurate representation of the true shape of the wave, and anything you come out with is distorted. This is aliasing. The more samples you make, the closer you get to a real representation what the shape truly is.</p>
+<p>A guy called Nyquist proved that in order to sample a frequency, we need to sample at at least twice the rate. </p>
+<p>So, anti aliasing is a way of getting around these fundamental issues in what happens when we lose information in our signals. With pixels for example, the square edges introduce such a harsh transition that we lose information of what goes on between the pixels. An interesting way of reducing this effect includes sub pixel anti aliasing, where you take advantage of the fact that each pixel is comprised of a discrete R, G, B value, smaller than the pixel itself and therefore capable of generating higher 'spatial' frequencies. It has been proven that you can share these colour components with neighbours to try and spoof the missing information, producing what appears to be a much higher quality image.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dg8n5g3">
+		<a class="author" href="https://www.reddit.com/user/nashvortex" target="_blank">nashvortex</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Apparently Reddit is full of gamers who tell you nothing of the core concept. </p>
+<p>So let's start with what aliasing is. Let's say your checking to see how often a light blinks. So you decide you are going to check it every minute to see if it's on. </p>
+<p>You start the timer and you see that the light is on at the minute mark. Aha.. You say it blinks every minute. But wait... What if it was blinking every 30 seconds... And because you were checking every minute, you only saw every second blink and missed the 30th second blink event. </p>
+<p>So you say... Fine. I will check every 30 seconds now. And yet the question can be asked... What it was blinking every 15 seconds and you only saw every second and forth blink event?
+Essentially, you were seeing blinks that were partly determined by your speed of checking for them. You saw 1 when there could have been 2,4,6,8 etc. Blinks in that minute. </p>
+<p>There is a pattern here which I won't get you but this inaccuracy that occurred is called aliasing. </p>
+<p>This goes on and on and you eventually reach a conclusion. You can only be absolutely sure of the frequency of something if you check it at least twice as fast as that frequency. This is called the Shannon Nyquist sampling theorem. </p>
+<p>Anti-aliasing is basically the opposite of this and depending on how complicated the setup of frequencies is, methods to anti alias also change. The fundamental method of anti aliasing is simply check the frequency more often in time or space and hope that you are at least twice as fast as the actual frequency.  This is called supersampling. </p>
+<p>You could do something more complicated. For example. You could check every 10 seconds , and also every  15 seconds. This means you will be able to see blinks if they occur at some point for all multiples of 10 and 15 seconds. That's pretty good. By checking at 2 different speeds, you've sort of reduced the need to go faster for one frequency. This is called multisampling</p>
+<p>Now in a computer for graphics, aliasing occurs because pixels are processed at a certain frequency, change at another and are displayed at still another frequency. This creates the jarring because of aliasing (you aren't getting all processor produced pixels displayed because you screen refresh is to slow for example). You have to use extra tricks in the GPU to makes sure the image does not get jarred. This is anti-aliasing... Performed by more complicated algorithms of the same basic steps above.</p>
+<p>Edit : A lot people seem to be assuming that the word &quot;frequency&quot; only refers to temporal frequency. It doesn't, your assumption is flawed. Before the &quot;this is wrong&quot; comment, I recommend you read up on Fourier analysis. <a href="https://www.cs.auckland.ac.nz/courses/compsci773s1c/lectures/ImageProcessing-html/topic1.htm" target="_blank">https://www.cs.auckland.ac.nz/courses/compsci773s1c/lectures/ImageProcessing-html/topic1.htm</a>
+and <a href="http://homepages.inf.ed.ac.uk/rbf/HIPR2/fourier.htm" target="_blank">http://homepages.inf.ed.ac.uk/rbf/HIPR2/fourier.htm</a></p>
+<p>These links are definitely not for 5 year olds, but are suitable for the poorly informed tunnel-visioned teenagers who are whining below.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

@@ -1,0 +1,50 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cbbuntz" target="_blank">cbbuntz</a>
+			<div class="markdown"><p>You're correct to a certain extent in that any blurriness (prior to sampling) will reduce aliasing, but aliasing refers to the phenomenon of when the resolution is to low to reproduce specific frequencies,  as a side effect, lower frequencies that don't exists in the original source appear. These lower frequencies are &quot;aliases&quot; of the high frequencies. Here's an example:</p>
+<p><a href="http://i.imgur.com/CRNCe6L.gifv" target="_blank">http://i.imgur.com/CRNCe6L.gifv</a></p>
+<p>You should see patterns appear that aren't actually in the shirt. </p>
+<p>It's basically the spatial equivalent of the <a href="http://i.imgur.com/GHvrlXm.gifv" target="_blank">&quot;wagon wheel effect&quot;</a> where a wheel appears to reverse direction as it speeds up (this is a form of temporal aliasing). </p>
+<p>Imagine you have a mark on the wheel to track its rotation. If a wheel rotates a half rotation each frame, it is moving as fast as it can be accurately reproduced. Any faster and the wheel will appear to slow down and reverse direction. If it rotates 3/4 of the way around each frame, it will appear to rotate the opposite direction 1/4 the way around. Once the wheel reaches one rotation per frame (or any multiple of that) it will appear to stand still like the blades of this <a href="http://i.imgur.com/NJJrJJo.gifv" target="_blank">helicopter.</a> (Although you can divide the multiples by 5 since there are 5 blades)</p>
+<p>So when a wheel reaches exactly one rotation per frame and appears to stand still, that means one rotation per frame is an alias of zero rotations per frame. Speed it up to by 1 rotation per second, and the wheel should appear to move by one rotation per second even though it is actually moving at (frame rate + 1) / second.  The pattern continues: ( any integer * frame rate + 1) / second are all aliases of 1 rotation per second, because it all behaves the same as far as the frames are concerned (not accounting for motion blur etc).</p>
+<p>Aliasing in the spatial domain (like in the first gif) is the same thing, except with patterns and pixels as opposed to movement and frames, (or for audio, the y axis of the mark on the wheel would correlate to each sample value). It's just a lot easier to illustrate using the wagon wheel example. </p>
+<p>Now, back to anti-aliasing. To get rid of these artifacts, you need to eliminate the patterns / frequencies that can't be accurately reproduced before squeezing them into samples / frames / pixels. Basically this means blurring (or eliminating high frequencies) before sampling. By filtering out high frequencies before sampling, they won't reincarnate as low frequencies when sampled.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mwr247" target="_blank">mwr247</a>
+			<div class="markdown"><p>If we're going to get technical, you're absolutely right. But while technically correct is the best kind of correct, it's not always the right one for a situation.</p>
+<p>Without more context from the asker, I'm attempting to answer the question from the perspective of what most people are referring to when they encounter antialiasing, and in a way a five year old would understand. <a href="https://www.google.com/search?q=anti+aliasing" target="_blank">Here's how Google defines it</a>. Thus I consider my answer as right as it needs to be to serve its purpose.</p>
+<p>Still, comments are helpful for expanding on details, and for that your reply does a great job of going deeper into what's really going on.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cbbuntz" target="_blank">cbbuntz</a>
+			<div class="markdown"><p>It needed clarification, because you need to start with the concept of an alias before explaining anti-aliasing. Applying a blur after sampling will not remove aliases because the high frequencies will have already wrapped back around to low frequencies. The smoothing of jagged edges is a side effect of anti-aliasing, but interpolation can be done without anti-aliasing. For anti-aliasing to work, you need to start with a higher resolution, filter and then downsample. </p>
+<p>Also, the &quot;get rid of jagged-edges&quot; definition doesn't work well for audio. An anti-aliased square wave will look <a href="http://fweb.wallawalla.edu/class-wiki/upload/thumb/0/05/Gibbs_phenomenon_50.jpg/300px-Gibbs_phenomenon_50.jpg" target="_blank">something like this</a>. The ringing artifacts are a result of removing all frequencies above a certain cutoff frequency. Although it may &quot;look&quot; less correct, it will sound more correct when sampled.</p>
+<p>[Loud] <a href="
+https://www.youtube.com/watch?v=1HxLBEGzuWE">This example shows what happens when the sample rate is reduced while keeping the source frequency constant.</a></p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/yaxamie" target="_blank">yaxamie</a>
+			<div class="markdown"><p>This is also the reason that higher dpi displays need AA less.  Smaller pixels means smaller jaggies.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jm0112358" target="_blank">jm0112358</a>
+			<div class="markdown"><p>It's why I love gaming on a 4k monitor. It takes a lot of graphical horsepower, but jaggies begone (for the most part). With decent SMAA, I usually have to look for jaggies to notice them.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AecostheDark" target="_blank">AecostheDark</a>
+			<div class="markdown"><p>Just graphical? Can i get away with a 4k screen, Nvidia 1080 and an older cpu? </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Diabetesh" target="_blank">Diabetesh</a>
+			<div class="markdown"><p>That was a nice explanation. Especially since I am a 5 year old who loves legos.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MongrelGilgamesh" target="_blank">MongrelGilgamesh</a>
+			<div class="markdown"><p>Huh. You are the most calm and thoughtful 5 year old I've seen.</p>
+<p>Particularly on the internet.</p></div>		</li>
+					</ul>
+		</ul>
+	
