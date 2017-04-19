@@ -1,0 +1,86 @@
+<li class="post" data-handle="65q73k">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/65q73k/eli5_why_is_reddits_search_feature_so_bad_most_of/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/65q73k" onclick="return false">Why is reddit's search feature so bad? Most of the time it says &quot;search failed&quot; and it's always slow.</a>
+		</h2>
+		<!--<span class="date">2017-04-19</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I even tried searching for this topic first before posting, and it failed three times in a row. I usually have better luck just searching for the same thing on google and adding in &quot;reddit&quot; or the specific subreddit.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dgcf2xb">
+		<a class="author" href="https://www.reddit.com/user/edmkitty666" target="_blank">edmkitty666</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I don't work for reddit so I don't know how they have written their algorithm, but maybe I can explain a little about search algorithms in general. (CompSci bachelors here).</p>
+<p>There are three major comoponents that go into how a search algorithm runs: how the algorithm is written, what systems the algorithm has to chug through, and how many resources are available for the algorithm to run.</p>
+<p>About how algorithms are written. There are many different ways to write a search algorithm. If I put in &quot;water&quot; as a search term for example, I could match in many ways.</p>
+<ol>
+<li>Match on terms that begin with &quot;water&quot; (&quot;water is great&quot; would match. &quot;I hate water&quot; would not.)</li>
+<li>Match on terms that end with &quot;water&quot;. (the opposite result of number 1.)</li>
+<li>Match on terms that have &quot;water&quot; in them. (&quot;I love water sometimes&quot; would match, and so would the two examples in 1.)</li>
+</ol>
+<p>As you can see, the first two methods of matching would run more quickly because terms can be eliminated much faster. But obviously it is much less accurate. The problem with the last method of searching is that the algorithm must go through almost every piece of data to find matches. </p>
+<p>About the systems used in an algorithm. I have no idea what reddit uses specifically, but I will give an example of how something could be built. There are many layers to a website: front end, back end, and the database. The front end is things like javascript amd html, which format the page the user sees, and the results of a search must be loaded into. The back end is where the server doing computations lives, and this is where the server takes the user's search query and decides what to do with it. Usually, the backend will translate a simple search like &quot;water&quot; into something that the database can understand, and then asks the database for the info. Then the database receives the request for data, chugs along the query and looks for the results. Then the database sends the results back up the chain, eventually getting to the user. As you can see, even something as easy as &quot;water&quot; goes through multiple layers. The problem here is not necessarily how many components there are to the system, but rather the time it takes for one layer to talk to the next. The system usually has a built in timeout if a query takes too long, because nobody wants their server held up on a query for ages. It is possible reddit's timeout is 30 seconds for example, when the query actually needs 1 minute to run to completion.</p>
+<p>Finally, the resources available for a query. This is not so much about the server's resources, but the database's. If the database does not have a lot of processing power, it will take a little longer to run, especially if the database has A LOT of data to go through. Some database systems are better designed for big data than others. It is possible reddit has chosen one type of database system that isn't suited for querying large amounts of data in a reasonable amount of time. But now they are &quot;stuck&quot; with the system because trying to move mountains of data to a new system would be tons of effort.</p>
+<p>Sorry this was so long! Hope it helps.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dgchuaq">
+		<a class="author" href="https://www.reddit.com/user/Arianity" target="_blank">Arianity</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><blockquote>
+<p>Why is reddit's search feature so bad? </p>
+</blockquote>
+<p>Poor/rudimentary search algorithm. I'm not sure if it's open source, but you can tell that it tends to look for literal matches. It gets easily confused by partial terms. Search engines like google are high optimized to use things far beyond the literal words to rate how likely something is close enough to what you wanted</p>
+<blockquote>
+<p>Most of the time it says &quot;search failed&quot; and it's always slow.</p>
+</blockquote>
+<p>This is a resource thing. They intentionally put the search on low priority. Reddit seems to run pretty close to the line on server power/capacity, and search is the first thing to die when things get busy. </p>
+<p>It makes sense, from a limited resource perspective- you want the main site to work well, search is &quot;less important&quot; most of the time.</p>
+<p>Speed is a mix of both of those things- lack of resources to crank through stuff, and inefficient algorithms to sort through junk. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dgck7yd">
+		<a class="author" href="https://www.reddit.com/user/_fitlegit" target="_blank">_fitlegit</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A lot of people here are talking about algorithms and resources and code, but that's not the real underlying cause for Reddit's search sucking. I'm a web developer, the fact is, site search is a solved problem. There are countless search libraries and services they could use, and they have all the talented engineering resources they could ever need to do it. There's no technical excuse for it being so bad.</p>
+<p>The legit reason is because Reddit management has decide poor search is a feature and not a bug. They've decided that bad search functions indirectly spur new site activity. People post new things rather than simply digging up old threads. There are even full communities dedicated to fulfilling a search like function. In addition to this, there's no reason to believe that better site search will yield increased traffic, so it's probably difficult to justify expending resources on it anyway. Trust me, engineering issues are not causing a site of this scale to have bad search.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dgccvti">
+		<a class="author" href="https://www.reddit.com/user/BonfireinRageValley" target="_blank">BonfireinRageValley</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's easier to add reddit to a Google search for something you want from this site. Their search has always been garbage and the only changes they make to it always seem for the worse.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dgcj6se">
+		<a class="author" href="https://www.reddit.com/user/blahblah22111" target="_blank">blahblah22111</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>All these explanations are focusing on the technical aspects which is great, but the truth is Reddit's search is terrible because:</p>
+<p>There is no monetary incentive for Reddit to provide a better search.</p>
+<p>If there was an incentive to provide better search, Reddit would hire the people to make it happen (implementing a semi-decent search is not outrageously difficult today as it was 20 years ago).</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/65q73k" onclick="return false"><span>show</span></a>
+</li>
