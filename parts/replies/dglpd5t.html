@@ -1,0 +1,56 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Anjz" target="_blank">Anjz</a>
+			<div class="markdown"><p>Just to add to this; ECC provides stability and reliability that you'd want in servers, especially if you want 99.9%+ uptime. Normal computers memory corrupt quite easily.</p>
+<p>Why don't we have this in regular computers? The problem to this is that ECC and processors that use ECC costs considerably more. Companies that need this stability can handle the costs since a bit of downtime can cause them quite a margin of profits, hence they use ECC.</p>
+<p>Furthermore, Xeon processors is designed to allow you to run several processors on a motherboard, which is not only good for computation like you mentioned, but also great for server capacity.</p>
+<p>Let me know if I have any of this info wrong or if there's anything to add, I'm a server administrator as part of my work so this stuff is very interesting to me!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Agarax" target="_blank">Agarax</a>
+			<div class="markdown"><p>One minor correction. Virtualization is not limited to Xeon, Core processors have this function as well.</p>
+<p>Xeon is just better at it because it's a more powerful and higher quality CPU.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/supersheesh" target="_blank">supersheesh</a>
+			<div class="markdown"><p>Yea, I was just catching that.. I had some typos in that sentence and my meaning was missed.  It allows for more/better virtualization functionality.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/insultant_" target="_blank">insultant_</a>
+			<div class="markdown"><p>ELI5: Error-correcting code</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/asdf23342sad" target="_blank">asdf23342sad</a>
+			<div class="markdown"><p>Imagine you have bad hand writing.  You write some numbers on a piece of paper. Someone spills water on the paper and then you can't tell if it's a 4 or a 9.  That's the problem ECC is trying to solve.</p>
+<p>One approach is to make two copies--write it down on two pieces of paper and then check that they are both the same when you go to read them.  But that wastes a lot of space, and it only tells you if there is an error (it doesn't help correct the error).  And it can't even find some kinds of errors.</p>
+<p>Another approach is used for credit card numbers: The Luhn Algorithm.  Basically, add up all the digits in the number and save the lowest digit in the sum.  Now you only waste one extra digit, but you can find many errors and correct some types errors.</p>
+<p>ECC in RAM is a CRC (cyclic redundancy check) code.  It's like a more complicated version of the Luhn algorithm.  It allows you to detect some multi-bit errors, <em>all</em> two-bit errors, and allows you to <em>correct</em> all 1-bit errors.</p>
+<p>Edit to add: When data is written to RAM, the memory controller computes a CRC code for the data.  Both the data and the code are stored.  When the data is read back, the controller recalculates the CRC and compares it to the saved version.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/accountforvotes" target="_blank">accountforvotes</a>
+			<div class="markdown"><p>Need more pars</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CupricWolf" target="_blank">CupricWolf</a>
+			<div class="markdown"><p>Some extra data is added based on some math. That math can be done in reverse to detect and in many cases correct data errors. Many errors are just one bit flipped and this math can correct that. When more than one bit is flipped this math can only tell you &quot;yup, two or more changed&quot;.</p>
+<p>How much extra data depends on how many bits need to be protected in each block. To protect 8 to 15 bits you need 4 extra bits for the error correction code. IIRC the ram does correction based on a whole &quot;word&quot; (which is 32 bits on 32 bit systems and 64 bits in 64 bit systems) so they need 6 or 7 extra bits for the error correction code.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kickerofbottoms" target="_blank">kickerofbottoms</a>
+			<div class="markdown"><p>Interesting. What causes the errors in the first place?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mmmmmmBacon12345" target="_blank">mmmmmmBacon12345</a>
+			<div class="markdown"><p>Error Correcting codes are a few extra bits at the end of the useful data that are used to ensure the data wasn't corrupted when read.  They can be simple like a parity bit which just tells you that you misread one of the bits, or more complicated like Hamming Codes which will tell you if you misread up to 2 bits while allowing you to fix any 1 bit errors.</p>
+<p>An odd parity implementation would add a 9th bit to each 8 bit byte that would be 1 when the number of 1s in the 8 bits is odd and 0 if its even so you'd get something like</p>
+<p>10101010 0</p>
+<p>11101010 1</p>
+<p>If you read 10101010 1 you know you that one of the bits &quot;flipped&quot; and you read something wrong, you don't know which bit flipped but you do know your data is bad and should not be used</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/razzzey" target="_blank">razzzey</a>
+			<div class="markdown"><p>I am studying systems engineering and this is pretty fascinating to me. Really cool stuff to think about. I have one question, you said that now you know that a bit flipped, how does the ECC RAM correct it back then?</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
