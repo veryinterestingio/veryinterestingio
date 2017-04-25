@@ -1,0 +1,108 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ZoeyZolotova" target="_blank">ZoeyZolotova</a>
+			<div class="markdown"><p>By my calculation, getting to within 0.5 nm will take about 32.925 hours.</p>
+<p>Here's the script I used, which you can run in your browser's console.</p>
+<pre><code>(function() {
+    var d = 100000; // Initial distance in meters
+    var s = d/60/60; // Initial speed in meters per second.
+    var targetDistance = 0.0000000005; // Target distance in meters.
+    var i; // Elapsed time in seconds.
+    var delta = 1; // Physics time in seconds. Lowering this only affects the result by seconds. Be careful not to set too low.
+    for (i = 0; i &lt; 864000 &amp;&amp; d &gt; targetDistance; i += delta) { // Max 10 days just in case.
+        d -= s*delta; // Move by speed.
+        s = d/60/60; // Update speed based on remaining distance.
+    }
+    console.log(d, s, i);
+})();</code></pre></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/simple_test" target="_blank">simple_test</a>
+			<div class="markdown"><p>Second your calc.
+Speed is the same magnitude as distance remaining.
+dt = ds/v = ds/s
+T = ln(100/remaining_dist) hrs
+= ln(100km/0.5nm)
+= 32.929 hrs</p>
+<p>That said to reach destination its infinite time.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BraulioG1" target="_blank">BraulioG1</a>
+			<div class="markdown"><p>but it's the same as zeno's paradox, isn't it?</p>
+<p>you can sum a convergent series, can't you?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RDubz75" target="_blank">RDubz75</a>
+			<div class="markdown"><p>Wait is this problem a limit question? And the limit approaches infinity?</p>
+<p>I did badly in calc.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zenkibudo" target="_blank">zenkibudo</a>
+			<div class="markdown"><p>Agreed -- infinite time, or -- arrival time = never.   It's a <em>little bit</em> akin to multiplying any number 'n' by 0.90  ... how many times do you need to do that before n = 0?   Infinity  ..  ( because n will never be zero ).   But n will get smaller sure -- just as in the problem, he gets closer to destination, but arrival doesn't happen.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Joovie88" target="_blank">Joovie88</a>
+			<div class="markdown"><p>How long to get within 1m? At that point, I can walk the rest of the way. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/WhatABlindManSees" target="_blank">WhatABlindManSees</a>
+			<div class="markdown"><p>That's the easiest one to do. </p>
+<p>It's simply the natural log of the distance. </p>
+<p>Ln(100000) = 11.513(3dp) hours. </p>
+<p>For any distance just do Ln(start / end). </p>
+<p>To get here, just do calculus, it gives more accurate and easily calculable results than that numerical method.   </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ocatlareneg" target="_blank">Ocatlareneg</a>
+			<div class="markdown"><p>That reminds me of a book written by R.L. Stine (not goosebumps but one of the other series he wrote) where some kids learned about the theory about going half the distance to a destination and how you couldn't ever reach 0. I've thought about that every now and then and it's interesting how technically we can't ever get to 0, but we can not only reach it we can pass that point. I'm not sure where I was going with this, but my mind is always slightly blown whenever I ponder these things. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ZoeyZolotova" target="_blank">ZoeyZolotova</a>
+			<div class="markdown"><p>Changing targetDistance = 0.0000000005 (5 nm) to targetDistance = 1 (1 meter) gives the result of about 11.5 hours.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thrilldigger" target="_blank">thrilldigger</a>
+			<div class="markdown"><p>This doesn't account for floating-point errors, which with this many calculations might affect the result noticeably.</p>
+<p><a href="http://0.30000000000000004.com/" target="_blank">Obligatory 0.30000000000000004.com link.</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ImprovedPersonality" target="_blank">ImprovedPersonality</a>
+			<div class="markdown"><p>Even with Quad Precision __float128 I’m getting 32.925000 h.</p>
+<p>Code:</p>
+<pre><code>#include &lt;cstdio&gt;
+
+extern "C" {
+#include &lt;quadmath.h&gt;
+}
+
+int main() {
+    __float128 distance = 100E3;
+    __float128 speed = distance/60/60;
+    __float128 targetDistance = 0.5E-12;
+    __float128 elapsedTime = 0.0;
+    __float128 delta = 1.0;
+
+    while(distance &gt; targetDistance) {
+        distance -= speed * delta;
+        speed = distance/60/60;
+        elapsedTime += delta;
+    }
+
+    char buf[128];
+    size_t n = quadmath_snprintf(buf, sizeof(buf), "%Qf", elapsedTime/3600);
+    if(n &lt; sizeof(buf)) {
+        printf("Elapsed time: %s h\n", buf);
+    }
+}</code></pre>
+<p>It’s my first time using __float128, so I hope I did everything correctly.</p>
+<p>I think Java Script uses single precision floats?</p>
+<p>Edit: Interesting sidenote: With delta = 1E-3 the result is Elapsed time: 32.929334 h (also already takes 36 seconds to calculate on my Core i5-4200U).</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/WhatABlindManSees" target="_blank">WhatABlindManSees</a>
+			<div class="markdown"><p>It's pretty much the same answer you get using proper calculus... So the rounding isn't a big deal.  </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Xacto01" target="_blank">Xacto01</a>
+			<div class="markdown"><p>Does this account for the fact that his speed only changes only at the tens</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jcsparkyson" target="_blank">jcsparkyson</a>
+			<div class="markdown"><p>If I've worked it out correctly it should be 175.73 minutes. The question asks how long it would take if speed was dropped by 10kph every 10miles. So you would travel the first 10miles at 100kph, then the next 10miles at 90kph and so on. Therefore you would reach your destination after 175.73 minutes. Your answer assumes that speed and distance are constantly correlated, therefore travelling infinitely. But the question suggests that it would drop in increments of 10, allowing you to reach your destination in a finite amount of time. </p></div>		</li>
+					</ul>
+	
