@@ -1,0 +1,85 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/decayingteeth" target="_blank">decayingteeth</a>
+			<div class="markdown"><p>My first thought was that it would be quite possible to create some overhead application that combines the packets from two different connections. </p>
+<p>But then I thought about the TCP handshake. It would impossible to split it in two, so how does a client tell a server to send some packets over one connection and the rest over the other. That seems quite impossible? Is it only possible over UDP then? </p>
+<p>I apologize if my knowledge is lacking on this subject.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blackhat91" target="_blank">blackhat91</a>
+			<div class="markdown"><p>Short answer: Nope, you're right. TCP would render this unlikely/impossible, UDP would be unreliable but possible.</p>
+<p>Longer answr: The OP actually referenced this:</p>
+<blockquote>
+<p>any connection that needs to maintain a conversation</p>
+</blockquote>
+<p>In this context, conversation refers to TCP, handshake included. The TCP connection (conversation) doesn't end until specified or times out (too long without data received).</p>
+<p>UDP might be possible, since it doesn't need to maintain a single connection (it's basically fire and forget), so you might be able to make an intermediary connection that load balances between the two connections to your phone to speed it up, but that would be at the cost of reliability (no error checking, if something gets lost it's just lost). Ways around this too (send a smaller &quot;blueprint&quot;/checksum of the file to test for corruption) but at the point of writing the needed coding to make that all work reliably, it'd most likely be akin to creating a new standard all together, which will then only be utilized by apps and sites designed to do so, so you wouldn't see improvement on sites like YouTube.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mrsifter" target="_blank">mrsifter</a>
+			<div class="markdown"><p>Multipath TCP solves this, but it is still an in progress spec and not implemented on anything I'm aware of. <a href="https://en.m.wikipedia.org/wiki/Multipath_TCP" target="_blank">https://en.m.wikipedia.org/wiki/Multipath_TCP</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Elm-tree-time" target="_blank">Elm-tree-time</a>
+			<div class="markdown"><p>This is false. Both connections can initiate the handshake and fetch whatever data they'd like. </p>
+<p>Nothing needs to be made, this already works. For example <a href="https://msol.io/blog/tech/how-i-doubled-my-internet-speed-with-openwrt/" target="_blank">https://msol.io/blog/tech/how-i-doubled-my-internet-speed-with-openwrt/</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dannysia" target="_blank">Dannysia</a>
+			<div class="markdown"><p>Could  a VPN help with this?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LunarCantaloupe" target="_blank">LunarCantaloupe</a>
+			<div class="markdown"><p>[There is actually a protocol for this that people have been working on for some time now.] (<a href="https://en.m.wikipedia.org/wiki/Multipath_TCP" target="_blank">https://en.m.wikipedia.org/wiki/Multipath_TCP</a>) </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TecoAndJix" target="_blank">TecoAndJix</a>
+			<div class="markdown"><p>This is awesome! Thanks for linking it </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RenaKunisaki" target="_blank">RenaKunisaki</a>
+			<div class="markdown"><p>I think you would need to create some sort of proxy server, which connects to services on your behalf and relays packets back and forth over your connections. But it would need to be protocol-specific, since TCP doesn't support that. So that server could connect to an HTTP server for you and shuttle requests/responses back and forth, but couldn't just do the same with raw TCP.</p>
+<p>Now, maybe it's possible if both the proxy server and the client (ie your phone) support a different protocol. TCP does use sequence numbers, so in theory you could send packets to the proxy over multiple connections, and it could reassemble them into a coherent stream. But they'd need to be encapsulated, since each connection to the proxy would be its own stream with its own sequence numbers.</p>
+<p>I'd have to research more. I think this could be done. However the need for the proxy server would be a bottleneck (it'd be similar to a VPN), the phones would probably need to be rooted to install a virtual network interface, and in practice it'd be better for online services to adopt a similar protocol themselves. But it might be interesting to toy with.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Elm-tree-time" target="_blank">Elm-tree-time</a>
+			<div class="markdown"><p>The Linux kernel can handle split connections. Android would just need a GUI for it. People have been doing this ever since Comcast added those hotspots, every single comcast customer can double their home internet speed</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MAK-15" target="_blank">MAK-15</a>
+			<div class="markdown"><p>I'm pretty sure the iPhone has a setting that allows for LTE to assist wifi when wifi is slow.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ccrmalite" target="_blank">ccrmalite</a>
+			<div class="markdown"><p>Affirmative. &quot;WiFi Assist&quot;. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/asdfqwertyuiop12" target="_blank">asdfqwertyuiop12</a>
+			<div class="markdown"><p>Wifi assist switches to the cellular network, it doesn't do load splitting.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drinks_antifreeze" target="_blank">drinks_antifreeze</a>
+			<div class="markdown"><p>It can also be a nasty surprise if you don't know it's turned on.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Valestis" target="_blank">Valestis</a>
+			<div class="markdown"><p>Android phones have had this for years. It's called Smart Network Switch (you can find it in Wi-Fi settings).</p>
+<p>It automatically switches between Wi-Fi and mobile data when one isn't available (or signal quality is poor) and it can also speed up downloads/video playback/web browsing by downloading as much data as possible through both simultaneously (Download Booster in Network settings).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CopyToner" target="_blank">CopyToner</a>
+			<div class="markdown"><p>Switching, yes. OP is asking about using them both simultaneously. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Valestis" target="_blank">Valestis</a>
+			<div class="markdown"><p>That's the Download Booster thingie. It's in the menu on Galaxy S7, can't find it on my Lenovo (probably older version of Android, I have 7.1 on Galaxy).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bassinastor" target="_blank">bassinastor</a>
+			<div class="markdown"><p>iPhones have also had this for years</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/crowleysnow" target="_blank">crowleysnow</a>
+			<div class="markdown"><p>yeah iphones also have this in settings </p></div>		</li>
+					</ul>
+		</ul>
+	
