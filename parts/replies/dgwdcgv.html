@@ -1,0 +1,92 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheMieberlake" target="_blank">TheMieberlake</a>
+			<div class="markdown"><p>Wait so are you saying <a href="http://imgur.com/a/pYqJQ" target="_blank">these things</a> on the window are actually part of the antenna? I've always thought they were used to heat up the window to defog or something...</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sharktember" target="_blank">sharktember</a>
+			<div class="markdown"><p>The top three lines are the antenna. Seems they borrowed the idea from the defogger wires. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Katzekratzer" target="_blank">Katzekratzer</a>
+			<div class="markdown"><p>You must live somewhere warmish, I've never heard anyone call it a defogger instead of defroster.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VonZigmas" target="_blank">VonZigmas</a>
+			<div class="markdown"><p>Can it not be both in some cases? My car has the defrosters across the whole window, no separate sections like in the picture above, yet still has the antenna connected to it somehow. There's even a small green box below with some sort of curcuitry and a patent number, which references something along those lines.</p>
+<p>EDIT: Took a picture, found some patents, see <a href="https://www.reddit.com/r/askscience/comments/686ygh/why_are_car_antennas_so_small_now_when_10_years/dgwnfmq/" target="_blank">reply below</a>.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hiacbanks" target="_blank">hiacbanks</a>
+			<div class="markdown"><p>Why only top 3?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MeatyOkraPuns" target="_blank">MeatyOkraPuns</a>
+			<div class="markdown"><p>Yes I would say most* of the time the lines on back windows are defrosters.  Although it would appear that in your specific example u/Sharktember is correct.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/What_Is_X" target="_blank">What_Is_X</a>
+			<div class="markdown"><p>In my car, the rear demisters serve double duty as the radio antenna. The radio goes staticky on the rare occasion I need to heat the rear windscreen. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/onmybike" target="_blank">onmybike</a>
+			<div class="markdown"><p>What is impedance and how does the circuit match it? I played around with CB's for a bit so I understand how the antenna resonates with the band wavelength and needs a ground plane.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JJEE" target="_blank">JJEE</a>
+			<div class="markdown"><p>I see a bunch of folks dancing around the answer without really explaining the &quot;why&quot; of impedance matching.  Pointing at the math equations and saying &quot;we want to remove the reactance to maximize dissipation in the load resistance&quot; is true and all but it doesn't exploit physical concepts and give insight.  </p>
+<p>The reason impedance matching is critical is due to how waves fundamentally propagate.  From Maxwell's equations, we know that a changing magnetic field generates an electric field, and vice versa.  If you view a field distribution for a plane wave in space, you see oscillatory behavior both in space and in time:  if you pick one point in space and view vs. time, you see peak E-Field intensity, and then a quarter period later, a trough.  The magnetic fields do the same thing.  The key point is that the ability to store energy temporarily in the electric field depends on the permittivity (or per unit length capacitance, in a transmission line), while the capacity for storing energy in the magnetic field depends on the permeability (or the per unit length inductance in a transmission line.)  After you store some energy in the Electric field, a half cycle later that energy is being stored in the magnetic field.  This back and forth transfer of energy is how waves propagate.</p>
+<p>Ask yourself, in a circuit with 1W input power where lack of reactive impedance matching leads to 3 dB return loss, can the circuit elements just not handle the extra 0.5 Watts?  Of course not*, its just that this circuit has an imbalance in how well it stores magnetic energy vs. electrical energy.  Since propagating waves forward through the device depends on storing the energy in each of these reactive components in an alternating fashion per Maxwell, having an imbalance means that you wont fully discharge the stored electric energy into stored magnetic energy in the next cycle.  This is why absolute power doesn't matter (up to thermal and arcing limits), its just a proportional loss based on the impedance mismatch.   </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/1976dave" target="_blank">1976dave</a>
+			<div class="markdown"><p>I'm a space physicist who deals with waves all the time and never heard a good intuitive reason for impedance matching helps get a better signal until now.  That was really awesome, thanks so much for that.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/slow_one" target="_blank">slow_one</a>
+			<div class="markdown"><p>Fair enough.<br />
+But <em>How</em> does one match the impedance?   (Changing the length or diameter of the antenna/transmission line, changing the material the antenna is made out of...)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TimoKinderbaht" target="_blank">TimoKinderbaht</a>
+			<div class="markdown"><blockquote>
+<p>if you pick one point in space and view vs. time, you see peak E-Field intensity, and then a quarter period later, a trough.</p>
+</blockquote>
+<p>Don't you mean a half period?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MounumentOfPriapus" target="_blank">MounumentOfPriapus</a>
+			<div class="markdown"><p>Every material has a characteristic impedance. That is based on the material's dielectric constant and magnetic permeability. Every transmission line (coaxial cable, microstrip trace, waveguide, etc) also has a characteristic impedance. For a coaxial cable or a microstrip trace, that is determined by the inductance per unit length and capacitance to ground per unit length of the transmission line. We are discussing radio frequency (RF) currents. At these very high frequencies, the effects of inductance and capacitance are important.</p>
+<p>When a travelling EM wave encounters an sudden change in impedance (impedance mismatch) part of the wave passed through the region of impedance change and part of the wave reflects off. This is analogous to part of a sound wave passing through a sudden change in its medium.</p>
+<p>An antenna also has an impedance as a function of frequency. At a particular frequency, the antenna has a particular impedance. The electronics in your car, like most electronics, has a characteristic impedance of 50+j0Ω. The real portion of that accounts for resistance. The imaginary portion of that accounts for capacitance and inductance (reactance). That impedance was somewhat arbitrarily selected for historical reasons and has no special meaning. Your car's antenna needs to be reasonably close to 50+j0Ω or else the a significant portion of the received signal will not transfer from your car's antenna into your car's receiver.</p>
+<p>Since impedance can be altered by inductance and capacitance, active circuits in the antenna's impedance matching network can switch between various combinations of capacitors and inductors to make the antenna reasonably well matched to 50+j0Ω at a particular frequency. From what I have seen in practice, they mostly just select between a few capacitance values. That is enough to make an antenna kind of well impedance matched.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VultureV1" target="_blank">VultureV1</a>
+			<div class="markdown"><p>Wait, what has 50 ohm impedance? And what if the antenna impedance is less than 50 ohms? Wouldn't it mean most of the voltage will lie on the circuit, isn't that a good thing? </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/androgenoide" target="_blank">androgenoide</a>
+			<div class="markdown"><p>50 ohms is the usual nominal impedance of common coaxial cable for two way radio systems.  75 is more common for video applications.  The real outlier is the 600 ohm cable typically used in car radio receivers.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/onmybike" target="_blank">onmybike</a>
+			<div class="markdown"><p>This makes sense! Thanks for the detailed response. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gimpwiz" target="_blank">gimpwiz</a>
+			<div class="markdown"><p>Impedance is basically complex resistance (or resistance is the real part of the impedance). Highly recommend you google for impedance matching - it's pretty cool, but I'm lazy. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/janoc" target="_blank">janoc</a>
+			<div class="markdown"><p>It is not so much about the impedance which has little effect for reception than the fact that the car radios simply got more sensitive. That allows then to deal even with less than perfect antenna. Your radio will most likely to work even if you unscrew the antenna completely (thus the impedance matching will be totally off), maintaining reception of at least a few strong nearby stations. An old stereo would go silent.</p>
+<p>In addition, most car antennas are still impedance matched - many will have a loading coil hidden in the base which makes the antenna electrically &quot;longer&quot; and resonant in the FM band. There is no &quot;digital circuitry&quot; doing that.</p>
+<p>The main problem with a short antenna, whether matched or not, is its poor efficiency - less signal gets into the receiver compared to a full length antenna. So the receiver must compensate for this with higher sensitivity and lower noise. That is something that has been difficult to do back in 60-70s when the tuner contained mostly discrete components. Once highly integrated tuner and amplifier chips appeared it became much easier to achieve higher gain and lower noise. It has little to do with anything &quot;digital&quot; - most car radios don't do any digital processing of the RF signal where the antenna has an impact. </p>
+<p>Then there is also the fact that while back in the day there has been perhaps a single radio station in town, today there are many, with many repeaters to improve coverage. So the network is much denser and thus the signal strength available stronger, permitting even compromise antennas to work satisfactorily. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/iranoutofspacehere" target="_blank">iranoutofspacehere</a>
+			<div class="markdown"><p>An impedance mismatch on a receiver will still result in losses due to reflections back into the antenna. You'll see bennefits in the sensitivity of the system by matching the antenna to the receiver input, so I'd say that it does matter as far as sensitivity is concerned. Obviously you aren't going to blow anything up like you would with a high SWR on a transmitter.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/janoc" target="_blank">janoc</a>
+			<div class="markdown"><p>Yes, of course, that's correct. However that matters for weak, long distance signal reception where you want to get every last bit of the signal into the receiver or for a high Q  antenna with a very narrow bandwidth (e.g. a magnetic loop) which will attenuate the signal significantly if not tuned in. Neither of this really applies to radio reception in a car. </p>
+<p>In a &quot;normal&quot; situation, that you are most likely to find yourself with your car in, with many strong signals coming down the wire, any difference from tuning the antenna to resonance will be swamped by the effect of the AGC of the receiver and its high sensitivity anyway. The environmental effects, such as reflections, buildings blocking the signal, multipath propagation effects, etc. will have much higher impact on reception than tuning the antenna. Especially when the antenna is physically short and most of the &quot;work&quot; towards resonance is achieved only by the loading coil instead of the (short) whip itself. So the tuning/impedance matching is rarely going to be critical in this case.</p>
+<p>Car radios are so sensitive today that they will work just fine without any antenna connected - simply the wire going to the antenna is often  sufficient to receive local stations (or their repeaters). Also plugging any random piece of wire into the antenna connector will do it as well.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
