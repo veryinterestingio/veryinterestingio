@@ -1,0 +1,48 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blacktiger226" target="_blank">blacktiger226</a>
+			<div class="markdown"><p>But the packets are just pulses of electricity, on and off, 0 and 1 .. Now I am streaming music while playing an online game, my daughter is watching youtube and my wife is talking to her sister through VOIP. The question is how can our 1s and 0s not mix together?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AdarTan" target="_blank">AdarTan</a>
+			<div class="markdown"><p>Because the hardware makes sure to only send one packet at a time per channel (multiple channels can exist on the same physical wire due to stuff like frequency multiplexing etc). The hardware and protocols are built to take turns. The schemes by which they organize this turn-taking are varied and complex.</p>
+<p>How many people using the same connection works out is like this: First your router receives a packet addressed to the music streaming on your computer (though all the router sees is <em>adress so-and-so</em>) so that packet is routed to the correct port on your computer, then it receives a packet that is part of your daughter's Youtube video and routes it to her computer, then maybe another packet for your music stream, then a packet for your wife's VOIP call which is routed to her device, and so forth, hundreds, thousands of times a second, so fast that you as a user don't notice the gaps between packets especially if the packets' information takes longer to play back to you than it took to receive which allows music and video streaming to build up a &quot;buffer&quot; of stuff to play back.
+If the router receives several packets from separate inputs that all need to go out one output it just queues them up and sends them one at a time.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DukeAlegon" target="_blank">DukeAlegon</a>
+			<div class="markdown"><p>Each packet is a bunch of ones and zeroes. Your router (or laptop, or whatever) knows where a specific packet ends and where a new one begins. This is because these packets either have a predefined length, or because they have a specific format. </p>
+<p>It may look like your streaming music, online game, youtube video and VOIP are all going on at the same time, but this is an illusion. Each of these applications is taking turns in sending packets. Because packets are so small, and because they can be transmitted so rapidly, it appears like all of these things are going on at the same time. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LowenNa" target="_blank">LowenNa</a>
+			<div class="markdown"><p>Ignore the idea of 1s and 0s for a moment.</p>
+<p>Others have already talked about packets and that is really all you need to focus on.  Packets of data have headers that include the destination and source address.  Network equipment, like your home router, reads these these headers and decide on where to forward that packet to.  If the packet is destined to your computer, it will send it to your computer.  If it goes to your daughters, the router/switch will forward it to hers.  If it is destined to a machine that is supposed to be on it's network but it's not sure which port it is on, it will forward it to all ports until it gets a response and learns the right port (this is call flooding).  Any machine that the packet is not meant for will discard it.</p>
+<p>If it is destine to an address that is not a part of your network, it will forward it to it's default gateway (most cases, this would be your ISP).</p>
+<p>Now that you hopefully understand how basic packet forwarding works, let's go back to 1s and 0s. This is exactly the same regardless if it is fiber or copper ethernet (wifi is more complex, but we will assume that it is the same for this conversation).  A 1 is a pulse (of light or electricity).  A 0 is nothing.  All packets are encoded in binary and are pulsed out the network ports, one at a time.  Your ISP is only going to send you 1 packet at a time.  It will take a very very very small fraction of a second for one packet to be transmitted and received.  Then the next packet and the next, and so on.  </p>
+<p>So, if your daughter is watching Netflix, and you are streaming music, all the packets for each are coming in to your router one after another.    You could visualize that the buffer in your router might look like this:</p>
+<p>[netflix-packet]
+[music-packet]
+[netflix-packet]
+[netflix-packet]
+[netflix-packet]
+[music-packet]
+[webtraffic-packet]
+[netflix-packet]
+[music-packet]</p>
+<p>and so on.</p>
+<p>You might be thinking &quot;wouldn't the music or netflix stutter or pause with the packets mixed up like that?&quot; and the answer is no, as long as there is enough bandwidth for both to happen at once.  Streaming media is typically buffered on the playing device.  This means, that for example, 1 second of data transfer would contain more than 1 second of video or music.  Your Netflix playback device might take 20 seconds to download 1 minute of video.  It will cache it while it is downloading so that it has a buffer. Music streaming services and youtube work the same way.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dcismia" target="_blank">dcismia</a>
+			<div class="markdown"><p>Dense Wavelength Division Multiplexing allows 128 discrete signals to go over the same fiber. It's multiple light streams at slightly different frequencies. Because they're different frequencies, they don't interfere.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DukeAlegon" target="_blank">DukeAlegon</a>
+			<div class="markdown"><p>Indeed! Beautiful, isn't it? But I figured that was a bit too technical for ELI5, so I decided to go for &quot;different colours&quot;. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dcismia" target="_blank">dcismia</a>
+			<div class="markdown"><p>I use the ROYGBIV analogy to explain it often, even though all the colors are really red.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
