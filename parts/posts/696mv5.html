@@ -1,0 +1,72 @@
+<li class="post" data-handle="696mv5">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/696mv5/how_do_third_party_headphones_with_volume_control/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/696mv5" onclick="return false">How do third party headphones with volume control and play/pause buttons send a signal to my phone through a headphone jack?</a>
+		</h2>
+		<!--<span class="date">2017-05-07</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I assume there's an industry standard, and if so who is the governing body to make that decision? </p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dh47rel">
+		<a class="author" href="https://www.reddit.com/user/SullisNipple" target="_blank">SullisNipple</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><a href="http://www.circuitbasics.com/wp-content/uploads/2015/03/TRRS-Wiring-Diagram-300x224.png" target="_blank">Here's a diagram of a TRRS audio jack</a>. You'll see that the connector is divided (separated by insulators into distinct conducting strips). The reason this is called a TRRS audio jack is that it's broken into 4 different conducting strips, called Tip, Ring, Ring, Sleeve. There are also TRRRS jacks which have an extra ring and thus 5 conducting strips in total.</p>
+<p>To do mono audio, you need 2 conducting strips (audio + ground). To do stereo audio, you need 3 conducting strips (left audio + right audio + ground). If you have 4 or more conducting strips, then you can have stereo audio plus some other form of communication. The diagram I linked to you has the 4th strip be a microphone, but some smartphones will use the 4th conducting strip to send control information such as &quot;pause&quot; and &quot;play&quot; commands.</p>
+<p>Unfortunately there's no one standard for how TRRS and TRRRS jacks are used. Different devices and different headphones will make different (incompatible) decisions on what to do with the extra strips. If you're going to buy headphones with a TRRS or TRRRS connector, you just have to check beforehand whether it's coincidentally going to be compatible with your phone.</p>
+<p>The most common protocol used by phones is called CTIA<del>or OMTP</del>. (Edit: upon further research, CTIA and OMTP are 2 different standards, but seem to be largely compatible in this area). It's defined by the Cellular Telecommunications Industry Association. Note that other audio and video equipment will use the same jacks but be electrically incompatible in the higher rings of the jack.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dh4aigb">
+		<a class="author" href="https://www.reddit.com/user/Cyrl" target="_blank">Cyrl</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><a href="https://source.android.com/devices/accessories/headset/plug-headset-spec" target="_blank">https://source.android.com/devices/accessories/headset/plug-headset-spec</a></p>
+<p>Here's a link to the Android headset spec, scroll down to the diagram and you'll see that it's simply a series of pulldown resistors, one for each button.</p>
+<p>Given the tolerance of the resistors you can quickly hand-calc the expected voltage on the Mic pin for each button press (voltage divider with Rbias).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dh4eskg">
+		<a class="author" href="https://www.reddit.com/user/svh01973" target="_blank">svh01973</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I actually worked on microchips used by a major manufacturer for this.  They were not shorting out the mic. They were using the DC component one of the lines to draw power for a tiny chip mounted behind the headphone line buttons, and when a button is pressed, the button-side chip sends a high frequency signal back down the audio line which is detected by another chip in the phone.  The high frequency is well above human hearing limits, like in the 100KHz range.  Different buttons send different tones.  When those tones are detected by the chip in the phone it sends the requests to be processed by the phone processor.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dh48ys4">
+		<a class="author" href="https://www.reddit.com/user/diffractionltd" target="_blank">diffractionltd</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The remote sends a signal up the microphone line by shorting (or partially shorting) it to ground ever so briefly. Just a few milliseconds so it won't be noticeable in your conversation, while still detectable by the phone. Different buttons short the mic in different patterns.  <a href="http://david.carne.ca/shuffle_hax/shuffle_remote.html" target="_blank">link</a> </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dh4963p">
+		<a class="author" href="https://www.reddit.com/user/losLurkos" target="_blank">losLurkos</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>When you press a button you basically short out the microphone. How does the phone determine which switch caused the short? Simple, each switch has its own resistor wired in series, still looks like a short compared to the microphone. This resistance is then measured by the phone.  </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/696mv5" onclick="return false"><span>show</span></a>
+</li>

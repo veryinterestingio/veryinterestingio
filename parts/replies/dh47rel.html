@@ -1,0 +1,83 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/crossfirehurricane" target="_blank">crossfirehurricane</a>
+			<div class="markdown"><p>So is the CTIA a major force in the cellular phone industry? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cabarne4" target="_blank">cabarne4</a>
+			<div class="markdown"><p>Just to add to this, this is why some headphone play/pause/volume features only work with Apple, and some only with Android. They don't use the same channel for the same features, so the controls won't work. </p>
+<p>Try using an Apple-specific headset with an Xbox controller, or with an Android phone. You might get sound, but the headphone controls won't work. </p>
+<p>Edit: some devices will accept different signals on different channels, so your mileage may vary. Apple headphones will not be compatible with 100% of devices, though, and non-Apple-specific headphones will not always work right on Apple devices. More info <a href="http://mashtips.com/apple-headphone-on-android-or-windows/amp/" target="_blank">can be found here.</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/newfulluser" target="_blank">newfulluser</a>
+			<div class="markdown"><p>Sometimes you'll get clear sound only if you hold the play/pause button, or leave the jack slightly out so the problematic ring doesn't make contact</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Em_Adespoton" target="_blank">Em_Adespoton</a>
+			<div class="markdown"><p>As an example, I prefer noise isolating Samsung headphones, and use them with my iPhone.  The audio out works, the microphone works, triggering Siri works and play/pause works... but volume up and down, fast forward/rewiind and next song/previous song don't work.</p>
+<p>The reason for this is that the in-cable controls work by providing resistance across a specific channel/pair of channels.  When the chip in the phone detects the amperage drop by a specific amount, on a specific circuit it interprets that as a signal to do &quot;something&quot;.  iOS and Android phones seem to have, for the most part, settled on what that something is for a number of relationships, but the resistors aren't 1:1 exact, and a few of the functions are done differently.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FoodandWhining" target="_blank">FoodandWhining</a>
+			<div class="markdown"><p>I bought a pair of Boss noise-cancelling headphones that were Android only (wouldn't work with an iPhone). A third party company makes a compatible cable with a switch that lets you choose between Apple and Android standards. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+			<div class="markdown"><p>The CTIA is external to both the ITU and 3GPP, but they do cooperate, liaison, and provide input &amp; feedback to each other. <em>To clarify, I'm referring to the extent ITU &amp; 3GPP are concerned with communications, and not other aspects of mobile telephony, for which I don't know how involved they are.</em></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/crossfirehurricane" target="_blank">crossfirehurricane</a>
+			<div class="markdown"><p>How much power does the ITU wield over its members? Can they levy fines?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Swaggy_McSwagSwag" target="_blank">Swaggy_McSwagSwag</a>
+			<div class="markdown"><p>Nokia came up with the standard, and that is used on nearly every Android phone.</p>
+<p>Then Apple came along and invented the exact same thing but with a different ground and two of the bands swapped.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/loose_bearings" target="_blank">loose_bearings</a>
+			<div class="markdown"><p>EE designer in the consumer industry in Silicon Valley here.  Apple uses a cool concept called (EDIT) frequently shift keying.  They have a little chip that is powered by the microphone biasing voltage.  This chip can send a small AC signal that can be decoded on the phone/iPad end.  The way it works is that the chip will chirp a high frequency signal, then shift the frequency.  The ratio of the recovered key frequency and the shift frequency is the command (or in this case, the buttons) that the phone needs to respond to.  It is quite an ingenious way to piggyback additional data on the existing wires.</p>
+<p>If you have a scope and an Apple earpod to take apart, the signal can easily be found.  You can't hear it because the signals are very small, and way above audio frequencies (gets filtered out on the phone/iPad end). </p>
+<p>Here's a scope trace of the EarPods in action, plus the measurement circuit:
+<a href="http://imgur.com/a/4zvxt" target="_blank">http://imgur.com/a/4zvxt</a></p>
+<p>EDIT: Thanks for the correction on FSK, words are hard.  Pushing electrons is easy. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/toastingz" target="_blank">toastingz</a>
+			<div class="markdown"><p>This piggy backing is common for many types of communication. You can introduce high frequency signals to power lines for communication purposes. Also it's called frequency shift keying(FSK)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Laamby" target="_blank">Laamby</a>
+			<div class="markdown"><p>Is this how power line network adapters work?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/unholyprawn" target="_blank">unholyprawn</a>
+			<div class="markdown"><p>So when I push a button on my EarPods, a chip in the EarPod remote sends a small high frequency signal to the audio decoder in the iDevice and depending on the frequency of the signal, the iPhone determines which button is pressed? </p>
+<p>I have a set of EarPods that I'm willing to sacrifice, where should I hook my 'scope probes?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/loose_bearings" target="_blank">loose_bearings</a>
+			<div class="markdown"><p>Bias mic wire from GND though a 2K resistor at 3V.  Circuit should be 3V to 2K resistor to microphone wire.  3V common should be connected to microphone GND.  Scope the node between resistor and mic (to GND).</p>
+<p>On the earpods, when you press the middle button, the resistor is shorted to GND.  When you press the previous/next button.  You can find the FSK signal.  It is very small, but distinct.  I have a scope trace somewhere that I can probably post. </p>
+<p>Remember, if you are trying to spoof the FSK, the frequency ratios are important, NOT the frequency itself.  FSK is used because RC oscillators are cheap, but highly temperature dependant.  That's why the key and shift frequency ratios are important, since the RC constant would shift in the same proportions.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/treycook" target="_blank">treycook</a>
+			<div class="markdown"><p>So basically like pressing a button on your phone's keypad to communicate with businesses' automated phone systems, where the tone of the button corresponds with a command.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ripcord" target="_blank">Ripcord</a>
+			<div class="markdown"><p>Sounds like it?  But I don't understand the part about frequency ratios, that makes it sound more complicated then just being a really high-frequency, short tone.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/insolace" target="_blank">insolace</a>
+			<div class="markdown"><p>This is incorrect.  TRRS is standardized for (LR) headphones and a microphone, the buttons work by connecting different value resistors between the mic and ground.  </p>
+<p>Source: <a href="http://www.instructables.com/id/Galaxy-Nexus-and-others-headset-remote-with-medi/" target="_blank">http://www.instructables.com/id/Galaxy-Nexus-and-others-headset-remote-with-medi/</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drewfes" target="_blank">drewfes</a>
+			<div class="markdown"><p>yup, here's the spec for Android phones using this method:</p>
+<p><a href="https://source.android.com/devices/accessories/headset/plug-headset-spec" target="_blank">https://source.android.com/devices/accessories/headset/plug-headset-spec</a> </p></div>		</li>
+					</ul>
+		</ul>
+	
