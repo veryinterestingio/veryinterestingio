@@ -1,0 +1,114 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/iorgfeflkd" target="_blank">iorgfeflkd</a>
+			<div class="markdown"><p>Due to the non-uniform density of the Earth, gravity is actually stronger (about 1.08 g) around halfway to the middle, at the core-mantle boundary. I haven't done the calculation, but I wonder what the maximum escape velocity is given Earth's realistic interior.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Midtek" target="_blank">Midtek</a>
+			<div class="markdown"><p>If I've done everything correctly, the escape speed at distance <em>r</em> is</p>
+<p><code>[; v_{esc}(r) = \sqrt{8\pi G\left(\frac{1}{r}\int_0^r{\rho(s)\,s^2ds}+\int_r^{\infty}{\rho(s)\,s ds}\right)} ;]</code></p>
+<p>where ϱ(s) is the mass density. (Obviously ϱ = 0 for s &gt; R). And, yes, the integration factor is only <em>one</em> factor of <em>s</em>, not <em>s</em>^(2), in the second integral. The first integral vanishes as <em>r</em> --&gt; 0 since the integrand scales like ϱr^(2) as <em>r</em> --&gt; 0. Indeed, in terms of the mass function <em>M</em>(<em>r</em>) = total mass enclosed up to distance <em>r</em>, the escape speed has the more illuminating form</p>
+<p><code>[; v_{esc}(r) = \sqrt{\frac{2GM(r)}{r}+8\pi G\int_r^{\infty}{\rho(s)\,s ds}} ;]</code> </p>
+<p>This expression is mildly interesting. The escape speed is what you naively expect just by replacing <em>M</em> with <em>M</em>(<em>r</em>), but there is a correction term that accounts for all the mass <em>beyond</em> the distance <em>r</em> that you have yet to escape. You can also verify that *v*<em><em>esc</em></em>(r) is a strictly decreasing function of <em>r</em>, so the escape speed does, indeed, always increase with depth, no matter the density profile. In fact, you should get</p>
+<p><code>[; \frac{dv_{esc}^2}{dr} = -\frac{2GM(r)}{r^2} ;]</code></p>
+<p>which leads to another form for the escape speed:</p>
+<p><code>[; v_{esc}(r) = \sqrt{\int_r^{\infty}{\frac{2GM(s)}{s^2}\,ds}} ;]</code></p>
+<p>This expression has the nice advantage of being expressed entirely in terms of the mass <em>beyond</em> the distance from which you want to escape.... but not quite since <em>M</em>(<em>r</em>) includes all mass enclosed up to distance <em>r</em>.</p>
+<hr />
+<p>Anyway, if you can get a reasonable density profile or reasonable mass profile, then you can get the escape speed at the center, which is given by any of the following expressions:</p>
+<p><code>[; v_{esc}(0) = \sqrt{8\pi G\int_0^{R}{\rho(s)\,s ds}} = \sqrt{\int_0^{\infty}{\frac{2GM(s)}{s^2}\,ds}} = \sqrt{\frac{2GM}{R}+\int_0^R{\frac{2GM(s)}{s^2}\,ds}} ;]</code></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TangibleLight" target="_blank">TangibleLight</a>
+			<div class="markdown"><p>I just installed an extension to render LaTeX like two days ago and you're the first time I've gotten to use it in the wild. </p>
+<p>You're the best.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Andruboine" target="_blank">Andruboine</a>
+			<div class="markdown"><p>I read this and now feel like the dumbest human being alive. Thank you for keeping me humble. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bonzinip" target="_blank">bonzinip</a>
+			<div class="markdown"><blockquote>
+<pre><code>[; \frac{dv_{esc}^2}{dr} = -\frac{2GM(r)}{r^2} ;]</code></pre>
+</blockquote>
+<p>For those who wonder how you get such a nice formula for the derivative, start from the very first expression given by /u/Midtek and square it, then derive what was inside the square root:</p>
+<pre><code>[; \frac{dv^2_{esc}}{dr} = 8\pi G\left[\frac{d}{dr}\left(\frac{1}{r}\int_0^r{\rho(s)\,s^2ds}\right)+\frac{d}{dr}\left(\int_r^{\infty}{\rho(s)\,s ds}\right)\right] ;]</code></pre>
+<p>Apply the product rule to the first term in the parentheses, and cancel integration with derivation (be careful, r is the <em>lower</em> limit of the second integral!):</p>
+<pre><code>[; = 8\pi G\left(-\frac{1}{r^2}\int_0^r{\rho(s)\,s^2ds}+\frac{1}{r}\,\rho(r)\,r^2-\rho(r)\,r \right) ;]</code></pre>
+<p>Simplify:</p>
+<pre><code>[; = 8\pi G\left(-\frac{1}{r^2}\int_0^r{\rho(s)\,s^2ds}\right) =  -\frac{8\pi G}{r^2}\int_0^r{\rho(s)\,s^2ds} ;]</code></pre>
+<p>Now substitute [; M(r) = \int_0\^r{4 \pi \rho(s)\,s\^2ds} ;] and you get it:</p>
+<pre><code> [; \frac{dv_{esc}^2}{dr} = -\frac{2GM(r)}{r^2} ;]</code></pre></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Walteppich" target="_blank">Walteppich</a>
+			<div class="markdown"><p>Could you elaborate why the gravity rises? Is there a source I could check out?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/empire314" target="_blank">empire314</a>
+			<div class="markdown"><p>Gravity is determined by how much mass there is under you, and how close you are to that mass.</p>
+<p>If go down a hole to earth, some of the mass is no longer under you which decreases gravity, but now you are closer to the core. The core of Earth is more dense, meaning it has a lot of mass compared to it size. So if you go down the hole, you get closer to the dense core which now pulls you harder than it did when you were up on the surface.</p>
+<p>These two effects mostly cancel each other out, but the strong pull of core down under comes sligthly ahead unless you dig too deep.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/iorgfeflkd" target="_blank">iorgfeflkd</a>
+			<div class="markdown"><p>See here: <a href="https://www.physicsforums.com/insights/all-about-earths-gravity/" target="_blank">https://www.physicsforums.com/insights/all-about-earths-gravity/</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/WazWaz" target="_blank">WazWaz</a>
+			<div class="markdown"><p>It's not all that different to how gravity lessens (slightly) as you go up into the air - there is more Earth below you (the atmosphere is also part of Earth's mass), but the more dense part is further away.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Stephenishere" target="_blank">Stephenishere</a>
+			<div class="markdown"><p>Oh wow, that's incredibly interesting. I never thought about the earth having a significant variation of gravity. 1.08g is pretty significant. I wonder what effects this gravity change has on our earth's composition in that region.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/iorgfeflkd" target="_blank">iorgfeflkd</a>
+			<div class="markdown"><p>Well it's more like the composition dictates the gravity change.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/strangepostinghabits" target="_blank">strangepostinghabits</a>
+			<div class="markdown"><p>while 1.08g is significant in many ways, it's probably pretty insignificant compared to the pressure and temperature increase, at least as far as material composition and state goes.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Chawp" target="_blank">Chawp</a>
+			<div class="markdown"><p>So I don't understand everything you're saying but I have questions. I remember from my intro physics series that if you were to take the entire mass of the Earth and make it a hollow shell instead of a solid sphere, that if you were on the inside, you would feel no gravitational forces. Each point on the shell would exert a force on you that is exactly proportional to the distance it is away from you, and thus you feel no forces. Like being a negatively charged ion in the middle of a positively charged shell. </p>
+<p>Assuming that's true and I'm not misremembering, do any of the same things come into play when you're talking about the escape velocity on the inside of a solid sphere? If you go into the interior, the gravitational forces of the mass between you and the near surface to some manner would counteract the increase of the gravitational forces you experience by being closer to the other mass between you and the far side of the planet. </p>
+<p>Is all that accounted for in your math?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Midtek" target="_blank">Midtek</a>
+			<div class="markdown"><blockquote>
+<p>Each point on the shell would exert a force on you that is exactly proportional to the distance it is away from you, and thus you feel no forces.</p>
+</blockquote>
+<p>The magnitude of the force is proportional to the inverse-square of the distance, but, yes, the forces inside a hollow shell would cancel.</p>
+<blockquote>
+<p>Assuming that's true and I'm not misremembering, do any of the same things come into play when you're talking about the escape velocity on the inside of a solid sphere? If you go into the interior, the gravitational forces of the mass between you and the near surface to some manner would counteract the increase of the gravitational forces you experience by being closer to the other mass between you and the far side of the planet.</p>
+<p>Is all that accounted for in your math?</p>
+</blockquote>
+<p>Yes, all of this is considered when calculating the potential <em>U</em>(<em>r</em>). It's an application of the divergence theorem (sometimes called Gauss's Law).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Chawp" target="_blank">Chawp</a>
+			<div class="markdown"><p>Thanks!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mcrbids" target="_blank">mcrbids</a>
+			<div class="markdown"><p>In the bubble/shell scenario, Is it true that the forces cancel or anywhere within the bubble or just at the very center?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aaron0043" target="_blank">aaron0043</a>
+			<div class="markdown"><p>Assuming we're inside the earth, how would we account for the gravitational pull of the mass that is above us (closer to the surface)?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/N8CCRG" target="_blank">N8CCRG</a>
+			<div class="markdown"><p>There's an interesting result called Gauss' s Law. The short version is that if you imagine a spherical shell of matter, and you are inside it, then the net gravitational force from the sphere is zero, even if you aren't at the center of the sphere. In other words, if you closed your eyes you would have no way to know you were in a shell. It's a perfect balance between the equations such that if you move to one side, the amount of material on the near side is closer but less and they always perfectly cancel with the further but more material from the far size.</p>
+<p>Now, you can mathematically assume the earth is not a solid sphere but an infinite set off thin spheres. Thus, the only gravitational force is due to the shells that you are not inside of, i.e. the part of the earth with radius smaller than your distance from the center.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aaron0043" target="_blank">aaron0043</a>
+			<div class="markdown"><p>Cool, thanks for the explanation. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Midtek" target="_blank">Midtek</a>
+			<div class="markdown"><p>That's taken care of in the calculation of the potential U(r), which increases with depth.</p></div>		</li>
+					</ul>
+		</ul>
+	
