@@ -1,0 +1,60 @@
+<div class="answers">
+	<div class="answer" data-handle="dhiabgs">
+		<a class="author" href="https://www.reddit.com/user/giennah" target="_blank">giennah</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Your credentials are never sent or known to the random site, but your user info is. This is how it goes:</p>
+<ol>
+<li>You want to login to random site XYZ and that means you want to prove your identity to XYZ (this process is called authentication)</li>
+<li>When you choose Login via Facebook/Google/etc you are choosing them to prove your identity for you (because they already know you, you are registered there). The way Facebook/Google manages to prove your identity to XYZ depends on the protocol implemented behind the scenes (OAuth, OpenID)</li>
+<li>By choosing Facebook/Google to prove your identity, you are knocking on their doors and asking them to give you a letter stating who you are and possibly a few more details about you. Before giving you the letter, you must prove that you are who you claim to be, then, Facebook/Google asks you to prove your identity at their door --&gt; using your username and password.</li>
+<li>If your username and password are correct, Facebook/Google will issue the letter for you with a security feature like a watermark, something that makes the letter unable to be forged.</li>
+<li>Then, you go back to XYZ, knock on its door, show the letter. XYZ examines the letter and because of the security feature, XYZ can confirm that your letter is valid and they let you in. (how XYZ knows Facebook/Google's security features is another story).</li>
+</ol></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dhicsf8">
+		<a class="author" href="https://www.reddit.com/user/slayer_of_idiots" target="_blank">slayer_of_idiots</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It uses a protocol called OAuth.  There are several different versions and <em>flows</em> of this protocol.  The most common version used by sites works something like this.</p>
+<p>There are basically 3 different &quot;people&quot; in this transaction -- the User (i.e. you), the Authorizer (i.e. Facebook/Google/etc), and the Site.</p>
+<ol>
+<li>
+<p>You click the &quot;Login via Facebook/Google&quot; button for a particular site.  It creates a URL that redirects you to Facebook/Google.  That URL includes information about the Site and what type of information it wants from your Facebook/Google account (usually just your email, name, etc).  It also includes another URL that will redirect you back to the Site <em>after</em> you login to Facebook/Google and authorize the Site.</p>
+</li>
+<li>
+<p>You login to Facebook/Google and accept the authorization request.  Notice that only Facebook/Google is getting your login credentials.  You will be redirected back to the site with an <em>Authorization Code</em>.</p>
+</li>
+<li>
+<p>Behind the scenes, the Site will use that <em>Authorization Code</em> to request an <em>Access Token</em> from the Authorizer that allows the Site to access your Facebook/Google account (but they will only have access to the information you authorized).  The Site has to pass along a <em>Secret</em> (basically, the master password for the Site) to get the token.  This ensures that no other Site can request authorization by pretending to be a different Site.   Basically, you've just created a second set of login credentials to your account, but it only works for that Site and has limited access to your account.</p>
+</li>
+<li>That <em>Access Token</em> typically expires after a set amount of time.  Usually, the Site is also given a <em>Refresh Token</em> that they can use to get new <em>Access Tokens</em>.  At any time, you can go to your Facebook/Google account and <em>revoke</em> these tokens, denying the Site any further access to your account.</li>
+</ol>
+<p>So your actual login credentials are never known to the Site.  They only get temporary authorization credentials via tokens.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dhi872g">
+		<a class="author" href="https://www.reddit.com/user/dub_starr" target="_blank">dub_starr</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The whole point of it is to make it more secure. You are not in fact giving your credentials to a random site, but instead, the random site is making an API call to google/facebook. and you then log in with a secure connection to your existing FB or google account. Then the google/fb API sends back the information that the site/application needs along with the successful login note and you are now allowed into the site/app.</p>
+<p>Typically it only should need your name and email address, but once you authenticate, it usually gives you another little screen saying what information will be sent to them from your profile/account.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dhia7b1">
+		<a class="author" href="https://www.reddit.com/user/afambelafonte" target="_blank">afambelafonte</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Here's how this works in as close to ELI5: in order to set up logging in with Facebook, the site will first register with Facebook, and Facebook will verify and approve that the site is legit. Then Facebook will give some credential keys to your site that it can use to help users log in with their Facebook credentials. </p>
+<p>When you click &quot;log in with Facebook&quot; on a site, that site will send a request to Facebook with the site's credentials asking to display a log in page. Usually, this will open a pop-up window with Facebook's login screen (or if you're already logged into Facebook, just an approval screen.) What's important here is that that pop-up window is owned by Facebook, not the site you're logging into. When you tell Facebook you want to allow the connection, Facebook will send some information about you (like your name and email) as well as a special token that will allow the site to request that information again in the future. Importantly, the site you are logging into doesn't get your credentials, they get some bits of information that you allow to be shared and a token that the site can use to get or send information to Facebook. </p>
+<p>This process is more or less the same with every site, and Facebook is stricter in how they verify the 3rd party site than others. The reason sites want to do this is that people are usually too lazy to fill out sign up forms to create an account on a site, so that site wants to make it as easy as possible. Facebook wants to allow that because it gives them more data they can use to sell you stuff. In many cases, this process can be more secure than creating an account with a given site.</p>
+<p>More information: <a href="https://aaronparecki.com/oauth-2-simplified/" target="_blank">https://aaronparecki.com/oauth-2-simplified/</a></p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dhjc9ma">
+		<a class="author" href="https://www.reddit.com/user/TheOnlyThing8" target="_blank">TheOnlyThing8</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>How do you know you're really logging into Facebook and not a malicious duplicate in the site you have to log into?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
