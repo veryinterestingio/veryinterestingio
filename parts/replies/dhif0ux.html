@@ -1,0 +1,46 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ikthyoid" target="_blank">Ikthyoid</a>
+			<div class="markdown"><p>One more thing, in case folks are looking for more detailed information:</p>
+<p>With modern electronic design, the power cost of the extra logic and control required to perform the blinking itself is so low as to be inconsequential. MOSFET-based digital circuits (CMOS, etc) do draw some power in their switching, but unless you're getting into micro-optimization or other edge cases, you will find that the parts of your system that &quot;interact with the real world&quot; (electromechanical I/O, such as a display) consume many orders of magnitude more power than the digital logic will.</p>
+<p>Even within the digital logic power budget, the cost of the oscillator and real-time clock counter is going to be higher than any sort of visible blinking.</p>
+<p>EDIT: by &quot;visible blinking&quot;, I'm referring to low-frequency visually-noticeable blinking in the 1~8 Hz range, as opposed to higher speed PWM blinking commonly used to control LED brightness.</p>
+<p>That's why everyone is focusing on the power consumption of the display and how it is impacted by the blinking, rather than the power draw of the blinking logic itself.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bigtips" target="_blank">bigtips</a>
+			<div class="markdown"><p>Well written, thanks.  Yours are the clearest notes (for a layman) on the subject.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/The_camperdave" target="_blank">The_camperdave</a>
+			<div class="markdown"><blockquote>
+<p>Even within the digital logic power budget, the cost of the oscillator and real-time clock counter is going to be higher than any sort of visible blinking.</p>
+</blockquote>
+<p>Is that really the case?  Back in the early days of the digital watch, you used to have to press a button to see the time.  If you left the display on, it would drain the battery quickly.  They would run for ages without the display, but with... </p>
+<p>I'm sure there has been a lot of development in LED technology, but to get the power drain less than that of the real time clock circuitry?  No, I don't think so.  Otherwise, we would have LED watches and clocks (mains connected devices don't count.  They've got access to practically infinite power.).  Even smart phones and such run for days when the display is off, but mere hours when it is in use continuously.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Bad-Science" target="_blank">Bad-Science</a>
+			<div class="markdown"><p>Does this remain true for all displays? For instance, LCD backlights are always on, and OLED where the pixels themselves generate light.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ikthyoid" target="_blank">Ikthyoid</a>
+			<div class="markdown"><p>Effectively yes, in regards to the question. Of course, as engineers we know that nothing is ever entirely simple, but I think it's good to keep in mind that if someone is asking a question like this, there is a lot of value in giving them an answer that is correct 99+% of the time, rather than going over every possibility.</p>
+<p>Here is more detail, however:</p>
+<p>OLED is a transmissive display (like a 7-segment or LED dot matrix), and will draw measurably less power when the pixels are off instead of on, so there are power savings to be had.</p>
+<p>LCD is a transflective display, and power draw will be the same or very slightly higher when blinking. Any amount higher is going to be insignificant, however, unless you have an extreme project where you are trying to achieve ultra-long battery life. But if you're doing that, then you're going to have to ask a lot more questions on Reddit about quiescent current, leakage, etc.</p>
+<p>The only display you have to be cautious of blinking is the rarest: reflective. These are usually known as eInk or electronic paper. There are also displays with flipping metal dots (forgot the name) that function similarly to relays. Blinking these will cause significant power increase for your system, but these are also quite rare to use in a clock.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Boothiepro" target="_blank">Boothiepro</a>
+			<div class="markdown"><p>Are those the ones used in e-readers/e-books?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jivow" target="_blank">jivow</a>
+			<div class="markdown"><p>LCD back lights blink to regulate brightness. The same goes for OLED with an added catch that OLEDs are refreshed line by line - in a given moment only a single line is &quot;on.  (You can test it easily by waving OLED fast in the darkness. Image will appear shorter or longer depending on the direction.)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ovnr" target="_blank">ovnr</a>
+			<div class="markdown"><p>LCDs are generally driven with an AC waveform, so they &quot;blink&quot; all the segments, all the time. If you were to drive a LCD with a static DC level, it would slowly erode the electrodes.</p>
+<p>OLEDs: Same situation as a normal LED display, if it was a segment-based OLED. If it was a graphical display, it'd be substantially worse as you have to constantly update the display.</p></div>		</li>
+					</ul>
+		</ul>
+	
