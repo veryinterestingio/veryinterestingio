@@ -1,0 +1,35 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tael89" target="_blank">tael89</a>
+			<div class="markdown"><p>I was going to disagree with you that quality coded firmware shouldn't be expected to crash, but your mention of a cosmic ray causing a bit to flip is extremely true. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dezeroex" target="_blank">dezeroex</a>
+			<div class="markdown"><p>Quality code still has bugs, even if those bugs are hidden in a vendor library somewhere, or may only cause a crash after, say, 100 years of run time. Further, it's rare even in embedded systems to only have one piece of code running. Each of those pieces of code may be fine on their own, until some extremely rare condition happens and <em>crash</em>.</p>
+<p>As time approaches infinite, the probability of a sufficiently-complex-to-be-useful piece of code crashing approaches one whether it's an extremely rarely encountered bug or a high energy photon. No idea if that's a law, axiom, or whatever but it should be.</p>
+<p>The best you can hope for is &quot;probably not going to happen in my life time&quot;, and if it does, I took the time to implement a hardware watchdog. AKA failing gracefully.</p>
+<p>The law of large numbers (as sample size increases, the outcome will converge with the base rates), the law of little numbers (humans will will incorrectly apply the law of large numbers to small sample sizes such as only a few decades of system runtime), and the halting problem (which is NP Complete) are all useful to consider here.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tael89" target="_blank">tael89</a>
+			<div class="markdown"><p>There are also things in place to help prevent crashes and such, like watchdog timers and use of a double-backup copy of the code which is periodically compared with to ensure any bit-flips and the like are corrected.</p>
+<p>Of course if time approaches infinity the module will fail. </p>
+<p>Have a good one.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/h-jay" target="_blank">h-jay</a>
+			<div class="markdown"><p>Normal, everyday PCs execute so many instructions per second and move so much data that the random hardware errors that just 20 years ago would take years to manifest, can now happen in days. Same applies to corruption of data on storage media: on a busy 2-drive storage system you can expect about a bit per month to get corrupted due to alteration of the page in memory prior to flushing back to the drive. Some filesystems, like ZFS, will detect such bit flips and correct them. Most common filesystems don't do that, so if you're on your average Linux, OS X or Windows machine, you're not protected. If the bit flip is somewhere in executable code, you'll get crashes. If the bit flip is in data that is not sanitized before use, or otherwise triggers a bug, it may also promote a crash.</p>
+<p>These days, on PCs, the hardware can easily contribute about as much to crashes as software does!</p>
+<p>If you think that these errors are somehow isolated, think again. You don't need to go particularly far: you can google for common data and add random single bit flips and you'll find them on open internet. If search engines and archive.org can detect bit flips in stored data, just imagine how bad it is in personal systems.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tael89" target="_blank">tael89</a>
+			<div class="markdown"><p>I'm thinking of a device created to do some specific task so as to contain a microcontroller and other peripherals. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tanyeehou87" target="_blank">tanyeehou87</a>
+			<div class="markdown"><p>Why would you say it would crash?</p>
+<p>I'm genuinely curious here. What guarantees are there that good firmware works be stable forever?</p></div>		</li>
+					</ul>
+		</ul>
+	
