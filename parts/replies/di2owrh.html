@@ -1,0 +1,46 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aaOzymandias" target="_blank">aaOzymandias</a>
+			<div class="markdown"><p>How exactly are they broken by quantum computers?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/antiduh" target="_blank">antiduh</a>
+			<div class="markdown"><p>All three broken algorithms (RSA, DSA, ECDSA) can be broken by running Shor's Algorithm on a quantum computer that has a sufficient number of qubits.</p>
+<p>For instance, the security in RSA comes from the difficulty of factorising very large composite numbers. It's easy to multiple two primes to get a composite, it's hard to take a composite number and figure out the two primes that were multiplied together to make it. Shor's algorithm, however, can do that very quickly, but Shor's algorithm only runs quickly on a quantum computer.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lennyfromthe313" target="_blank">lennyfromthe313</a>
+			<div class="markdown"><p>I don't really know anything about this topic, but from what I do know, how does Shor's Algorithm (something I understand as; if &quot;given an integer N, find its prime factors.&quot;)</p>
+<p>What does prime factors have to do with RSA? I dont know much about DSA or ECDSA but from some quick googling I still don't understand the ability to find the private keys using Shors algorithm... So how does it work!?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/-rwsr-xr-x" target="_blank">-rwsr-xr-x</a>
+			<div class="markdown"><blockquote>
+<p>Shor's algorithm, however, can do that very quickly, but Shor's algorithm only runs quickly on a quantum computer.</p>
+</blockquote>
+<p>How do we <em>know</em> it runs faster, when we don't actually have a physcial, quantum computer with enough qubits to make that determination? </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wyager" target="_blank">wyager</a>
+			<div class="markdown"><p>You can reduce the problem of cracking these algorithm to finding how often a sequence of numbers repeats itself. This happens to be something that quantum computers are good at. <a href="https://en.m.wikipedia.org/wiki/Shor%27s_algorithm" target="_blank">https://en.m.wikipedia.org/wiki/Shor%27s_algorithm</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dampew" target="_blank">dampew</a>
+			<div class="markdown"><p>Why can't you just run a traveling salesman problem or any other NP-complete problem that can't be solved by Shor's?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wyager" target="_blank">wyager</a>
+			<div class="markdown"><p>We don't know how to make useful cryptosystems out of an arbitrary NP-complete problem. The whole point of crypto is that it's only supposed to be hard if you don't have some special piece of knowledge used to generate the problem in the first place. If we could make a TSP where the map is constructed in such a way that if you know the map's &quot;seed&quot; you can solve it efficiently, but not otherwise, that could be a useful basis for a cryptosystem. Unfortunately, we don't even know if such a thing is possible. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dampew" target="_blank">dampew</a>
+			<div class="markdown"><p>Hm, so maybe the issue is that I don't understand cryptography well enough.</p>
+<p>I thought it boiled down to needing to find the prime factors of a very large number and then being able to verify that they are indeed the solution.  In a traveling salesman problem it's more difficult to verify that a given path is the shortest possible path, but if you're given an ordered path and a distance then it can be verified.  Maybe it's no longer NP-complete if you're given the distance of the shortest path...</p>
+<p>If you need to give out some hints to make it easily solvable (like some of the prime factors -- I'm not sure how it works) you could do that with the traveling salesman problem too by giving some of the locations in the right order...</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AdolfTrumpler" target="_blank">AdolfTrumpler</a>
+			<div class="markdown"><p>I was under the impression that if the key is as long as the message, each bit of the message can be XORed with a bit of the key to produce the ciphertext. The ciphertext could decode to any plain text message depending on the key (pick the key to be the XOR of the ciphertext and the desired plain text), so there is absolutely no way to decode what was originally encrypted without the key. If the key is longer than the message, the extra bits are unused.</p>
+<p>At least according to:  <a href="https://www.quora.com/Cryptography-It-is-said-that-for-perfect-secrecy-the-key-should-be-as-long-as-the-message-If-the-key-is-longer-than-the-message-does-it-make-it-more-or-less-secure-or-same-secure" target="_blank">https://www.quora.com/Cryptography-It-is-said-that-for-perfect-secrecy-the-key-should-be-as-long-as-the-message-If-the-key-is-longer-than-the-message-does-it-make-it-more-or-less-secure-or-same-secure</a></p></div>		</li>
+					</ul>
+	

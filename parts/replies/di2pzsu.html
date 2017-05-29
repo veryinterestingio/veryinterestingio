@@ -1,0 +1,61 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/knotallmen" target="_blank">knotallmen</a>
+			<div class="markdown"><p>Do you mean quantum key distribution?  It is fascinating, expensive, and fairly limited in how much data can be encrypted compared the amount of data we transmit.</p>
+<p>It's also one of those things that requires a random number generator.  I don't mean one that is done via a computer, but actually observing random events.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/frogjg2003" target="_blank">frogjg2003</a>
+			<div class="markdown"><p>I was referring to quantum entanglement. Person A and Person B get a set of entangled particles. They observe the state, then encode the message with the key. It's easy to transmit the key because the key is formed as soon as either one observes the particles. But like all one time pads, the problem is getting it set up in the first place. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/knotallmen" target="_blank">knotallmen</a>
+			<div class="markdown"><p>Never heard that working that way.  The issues I recall with entanglement is you cannot transmit information faster than the speed of light and the entanglement is instantaneous, and I think it is difficult to send data since observing changes the particles state.</p>
+<p>Similarly quantum key distribution uses two different formats to entangle the bits, and then the person receiving the bits guesses which polarization to assume bits are spun and if you guess wrong then that bit is thrown out after discussing the data in a way an observer cannot discern what the data is.  It's simple yet very difficult to describe without pictures.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TropicalDoggo" target="_blank">TropicalDoggo</a>
+			<div class="markdown"><blockquote>
+<p>It is fascinating, expensive, and fairly limited in how much data can be encrypted compared the amount of data we transmit.</p>
+</blockquote>
+<p>Ironically enough RSA has the exact same issues, but it's still used because even though it can only encrypt a few hundred bytes at most, it's enough for a key for another encryption algorithm. </p>
+<p>Wasn't a sufficiently long AES key proven to be uncrackable? (there is not enough energy in the universe to crack it or some similar algorithm). In that case RSA failing and getting replaced by quantum key exchange wouldn't matter much.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AmirZ" target="_blank">AmirZ</a>
+			<div class="markdown"><p>No public-private key system is uncrackable if you consider &quot;luck&quot; a factor, where you correctly guess the private counterpart for a public key.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/punanetiiger" target="_blank">punanetiiger</a>
+			<div class="markdown"><p>One-time pad guarantees only secrecy of the contents of a message, but neither authentication (who's the sender) nor integrity check (has it been tampered with). It also leaks the length of the message. And a man-in-the-middle can flip any bits of his choice.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CrazedToCraze" target="_blank">CrazedToCraze</a>
+			<div class="markdown"><blockquote>
+<p>It also leaks the length of the message.</p>
+</blockquote>
+<p>Could you not trivially just append junk data at the end? Could just be a sequence of 0s AFAIK.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/punanetiiger" target="_blank">punanetiiger</a>
+			<div class="markdown"><p>Yes, if the message format allows it and you've agreed on a maximum message length beforehand. However, for an attacker these zeroes are known plaintext. If he XORs the last byte of the ciphertext with 'X', then he can be pretty sure it will decrypt to 'X', unless this specific message has no padding. If he also can detect whether a message was accepted or not, he can suddenly both detect (some info about) the length and append his data to the messages.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/frogjg2003" target="_blank">frogjg2003</a>
+			<div class="markdown"><p>This is an issue outside of cryptography and more in line with the general issue of security. Making sure the key is transmitted securely, making sure the message is from the correct sender, etc. can be handled by some cryptographic techniques (e.g. private/public key) but any message is subject to tampering, no matter the cryptographic device used. And if a message encoded with a one time pad is tampered with, it becomes gibberish. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/punanetiiger" target="_blank">punanetiiger</a>
+			<div class="markdown"><p>It doesn't necessarily become gibberish: you can flip any bits of your choice. The nth bit of the plaintext corresponds only to the nth bit of the ciphertext. If the general format of the plaintext is known, then you can do quite a damage this way.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dmwit" target="_blank">dmwit</a>
+			<div class="markdown"><p>It is absolutely a concern that cryptographers have paid a ton of attention to over the years. &quot;Any message is subject to tampering, no matter the cryptographic device used&quot; is not correct: some cryptographic primitives make it wildly unlikely that tampering will go undetected.</p>
+<p>Your claim that &quot;if a message encoded with a one time pad is tampered with, it becomes gibberish&quot; is also highly suspect. For example, if I send a lot of messages of the form &quot;transfer $10,000 from account 172 to account 311&quot;, and my adversary discovers that, he can do a lot of damage by flipping bit 76 of the next message I send, converting it from &quot;transfer $10,000 ...&quot; to &quot;transfer 410,000 ...&quot; and suddenly I'm $350,000 overdrawn. If that attack sounds theoretical to you, let me assure you it's not: this trick was used against bad early implementations of SSL.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Imadethisfoeyourcr" target="_blank">Imadethisfoeyourcr</a>
+			<div class="markdown"><p>Diffe Hellman gets used for key distribution and would also break under quantum computers</p></div>		</li>
+					</ul>
+	
