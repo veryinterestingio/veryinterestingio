@@ -1,0 +1,52 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/raypacman" target="_blank">raypacman</a>
+			<div class="markdown"><blockquote>
+<p>4 bits=15 states, 5 bits=31 (15+16), 6 bits=63 (31+32)</p>
+</blockquote>
+<p>You're off by one. n bits can represent 2^n states, so 4 bits can represent 16 states. (Remember, 0000 is a state).</p>
+<blockquote>
+<p>2^0 = 1 but you can represent two states, 24 = 8 but you can represent 15 different states</p>
+</blockquote>
+<p>No, 2^1 = 2 so you can represent 2 states with one bit. 2^0 = 1 so you can represent 1 state with no bits (I like to think of this as &quot;I know one thing: I don't have any bits&quot;).</p>
+<p>That 2 isn't magic by the way, it's because bits are are in base-2 (each digit has two possibilities). In base-10, our familiar number system, you can represent 10^1 states with 1 digit (0-9), 10^2 states with 2 digits (00-99), etc.</p>
+<p>By the way, anyone who is talking about representing <em>more</em> than 2^n states with n bits is redefining the meaning of 'representing' or 'states'. If you map each possible state to multiple 'things', then you can represent more than 2^n 'things' at the cost of being unable to uniquely distinguish them.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Lordbug2000" target="_blank">Lordbug2000</a>
+			<div class="markdown"><p>I actually just noticed one issue with your solution. When you are working with base 2 numbers (binary), you are working on a scale that begins with 2^0=1 (without this we would have no way to represent an odd number) so 0000 = 1 and 0001 = 2. This leads to some odd logical hurdles that you have to jump over.</p>
+<p>(Bits)             1|2|3|4
+(2^)               0|1|2|3
+(Value)          1|2|4|8
+Pos States   2|4|8|16</p>
+<p>If you have 1 bit to store a value with you are working with only one binary position, the first one which is 2^0.</p>
+<p>Every binary position can only hold on its own 2 states, but as you add them together, it acts similarly to probability. 1/2 + 1/2 = 1/4, 2 states + 2 states = 4 total states.</p>
+<p>Each 'state' could be converted to a decimal number, if that was practical given the situation, but because of the way computers work, they store it as a series of 1s&amp;0s (or electrical signals being either on or off). So, 'state 7' would be represented to the computer as 0111, I included the leading 0 for continuity sake, but it is actually unnecessary. 'State 5' would be 0101, and so on.</p>
+<p>The decimal value is computed by multiplying the value of the placeholder, by the value of its place. Like in the base-10, or the decimal, system 4 = 4 <em> 10^0 = 4 </em> 1, because anything to the 0 power is 1. So, 1 = 1 <em> 10^0 = 1</em>1.</p>
+<p>I think the confusion here has been because we were confusing n bits with the 2^n place, when it should be the 2^(n-1) place, because the scale starts at 2^0.</p>
+<p>The best answer here, in my opinion is: &quot;n bits can hold up to 2^n states, using the first n binary positions, from 2^0 to 2^(n-1)&quot;.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tako1111" target="_blank">Tako1111</a>
+			<div class="markdown"><p>Gotta give you credit for doing this in your head.  Thinking in binary is something everyone should be encouraged to do. :)</p>
+<p>Anyway, u/raypacman brought up the &quot;off-by-one&quot; issue.  The bigger problem's probably your interpretation of the OP's question.   You mentioned you had some doubts, so let's take a look:  </p>
+<blockquote>
+<p>I'm not positive but I think you meant you can use 4 bits and store more that 4 states  </p>
+</blockquote>
+<p>If we go with your n=4 example, the OP was actually asking something closer to the following:  </p>
+<p><strong>Can you use 4 bits and store more than 16 (or 2^4) states?</strong>  </p>
+<p>So hey, try to approach the problem with this new interpretation... and see what you come up with!!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Lordbug2000" target="_blank">Lordbug2000</a>
+			<div class="markdown"><p>So, in that case, I don't think it actually is possible since, the first position of a binary scale is 2^0 so the 4th position is actually 2^3 and the sum of every position will be equal to one less than the next position. 1111=15 10000=16. </p>
+<p>As u/raypacman said, the most you can store is 2^n exactly, because you have 0-15, or 16 states</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tako1111" target="_blank">Tako1111</a>
+			<div class="markdown"><p>Turns out the question was ambiguous enough that saying it's possible or not possible are both &quot;correct&quot; answers.</p>
+<p>If you need an exact representation of all states, it's not possible.  However, if you allow for a non-perfect representation (errors) then it's possible.   The latter scenario's where the fun begins, with all the different ways to minimize error.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

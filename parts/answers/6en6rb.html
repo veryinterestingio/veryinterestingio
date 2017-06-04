@@ -1,0 +1,60 @@
+<div class="answers">
+	<div class="answer" data-handle="dicbu6b">
+		<a class="author" href="https://www.reddit.com/user/Level3Kobold" target="_blank">Level3Kobold</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Animations are compressed when they are imported into a game engine. Each bone may lose a tiny bit of accuracy on its rotation information, starting at the root and moving down the chain. The root is the pelvis (usually). The ends of the chain are the feet, hands, and head. The further you get from the root, the worse the compression results get.</p>
+<p>Normally you can't tell that anything is wrong. But when an animation requires <em>extremely precisely matched movements</em> between two different ends of the chain (for instance hands and head in a drinking animation), you may notice that the animation winds up off by an inch or two.</p>
+<p>Errors are compounded by the fact that models are often changed after the animations are done, meaning that what the animator was working with isn't what's in the game.</p>
+<p>Any time two different skeletal meshes (like people) interact, that's a whole nother headache, because in addition to compression you've got to precisely match their position in the game world to whatever it was when they were animated shaking hands or kissing or whatever. If there are even tiny errors in their world position and world rotation, the animations will be off.</p>
+<p>And when you've got procedurally generated characters, or characters that the players created, then you can basically kiss any hope of accurate animations goodbye.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dicbazw">
+		<a class="author" href="https://www.reddit.com/user/ommanipadmehome" target="_blank">ommanipadmehome</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>None of those things are simple to draw. All are Very visually complex. Why would you say they are simple. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dibq0ov">
+		<a class="author" href="https://www.reddit.com/user/TobyCrow" target="_blank">TobyCrow</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Firstly in order for a motion to occur someone has to create a rig to support it. This is essentially turning a stiff statue into a deformable living thing with bones and muscles, and you design exactly how things bend and move. Setting up a general skeleton is fairly easy, while more complex and subtle muscle movements and deformations have to use different sort of deformers and are often hand sculpted in different positions. You want to be 'cheap' and have as few controls as possible to preform a minimum action instead of a bunch of tiny adjusters.</p>
+<p>Second is budget and importance. If you are making a game about slaying dragons then the animation needed for combat and slaying are far more important than an extraneous drinking animation, which can take just as much time to animate. If the game were about being a musical master then the animation of instrument playing would have higher importance. There also may not be enough time to set up a rig with complicated controls. Adding more polygons and more controls take up processing power, and if a game is limited in this regard simplifying a rig and model is worth a smoother game.</p>
+<p>Another is unpredictability. The designer often cannot account for exactly where a character is or what they are holding when an animation executes. Like in Skyrim for example it would have been great to pick up objects like a normal person. However there are hundreds of items with different sizes and weights, which would have to be set up so holding it would look normal. Most animation you see in game is essentially a pre-recorded video that plays when you press a button. But a motion like this is handing over control to the player, and you would then have to make sure the arm and body rig can be automated to move in such a way that it won't break while also looking convincing. This is why they just opt for a floating item instead. </p>
+<p>Lastly is perception. Unlike animated films audiences for games have a much higher tolerance for uncanny animation, and motion is much more utilitarian and interchangeable. The camera is often farther away, so larger motions such as running and fighting can look 'right' where as subtle animations up close involving micro-movements can feel wrong. Your mind is also wired to be hyper-focused on the human face and very subtle changes, so anything involving that area will fall into the uncanny valley. So long as the camera is far away the character just 'pretending' to drink can look convincing enough without having to animate all the details.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dibj0m3">
+		<a class="author" href="https://www.reddit.com/user/Psyk60" target="_blank">Psyk60</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>One of the difficulties with some of those things is that human bodies are soft and squishy.</p>
+<p>Models in games are made up of lots of triangles. To make part of the model deform means moving and stretching those triangles. You need a lot of triangles to make it look convincing.</p>
+<p>This is why there tends to be a lot more triangles in a character's face than the rest of their body. Faces deform in lots of complicated ways when someone is speaking, so you need a lot of detail to recreate that.</p>
+<p>In real life when someone presses something against a part of their body, such as another persons lips, it squishes a bit. Recreating those &quot;squishes&quot; means you need even more triangles. And more triangles means more processing power is needed.</p>
+<p>Also you'd probably need some kind of soft body physics simulation to work out exactly how those triangles need to move when something presses on them. However that doesn't necessarily need to be done by the game itself for things like cutscenes.</p>
+<p>This is far too expensive for most games, both in terms of processing power and amount of work/money needed to do it. So most games don't, and just settle for an awkward &quot;wooden&quot; look when characters interact with things.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dic26cj">
+		<a class="author" href="https://www.reddit.com/user/cthulhubert" target="_blank">cthulhubert</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A lot of people have covered the fact that it's hard to model soft things flexing correctly in a computer, since you can't actually simulate, say, all of the molecules of a face without a computer that fills the room and runs at smelter temperatures.</p>
+<p>But also, consider part of your premise. If you're talking about accuracy alone, in every game I've played, the destruction of that firebreathing dragon? It actually looked like shit. It's the exact same sword swing animation the character'd do to open air, except it intersects (and usually goes straight through) the dragon, the dragon maybe flashes and maybe does a flinch animation. Its appearance is probably unchanged unless in some games it passes some HP threshold and suddenly the entire dragon looks more beaten up (even though I've been taking advantage of a cheesy weakspot and hitting nothing but its left leg).</p>
+<p>Accurately animating this would involve a weaving sword path to slip past defending claws or plates, individual scales breaking and falling, rents appearing in flesh, and the weapon stopping and drawing back or bouncing based on depth.</p>
+<p>Instead we're only just getting to things like hitboxes that closely match the onscreen models, accurate physics for destructible stages, or viable inverse kinematics for non-cartoony motion.</p>
+<p>But the whole &quot;weapon animation phases through the enemy and they take HP damage&quot; is just an accepted shorthand for how damaging an enemy in a video game looks. <strong>So yeah, you're right</strong>: it's about the interaction. An attack animation doesn't need to care about the shape, exact position, or composition of the enemy; correctly modeling a grasp, a kiss, playing an instrument, etc, does.</p>
+<p>This may not directly be about animation, but one of the things that surprised me when I started learning how to program is how little of it is automatic. That is, almost everything that happens in a program, every button placement, every procedure, every edge case, is something that a specific human person thought of and then put into instructions for the computer. Sure, we have lots of standards, and shared resources (so buttons all look the same unless you don't want them to), and are getting more clever, but every little thing, including things you'd probably never think of if you didn't have to do it, is something that has taken up real person hours for every little bend and fold and placement.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

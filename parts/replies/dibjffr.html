@@ -1,0 +1,67 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MapsAreCool" target="_blank">MapsAreCool</a>
+			<div class="markdown"><p>I'm sorry, I didn't follow this.  Anyone willing to simplify?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ericGraves" target="_blank">ericGraves</a>
+			<div class="markdown"><p>How about an example. Lets say you have 2 bits. The possible states are of course 00, 01, 10 and 11. Keep in mind that each person has only one message they want to identify.</p>
+<p>For Alice I associate the sequences (00,01).
+Bob (00, 10)
+Charlie (00,11)
+Don (01, 10)
+Eve (01, 11)
+Frank (10,11)</p>
+<p>If the source wants to notify Alice, it will randomly pick one the two sequences associated with her, that is 00 or 01. If the source picks 00, then Bob and Charlie will mistakenly identify their message as being sent. If the source picks 01 then Don and Eve will think miss-identify their message.</p>
+<p>For any given message, the maximum probability that any particular person has of miss-identifying the message sent as their own is 1/2. So we positively do notify the correct person, and every one else has a maximum probability of being mistaken of 1/2.</p>
+<p>The way the numbers work out is the number of people that can be supported grows as 2^(2^n) while the probability of being in error goes to zero. From Alice's perspective she can identify her message with high probability, and also identify when it is not her message with high probability. That someone makes a mistake is not important, and not part of the operational definitions. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/2358452" target="_blank">2358452</a>
+			<div class="markdown"><p>I am probably missing something, but I'm getting a pigeonhole conflict in my head. There is an n-bit code identified by each of 2^(2^n) persons with high probability? But there are only 2^n n-bit codewords, so at least 2^(2^n - n) persons must share the same identificatio codeword. How is it that Bob and Alice have the same id codeword but upon receiving their id they can differentiate who the code was meant for?</p>
+<p>I'm very excited because this is something that seems <em>obviously</em> impossible, but I'm eager to be proven wrong, sort of like revealing a magic trick :)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Regulators-MountUp" target="_blank">Regulators-MountUp</a>
+			<div class="markdown"><p>OK, so I was having a hard time wrapping my head around this until I scratched it out on paper (I'm an engineer, not a mathematician) but even then it didn't seem like it was very useful, but it just now clicked with me so I hope my understanding can help other non-maths.</p>
+<p>Based on some scratch calculations, if you have 2 digit codes then each wife has 2 codes, 3 wives share each code, and there are 6 wives. If you have a 3 digit code then each wife has 3 codes, 21 wives share each code, and there are 56 wives. So the number of errors goes up with a larger set but the number of wives goes up way faster, so the rate of errors goes down.</p>
+<p>Still, we're getting loads of wives being notified in error here, which is not great.  I'd say we aren't effectively defining the number of states correctly, as all those wives notified would have to follow up for more information... Unless they already had more information! (This was the aha moment for me) Not all of these sailors are going to be out at sea at once, some of them will be on shore leave.  So some number of wives will know their husband can't possibly have died at sea, and your actual error rate now drops even further.</p>
+<p>In a way, this is similar to how weather stations report air pressure.  The numbers in millibars are almost always in the high 900s or low 1000s, so they can omit the hundreds.  A number above 50 is going to be in the 900s (so &quot;80&quot; means 980), and a number below 50 is going to be in the 1000s (&quot;25&quot; means 1025).  In this way, a (Base 10) 4 digit number is represented accurately with only 2 digits.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JustAnotherPanda" target="_blank">JustAnotherPanda</a>
+			<div class="markdown"><p>So essentially, you can support more users by accidentally sending some users messages that were not meant for them (a small percent of the time)?</p>
+<p>Are there any practical uses for that?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cowvin2" target="_blank">cowvin2</a>
+			<div class="markdown"><p>that's fascinating!  i'm not sure i'd call that representing more than 2^n states, though.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RLutz" target="_blank">RLutz</a>
+			<div class="markdown"><p>Sure, but it's also important to actually think about how much larger 2^2^n is than 2^n as n grows. When n is small it comes off like we're just flipping coins, but as n gets bigger then the error rates, as a percentage, become exceedingly small yet we still have a system that can fairly reliably signal an event to 2^2^n people with only n-bits as opposed to what the naive solution produces, which is only 2^n people. </p>
+<p>As an example, using 16 bits, we have 65536 with the naive solution but 2.00 × 10^19728 with ID codes.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cowvin2" target="_blank">cowvin2</a>
+			<div class="markdown"><p>yeah, for sure!  i can see how this might be useful in communications.</p>
+<p>imagine if 32 bit ip addresses were done this way.  people would get occasional packets not intended for them once in a while, but you could represent a huge number of targets.</p>
+<p>routing would be quite interesting, though.  every packet would have multiple destinations, but that's possible to deal with.</p>
+<p>what would be the total network-wide increase in data sent, though?  i guess this would be dependent on the amount of the addressable space that were consumed.  the addresses that hit the most incorrect targets would be assigned last (like you'd use up every combination of 2 targets before you use any combination of 3 targets).</p>
+<p>when you have every sender sending equally, wouldn't the number of incorrect messages get pretty big?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Aelinsaar" target="_blank">Aelinsaar</a>
+			<div class="markdown"><p>Do you by any chance know when this was discovered to be the case? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ericGraves" target="_blank">ericGraves</a>
+			<div class="markdown"><p>All I truly know is the origins of it in the information theory literature, which is in <em>Identification via channels</em> by Ahlswede and Dueck in 1989. My guess is they are the first, but I could be wrong. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Aelinsaar" target="_blank">Aelinsaar</a>
+			<div class="markdown"><p>That's great, and I can always search from there anyway. Thanks very much.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
