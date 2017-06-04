@@ -1,0 +1,42 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mikk0384" target="_blank">mikk0384</a>
+			<div class="markdown"><p>Thank you for a great answer!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/the_Rag1" target="_blank">the_Rag1</a>
+			<div class="markdown"><p>Just as a note--for KL-divergence, check carefully for any symbols in Q that occur with nonzero probability that correspond to symbols in P that occur with probability zero. It will make your KL-divergence infinite.</p>
+<p>Edit: accidentally flipped P and Q. Q(x)=0, P(x)!=0</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Deto" target="_blank">Deto</a>
+			<div class="markdown"><p>How is this dealt with in practice usually?  Are pseudo-counts typically added?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ericGraves" target="_blank">ericGraves</a>
+			<div class="markdown"><p>You have that backwards, D(P||Q) = Σ P(x) log P(x)/Q(x), so when P(x) = 0, we get 0log 0/Q(x), which by convention (and justification) equals 0. On the other hand if Q(x) = 0, and P(x) is non zero then the KL divergence is infinite. But that is actually a good thing since it means Q(t(P)) = exp(- infinity) = 0. </p>
+<p>In other words if the true probability of some event occurring is 0, then the probability of observing an empirical distribution with that event is also 0. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FA_in_PJ" target="_blank">FA_in_PJ</a>
+			<div class="markdown"><p><strong>TL;DR You told OP how to compute a bound on the probability of P|Q, the data given the model. That's not much on its own. Where do you want to go from there?</strong></p>
+<hr />
+<p>If I'm following you correctly, what you've specified here is a way of computing the probability of the observation, P, given the model, Q. </p>
+<p>That is not quite the same as what OP is asking for ... OP appears to be asking for the probability of Q given P, the probability of the model given the data. To go from P|Q to Q|P requires two things that you have not described.</p>
+<p>First, you need a universe of possible Q's. You mention this:</p>
+<blockquote>
+<p>Take the set of Q which could result in P with probability greater than n^(-a).</p>
+</blockquote>
+<p>Taking that set of Q, or more generally, defining a universe of Q is <em>supremely</em> non-trivial.</p>
+<p>Secondly, you need a prior distribution over the universe of possible Q's. Now, while the specification of a prior is usually the most controversial part of Bayesian inference, in this case, the specification of the universe of Q's is so absolutely dominating as to render the subsequent specification of the prior relatively meaningless.</p>
+<hr />
+<p>Here's my point. You told OP how to compute a lower bound on P|Q.
+Where do you go from there?</p>
+<p>That's fine as far as it goes, but it doesn't really mean much unless you do something with it. And I would see three paths moving forward: </p>
+<p>(1) You could define a universe of Q, a prior over that, and then compute the posterior Q|P. I don't recommend that b/c the whole thing will fall apart during the specification of possible Q's. </p>
+<p>(2) You could treat the probability of P|Q as a test statistic. You could easily Monte Carlo yourself a reference distribution for it and get an approximate p-value for the specified Q.  </p>
+<p>(3) You could let your bound on P|Q stand as a highly abstract measure of the distance between P and Q, in which case, fine I guess? It seems like you're hinting at that at the end of your comment, but it didn't seem like you ever &quot;brought it home&quot;, so to speak.</p>
+<hr />
+<p>Also, is there some connection between <em>a</em>, <em>a'</em>, and <em>a''</em>? Or are they just three constants with no fixed relationship?</p></div>		</li>
+					</ul>
+	

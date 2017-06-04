@@ -1,0 +1,10 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GodWithAShotgun" target="_blank">GodWithAShotgun</a>
+			<div class="markdown"><p>A nonparametric method for generating a generic probability distribution from a set of data is using something called kernal density estimation. </p>
+<p>Generally, with this method, you will need to assume two things: the kernal distribution and the &quot;smoothing&quot; parameter. The most common kernal distribution is a normal distribution and generally you want to select a smoothing parameter that makes things smooth (heh). You can do this visually or in a more principled way by minimizing the L2 risk function.</p>
+<p>What do you do with this kernal and the smoothing parameter? Well, you create several kernal distributions with mean equal to the mean of each of your datapoints (so you should have as many distributions as datapoints, each centered around where you had a datapoint) and variance equal to your smoothing parameter - you then add these distributions together and normalize to get a single probability distribution.</p>
+<p>In effect, this makes a smoothed out histogram.</p>
+<p>The heavy lifting (computation) can be completed using a variety of packages in Matlab or R (and I'm sure other software has packages as well)</p></div>		</li>
+					</ul>
+	

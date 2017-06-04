@@ -1,0 +1,73 @@
+<li class="post" data-handle="6elqzr">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/6elqzr/how_do_i_calculate_probability_of_a_probability/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Mathematics">Mathematics</span>
+			<a href="/posts/6elqzr" onclick="return false">How do i calculate probability of a probability distribution?</a>
+		</h2>
+		<!--<span class="date">2017-06-04</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Dear people. Hear me out.</p>
+<p>I have histogram of the probability of certain values x of a random experiment. Its looks very nicely like a normal distribution. Then I have the data of an experiment that I did that tells how many times I measured value x. I would like to find out how likely it is to find that specific value distribution of given the probability distribution that I have but I can't figure out how to calculate this. in other words, I would like to figure out how likely it is that my measured distribution is random or ordered. </p>
+<p>In analogy, I thow a dice 1000 times and I get the distribution of results. I want to figure out how likely it is that this distribution of numbers happened by random chance or not. </p>
+<p>Can you help me out? </p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dib9cc8">
+		<a class="author" href="https://www.reddit.com/user/ericGraves" target="_blank">ericGraves</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Before answering the question, consider the easier task of determining the likelihood of your distribution given you know the true underlying distribution. Once we know the probability of the outcome given the true distribution, we can begin to look at the set of distributions which could lead to the observation with some bounded probability. We will also show that this set becomes increasingly smaller for more samples, and as a result the distance between the true distribution and any distribution in that set decreases. I will be assuming a discrete probability distribution, but this should not be seen as overly restrictive as that you are considering histograms after all.</p>
+<p>Beginning, denote by Q the true underlying distribution, and denote by P the empirical distribution after observing n-independent samples. Writing t(P) to denote the set of all possibilities which lead to an empirical distribution of P, we have</p>
+<p>| -n^(-1) log Q(t(P)) - D(P||Q) + (|X|-1)(2n)^(-1) log(2πn) + (2n)^(-1) log ΠP | &lt; (|X|+1) log( 1 + (12n)^(-1) )</p>
+<p>where D(P||Q) is the <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence" target="_blank">KL divergence</a> of P to Q, |X| is the alphabet size of X, and Π is the product of the probabilities of the distribution of P (for instance equal heads and tails would result in .25).  Indeed this formula comes first from observing that the probability of any sequence with empirical distribution P has probability exp(-n ( H(P) + D(P||Q))ln 2 ) and then summing over all possible values which result in that empirical distribution. The bounds occur by use of <a href="https://en.wikipedia.org/wiki/Stirling%27s_approximation" target="_blank">Stirling's approximation</a> in estimating those quantities. </p>
+<p>Note that from the formula, n^(-1) log Q(t(P)) converges to D(P||Q), or in other words Q(t(P)) converges to exp( -n D(P||Q) ln 2 ), which is actually fantastic for your purposes. Indeed one can interpret D(P||Q) as a distance (which strictly speaking it is not, since D(P||Q) does not equal D(Q||P) ), between P and Q. Thus, intuitively, the probability of P occurring given Q is exp( -n (distance between P and Q) ). In fact, for the remainder of this discussion I am going to equate Q(t(P)) with exp( -n D(P||Q) ln 2) for simplicity, obviously those extra terms would have to be added back in for a more detailed analysis.</p>
+<p>Now we move to the situation where we do not know Q, and instead just know P. Take the set of Q which could result in P with probability greater than n^(-a). Using our formula we see that D(P||Q) &lt; a' n^(-1) log(n) for all such Q. In essence, we have now bounded the &quot;distance&quot; between P and Q, based upon the number of samples of samples. </p>
+<p>From that bound, we also have
+d(P,Q) &lt; a'' √( n^(-1) log n ),
+where d is the L1 distance between distributions, which follows by a simple application of <a href="https://en.wikipedia.org/wiki/Pinsker%27s_inequality" target="_blank">Pinsker's inequality</a>. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dib8uys">
+		<a class="author" href="https://www.reddit.com/user/redditusername58" target="_blank">redditusername58</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Since you claim your distribution looks normal, assume it is. Now try to construct a histogram of the the normal distribution parameters (mean and variance). A fairly simple way to do it would be to repeatedly resample your population with replacement (called bootstrapping, I believe). A more sophisticated method would involve creating Bayesian priors of the parameter distributions and updating them based on you samples. I don't know of a nonparametric  method, but I'm sure one exists.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dibqx4v">
+		<a class="author" href="https://www.reddit.com/user/Beast66" target="_blank">Beast66</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Use a Z test against the probability histogram. You know the population mean and standard deviation and the sample mean and standard deviation. From there you can calculate the probability of your sample occurring in the population. For example, you have a population with a mean of 0 and a standard deviation of 1 that is normally distributed. You take a sample of size 1 ( the equation changes depending on how many samples you take but we'll use 1 for simplicity) and get a value of -1. We know that ~67% of results will fall within one standard deviation of the mean, leaving 33% that would be outside of 1 standard deviation with half falling above 1 standard deviation above the mean and half falling below one standard deviation below the mean. Essentially, the probability of getting a mean below -1 or above 1 is 33%. In order to find the probability of getting a result at or below -1 (ex -2,-3 etc) we take 33/2=16.5%. That is, the probability that a sample of size 1 taken from the population has a value of -1 or below is 16.5%. This is obviously a really simple example to Illustrate the point and real samples of larger sizes are obviously more complex but I hope this is sufficient to answer your question. Feel free to respond with any other things you feel are unclear or any other questions you might have and I'll try my best to answer them. </p>
+<p>Edit: one more point, because probability distributions involve using integrals, the probability of getting an exact value is 0, which is why we use ranges rather than specific values when calculating probability.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dib9ew1">
+		<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Ooops,</p>
+<p>Sorry for the temporary removal, everybody. I realise the two questions read somewhat differently.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dibl2cm">
+		<a class="author" href="https://www.reddit.com/user/captain_todger" target="_blank">captain_todger</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Look up Dirichlet distribution. It is effectively a distribution of distributions.</p>
+<p>Apologies, I don't have time to go into detail as I'm running errands today like a madman. However that may point you in the right direction</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/6elqzr" onclick="return false"><span>show</span></a>
+</li>
