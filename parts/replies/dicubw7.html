@@ -1,0 +1,44 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PM_ME_YAOI_" target="_blank">PM_ME_YAOI_</a>
+			<div class="markdown"><p>Great explanation, but I'm wondering how by attacking weaknesses one can gain control of the program itself? Would they continue attacking code until it is I guess malleable enough that they can rewrite it themself?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pseudopad" target="_blank">pseudopad</a>
+			<div class="markdown"><p>This is when you get into things such as &quot;buffer overflow&quot; attacks, for example. Imagine if the program i mentioned earlier didn't have code that stopped it from trying to store 4 digit numbers in it's allotted 3 digit space. What would happen? Does it exceed its 3 digit space and try to write the 4th digit into a different program's space?</p>
+<p>What if this other program was a database program. One of the values in this database was &quot;is pm_me_yaoi an administrator&quot; and the value for this was 0 (no). Now, the addition program tries to find a spot for that 4th digit, and it just goes for the nearest place it finds, and overwrites that 0 with a 1. Now, the next time the database program checks &quot;is pm_me_yaoi an administrator&quot; the value is now 1 (yes) instead of 0 (no). Congratulations, you now have admin access.</p>
+<p>This is of course a very simplified example with a criminally insecure system, but the basics are the same. You build your program and try to account for all the errors you can think of, but if your program consists of 10000 lines of code, there's a good chance you might have missed something. Many systems consist of millions of lines of code, which means that the likelyhoods of there being several serious flaws <em>somewhere</em> in there is pretty big. If your software is popular and in use by many high-profile users (such as governments, banks, etc), you can be sure that there are thousands of people around the globe going over your program with a fine-tooth comb to find any flaw that might exist.</p>
+<p>Sometimes, though, you <em>do</em> keep performing the exploit until you get lucky. As for example with the recent dirtycow attack, the example shown by some guy on youtube had to make several attempts before he got lucky and the exploit gave him root access. Of course, &quot;several attempts&quot; is easy to do with a script. Even if you make the computer run the exploit 200 times in a row, that could still only take a matter of seconds to complete, and it only needs to succeed once.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EmeraldDS" target="_blank">EmeraldDS</a>
+			<div class="markdown"><p>Sorry if I sound insolent, but WHY exactly would a program overwrite something somewhere else? Is it referenced in the code? Because if not, that just sounds really random and specific.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tiensi" target="_blank">Tiensi</a>
+			<div class="markdown"><p>That depends on the program you are attacking as well as what the attacker is after. </p>
+<blockquote>
+<p>&quot;All&quot; software is designed to handle a lot of unintended situations. A program that adds together two numbers and stores the result in a space that can only hold 3 digits might have code that makes it double-check that the result isn't 4 or more digits before it tries to write it, for example.</p>
+</blockquote>
+<p>That describes a buffer overflow attack. Depending on the program, it can be made to spill out information in adjacent memory addresses, which may or may not be what the attacker want.</p>
+<p>Another benefit of causing the program to spill out information is sometimes error messages from the program can reveal a lot about the system running it or about the program itself.</p>
+<p>Lastly, it depends on what the attacker is after. If all the attacker wants to do is deny service to legitimate users, he doesn't necessarily need to gain control of the system.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/openWh1te" target="_blank">openWh1te</a>
+			<div class="markdown"><p>To answer the how...</p>
+<p>When they find a vulnerability, they exploit it with code they write. For the majority of hacking out there, it's mainly about getting the target system to run your code with admin privileges. That way your code ran can install a backdoor, or something special like that.</p>
+<p>For example, let's say some Server software does some intense calculations that runs with admin privileges (sudo, in the world of linux). The exploit will trick the system into injecting our code into the system's memory to be ran with escalated privileges (admin) that installs a SSH tunnel for remote management (backdoor). </p>
+<p>More specific....
+When a program runs, it is loaded from the Hard drive into the RAM. Every line of code is represented in memory (RAM) with a searchable, lookup able address. Each line, each variable has an address in that memory. Like a street address, it is specific to a small section of memory that can be read at any time. Buffer overflow attacks are about overflowing a specific section in memory (like 1 address) with too much data for that section so that it overflows into the next section of memory with a separate address. Hackers craft their buffer overflows with just enough code or data so that their exploitive code ends up overwriting the program's original code in new memory addresses that are to be called. So instead of adding up the costs for the grand total in ordering some products, the system's memory was replaced with a function that sets up a backdoor for the hacker.</p>
+<p>If you are interested in learning more about hacking, look into low level programming like Assembly. A thorough understanding of how it works on that level is rudimentary to any experienced hacker. But remember, with great power, comes great responsibility ;)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tattvamu" target="_blank">tattvamu</a>
+			<div class="markdown"><p>I swear you should teach computer science at my community college.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pseudopad" target="_blank">pseudopad</a>
+			<div class="markdown"><p>That would be a disaster cause I'm no computer scientist</p></div>		</li>
+					</ul>
+		</ul>
+	
