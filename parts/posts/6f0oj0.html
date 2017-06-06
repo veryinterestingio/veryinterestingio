@@ -1,0 +1,71 @@
+<li class="post" data-handle="6f0oj0">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/6f0oj0/how_probable_is_it_to_get_a_computer_error_due_to/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Physics">Physics</span>
+			<a href="/posts/6f0oj0" onclick="return false">How probable is it to get a computer error due to quantum effects?</a>
+		</h2>
+		<!--<span class="date">2017-06-06</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>As far as I understand, transistors nowadays are small enough that quantum effects become relevant. I'm hesitant to use words like quantum tunneling or energy wells because I don't fully grasp these concepts, but as I learned it it's possible for a quantum particle to escape its &quot;cage&quot; if the energy level is low enough ^or ^something.</p>
+<p>Could this effect cause errors, corrupted data, a bluescreen, etc.?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="diesj9l">
+		<a class="author" href="https://www.reddit.com/user/coneross" target="_blank">coneross</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><a href="https://en.wikipedia.org/wiki/Shot_noise" target="_blank">Shot noise</a> is the noise in an electronic circuit caused by the discrete nature of individual electrons.  This must be taken into account in low current applications.</p>
+<p>Gamma rays can cause random errors in computer memory.  High Rel systems will be designed for these errors to be corrected.</p>
+<p>I am an EE, not a physicist, so I don't know if these are considered quantum effects or not.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="diey0ep">
+		<a class="author" href="https://www.reddit.com/user/vamediah" target="_blank">vamediah</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There has been an experimental gauge of how often memory corruption errors affect traffic in Dinaburg's <a href="http://media.blackhat.com/bh-us-11/Dinaburg/BH_US_11_Dinaburg_Bitsquatting_WP.pdf" target="_blank">Bitsquatting paper</a>.</p>
+<p>In short they registered domains that could be hit not as a side effect of typo, but a side effect of bitflip and counted how many requests they get. It doesn't happen terribly often, but happens.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="diejrz2">
+		<a class="author" href="https://www.reddit.com/user/Dr_Nik" target="_blank">Dr_Nik</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Actually transistors work simply <em>because</em> of quantum effects.  While the gate width is getting smaller the gate depth has always been small enough to allow quantum tunneling and it is what allows gate switching.</p>
+<p>So what does all that mean?  I'm going to greatly simplify to start out so bear with me.  Let's start from what makes a transistor.  You have a source and a sink port, think a wire.  Now you put a &quot;gate&quot; on top of that wire.  The gate is where you control of the wire can pass electricity.  It is not possible to do this with a conductor unless you physically break the connection between the source and sink ports (called a relay).  In a semiconductor however it is possible to dope the material (like silicon) with another material (like boron) in small quantities.  This in turn adds electrons, or spaces for the electrons to go, depending on what dopant you use.  Now what does this have to do with the gate?  Well you can use the gate to push or pull electrons to the top turning the top layer of the semiconductor conductive or insulating.  Now we aren't at tunneling yet but what I have described so far is not possible under Newtonian physics, meaning we are already in the quantum realm.</p>
+<p>Ok so the difference between bare silicon and boron doped silicon is not really strong enough to make a switch, you'd be able to change resistance some but not too any appreciable level.  So instead you have to do an opposite doping with something like phosphorus.  Remember where I said before you have a situation where some dopants add electrons and some add spaces for the electrons to go (called holes)?  This is where it is important.  </p>
+<p>So now we have a region where you have a ton of electrons a a region where you have a ton of holes right next to each other.  Well electrons hate being together (same charges and all, like the poles of a magnet) and they start going towards the holes.  The holes are really just a lack of electrons but they have essentially a positive charge so they hate each other too and start going towards the electrons.  The holes and electrons make out and create what is called a depletion region, an area of no charge that is completely insulating and prevents all current from passing.  Depending on the number of holes and electrons on both sides this determines the size of the depletion region because of the voltage on either side.  Eventually it all evens out and becomes stable (which takes time and can effect the speed of the switch).</p>
+<p>Remember the gate?  Well now we can use this to control the size of the depletion region by changing that voltage on one side.  So why do we care about quantum tunneling?  The basic concept of quantum tunneling is that for any energy barrier (like the depletion region) there is a finite probability that something can just pass through it even if it doesn't have enough energy to pass or go over (it's not about it being too low energy but just a probabilistic effect).  As an aside this is a basic statistics theory that applies in other fields like evolution (there is a finite probability that something will survive with traits that are completely non beneficial for it's environment and evolutionary pressures).  But back to electrons...</p>
+<p>So switching takes time (since electrons do have a finite speed, even if it is really fast) and energy, so instead of pumping tons of power into that gate to completely eliminate the depletion region (which is not possible without destroying the transistor) we just use enough to shrink it down so that the probability of the  electronics tunneling gets large enough that we can use it to pass current.  Since we don't destroy the transistor we can now switch the current flow on and off by controlling the width of the depletion region.</p>
+<p>I will end with commenting that semiconductor development focuses on making the switching faster, more efficient and require less space so you can cram more transistors in the same physical area.</p>
+<p>No need to worry about quantum effects, instead you should thank them for making computers possible.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dif0iyl">
+		<a class="author" href="https://www.reddit.com/user/Jacoby6000" target="_blank">Jacoby6000</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The developers of Crash Bandicoot had a problem where, when saving, sometimes the entire memory card would get corrupted. The tl;dr is that they were increasing the clockspeed for something during saving, and some quantum tunneling was causing the problem. </p>
+<p><a href="http://www.gamasutra.com/blogs/DaveBaggett/20131031/203788/My_Hardest_Bug_Ever.php" target="_blank">http://www.gamasutra.com/blogs/DaveBaggett/20131031/203788/My_Hardest_Bug_Ever.php</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">3 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/6f0oj0" onclick="return false"><span>show</span></a>
+</li>

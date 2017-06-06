@@ -1,0 +1,33 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hwillis" target="_blank">hwillis</a>
+			<div class="markdown"><p>This is not how normal transistors work.  It <em>is</em> a good description of <a href="https://en.wikipedia.org/wiki/Tunnel_field-effect_transistor" target="_blank">Tunneling Field Effect Transistors</a>, but those are experimental still.  Normal transistors work basically the same, but without the tunneling.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dr_Nik" target="_blank">Dr_Nik</a>
+			<div class="markdown"><p>Thanks for the reminder, I will edit for correction.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hwillis" target="_blank">hwillis</a>
+			<div class="markdown"><p>More pedantic technicalities: Transistors have 3 layers (pnp or npn) rather than just being a single p-n junction.  You can't really switch a p-n junction; the gate would only increase the voltage drop or decrease the breakdown voltage, and those are both extremely far from each other so you'd need a <em>really huge</em> drive voltage.  Adding an extra p-n junction brings those nearly equal to each other, differing only by the threshold voltage.</p>
+<p>Also, extrinsic semiconductors all have neutral charge- the depletion region is charged, not the other way around.  Dopants only change how &quot;tightly&quot; the silicon holds onto its electrons.  It works basically the same as how salts are made: &quot;greedy&quot; elements like chlorine share electrons with elements like sodium.  Phosphorus is to the right of silicon, so it's more &quot;greedy&quot;- it tries to grab onto electrons.  Boron is to the left, so its electrons will move more easily.  </p>
+<p>If you have only p or only n dopants, the electrons will be free to move, much like salt dissolved in water.  If you have both together, they get bound very tightly and result in a full valence shell, so none of the electrons are willing to move.  For the same reason, solid salt is an insulator.  The depletion region in a p-n junction actually has a <em>negative</em> charge with all else equal, because it pulls in extra electrons.  In practice the charge in the depletion region is 50% positive and 50% negative, with opposite sides having opposite charge.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Wasabimiester" target="_blank">Wasabimiester</a>
+			<div class="markdown"><p>I have been an electronics hobbyist since I was about 10 years old (I am now turning 53). I don't think I have come across as good an explanation of how transistors work (more specifically, how transistors used as switches, such as MOSFETs) and how the depletion zone works. This explanation is at once highly informative, humorous, and intuitive (to the degree quantum mechanics can be &quot;intuitive&quot;).</p>
+<p>I suppose it would be illustrative to explain how vacuum tubes initially did similar work (they were amplifiers and switches), just so much less efficiently and reliably. I am not versed in that, but I must assume the general physics are similar.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hwillis" target="_blank">hwillis</a>
+			<div class="markdown"><p>It's not actually correct.  First off transistors are made up of two p-n junctions, and second they don't use quantum tunneling to work.  His general explanation of why a depletion region forms is pretty standard but IMO it glosses over the real reasons why.</p>
+<p>In an actual transistor, FET, BJT or otherwise, there are two p-n junctions back to back.  Ignoring p-channel devices for a moment, the transistors forms a 3 layer n-p-n stack.  The p layer in the middle there is normally full of empty spaces for electrons, which makes it a good conductor- when you put a voltage across it, electrons jump into the hole and leave a space behind.  The holes basically move, and that's electricity.  When you put it in the stack, the extra electrons in the n regions fill those holes entirely, and nothing wants to move any more.  Voila, depletion region: a very thin layer of high resistance.</p>
+<p>When you put a positive voltage on the gate (aka insulated wire), it attracts a bunch of extra free electrons from the source side (top/left n layer).  The gate forms a capacitor, and static electricity pulls extra electrons into the depletion region.  Those electrons aren't sucked into holes, so they're pretty free to move- as soon as one leaves into the drain side, another one is sucked in from the source side.  Suddenly, the depletion region is conductive again.</p>
+<p>Vacuum tubes work significantly differently.  Instead of p-n junctions, they have gaps of empty air.  The &quot;p&quot; side is just very hot, and the &quot;n&quot; side is room temperature.  The heat means the electrons on the &quot;p&quot; (cathode) side are gonna jump into empty space a lot more often- this is how electron microscopes and cathode ray tubes work.  The electrons on the &quot;n&quot; side (anode) will never move.  If you put current into the cathode, it'll push electrons out into space, and they'll hit the anode.  If you push current into the anode, nothing happens.  That's how a diode works.</p>
+<p>In order to make a triode, you just put a wire mesh in between the anode and cathode.  When you put a voltage on it, you can pull more electrons off the cathode.  Those electrons will be going so fast that most of them fly through the holes in the mesh and hit the anode still.  If you put a negative voltage on it, you make it harder for the hot electrons to push their way out of the cathode.</p>
+<p>Vacuum tubes have a large number of connections because you need multiple contacts for the heaters and all of the electrodes.  Additionally it's easier to make the electrode structure inside a vacuum tube super complex and intricate rather than make a whole bunch of vacuum tubes, so they usually had multiple elements inside them.  </p>
+<p>Edit: and, because it is one of my favorite and most incredible videos ever: <a href="https://www.youtube.com/watch?v=EzyXMEpq4qw" target="_blank">Claude Paillard, making a vacuum tube radio from metal and glass</a>.  Finished radio at 14:14.</p></div>		</li>
+					</ul>
+		</ul>
+	
