@@ -1,0 +1,120 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TrekkiMonstr" target="_blank">TrekkiMonstr</a>
+			<div class="markdown"><p>Please do.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BitOBear" target="_blank">BitOBear</a>
+			<div class="markdown"><p>The non-math version of the math answer from a guy who had his math a long time ago and has probably gotten some of it lost.</p>
+<p>For every continuous thing that isn't constant, there is a smoothness to how it changes. So if I am driving my car over a hill, for instance, the angle of my bumper to the horizon raises above the horizon as I go up, then it levels out as I go over the top, then it dips below the horizon as I go down the other side. That is the car is &quot;pointing&quot; up or down or flat as I drive along.</p>
+<p>So if I knew the hill had a function, like it was a sine wave - and so I know how high the pavement is at any given mile marker - the &quot;first derivative&quot; of that function will tell me, at each or any marker, what angle my car would be when it's right there. And the first integral will tell me how much dirt I'd need to get the hill to be exactly function-value high.</p>
+<p>But miles are far apart. And so are half-miles. And quarter miles. And eighths. And Sixteenths. So just having a list of answers would suck. So before the invention of calculus people kind-of knew these relationships existed but they could't &quot;do the maths&quot; necessary to get good answers.</p>
+<p>And there were other problems. Like speed is a measure of how long it takes to get from point-A to point-B, so if I am just at point-A do I actually have a speed at all? How do I avoid something mathematically catastrophic like dividing by zero because Point-A and Point-A are zero feet, inches, or microns apart, so that point is zero seconds away from itself. You get speed as distance divided by time, but if distance and time are zero because we just care about Point-A then we've got pesky zeros for distance <em>and</em> time. Left with (0 div 0) is a problem, but clearly when you drove past the cop you were not going infinitely fast nor were you stationary. It's a poser...</p>
+<p>All this is what calculus solves for us.</p>
+<p>So let's go back to that one mile, one half mile, one quarter mile, etc example.</p>
+<p>So 1.5 is halfway between 1 and 2. That's a no-duh. So if I only know about &quot;1&quot; and &quot;2&quot; while I'm figuring out how much something grows I'd be tempted to estimate wrong. I'd be tempted to see a straight line between 1 and 2. But if I do it by half-miles then I get a number slightly bigger because if I do 1 to 1.5, then 1.5 to 2, I get to <em>use</em> what I know about the half-way point. (I'd discover a little kink, an up-tick, at 1.5). If I do quarter-miles, then I get 1, 1.25, 1.5, 1.75, and 2, leaving me with three little up-tick kinks. Since I get the extra-extras with more slices I get a slightly larger final result. Those up-ticks turn out to be a curve.</p>
+<p>What does that mean? Well others have used financial interest, If I only give you interest at the end of the year, you get one large payment. But the more often I give you the interest payments due to-date, then the more money you have that I have to pay you interest on.</p>
+<p>Whut?</p>
+<p>Well if I had an account that would earn me exactly 365 pennies if paid once at the end of a year I'd get $3.65 in interest. But if I get a penny on January 1 and January 2 etc, then by Feb 1 I have my original money plus 31 cents. So I'd deserve more than a penny on Feb 1 right?</p>
+<p>So the smaller you make the slices, from years, to months, to days, to hours, to minutes, to seconds, the larger the effective increase would be, but the harder it would be to calculate. You'd get to the point where it took longer to calculate the interest than the computer could calculate. So if I had to turn the crank on the calculation every tick of the clock, but I want to calculate half-tick increments then It'd just be impossible.</p>
+<p>So back to the car on the hill. There's a <del>function</del> procedure (calculus etc) that would tell me how to calculate infinitely narrow slices packed together into a nice smooth functional curve. And I can find the rate of tilt, and the amount of dirt if I need to. Only now it's money, interest, and time instead of places and speeds.</p>
+<p>So...</p>
+<p>It turns out that if we start with a simple proposition &quot;I'll double your money in a year&quot; and you say &quot;sure, but you have to compound it perfectly&quot; I can just give you your money*<em>e</em> back. That is I give you not money*2 but money*2.718....</p>
+<p>Why? That's because when I start carving 100%, also known as 1, into finer and finer number (n) of slices, I have to give you those n slices n times in a row. So thing * (1 + 1/n)^(n) which is that n slices n times in a row. Which, when I race off to towards n=infinity becomes &quot;e&quot;. That first 1 is so that nothing is lost, the second 1 is the 100%.</p>
+<p>Now since &quot;perfectly doubling your money&quot; isn't a common promise, we can substitute other values in for that second one. Like if I promise you an eight percent increase its (1+0.08/n)^(n).</p>
+<p>But what was calculus for? Smoothing things and finding convergences. Well that convergence around 100%, e.g. around the definition of <em>e</em>, is extra special because multiplying by two and giving 100% return are the same thing (a mathematician's head just exploded, please forgive the mess) at least as far as finding a perfect line to use as the basis of other, related activities.</p>
+<p>So once we know/knew the &quot;perfect line&quot; for &quot;perfectly smooth&quot; growing something in infinitesimal slices, we were able to generalize that line.</p>
+<p>That means that if we know something grows by half, or by three, or by any other measure, we can use that same perfect doubling structure to perfectly deal with those other rates. We can take out that &quot;Second 1&quot;, that 100%, and put something else useful there. And instead of solving the hard, long form thing, we can just write it as result=start*<em>e</em>^(that something else).</p>
+<p>So it's not really that e just &quot;comes up&quot; in random stuff, it's that <em>e</em> is the template, the perfect line for growth, so anything that grows in a predictable way is <em>easiest</em> to put in terms of powers of <em>e</em>.</p>
+<p>When we talk about growth rates or factors, therefore, we end up with these fixed-ish factors. IF something is eight percent growth for fifteen years we get <em>e</em>^(0.08*15). This is the factor. A fixed number. Then we can just multiply whatever we started with by that number. Thats how those &quot;if you start with 20 dollars versus 100 dollars&quot; charts are so easy to grind out in banking literature. But it also means that we can model a disease spreads without having to calculate for every population. We can discuss atomic decay without having an exact lump of radioactive stuff on a table. It works for anything that grows or shrinks. </p>
+<p>So for anything that grows or shrinks, <em>e</em> is the &quot;plumb bob&quot;, the perfect tool to describe or compare or express those growing/shrinking tasks with.</p>
+<p>So <em>e</em> isn't in the task, <em>e</em> is in your toolbox.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EhhWhatsUpDoc" target="_blank">EhhWhatsUpDoc</a>
+			<div class="markdown"><p>Definitely the best ELI505 I've read. Thank you fellow immortal. There can be only one!!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Buttershine_Beta" target="_blank">Buttershine_Beta</a>
+			<div class="markdown"><p>I wanted to take the time to tell you your explanation was fantastic. Good job. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/asker89" target="_blank">asker89</a>
+			<div class="markdown"><p>May I try?</p>
+<p>Things tend to change depending on how things currently are. It's a very intuitive property of our reality. Populations grow faster if they are bigger. Things that are really hot emit more heat than when they are cooler. The amount of interest you get in a bank account is bigger if you have more money in the account.</p>
+<p>These all have one trait in common - how things change depends on how things are. How things are affect how things change. That is the principle which e represents, as e^x is special in that its derivative - or mathematical expression for how it changes - is itself, e^x. In this way, you can form expressions that describe how things change depending on how things are. And so, e is found everywhere due to this ubiquitous characteristic of life as we know it.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NotActualDoctor" target="_blank">NotActualDoctor</a>
+			<div class="markdown"><p>This is a great explanation. I'd like to add a way that we can show a use of e that makes sense intuitively.</p>
+<p>Let's say you're earning 100% yearly interest on a $100 deposit. This is compounded once a year, so at the end of the year, the bank says, &quot;let's pay you 100% of what you currently have as interest!&quot; So then the question I ask is how much do I have in the bank at the end of the year?</p>
+<p>Well, I would have $200!</p>
+<p>But now I'm going to ask a different question - you're still starting with $100. It's still 100% yearly, but split up to twice over the year. So 50% halfway through the year and 50% at the end of the year.
+So halfway through the year, the bank says &quot;we'll pay you 50% of what you have!&quot; So $100 + $50 = $150. Now you have $150. And at the end of the year, the bank says again, &quot;we'll pay you 50% of what you have!&quot; So now because I have $150, I earn $75 of interest. So now I have $225 at the end of the year.</p>
+<p>Banks will generally do something called continuous compounding, which means this is happening but instead of half a year, it's happening instantly, you're earning an infinitely small portion of your interest an infinite amount of times per second. Guess what your total at the end of the year would be if this were the case? Around $271.83, or exactly 100*e dollars!! </p>
+<p><strong>Edit:</strong> The formula for continuously compounded interest is thus Pe^rt, where P is your starting amount (principal), r is your rate of interest (.05 would be 5% for example) generally in percent per year and t is your time (generally years)!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xpastfact" target="_blank">xpastfact</a>
+			<div class="markdown"><p>That's great!  Let me see if I can simplify a bit more...</p>
+<h1>A Simple Answer - Why e (the number) appears so often.</h1>
+<ol>
+<li>Nature tends to be self-referential in many ways. One way is rates-of-change.   </li>
+<li>The number e is mathematically interesting because it represents <em>the</em> (the one and only) self-referential power function. IOW, the derivative of e^x is e^x.</li>
+<li>Therefore, many natural (self-referential) rate-of-change equations can be (must be) described in terms of e^x.</li>
+</ol>
+<p>That's it!  But it's also useful to understand a little more about the definition of derivatives and the number e itself, which I discuss next.</p>
+<hr />
+<h1>What is a derivative?</h1>
+<p>All of the following are (nearly) the exact same thing:  </p>
+<ul>
+<li>The rate of change of a function.  </li>
+<li>The derivative of a function.  </li>
+<li>The slope of a function.  </li>
+<li>A tangent line to a function.  </li>
+</ul>
+<p>For visual learners, here's an animation. The <em>value</em> of the moving line (shown at the bottom) is the slope aka the derivative:
+<a href="https://upload.wikimedia.org/wikipedia/commons/2/2d/Tangent_function_animation.gif" target="_blank">https://upload.wikimedia.org/wikipedia/commons/2/2d/Tangent_function_animation.gif</a></p>
+<hr />
+<h1>Whenever we talk about e we keep referring to e^x.  Why?</h1>
+<p>Because that's where e comes from.   It is specifically the function y = A^x , considering A is a constant, such that the value of the function (the y value) is everywhere exactly equal to it's slope (equal to it's derivative).  The solution is A = 2.71828183... = e.  It looks like this:</p>
+<p><a href="http://i.imgur.com/reHnX2v.jpg" target="_blank">http://i.imgur.com/reHnX2v.jpg</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/brittleGriddle" target="_blank">brittleGriddle</a>
+			<div class="markdown"><p>Nailed it.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/brittleGriddle" target="_blank">brittleGriddle</a>
+			<div class="markdown"><p>Many natural phenomena in nature are described using that's known as differential equations. These are equations that describe the phenomena of interest using the derivatives (rate of change) of the functions of interest. For example, Newton's 2nd law relates the rate of change of momentum to the force applied on a body; Newton's law of cooling says that the rate of change of temperature of a cooling body is proportional to the difference in temperature between the body and its surrounding; the rate of change of radio active mass by radiation is proportional to the radioactive mass at any instant; the electrical current flowing through a capacitor is proportional to the rate of change of voltage across it, and so on.</p>
+<p>The solutions of these differential equations is usually given in terms of the exponential function, making it show up while describing lots of natural phenomena.</p>
+<p>There is another side of the story as well if you prefer to look at it from the perspective of systems engineering. When describing the behavior of physical systems, we usually describe the systems we study as Linear Time Invariant (LTI) systems. Linear in the sense that it's response scales proportionally to the applied stimulus (if you apply an input of amplitude X and get output has amplitude Y, then if you apply 2X you get 2Y) and time invariant in the sense that the output to a given stimulus does not change with time (If you apply X and get Y, then applying X at any given time will always give you Y, regardless of when you do that). This might not be accurate but it's a useful approximation that gives us acceptable results most of the time. It turns out applying an exponential with a complex argument as a stimulus to a system [a complex exponential is exp(a+ib) where a and b are real numbers and i is the the imaginary number Sqrt(-1); if you do not know what I mean by this just think of it as an exponential functions raised to any generic power] results in a response that is the same input complex exponential scaled by some factor that depends on the system of interest. In mathematics we call inputs that results in an output that is a scaled version of the input an eigenfunction of the system, and the scaling factor is known as the eigenvalue. It turns out that we can describe any input stimulus function of interest as the sum of complex exponentials, which makes it quite easy to describe the response as a scaled sum of these exponentials, and making the exponential function indispensable when describing the behavior of LTI systems.</p>
+<p>The first part makes more sense from a physics perspective and the second part is geared more towards people studying engineering. Let me know your background and I would be more than happy to simplify it further.</p>
+<p>EDIT: as other people have pointed out, this is all because the exponential function has that property that it's derivative is proportional to itself.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tuesdayboozeday" target="_blank">tuesdayboozeday</a>
+			<div class="markdown"><p>And a five year old is supposed to just follow along with this explanation?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tuxbass" target="_blank">tuxbass</a>
+			<div class="markdown"><p>Now I'm sad how stupid I am. But thanks I guess. Will <del>google</del> wiki and try to understand.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/entropy_bucket" target="_blank">entropy_bucket</a>
+			<div class="markdown"><p>Is this like self similarity? It's easy for nature to build upon itself. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/THE_MAGIC_OF_REALITY" target="_blank">THE_MAGIC_OF_REALITY</a>
+			<div class="markdown"><p>This is the least ELI5 answer I've ever seen on this sub</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/brittleGriddle" target="_blank">brittleGriddle</a>
+			<div class="markdown"><p>I tried to make the first paragraph simple. I agree the 2nd part of the answer is more involved. I hope my second reply was a bit clearer.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Zza1pqx" target="_blank">Zza1pqx</a>
+			<div class="markdown"><p>The five year olds at Reddit are some sophisticated mathematical linguists huh?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/brittleGriddle" target="_blank">brittleGriddle</a>
+			<div class="markdown"><p>I went to a catholic school...</p></div>		</li>
+					</ul>
+		</ul>
+	
