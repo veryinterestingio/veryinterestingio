@@ -1,0 +1,52 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/vmainen" target="_blank">vmainen</a>
+			<div class="markdown"><p>Important! <a href="https://en.wikipedia.org/wiki/Disk_sector" target="_blank">The sector</a> is not the smallest unit, ie. the unit that is 0 or 1. Sectors are the smallest area that can be indexed and used for a file. If you create for example a small text file, you may see something like this in the properties: Size: 957 bytes, Size on disk: 4,00kb (4096 bytes). This is because the disk area is divided and distributed in blocks, so the smallest area you can use for the file is a single block.</p>
+<p>Why this matters: consider saving something like phonenumbers or addressbook into a disk. If you make a separate file for everyone, you are actually using and wasting 4kb for each file, even though they are just couple of bytes long.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DSMan195276" target="_blank">DSMan195276</a>
+			<div class="markdown"><p>Agreed. Worth clarifying a few extra things though (You implied this but didn't state it outright): The sector represents the smallest unit you can receive from or write to the drive. Meaning that if you want to modify a few bytes of your file, you have to read/modify/write the entire sector that it exists inside of. The drive never deals in single bytes.</p>
+<p>Also worth adding, file-systems are actually indexed via 'clusters', which may or may not be made-up of multiple sectors. So even if your drive has a sector size of 512 (Very typical for a HDD) the file-system may use a cluster size of 4K, and thus the smallest readable/writeable unit for the FS is 4K.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gbmustardvx" target="_blank">gbmustardvx</a>
+			<div class="markdown"><p>I was impressed by just the mechanical aspect of the things, and then you guys go and explain this to me. Hard drives are by far the coolest electrical component we've made so far (yes even cooler than the inkjet and laser printers).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kupiakos" target="_blank">kupiakos</a>
+			<div class="markdown"><p>Strictly speaking, that 4K is referring to the NTFS cluster size, which may be different than the sector size on the hard drive. Some hard drives do have a sector size of 4K, but 512 bytes is very common for older drives. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DrBoomkin" target="_blank">DrBoomkin</a>
+			<div class="markdown"><p>The 4096K blocks are a software limitation (file system/OS). It has nothing to do with the disk physically. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/neodymiumex" target="_blank">neodymiumex</a>
+			<div class="markdown"><p>This is incorrect, or at least misleading.  Many (most?) consumer spinning hard drives are 4K block size. For a while the OS/file system/driver stack weren't ready and could only talk in 512 byte blocks so HDDs would be 4K internally but present as 512 to the host. </p>
+<p>Edit:  a file being limited to a minimum size of 4K in that case is a software limitation. When a HDD needs to write something smaller than 4K it first reads the full 4K sector, modifies just the bit it wants to write, then writes the entire thing back out. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/moonshot4321" target="_blank">moonshot4321</a>
+			<div class="markdown"><p>SSDs which typically use NAND technology do have a minimum chunk of bits it can physically access, depending on the operation (read, write, erase). </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Flynamic" target="_blank">Flynamic</a>
+			<div class="markdown"><p>The file system block size has to be a multiple of the disk block size, no?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Malkron" target="_blank">Malkron</a>
+			<div class="markdown"><p>A mechanical hard drive sector contains much more than a single bit (a one or a zero). They normally contain about 512 bytes (4,096 bits) of information.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/vmainen" target="_blank">vmainen</a>
+			<div class="markdown"><p>Newer HDD's have generally 4096 bytes as the sector size.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Malkron" target="_blank">Malkron</a>
+			<div class="markdown"><p>Yes. With advanced formatting 4096 is the new standard.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/trog12" target="_blank">trog12</a>
+			<div class="markdown"><p>Even with a decent knowledge of computers, if you sent me back to the 1800s with the raw materials to build a computer I would never be able to do it. Computer engineering blows my mind.</p></div>		</li>
+					</ul>
+	
