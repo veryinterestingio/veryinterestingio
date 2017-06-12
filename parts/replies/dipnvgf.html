@@ -1,0 +1,11 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Maximuso" target="_blank">Maximuso</a>
+			<div class="markdown"><p>You needed to have implemented the 3 repeated position draw rule to avoid this. </p>
+<p>Also make the score the comp assigns for drawing slightly less than 0 (or even lower if the estimated skill of the opponent is worse.) This is called the contempt score. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/2015_BCS_ORANGE_BOWL" target="_blank">2015_BCS_ORANGE_BOWL</a>
+			<div class="markdown"><p>If your engine was doing that (perpetual check) it thought that it had a worse position so it was trying to force a draw. If it did it early on, your eval function was probably the issue (it evaluated normal positions as losing). Regardless, the normal thing to do is build in a contempt setting which when raised will cause the engine to reject immediate draws- not make a random mistake, but play the -.05 move rather than the 0.00 move. </p>
+<p>Since top engine games do not all end in quick perpetuals and engines beat each other all the time, the issue is probably your engine rather than the nature of chess.</p></div>		</li>
+					</ul>
+	

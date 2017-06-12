@@ -1,0 +1,70 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/vectorjohn" target="_blank">vectorjohn</a>
+			<div class="markdown"><p>Tic-tac-toe for example can have every alternative move checked until the end of every game, pretty trivially, and so a computer that goes first can't lose. </p>
+<p>It's interesting, I wonder if chess has such a case. It seems unlikely that there is no difference between going first and second, so I would predict either going first or second will never lose. Like tic-tac-toe, that may not mean one will always win, just that one will never lose.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sheep-Goats" target="_blank">Sheep-Goats</a>
+			<div class="markdown"><p>White goes first and is known to have a significant advantage (about 55/45 win rate both between computers and skilled players). This edge is less pronounced in blitz games or when looking at novice players so it is likely to be intrinsic to the game and not just some fluke. There has been a lot of argument over the years as to whether this means if black and white play perfectly we end up in a draw or a win for white, but most of the deeper analysis and chess geniuses seem to feel a draw is what would happen between two prefect players, so while white has an advantage it's not a big enough one to win the game on its own.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ishiz" target="_blank">ishiz</a>
+			<div class="markdown"><p>This theory may be supported by the fact that draws occur more frequently the better the players. I have heard quoted a draw rate of 60% for Grand Masters and 80% for World Championship games. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ecssiah" target="_blank">ecssiah</a>
+			<div class="markdown"><p>Can anyone provide more detail on why the first move has an advantage? Intuitively, I would have assumed that going first would somehow leave the first player open to some kind of inherent weakness to whatever choice they made, ensuring that the second player could then use this extra information to gain a consistent advantage.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cclementi6" target="_blank">cclementi6</a>
+			<div class="markdown"><p>Statistics aren't necessarily indicative of the actual solution to the game though, since all those datapoints come from imperfect players.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/newdude90" target="_blank">newdude90</a>
+			<div class="markdown"><p>Tic tac toe should always end in a tie. There is no sure way to victory. The only way to win is if someone screws up. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/abw" target="_blank">abw</a>
+			<div class="markdown"><blockquote>
+<p>Tic tac toe should always end in a tie.</p>
+</blockquote>
+<p>A strange game. The only winning move is not to play. How about a nice game of chess?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/redpandaeater" target="_blank">redpandaeater</a>
+			<div class="markdown"><p>I'm sure someone has done the math, but I wonder if that's true for larger grids as well.  Obviously doesn't work for 2x2 since the first player will always win.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ganjalf1991" target="_blank">ganjalf1991</a>
+			<div class="markdown"><p>Not only the first to move cant lose, but either players can always force a draw!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Snatch_Pastry" target="_blank">Snatch_Pastry</a>
+			<div class="markdown"><p>That is correct, but to tweak it further:</p>
+<p>First player can always force a draw regardless of their first move. Second player can irrevocably lose on their first move. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Lettit_Be_Known" target="_blank">Lettit_Be_Known</a>
+			<div class="markdown"><p>You don't need to list every outcome though... Only a subset such that every counter is countered leading to a guaranteed win state.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thekingearl" target="_blank">thekingearl</a>
+			<div class="markdown"><p>Everyone always quotes the massive number of possible moves in chess but to solve the game you don't really need to go down every path. Even though it is legal play realistically you don't need to go down every possible outcome involving me developing my bong cloud for example.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hook3d" target="_blank">Hook3d</a>
+			<div class="markdown"><blockquote>
+<p>Everyone always quotes the massive number of possible moves in chess but to solve the game you don't really need to go down every path. </p>
+</blockquote>
+<p>Oh wow, an askscience thread where I can actually weigh in on something!</p>
+<p>What you are describing (sort of) is using minimax and pruning the game tree when you determine that a move can not result in a better outcome than a previously discovered move. </p>
+<p><a href="https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning" target="_blank">Alpha-Beta pruning</a></p>
+<p>However, that doesn't mean the <a href="https://en.wikipedia.org/wiki/Branching_factor" target="_blank">branching factor</a> isn't relevant. In fact the branching factor is the main reason why we have had AIs capable of reliably beating human chess players for decades now, whereas Go programs are just now starting to beat the best players. Wiki says chess has an average branching factor of 35, Go has 250. </p>
+<p>The worst-case space and time complexity (without pruning) of e.g. a 40 turn game of chess would be 35^40, a 40 turn game of Go would be 250^40. (Worst-case complexity of a tree can be found by b^d, where b is the branching factor and d is the depth.) (A complete minimax is basically a <a href="https://en.wikipedia.org/wiki/Depth-first_search" target="_blank">depth first search</a>, so analysis for DFS on trees applies as well.)</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kanuut" target="_blank">kanuut</a>
+			<div class="markdown"><p>It'd be rediculously complex but couldn't you cut out a lot of those board states?</p>
+<p>A perfect player would play perfectly, so if a board state can only be achieved through imperfect play, ignore it. This eliminates all board states where the AI is in checkmate, a large portion of the states where it is in check, all states where it <em>should</em> have won within the last several turns</p></div>		</li>
+					</ul>
+	
