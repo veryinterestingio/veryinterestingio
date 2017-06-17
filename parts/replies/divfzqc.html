@@ -1,0 +1,78 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Bartian" target="_blank">Bartian</a>
+			<div class="markdown"><p>What does $400/kWH refer to ?  In US I pay about $0.10/kWH</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hwillis" target="_blank">hwillis</a>
+			<div class="markdown"><p>The cost of batteries.  The end installation cost of battery storage is ~$2300/kW (according to the EIA), or Tesla sells their powerpacks for just about $400/kWh, fully installed and equipped.</p>
+<p>Also, odds are fairly high you live in the midwest!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tminus7700" target="_blank">tminus7700</a>
+			<div class="markdown"><blockquote>
+<p>The fluctuations in the grid are literally smoothed out by having to speed up or slow down massive spinning steel armatures. </p>
+</blockquote>
+<p>The armatures do not change RPM with power demand. With a generator connected to the grid, the rotor RPM is synchronously locked to the frequency and phase of the grid. If they get out of sync, all hell will break loose. I have read of dams shaking when the generator was thrown online without being phased correctly. I personally saw a 1/2 ton generator set jump a foot in the air from this. The way they control power flow, is by adjusting the <a href="https://www.linkedin.com/pulse/power-plant-generators-what-excitation-mohammad-abolghasemi" target="_blank">exciter current to the generator</a>. </p>
+<p>Much of the power flow and stability problems can be overcome by using <a href="https://en.wikipedia.org/wiki/High-voltage_direct_current" target="_blank">HVDC interties</a>.  This would also lend itself well to the use of battery banks. The batteries could &quot;<a href="https://en.wikipedia.org/wiki/Float_voltage" target="_blank">float on the line</a>&quot; to provide power during loss of sources.</p>
+<blockquote>
+<p>HVDC allows power transmission between unsynchronized AC transmission systems. Since the power flow through an HVDC link can be controlled independently of the phase angle between source and load, it can stabilize a network against disturbances due to rapid changes in power. HVDC also allows transfer of power between grid systems running at different frequencies, such as 50 Hz and 60 Hz. This improves the stability and economy of each grid, by allowing exchange of power between incompatible networks.</p>
+</blockquote></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hwillis" target="_blank">hwillis</a>
+			<div class="markdown"><p>They certainly do change speed, thats the whole point of being locked.  The change in speed is directly proportional to the change in voltage so its very low, ~1%, but it is a thing.  </p>
+<p>Youre right about everything of course but when i say they change speed i specifically mean for <em>very</em> fast transients.  When the actual grid power ramps up, you need to get more energy into it with more generation.  Changing speed is only good for momentary voltage fluctuations.</p>
+<p>Im really excited to see how the grid will change in the coming decades!  There are a lot of options and it may end up radically different.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tminus7700" target="_blank">tminus7700</a>
+			<div class="markdown"><blockquote>
+<p>The change in speed is directly proportional to the change in voltage </p>
+</blockquote>
+<p>Not so on synchronous machines. While changing the RPM of a generator will change the voltage, that is not how they do power control. With both motors and generators (they are interchangable), the synchronous speed is not changed with voltage. Changing the field current will change the voltage output, without affecting the speed of the rotor. In fact the field current can be adjusted to make the power factor leading, lagging, or neutral without changing the rotor speed. <a href="https://en.wikipedia.org/wiki/Synchronous_condenser" target="_blank">Synchronous motors are often used as capacitors</a>. Where they adjust the field current to be leading.</p>
+<blockquote>
+<p>specifically mean for very fast transients</p>
+</blockquote>
+<p>It is specifically too slow on those <a href="https://www.reddit.com/r/MachinePorn/comments/2w0vff/hoover_dam_generator_rotor_2448x3264/" target="_blank">monster rotors</a>.</p>
+<p>Now field current can be changed in milliseconds to virtually any value.</p>
+<p>here is a paper on this: <a href="https://cdn.selinc.com/assets/Literature/Publications/Technical%20Papers/6459_FundamentalsAdvancements_MT_20120402_Web.pdf?v=20170303-090008" target="_blank">https://cdn.selinc.com/assets/Literature/Publications/Technical%20Papers/6459_FundamentalsAdvancements_MT_20120402_Web.pdf?v=20170303-090008</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/daedalusesq" target="_blank">daedalusesq</a>
+			<div class="markdown"><blockquote>
+<p>The armatures do not change RPM with power demand. With a generator connected to the grid, the rotor RPM is synchronously locked to the frequency and phase of the grid.</p>
+</blockquote>
+<p>You have a misunderstanding of synchronous generation, gen/load balancing, and the relationship between them and rotor RPM. </p>
+<p>For example, in the US at least, we try to maintain 60hz frequency. In order to generate this frequency, we can do some math to figure out rotor speed. The equation is:</p>
+<p>RPM= (120*frequency)/#of poles in a generator. </p>
+<p>So for most generators it's:</p>
+<p>(120*60)/2 = 3600 RPM. </p>
+<p>Yes, every synchronous generator on the grid is spinning at 3600 RPM, unless it's a multi-pole unit at which case it would be some factor of it (a 4-pole generator spins at 1800 RPM, but its electrically an equivalent speed).</p>
+<p>Let's do a shitty car analogy for a second. Let's say you are driving on flat ground at a constant rate of speed. Your speedometer and tachometer are both steady and your foot is holding the pedal in the exact same spot. </p>
+<p>Eventually, you come to a hill of infinite height and a constant slope. If you never adjust your foot in the pedal, we expect the car to slow down and the tachometer to drop. This is because the car is doing more work, but you've kept its power constant. At first, all of that inertia from driving on flat ground will help you on the hill, after all, you could completely depress the gas at the moment of incline and still travel some distance up the hill before rolling back down. </p>
+<p>So, we are going up the hill, our engine RPMs are dropping, and our car is slowing down. Eventually, the inertia runs out and either the car has stabilized at a new lower speed and RPM and can continue until it runs out of speed, or the hill was too steep and the engine stalls out. There is an easy fix though: you can press the gas pedal. This adds more power to your engine and, in theory, you could get your tachometer back to the previous RPMs and your car back to moving at its previous speed. You can continue up our hill until it levels out again, at which point you'd lift off the gas so that you're engine RPMs and vehicle speed don't go higher. </p>
+<p>This is the same thing that happens on the synchronous grid. Frequency is a goal, we want to go 60hz at all times, but we regularly have load come on or off the system as wells as generators that turn on and off. This means frequency normally operates in a band of 59.95hz to 60.05hz.</p>
+<p>In the eastern Interconnection of the USA, it takes 3400 MWs to change the frequency by .1hz. If a bunch of generators trip offline and we lose 3400 MW, we are going to have a different rotor speed on the synchronous generators. </p>
+<p>(59.90*120)/2= 3594 RPM. </p>
+<p>This means every generator on eastern Interconnection will be running at 6 RPM slower then ideal. They all spread out the work and do it simultaneously because they are synchronous but they absolutely change speed as a response to power. We cannot get the system back to 60hz until we either add 3400 MW of generation or take away 3400 MW of load. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/destiny_functional" target="_blank">destiny_functional</a>
+			<div class="markdown"><p>what are the percentages? 30, 50, 60% that you quote ?  total (yearly) energy or power? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hwillis" target="_blank">hwillis</a>
+			<div class="markdown"><p>I was thinking of total annual energy, not capacity. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/destiny_functional" target="_blank">destiny_functional</a>
+			<div class="markdown"><p>not sure what &quot;capacity&quot; is now (power supplied?), but i was talking about (momentary) power (at all t). ie the momentary demand and supply of power. that is what needs to be covered (by solar/wind and possibly in conjunction with storage) and is the only relevant measure of how much of the grid is powered by these suppliers. total annual energy is the poorest measure of how much is covered for fluctuating sources like wind and solar, but none the less is constantly used by their advocates because that way they can give a large figure (&quot;germany covers 30% of its demand with renewables&quot; - which isn't correct). it misrepresents the actual situation because it counts times when there was excess power that couldn't be used as positive (say a lot of wind or sun, energy possibly had to be sold, sometimes at negative price, as is constantly the case in germany), without the means to say store that excess and use it at times when there's demand.</p>
+<p>if in a simplified scenario you have a constant demand of 100W over 10 hours, and you have a fluctuating source that provides 1000W for 1 hour and then 10W for the remaining 9 hours, the &quot;total energy&quot; will say 1010Wh covered more than 100% of the demand which was 1000Wh. this is obviously wrong because demand and supply power never matched and in fact at best 10% was covered. if you don't have the means to store the 1000Wh for ~10 hours to cover the over 90% of the interval the total sum is meaningless.</p>
+<p>a total energy (say annual) really only makes sense to consider if you can store energy over a big part of that period. because only then can you distribute it according to the momentary demand (&quot;even out the peak&quot;). [and doesn't even take into account that you'd need to install it in the right places.]</p>
+<p>until then, when you increase the installed base you just increase peaks without necessarily covering (proportionately) more of the demand. </p>
+<p>you probably know all this, given how elaborate your above post is (or will correct me, please do if there's need).</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
