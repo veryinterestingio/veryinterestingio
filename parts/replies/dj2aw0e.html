@@ -1,0 +1,37 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/plki76" target="_blank">plki76</a>
+			<div class="markdown"><p>At Microsoft this crash-report-bucketing system is known as &quot;Watson&quot;. A group of crashes is known as a &quot;Watson bucket&quot; and the individual crashes in each bucket are referred to as &quot;Watson hits&quot;. Team generally have metrics around how many Watson hits their binaries are generating with corresponding goals to reduce them over time.</p>
+<p>There are a few challenges with determining the right approach to fixing crashes for programs as large as Windows. Targeting the buckets with the highest number of crashes will reduce overall noise, but may starve a high-priority bucket with fewer raw hits.</p>
+<p>Imagine, for example, that right-clicking crashed one out of a million times the user tried to perform that action. The individual impact to any given user is low, they may only encounter that crash once a year or less. But the overall user base is right-clicking often, so the bucket will generate a lot of hits. </p>
+<p>Now imagine that new code is introduced that causes people with a very specific and rare video card to crash every time they open the start menu. The bucket won't generate very many hits, but the impact of the bug to that particular user is very high. They basically cannot use Windows at that point, and probably don't have enough tech savvy to solve the issue for themselves. There's a good chance they'll need to take it in for professional help.</p>
+<p>Which bug is more important?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/barnyardman" target="_blank">barnyardman</a>
+			<div class="markdown"><p>Does the Windows team really deal with poorly supported hardware like that?  It seems like a single user with a rare card that doesn't work (presumably from the manufacturers fault, not Windows) would be extremely low priority compared to an issue that affects the global community seemingly randomly.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/plki76" target="_blank">plki76</a>
+			<div class="markdown"><p>The example was more illustrative than realistic. In reality, the Windows team will generally reach out to the vendor and ask them to fix the driver. In some cases the hardware will be old enough or rare enough that it will simply go unsupported.</p>
+<p>Keep in mind that &quot;rare&quot; is also relative. A bug might only be affecting 1% of the install base of Windows, but 1% is still a huge number.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hoy89" target="_blank">hoy89</a>
+			<div class="markdown"><p>Generally, no. Modern operating systems depend on the hardware manufacturer to make sure that their hardware works properly with that OS.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/grumpyswede" target="_blank">grumpyswede</a>
+			<div class="markdown"><p>Raymond Chen (aka the Old New Thing) has blogged about crash investigations by the windows team plenty of times. One example: <a href="https://blogs.msdn.microsoft.com/oldnewthing/20050412-47/?p=35923" target="_blank">https://blogs.msdn.microsoft.com/oldnewthing/20050412-47/?p=35923</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/greenisin" target="_blank">greenisin</a>
+			<div class="markdown"><p>Sounds impressive, but why do things not get fixed even after a decade or longer?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/soulsorris" target="_blank">soulsorris</a>
+			<div class="markdown"><p>That was really interesting. Thanks for that.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aard_fi" target="_blank">aard_fi</a>
+			<div class="markdown"><p>Nokias Linux experiments left us with <a href="http://maemo.org/development/tools/doc/diablo/sp-rich-core/" target="_blank">sp-rich-core</a>, a tool for generating and evaluating error reports suitable for debugging most layers¹ of a Linux based operating system - comparable for example to Windows crash reporting, and the only open source solution I know not only targeting single applications. Assuming some basic programming skills going through sp-rich-core, and searching for projects building on that will show real life applications of the research mentioned above.</p>
+<p>Also, as additional comment, way harder than getting and processing meaningful crash reports is getting meaningful crash reports without violating a users privacy or leaking sensitive data. </p></div>		</li>
+					</ul>
+	
