@@ -1,0 +1,105 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/edman007" target="_blank">edman007</a>
+			<div class="markdown"><p>And the reason the difference gets smaller is because batteries have a maximum voltage, and a maximum charge current. When the battery is dead, you might apply 0.5V over the cell voltage and get the maximum charge current (very quick charging). When the battery is nearly full you might only be able to apply 0.1V over the cell voltage without damaging it, and this would result in low current and thus a slow charge rate.</p>
+<p>A lot of Tesla's work on their cars is actually determining what are the real limits of the batteries, determining what is the actual maximum voltage and maximum charge current. When you understand exactly how your batteries work you can put thermometers inside the battery pack, and charge at a very high current, cutting the power back when they start to warm up. The fastest safe charge curves are difficult to find, and takes a lot of work and high end chargers, something that Tesla spent a lot of money on to get it right.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/daneelr_olivaw" target="_blank">daneelr_olivaw</a>
+			<div class="markdown"><p>How often could you just supercharge it to 50% before significant damage affecting the cells occurs?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KaiserTom" target="_blank">KaiserTom</a>
+			<div class="markdown"><p>Any damaging effects is probably negligible. Supercharging works because the battery is able to safely take that much power in because it is so discharged.</p>
+<p>You can imagine a battery is like a giant board of switches (those switches being electrons). Discharging a battery is like flipping a switch down and you get power, switch more down and you get more power. Charging that battery is flipping those switches back up, supercharging is running your entire arm down this board of switches to switch as many back up as fast as you can. The problem is if you try to flip a switch up when it's already up, it damages the switch. So supercharging when most of the switches are already up is kinda dangerous for your battery, because your arm may hit switches that are already up. Instead you change your charging technique to instead slowly go through and flip switches you've missed one by one. What Tesla does is it knows pretty well how many switches are up and how much pressure the switches can take before they break, which allows them to reliably sweep their arm across more switches just lightly enough that they flip most switches and don't damage already flipped ones.</p>
+<p>In reality this process is not nearly this precise and instead has to deal with the de facto random nature of the trillions of electrons that make up a battery. We broadly apply electric pressure to the entire battery and then measure it back to estimate how many switches are flipped or not, and then adjust our electric pressure accordingly. Tesla does this rather precisely because they are directly involved with their battery production, so they can live on that edge if charging a battery quickly and not damaging it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Afteraffekt" target="_blank">Afteraffekt</a>
+			<div class="markdown"><p>A lot, it's the second half that causes the most damage. It's possible to super charge the entire 100% but the battery will suffer and likely fail quickly.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/themiddlestHaHa" target="_blank">themiddlestHaHa</a>
+			<div class="markdown"><p>There's a pretty cool Excel doc on /r/Tesla of owners reporting their charging and remaining capacity. The batteries seem to be holding up extremely well. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/doyoueventdrift" target="_blank">doyoueventdrift</a>
+			<div class="markdown"><p>Battery is 12v (I don't know if that's true with Tesla or electric cars, but let's say it's 12v).</p>
+<p>0 to 50%: 20min with 12,5v
+50%-100%: 55min with 12,1v (probably 12,5..12,4..12,3...12,2...,12,1v).</p>
+<p>Is it heat that deteriorates the battery?What factor prevents charging aggressively on the battery?</p>
+<p>What makes the capacity set for 12v? Isn't it in reality much more fluent?</p>
+<p>Just some questions I've wondered about :)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/edman007" target="_blank">edman007</a>
+			<div class="markdown"><p>Using some specific batteries will make it easier.</p>
+<p><a href="https://cdn.sparkfun.com/datasheets/Prototyping/spe-00-502535-400mah-en-1.0ver.pdf" target="_blank">So use this battery</a> (PDF warning...it's the specs for a real battery).</p>
+<p>That's a lithium-ion battery. The specs that matter is it's a 3.7V 400mAh battery, of note is how to charge it:</p>
+<blockquote>
+<p>Charge with 0.2C(80mA) up to Limited Voltage , Charge with limited Voltage up to end-of-charge current.</p>
+</blockquote>
+<p>Maximum charge rate is 1C, end of charge current is 0.01C and charge limit voltage is 4.2V. And typically, battery currents are rated in C, that's just a number you multiply by the capacity to get current.</p>
+<p>So this battery should be charged up to 400mA, up to 4.2V, when it charges at 4mA the battery should be considered full, and when the battery is dead, it's voltage is 2.8V. </p>
+<p>So, the way the charger should work is the battery is at 2.8V, and if it has an internal resistance of 0.2 ohms, then the charger should start by applying 2.88V to the battery, this will cause 400mA of charging current. As the battery charges its voltage will rise, and the charger should follow suit, raising its voltage to keep the current at 400mA, eventually, the battery gets to 4.13V, and the charger must cease raising its voltage, this will cause a drop off in current as it completes its charge. When the battery is drawing 4mA with the charger at 4.2V then you stop charging and call it fully charged. Now, that 1C maximum charging current is actually just a number picked by the battery manufacturer, and it's a result of how much heat is generated charging (can't let the battery get too hot, or else things burn/boil/etc) and the chemical reactions that happen when charging rely on ions physically moving, and the geometry affect how fast and how far away from the electricity they are and how much current can be sent in. The maximum voltage is more of a chemistry thing, and if you exceed that, you can start other reactions that damage the battery (typically, they generate gasses).</p>
+<p>If you watch the heat, you can typically use higher currents, and generally you can burst the current for a short period at the very start of the charge. As for what really causes wear on the batteries, generally it's a combination of heat and current through the battery (basically, multiply the two, high heat at high currents is very bad), they also have something called self discharge, and it's proportional to actual charge level, so the longer and hotter they sit fully charged, the faster they die, even if not in use.</p>
+<p>And the 12V thing, well it depends on the chemistry and cell count. Lithium-ion is usually 3.7V, so you can get LiIon Batteries in 3.7, 7.4V, 11.1V, 14.8V etc. Lead acid is typically 2V, so you can get them in 2V, 4V, 6V, 8V, 10V, 12V, etc. Each higher voltage is really just an extra battery wired together in series. Car batteries are generally 6 cells.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dsadsa321321" target="_blank">dsadsa321321</a>
+			<div class="markdown"><p>Charging profile is keep voltage of charger below or equal to battery max voltage at all times. Keep current below some max. Once the charger is at battery max voltage, if the current crosses a min threshold it's full. </p>
+<p>From what I'm reading online current is roughly proportional to charger minus battery voltage. Change in voltage (dv/dt) is proportional to current. </p>
+<p>Example: </p>
+<p>Battery max voltage is 120 v</p>
+<p>Battery discharged to 100 v</p>
+<p>Let's say you can safely apply battery voltage +10 volts (remember, the +10 is proportional to current)</p>
+<p>Charger keeps the output at l battery voltage +10 until battery reaches 110 volts </p>
+<p>At this point the charger can't go higher. So, when the battery reaches 115, the charger can only apply 5 volts, at battery voltage of 119 the charger can only apply 1, etc. </p>
+<p>Batteries do have a internal resistance, so if the current is too high i^2*r losses will be too high. It's probably also limited by the chemical reaction itself. </p>
+<p>The voltage has a strictly positive relationship with the amount of energy/charge currently held in the battery. The battery can only hold so much charge before bad stuff happens. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PM_me_XboxGold_Codes" target="_blank">PM_me_XboxGold_Codes</a>
+			<div class="markdown"><p>My favorite fact about them is that they use an array of 18650 batteries, the same battery that most e-cigs use. It's mind boggling that they are able to make a car that fast run off a shitload of 3.7v, 2000-5000mAh batteries. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BombastusBlomquist" target="_blank">BombastusBlomquist</a>
+			<div class="markdown"><p>So if the rate a battery charges gets smaller as it gets charged, does that mean a battery never actually charges to 100%? I mean it merely approaches full charge but never really reaches it.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MotherfuckingMonster" target="_blank">MotherfuckingMonster</a>
+			<div class="markdown"><p>Full charge is a bit arbitrary. It's determined by what testing shows is a safe voltage. You can charge lithium batteries beyond &quot;100%&quot; but bad things are liable to happen.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/viriconium_days" target="_blank">viriconium_days</a>
+			<div class="markdown"><p>It's like blowing up a balloon. You can blow it up more than you are supposed to, and it'll probably be fine, but it will damage it, and it might pop. Some balloons can be blown up a lot more than others, but there is no way to really tell other than blowing it till it pops.</p>
+<p>Only batteries are a lot more expensive, and instead of just making a loud noise when they pop, they explode and burst into flames.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tatteredengraving" target="_blank">tatteredengraving</a>
+			<div class="markdown"><p>I was just thinking this, maybe the default charger voltage is higher than the max battery voltage?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/customds" target="_blank">customds</a>
+			<div class="markdown"><p>Exactly.
+For instance a fully charged phone battery sits at around 4.7 volts. The charger operates at 5 volts </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/greenSixx" target="_blank">greenSixx</a>
+			<div class="markdown"><p>You mean its like inflating a pool raft with your breath?</p>
+<p>At first its really fast and easy but as the pressure inside increases it gets harder?</p>
+<p>I think so.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/desperaterobots" target="_blank">desperaterobots</a>
+			<div class="markdown"><p>'Like putting too much air in a balloon!'</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ravster3000" target="_blank">Ravster3000</a>
+			<div class="markdown"><p>Please tell me that was a star trek futurama reference</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rancendence" target="_blank">rancendence</a>
+			<div class="markdown"><p>Like a balloon, and... something bad happens!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ericwdhs" target="_blank">ericwdhs</a>
+			<div class="markdown"><p>Balloons are really the opposite though. They're harder to inflate at the beginning because a smaller increase in volume is required to make a bigger change in the surface area.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
