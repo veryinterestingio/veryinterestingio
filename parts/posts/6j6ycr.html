@@ -1,0 +1,108 @@
+<li class="post" data-handle="6j6ycr">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/6j6ycr/eli5_why_is_it_so_hard_for_law_enforcement_to/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/6j6ycr" onclick="return false">Why is it so hard for law enforcement to locate and bust scam call centers?</a>
+		</h2>
+		<!--<span class="date">2017-06-27</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>There was a recent post where a guy hacked an IRS scam call center to flood their phones with call backs.  If this can be done, why are they so hard to locate or to always be stopped?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="djcgq82">
+		<a class="author" href="https://www.reddit.com/user/rtphokie" target="_blank">rtphokie</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><strong>tl;dr</strong>: the scammers hide behind VoIP services that are very different from what you use on your wireline at home or mobile phone.  </p>
+<p>Law enforcement jurisdictional issues aside.  It's technically difficult to impossible to identify the source of these calls, even to identify those that are enabling it along the way.  Tracing calls as made famous in movies or making it easy to report these calls wont help.  Yes, VoIP is at the heart of this, but it's the way VoIP is implemented here, specifically how ANI is implemented. </p>
+<p>Forgive the acronyms, it's just how telephony rolls.</p>
+<p>Each phone call that you receive has a couple of pieces of information that goes along with it:</p>
+<p><strong>ANI</strong>: automatic number identifier; added to each call by the Local Exchange Carrier aka &quot;the phone company&quot;.  It is not so easy for users (e.g. VoIP subscribers) to spoof. Originally created for billing long distance calls it is also used by 911 services.  It is a string of digits that include the calling party number, and some other flags and codes that identify party lines, PBX, payphones, etc. etc.  Sometimes this is called &quot;Super Caller ID&quot;.</p>
+<p><strong>CPID</strong>: calling party ID aka &quot;caller id&quot;; This is what is actually displayed on your phone.  By design, it can be altered and VoIP subscribers like the scammers do.  The <a href="https://www.gpo.gov/fdsys/pkg/BILLS-111s30enr/pdf/BILLS-111s30enr.pdf" target="_blank">Truth in Caller ID Act</a> made it a crime to alter this information to cause harm, but in this context, the law isn't worth the paper it's written on.  </p>
+<p>There are a couple of other technologies going on that are not delivered with the call that are relevant here:</p>
+<p><strong>ALI</strong>: automatic location identification. A database, maintained by the phone compan(y|ies) that the Public Safety Answering Point (where your 911 calls go locally) can query. In the case of wireline services, its a simple mapping of your address to your phone number.  In the case of wireless service (mobile/cell phones), it's providing the location of the nearest cell tower or most recently the phone itself (via GPS). </p>
+<p><strong>E911</strong> is a <a href="https://www.fcc.gov/consumers/guides/voip-and-911-service" target="_blank">FCC requirement</a> that mandates calls include ANI and the phone companies maintain ALI.  Signing up for 911 services was optional for VoIP subscribers until the FCC changed their stance in 2005 following a lawsuit involving Vonage.</p>
+<p><strong>Fully Interconnected</strong> enables users to place <em>and</em> receive calls over the Public Switched Telephone Network (PSTN).  The person who flooded the scammers with calls was dealing with a rare, extremely stupid scammer who was likely using this kind of service and was also dumb enough to let their incoming number(s) be known. </p>
+<p><strong>DOD</strong> direct outward dial; enables users to place but not receive PSTN calls.  This is what most scammers use and why they try to keep you on the phone, you couldn't call them back if you wanted to.   This is why most advice you hear about phone scammers is to simply hang up. </p>
+<p>So what does all this mean to the scammers?   Any self-respecting scammers is buying non-fully interconnected DOD services from VoIP providers.  Not only is it cheaper, this type of service does not need to be E911 compliant so the ANI that is delivered by these calls all have the same ANI which identifies the point where thousands of numbers are connected to the PSTN, but not the calling number itself.</p>
+<p>The scammers can do as they please with CPID making using it in a blocking mechanism close to pointless.  So why not why not block based on the far more difficult to manipulate ANI?  The FCC has pretty much washed their hands of ANI handing it over to phone companies: &quot;instead of requiring that ANI blocking be made available to subscribers, the Commission required carriers offering ANI services to limit the permissible uses of ANI&quot;.</p>
+<p>So if we know which VoIP companies are enabling these scammers, why not go after them?  If you read the Truth in Caller ID Act you might think that it could hold telecom providers accountable for transmitting spoofed caller id, but <a href="http://www.commlawblog.com/2014/05/articles/cellular/court-dismisses-tcpa-charges-brought-against-telecommunications-provider/" target="_blank">courts have disagreed with this</a></p>
+<p>The practical answer is that most if not all of these companies are enabling this.  Voice services are a commodity now, often sold by resellers.  Even if the chain of middlemen were unraveled, the scammer has probably moved onto a new, cheaper VoIP service and is hiding behind VPN on the internet side of the call anyway.  </p>
+<p>source: I've worked in the telecom industry for 25 years, both on the PSTN side for Bell Canada and on the intertubes side for Cisco.</p>
+<p>edit: spelling</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="djc3vxr">
+		<a class="author" href="https://www.reddit.com/user/GeekyMeerkat" target="_blank">GeekyMeerkat</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Well this can be tricky for a number of reasons. But the most basic is jurisdiction. Now I'm not in the law profession, but I am in the computer profession.</p>
+<p>It isn't overly hard with today's tech to make your location seem like it's somewhere that it isn't. Just as one example I purchased my cell phone in one state and so got an area code from that state, but now live in a totally different state. So every now and then when I call up someone I haven't called before there is a brief on the other end &quot;I was wondering who was calling me from Washington state&quot;. Heck I even still get that when I call up my parents on their house line and they know my phone has a Washington area code.</p>
+<p>As you can see with such a simple example we've now involved three states in any activity I might be doing with my phone. The state I'm in, the state I'm calling, and the state where people think I might be based on the phone number.</p>
+<p>Sure if I do something seriously wrong you can bet the states are going to co-operate, and if need be my cell phone company will likely provide information. But expand it out to remembering that often the scammers aren't actually calling from inside the country of the people they are scamming.</p>
+<p>So now instead of needing to just get co-operation between three states and one phone company, you are needing cooperation between foreign countries and multiple companies. Now let's make it even worse. Sure in the Untied States we have 911 for emergency numbers, but if I asked you right now who do you call if someone tries to scam you, would you know? Sadly there isn't some general number that we all know as a culture to call to report scammers. Furthermore most people won't even report it. How often have people received a scam phone call and just hung up the phone?</p>
+<p>Even once you have identified what legal entity is responsible for tracking down the scammers in the correct jurisdiction, they ultimately need those reports of scams happening before they can do anything. And while they will get those reports and will act, as you can see with all the bureaucratic tape and just nature of life stuff in the way it makes it a slow moving machine, meaning the scammers have a window of time to operate in before they have to change tactics.</p>
+<p>edit add: Legit advise I can give you if you want to help stop scammers as a &quot;normal&quot; person that isn't some hacker like the video you mentioned. If you get a call or email from a scammer pretending to be some agency that they are not (such as a bank or the IRS or any number of things scammers like to pretend to be)... then if they are pretending to be a legit organisation, send what information you were able to gather to the real version of that organisation. As scammers like to pretend to be big organizations, you can bet the real version of those organizations has a legal department that might like that information.</p>
+<p>edit add 2: Thanks for the gold kind stranger.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="djcdhqw">
+		<a class="author" href="https://www.reddit.com/user/scammerthrowaway123" target="_blank">scammerthrowaway123</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Throwaway for obvious reasons.</p>
+<p>A few years ago I worked in a scammer call center for a while.</p>
+<p>First reason: international corporate structure. Our actual call center was in Europe and the company I worked for was incorporated in Europe, but the company that the clients saw was in the Seychelles. Of course this was a sham, there were no headquarters there or anything, but officially it was the Seychelles company doing the business and paying the call center company - my employer - to handle customer service. Obviously the same people owned both companies.</p>
+<p>Our clients, or rather victims, were mostly from USA, Canada, Australia, UK and the usual scam was for $200 - $500. Because of the corporate structure, pretty much no law enforcement agency will bother with a $200 scam.</p>
+<p>Second reason: people are ashamed of being scammed. When you look back on a scam, it seems obvious. While I was there at least 3000 people were scammed, some for $200, some for $5000. But on our public Facebook page there was only like 2 or 3 angry customers, all were replied to by our trustful &quot;PR&quot; guys and convinced that their situation is a mistake, an outlier.</p>
+<p>If all those people got together and wanted to go after us, I'm reasonably sure they would succeed. But in reality, very few of them wanted to speak up.</p>
+<p>Third reason: sometimes those scams aren't illegal per se. My former company was on the verge - it was kind of legal, kind of not, heavily dependent on where our customers were. In my last 2 months there we stopped calling US customers because they were making too much trouble for us and it was technically illegal for us to sell them what we sold, but from a legal point of view the rest of the world was basically fair game.</p>
+<p>Fourth reason: psychological tricks. Our &quot;customer retention&quot; guys were working hard to convince the customers that it was their own fault that the product didn't work for them. In the end, only a small percentage (I'd say 10-15%) actually felt scammed, and out of that an even smaller percentage were willing to speak up.</p>
+<p>Out of the ~3000 customers I've witnessed being scammed, we got about 20 chargebacks and not a single lawyer contact us. Out of the tens of thousands we called, not one made any real trouble.</p>
+<p>PS: AMA, for anyone that's interested.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="djceahk">
+		<a class="author" href="https://www.reddit.com/user/PocketzDK" target="_blank">PocketzDK</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I work as a Network surveillance Tech, for a Tele communications and Internet Service provider.
+In my experience it comes down to police not having fast enough cooperation across borders to do it.
+Let me explain.</p>
+<p>Even if the scammer spoofs his numbers. The last service provider in the chain before the call is delivered to your country, still has to provide our network with their ID, before we are willing to accept the call. This means we can trace it to that service provider.
+Typically the scammer will have call forwarding services in several countries where law enforcement is unlikely to care or are slow to react. </p>
+<p>So this is where it gets Tricky...
+If you report a Scammer. Police will get a Warrent for your service providers records of the call. They will then be able to trace the call to the first service provider outside your country. </p>
+<p>Police then have to contact law enforcement in that country. Get a warrent for the records and then contact the next countries law enforcement.</p>
+<p>Now in most countries there are laws, about how long a service provider has to store call data. Some places its 6 months others its 30days, and some countries have no laws at all on the subject.</p>
+<p>If the scammer has setup enough call forwarding centres, especially in countries with a short data retention time. The sheer amount of red tape Law enforcement needs to go through to find the next step in the chain, means that the data may have expired, and has been deleted before they get to the source.</p>
+<p>Now Imagine If every service provider was willing to cooperate and juristiction wasnt a thing. Every movie ever, where you see them tracing a call, you see a line criss cross a map of the world. In reality this would only takes seconds at most, not minutes.</p>
+<p>But Jurisdiction is a thing and service providers have to protect their networks and costumers from unwarrented tracking of their activities.</p>
+<p>The amount of work law enforcement needs to put in to getting anywhere near the scammer, only to fail because they run out of time, means that they rarely do anything. Their time is better spent investigating other crimes.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="djceclk">
+		<a class="author" href="https://www.reddit.com/user/amanitus" target="_blank">amanitus</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The guy didn't actually hack the scammers.  He had their phone number and made a program to call them constantly.  The program was pretty simple.  There's a service called Twilio that lets you write programs that can call or send texts in an automated way.  It's a subscription service that a lot of companies use to implement phone features in their products.  So he wrote a program that used Twilio to send a few dozen calls each second to this number.  That way it basically choked out their ability to get any other calls from victims.</p>
+<p>I can't comment as to why it's hard to close down scam operations in foreign countries though.  I don't know anything about that.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/6j6ycr" onclick="return false"><span>show</span></a>
+</li>
