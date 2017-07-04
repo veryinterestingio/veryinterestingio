@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>How is the analog signal from a HDD read head processed before it is digitized?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="6knmqe">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/6knmqe/how_is_the_analog_signal_from_a_hdd_read_head/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/6knmqe" onclick="return false">How is the analog signal from a HDD read head processed before it is digitized?</a>
+		</h2>
+		<!--<span class="date">2017-07-04</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Doing a simple estimation, a hard drive might be able to read 128 MB/s.  Maybe it has 4 platters, giving each read head a reading speed of 32 MB/s, or 256 Mbit/sec.  So this would be a 256 MHz signal coming from the read head, but of course it's not a clean digital signal.  Some of the magnetic domains might have lost some of their alignment making their signal weaker, and in any case everything would bleed together a bit, right?</p>
+<p>What does the signal from the read head look like, and how is it processed to become digitized?  </p>
+<p>Furthermore, how does the HDD even know where the read head is in terms of the circumference of the platter?  </p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="djnqmzf">
+		<a class="author" href="https://www.reddit.com/user/antiduh" target="_blank">antiduh</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Hard drives use some form of <a href="https://en.wikipedia.org/wiki/Forward_error_correction" target="_blank">Forward Error Correction</a> with <a href="https://en.wikipedia.org/wiki/Soft-decision_decoder" target="_blank">Soft Decision</a>; in some cases, <a href="https://en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction" target="_blank">Reed-Solomon</a>, with <a href="https://en.wikipedia.org/wiki/Viterbi_decoder" target="_blank">Viterbi decoding</a> is used.</p>
+<p>First, forward error correction - you take the data that you want to store, run that data through some algorithm that generates extra data (adding redundency), and then write the whole thing to the disk. When you then try to read that block off the disk, if some of the original bits are in error, then you can use the redundant bits to try to figure out what the original message was.</p>
+<p>Soft decision uses the analog nature of the media to represent the bits, instead of actual ones and zeros - so I say that bit 1 is a '1' with 80% probability, then bit 2 a '0' with 30% probability, etc. This information goes into the error correction logic to increase its error correction performance because it can use the probability information to figure out what is the most probable output code.</p>
+<p>For example, lets say we had a really simple system - we have 2 bits of original data, and we simply duplicate it 2 times. </p>
+<ul>
+<li>'00' becomes '00 00 00'.</li>
+<li>'01' becomes '01 01 01'.</li>
+<li>'10' becomes '10 10 10'.</li>
+<li>'11' becomes '11 11 11'.</li>
+</ul>
+<p>If you receive '00 01 00', then as a human you can probably figure out that the most likely values for the original data was '00'. </p>
+<p>If you receive '01 00 00', same answer.</p>
+<p>If instead gave you a value where the second bit was in question: '00 01 00' with probabilities <code>{ 99, 10, 90, 99, 80, 05}</code>, then you would might say that the most likely value for the original data was '01' - the second bit is '1' because one indication for the second bit's value has 99% probability of it being a 1, while the other two indications say '0', but with 10% and 5% probabilities.</p>
+<p>Viterbi decoding combines this idea of the probability of the bit being one value or another, along with the structure of how the forward error correction data is generated, and attempts to guess the correct data.</p>
+<p>Reed-Solomon is one widely-used forward error correction scheme, and is based on the mathematics of finite fields, also known as galois fields.</p>
+<p>The original inspiration for reed solomon was to represent the original data as a polynomial. You could then plot that polynomial, then sample that polynomial in as many extra spots as you want, and then transmit all of extra samples. </p>
+<p>For instance, lets say we want to transmit one bit <strong>a</strong>. We could then agree that when we want to transmit <code>a =1</code>, we would send a whole bunch of points sampled on the parabola <code>y = (1) * x^2</code>. If we wanted to send <code>a=0</code>, we'd send a whole bunch of points sampled on the parabola <code>y = (-1) * x^2</code>. If i send you 6 points <code>{-13, -5, 10, 0, -5, -8, -13}</code>, you'll notice that a couple of those points don't exactly agree with a parabola, but they fit the curve well enough that the curve generally fits the pattern of <code>-1 * x^2</code> and so the transmitted bit was a 0.</p>
+<p>Practical reed-solomon is based on the mathematics of finite fields (aka Galois fields).</p>
+<p>A decent, practical paper to read to understand Reed-Solomon and Finite fields was written by the BBC:
+<a href="https://downloads.bbc.co.uk/rd/pubs/whp/whp-pdf-files/WHP031.pdf" target="_blank">https://downloads.bbc.co.uk/rd/pubs/whp/whp-pdf-files/WHP031.pdf</a></p>
+<p>If you're feeling very curious, I have written an implementation of Reed-Solomon (without soft-decision) in C#:</p>
+<p><a href="https://github.com/antiduh/ErrorCorrection/tree/master/ErrorCorrection" target="_blank">https://github.com/antiduh/ErrorCorrection/tree/master/ErrorCorrection</a></p>
+<p>The fun starts in <code>GaloisField.cs</code>. Also check out <code>Encoder.cs</code> and <code>Decoder.cs</code>. Those files have almost as many comments as they do code, and my implementation uses a lot of the conventions followed by the BBC paper I linked above.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="djnnwlz">
+		<a class="author" href="https://www.reddit.com/user/TANKtr0n" target="_blank">TANKtr0n</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Q: What does the signal from the read head look like?
+A: An analog signal, or more simply, something like a sound wave. :)</p>
+<p>Q: How is it processed to be digital?
+A: First, understand the data flow: Head(s) &gt; Preamp &gt; Controller Read Channel &gt; HDD Controller Interface &gt; Host Interconnect.  </p>
+<p>When it's originally read, it's an analog signal. The preamp, typically on the actuator to limit distance to the heads, performs the signal clean-up, then passes this analog signal to the Read Channel, which will convert it to a digital signal. When a write is performed, reverse this process, and the digital signal is passed from the Controller to the Read Channel, which then converts the digital signal to analog. The analog signal is passed to the preamp/heads to commit the write to disk. The conversion itself just takes the Digital AC signal and spits out an Analog AC signal, by way of using a series of alternating current transitions... </p>
+<p>Q: How does the HDD know where the head(s) are relative to the platter(s)?
+A: The platters all have 'spokes' (or more appropriately called servo fields), somewhat like a bike wheel, which are pre-defined spaces along the tracks and between the data sectors. When the heads pass over these spaces or fields, the Controller calculates the heads position on the platters, relative to which track, sector, and block the servo field was detected.</p>
+<p>Tada!</p>
+<p>Edit: Correction in terminology of Q#3 summarization (changed reads to head(s), silly auto correct).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="djnqgh7">
+		<a class="author" href="https://www.reddit.com/user/CcntMnky" target="_blank">CcntMnky</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>HDDs only read from one surface at a time, so the datarate is all coming from one head.  It's too difficult to align multiple surfaces to the required accuracy, so they are not interleaved.  There have been efforts to make multiple servos on a unit, but it's either very old or very proof-of-concept.</p>
+<p>/u/TANKtr0n gave a good description of the data path, but I think you're wondering how analog gets converted to digital.  It's just like most A-to-D conversion.  Each analog value is only a single bit, so the goal is to write to a high or low enough level for easy decoding.  Often there are marginal bits, and that's where error correction codes and retry steps come in.  For error correction, there are more bits stored on the media than the user expects, and the extra is used error detect and correct using mathematical equations.  Retries are like they sound:  try reading again.</p>
+<p>How does the signal look?  Positive polarity and negative polarity.  The cleaner the write, the strong the signal strength.  Each position is converted to a single bit, which is then matched to the next neighboring bit until you get the complete data sector.  A sector is usually 512 bytes, but different uses can change this to 520, 4096, etc.</p>
+<p>/u/NotAnotherNekopan did a good job on the servo positioning description.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="djnkixd">
+		<a class="author" href="https://www.reddit.com/user/NotAnotherNekopan" target="_blank">NotAnotherNekopan</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'll answer the second question. An HDD uses a voice coil to control where the head is. It is an electronic magnet that can very precisely control how far out from the parked position the head will go, based on the voltage applied. It simply needs to know what voltage is being applied to know where the head will be. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="djnwqbj">
+		<a class="author" href="https://www.reddit.com/user/infinitenothing" target="_blank">infinitenothing</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I found an article online about what the head, magnetization, and analog receiver, and digital sequence detection look like.</p>
+<p><a href="http://www.eetimes.com/document.asp?doc_id=1230839" target="_blank">http://www.eetimes.com/document.asp?doc_id=1230839</a></p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/6knmqe" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
