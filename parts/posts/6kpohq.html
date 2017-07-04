@@ -1,0 +1,61 @@
+<li class="post" data-handle="6kpohq">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/6kpohq/on_an_infinite_square_grid_of_perfect_one_ohm/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Physics">Physics</span>
+			<a href="/posts/6kpohq" onclick="return false">On an infinite square grid of perfect one Ohm resistors, what is the equivalent resistance between two points that are a knight's move from each other?</a>
+		</h2>
+		<!--<span class="date">2017-07-04</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p><a href="https://xkcd.com/356/" target="_blank">Relevant XKCD</a></p>
+<p>I've been reading XKCD for years at this point, and I like looking into things that appear in the comics. What is the resistance here, how would you work it out, and why is it so incredibly hard?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="djnwv24">
+		<a class="author" href="https://www.reddit.com/user/mofo69extreme" target="_blank">mofo69extreme</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I was given this as a homework problem in a graduate E&amp;M course. Interestingly, for two points next to each other in the lattice, there is a simple argument to show that the equivalent resistance is R/2. But as soon as you try any other two nodes - the knight move or even just a diagonal - you need much heavier machinery.</p>
+<p>There is <a href="http://www.mathpages.com/home/kmath668/kmath668.htm" target="_blank">this mathpages</a> article which goes through it. I haven't read their whole article; it seems rather long, as my handwritten solution is just over 2 pages (it looks like I did it differently). We were also allowed to use Mathematica for the integrals, so we skipped many of the steps. (I know how to do the integrals analytically using contour integration, but it's pretty tedious).</p>
+<p>The trick is to set up an infinite set of equations using Kirchoff's law at every lattice point. Imagine you have inserted a current I at the point (0,0) and are removing a current at (2,1), where (x,y) are integer coordinates on the grid. Then at every lattice point, you need to have total current coming out of the node is conserved: I(x,y) R = V(x+1,y) + V(x-1,y) + V(x,y+1) + V(x,y-1) - 4 V(x,y) = 0. Except at the two points where you've inserted/removed current, you need to include this on the right-hand side: </p>
+<p>V(1,0) + V(-1,0) + V(0,1) + V(0,-1) - 4 V(0,0) = I_in R</p>
+<p>V(3,1) + V(1,1) + V(2,2) + V(2,0) - 4 V(2,1) = -I_in R</p>
+<p>Here, I_in is the total current flowing through the circuit. I'm using R as the resistance of each resistor (so R = 1 Ohm in the xkcd comic). Then after explicitly solving this infinite system of equations for V(x,y) as a function of I, we can find the equivalent resistance as R_eq = (V(2,1) - V(0,0))/I_in (the I_in dependence will always cancel out, which you can prove via dimensional analysis).</p>
+<p>Ok, but how do we actually solve this infinite set of equations? As a condensed matter physicist, I immediately recognize this as equivalent to solving some non-interacting tight-binding quantum lattice model, so I did what a condensed matter theorist would do. I introduced the discrete Fourier transform:</p>
+<p>V(x,y) = ∫dk1 dk2 V(k1,k2) e^(ik1x + ik2y)</p>
+<p>where the integrals go from -pi to pi. Anyways, placing this into the infinite set of equations reduces to a simple algebraic equation for the V(k1,k2). I think the mathpages is doing a very similar thing but using a slightly different method. Then to get V(x,y) you need to do a rather nasty integral, but it can be done in practice.</p>
+<p>I can give more details on the intermediate steps above if desired. The answer is (4/pi - 1/2)R. We also did the diagonal case. I can check my solution later when I'm back in my apartment to see what that equivalent resistance is.</p>
+<p>EDIT: Just pulled out my handwritten solution. I fixed some errors above. The equivalent resistance between two nodes connected by the diagonal of a square is (2/pi)R. To obtain the equivalent resistance between two arbitrary nodes, I have to perform an integral which I'm not sure can be done as a function of the nodes. (This integral is presumably equivalent to equations (9) and (13) in the mathpages article, since I got the same answer for the two special cases considered). </p>
+<p>The mathematical procedure above can be thought of as obtaining the inverse (or &quot;Green's function&quot;) of the discrete Laplacian on the square lattice. This is very similar to solving the discretized free Schrödinger equation, which is how I recognized how to solve the problem once the system of equations was set up.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="djnvkds">
+		<a class="author" href="https://www.reddit.com/user/cmdtekvr" target="_blank">cmdtekvr</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In case nobody can answer it in a shorter way, this is an old puzzle: <a href="http://www.mathpages.com/home/kmath668/kmath668.htm" target="_blank">http://www.mathpages.com/home/kmath668/kmath668.htm</a></p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="djnwn4s">
+		<a class="author" href="https://www.reddit.com/user/kempez2" target="_blank">kempez2</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This is so frustrating! I started out by thinking of increasing path lengths in parallel, then treating each pair in parallel with what I had already. I then plugged in some numbers to combine them and see if it was trending toward an obvious endpoint. I got to 5 and got a resistance in total of 5 ohm (I think this a coincidence at this level) then gave up as a non-electrician/physicist/algorithm-writer.
+One thing though, current flow would be concentrated around the shorter paths at the centre. Does this in fact mimic current flow down a solid conductor? I.e. Imagine the resistors getting smaller and smaller until they become the resistances within a solid conductor. </p>
+<p>TL:DR wait for someone who knows what they're talking about to answer. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">2 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/6kpohq" onclick="return false"><span>show</span></a>
+</li>

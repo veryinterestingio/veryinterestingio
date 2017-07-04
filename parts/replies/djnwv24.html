@@ -1,0 +1,30 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/morphism" target="_blank">morphism</a>
+			<div class="markdown"><p>This question is indeed about the inverse of the Laplacian on a square lattice. However, this inverse is not well-defined! (The Laplacian of a constant potential vanishes.) When doing the integrals, you have to discard a few infinities, as the infinite grid of resistors is not quite physically reasonable.</p>
+<p>Remember that the full Greens function also depends on energy E. In this case, it has a singularity at E=0.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mofo69extreme" target="_blank">mofo69extreme</a>
+			<div class="markdown"><p>Yeah, of course the laplacian has a nontrivial kernel and is therefore a singular operator. But specifying boundary conditions is sufficient to &quot;invert&quot; the operator, which is usually how physics gets around this to define Green's functions. In the continuum, this is why you get different Green's functions (time-order, retarded, advanced, etc.). Here we specify sinks/sources for currents which rules out your constant solution and gets us a unique solution, so there is no problem. I guess this is why solving the problem for arbitrary sources/sinks is hard - you have a different Greens function in each case (though the relation between them seems simple based on my solution).</p>
+<p>It's a good example of a mathematical problem where you need to go back and think about the physics to proceed (and the way in which the mathematical problem came up helps you in this respect).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ddbnkm" target="_blank">ddbnkm</a>
+			<div class="markdown"><p>Could you expand on the simple argument for R/2, for those who aren't graduating in E&amp;M?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mofo69extreme" target="_blank">mofo69extreme</a>
+			<div class="markdown"><p>It's a little hard without writing figures. You first consider inserting a current I at one node - then you can imagine a current I/4 dispersing through to the 4 adjacent modes, I/12 dispersing through the second-nearest nodes, etc. Similarly, you can imagine what happens when you take a current I out of a node - then a current I/4 flows in from the 4 adjacent nodes, etc. </p>
+<p>The trick is to now use superposition: imagine superposing inserting a current I in one node, and removing a current I from the adjacent node. What you need to do is superpose the two pictures above. You have a current I/2 flowing through the resistor in between the two nodes, and some complicated current configuration flowing through all the rest.</p>
+<p>Now, represent the effective resistance through the entire circuit EXCEPT the one immediately connecting the adjacent nodes as R2. Then the whole infinite circuit can be represented by the resistor R between the adjacent nodes in parallel with the resistor R2 between the adjacent nodes. By conservation of current, there must also be current I/2 running through R2.</p>
+<p>Now,the only way that two nodes at constant potential different from each other can have the same current running through two parallel paths is if the resistance of both paths is the same. So you must have R2 = R. So the total equivalent resistance is equal to the resistance of two resistors of resistance R in parallel with each other. Thus, total resistance is R/2.</p>
+<p>Saying this in words is hard to picture, I recommend drawing some diagrams if it's confusing.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ddbnkm" target="_blank">ddbnkm</a>
+			<div class="markdown"><p>I got it, thanks!</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
