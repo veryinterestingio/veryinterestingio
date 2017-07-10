@@ -1,0 +1,70 @@
+<div class="answers">
+	<div class="answer" data-handle="djx2bl1">
+		<a class="author" href="https://www.reddit.com/user/Yamatjac" target="_blank">Yamatjac</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There's this thing called brute forcing. That's where you basically try 0000, 0001, 0002... etc. Typically, people would try the common passwords first, so 0000, 1111, 2222, 1234, 4321... etc, and then start trying every password, but that's besides the point.</p>
+<p>When you're using your bank pin, you have your physical bank card. And if you get the wrong pin too many times, that account gets locked out until you talk to the bank and get them to fix it. So somebody trying to guess your pin only gets 5/10,000 chances - and needs to actually physically have your card at that! After your card's been locked out, they can't do anything. Once you go to get it fixed, you'll get a new card and the one they have is rendered useless. They get 5 chances, total. And then they have to steal your card again, and have no guarantees that the five pins they guessed before are going to be wrong, since you could've (and should've) changed your pin!</p>
+<p>Online accounts are quite a bit different. Sure, you may have forgotten your password somewhere and been locked out of your account for 10 minutes or whatever before. But that's not the only way people 'hack' online accounts. For that, we need to explain password hashing briefly.</p>
+<p>Typically, when you sign up for an account somewhere, your password will be 'hashed'. So if your Reddit password is <code>123456</code>, Reddit would only know it as something like <code>$2a$06$0JXJ7T//rMLelqOfaYYEw.cwQYivfp0KkJLcGaJwH/1kV8i5Oh3AS</code>. Meaning, if somebody hacks Reddit and gets the database of passwords, they still won't know what your password is. Even if they try and login using your hashed password, it'll just get hashed again, and Reddit will see it as something different. </p>
+<p>Hashed passwords are also (kinda) impossible to reverse engineer. Regardless of what length password you put in, the hash will always be the same length. So multiple passwords can result in the same hash. Which does mean that it is possible to get from a hash to a password that results in that hash without brute force, you just can't get the original password. But not having the original password doesn't matter, as long as the password you have turns into the same hash. However; reverse engineering a hash like this is an incredibly difficult task, and grounds for a whole other ELI5 that I'm not qualified to write at all.</p>
+<p>Alright, so let's get back to the whole brute forcing thing. Once somebody has your hash, they're no longer bound by Reddit's wrong password limits. They can write a program that hashes passwords and checks it against your hashed password all they want. Once they get the right password, they only need to try and login once. Regular ol' computers can check millions of passwords per second - and more powerful computers built for this purpose can check in the tens of billions, or even higher. For a simple, short password it'll take a matter of seconds. Even for some of the more 'complex' passwords people think up, it's just a matter of days, maybe weeks. But not very long at all. Length is exponentially more important than symbols, blood of the first born, etc.</p>
+<p>And that's barely touched the surface of internet security.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="djwpk3t">
+		<a class="author" href="https://www.reddit.com/user/wayoverpaid" target="_blank">wayoverpaid</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><em>Post edited to account for a number of similar responses I keep getting.</em></p>
+<p>Notice most banks don't let you use the 4 digit code alone when you do online banking.  (Edit: By which I mean web banking.  Mobile is a slightly different case.)</p>
+<p>When you visit a bank, you need a card (which is, as others have said, something you &quot;have&quot;) and if you enter the wrong passcode too many times, the ATM can eat the card (or at least invalidate it).  This renders the 4 digit code much less susceptible to brute forcing all <del>9999</del> (edit: yes, 10,000) possible combinations, since you usually only get 3 attempts.  (Or more, as some people have told me.)</p>
+<p>On the other hand, web logins often don't have any physical token.  If there's no physical token, locking someone out for a bad password means locking the entire account, which is obnoxious.  I could make your customers very angry simply by randomly trying account / passwords until they got locked out, from computers all around the world.  Apparently some banks actually do this, and my condolences to their customers.  </p>
+<p>You can get away with a simpler PIN for security if you have lockouts or if you (as some banks do) tie the login to a secondary security question and a &quot;remember me on this device&quot; type browser memory.  This combines your password (the thing you know) with the computer (the thing you have) to make it safer.</p>
+<p>Some people have pointed out they can use PINs for mobile banking.  Those PINs are tied to the device.  The first time you set up on a different device, you should need something more complex than a PIN.  In this case the phone replaces the ATM card as the thing you have.</p>
+<p>For anyone saying they can log in with a PIN online only, try it in an incognito mode browser.  If you can still log in with no further questions, I would consider treating that bank's security as suspect.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="djwsqn5">
+		<a class="author" href="https://www.reddit.com/user/lightfork" target="_blank">lightfork</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's the combination of possession of the card, and the pin number that completes authentication. </p>
+<p>Two-factor authentication (also known as 2FA) is a method of confirming a user's claimed identity by utilizing a combination of two different components. Two-factor authentication is a type of multi-factor authentication.</p>
+<p>The use of multiple authentication factors to prove one's identity is based on the premise that an unauthorized actor is unlikely to be able to supply the factors required for access. If, in an authentication attempt, at least one of the components is missing or supplied incorrectly, the user's identity is not established with sufficient certainty and access to the asset.</p>
+<p>Knowledge factors are the most commonly used form of authentication. In this form, the user is required to prove knowledge of a secret in order to authenticate.</p>
+<p>Possession factors (&quot;something only the user has&quot;) have been used for authentication for centuries, in the form of a key to a lock. Online this could be an RSA SecurID token device.</p>
+<p>When you insert the card into machine, you have completed the first factor. If your card is lost or stolen, they instruct you to contact the financial institution so they can deauthorize it. Even if the person had knowledge of your pin, the first factor eliminates the threat.</p>
+<p>If the user is unaware of the card loss, the knowledge factor (the PIN) becomes the primary protection. There is a one in 10,000 chance of correctly guessing this pin number.</p>
+<p>After only few subsequent failed attempts, the card becomes automatically deauthorized. In some instances, the ATM machine retains the card too, including if the card has already been pre-flagged through loss reporting.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="djwmrs8">
+		<a class="author" href="https://www.reddit.com/user/GoOtterGo" target="_blank">GoOtterGo</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Something you know, something you have, something you are. Those are the three types of security. </p>
+<p>With a card <em>edit: and the aforementioned ATM pin</em> you check two of those (have and know), so the individual security of each can be less. </p>
+<p>With an online password you only have one (know), so the requirements need to be a lot stricter to compensate for not checking off the other two types of security.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="djwpo8f">
+		<a class="author" href="https://www.reddit.com/user/IntermittentSteam" target="_blank">IntermittentSteam</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>My debit card PIN is required to be at least five digits.</p>
+<p>To answer your question, though, consider the situations in which you use the PIN: </p>
+<ul>
+<li>Always along with the physical card.</li>
+<li>Usually under surveillance (ATM or store camera).</li>
+</ul>
+<p>And the PIN is used for committing a transaction or verifying current balance, but it's usually not sufficient to gain access to transaction history. There's usually a limit on transactions (often a daily maximum and/or a transactional maximum, and sometimes a geographic limitation—ever had a card frozen because you forgot to tell your bank you were traveling?).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
