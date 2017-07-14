@@ -1,0 +1,108 @@
+<div class="answers">
+	<div class="answer" data-handle="dk2qj10">
+		<a class="author" href="https://www.reddit.com/user/sajatypeworks" target="_blank">sajatypeworks</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>CJK Type designer here. </p>
+<p><strong>1) Limited character set</strong>
+As others have indicated, thankfully no one has to actually design millions of characters. Actual glyph coverage depends on the needs of the font. Let's look at Microsoft as a sample (including Latin &amp; other symbol characters). </p>
+<p>Chinese (Trad / Simplified): 30,000 characters.
+Japanese: 24,000 characters
+Korean: 21,000 characters</p>
+<p>Now, the above includes a lot of glyphs that most people probably don't need. In the case of Korean, the most basic fonts can have just around 3,000 characters (just Hangul and Latin, no Hanja) and work for most scenarios. For Japanese, there’s 48 Katakana, 48 Hiragana, and about 3000 core Kanji (for literacy), which would cover a majority of scenarios. But for a company like Microsoft, a greater degree of support is necessary. </p>
+<p><strong>2) Accelerated and Semi-accelerated tools</strong>
+In the case of Korean typefaces, there are tools that help expedite the development of Hangul characters. As Korean syllable glyphs are divided up into component pieces, one can instruct the tool on where to place those components and which variant of each component to use. For some fonts there are 40+ variants of each component! With this sort of tool, building can be faster. But it won't always work for a given situation and then the work has to be done by hand. </p>
+<p>In some Japanese foundries, there is something of an ‘toolkit’ that is used with examples of the different kinds of strokes necessary for Kanji. So the digitizer (more on that later) can just drag in the one that is appropriate for a given glyph. However, as each glyph is different, there’s still quite a bit of manual tweaking necessary from there.</p>
+<p>Part of the problem with Japanese and Chinese is, like with Korean, there’s significant manual adjustment of a given radical or stroke for every character. So even if a tool was able to at least ‘assemble’ the pieces into a given glyph, you’d have to make significant manual adjustments from there. </p>
+<p><strong>3) It takes an army</strong>
+I heard a story from a friend of mine who visited a Chinese foundry. Designers would pull a Hanzi from a hat and that would be the character they have to produce. With an army of 30 people working on a single font, they’d churn through the characters until the font was complete. </p>
+<p>In one major Japanese foundry, there is a division of labor—“designers” draw the characters on paper, “digitizers” trace those drawings to digital representation, “production” takes the digital representations and produces actual fonts. All told, it is a significant operation involving a large group of people. It takes them a year to complete a single weight (say, the “Regular”) of a brand new font family.</p>
+<p>Producing these things is a TON OF WORK. </p>
+<p>A quick aside about Korean—given the existence of accelerated tools for production, these <em>can</em> be done faster than Japanese or Chinese fonts, but the best ones usually have manual edits and tweaking on an extensive number, if not all of the syllables. One Korean type designer I spoke to warned me about the use of accelerated tools—that the actual results from it are not that great. He, obviously, recommended doing everything by hand. </p>
+<p><strong>Basically:</strong></p>
+<p>1) It may not be as many characters as you think it is
+2) There are some tools for accelerating work, though a lot is still manual
+3) Usually the work is done by a group of people, over a period of time, rather than by an individual. </p>
+<p>Got more questions? Feel free to ask!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dk2rxrs">
+		<a class="author" href="https://www.reddit.com/user/Viola_Buddy" target="_blank">Viola_Buddy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'll talk Simplified Chinese, since that's what I know. The Chinese government has created <a href="https://en.wikipedia.org/wiki/Table_of_General_Standard_Chinese_Characters" target="_blank">a list of commonly used characters</a>. It contains 8105 characters; characters outside of this list are going to be very rare (and even some characters within the list are rare, like 玃, the name of a particular kind of ape, or 𫚭, which I can't even find in my dictionary).</p>
+<p>8105 is of course a much larger number than the 52 that we need for English (26 upper case, 26 lower case) that needs to be encoded. However, to <em>design</em> them, less work needs to be done. Chinese characters can be broken down into parts that are often repeated across similar words. For example, consider the word for shine 照. In the top of that character, you can see other component characters: the one for sun 日 in the top left, knife 刀 in the top right, and mouth 口 in the middle right. The bottom is four dots, a component historically derived for the character for fire 火. In all four of these cases, we can reuse these component parts in other characters that use them; the font designer only needs to design such parts once, needing only to resize them and move them around. In our example, other places we can use these four component characters are: 日 is on the left side of time 时, 刀 is on the bottom of cleave or chop 劈, 口 is on the left of eat 吃, and the modified 火 is on the bottom of hot 热, among many, many others. (For further reading, look up &quot;Chinese radicals.&quot;)</p>
+<p>It's also worth noting that font design in English is not just designing the 52 characters (and miscellaneous punctuation). It also requires logic that governs what happens when two particular characters are placed together (ligatures) - for example, <a href="https://en.wikipedia.org/wiki/Typographic_ligature#/media/File:Ligature_drawing.svg" target="_blank">this image</a> shows what might happen if a font designer thinks that f and i should be rendered differently when they are together, as in fi: these are called ligatures. An extreme case happens in Arabic, where each letter has a different beginning, middle, and ending form. Chinese does not have such complexities that it needs to encode in its font (Chinese has a square symbol for each character, including punctuation, and these characters look the same no matter what's before or after it), which mitigates the file size and design requirements. And there's the logic about &quot;where it's legal to break to a new line&quot; - it's OK to break a line after a dash or hyphen, but not after an apostrophe (unless there's a space after it). The first example below is perfectly readable but the second one is odd:</p>
+<pre><code>it's a new-
+fangled idea
+
+it'
+s a new-fangled idea</code></pre>
+<p>Again, Chinese has more simple rules regarding this, though there are still rules (you can't break right before a period, for example). But this is just a reminder that fonts are not just strings of character designs, there is also logic behind them that needs to be included.</p>
+<p>In practice, Chinese fonts also include the basic English alphabet because it's so prevalent (and indeed in informal contexts some English letters are used alongside Chinese characters), and also there are use-cases where people will need obscure characters not in the list of 8105 commonly used characters, so font designers will need to include some such characters, too. So it is indeed far more work to create a Chinese font than an English one. It's just probably not quite as bad as you think it is.</p>
+<p>By the way, I'm pretty sure there are similar official lists of &quot;commonly used characters&quot; in Taiwanese-style Traditional Chinese, Hong Kong-style Traditional Chinese, and Japanese (and maybe even Singapore-style Simplified Chinese? I'm not too sure). But the difference between these writing systems is a different topic.</p>
+<p>(Disclaimer: I'm not a font designer, so the details might be slightly off. However, I am a Chinese speaker, albeit not quite a fluent one, and more importantly a Unicode enthusiast, if that's a thing, so the overall ideas should be correct. Anyone with more knowledge on the subject, feel free to elaborate on anything or point out anything that's incorrect.)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dk2n8e5">
+		<a class="author" href="https://www.reddit.com/user/tumnaselda" target="_blank">tumnaselda</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I am Korean. While you asked for Japanese and Chinese, Korean fonts also requires Chinese characters and thus have similar problem with these languages. Usually, characters for these 3 languages are packed into one font, called CJK fonts.</p>
+<p><strong>First of all: do you know what fonts look like?: A list of characters</strong></p>
+<p>To put it simple, each font is a gigantic list of letters. If you input a letter, and there's no matching character in that list, it will not come out right; sometimes a blank will show, sometimes a different, typically weird looking letter will show.</p>
+<p><strong>Let's count the number of letters needed!: 50,000</strong></p>
+<p>Japanese also uses their own letters, which are around ~50. But they come in both smaller form and bigger form, which doubles the count. Still, the number is somewhat reasonable.</p>
+<p>Now for the main show! there are a lot of Chinese characters, as you already know. The problem gets even worse because China, Japan and Korea uses different kind of Chinese letter! Chinese uses the most simplified form (along with their own traditional form), Japanese uses less simplified form, and Korean uses the most complicated form. So you need 3~4 sets of Chinese characters.</p>
+<p>And Korean letters are a bit more complicated; the written Korean, Hangul, consist of ~30 components, and you are supposed to combine 2~6 of them into one letter. Which means there can be a lot of letters you can make, if there's no limitations!</p>
+<p>That's why font creators came up with a limit of their own. For Korean, they picked ~10,000 the most used letters in Korean, and put only those letters in the font. The same goes to the Chinese letters, although I don't know the number. I suppose you can google &quot;Chinese font character numbers&quot; for more detail.</p>
+<p>Let's say there are 10,000 for Korean and 4 set of Chinese character. It ends up with 50,000. Add the Japanese letters and it ends up with 50,100. Whatever, let's go with 50,000.</p>
+<p>By the way, that's the reason CJK fonts are way bigger than Alphabet-only fonts. Google is distributing Noto Sans series of fonts. If you're interested, look for Noto Sans English and Noto Sans CJK; and compare their size. CJK fonts are way, way bigger than English fonts.</p>
+<p><strong>How the fuck do they design letters?: Divide and Conquer</strong></p>
+<p>So, do the font designers design each and every letter in the font? All 50,000?</p>
+<p>The simple answer is, yes, they design every single letter in the font. </p>
+<p>But there is an easy way.</p>
+<p>Did I mention that Korean consist of components? Similar principle goes for Chinese, although they are way crazier than Korean. There is ~10 components in Chinese, but in the most complicated case, Chinese characters are combined of 1~30 components.</p>
+<p>But, still, they are made of components. <strong>Which means you can set a design standard</strong>. Once you make a design standard, you can use them as building blocks for more complicated letters. Like LEGO! When you combine each components into a letter, components might slightly change their shapes. Still, you can make more design standards for them, and use them for the letter.</p>
+<p><strong>Even easier way!!: Don't design them at all</strong></p>
+<p>There's yet another much easier way to deal with this problem. Buy a cheap font license, and recycle them.</p>
+<p>Let's say you're designing a font specifically for Japanese and Japanese only. You don't need 50,000 letters; you only need 100 for Japanese letters and 10,000 for Japanese-Chinese letters. If you give up on the rest you can cut off 80% of the work! And that's how it's typically done. There are a lot of Chinese-only, Japanese-only or Korean-only fonts.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dk39rij">
+		<a class="author" href="https://www.reddit.com/user/nsonnad" target="_blank">nsonnad</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I am a reporter at Quartz and a little while ago wrote a <a href="https://qz.com/522079" target="_blank">very in-depth article</a> on the process of creating Chinese fonts, by interviewing typographers in Taiwan. I'll answer your questions with my own knowledge and some quotes from that piece.</p>
+<p>The short answer is that it takes a lot of work, and a lot of time. As I wrote in the piece:</p>
+<blockquote>
+<p>An experienced designer, working alone, can in under six months create a new font that covers dozens of Western languages. For a single Chinese font it takes a team of several designers at least two years.</p>
+</blockquote>
+<p>But while there are many more glyphs—units of a typeface—needed for Chinese and Japanese, the number does not go to the &quot;millions.&quot;</p>
+<blockquote>
+<p>The default set for English-language fonts contains about 230 glyphs. A font that covers all of the Latin scripts—that’s over 100 languages plus extra symbols—contains 840 glyphs, according to Březina. The simplified version of Chinese, used primarily in mainland China, requires nearly 7,000 glyphs. For traditional Chinese, used in Taiwan and Hong Kong, the number of glyphs is 13,053.</p>
+</blockquote>
+<p>It's important to know two things about Chinese characters to get a better understanding of how this works:</p>
+<ul>
+<li>Characters share a large number of &quot;strokes&quot;—the same motion or parts of characters are common across dozens of characters.</li>
+<li>Even so, each character has slightly different aesthetics, and &quot;balance&quot; is of critical importance. So even if the strokes are the same, a character may need to be tweaked (there are many graphical examples showing this in my piece)</li>
+</ul>
+<p>The short answer is that CJK font design is much more of a team effort, while Western fonts can be designed chiefly by a single person or small number of people. There is much more detail in my story, I encourage you to read it, but let me know if y'all have other questions.</p>
+<p>Edit: Please be aware that there is a huge amount of misinformation in this thread. For one thing, the numbers of characters being thrown around randomly are based on <em>number of Chinese characters that have ever existed</em>, not on numbers of glyphs needed to create a font. As I say above, a simplified Chinese font needs close to 7,000 glyphs, although there are by some accounts 100,000 total Chinese characters. Second, as u/sajatypeworks rightly points out, while characters do normally share many strokes, that does not help much in terms of completing a character for a typeface. Each stroke or radical appears slightly differently in the context of a given character, so automated tools cannot do much more than collect the relevant strokes or radicals for a designer to manipulate. As you can see from some of the images in my piece, collecting these strokes and radicals is hardly the end of the process, which is why the font has to go through dozens of iterations before completion.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dk2m9kl">
+		<a class="author" href="https://www.reddit.com/user/SciviasKnows" target="_blank">SciviasKnows</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Amateur font designer here. Did you know an LGC (Latin-Greek-Cyrillic) font, like the one you're reading right now, can also include hundreds or thousands of characters? Most widely used LGC fonts cover all 3 of those alphabets. There are a lot of variations on most of the letters with various accents, and of course those numbers are doubled with capitals and lower case. Different weights and styles must be designed (e.g. italic, condensed, bold; some professional fonts have over half a dozen weights with 50+ combinations, like Extra Light Expanded Italic). Also many fonts have extra characters that are ligatures (two letters stuck together), the most common being ff, fl, and fi. (The font I'm typing in on my mobile, Dosis, has ligatures for 2 of those 3.) Unlike CJK (Chinese-Japanese-Korean) fonts, which are generally monospaced, LGC fonts must be kerned, meaning each and every pair of characters (including punctuation and both letter cases) must be manually assigned a value for how close together they should be in order to &quot;look right&quot;. This has to be done by a human eye because a machine has no idea what &quot;looks right&quot;.</p>
+<p>TL:DR; It's a lot of work to design a font for a language like Chinese, but it should be appreciated that &quot;a ton of work&quot; is also normal for fonts used for English. That's why many quality fonts are <em>not</em> free.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
