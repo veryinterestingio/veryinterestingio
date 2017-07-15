@@ -1,0 +1,117 @@
+<div class="answers">
+	<div class="answer" data-handle="dk4n5uk">
+		<a class="author" href="https://www.reddit.com/user/jamesd5th" target="_blank">jamesd5th</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'll try to give an eli5 but keep in mind it's an highly abstracted answer
+which grows in complexity step by step. </p>
+<p>To answer your question you need to look at the structure of the CPU itself.</p>
+<ol>
+<li>
+<p>we'll start from a <strong>transistor</strong> that like you said act as a <strong>switch</strong>.
+it can transmit electric power (logic '1') or block it (logic '0').</p>
+</li>
+<li>
+<p>arranging those switches in a specific structure gives you a <strong><a href="https://en.wikipedia.org/wiki/Logic_gate" target="_blank">logic gate</a></strong>.</p>
+<p>the basic gates are called: <strong>NOT, OR, AND</strong> and they translate one state of their input to another state of their output.</p>
+<p>NOT (0-&gt;1, 1-&gt;0), OR(00-&gt;0, 01-&gt;1, 10-&gt;1, 11-&gt;1), AND(00-&gt;0, 01-&gt;0, 10-&gt;0, 11-&gt;1)</p>
+</li>
+<li>
+<p>arranging those gates together in a bigger structure can give you more complex gates
+such as <strong>NAND,NOR,XOR,XNOR</strong>, each with it's own translating function.</p>
+</li>
+<li>
+<p>arranging those complex gates together can also give you a <strong><a href="https://en.wikipedia.org/wiki/Memory_cell_\(binary\)" target="_blank">memory cell</a></strong> that can store the state of '0' or '1' over time. (keeping the output the same while ignoring change in the input)</p>
+</li>
+<li>
+<p>combining memory cells together with logic gates gives you a <strong><a href="https://en.wikipedia.org/wiki/Finite-state_machine" target="_blank">state machine</a></strong>.
+the state machine look at it's input and current state in memory and decide what the output
+and the next state of the machine should be.</p>
+</li>
+<li>and finally we got to <strong>the CPU</strong> itself which consist of some logic (big structure of logic gates that do some specific function) and a complex  state machine the control how the CPU should work and what logic function should be activated in the current cycle of the machine.</li>
+</ol>
+<hr />
+<p>last note:</p>
+<ol>
+<li>
+<p>this description will not be complete without considering the <strong>software</strong> part of things.
+a software is a set of instructions that is stored in memory.  each instruction is represented by  binary code consists from '1' and '0'. for example &quot;0101 1111 1101&quot;.</p>
+</li>
+<li>the state machine inside the CPU (the one that control and choose the logic to be used) runs in a loop that is called an <strong>instruction cycle</strong>. each instruction cycle consist of 3 stages: <strong>fetch, decode, execute</strong>. fetch means to read the next software instruction from memory. decode means to decode what this instruction means. for example 0101 in the instruction above means add two numbers. the numbers are 1111 and 1101.
+and execute means to activate the needed logic in order to make the computation.
+in this example the state machine will activate the logic that can add two numbers.</li>
+</ol>
+<hr />
+<p>so <strong>tl;dr</strong>: the cpu has a state machine (lots of switches) inside of it that toggle all the other logic (lots of other switches) and do the work that the software ('1' and '0' in memory) tells it to do. </p>
+<p>and you get your dank meme.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dk4iw8t">
+		<a class="author" href="https://www.reddit.com/user/kouhoutek" target="_blank">kouhoutek</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Trying to describe a CPU directly with switches is like trying to explain why bacon tastes good with protons and electrons.  You first need to understand how the smaller components are organized into larger, more complex ones, on multiple levels.</p>
+<p>We start with transistors, which can act as switches.  A handful of switches can be used to make logic gates.  They typically have two or more inputs and one output.  The ouput represents a basic logical operation on the inputs, like AND or OR, or more commonly the negated version, NAND and NOR.</p>
+<p>A handful of logic gates can be used to form basic digital circuits.  A flip-flop circuit can store a single binary digit, and an adder can add two binary digits together.  Chaining eight of these together lets you perform operations on bytes. </p>
+<p>Digital circuits can be used to create the building blocks of the CPU.  The arithmetic logic unit (ALU) performs basic data manipulation operations.  The memory unit moves data from memory to cache, and cache to registers, where it can be operated on directly by the rest of the CPU.  The control unit loads instructions from memory, then interprets the instructions as a sequence of memory and ALU operations.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dk4e709">
+		<a class="author" href="https://www.reddit.com/user/LondonPilot" target="_blank">LondonPilot</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The person who built the processor - for example Intel - decides what each combination means.</p>
+<p>The CPU understands a language called &quot;machine code&quot;. Machine code is made up of a series of 0s and 1s.</p>
+<p>There is a command called MOV, which moves a piece of data from one place to another. MOV isn't actually machine code, because it's not 0s and 1s - it's something roughly equivalent to machine code but (slightly) more human-readable called &quot;assembly language&quot; The machine code equivalent of MOV is 10001001. (Actually, there are lots of variants of MOV, and this is the first half of one of the variants, but I'm trying to keep it simple.)</p>
+<p>This code was decided by Intel. They could have chosen any code they wanted, but this was the code that they chose.</p>
+<p>So they built a group of switches so that there are a group of 8 wires, and when the 1st, 5th and 8th of those wires all have a signal on them, but the others don't, the switches turn on the &quot;move&quot; circuit.</p>
+<p>Then, they built thousands of other groups of switches that work in a similar way. They also built switches that actually do the moving, or the adding, or the subtracting, or whatever else needs to be done, and connected them up so that they get turned on and off when they're required.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dk4vhnz">
+		<a class="author" href="https://www.reddit.com/user/DRich222" target="_blank">DRich222</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>&quot;Like you're five&quot;...</p>
+<p>It's going to be impossible to provide an accurate answer to a five year old, so let me give you a similar question that has an answer a five year old can understand:</p>
+<p>How does a car know where to go?  A car is just a bunch of gears and belts, but who or what decides if it should go left or right or faster or slower?</p>
+<p>What the car does depends on what the driver does.  If the driver turns the steering wheel, there's basically a series of gears and belts that push and pull each other so that the two front wheels change the direction they are pointing.  If the driver presses the brake levers, those levers push other things that eventually push the brakes onto the wheels.  The levers and gears and belts and wheels are built so that when one lever or wheel is moved a certain way, it moves a whole bunch of other stuff that causes the intended result.  You could call the collects of gears and belts and so on &quot;systems&quot; in the car.  The systems are structured so that the gears push each other as they should.</p>
+<p>There are also systems in a CPU.  CPU systems are set up so that when a 1 goes in at a certain spot, and a 0 at another spot, and another 0 at a third spot (these would be inputs), they produce a series of 0s and 1s somewhere else (outputs).  This would be like a person turning the steering wheel left while pressing the gas (inputs).  The car moves to the left (output).  It's the structure (the shape and positioning of the parts of the CPU) that make it turn inputs into outputs.</p>
+<p>So fundamentally, what makes the CPU produce 1 and 0s?  The structure of the CPU.</p>
+<p>Going much beyond that requires you be at least 6 to understand the answer.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dk4oafc">
+		<a class="author" href="https://www.reddit.com/user/mangoloss" target="_blank">mangoloss</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>So the answer to this question is basically an undergraduate major. But maybe one approach to help you understand is to look at a very basic pseudocode and see how it turns into machine code and see how the machine handles the machine code.</p>
+<blockquote>
+<p>result = 1 + 1</p>
+<p>print result</p>
+</blockquote>
+<p>simple right? in my pretend assembly language (each architecture has its own assembly language, which is basically a human readable representation of machine code) my code might turn into this:</p>
+<blockquote>
+<p>add 1,1,r1</p>
+<p>push r1</p>
+<p>jump print</p>
+</blockquote>
+<p>the assembly code has an intermediate step where those names are translated into physical values.</p>
+<blockquote>
+<p>add 1,1,0x1</p>
+<p>push 0x1</p>
+<p>jump 0x8</p>
+</blockquote>
+<p>i'll explain what exactly happened here in a bit. but further translating this into machine code you might get something like:</p>
+<blockquote>
+<p>00 01 01 01</p>
+<p>01 01 0000</p>
+<p>10 1000 00</p>
+</blockquote>
+<p>So now you can sort of describe this in terms of switches. The first two ones and zeros are the control part. they determine where the rest of the signal goes. they do this with a variety of and/or gates combined in a special way to give a unique output for each possible combination (in this scenario, there are 4 possible paths, 00, 01, 10, 11 - just because of how i designed the machine code) this is called a multiplexer. so whenever the first two bits are 00, the rest go to the adder circuit in our cpu, which only has the function to add two numbers. the two numbers are the next 4 signals, each number being 2 bits so it can be either 0,1,2 or 3. here we are adding 1+1. the last two bits are what i earlier called &quot;r1&quot; for register. its just a piece of memory. it again goes to a multiplexer and enables writing to that particular register (we have 4 registers because its a 2 bit address) though the physical wires will be connected to all the memory spots. &quot;enabling&quot; a write is just another sort of manipulation of and/or gates.</p>
+<p>you can look at the next instruction now, and see the first two bits are different. that means they go to a totally different circuit, which operates on the same principles as above. holy crap im bad at explaining to 5 year olds so i'll stop the post now</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
