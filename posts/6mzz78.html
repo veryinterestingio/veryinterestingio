@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: Why software developers use error codes and not just say exactly what is wrong?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="6mzz78">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/6mzz78/eli5_why_software_developers_use_error_codes_and/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/6mzz78" onclick="return false">Why software developers use error codes and not just say exactly what is wrong?</a>
+		</h2>
+		<!--<span class="date">2017-07-16</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Was playing Watch_Dogs 2 and was unable to connect to the servers. Instead of just saying &quot;No internet connection&quot; It says a bunch of gibberish.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dk60zoj">
+		<a class="author" href="https://www.reddit.com/user/knightsbridge-" target="_blank">knightsbridge-</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Two reasons: One, error codes usually aren't intended to be seen by end users. In an ideal world, only a dev will ever see an error code, and the vast majority of their user base have no way to resolve the ones they will see even if they do see them.</p>
+<p>Two, sometimes the program <em>can't</em> tell you what happened, really. Especially in the case of crashes, which are literally cases where a situation has occurred that the program has no code for and thus can't continue. In the case of an 'unable to connect' error, there are so many things that could have gone wrong, and the program isn't necessarily equipped to tell you which one is the culprit. Did your internet go down? At what point? Are the servers too busy? Are the servers down? Did you fail some kind of authentication? It might not actually be able to tell.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dk5oeu0">
+		<a class="author" href="https://www.reddit.com/user/billbixbyakahulk" target="_blank">billbixbyakahulk</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Error codes report on the specific fault or symptom, not &quot;what is wrong&quot;.  </p>
+<p>An error code that translates to &quot;Couldn't connect to server&quot; for example, means that <em>for some reason</em> the program couldn't connect.  </p>
+<p>What exactly is wrong in that scenario?  It could be that your internet connection is down, the server is down, both are down, you turned off your wifi antenna, there's a memory leak in the program's net code, the net code is poorly written, and many, many more possibilities.  </p>
+<p>So often, the error will be accompanied by <em>common</em> &quot;what is wrong&quot; causes of the error code &quot;Check your internet connection, check your firewall, server busy/try again later, etc.&quot;</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dk5zcxs">
+		<a class="author" href="https://www.reddit.com/user/alstegma" target="_blank">alstegma</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>When you write a program, you add error detection at different locations in your code for all the kinds of things that can potentially go wrong. The error code basically tells the programmer what error detection mechanism was triggered so he knows where to look in his code. These errors are pretty specific and often don't translate 1:1 into something users can make sense of. An explaination for users can (and should) be added though when it makes sense (especially if the user can fix the problem themself, as in your example).</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dk5o44b">
+		<a class="author" href="https://www.reddit.com/user/azirale" target="_blank">azirale</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The gibberish is generally helpful to the developers, and usually comes in the form of a 'stack trace'. This is essentially the list of functions the program was working on at the time that the error occurred. There will also be a technical cause for the error, probably due to trying to access an invalid part of memory.</p>
+<p>If the error comes up enough they can try to catch it and replace the gibberish with something helpful to the user, but that relies on coding a way of catching that particular error, handling it, and recovering the program to a usable state. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dk5o289">
+		<a class="author" href="https://www.reddit.com/user/Azated" target="_blank">Azated</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Drop a bucket of water and then explain to a cactus exactly what just happened, including the events leading up to you dropping a bucket and what you were thinking about while it happened.</p>
+<p>Or you could just shrug, say &quot;error code 346-17&quot; and move on with your day while the cactus farmer cleans up the mess.</p>
+<p>An error code is not for the user, its for the developer/programmers. They have a list of codes that mean various things that the end user couldn't do anything with even if they understood the problem.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/6mzz78" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
