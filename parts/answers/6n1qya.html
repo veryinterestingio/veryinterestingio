@@ -1,0 +1,61 @@
+<div class="answers">
+	<div class="answer" data-handle="dk73di4">
+		<a class="author" href="https://www.reddit.com/user/kamiraa" target="_blank">kamiraa</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I got this guys :) I used to be a lead hardware engineer for the ISS Electrical Power System.
+<a href="http://imgur.com/a/SUbSU" target="_blank">http://imgur.com/a/SUbSU</a></p>
+<p>If you guys have any detailed questions feel free to ask me here (suggested by a user)</p>
+<p><a href="https://www.reddit.com/r/IAmA/comments/6n717c/iama_ex_lead_nasa_engineer_for_the_international/" target="_blank">https://www.reddit.com/r/IAmA/comments/6n717c/iama_ex_lead_nasa_engineer_for_the_international/</a></p>
+<p>This is my first Reddit post , someone forwarded this to me.</p>
+<p>Ok . . . . so quick answer we have a SPG (Single Point Ground in the whole vehicle).</p>
+<p>The ISS is an interesting vehicle, we have 8 power channels, each with their own solar panels which is on primary power (160V DC), these primary channels get stepped down further to a very fine regulated secondary power 124.5V DC.</p>
+<p>Let's explore a single power channel. The primary power is regulated by SSUs (Sequential Shunt Units), we basically turn on or off individual strings to from a single power channels solar array until we regulate very fine at 160VDC. There are 1 for each power channel on ISS (8).</p>
+<p>Downstream of this ORU (On Orbit Replacement Unit) is a DCSU (Direct Current Switching Unit) , this DCSU acts as a giant circuit breaker and an availability to cross strap channels during emergencies and maintenance. There are 1 for each power channel on ISS (8).</p>
+<p>But . . . because the ISS is constantly going through solar events and the arrays are getting shaded we have a battery backup that &quot;Kicks In&quot; to regulate the 160Volts when the solar panels can't do it alone. These BCDU (Battery Charge Discharge Units) charge when excess energy is available and discharge when needed. There are a 3 PER power channel on ISS (24 in total) and multiple batteries that are used in these banks (the number depends if we are using new li-ion or older style batteries). These BCDUs attempt to regulate at at a lower voltage than the SSU. Because everything flows through these BCDUs (they are always charging or discharging) the batteries contain the positive and negative.</p>
+<p>Downstream further is the MBSU (Main Bus Switching Unit), this is the unit that ties all the BCDUs and DDCUs together (explaining next).</p>
+<p>Downstream further is the DDCUs (DC to DC Converter Units). These units will buck or boost voltage up or down to regulate 124.5V DC.</p>
+<p>You can NEVER tie two power channels together. You would have converters fighting eachother trying to keep up with regulation. They must always be isolated. But there is a common SPG (Single Point Ground) in the center of the vehicle at the Z1 Truss.
+Ok so the interesting question. The vehicle can travel in different orientations depending on what the operations of the vehicle are. Because of this as the solar arrays are adding drag to the vehicle or collecting electrons you are building a voltage potential at different points of the vehicle. A concern early on became well what happens as the vehicle travels through plasma clouds . . . . if there is a large voltage potential difference between the ISS and this cloud would &quot;Lightning&quot; strike and destroy the vehicles hull. .</p>
+<p>The PCU (Plama contactor Unit) was created that is housed near the Z1 truss. These units started out in full 24/7 operation at the beginning of the space station. They take a noble gas (Xenon), inject the excess electrons , and expel them from the vehicle, which keeps the charge of the ISS under control. It was determined at a later date that this lightning event was not credible to destroy the ISS hull, but it was enough to shock an astronaut during an EVA. Because of such we turn these ORUs on during EVA operations (There are 2 per ISS).</p>
+<p>Ask questions :) This is fun !!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dk65nza">
+		<a class="author" href="https://www.reddit.com/user/Oznog99" target="_blank">Oznog99</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>So the frame is surely a common &quot;ground&quot;.  </p>
+<p>However, it can still build up an absolute charge.  It's not readily observable by most meters and won't make current flow.  But it can have unexpected effects, as observed in an electrostatic voltmeter with the 2 gold-foil leaves which repel each other when touching a DC charged conductor. </p>
+<p>I suppose you could build a high voltage DC generator and end it in a negatively charged needle to shed negative charge.  But will that even work in a vacuum?  And is there any way to shed a positive charge?  Well, I suppose you could use a DC generator to charge some sort of mass and then eject the charged mass, but that seems wasteful and creates space-junk hazards.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dk606ki">
+		<a class="author" href="https://www.reddit.com/user/Malak77" target="_blank">Malak77</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><a href="https://www.reddit.com/r/askscience/comments/1p4bug/how_would_you_ground_electronics_in_the_space/" target="_blank">https://www.reddit.com/r/askscience/comments/1p4bug/how_would_you_ground_electronics_in_the_space/</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dk67b47">
+		<a class="author" href="https://www.reddit.com/user/jarjarbrooks" target="_blank">jarjarbrooks</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This was an interesting question. Makes me wonder what happens on resupply docking missions. Since both ships have their own chassis ground that could be many volts of potential difference. I read through the other thread and found that question asked a few times but never addressed.</p>
+<p>You could potentially be talking about 100's of volts of difference between the two &quot;grounds&quot; all being equalized at once when the 2 vessels touch.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dk6b1wd">
+		<a class="author" href="https://www.reddit.com/user/thatserver" target="_blank">thatserver</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Is this different than how you ground electronics in cars?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
