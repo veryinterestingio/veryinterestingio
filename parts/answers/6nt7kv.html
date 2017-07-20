@@ -1,0 +1,56 @@
+<div class="answers">
+	<div class="answer" data-handle="dkc91ue">
+		<a class="author" href="https://www.reddit.com/user/abjuration" target="_blank">abjuration</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>To start at the beginning. A Fourier series is a sum of sine and cosines with different frequencies that approximates a function. The more frequencies you include, the better the approximation. The exact weightings of the sine and cosine terms depends which function you are trying to approximate. The weightings are called the amplitudes or Fourier elements (FE's). </p>
+<p>The Fourier transform (FT) can be thought of as a way of working out the amplitudes needed to fit a Fourier series to a function, and then arranging those amplitudes in order of frequency.</p>
+<p>The discrete Fourier transform (DFT) is an algorithm that computes the FT for discrete data. Naively, you can just replace all the integrals with sums (as integrals are just the continuous version of sums). To compute the DFT you need to solve <a href="https://wikimedia.org/api/rest_v1/media/math/render/svg/4acd06c17c67fbd594f829780417ab92c978cfc0" target="_blank">this</a> equation for each data point. This is slow because if you have N data points, you need N^2 operations (N for the sum in the equation*N data points).</p>
+<p>The FFT refers to any algorithm that can compute the discrete fourier transform (DFT) in O(n log n) time. One algorithm relies on the fact that each DFT of N data points can be found by combining the DFTs of half the data (i.e. N/2 data points). Finding the DFT of two shorter lists is a factor of four more efficient that finding the DFT of one large list, (N/2)^2 vs N^2 operations. Repeating this process until you only have one number in each list gives you an O(n log n) complexity. This 'divide and conquer' method is used in other algorithms such as quicksort.</p>
+<p>Technically with the above algorithm you can only compute FFTs when N is a power of two, but there are other algorithms without this limitation and you can always pad your data to the nearest power of two.</p>
+<p>I hope that quick overview is helpful.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dkcgqog">
+		<a class="author" href="https://www.reddit.com/user/zpinkz" target="_blank">zpinkz</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Here's how I like to think about it, and how I would probably try to explain it to a 5 year old...</p>
+<p>The Fourier Transform is a bit like series of mathematical sieves. Each sieve has uniquely sized/shaped holes, you put your input through each of the sieves one-by-one, each time you do, only the parts of the what you put in that match the particular size/shape of the holes in your sieve come out the bottom.</p>
+<p>My background is in audio/acoustics, so here is a simplistic description in that context:</p>
+<p>You have a digital time domain signal, you bring along your set of sieves that have holes that are shaped/sized corresponding to different sine or cosine functions oscillating at different frequencies (the number of sieves depends on the N points of your [F]FT operation). As you take the time domain signal and pass it through each of the sieves in turn, the amount of your signal that passes through each of the sieves tell you how much of a particular frequency is present in your input signal.</p>
+<p>If you plot those amounts (y-axis) against the sieve hole shapes/sizes or frequency bins (x-axis) you'll have a frequency domain representation of your original time domain signal.</p>
+<p>I'm a bit rusty now that I've left academia, but that is the way I always thought about it. Hopefully it's a useful analogy!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dkbzpcp">
+		<a class="author" href="https://www.reddit.com/user/stereoroid" target="_blank">stereoroid</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you mean the FFT specifically, and not Fourier Transforms in general, the FFT algorithm uses specific Matrix maths operations to divide the data in to smaller and smaller matrices repeatedly, until the result is a frequency spectrum. The inverse operation works too. It only works on a chunk of data that is exactly a power of 2 in size (256, 512, 1024 etc.), because of the way it divides the data repeatedly. Matrix mathematics and Fourier transforms in general are beyond ELI5 explanations, sadly.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dkc1ygu">
+		<a class="author" href="https://www.reddit.com/user/yes_its_him" target="_blank">yes_its_him</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Like any Fourier transform, we are recording something, such as a one-dimensional signal (sound) or two-dimensional signal (image) not by recording the values that occur at each time or in each position, but, rather, by remembering how these values fluctuate as time and position change.</p>
+<p>If something changes rapidly, then it has a higher frequency component than if it mostly stays the same.  If you are transforming sounds with bass, vocal and cymbals (or a picture of a building with doors/windows and also siding / bricks), you will have a variety of detail changing at different frequency.  By combining enough various frequencies in the right combination, you can recreate any original sequence.   </p>
+<p>For the purposes of ELI5, a Fast Fourier transform just does this, well...faster.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dkc0pxm">
+		<a class="author" href="https://www.reddit.com/user/anon_1349" target="_blank">anon_1349</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The fast Fourier transform is a version of the discrete Fourier transform which is computationally much faster. Normally a Fourier transform involves performing the operation on a function. However often instead of a continuous function you have a set of discrete data points which have been sampled. This is where the discrete Fourier transform comes in handy.</p>
+<p>When calculating the discrete Fourier transform, there are certain symmetries that arise. The Danielson-Lanczos Lemma states that a discrete fourier transform of length <em>N</em> can be written as a sum of two discrete fourier transforms of length <em>N/2</em>. One is formed from the even points, the other from the odd points. By applying this recursively the number of calculations required becomes exponentially smaller.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

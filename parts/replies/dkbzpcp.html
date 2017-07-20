@@ -1,0 +1,27 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/catbatmanshe" target="_blank">catbatmanshe</a>
+			<div class="markdown"><p>I think the Fourier Transform is actually pretty easy to understand if we are talking continues time (which the FFT is discreet time if I am not mistaken and is more complicated than the CTFT). It is literally just dividing the signal by different sinisoids of different frequencies and displaying how prominent it is in the signal. The fourier series is in my opinion harder to explain because then you have to get into orthogonal basis and linear algebra haha.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AbrasiveLore" target="_blank">AbrasiveLore</a>
+			<div class="markdown"><p>To understand the Fourier transform, start with the theory of distributions (specifically tempered distributions). This is the ideal environment in which the math is clean and concise. Warning: this is not simple math. Doing this properly requires knowledge of several advanced undergraduate towards graduate level topics: measure theory and (basic) functional analysis at the very least. This is something you can achieve on your own, but will be easier within a rigorous course structure with a knowledgeable instructor. </p>
+<p>If you’re totally new to math and physics, the Laplace transform may be easier to learn (in the space of functions) to get started with transforms. It’s one sided (0 to infinity, negative time is ignored), which makes it a bit simpler to think about when you’re getting started. You can also apply it in the context of electrical engineering to solve circuit networks for a straightforward motivating application. </p>
+<p>You can then understand the various DFT algorithms as clever ways to compute “samplings” of the continuous approach. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Berzerka" target="_blank">Berzerka</a>
+			<div class="markdown"><p>There are FFT algorithms that handle data of any size, even prime numbers, in O(n log n).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gprime311" target="_blank">gprime311</a>
+			<div class="markdown"><p>Don't those just append data until the number is even? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Arianity" target="_blank">Arianity</a>
+			<div class="markdown"><p>If they're keeping O(n log n) speed they're likely zero-padding to the next power of 2. Evens are good, powers of 2 are better (and it doesn't hurt your result). There are some specialized FFTs for things like certain primes (or powers of 3,5) that are almost/as fast, but they're special cases</p>
+<p>You don't have to pad, but it's almost always the most efficient, barring some weird circumstances (like memory constraints). </p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
