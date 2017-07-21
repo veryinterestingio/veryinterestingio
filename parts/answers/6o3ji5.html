@@ -1,0 +1,77 @@
+<div class="answers">
+	<div class="answer" data-handle="dkeezbi">
+		<a class="author" href="https://www.reddit.com/user/torpedoguy" target="_blank">torpedoguy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>First on the issue of image sizes: Less pixels means less data right from the start. Say you've got a 256×240 image. Compare to how many pixels you'll have on a 1920x1080 screen! Additionally, there were less colors, less information required for the positioning and values of each pixel.</p>
+<p>But the tricks; oh the tricks.</p>
+<p>The NES split an image up into tiles and blocks. 4 8x8 tiles made one 16x16 block, which also means that your image could be done as hexadecimal values. Every memory page contained 256 tiles of 2-bit raw pixel art, but you could repeat it in various locations to save on memory. For example, by having 90% of the sky simply the same blue. Or by having NO background at all (this is also why 'black' was often a bit different from TV to TV). Or at least by repeating certain tiles quite a bit; like in the floor or walls...</p>
+<p>The NES had 64 palettes. Every palette was a selection of 3 colors plus the shared background. A single palette could be used PER block. So each tile was now just a memory page location and an allowed palette. So the image only needed to call on the 2-bit memory location of each tile, and the 2-bit palette selection of each block. And guess what? The NES? It had 2 nametables, allowing the side-by-side or top-down screen systems in so many games; this is what allowed for the illusion of scrolling, when in fact only what was on screen at the moment 'existed'.</p>
+<p>Then things get even trickier. Some games would exploit the flickering or the 60hz refresh rate. Recca, for example, is famous for making everything exist only one out of two frames, allowing them to clutter the screen with even more explosions and enemies with two alternating 30fps images 'superimposed' as far as our eyes can tell. Sprites had their own additional memory page, and were used for anything that isn't in the background: Megaman's life-bar was a sprite, while your hearts and bombs remaining were in the background in LoZ. Sprites had their own locations on the screen independent of the background, which was great for the life-bar as you moved, though.</p>
+<p>An individual sprite had to be 8x8, but the result was that they made most characters into multiple sprites. This limited many games though, because there was a limit of 8 per horizontal line. Anything over that limit would not be rendered, which was going to be problematic when you already had 2 or 3 per line all making the main character. This was the source of much flickering; once player actions were taken into account there was little the developers could do sometimes.</p>
+<p>There was also the other hardware to take advantage of: The TV! By doing loops or timeouts on certain parts of the graphics, you could take advantage of the tv's vertical blank (these become blatant sometimes once emulated on newer screens) to refresh the picture unit, to change the timing or loop certain cells, which could allow animation or certain effects on the cheap RAM-wise, although those instructions required quite a bit of knowhow and timing to look good. Combined with bank-switching (the art of just reassigning the image to a new position in memory) you could make stuff like waterfalls or 'moving-relatively-to-the-camera' backgrounds.</p>
+<p>Pretty much every game had its tricks; those are just the very basics and the small handful I know from reading in depth on some of my favorite games.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dkeyv0q">
+		<a class="author" href="https://www.reddit.com/user/madmarcel" target="_blank">madmarcel</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Simple answer:</p>
+<p>Careful coding and reuse of game assets.</p>
+<p>Those old games were written in super optimized assembly code, and the old consoles had dedicated chips/hardware that made things easier and required less code.</p>
+<p>Think special chips to handle 2D sprites and music.</p>
+<p>But, we still do this kind of coding today. Next month in fact.</p>
+<p>Next month <a href="http://www.js13kgames.com" target="_blank">js13k</a> is on again, a yearly gamejam where game developers get together and make a game using javascript that fits into a 13kb zip file.
+(There's also js1k. Yup, 1024 bytes is all you get)</p>
+<p>A theme is announced on the 13th of August and developers have a month to make a game using that theme.</p>
+<p>Participation is open to all, entry is free, and you get a t-shirt for your effort.</p>
+<p>For reference, here's some selected entries, these are all 13kb or less.
+Yes, each game listed here is smaller than the thumbnails on the page.</p>
+<p>These all play in your browser, no plugins or anything required. (Best to use Chrome)</p>
+<p><a href="http://js13kgames.com/entries/evil-glitch" target="_blank">Evil Glitch</a></p>
+<p><a href="http://js13kgames.com/entries/road-blocks" target="_blank">Road Blocks</a></p>
+<p><a href="http://js13kgames.com/entries/its-a-lovely-day-for-a-drive" target="_blank">It's a lovely day for a drive</a></p>
+<p><a href="http://js13kgames.com/entries/super-pinto-rally-racer" target="_blank">Super Pinto Rally Racer</a></p>
+<p>And my own
+<a href="http://js13kgames.com/entries/super-dragon-rescue" target="_blank">Super Dragon Rescue</a></p>
+<p>A Super Mario 2 clone with 5 levels and a firebreathing end-boss.</p>
+<p>These entries are all open source, so you can actually check the code and see what kind of tricks people use to minimize their code and game assets.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dkecilm">
+		<a class="author" href="https://www.reddit.com/user/Jaquarius" target="_blank">Jaquarius</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Graphics take up way more room than any code, even MIDIs and similar music formats are basically written in code rather than recorded.</p>
+<p>For graphics, they had very limited palettes. A sprite that uses 4 colors out of a total of 16 also takes less room than the same sprite using 4 colors out of 256 or more possible colors. </p>
+<p>Think of it as a checklist you have to fill with Yes's or No's (1s or 0s), would you rather answer 16 questions or 256? No matter how many No's there are, they still have to be accounted for. Blue? Yes, Red? No, Yellow? ... Now imagine that list for every single pixel, thankfully the resolution of most retro sprites was a limited 32x64 or similar.</p>
+<p>This is why Bitmaps could be saved in 16 colors or 16 bits (In a graphical sense &quot;Bits&quot; is half the number of colors that can be shown at a single time and the square of the total number of colors IIRC).</p>
+<p>Additionally, that 16 color palette is shared among every sprite and tile (platforms, blocks, etc). If each sprite is only allowed to have 4 colors you can group them together with other sprites that use the same colors, monochrome them and paint-by-number.</p>
+<p>You can see this effect malfunctioning in some romhacks, enemies might be the wrong color because they're in a level that has a different section of the palette assigned.</p>
+<p>All these space saving measures with graphics and palettes made the difference between kilobytes and megabytes. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dkedxv8">
+		<a class="author" href="https://www.reddit.com/user/defakto227" target="_blank">defakto227</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Adding on to the above they also used a lot of very clever hardware and programming  hacks that allowed them to do more with less.</p>
+<p>It's very interesting some of the techniques they used with color pallets swapping in games that lead to visual bugs we all saw growing up with the system but didn't know why.</p>
+<p>A great example of a seemingly intended trick is in space invaders where the bugs speed up as you kill more. This wasn't on purpose.  The hardware was actually limited so there wasn't enough resources to move all of them at once at one speed. As you killed then more resources became available so they just moved faster.</p>
+<p>Edit</p>
+<p>Yes I know space invaders wasn't nintendo. Just using it as an example of clever hacks. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dkeo16c">
+		<a class="author" href="https://www.reddit.com/user/PayJay" target="_blank">PayJay</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Here's my attempt at a much more 5 year old explanation than what's been given:</p>
+<p>First of all: When you look at a screen cap of an older video game, it's actually being upsized. Each pixel rendered by the system becomes many pixels when it's viewed on our displays of today. If you viewed the screencap image in actual pixels in terms of the resolution the game was rendered at, it would take up only a small tiny corner of your screen. So there is A lot of your data size difference right there. </p>
+<p>Secondly: the system didn't render a full still image for every frame. It rendered objects as they came into view and moved them around the screen and swapped them out accordingly. Getting deeper here leads you into the more in depth explanations already laid out in this thread. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
