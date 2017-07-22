@@ -1,0 +1,75 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bertalay" target="_blank">bertalay</a>
+			<div class="markdown"><p>Thanks makes sense.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/brazzy42" target="_blank">brazzy42</a>
+			<div class="markdown"><p>It's also a very, very bad idea if you actually need results that are unpredictable.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/unscot" target="_blank">unscot</a>
+			<div class="markdown"><p>If you need unpredictable results, you don’t use a pseudo-random number generator.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/reitau" target="_blank">reitau</a>
+			<div class="markdown"><p>Excel is great when doing this as dates are stored in big numbers. But I use time as well depending on what I'm doing - I sometime use the count of the sampleset too as that often changes - basically the more differing elements you can seed your algorithm with the better!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/brazzy42" target="_blank">brazzy42</a>
+			<div class="markdown"><p>Which is a really, really dumb idea, because timestampts can be pretty damn predictable.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TBNecksnapper" target="_blank">TBNecksnapper</a>
+			<div class="markdown"><p>it's pretty hard to get a seed you want in exact milliseconds, just 1 millisecond off will give a completely different random outcome. </p>
+<p>Over internet the random ping time added from when you do an action until it arrives at a server that needs to generate a random number, so it's pretty damn hard to predict anything from that. </p>
+<p>So unless you generate the random numbers yourself it's mostly fine to use time stamps. And if you generate them yourself it's probably because you need random numbers yourself, so you have no reason to tamper with them!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/brazzy42" target="_blank">brazzy42</a>
+			<div class="markdown"><blockquote>
+<p>it's pretty hard to get a seed you want in exact milliseconds, just 1 millisecond off will give a completely different random outcome.</p>
+</blockquote>
+<p>So you just try a few thousands of milliseconds beofer and after. Trivial for a computer to do.</p>
+<p>Something that really happened: an online poker website used timestamps to initialize their RNG. Someone got a copy of their source code, so the attacker could reproduce the sequence of calls to the RNG. Now all they needed was to joing a new live game so they knew roughly when the RNG for that game was initialized and compare the sequence of calls the real site generated with what their copy of the code produced when running with a few thousand different initialization values, and very quickly they saw which sequence matched what they saw and then knew exactly who got which cards in the past and the future.</p>
+<blockquote>
+<p>So unless you generate the random numbers yourself it's mostly fine to use time stamps.</p>
+</blockquote>
+<p>No, it is absolutely not fine if your system's security depends on those random numbers being unpredictable. It's in fact criminally incompetent.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sacundim" target="_blank">sacundim</a>
+			<div class="markdown"><p>Back in the 90s there was a <a href="https://people.eecs.berkeley.edu/~daw/papers/ddj-netscape.html" target="_blank">very famous hack of the encryption in the Netscape web browser</a> that came down to the fact that they seeded the RNG with the current time (in <em>microseconds</em>), process ID and parent process ID.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Roccondil" target="_blank">Roccondil</a>
+			<div class="markdown"><p>The problem is that individual timestamps have pathetically low entropy. There are just not enough milliseconds in the day for any kind of security-relevant application.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Speicherleck" target="_blank">Speicherleck</a>
+			<div class="markdown"><blockquote>
+<p>Which is a really, really dumb idea, but timestampts can be pretty damn predictable.</p>
+</blockquote>
+<p>It's definitely not a dumb idea. Because you can use a RNG at a ton of different things. Depends on the application. It is a perfectly fine solution for a match-3 game to generate the board or for lots of different random game events. Is also a perfectly fine solution for software testing solutions, for adding randomness in various shaders and a ton of other use cases. It's pretty dumb to use it for online gambling, encryption, security or other sensitive systems as such. But so are a ton of other perfectly acceptable use cases.</p>
+<p>Declaring that something is a dumb idea just because you can use it in some use cases where you shouldn't is quite a bad idea.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ViskerRatio" target="_blank">ViskerRatio</a>
+			<div class="markdown"><p>If your application needs <em>true</em> randomness, then you don't use pseudorandom number generators (and thus don't need a seed).  So you're making an objection akin to say &quot;this is cinder block is terrible as a hammer&quot;.  Yes, you can use a cinder block as a hammer.  But it's not designed for that purpose, so you should really just go get an actual hammer.</p>
+<p>For true random numbers, you normally just tap into natural entropy in some fashion.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/brazzy42" target="_blank">brazzy42</a>
+			<div class="markdown"><blockquote>
+<p>If your application needs true randomness, then you don't use pseudorandom number generators (and thus don't need a seed). </p>
+</blockquote>
+<p>Yes, you do. Everyone does, no real security expert would suggest otherwise. They just use a good RNG and seed it properly.</p>
+<blockquote>
+<p>So you're making an objection akin to say &quot;this is cinder block is terrible as a hammer&quot;.</p>
+</blockquote>
+<p>No, my objection is akin to say &quot;If you're gonna use a hammer, hold it by the handle, not by the head&quot;.</p>
+<blockquote>
+<p>For true random numbers, you normally just tap into natural entropy in some fashion.</p>
+</blockquote>
+<p>Almost nobody needs &quot;true&quot; random numbers, they just need something that cannot be predicted by an attacker. A single timestamp is too easy to predict, but many unrelated timestamps of network packets and user input quickly exceed the ability of an attacker to try.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

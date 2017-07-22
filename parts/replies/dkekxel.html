@@ -1,0 +1,75 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/postingfrommyphone" target="_blank">postingfrommyphone</a>
+			<div class="markdown"><p>This is (or should) only be true for applications with absolutely no security implications at all, like single-player games. It can also fail if done improperly or on a system that only tracks time since startup; I remember hearing of several classic console games that were &quot;randomly generated&quot; but if you pushed the right buttons at the right time you could end up with a predictable game.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OneAndOnlyJackSchitt" target="_blank">OneAndOnlyJackSchitt</a>
+			<div class="markdown"><blockquote>
+<p>This is also why sometimes new programmers run into a trap where they seed a RNG then generate a number, than seed it, then generate over and over again. If you do that you'll get the same number. Because the same seed is used because the time hasn't had a chance to change yet.</p>
+</blockquote>
+<p>I ran into this recently. I made some code which was going to generate a random alphanumeric string for use as a database key. It's a similar system to the one used by Imgur and Youtube. Basically, the id is non-sequential as I want to make automated rips of the data difficult by having large gaps randomly. Anyway, the prototype code I came up with was this:</p>
+<pre><code>Module Module1
+    Public Function GenerateRandomString(length As Byte)
+        Dim ValidChars = {"0"c, "1"c, "2"c, "3"c, "4"c, "5"c, "6"c, "7"c, "8"c, "9"c, "A"c, "B"c, "C"c, "D"c, "E"c, "F"c, "G"c, "H"c, "I"c, "J"c, "K"c, "L"c, "M"c, "N"c, "O"c, "P"c, "Q"c, "R"c, "S"c, "T"c, "U"c, "V"c, "W"c, "X"c, "Y"c, "Z"c, "a"c, "b"c, "c"c, "d"c, "e"c, "f"c, "g"c, "h"c, "i"c, "j"c, "k"c, "l"c, "m"c, "n"c, "o"c, "p"c, "q"c, "r"c, "s"c, "t"c, "u"c, "v"c, "w"c, "x"c, "y"c, "z"c, "-"c} '62 chars
+
+        Dim a As New List(Of Char)
+        Dim rnd As New Random
+
+        For i = 1 To length
+            a.Add(ValidChars(rnd.Next(63)))
+        Next
+
+        Return System.Text.Encoding.ASCII.GetString(System.Text.Encoding.ASCII.GetBytes(a.ToArray()))
+    End Function
+End Module</code></pre>
+<p>Looks alright, right? Works fine when you run it... once...</p>
+<p>Run it 2000 times and it generates 5 or 6 instances of the same string and then 5 or 6 instances of another string and so on until it hit 2000.</p>
+<p>I modified one word in the code:</p>
+<pre><code>Module Module1
+    Public Function GenerateRandomString(length As Byte)
+        Dim ValidChars = {"0"c, "1"c, "2"c, "3"c, "4"c, "5"c, "6"c, "7"c, "8"c, "9"c, "A"c, "B"c, "C"c, "D"c, "E"c, "F"c, "G"c, "H"c, "I"c, "J"c, "K"c, "L"c, "M"c, "N"c, "O"c, "P"c, "Q"c, "R"c, "S"c, "T"c, "U"c, "V"c, "W"c, "X"c, "Y"c, "Z"c, "a"c, "b"c, "c"c, "d"c, "e"c, "f"c, "g"c, "h"c, "i"c, "j"c, "k"c, "l"c, "m"c, "n"c, "o"c, "p"c, "q"c, "r"c, "s"c, "t"c, "u"c, "v"c, "w"c, "x"c, "y"c, "z"c, "-"c} '62 chars
+
+        Dim a As New List(Of Char)
+        Static rnd As New Random
+
+        For i = 1 To length
+            a.Add(ValidChars(rnd.Next(63)))
+        Next
+
+        Return System.Text.Encoding.ASCII.GetString(System.Text.Encoding.ASCII.GetBytes(a.ToArray()))
+    End Function
+End Module</code></pre>
+<p>When you create a new instance of Random, it bases the seed on the current time in milliseconds. This function can run 5 or 6 times in under a millisecond so each time, it creates a new Random object with the same seed. The trick in the second code block is to change Dim to Static. Basically, the first time the function runs, it acts the same way as Dim. Each subsequent time, the same instance as last time is used instead of creating a new one.</p>
+<p>(In case you ask why the Length parameter is a Byte, I intend for this to be used only to generate short strings. Why allocate more memory than you need? Please correct me if my logic is flawed.)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TBNecksnapper" target="_blank">TBNecksnapper</a>
+			<div class="markdown"><p>You aren't really supposed to feed a seed each time, it's enough to give an initial seed, then the rng algorithm should generate a new seed for each call</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thudly" target="_blank">thudly</a>
+			<div class="markdown"><p>I once created photo encryption program that shuffled the RGB values of every pixel in the image by a random amount. Then it could be decrypted by doing the same thing in reverse if you had the original seed. </p>
+<pre><code> x1 = rng.next(255);
+ x2 = rng.next(255);
+ x3 = rng.next(255);
+
+ pixel(i).r += x1;
+ if(pixel(i).r &gt; 255) pixel(i).r -= 255;
+ pixel(i).g += x2;
+ if(pixel(i).g &gt; 255) pixel(i).g -= 255;
+ pixel(i).b += x3;
+ if(pixel(i).b &gt; 255) pixel(i).b -= 255;</code></pre>
+<p>Something like that, if I recall. Then I just reverse the process for decrypting the photo.</p>
+<p>I discovered something interesting while testing it. Though the scrambled image was completely unrecognizable from the original, I saw repeating patterns in the &quot;noise&quot; of the scrambled images. It almost looked like a seamlessly tiled background sometimes. That shouldn't have happened in an image where the source wasn't a repeating pattern or one flat color, but it did. I have no idea how, but it was fascinating. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mason11987" target="_blank">Mason11987</a>
+			<div class="markdown"><p>well now I'm going to test this out to see and figure out.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thudly" target="_blank">thudly</a>
+			<div class="markdown"><p>It's a result of the pseudo random number generator not quite being random. I saw a guy on YouTube demonstrate this with pure numbers spitting out patterns. But it was interesting to see this visually in bitmap noise.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

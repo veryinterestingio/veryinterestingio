@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: Random number generators work off seeds but how is the seed itself randomly generated?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="6o4q7p">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/6o4q7p/eli5_random_number_generators_work_off_seeds_but/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<a href="/posts/6o4q7p" onclick="return false">Random number generators work off seeds but how is the seed itself randomly generated?</a>
+		</h2>
+		<!--<span class="date">2017-07-22</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Random number generators work off seeds but how is the seed itself randomly generated?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dkekvmd">
+		<a class="author" href="https://www.reddit.com/user/ViskerRatio" target="_blank">ViskerRatio</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you don't want to explicitly seed the RNG to produce predictable results, you normally set it with a timestamp.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dkemfyh">
+		<a class="author" href="https://www.reddit.com/user/smurfsoldier42" target="_blank">smurfsoldier42</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are only 3 sources of truly random data: nature, humans, and time.  Most modern computers are using processors that have a native entropy collection instruction, for example Intel chips can gather a word of random data from thermal fluctuations in the silicon chip.  Human input also turns out to be very random, the mouse wiggle to get entropy is surprisingly good.  The last source is the amount of time it takes to do something.  A common method is to create a race between threads such that the ordering of execution is nondeterministic.  These are all ways to seed a cryptographically secure random number generator.  </p>
+<p>EDIT: It seems many of you take issue with the words &quot;truly random&quot;, a sentiment I can appreciate, so let me be a bit more specific.  I mean truly random in terms of computational complexity.  There very well might be sources that are &quot;more random&quot; getting into quantum effects, however if the data produced from these sources are computationally indistinguishable from traditional sources then why does it matter? In terms of a sequence of independently distributed bits, they are equally random by all computational means we currently have.  So I guess I'll say a source of truly computationally random data instead then to be precise. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dkekxel">
+		<a class="author" href="https://www.reddit.com/user/Mason11987" target="_blank">Mason11987</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Generally the seed is the number of milliseconds since &quot;zero&quot; in whatever system is being used to measure time.  Jan 1st 1970 is a common start point for systems.</p>
+<p>This means that each time you run it the seed will be different, so it's close enough to random. </p>
+<p>If you want to ensure it differs even if is seeded on different computers at the same time you can take the time and combine it with something unique to the computer, like a MAC Address, but usually the time does the job.</p>
+<p>This is also why sometimes new programmers run into a trap where they seed a RNG then generate a number, than seed it, then generate over and over again.  If you do that you'll get the same number.  Because the same seed is used because the time hasn't had a chance to change yet.</p>
+<p>The right way to do this is seed once, then generate many numbers.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dkemekr">
+		<a class="author" href="https://www.reddit.com/user/Euthy" target="_blank">Euthy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>As others have said, it's usually something that changes regularly and is difficult to guess. Current time to the millisecond is a common one.</p>
+<p>However, there are many others, and I have a funny story about one to give you an example.</p>
+<p>Remember Mario Kart DS? I got into a routine where whenever I was going to poop, I'd bring my DS with me and play a one-player four-race series with random tracks.</p>
+<p>Every single time I'd do it, I'd follow the same sequence of operations: open the DS, open the game, select the right options, select the same character, start.</p>
+<p>I quickly discovered something: the game was using some component of that as its random seed. It might have been current total number of button presses, for example. I discovered this because <em>every</em> single time, the game chose the same four tracks, in the same order.</p>
+<p>If you have Mario Kart DS and a DS handy, try it. Turn on the game and play a four-course randomly-picked sequence. Close the game, reopen it, and do the exact same sequence of operations: it'll choose the same courses. I don't know if they're the same for everyone or if everyone gets their own set, but it should be the same for your game time and time again.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dkekw2v">
+		<a class="author" href="https://www.reddit.com/user/Concise_Pirate" target="_blank">Concise_Pirate</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's not <em>truly</em> random, it's just very hard to guess. Typically the seed generator will start with the time of day in nanoseconds, and then combine other unpredictable garbage like the status of the nearest disk drive. </p>
+<p>For hardcore randomness: I've seen one program that asks the user to wiggle the mouse randomly, and another one that looks at the &quot;noise&quot; (random electrical signals) coming from a webcam in the dark.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/6o4q7p" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

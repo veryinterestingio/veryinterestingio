@@ -1,0 +1,54 @@
+<div class="answers">
+	<div class="answer" data-handle="dkekvmd">
+		<a class="author" href="https://www.reddit.com/user/ViskerRatio" target="_blank">ViskerRatio</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you don't want to explicitly seed the RNG to produce predictable results, you normally set it with a timestamp.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dkemfyh">
+		<a class="author" href="https://www.reddit.com/user/smurfsoldier42" target="_blank">smurfsoldier42</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are only 3 sources of truly random data: nature, humans, and time.  Most modern computers are using processors that have a native entropy collection instruction, for example Intel chips can gather a word of random data from thermal fluctuations in the silicon chip.  Human input also turns out to be very random, the mouse wiggle to get entropy is surprisingly good.  The last source is the amount of time it takes to do something.  A common method is to create a race between threads such that the ordering of execution is nondeterministic.  These are all ways to seed a cryptographically secure random number generator.  </p>
+<p>EDIT: It seems many of you take issue with the words &quot;truly random&quot;, a sentiment I can appreciate, so let me be a bit more specific.  I mean truly random in terms of computational complexity.  There very well might be sources that are &quot;more random&quot; getting into quantum effects, however if the data produced from these sources are computationally indistinguishable from traditional sources then why does it matter? In terms of a sequence of independently distributed bits, they are equally random by all computational means we currently have.  So I guess I'll say a source of truly computationally random data instead then to be precise. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dkekxel">
+		<a class="author" href="https://www.reddit.com/user/Mason11987" target="_blank">Mason11987</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Generally the seed is the number of milliseconds since &quot;zero&quot; in whatever system is being used to measure time.  Jan 1st 1970 is a common start point for systems.</p>
+<p>This means that each time you run it the seed will be different, so it's close enough to random. </p>
+<p>If you want to ensure it differs even if is seeded on different computers at the same time you can take the time and combine it with something unique to the computer, like a MAC Address, but usually the time does the job.</p>
+<p>This is also why sometimes new programmers run into a trap where they seed a RNG then generate a number, than seed it, then generate over and over again.  If you do that you'll get the same number.  Because the same seed is used because the time hasn't had a chance to change yet.</p>
+<p>The right way to do this is seed once, then generate many numbers.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dkemekr">
+		<a class="author" href="https://www.reddit.com/user/Euthy" target="_blank">Euthy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>As others have said, it's usually something that changes regularly and is difficult to guess. Current time to the millisecond is a common one.</p>
+<p>However, there are many others, and I have a funny story about one to give you an example.</p>
+<p>Remember Mario Kart DS? I got into a routine where whenever I was going to poop, I'd bring my DS with me and play a one-player four-race series with random tracks.</p>
+<p>Every single time I'd do it, I'd follow the same sequence of operations: open the DS, open the game, select the right options, select the same character, start.</p>
+<p>I quickly discovered something: the game was using some component of that as its random seed. It might have been current total number of button presses, for example. I discovered this because <em>every</em> single time, the game chose the same four tracks, in the same order.</p>
+<p>If you have Mario Kart DS and a DS handy, try it. Turn on the game and play a four-course randomly-picked sequence. Close the game, reopen it, and do the exact same sequence of operations: it'll choose the same courses. I don't know if they're the same for everyone or if everyone gets their own set, but it should be the same for your game time and time again.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dkekw2v">
+		<a class="author" href="https://www.reddit.com/user/Concise_Pirate" target="_blank">Concise_Pirate</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's not <em>truly</em> random, it's just very hard to guess. Typically the seed generator will start with the time of day in nanoseconds, and then combine other unpredictable garbage like the status of the nearest disk drive. </p>
+<p>For hardcore randomness: I've seen one program that asks the user to wiggle the mouse randomly, and another one that looks at the &quot;noise&quot; (random electrical signals) coming from a webcam in the dark.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
