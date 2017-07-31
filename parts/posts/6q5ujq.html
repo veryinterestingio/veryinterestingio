@@ -1,0 +1,88 @@
+<li class="post" data-handle="6q5ujq">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/6q5ujq/eli5_rar_zip_7z_etc_why_are_there_so_many_ways_to/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/6q5ujq" onclick="return false">.rar .zip .7z etc why are there so many ways to compress files? Is there a meaningful difference between them from the end users perspective?</a>
+		</h2>
+		<!--<span class="date">2017-07-31</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: .rar .zip .7z etc why are there so many ways to compress files? Is there a meaningful difference between them from the end users perspective?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dkv9crf">
+		<a class="author" href="https://www.reddit.com/user/dick_farts91" target="_blank">dick_farts91</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Some really great answers here thanks guys!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dkuwku7">
+		<a class="author" href="https://www.reddit.com/user/kouhoutek" target="_blank">kouhoutek</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Most it is due to the history of data compression on the PC.</p>
+<p>The first data compression programs appeared in the late 1980s, and through the 1990s there a number of competing standards, zip, rar, lha, and arj among them.  Zip emerged the winner and became the de facto standard for a while. </p>
+<p>About that same time, the inventor of the zip format, Phil Katz started to have mental health and substance abuse issues, and the program was no longer being improved.  PC's transitioned from command line DOS to GUI Windows, and rar beat zip at making the jump by making WinRAR, the first widely used compression program for Windows.  This allowed RAR to get back into the race, and both WinZip and WinRAR remained popular.  </p>
+<p>However, the rar algorithm was patented, while Katz had opened the zip format to everyone.  As file compression started to become embedded into other programs, zip regained the crown once again.</p>
+<p>Things didn't change much until 2008, when Igor Pavlov released 7zip.  It was a lightweight, but powerful program that handled all common compression formats, and offered a new format, 7z, with improved compression ration.</p>
+<blockquote>
+<p>Is there a meaningful difference between them from the end users perspective? </p>
+</blockquote>
+<p>Not really.  WinZip and 7zip are free, WinRAR is commercial, but you can get fully functional &quot;trial&quot; version for free...no one ever pays for it except corporations.  The zip format is more widely used, rar might be what you have at work, and most people think 7zip is currently the superior program.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dkutbq7">
+		<a class="author" href="https://www.reddit.com/user/mmmmmmBacon12345" target="_blank">mmmmmmBacon12345</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They're all very similar but make tradeoffs. They're all lossless compression generally based off the algorithms of Lempel and Ziv</p>
+<p>Zip is basic, it just uses DEFLATE and gives you decent compression and moderate usage of resources.</p>
+<p>Rar is also pretty basic, but it's algorithm is proprietary, this is why WinRAR always tries to make you pay. Another fairly middling algorithm</p>
+<p>7z gives you lots of options. By default 7z will use LZMA2 which gives you good compression but takes a fair amount of resources to do, but also few to undo. Other options are DEFLATE just like .zip uses, you'll get the same results. You can use LZMA, the predecessor to LZMA2, fewer resources used but a bigger slider. You can also tweak a bunch of dials and knobs with 7z, it can give you really really good compression as long as you're willing to wait a few minutes for it to finish, it can also give you light compression if you just need a bundle now</p>
+<p>Rar should never be used. Zip will live on as long as WINZIP ships with Windows, but 7zip is really where it's at these days, you're generally not resource limited on a modern computer so even pretty good compression is faster than poor compression used to be</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dkuu9gd">
+		<a class="author" href="https://www.reddit.com/user/tgolsson" target="_blank">tgolsson</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Yes! There is a significant difference between  difference algorithms and how they work, and what they are good for. </p>
+<p>If you have a text that is very long but very repetitive, you can use <strong>dictionary</strong> compression. Each word you see you put into a list, and replace the word with the position in the list. When you want to decompress, you read each number and find out which word it was. You can also do this for letters using something called <strong>huffman coding</strong>, </p>
+<p>Another way of doing the same thing is to instead tell the reader to look somewhere else. Most songbooks do this: instead of repeating the refrain they simple tell you to go back to where it was printed first! </p>
+<p>You can also make it like a rebus: start with the first word, and then for each following word tell the reader what needs to change the next word. This is called <strong>delta coding</strong>. This is not practical for actual text, but very good for images where you can say how much more/less red the next pixel is. </p>
+<p>A compression algorithm combines these different ideas to create a very specialized tool. The most specialized ones are only used for one thing: PNG for images, MP3 for music. They can theoretically be used for other things, but it would not be useful. Others are useful in more situations, but not as efficient as the specialized ones. They also require more or less time because of this. If you have to check each word in a list it is really slow, but your refrain is instant! Solving the rebus is slow for words, but quick for pixels in an image: more red, less blue.</p>
+<p>As an example, try to use the &quot;refrain-compression&quot; on an image: it would work on a chessboard but not on a sunset, because each &quot;refrain&quot; is different!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dkvnqs3">
+		<a class="author" href="https://www.reddit.com/user/disstopic" target="_blank">disstopic</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In the PC / DOS world, before the public internet, in the BBS days, boards generally offered zip files.  The arj format became popular in the warez scene, and many an evening was spent downloading 1.44MB arj files at 14.4K then 28K.  The advantage of arj over zip was that it could create a multi volume archive - that is if you had to compress say 3mb, it could be split into disk1.arj and disk2.arj, both fitting on the floppies available at the time.</p>
+<p>When 56k and the public internet came out, usenet and newsgroups became popular, and rar became the standard of choice.  Both modems and usenet could be flakey, and the files you downloaded might have contained errors or be missing parts.  With rar, you could not only do a multi-volume split, but also create parity files.  The posts on usenet might have contained disk1.rar, disk2.rar and disk3.rar, but also disk1.par and disk2.par.  The parity files were much smaller than the rar files, but allowed magic to happen.  If you'd download disk1-3.rar and there was some problem with disk2.rar, the un-rar tool could use a parity file to rebuild the missing content and repair your download.</p>
+<p>As DSL and cable internet came about, connections became more reliable so the use of multi-part archives dwindled.  But if you go to usenet to this day you will see massive archives broken up into CD or DVD size, and parity files included with the post.</p>
+<p>So yes, as others said, there were improvements in the compression algorithms along the way, but I believe the biggest reason arj then rar were adopted were their multi archive ability and parity.</p>
+<p>In UNIX land, before zip, there was tar, which was designed to create a file that could be indexed when stored on tape.  It didn't compress, just archive.  Zip was later commonly used to compress tar files, so you'd see .tar.gz being a common format.  Tar is still popular in the Linux / UNIX world, it does have some advantages, especially as tape is still being used as slow access storage for massive, huge data collections.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/6q5ujq" onclick="return false"><span>show</span></a>
+</li>
