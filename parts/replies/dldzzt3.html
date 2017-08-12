@@ -1,0 +1,104 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfb-" target="_blank">mfb-</a>
+			<div class="markdown"><blockquote>
+<p>and how long before all eclipses on earth will only be annular?</p>
+</blockquote>
+<p>~600 million years according to <a href="https://web.archive.org/web/20100312030853/http://sunearthday.nasa.gov/2006/faq.php" target="_blank">this NASA estimate</a>.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/vintage2017" target="_blank">vintage2017</a>
+			<div class="markdown"><p>And 600 million years ago, there were no annular eclipses, only total?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jumbobie" target="_blank">Jumbobie</a>
+			<div class="markdown"><p>The estimate you are looking for is the amount of time ago that the angular size of the Moon at furthest distance was equal to that of the sun.</p>
+<p>So we are looking for a time when the moon's minimum angular size was 3 arcminute 13 arcseconds larger. Which would a slightly smaller change than the 3 arcminute 29 arcsecond decrease required to make all eclipses annular.</p>
+<p>So we are, right now, are about the halfway point between the point of all totality and all annular. Assuming the change is somewhat constant, which is isn't, but it's easier on the mind to make slight assumptions.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfb-" target="_blank">mfb-</a>
+			<div class="markdown"><p>I don't think it is the same time frame, but I didn't find proper estimates.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wolf_on_the_fold" target="_blank">wolf_on_the_fold</a>
+			<div class="markdown"><p>Let's see if I answer the first question.  Let's gather some data:</p>
+<p>For the sun we have some measurements:</p>
+<blockquote>
+<p>Apogee - 152 million km</p>
+<p>Perigee - 147 million km</p>
+<p>Diameter -  1.39 million km</p>
+</blockquote>
+<p>For the moon:</p>
+<blockquote>
+<p>Perigee - 362600 km</p>
+<p>Apogee - 405400 km</p>
+<p>Diameter - 3474 km</p>
+</blockquote>
+<p>So if I have my set up pictured correctly, the first annular eclipse would be when the moon at Apogee has less than the angular size of the Sun at Perigee.</p>
+<p>Take the angular size formula and calculate what this distance would be for the moon:</p>
+<blockquote>
+<p>2 arctan (DM/2 AM) = 2 arctan (DS/2 PS), solve for AM</p>
+<p>(DM/2 AM) = (DS/2 PS)</p>
+<p>AM = PS (DM/DS)</p>
+<p>= 367394 km</p>
+</blockquote>
+<p>Now there is geological evidence that the average lunar distance was about 52 R⊕ (331661 km) during the Precambrian Era; 2,500 million years BP.</p>
+<p>Simple Linear regression yields </p>
+<blockquote>
+<p>Average distance: 384000 − 331661 = m(<del>2.5 million</del>) -&gt; m = 0.02</p>
+<p>Apogee: 405400 - 367394 = 0.02 x -&gt; x = 1900300</p>
+</blockquote>
+<p>So the first annular eclipse was about <del>1.9 million</del> 1900 million years ago.</p>
+<p>Edit: Thank you, helpful stranger.  I was off by several orders of magnitude.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DrunkFishBreatheAir" target="_blank">DrunkFishBreatheAir</a>
+			<div class="markdown"><p>You say 2500 million years, but then in your 'regression' you use 2.5 million. Is that a mistake or am I misunderstanding what you did.</p>
+<p>Anyway, assuming the moon's drift is linear is pretty sketchy, I don't think that works (also that's not what a linear regression is). The torque on the moon is stronger when the moon is closer, so its drift outward should be slowing down, meaning the first annular eclipse was probably well before the time you gave.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jenbanim" target="_blank">jenbanim</a>
+			<div class="markdown"><p>Specifically, tidal forces go as 1/r^3 , since it's the differential of gravity which goes as 1/r^2 . The tidal power should be proportional to the rate of change of the moon's distance. So:</p>
+<p>dr/dt = A * r^( -3)</p>
+<p>To horrify the mathematicians in the crowd, I'm going to treat dr/dt as a fraction and re-arrange to get:</p>
+<p>dr A * r ^( 3) = dt</p>
+<p>(We can let 1/A = A because it's an unknown constant). Integrate this to get:</p>
+<p>A*r^(4) = t + c</p>
+<p>(Letting (1/4)*A = A again) And solve for r to get:</p>
+<p>r = A*(t+c)^(1/4)</p>
+<p>(letting A=1/A) Let t=0 be the present year, so r(t=0) = 3.84E8 meters, which means:</p>
+<p>3.84E8 = A*c^(1/4)</p>
+<p>Solve for A to get:</p>
+<p>A = 3.84E8 * c^(-1/4)</p>
+<p>And the current rate of change of the moon's orbit is 3.8E-2 meters/year, so:</p>
+<p>3.8E-2 = (A/4)*(c)^(-3/4)</p>
+<p>Substitute from the equation above to get:</p>
+<p>3.8E-2 = 9.60E7 * c^(-1)</p>
+<p>So c = 2.53E9 and A = 1.71e6</p>
+<p><strong>So the final equation is:</strong> r(t) = 1.71e6 * (t + 2.53E9)^(1/4) <a href="https://imgur.com/a/oR08Z" target="_blank"><strong>plotted here</strong></a></p>
+<p>Using 3.67E8 as the minimum distance for an annular eclipse (from /u/wolf_on_the_fold), I find <strong>the first annular eclipse occurred 408 million years ago</strong>. But don't put too much faith in these calculations.</p>
+<p>Some thoughts:</p>
+<ul>
+<li>I estimated the age of the Earth-moon system to 45% accuracy using a very simple tidal model and known orbital parameters. I'm pretty happy with that.</li>
+<li>This completely ignores tidal forces from the sun, and A ought to be time-dependent due to the Earth and Moon's thermal evolution and changing composition.</li>
+<li>Please god, don't let me fail the PGRE</li>
+</ul></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wolf_on_the_fold" target="_blank">wolf_on_the_fold</a>
+			<div class="markdown"><p>That is a very good point.  This problem is a bit more complex than I anticipated.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/no-more-throws" target="_blank">no-more-throws</a>
+			<div class="markdown"><p>hmm, I dig the angle of the dangle here.. but what do you get using that same math and extrapolations on when the last total eclipse would be... that value not coming close to the 600Myr estimate from NASA isn't particularly confidence inspiring on this math?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Shittynectarine" target="_blank">Shittynectarine</a>
+			<div class="markdown"><p>I think that person is finding how long ago the first annular (not total) eclipse was, the 600 million year estimate is for when the last total eclipse will be</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/viking91" target="_blank">viking91</a>
+			<div class="markdown"><p>FYI: The moon gains energy from breaking down a fast rotating earth. Called tidal breaking. As a result it is lifted 38mm per year. The number will be lower in the distant future.</p></div>		</li>
+					</ul>
+	
