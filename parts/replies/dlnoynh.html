@@ -1,0 +1,103 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/artandmath" target="_blank">artandmath</a>
+			<div class="markdown"><p><a href="https://gimletmedia.com/episode/12-backend-trouble/" target="_blank">There is a pretty good ReplyAll Episode on this, where they talk to the guy who set up the CDN for when Kim Kardashian released her butt picture on a fairly obscure magazines website.</a> </p>
+<p>That was a fairly extreme example because the website had pretty minimal views, and then everyone looked at it on the same day. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/callmefern" target="_blank">callmefern</a>
+			<div class="markdown"><p>So why hasn't Ticketmaster figured out how to do this yet? Seems like every time I try to purchase tickets for a popular show it is a total mess and people get shut out/have technical issues.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hard_pass" target="_blank">hard_pass</a>
+			<div class="markdown"><p>Because you can't cache the content for something like Ticketmaster. There has to be one source of truth when selling something like this. Otherwise you would have 1000's of people buying the &quot;same&quot; ticket at the same time.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/splashback" target="_blank">splashback</a>
+			<div class="markdown"><p>Content distribution networks are used for &quot;pre-baked&quot; files. If you have a static file, you can pre-position it closer to the users who'll be downloading it. Website images, JavaScripts, video streaming/downloading, etc. If you are serving up the exact same website to everyone, you can put the whole thing on a CDN and it will load for everyone VERY quickly.</p>
+<p>Sites like Ticketmaster have a big, big choke point: a global database of tickets, open seats, and transactions that have to be pretty consistent from moment to moment. It's a challenge to design, implement, and operate the software for transaction-oriented sites that are centered on a large database. And then there are obscure business rules! Airline sites are like this, too. Slow under normal circumstances, and challenging to scale up the systems to handle load.</p>
+<p>You can't pre-position that slow-loading response, because it has to be different for everyone (success or failure of a specific transaction). Have to wait for the database to decide how to respond, and hopefully it's having a good day.</p>
+<p>CDNs are like running a donut delivery service with only one item on the menu -- very fast delivery times possible. Database-driven sites are like custom-tailored burgers / sandwiches -- it's going to take a lot longer for a custom-built item.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rdrunner_74" target="_blank">rdrunner_74</a>
+			<div class="markdown"><blockquote>
+<p>So why hasn't Ticketmaster figured out how to do this yet? Seems like every time I try to purchase tickets for a popular show it is a total mess and people get shut out/have technical issues.</p>
+</blockquote>
+<p>The problem with a CDN is that it delivers only static content. If you book a ticket you need to talk to a database and stuff. This needs to be done on their servers</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/communistjack" target="_blank">communistjack</a>
+			<div class="markdown"><p>heres the medium post the episode referenced <a href="https://medium.com/message/how-paper-magazines-web-engineers-scaled-kim-kardashians-back-end-sfw-6367f8d37688" target="_blank">https://medium.com/message/how-paper-magazines-web-engineers-scaled-kim-kardashians-back-end-sfw-6367f8d37688</a> </p>
+<p>its a wee bit more technical</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jeffhayford" target="_blank">jeffhayford</a>
+			<div class="markdown"><p>That was a great read, not too technical at all and I appreciated the metaphors. That guy was solely responsible for holding up Kim K's butt. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/semperlol" target="_blank">semperlol</a>
+			<div class="markdown"><p>this is much more interesting if you want to find out about the tech stuff</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Muffled_Kills" target="_blank">Muffled_Kills</a>
+			<div class="markdown"><p>Can I get a link to the picture that was released? For research purposes..</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chhopsky" target="_blank">chhopsky</a>
+			<div class="markdown"><p>Former twitch engineer here, so I have some experience at how this happens.</p>
+<p>CDNs are definitely part of the answer.  While I don't know about HBO's network specifically, you need your own logic etc to go over the top of CDNs so you know what you're handing off to when and where.  It's not quite as simple as 'just farm it off to a CDN' unless you want it to perform poorly.  </p>
+<p>It's not hard to forecast bandwidth usage .. the second time.  The first time is an estimate. It's also not simply delivering a certain amount of traffic, it's also about delivering it in the right place.  Then it also becomes about understanding which links from certain providers have become saturated and affecting your routes to target networks (most clients send feedback so you know how often client buffers are emptying and thus video stops) so you workaround them by adjusting the way you advertise routes etc.</p>
+<p>It's difficult to overstate just how big the traffic is for something like this. Hell, you can usually tell if someone died based on traffic graphs from the increased flow to news sites. One of my previous jobs we had a &quot;celebrity death&quot; alert for unexpected traffic across the CDNs for news sites.</p>
+<p>Anyway my point is that like most things it's a lot more complex than 'throw it on a CDN'.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drinkpoop" target="_blank">drinkpoop</a>
+			<div class="markdown"><p>Is anyone looking at multicast, or is that a dead tech? Seems like you could multicast at say x minute intervals, buffer it on the client, and then have a ptp for filling the gap between the ptp and buffered multicast, then just use multicast for the remaining.</p>
+<p>Seems like it could save absolute oodles of bandwidth for something simultaneously watched by millions.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Potatosnipergifs" target="_blank">Potatosnipergifs</a>
+			<div class="markdown"><p>Multicast isn’t dead just niche uses like raw market data it works. Big issue with widespread multicast is building the foundation to allow it to run on your network and across any boundaries such as someone else’s network. </p>
+<p>Caching services are becoming a bigger trend for geodistro, example Netflix works with your isp and has cache deployment closer to end users at CO or Dslam etc. </p>
+<p>If you want to get goofy and say multicast works just tunnel it to everyone then you have the overhead concern there and so on. </p>
+<p>I would say unicast and more cowbell I mean caching and compression and optimizing blah blah technologies will be the answer to our ever growing demand. </p>
+<p>Love you for bringing up Mcast though!
+1&lt;3</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lrem" target="_blank">lrem</a>
+			<div class="markdown"><p>I've worked in a last-mile ISP and we did use multicast for live TV... Only from the feed provider to our own servers. From there it went, over our own network, to the clients via unicast.</p>
+<p>In general, routers are only able to support a small number of multicast trees. Thus, it is practical for pre-negotiated, high-bandwidth and long-distance transfers with a lot of receivers, like live TV with a limited number of channels. I don't really know about any other type of production deployment.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chhopsky" target="_blank">chhopsky</a>
+			<div class="markdown"><p>not on the public internet, friend.  multicast is used extensively in private networks for distribution of real-time telemetry, even voip radios.</p>
+<p>that said, any video CDN worth its salt will replicate streams between a number of points so they only send one copy over their private network, then all the clients pick it up at the edge.  and it looks suspiciously like a multicast tree.  so i guess you can consider it an implementation of the ideas behind multicast, but in unicast form?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fields" target="_blank">fields</a>
+			<div class="markdown"><p>A good chunk of HBO's setup is run by the guys over at <a href="https://www.wsj.com/articles/hbo-to-use-mlb-advanced-media-for-stand-alone-streaming-product-1418150584" target="_blank">MLB Advanced Media.</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bigjayrulez" target="_blank">bigjayrulez</a>
+			<div class="markdown"><p>What about the (however long ESPN has been doing Fantasy Football)th time?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DeepMusing" target="_blank">DeepMusing</a>
+			<div class="markdown"><p>And large scale Content Delivery Networks like YouTube, have fully automated load balancing software.  For example, if a particular YouTube video suddenly goes viral, the CDN will detect the increase demand for that video, and begin spawning copies of it and sending them to servers all over the country/world while redistributing the traffic to keep accesses to local copies as much as possible.  As the demand dies down, the system detects it and starts deleting copies to free storage space and consolidating traffic to a more limited number of sources.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Aurailious" target="_blank">Aurailious</a>
+			<div class="markdown"><p>The scale of the automation of infrastructure like that is really amazing.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thenuge26" target="_blank">thenuge26</a>
+			<div class="markdown"><p>I believe google and netflix and probably others even have automated &quot;chaos monkey&quot; programs that randomly shut down servers or kill processes in production to make sure everything fails over as it should</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ShutYourPieHole" target="_blank">ShutYourPieHole</a>
+			<div class="markdown"><p>Keep in mind that these caching servers live in the ISP's network thus keeping the majority of usage, or as much as possible, limited to the &quot;last mile&quot;.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pyrotech911" target="_blank">pyrotech911</a>
+			<div class="markdown"><p>Not necessarily inside the &quot;last mile&quot; but before the BGP peering edge.  You know, where they have to start spending money on what you do.</p>
+<p>Edit: a word</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

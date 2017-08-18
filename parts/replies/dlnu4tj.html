@@ -1,0 +1,61 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AbominableSlinky" target="_blank">AbominableSlinky</a>
+			<div class="markdown"><p>You are correct, HBO MLBAM for streaming which runs on AWS: <a href="https://aws.amazon.com/solutions/case-studies/major-league-baseball-mlbam-bamtec/" target="_blank">https://aws.amazon.com/solutions/case-studies/major-league-baseball-mlbam-bamtec/</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fingerguncontrol" target="_blank">fingerguncontrol</a>
+			<div class="markdown"><p>mlb.tv streaming is incredibly good. I frequently have a few different games going at once and it always comes in perfect and adjusts for available bandwidth on my end. The only strike against it are the blackout restrictions. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/welcometoheartbreak" target="_blank">welcometoheartbreak</a>
+			<div class="markdown"><p>They also back the PlayStation Vue streaming service. It’s a really cool organization as well. Jointly owned by all of the Major League Baseball teams, because they had the foresight long ago to put serious investment into a digital media venture. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pyrotech911" target="_blank">pyrotech911</a>
+			<div class="markdown"><p>MLBAM uses Akamai to actually farm out serving the video content.  The authentication and orchestration of the content positioning is probably what this article is referring to.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zapbark" target="_blank">zapbark</a>
+			<div class="markdown"><p>Serving &quot;static&quot; content (everyone gets the same bits when watching GoT) isn't a CPU intensive activity that requires scaling that many servers.</p>
+<p>Your major limiting factor is the size of the &quot;pipe&quot; at the datacenter.  You can't serve all of America the same files out of a single datacenter, no matter how many servers you spin up there.</p>
+<p>But for their authentication servers, you are right, they likely spin up many of those on demand to handle the HBO app's increased login requests.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/candybomberz" target="_blank">candybomberz</a>
+			<div class="markdown"><p>Don't ISP's also cache more local versions of static sites in their network ?</p>
+<p>I have heard that somewhere.</p>
+<p>Edit: I now I have read it <a href="https://geekhost.ca/supp/knowledgebase.php?action=displayarticle&amp;id=90" target="_blank">somewhere</a>.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zapbark" target="_blank">zapbark</a>
+			<div class="markdown"><p>Yup.  In the future, as fiber becomes more well adopted, I could see having Content Delivery Network devices outsourced to people's homes.</p>
+<p>Imagine buying a &quot;Netflix Refrigerator&quot;, which gives you $5/off your subscription a month as long as you keep it plugged into the internet...</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/entertainman" target="_blank">entertainman</a>
+			<div class="markdown"><p>Netflix was putting their servers in ISP data centers to get the data closer to end users and mirrored better.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cbarrister" target="_blank">cbarrister</a>
+			<div class="markdown"><p>Does it serve each and every view request 100% individually, or does it group everyone who started the show within a couple seconds and send identical streams to that mini group? Is there any advantage to doing that or is it even technically possible?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zapbark" target="_blank">zapbark</a>
+			<div class="markdown"><p>It depends on the application implementation.</p>
+<p>Most content distribution networks rely on DNS.</p>
+<p>The app says something like &quot;I want to connect to content.hbo.com to grab some data&quot;, it'll get handed back one or more IP addresses to a nearby data center.</p>
+<p>At that point, the app can continue to use the address it has, or ask again &quot;I want to connect to content.hbo.com!&quot;, and get (possibly) a new address.</p>
+<p>It is kind of like calling a calling customer service.  You get the first available representative.  If you don't like that rep, you can usually call back and get connected to a different one.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+			<div class="markdown"><p>No, it cannot group requests like that - for one, it would lead to the first request being served with a latency of the grouping window, which I wouldn't imagine to be acceptable for any customer.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bulbishNYC" target="_blank">bulbishNYC</a>
+			<div class="markdown"><p>I know some can use peer-2-peer protocols like Bittorrent, where the file is broken into chunks and software running on the box can download chunks from other users' boxes instead of the central location. This way you're seeding the movie to other users as you are watching it.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/anti_dan" target="_blank">anti_dan</a>
+			<div class="markdown"><p>I'd say cloud services is almost certainly the answer. Amazon makes bank delivering these kinds of enterprise services. It would not surprise me at all if HBO had dynamic servers with them. </p></div>		</li>
+					</ul>
+	

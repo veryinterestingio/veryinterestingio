@@ -1,0 +1,50 @@
+<div class="answers">
+	<div class="answer" data-handle="dlnoynh">
+		<a class="author" href="https://www.reddit.com/user/jesbiil" target="_blank">jesbiil</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Content Delivery Networks (CDN).  Multiple servers around the country cache the content, closest geographical or fastest is the one that serves you so not everyone is pulling from the same server.  It's not hard to forecast bandwidth usage since it is just simple data and in general most CDNs are not run near capacity so there is room for these spikes.  </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dlnu4tj">
+		<a class="author" href="https://www.reddit.com/user/249ba36000029bbe9749" target="_blank">249ba36000029bbe9749</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Many people are mentioning CDNs and that is the correct answer. However, to address your question, it is possible for a site to spin up their own servers from a cloud service company to handle sharp increases in load. CDNs are very good at delivering static content but they wouldn't be able to help if the spike were due to a huge influx of user registrations or ticket purchases.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dlnoodd">
+		<a class="author" href="https://www.reddit.com/user/LaggyOne" target="_blank">LaggyOne</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><del>Consent</del> Content delivery network (edit: was on mobile and didn't notice the auto correct). Looks like they use Level3 for this. Essentially they are paying someone else to deal with the massive bandwidth spike among other benefits. </p>
+<p><a href="http://www.prnewswire.com/news-releases/hbo-streams-game-of-thrones-season-7-using-level-3s-cdn-300488213.html" target="_blank">http://www.prnewswire.com/news-releases/hbo-streams-game-of-thrones-season-7-using-level-3s-cdn-300488213.html</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dlobjng">
+		<a class="author" href="https://www.reddit.com/user/HeWhoWas" target="_blank">HeWhoWas</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I work for a company that handles the infrastructure for a large streaming platform in Australia. CDN's are great at handling static files (pictures, videos, etc) but the majority of the workload come from things like API calls that can't be cached or change on a per-user, per-session basis:</p>
+<ul>
+<li>Can the user play this video file?</li>
+<li>Are they authenticated?</li>
+<li>What is the DRM key that is used to decrypt the potentially encrypted fragments?</li>
+</ul>
+<p>All these can't be cached to the same degree as video files. The newest GoT season started with a spectacular failure of our largest cable provider's online platform - which was due to the fact that the authentication service couldn't handle the load. So all the video files were there, all the DRM keys available, but because no one could prove who they were, there was no playback.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dlnv0hj">
+		<a class="author" href="https://www.reddit.com/user/GrahamCobb" target="_blank">GrahamCobb</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The process is generally known as &quot;playout&quot; (see the WIkipedia article).</p>
+<p>CDNs are a major part of the last step. But there is a whole massive video processing infrastructure to even get to that step from the creator supplying the content. Content acquisition systems fetch the content from wherever it is generated (for GoT it is reasonably simple but for a complex live broadcast video will be being acquired from many places over many different technologies). Then there are the transcoding servers. And don't forget ad-insertion. And eventually some streaming servers. All before you get to the CDNs.</p>
+<p>These are really big engineering projects -- each step involves large server farms, built around massive, fast storage.</p>
+<p>And sending the bits would be useless without the operational management, quality assurance and fault and performance management systems to make the whole lot work reliably.</p>
+<p>I don't know about HBO, but many broadcasters outsource playout to specialist companies you have never heard of. For example, my employer handles playout for a large European TV broadcaster.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
