@@ -1,0 +1,68 @@
+<li class="post" data-handle="6vypxb">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/6vypxb/every_computer_program_is_compiled_or_interpreted/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/6vypxb" onclick="return false">Every computer program is compiled (or interpreted) by another program, called the compiler or interpreter. This includes compilers themselves. Is there a &quot;common ancestor&quot; compiler of all high-level programs today, and if so what is it?</a>
+		</h2>
+		<!--<span class="date">2017-08-28</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I assume the first compilers were written by hand in machine code. Then subsequent compilers can be written in the language implemented by that first compiler, etc. Is there a single hand-written program that basically &quot;birthed&quot; all high-level code we use today? </p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dm45k0z">
+		<a class="author" href="https://www.reddit.com/user/myredditlogintoo" target="_blank">myredditlogintoo</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>No, not really.  The methodology of programming is similar, but there is no single ancestor.  You need to understand how the CPU works at the very low level.  It fetches data from a memory location.  That data contains a bunch of bits that represent an instruction.  That instruction can be an add, multiply, jump to a memory location, etc. - a very simple operation.  A CPU is really an ISA - an instruction set architecture.  An ISA defines what all the different bits mean - what operation they represent.  An x86 ISA is different from an ARM ISA - the different bits mean different things. (A CPU is a HW implementation of an ISA to be precise)</p>
+<p>So, when you have a CPU, in order to get a program, you need to string a bunch of these data together.  At first, sure, people would &quot;write&quot; them by hand.  Then people realized that it's convenient to write small chunks of these instructions together into &quot;procedures&quot;, which use multiple instructions to perform more complex tasks.  At some point you create enough of these to create a compiler - a program that takes a text file (assembly or C), and emits the instructions for you.  Then you can start writing a new compiler using the old compiler, etc. etc.  Just a note that assembly is simply a more readable binary, and there is a 1:1 ratio of assembly to binary instructions.  C needs to be parsed and broken down into simpler operations, but it's surprisingly close to assembly, to the point that some people call it a &quot;more elegant way of writing assembly&quot;.  This may be a stretch, but it's not a huge stretch.</p>
+<p>Anyway, that's what would have to happen if you had the first CPU, but it's not what would happen today if you created a new ISA.  If you create a new ISA and you want to write a compiler for it, you'd take an existing compiler on your PC, say, GCC, and you'd write the emitter portion for your ISA.  The parts that parse the C/C++ text files are just fine - they don't need to change.  The only part that needs to be implemented is the &quot;back end&quot; the very &quot;last&quot; portion that actually emits the instructions for the ISA.  You'd have yourself a &quot;cross compiler&quot;, because you'd run it on your PC, and use that CPU to generate the binary instructions for the new CPU.  Once that's done, you could compile the compiler itself for your new ISA using the very same compiler on your PC, and run it on the new CPU!  Fun, eh?  These days, only very small ISA-specific bits are written using assembly - and it takes a very simple compiler to translate the mnemonics of the instructions into binary.</p>
+<p>HTH </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dm461qu">
+		<a class="author" href="https://www.reddit.com/user/LeonAnon" target="_blank">LeonAnon</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Short answer: no, there is no ancestry in compilers. Most early compilers were hand-written and optimized for their specific job.</p>
+<p>That said, nowadays there are some efforts to not invent the wheel over and over again. For example, many recent compilers use <a href="https://en.wikipedia.org/wiki/LLVM" target="_blank">LLVM</a> as a common framework to build on.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dm4yf0d">
+		<a class="author" href="https://www.reddit.com/user/the_other_pink_meat" target="_blank">the_other_pink_meat</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For anybody who seriously wants to get some insight into how this is done for real, I cannot recommend <a href="https://www.coursera.org/learn/build-a-computer" target="_blank">this course</a> highly enough. It's given in 2 parts. In the first part you &quot;build&quot; a computer from the ground up using only NAND gates. It's all simulated,  of course. Then you write an assembler to generate the machine code. In part two you will add a virtual machine layer on top, write a compiler for an object oriented language and finally, develop a basic class library.  All in 12 weeks! It's a great trip. Great fun and highly rewarding. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dm4l50a">
+		<a class="author" href="https://www.reddit.com/user/tejoka" target="_blank">tejoka</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Definitely no single origin.</p>
+<p>Once you know how to make them, most of the difficulty of writing a compiler comes from making it good, not making it at all. Accurately handling all the corner cases. Diagnosing erroneous code. Optimizations.</p>
+<p>If you wanted to make a crummy compiler for a small subset of C89, just enough to compile the gcc bootstrap compiler, an experienced compiler dev could do that, in hand-written assembly, possibly in only one week.</p>
+<p>So not only where there likely many thousands of &quot;first compilers&quot; but I'm certain people have created many more since then, just for the fun of it.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dm4gdg5">
+		<a class="author" href="https://www.reddit.com/user/lendergle" target="_blank">lendergle</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Some early computers were programmed by literally flipping switches.  On one side of the panel, there would be a set of switches for the address (location in the computer's memory banks) and another for the data value.  You flipped the 1's and 0's to tell the computer where you wanted the data to go, flipped the 1's and 0's for the data (typically just 5 to 8 bits at a time!) and hit a button.  The computer stored the value where you wanted it.  </p>
+<p>After you entered enough data (instructions to the CPU are just data that the CPU reads from the memory), you flipped the switches again to set the location that was the start of your program and hit another button to run it.  </p>
+<p>Debugging was hard.  Brutally hard.  But early hobbyists were hardcore.  We didn't need no stinking monitors &amp; keyboards were for wussies.  You kids have it SO EASY these days.  </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/6vypxb" onclick="return false"><span>show</span></a>
+</li>

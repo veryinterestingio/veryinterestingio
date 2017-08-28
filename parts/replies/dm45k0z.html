@@ -1,0 +1,59 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/not_quite_foolproof" target="_blank">not_quite_foolproof</a>
+			<div class="markdown"><p>There's still <em>some</em> ancestry. It's mostly a sea of unrelated points, with no lineage, but there is <em>some</em>. At the risk of trusting StackOverflow, the original C compiler was based on, and written in B. The first B compiler was written in TMG, and the TMG compiler was written in assembly. So there's actually some lineage in the B -&gt; C compiler.</p>
+<p><a href="https://stackoverflow.com/questions/1653649/how-was-the-first-compiler-written" target="_blank">https://stackoverflow.com/questions/1653649/how-was-the-first-compiler-written</a></p>
+<p>I'm not particularly knowledgable about B, but it doesn't look like it's too different from C. This is probably why there is the connection, much easier to just adapt the B compiler to include C's features.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ameisen" target="_blank">Ameisen</a>
+			<div class="markdown"><p>Note that people have written C compilers in Assembly as well. While you can trace ancestry of the <em>first</em> compilers, those weren't necessarily the most influential. The first <em>portable</em> C compiler was written in... surprisingly... C.</p>
+<p>The first B compiler was written in TMG, but B itself was a simplified version of the BCPL language. TMG was literally... a language/compiler that was written/designed to... compile compilers.... which BCPL was also designed for.</p>
+<p>But, it's difficult if not meaningless to trace ancestry like this. Not everyone worked off of the 'first compiler'. If we are just tracing the 'C' line, then until you hit C, it's meaningless as it is fairly linear but branches based on what tools they used. B doesn't incorporate TMG functionality or concepts, it's just that TMG was used to write the compiler as TMG was literally the 'compiler compiler'. B itself was mainly an evolution of BCPL, itself an evolution of CPL, which was an expanded concept based upon ALGOL 60, and going back from there you end up in FORTRAN and, surprisingly, Plankalkül - Konrad Zuse's language which was itself based upon <em>Begriffsschrift</em> - 'Concept Script' that defined a formal system of logic in 1879 by Frege...</p>
+<p>So, language-wise, C has its furthest ancestry in:</p>
+<ul>
+<li><em>Begriffsschrift</em></li>
+<li>Speedcoding (one of the first high-level languages)</li>
+<li>IBM SSEC machine code and assembly</li>
+</ul>
+<p>So, you have a shared language ancestry based around the actual CPU and writing for it and from formal logic systems... which makes sense, since that is all a programming language is. This spreads to daughter languages like C++, which are originally expansions of C -
+C++ originating with Stroustrup's &quot;C with Classes&quot;, and originally was compiled using CPre, which was a preprocessor for C. CPre was used to compile CFront, which was the first C++ compiler, itself <em>also</em> being a fancy preprocessor for C.</p>
+<p>Nobody uses these 'first compilers' anymore. The most common C and C++ compilers in used presently are <em>gcc</em>, <em>g++</em>, and Visual C++. I'm not sure what <em>gcc</em> was originally compiled with - probably another C compiler. <em>g++</em> was originally compiled with <em>gcc</em>. Visual C++ was originally compiled using Microsoft C. Microsoft C was based on Lattice C. I do not know what Lattice C was originally compiled with - probably, like <em>gcc</em>, another C compiler.</p>
+<p>But the basis is that if you have a language like C where you want to write a new, 'good' compiler in, perhaps a standardized one... you usually will still write it in that language, but perhaps a simplified version of it. You can then bootstrap it - you can use either an older compiler, or just write a simple compiler in assembly, which isn't particularly hard for a language like C or B. So, there are likely plenty of points where the 'compiler ancestry' breaks or is just meaningless.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ObscureCulturalMeme" target="_blank">ObscureCulturalMeme</a>
+			<div class="markdown"><blockquote>
+<p>I'm not sure what <em>gcc</em> was originally compiled with - probably another C compiler.</p>
+</blockquote>
+<p>To be more precise, <em>any</em> C compiler.  Even if it's​ potentially broken in some way.</p>
+<p>The <em>gcc</em> bootstrap process first builds a simple C compiler using whatever you have available.  Then it uses what it just built to build itself again.  Then it uses <em>that</em> to build itself again, and then compares the results of the most recent two builds (they should be bitwise identical).  If all is well, that last build becomes​ &quot;the C compiler&quot; that gets installed, and is also used to build the rest of the tools (a C runtime library, everything for other languages, and so forth).</p>
+<p>Along the way, it may need to build missing pieces if your original compiler or runtime libraries are lacking, broken, insane, etc.</p>
+<p>We jumped through a lot of hoops to make sure that GCC isn't dependant on any specific other tech to get itself started.  I'm not on the project these days, but that's still a major criterion of the team.</p>
+<blockquote>
+<p><em>g++</em> was originally compiled with <em>gcc</em>. </p>
+</blockquote>
+<p><em>g++</em> was originally a shell script to call <em>gcc</em> with lots of additional options.</p>
+<p>The actual <em>gcc</em> program is just a driver that figures out what language is being used, and then calls the proper programs​ in the right order, e.g., <em>cc1</em> then <em>as</em> then <em>ld</em> as a simple example for the actual C compiler, followed by the assembler, followed by the linker.  With the right options, you can use <em>gcc</em> to compile any of the languages it knows about, but it's usually better and easier to use the specific drivers (<em>g++, gfortran,</em> etc).</p>
+<p>That was way more information than any healthy person wanted to know.  🤔</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MuonManLaserJab" target="_blank">MuonManLaserJab</a>
+			<div class="markdown"><blockquote>
+<p>The first portable C compiler was written in... surprisingly... C.</p>
+</blockquote>
+<p>And how was it compiled?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ThirdEncounter" target="_blank">ThirdEncounter</a>
+			<div class="markdown"><p>Yeah, but that's more like the history of C or history of compilers.</p>
+<p>I think OP has the notion that modern compilers were compiled by previous compilers, which in turn were compiled by old compilers and so on, until we get to the one true original compiler, be it a C one, a B one, ADA, COBOL or whatevs.</p>
+<p>That's not the case, though.  Whereas a new ISA might benefit from existing tools to create a compiler to it, I am sure many designers rather started from scratch to create <em>a</em> compiler for the new ISA, the evolved that compiler until it could compile an existing tool, or until a new end-user compiler has been developed.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Thardor" target="_blank">Thardor</a>
+			<div class="markdown"><p>Well... thanks for the flashback to my architectures class I had purged from my memory. Gotta love CS... but never enjoyed CPU architecture and compiler theory...</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CRISPR" target="_blank">CRISPR</a>
+			<div class="markdown"><p>People need to understand that the lower tha language the simpler the set, and the more tedious is programming.</p></div>		</li>
+					</ul>
+	
