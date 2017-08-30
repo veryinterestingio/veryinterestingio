@@ -1,0 +1,79 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JohnProof" target="_blank">JohnProof</a>
+			<div class="markdown"><p>Good answer! To expand on this, in the industry we call it &quot;60 cycle hum&quot;:  Electrical current flow creates a magnetic field, and transformers have cores made of ferrous metal.  So the changing alternating-current is causing the big metal cores to move a little bit in a way that matches the rate at which the current changes.</p>
+<p>The fundamental frequency is 60Hz like our power frequency, but because of a phenomenon called <a href="http://tdvib.com/magnetostriction/" target="_blank">&quot;magnetostriction&quot;</a> the transformer iron vibrates at twice that rate, or 120Hz.</p>
+<p>If an electrical load on a piece of equipment screws up that normal 60Hz current we can absolutely hear it:  Transformers that have a ton of current harmonics no longer produce a nice &quot;60 cycle hum&quot;, but can have a much louder, sharper buzz that sounds very noticeably different.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Garfield-1-23-23" target="_blank">Garfield-1-23-23</a>
+			<div class="markdown"><p>I remember years ago reading that power plants couldn't keep the output exactly at 60Hz (there would always be slight variations) but they were able to keep the average frequency at 60 (by slightly raising and lowering the frequency) which they did so that all the electrical clocks that kept time via the cycles would remain more or less accurate. Do they still bother doing this, now that most clocks use quartz  or internet connectivity to stay accurate?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Steeledriver" target="_blank">Steeledriver</a>
+			<div class="markdown"><p>All hydro, gas, nuclear, and coal plants connected to the grid have governor systems which control the amount of fuel (water, steam, etc) entering the turbine in an attempt to keep the system frequency at 60Hz. If system frequency falls, all generator governors connected to the grid pass more fuel to the turbine to speed it up. The opposite is true for high frequency. A perfect 60Hz AC on the grid requires an exact balance of generation and demand, but since load is varying all the time, frequency is mostly maintained within about 59.98 to 60.02 Hz. Beyond these ranges, if frequency starts to get really bad (like 59.8 to 60.2 Hz), then special protection systems will automatically disconnect loads or generators to return the frequency to normal. Since the Eastern and Western halves of North America are separate synchronous grids (with the exception of Quebec and Texas), every region in each of those grids has to be perfectly balanced to maintain frequency. If the grid as a whole has been under or over generated for a significant amount of time, it produces &quot;time error&quot;, the slowing or speeding of a clock which runs on the 60Hz mains frequency compared to a reference clock. In the Eastern interconnect, time error is measured and recorded by one system operator designated the Time Monitor. Once time error exceeds 10 seconds positive or negative, all system operators in the interconnect participate in a &quot;time error correction&quot;, in which they change their scheduled system frequency to 59.98 or 60.02Hz. This causes their automatic generation control systems (fast moving regulation for small changes in demand without requiring redispatch of the whole generation fleet) to trend generation slightly high or low for a time, reversing the time error until it reaches around 0 seconds again. If you look for time error correction on NERC's website, it dives into a lot of detail. Whether or not this is still necessary, I don't really know, but time error correction is definitely still done. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JohnProof" target="_blank">JohnProof</a>
+			<div class="markdown"><p>I don't know how much time keeping plays into it anymore, but one of the main things that operators worry about is grid frequency because it's a very reliable indicator of load condition.  They work very hard to keep it at 60Hz probably just because all our gear is optimized to run at that speed.</p>
+<p>Simply put:  The more stuff that people turn on, the more it slows down the generators (and the more the frequency drops), so the more power has to be supplied to the grid.  <a href="https://www.youtube.com/watch?v=slDAvewWfrA" target="_blank">Here's a neat video of the process</a> in Britain where they're trying to maintain 50Hz.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Scoots1919" target="_blank">Scoots1919</a>
+			<div class="markdown"><p><a href="https://en.wikipedia.org/wiki/Utility_frequency#Time_error_correction_.28TEC.29" target="_blank">https://en.wikipedia.org/wiki/Utility_frequency#Time_error_correction_.28TEC.29</a></p>
+<p>According to wikipedia its still done today, but I am 99% sure it isn't. The grid today is kept very close to 60 because the north american networks are huge.</p>
+<p><a href="https://en.wikipedia.org/wiki/Continental_U.S._power_transmission_grid#/media/File:NERC-map-en.svg" target="_blank">https://en.wikipedia.org/wiki/Continental_U.S._power_transmission_grid#/media/File:NERC-map-en.svg</a></p>
+<p>The frequency of the grid is consistent across an interconnection, so any drop in load or pickup of generation can only have a minimal effect on the grid frequency. Variations do occur during large system events, but those are very rare. Frequency isn't shared between interconnections because they are connected through DC lines. 'Island' systems with much smaller load/generation have a much harder time maintaining a conistent 60Hz.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mic_Check_One_Two" target="_blank">Mic_Check_One_Two</a>
+			<div class="markdown"><p>It's also a big issue in professional audio. If two devices are on different circuits, it can introduce something called a ground loop. Basically, a ground loop is what happens when two devices are on a common ground, but via different ground paths. So if, for instance, you plug one device in at one side of the room, and plug another device in at the other side of the room. Then run an analog audio signal between them. So if I plug my sound board in at my Front of House mixing location, and use powered speakers on the stage, for instance. Both of the devices will &quot;fight&quot; to control the ground, and it will produce an audible 60Hz hum in your speakers.</p>
+<p>We get around this in a couple of different ways. The first (and cheapest,) way is to use something called a ground lift. Basically, you put it on the offending device, and it allows the signal to pass through while interrupting the ground's continuity - It lifts the ground. This eliminates the buzz, because now (as far as the analog signal is concerned,) you only have one grounded device on the signal chain. The other way is to use a digital signal, like fiber optic or Ethernet.</p>
+<p>Alternatively, we can prevent the issue altogether by making sure our devices aren't sharing ground anywhere. Either they're plugged in at the same place, (like on a power strip,) or they're on a completely different circuit.</p>
+<p>It can also cause issues when we run cables - If there is an unbalanced signal somewhere, (like a quarter inch cable from a guitar, or a headphone cable from a laptop/phone/ipad/etc,) that is running next to a power cable with a heavy load, you'll actually be able to <em>hear</em> the power cable sitting next to the audio cable - When power runs through a cable, the push-pull of a 60Hz AC will produce an electromagnetic field, which unbalanced cables will pick up on. </p>
+<p>We can get around this in a few ways. First off, we can shield the cable - This basically just means we sheath the cable in an extra wrap or lattice of metal. Then we connect that sheath to the ground wire. Just like with a faraday cage. This will try and direct any incoming EM interference to the ground. However, strong EM signals can still get through. </p>
+<p>We can also balance the signal. An unbalanced cable, like a guitar plug, will only need two internal wires. A balanced cable will use three - Two signal carrier wires, and a common ground. An unbalanced signal will simply send the signal down the cable. Any interference that gets picked up along the path will be heard, because there's no way for the unbalanced cable to cancel out that signal. A balanced cable gets around this by using two copies of the same signal - One copy is sent like normal. The other copy is inverted, and then sent. So, while the first copy is going &quot;push pull push pull&quot; the second copy is going &quot;pull push pull push&quot;. Basically, think back to high school algebra, and plotting waves on a graph - When you invert a wave, it will cancel out the original wave. Everything that the original signal is doing, the inverted signal is doing the exact opposite. Like adding 10 and -10 together. Under perfect conditions, the two waves will produce perfect silence... </p>
+<p>So why would you want to do this? Because both signal cables will pick up the <em>same</em> interference as they travel. So now you have identical interference on both the regular and inverted signals. All you need to do is invert the inverted signal again, (essentially, you <em>un</em>invert it,) and add it to the original signal. Now you have identical signals that add together... And since both wires picked up the same interference, the positive interference on the second (inverted) signal just got inverted. Remember how a wave added to its invert will produce silence? The (now inverted) interference on the second signal cancels out the interference on the first when you add them together.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/iammandalore" target="_blank">iammandalore</a>
+			<div class="markdown"><p>Volunteer sound guy here: Thanks for the balanced vs unbalanced explanation.  I knew 1/4&quot; were unbalanced and XLR balanced, but I didn't know what that actually meant as far as the technical details.  </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Stochastic_Method" target="_blank">Stochastic_Method</a>
+			<div class="markdown"><p>As an interesting aside from what you've just said, JET, the fusion reactor lab, has a really cool story to tell about how microphones places in the 'danger zone' for their (experimental) fusion reactor started hearing a strange noise, you can see the full story on Tom Scott's Youtube channel here:</p>
+<p><a href="https://www.youtube.com/watch?v=IrtGp8hv-0Y" target="_blank">https://www.youtube.com/watch?v=IrtGp8hv-0Y</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hughnibley" target="_blank">hughnibley</a>
+			<div class="markdown"><p>This is also the same principle, slightly modified, that allows tesla coils, etc. <a href="https://www.youtube.com/watch?v=Snibt3CNqBA" target="_blank">to produce music</a>.  The coils themselves operate at a single frequency, but some clever software reading incoming audio signals turns the coil off/on at the frequency of input sounds/music.</p>
+<p>At a smaller scale, this can be used with plasma arcs to <a href="https://youtu.be/cEeWtBAE5LY?t=126" target="_blank">create pretty decent sound</a>.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MrADHD" target="_blank">MrADHD</a>
+			<div class="markdown"><p>the plasma arch has my mind blown...how is this possibly making a reverberation large enough?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/brokenearth03" target="_blank">brokenearth03</a>
+			<div class="markdown"><p>The same way lightning produces thunder that can be heard for miles. Plasma is hot, expands the air around it very quickly. Do this very fast, and you get musical tones.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Scary_" target="_blank">Scary_</a>
+			<div class="markdown"><blockquote>
+<p>In most of Europe, as an example, it's run at 50 Hz not 60 Hz, </p>
+</blockquote>
+<p>It's not most of Europe that uses 50Hz, it's most of the world. 60Hz is <a href="http://photo.vanderkolk.info/images/utility-frequency.jpg" target="_blank">used by most of the Americas, half of Japan and Saudi</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/buzz120" target="_blank">buzz120</a>
+			<div class="markdown"><p>Is there a reason why? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kottabaz" target="_blank">kottabaz</a>
+			<div class="markdown"><p>The reason it's only half of Japan is because in the 19th century, western Japan imported its generating equipment from Germany (50Hz) while eastern Japan imported equipment from the U.S. (60Hz), and by the time the whole country was electrified, it would have been vastly too expensive and a massive pain in the ass to unify the two separate grids. Nowadays it only comes up in odd situations (like when Fukushima knocked out a chunk of the east's generating capacity) because virtually all consumer electrical goods are compatible with both 50Hz and 60Hz. (There are also three converting stations but their capacity isn't huge.)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/magneticphoton" target="_blank">magneticphoton</a>
+			<div class="markdown"><p>America adopted wide spread AC electricity first and went with 60hz, because Edison's DC system already used  +110V, 0V and -110V. So naturally AC 60hz was easier to convert. For efficiency, 240v gets delivered to the house, and split to into 110-125v at the breaker. That's why our stoves and dryer outlets can work with that funky 220v plug. Europe went with 50hz later, because it was easier to calculate with metric standards.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
