@@ -1,0 +1,13 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LECAGO" target="_blank">LECAGO</a>
+			<div class="markdown"><p>Is there a possibility that the download writes directly to storage? Hard drives easily reach 50 megabyte transfer/write speeds, which should be sufficient to prevent bottlenecking speed at write stage. Yes, gigabit internet connections exist, but in a normal scenario, speeds rarely exceed 10MB/s from server to client. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KariTether" target="_blank">KariTether</a>
+			<div class="markdown"><p>When opening a file, the application can request that the OS doesn't buffer the file, but this almost always results in a performance hit.  Web browsers <em>definitely</em> don't take this option.</p>
+<p>The reason for the performance hit isn't really because the hard drive is slow, but because this option would make all writes synchronous.  If the hard drive runs off to read or write something on another sector, even allocation data or fragments from the same file it's writing, the internet download would have to stop and wait.  Also, since the internet stream is <em>slower</em> than the hard drive, the hard drive can write a little bit as it comes in, but then it would have to wait for the proper sector to rotate around again in order to write the next little bit.</p>
+<p>Caching is really important.  When reading, if the OS hasn't predicted what needs to be read, the program has to halt until the OS can fetch the data.  The OS makes use of the super fast read speeds by caching a surplus of data once it's done seeking, and puts off writing data until everything has gone idle or until the write buffers are full.  Combining reads and writes into big blocks like this is the only way to get the advertised read/write speeds.</p></div>		</li>
+					</ul>
+		</ul>
+	
