@@ -1,0 +1,93 @@
+<li class="post" data-handle="6wkcrn">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/6wkcrn/computer_science_in_neural_networks_wouldnt_a/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/6wkcrn" onclick="return false">[Computer Science] In neural networks, wouldn't a transfer function like tanh(x)+0.1x solve the problems associated with activator functions like tanh?</a>
+		</h2>
+		<!--<span class="date">2017-08-31</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I am just starting to get into neural networks and surprised that much of it seems to be more art than science. ReLU are now standard because they work but I have not been shown an explanation why.</p>
+<p>Sigmoid and tanh seem to no longer be in favor due to staturation killing the gradiant back propagation. Adding a small linear term should fix that issue. You lose the nice property of being bounded between -1 and 1 but ReLU already gives that up.</p>
+<p>Tanh(x)+0.1x has a nice continuous derivative. 1-f(x)^2 +0.1 and no need to define things piecewise. It still has a nice activation threshold but just doesn't saturate.</p>
+<p>Sorry if this is a dumb idea. I am just trying to understand and figure someone must have tried something like this.</p>
+<p>EDIT</p>
+<p>Thanks for the responses. It sounds like the answer is that some of my assumptions were wrong.</p>
+<ol>
+<li>Looks like a continuous derivative is not that important. I wanted things to be differential everywhere and thought I had read that was desirable, but looks like that is not so important.</li>
+<li>Speed of computing the transfer function seems to be far more important than I had thought. ReLU is certainly cheaper.</li>
+<li>Things like SELU and PReLU are similar which approach it from the other angle. Making ReLU continuous rather than making something like tanh() fixing the saturation/vanishing grad issues . I am still not sure why that approach is favored but probably again for speed concerns.</li>
+</ol>
+<p>I will probably end up having to just test tanh(x)+cx vs SELU, I will be surprised if the results are very different. If any of the ML experts out there want to collaborate/teach a physicist more about DNN send me a message. :)
+Thanks all.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dm8rwxk">
+		<a class="author" href="https://www.reddit.com/user/Brainsonastick" target="_blank">Brainsonastick</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>First of all, it is absolutely NOT a dumb idea. It's good that you're considering alternative activation functions. Most people just accept that there are certain activation functions that we use. I've actually had some success using custom activation functions for specialized problems.</p>
+<p>tanh(x) + 0.1x does, as you mentioned lose the nice property of being between -1 and 1. It does also prevent saturation, right?
+But let's look at what happens when we pass it forward. The next layer is a linear combination of tanh(x0) + 0.1x0, tanh(x1) +0.1x1, etc...
+So we wind up with a linear combination of x0,x1,... plus the same coefficients in a linear combination of tanh(x0),tanh(x1),...
+For large values of x0,x1,... the tanh terms become negligible and we start to lose some of the nonlinearity property that we need to make a neural network anything more than linear regression. There are potential points of convergence there because there is a solution to the linear regression which the network can now approximate. Because the tanh terms are getting small in comparison and their contribution to the derivative is still going to zero (this is the key point!!), the network is likely to converge to this linear solution. That is, it is a relatively stable solution with a large basin of attraction.</p>
+<p>We could change our constant 0.1 to a different value, but what is the appropriate value? We could actually set it as a parameter which is adjusted within the network. I'd probably even set a prior on it to keep it small (say a Gaussian with mean 0 and variance 0.1). This could lead to better results, but it's still not solving the underlying problem: the tanh part stops contributing to the derivative.</p>
+<p>I like the way you're thinking though. If I were your teacher, I'd be proud.</p>
+<p>TLDR: the problem isn't saturation of the activation function. The problem is that the derivative of the nonlinear part of the activation function goes to 0 and this doesn't change that.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dm8xxtg">
+		<a class="author" href="https://www.reddit.com/user/you_can_be_both" target="_blank">you_can_be_both</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>&quot;no need to define things piecewise.&quot; Oh boy, are you in for a shock. Look at this implementation of tanh() from the gcc standard library:</p>
+<p><a href="http://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/ia64/fpu/s_tanh.S;hb=56bc7f43603b5d28437496efb32df40997c62cb4" target="_blank">http://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/ia64/fpu/s_tanh.S;hb=56bc7f43603b5d28437496efb32df40997c62cb4</a></p>
+<p>In case you don't feel like wading through that, I'll bottom line it for you: the <em>whole thing</em> is a piecewise polynomial approximation. For 32/64-bit floats, these approximations are known to have less than one bit of numerical error on average across the whole range of floats and doubles. (This is the <em>fastest</em> way we know how to implement tanh(); for high precision operations, we can use continued fraction implementations.)</p>
+<p>This takes <em>way</em> more FLOPS than simply checking if a number is positive or negative. (sgn(x) can always be implemented as a combination bitmask and shift, because because all signed integers and floating point numbers have a single bit which indicates if they are positive or negative.) We're talking at least one, and sometimes two orders of magnitude difference in speed, depending on the hardware. Also, just because this is a common misconception, I should point out that sgn() is implemented <em>without branching</em>, and therefore plays well with instruction pipelines, both in CPUs and GPUs. </p>
+<p>So the <strong>real</strong> question to ask is, &quot;what is all that smoothness, those continuous first and second order derivatives, actually doing to help my machine learning model?&quot; If I'm paying more than a 10x constant factor of overhead, the answer had better be a &quot;a lot.&quot; When in practice, the answer seems to be &quot;nothing. In fact it hurts a little bit.&quot;</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dm8q9be">
+		<a class="author" href="https://www.reddit.com/user/tejoka" target="_blank">tejoka</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>AFAIK, no one has conclusively figured out why ReLU is good. I've heard some speculation about back-propagation not liking subtle gradients, but <em>shrug</em></p>
+<p>But there's two separate issues here: why is ReLU good, and why do we use it?</p>
+<p>We use it because it's fast for computers. That it seems to be nearly as good as anything else, while something of a mystery, just cements that position.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dm8w56j">
+		<a class="author" href="https://www.reddit.com/user/sakawoto" target="_blank">sakawoto</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Just wanted to let you know I have no idea what any of this stuff is but you're doing a great job asking questions and trying to figure things out I don't think it's a dumb idea at all. Many great ideas come from a trial and error of trying even the dumb stuff. Keep on keeping on :)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dm8rf3d">
+		<a class="author" href="https://www.reddit.com/user/drew_the_druid" target="_blank">drew_the_druid</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This is interesting but... considering input is going to be zero centered &amp; normalized between ~-1 and 1, is it really going to have much of an effect? What then happens if you get exploding gradients with a direct input? Is that effect really going to help? Try it out yourself on an a classifier! </p>
+<p>You're right that a lot of it seems like art more than science but you'll get a feel for what the underlying principles are with trial and error.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/6wkcrn" onclick="return false"><span>show</span></a>
+</li>

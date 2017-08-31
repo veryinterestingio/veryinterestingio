@@ -1,0 +1,64 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/f4hy" target="_blank">f4hy</a>
+			<div class="markdown"><p>I was unaware that GPUs could do sgn() without branching. So ya then if ReLN are just the cheapest thing that works, and thats why they are used then I get why they are used.</p>
+<p>I am just learning this stuff, I am a physicist not a compute scientist. It seems that intros to the subject first talk about sigmoid and tanh and then switching to ReLN where the benefits listed are all about saturation which is why I was asking why not solve the saturation in a continuous way. I should have known that tanh would be computed by some sort of piece-wise polynomial using different expansions in different regions though. </p>
+<p>It sounds like the bigger benefit of ReLN is the speed. In which case sure, probably nothing will beat it. I didn't really imagine the speed of the transfer functions being such an issue. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/you_can_be_both" target="_blank">you_can_be_both</a>
+			<div class="markdown"><p>The tanh() stuff would only be covered in a numerical methods class, which is something that even a computer science majors might avoid. Kids these days don't care about the intricacies of floating point mathematics. /s </p>
+<p>I think the neural network material is taught in that order because they're recapitulating history, not because it's optimal pedagogy. &quot;Perceptrons&quot; with the sigmoid activation function were studied as far back as the 60s and 70s. These were biologically inspired, trained by brute force, and as far as I know barely worked at all in practice. It wasn't until the back-propagation algorithm was discovered in the 80s that deep networks started to be at all effective on real problems. However, the &quot;vanishing gradient&quot; problem is a problem with the back-propagation algorithm; before that it wouldn't have even made sense to talk about a &quot;gradient&quot;, much less it &quot;vanishing&quot; as we go deeper through the layers. And we've come a long way since then.</p>
+<p>I also think that ReLU networks &quot;work well&quot; in practice because they're closer in spirit to <a href="https://en.wikipedia.org/wiki/Multivariate_adaptive_regression_splines" target="_blank">MARS</a> or <a href="https://en.wikipedia.org/wiki/Decision_tree_learning" target="_blank">CART</a> in the sense that they are finding and &quot;learning&quot; a function approximation that includes hard cut-off thresholds. In fact, I believe a ReLU network is basically just a way to parameterize the (non-parametric) problem of learning a regression tree. But if you're not very familiar with decision trees that's probably not a very helpful point of view.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/f4hy" target="_blank">f4hy</a>
+			<div class="markdown"><p>Hey now, I have taken many numerical methods courses....</p>
+<p>Now that I think about it more, the gcc standard lib tanh seems terrible on modern CPUs. Even Gpus have sin,cos,exp hardware instructions. So why not implement tanh as
+exp(2x)-1/(exp(-2x)+1)
+which 1 mult, 2 adds, 1 div, 2 exp (which is still one cycle). So 6 instructions? I mean that must be better than the polynomial expansions, which sure is the best you can do with just mult, but we are not limited to FPU with only mults.</p>
+<p>Even if sgn(x) has no branch, how do you implement ReLU in assembly without a branch. The single branch might be optimized in a predictive CPU like x86, but idk if its <em>that</em> much better than 6 instructions. Maybe 3 or 4? </p>
+<p>It does sound like the function I designed isn't great since it doesn't really help to be zero centered or continuous derivative, like I first thought. In practice  those things make no difference apparently and ReLU works.</p>
+<p>EDIT:
+I see you addressed the hardware exp in another reply. I can see the precision/stability issues with small or large exp but not sure that sort of accuracy is needed here its not an exact number that is needed. fast-math away.</p>
+<p>However still, curious how you can do ReLU without a branch. you still branch off sng().</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/brates09" target="_blank">brates09</a>
+			<div class="markdown"><blockquote>
+<p>In fact, I believe a ReLU network is basically just a way to parameterize the (non-parametric) problem of learning a regression tree.</p>
+</blockquote>
+<p>Interesting, have you read the Deep Neural Decision Forests paper (Kontschieder, ICCV, 2015) ?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Slime0" target="_blank">Slime0</a>
+			<div class="markdown"><p>tanh isn't implemented in hardware?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/you_can_be_both" target="_blank">you_can_be_both</a>
+			<div class="markdown"><p>All modern chips (CPU and GPU) provide opcodes for logarithms and exponentiation. These can be used to implement trig functions like tanh() relatively easily, but there can be numerical precision traps. I know x86 has specific opcodes fsin and fcos, but I also know they've been criticized for numerical imprecision. I'm not aware of any chip that has a native opcodes for tanh.</p>
+<p>However, even when native opcodes are available, many compilers and libraries will choose not to use them, opting for a software implementation instead. There are many reasons for this, but by far the most important reason is that the &quot;obvious&quot; implementation in terms of logs and exponents can have numerical precision problems. For example, let's look at the formula for tanh() in e: <code>(e^x - e^-x)/(e^x + e^-x)</code>. This will have numerical precision problems when x is large or small because then either <code>e^x</code> or <code>e^-x</code> will be close to zero, and adding or subtracting a nearly-zero number from a much larger number is usually a really bad idea with floating points. We'll also have potential problems when x is near 0, because than the numerator is near zero, and dividing by a number which is close to, but not exactly 2, can cause the last bit to be truncated incorrectly. Only testing on a particular piece of hardware will tell us if these are real, or merely potential problems.</p>
+<p>There are a bevy of lesser reasons to not use hardware primitives as well. The native operations usually take many cycles, so you can actually call many cheaper instructions more quickly, so you may not actually be saving any time. (This is the insight that drives the design of RISC architectures.) Another reason library authors cite is cross-platform floating point consistency - a doomed, quixotic quest, but generally it's possible to do a lot better than blindly trusting the black-box hardware implementations. A better reason, in my opinion, is that users have their own requirements around the trade-off between precision and performance - see for example, this very famous <a href="https://en.wikipedia.org/wiki/Fast_inverse_square_root" target="_blank">fast inverse square root</a> implementation - not very precise, but very fast, which is what their particular use case required.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Orangy_Tang" target="_blank">Orangy_Tang</a>
+			<div class="markdown"><blockquote>
+<p>However, even when native opcodes are available, many compilers and libraries will choose not to use them, opting for a software implementation instead.</p>
+</blockquote>
+<p>Since we're firmly in compiler-specific territory, this may also depend on compiler flags. Eg. GCC has -funsafe-math-optimizations</p>
+<p><a href="https://gcc.gnu.org/onlinedocs/gcc-4.7.0/gcc/Optimize-Options.html" target="_blank">https://gcc.gnu.org/onlinedocs/gcc-4.7.0/gcc/Optimize-Options.html</a></p>
+<p>This will use native CPU sin/cos/etc. instructions, and ignore the (slower, but high precision) software version. If speed is important then poke around your compiler options. :)</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wtfnonamesavailable" target="_blank">wtfnonamesavailable</a>
+			<div class="markdown"><p>Why does the calculation of tanh need to be precise? It seems like ReLU is just &quot;good enough&quot; but fast. Could you not compute tanh by linearly interpolating from a table of values to make it much faster than the more precise approximations?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/you_can_be_both" target="_blank">you_can_be_both</a>
+			<div class="markdown"><p>That's just that way the gcc team did tanh(). Kind of a one-size-fits-all solution. Depending on what neural net library you're using, there's a good chance you're not using that implementation at all! But others are probably similar. </p>
+<p>There's a <a href="https://en.wikipedia.org/wiki/Chebyshev_nodes" target="_blank">good generic technique</a> for generating optimal polynomial approximations to smooth functions for a given order of polynomials. The higher order polynomial you use, the closer you can get, but the more computationally expensive it is to compute. So from a theoretical point of view, you can always decide on your own trade off, if it's important to you. It's also easy to find libraries where people have implemented &quot;fast&quot; (imprecise is implied) versions of standard math functions (for games and simulations and such.)</p>
+<p>For deep networks in particular, then yes, it would make sense to use a rough, fast approximation, since the exact shape doesn't seem to matter very much. Hard to be much rougher and faster than ReLU, though.</p></div>		</li>
+					</ul>
+		</ul>
+	

@@ -1,0 +1,57 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/f4hy" target="_blank">f4hy</a>
+			<div class="markdown"><p>I guess  I am thinking of comparing it to ReLU, which is just linear regression in the situation where all the inputs are positive. How does ReLU not suffer from the same criticisms. Basically I am just trying to get the best of both worlds, a nice activation energy and continuous derivative from the tanh (or something like sigmoid) but no saturation. </p>
+<p>ya the constant 0.1 was just an example. Probably fine to make it either a global hyper parameter or a parameter which can be back propagated to determine. I just used it as an example because I couldn't figure out why a function like tanh+linear wasn't ever mentioned in any thing I could read about this.</p>
+<p>If the tanh not contributing to the gradient is a problem, why does ReLU work?</p>
+<p>I'm glad I still make a good student, I certainly had enough experience at it... (see my flair. :P )</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/untrustable2" target="_blank">untrustable2</a>
+			<div class="markdown"><p>Essentially ReLU has a non-linearity and is therefore capable of complex outcomes in a way that a fully linear network is not - the fact that it is linear for all positive input doesn't take away from the fact that the non-linearity across the entire input spectrum allows for complex activations of the output neurons. This isn't the case with a function with the +0.1x if that becomes the only part of the activation function that is really active as we go down the layers. That's how I understand it at least, big edit for clarity.</p>
+<p>(Of course you could make that 0.1 into 0 below an input of 0 but then you just approximate ReLU and lose the improvement.)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/f4hy" target="_blank">f4hy</a>
+			<div class="markdown"><p>If as we go down the layers 0.1x is the only part that maters for my function then that will ALSO be the case for ReLU. If the layers end up in all large postives or all large negatives, then ReLU is also completely linear.</p>
+<p>ReLU is only non linear at a single point. It is linear (zero) for &lt;0 and linear (x) for positives. Tanh(x)+c*x is non linear in a region around zero and linear for large |x|. I am confused again how ReLU would be more capable of complex outcomes. But this is what I am trying to figure out.</p>
+<p>The criticism that as you go down the layers the linear 0.1x_0,0.1x_1,... is a problem is just as valid for ReLU. Since both experience that problem only when x_0,x_1,... are all the same sign.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/moultano" target="_blank">moultano</a>
+			<div class="markdown"><p>The big difference here is between &quot;single sided&quot; activations like relu, elu, selu, etc. and &quot;double sided&quot; activations, like tanh. In a loose sense, think about the dimensionality of the space in which the activation yields a &quot;big&quot; gradient. The single sided functions yield a big gradient in half of their parent space, so have the same dimensionality as the space in which they apply. &quot;Double-sided&quot; functions however only have significant gradients near their hyperplane, so have big gradients in one less dimension than their parent space.</p>
+<p>This matters as you add layers. If each layer reduces the dimensionality of the area of significant gradients by 1, then the gradients will almost inevitably vanish as you descend. Among the &quot;single sided&quot; activations, the best reason to use relu is that it's extremely fast. But the reason to use one of the single sided functions is that it has a big gradient over more of the space.</p>
+<p>(Also, remember that it's easy to make one of the double sided functions out of two layers of the single sided ones, so the network can always build one if it wants one.)</p>
+<p>Sometime, if you have some time to play around, try working on a linear regression problem where the inputs need to be first transformed in some way to get a good fit. Try picking that transformation by hand. You'll quickly find that composing functions which are each concave or convex is much easier than trying to place a sigmoid like function. It's much easier to put each curve exactly where you want it, rather than to try to move two around at once. This ends up being similar to what tanh activations have to do. In practice, they likely only end up using one of the two nonlinearities and the other just complicates things.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/f4hy" target="_blank">f4hy</a>
+			<div class="markdown"><p>Ah ok, this post made it click for me. Symmetry breaking is a good thing.</p>
+<p>The physicist in me wanted to keep things symmetric and continuous. But now thinking of it in terms of wanting to break that symmetry, I get it. You want single sided activations.</p>
+<p>Thanks!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/datadata" target="_blank">datadata</a>
+			<div class="markdown"><p>What about the identify function as a activation function? This has a big gradient everywhere but is &quot;double sided&quot;.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DuckSoup87" target="_blank">DuckSoup87</a>
+			<div class="markdown"><p>AFAIK there are no formal results on the reasons why ReLU is a particularly good activation function. However, there are several compelling practical motivations to use it, besides the ones you listed:</p>
+<ul>
+<li>It's super fast to compute</li>
+<li>Can be computed in-place, i.e. you can overwrite the input with the output while still being able to easily compute the gradient</li>
+<li>It leads to sparsity, which is usually regarded as a desirable property (this is not always true)</li>
+</ul>
+<p>As for a &quot;best of both words&quot; solution, a recent proposal that is gaining quite some traction is the Exponential Linear Unit (ELU). Simply put, it is ReLU with the zero part replaced with (e^x - 1).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jaked122" target="_blank">jaked122</a>
+			<div class="markdown"><p>It's also worth mentioning the SELU. Which is either a trainable version of the elu, but only a single parameter (I thought this was what it was supposed to be), or just a constant multiplying the elu. </p>
+<p>Then there's the PReLu which is a trainable version of ReLu with parameters shared across various axes of the tensor. </p>
+<p>I'm not really sure whether or not PReLu is worth the extra computation, or if it addresses vanishing or exploding gradients.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AWildBugHasAppeared" target="_blank">AWildBugHasAppeared</a>
+			<div class="markdown"><p>What's the advantage of using an ELU over using a simple exponential function? A normal exponential function already has negligible output for negative inputs and it does not have a discontinuity at 0. Are there cases in which the leakiness of a simple exponential function is undesirable?</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

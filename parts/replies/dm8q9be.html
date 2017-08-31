@@ -1,0 +1,41 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Caffeine_Monster" target="_blank">Caffeine_Monster</a>
+			<div class="markdown"><p>I've always suspected it has something to do with how it allows units to have linear or non linear outputs, some features are better modelled by one or the other.</p>
+<p>ReLU  also has quite moderate gradients... I suspect a lot of issues with Tanh are caused by extreme gradients near -1, 1 that encourage unit weight changes to oscillate across the 0 boundary if you hit a bad minbatch sample.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bradfordmaster" target="_blank">bradfordmaster</a>
+			<div class="markdown"><blockquote>
+<p>I've always suspected it has something to do with how it allows units to have linear or non linear outputs, some features are better modelled by one or the other.</p>
+</blockquote>
+<p>I also like this intuition, though I don't have any math to back it up. I think of it as kind of like letting the network learn when it wants to be a decision tree, and when it wants to be a linear regression. And because that switch happens near zero, it's easy for the network to &quot;change its mind&quot;</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mandragara" target="_blank">mandragara</a>
+			<div class="markdown"><p>Do you guys ever look at biological neurons and try and replicate their firing properties, or is that a different area?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfin23" target="_blank">mfin23</a>
+			<div class="markdown"><p>Yes most certainly. The ReLu was actually modeled from biological neurons. The idea is that neurons do not fire until a threshold is hit, once this threshold is hit the output is proportional to the input. That is exactly what the ReLu function is and it was first used because it was observed in neurons.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/vix86" target="_blank">vix86</a>
+			<div class="markdown"><blockquote>
+<p>The idea is that neurons do not fire until a threshold is hit, once this threshold is hit the output is proportional to the input.</p>
+</blockquote>
+<p>Neurons are binary though, they have no concept of firing stronger/weaker. Rate of firing is the only signal they can provide.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mandragara" target="_blank">mandragara</a>
+			<div class="markdown"><p>Neat. I reproduced some of the results in this paper last year for fun: <a href="https://www.izhikevich.org/publications/spikes.pdf" target="_blank">https://www.izhikevich.org/publications/spikes.pdf</a></p>
+<p>Interesting stuff. Using his model, one can simulate tens of thousands of spiking cortical neurons in real time (1 ms resolution) using a normal PC</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rowanz" target="_blank">rowanz</a>
+			<div class="markdown"><blockquote>
+<p>But there's two separate issues here: why is ReLU good, and why do we use it?</p>
+</blockquote>
+<p>Arguably ReLUs encourage the model to learn a sparse representation of the inputs (like L1): <a href="https://arxiv.org/abs/1505.05561" target="_blank">https://arxiv.org/abs/1505.05561</a> but yeah, main reason is because it works and is easy.</p></div>		</li>
+					</ul>
+	

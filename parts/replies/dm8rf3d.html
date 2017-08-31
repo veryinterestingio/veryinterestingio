@@ -1,0 +1,28 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/f4hy" target="_blank">f4hy</a>
+			<div class="markdown"><p>If you use just tanh() and your input is zero centered and normalized then there shouldn't be problems. My understanding is the problems with tanh come from the fact that not everything uses stuff normalized (-1,1) and so at large values &gt;5 or &lt;-5 the gradient doesn't propagate through a tanh since the grad is very small. Adding a small linear term alleviates  that problem.</p>
+<p>Maybe I am far off base. Why do people talk about saturation of tanh or sigmoid functions if they are always normalizing everything?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drew_the_druid" target="_blank">drew_the_druid</a>
+			<div class="markdown"><p>Maybe I miss-remember, but the activation function takes place after the input passes through a NN layer - meaning that the input is subject to the gradients of that layer and can thus becomes non-normalized, which is why the problem of exploding/vanishing gradients exists? With those exploded/vanished values - which tanh is incapable of responding to due to saturation - you lose the effectiveness of those nodes as they begin to affect every input with those affected values? Meaning your network is no longer effective at responding to input as everything is overaffected by those weights?</p>
+<p>It's been a long time since any real lessons so please feel free to correct me.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TanktopModul" target="_blank">TanktopModul</a>
+			<div class="markdown"><p>Not all input should be normalized this way. In locally structured data like images (meaning that nearby pixels have some relationship), this <em>may</em> destroy some of the structure, so that e.g. convolutional layers may not work the way they are supposed to.</p>
+<p>Keep in mind that even batch normalization does not normalize the activations in the hidden layers this way (by training an affine linear function).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drew_the_druid" target="_blank">drew_the_druid</a>
+			<div class="markdown"><p>Why would you not normalize by dividing each layer of the image by its maximum? Do you have any resource on why it would remove the ability to make localized abstractions? All the research I see out there zero centers &amp; normalizes its data for faster learning times.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TanktopModul" target="_blank">TanktopModul</a>
+			<div class="markdown"><p>Whoops, I misread that as zero-centered and divided by standard deviation. Rescaling to [-1,1] is of course entirely different in the first layer and does not destroy any local structure.</p>
+<p>But still the pre-activations in the later hidden layers do not naturally lie in this interval even with rescaled data, so you'll still have those problems.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
