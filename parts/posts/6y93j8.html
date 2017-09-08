@@ -1,0 +1,112 @@
+<li class="post" data-handle="6y93j8">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/6y93j8/if_you_were_to_randomly_find_a_playing_card_on/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Mathematics">Mathematics</span>
+			<a href="/posts/6y93j8" onclick="return false">If you were to randomly find a playing card on the floor every day, how many days would it take to find a full deck?</a>
+		</h2>
+		<!--<span class="date">2017-09-08</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>The post from front page had me wondering. If you were to actually find a playing card on the floor every day, how long would it take to find all 52? Yes, day 1, you are sure not to find any duplicates, but as days pass, the likelihood of you finding a random card are decreased. By the time you reach the 30th card, there is a 22/52 chance of finding a new card. By the time you are looking for the last card, it is 1/52. I can't imagine this would be an easy task!</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dmlly16">
+		<a class="author" href="https://www.reddit.com/user/Redingold" target="_blank">Redingold</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This is a rephrased version of the <a href="https://en.wikipedia.org/wiki/Coupon_collector's_problem" target="_blank">coupon collector's problem</a>, where an item is chosen at random, with replacement, from a collection of n distinct items, and we want to know how many tries you would expect to take before you drew every item at least once. The answer turns out to be, for n items, n*H<em><em>n</em></em>, where H<em><em>n</em></em> is the nth <a href="https://en.wikipedia.org/wiki/Harmonic_number" target="_blank">harmonic number</a> (i.e. H<em><em>n</em></em> = 1 + 1/2 + 1/3 + 1/4 + ... + 1/n). For n = 52, this gives an average result of <a href="http://www.wolframalpha.com/input/?i=52+*+H_52" target="_blank">almost 236 days</a>.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dmlvw0l">
+		<a class="author" href="https://www.reddit.com/user/Kroutoner" target="_blank">Kroutoner</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I wrote a quick R script to compute how long this would take by simulation. </p>
+<pre><code>num.simulations = 10000
+deck &lt;- 1:52
+full.deck &lt;- function(collected) all(deck %in% collected)
+lengths = vector(,num.simulations)
+
+for (i in 1:num.simulations)
+{
+  collected &lt;- c()
+
+  while(!full.deck(collected))
+  {
+    collected &lt;- c(collected, sample(52,1)) 
+  }
+  lengths[i] = length(collected)
+}        </code></pre>
+<p>From running this simulation I get a mean number of days to collect a whole deck of approximately 236 in agreement with /u/Redingold, providing a nice sanity check.            </p>
+<p>The five number summary of the simulation results (min, 1st quartile, median, 3rd quartile, max) is 100, 191, 224, 268, 670, indicating a pretty significantly right-skewed distribution.         </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dmlspr5">
+		<a class="author" href="https://www.reddit.com/user/youcan_tbeserious" target="_blank">youcan_tbeserious</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For every card, you can compute the 'expected number of days you have to wait until you get a useful card', so the first time it's 52/52 (guaranteed), for the next card it's 52/51, meaning on average you'll have to check 52/51 days before getting a useful card.  Continue this down to 52/1 and sum them all up and you get 236 days on average.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dmlyq7p">
+		<a class="author" href="https://www.reddit.com/user/NewCowInTown" target="_blank">NewCowInTown</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you run this experiment only once, there is a 95% probability that it will take you between 144 and 394 days. There is a 99% probability that it will take you between 127 and 475 days. </p>
+<p>Similar to the analytical solution from /u/Redingold, the mean value from the simulations is 236 days. However, this is the average time it would take you if you repeated the experiment for the rest of your life. </p>
+<p>R Code below (not pretty). </p>
+<pre><code>deck &lt;-cbind(seq(1,52,by=1),rep(NA,52))
+n &lt;- 0
+days  &lt;- vector(mode="numeric", length=0)
+for(k in 1:10000){
+  repeat{
+    t.card &lt;- sample(52,1)
+    deck[deck[,1] == t.card,2] &lt;- 1
+    n &lt;- n + 1
+    if(table(is.na(deck[,2]))["FALSE"] == 52){
+      break()
+    }
+  }
+ days &lt;- c(days,n)
+ n &lt;- 0
+ deck[,2] &lt;- NA
+}
+
+mean(days)
+&gt;  236.09
+median(days)
+&gt;  226
+quantile(days, probs=c(0.025,0.975))
+&gt;  144 394
+quantile(days, probs=c(0.005,0.995))
+&gt;  127 475</code></pre></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dmmg35w">
+		<a class="author" href="https://www.reddit.com/user/efrique" target="_blank">efrique</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I assume each day it's a new random card from a <em>new</em> deck (i.e. equally likley to be any of the 52 cards each day no matter what we already have) and we're wanting to put these together to make one deck of 52 different cards. </p>
+<p>That's called the <em>coupon collector problem</em></p>
+<p><a href="https://en.wikipedia.org/wiki/Coupon_collector%27s_problem" target="_blank">https://en.wikipedia.org/wiki/Coupon_collector%27s_problem</a></p>
+<p>For a 52 card deck the <em>expected</em> number of days is about 236</p>
+<p>(A lot of the required time to a full set is just getting the last few cards. Your expected wait for the last card is 52 days, but no matter how long you have waited for that one, you still expect to wait that long. So if you waited 52 days for the last one but didn't see it, you still expect to wait another 52 days. It's quite possible to wait much, much longer than the 236 days, but considerably more than half the time you'll wait less than 236 days. The median wait is about 225 days and the 90th percentile is about 320 days. There's a bit over 4% chance it will take you more than a year.)</p>
+<p>Edit: the distribution can be found at this math.stackexchange question: <a href="https://math.stackexchange.com/q/379525/47748" target="_blank">Probability distribution in the coupon collector's problem</a> (it gives explicit forms for the pmf and the survivor function)</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/6y93j8" onclick="return false"><span>show</span></a>
+</li>

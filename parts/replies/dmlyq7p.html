@@ -1,0 +1,26 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/genetastic" target="_blank">genetastic</a>
+			<div class="markdown"><p>Instead of the <code>if(table(is.na...</code> line, you can just do <code>if(all(is.na(deck[,2])))</code>.  That's easier to understand.  </p>
+<p>Also, instead of having a &quot;marker&quot; column in a data frame in which you flag hits, it would be a little more efficient to just use a vector of 1:52 and index into it to set NAs:</p>
+<pre><code>deck &lt;- 1:52
+...
+deck[t.card] &lt;- NA
+...
+if (all(is.na(deck))) return(n)
+...</code></pre></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NewCowInTown" target="_blank">NewCowInTown</a>
+			<div class="markdown"><p>Yes. Thanks. Not going for efficient, since only needed to run it once. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/graaahh" target="_blank">graaahh</a>
+			<div class="markdown"><p>Does it follow a normal distribution? How do you figure it out? (I know you posted your code, but I can't tell what it says so I'm hoping you can explain it more.)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NewCowInTown" target="_blank">NewCowInTown</a>
+			<div class="markdown"><p>Not at my computer right now, but I seem to remember the distribution being heavy tailed - right skew. This would be consistent with the median being lower than the mean. </p></div>		</li>
+					</ul>
+		</ul>
+	

@@ -1,0 +1,169 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drumist" target="_blank">drumist</a>
+			<div class="markdown"><p>Also keep in mind that this doesn't mean that you are <em>guaranteed</em> to get every card by the 236th day. <del>It means that the likelihood that it would take less than 236 days is approximately equal to the likelihood that it would take more than 236 days.</del> It means that the average number of days it would take is 236.</p>
+<p>Edit: What I mistakenly described was the median, which is 225 days.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NeokratosRed" target="_blank">NeokratosRed</a>
+			<div class="markdown"><p>I made a quick Python script to test the number of trials needed: </p>
+<pre><code>import random
+
+cards = 52
+deck = []
+turns = 0
+
+while len(deck)&lt;cards:
+    a=random.randint(1,cards)
+    if a not in deck:
+        deck.append(a)
+    turns +=1
+
+print "Turns = %s" %(turns)  </code></pre>
+<p>If you want to try the experiment a certain number of times and you just want a list of trials it took every time, you can use this, just replace &quot;k&lt;3&quot; with k lower than the number of times you want to repeat the experiment, to see how many turns it takes each time!  </p>
+<pre><code>import random
+
+cards = 52
+deck = []
+turns = 0
+trials = []
+k=0
+
+while k&lt;3:
+    while len(deck)&lt;cards:
+        a=random.randint(1,cards)
+        if a not in deck:
+            deck.append(a)
+        turns +=1
+
+    trials.append(turns)
+    turns = 0
+    deck = []
+    k+=1
+
+print trials  </code></pre>
+<p>I tried 10 times and the result is the following:
+[239, 216, 256, 191, 289, 223, 209, 221, 239, 216]</p>
+<p>I will try more times and make a graph soon!  </p>
+<p><strong>EDIT:</strong> If you want results to be displayed line by line for easier graphs in Excel or whatever, replace the last line (&quot;print trials&quot;) with the following:  </p>
+<pre><code>for n in trials:
+    print n  </code></pre>
+<p><strong>EDIT 2:</strong> I repeated the experiment 1000 times, and the results are these: </p>
+<p>Steps:    </p>
+<p>52-100------------0<br />
+101-150---------40<br />
+151-200--------279<br />
+201-250--------347<br />
+251-300--------205<br />
+301-350---------77<br />
+351-400---------33<br />
+401+------------19  </p>
+<p><strong><a href="http://i.imgur.com/KU27fWf.jpg" target="_blank">PICTURE</a></strong>    </p>
+<p>[Thanks to /u/vennith that pointed out in a message a mistake i made: I jumped from groups of 50 elements to groups of 100 elements. I fixed it now]</p>
+<p>The average is 233,7. Really close to our 236!</p>
+<p>As we can see, most of the times we need from 201 to 250 days, followed by 151 to 200 days.<br />
+What's amazing is that it never took less than 100 steps to complete the 52-deck of cards, that's because the probability of completing the deck in so few steps is very small!  </p>
+<p><strong>EDIT 3:</strong> A more compact code based on the one /u/Felisens made:  </p>
+<pre><code>from random import randint
+trials=[]
+for k in range(10):
+    ndays = 0
+    deck = 52
+    while deck:
+        if randint(1, 52) &lt;= deck:
+            deck -= 1
+        ndays += 1
+    trials.append(ndays)
+print trials  </code></pre>
+<p>Instead of 'for k in range(10)' you can put any number inside the parenthesis, the number being how many times you want to repeat the experiment. As before, if you want each number in a new line replace the last line with:  </p>
+<pre><code>for n in trials:
+    print n  </code></pre>
+<p><strong>EDIT 4:</strong> I tried 10000 times and the result is this:  </p>
+<p><strong><a href="http://i.imgur.com/ziDTKOx.jpg" target="_blank">10000 TIMES</a></strong>    </p>
+<p><strong>Lowest value:</strong> 88<br />
+<strong>Highest value:</strong> 802<br />
+<strong>Mean:</strong> 235.5 (Extremely close to 236)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/boopbipboop" target="_blank">boopbipboop</a>
+			<div class="markdown"><pre><code>import random
+
+def compute(num_items):
+  items = set()
+  turns = 0
+  while len(items) &lt; num_items:
+    items.add(random.randint(1, num_items))
+    turns += 1
+  return turns
+
+n = 52
+k = 10000
+trials = [compute(n) for i in range(k)]
+print sum(trials) / k  # will be ~236</code></pre></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/45MonkeysInASuit" target="_blank">45MonkeysInASuit</a>
+			<div class="markdown"><p>For future reference, for such a quick script with so many permutations, you will get better results at 10000 iterations (for this a million wouldn't take too long).  </p>
+<p>And instead of k+1,  </p>
+<pre><code>for k in range(iterations):
+     ...</code></pre>
+<p>Saves you a line that is easily forgotten.  </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Top-Bananas" target="_blank">Top-Bananas</a>
+			<div class="markdown"><p>I have absolutely no idea what any of this means but I've read every single reply anyway. Good work.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/super-commenting" target="_blank">super-commenting</a>
+			<div class="markdown"><p>Not quite. You just described the median but the person you were responding to gave the mean</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rictoo" target="_blank">Rictoo</a>
+			<div class="markdown"><p>So is it the median or the mean?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/graebot" target="_blank">graebot</a>
+			<div class="markdown"><p>If you were to perform the experiment an infinite number of times under perfect conditions, then that number would be the mean of your results. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MaverickMarmoset" target="_blank">MaverickMarmoset</a>
+			<div class="markdown"><p>Neither, as it is not a set of numbers. It's just the point at which you're most likely to have completed the deck. Very different things.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/B0Boman" target="_blank">B0Boman</a>
+			<div class="markdown"><p>If you run the experiment many many times, both the median and the mean will start to converge on that number</p>
+<p>EDIT: Learned some great math today, thanks everyone for correcting me!</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Silentarian" target="_blank">Silentarian</a>
+			<div class="markdown"><p>Using the wonders of Excel, a Monte Carlo simulation resulted in the following (not perfect numbers, but should be darn close):
+Average days: 233
+Standard Deviation: 59
+5th percentile: 153
+10th percentile: 167
+25th percentile: 191
+50th percentile: 227
+75th percentile: 267
+90th percentile: 318
+95th percentile: 353 </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PlayMp1" target="_blank">PlayMp1</a>
+			<div class="markdown"><p>That's what I was wondering about - how long would it be until you had a 99% probability of completing the deck?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/_C_L_G_" target="_blank">_C_L_G_</a>
+			<div class="markdown"><p>So if we were very lucky with cards we get, it would still take 153 days of days where we find cards. I can't imagine how often anyone finds cards on the street. If it was once every 10 days, that would be 1530 days or 4.2 years</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SweetNeo85" target="_blank">SweetNeo85</a>
+			<div class="markdown"><p>So then on day 236, what are the odds that you will have a full deck? What are the odds on day 52? Or day 500 or 1000?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/isleepinachair" target="_blank">isleepinachair</a>
+			<div class="markdown"><p>On day 52 is easy. It's 52!/52^52, which is ~4.7e-22.</p>
+<p>Quick explanation: On the first day, you have 52 correct picks out of 52. 2nd day there are 51 left out of 52, then 50/52, 49/52... So on until the 52nd day which would be 1/52.</p>
+<p>As for day 236, it would be ~50%.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Clementinesm" target="_blank">Clementinesm</a>
+			<div class="markdown"><p>Day 236 is the average day that you finish, not the median day. The median is about 225 as per other commenters that did Monte Carlo simulations. On day 236, the probability that you've finished is slightly higher than 50%</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

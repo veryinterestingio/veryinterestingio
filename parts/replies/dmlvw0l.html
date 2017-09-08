@@ -1,0 +1,78 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/altrocks" target="_blank">altrocks</a>
+			<div class="markdown"><p>Wouldn't that be left skewed with a right pointing tail since most of the numbers are grouped up on the left side of the graph with the lower numbers (all under 300) and the 670 seems like a pretty good candidate for an outlier?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/speakshibboleth" target="_blank">speakshibboleth</a>
+			<div class="markdown"><p>That messed me up in stats class for a while before it stuck in my head.   No.   The direction of skew is the direction of the longer tail.  This is because the median is on that side of the mode.   </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jebuz23" target="_blank">jebuz23</a>
+			<div class="markdown"><blockquote>
+<p>This is because the median is on that side of the mode.</p>
+</blockquote>
+<p>I always preferred comparing the mean to the median since you could have discrete data sets that have a fairly arbitrary mode.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jebuz23" target="_blank">jebuz23</a>
+			<div class="markdown"><p>Skew doesn't identify the tightly grouped side, it identifies the stretched out side.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bitwiseshiftleft" target="_blank">bitwiseshiftleft</a>
+			<div class="markdown"><p>You can also do it exactly in SAGE using <a href="https://en.wikipedia.org/wiki/Generating_function" target="_blank">generating functions</a>.  Suppose you have collected k/n cards.  Every new card takes at least one day (x).  On day 1 there's a (n-k)/n chance to succeed and then every day there's a k/n chance you fail.  This makes the generating function for collecting the k'th card <code>(n-k)*x/(n-k*x)</code>.  So the generating function for how many days it takes to collect the first m cards out of n is</p>
+<pre><code>def collect_gen(n,m): return prod((n-k)*x/(n-k*x) for k in range(m))</code></pre>
+<p>You can get the mean time to collect all 52/52 cards with <code>derivative(collect_gen(52,52))(x=1)</code>, though from /u/Redingold's comment we know it's the 52nd harmonic number.  You can also get the power series as decimals:</p>
+<pre><code>R.&lt;x&gt; = PowerSeriesRing(RDF,default_prec=1000)
+gen = collect_gen(52,52)
+gen.dict()</code></pre>
+<p>which prints the first thousand coefficients</p>
+<pre><code>{52: 4.725791134077842e-22,
+ 53: 1.20507673918985e-20,
+ 54: 1.5762558245621087e-19,
+ 55: 1.4094183574168985e-18,
+ 56: 9.687352846730433e-18,
+ 57: 5.4570308919202645e-17,
+ 58: 2.62322027566078e-16,
+...
+ 1050: 1.424318885432673e-09,
+ 1051: 1.3969281389651016e-09}</code></pre>
+<p>Replacing RDF with QQ gives exact rationals instead of decimals.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/squeevey" target="_blank">squeevey</a>
+			<div class="markdown"><p>Damn. I should have done this in R. <em>facepalm</em></p>
+<p>Here is my python version: <a href="https://github.com/squeevey/Random52CardPickup" target="_blank">https://github.com/squeevey/Random52CardPickup</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mxzf" target="_blank">mxzf</a>
+			<div class="markdown"><p>Python is still great at doing stuff like this.  It looks like you're just missing some potential tricks you could use to make it cleaner and more efficient.  </p>
+<p>Here's another Python implementation that's a bit more streamlined:</p>
+<pre><code>import random
+list_of_days = []
+for loops in range(10000):
+    day_count = 0
+    deck_list = {}
+    while len(deck_list)&lt;52:
+        deck_list[random.randint(1,52)] = 1
+        day_count +=1
+    list_of_days.append(day_count)
+
+print sum(list_of_days)/float(len(list_of_days))</code></pre>
+<p>I could probably get it down to 2-3 lines with lambdas and list comprehensions, but I'm too lazy to do that right now.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/squeevey" target="_blank">squeevey</a>
+			<div class="markdown"><p>Ah cool!
+This was the first time I've used Python. I just wrote some pseudo code and banged it out quick.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ACoderGirl" target="_blank">ACoderGirl</a>
+			<div class="markdown"><p>In the issue of code quality improvements, the data structure you're looking for is the set. Use that instead of a dictionary where you just assign a dummy value.</p>
+<p>For Python 2, you wouldn't want to use <code>range</code>. But you shouldn't be using Python 2 anyway (then you wouldn't need that float conversion for the division, either).</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/squeevey" target="_blank">squeevey</a>
+			<div class="markdown"><p>I've not touched lambdas since 1999 when I took Scheme at University. Hahaha. </p>
+<p>Thanks for the tips though! If I get into Python more, I'll investigate :)</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
