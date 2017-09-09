@@ -1,0 +1,56 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ouss7" target="_blank">ouss7</a>
+			<div class="markdown"><p>Thank you! This makes a ton of sense. So does this mean that regardless of volume level the speakers will play the same waveform at different amplitudes?</p>
+<p>In other words, when I raise the volume level does the computer automatically adjust to make the midtones louder in order to maintain the same sound or does it just play the same thing only louder?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/iosdevcoff" target="_blank">iosdevcoff</a>
+			<div class="markdown"><p>We need to differentiate between digital and analog sound here.</p>
+<p>If we're taking about speakers, the sound is already transformed from digital to analog. And muting/setting volume on speakers doesn't affect anything on your computer anymore. (Unless there is some feedback mechanism which is we're not talking about here).</p>
+<p>But digital &quot;sound&quot; is actually a stream of real number values between 0 and 1. They represent the amplitude in the given moment, where 0 is no signal, 1 is the biggest amplitude possible, and everything in between.</p>
+<p>When you set the master volume in your audiocard to, say, 0.5, that means every value from the input stream would be multiplied by 0.5 and that's how the final value for output stream is calculated. If you then increase the master volume to 0.8 - values are now multiplied by this fraction. Of course those multipliers can be presented to the end-user as numbers from 0 to 100, or some other range. But programmatically they are always normalized to something in the interval of [0, 1].</p>
+<p>And finally this output stream is fed to your card's D2A (digital-to-analog converter). D2A converts number values to voltage amplitude: that's what your speakers actually use to produce real sound.</p>
+<p>Edit: grammar</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tomrlutong" target="_blank">tomrlutong</a>
+			<div class="markdown"><p>Are you sure about this? I'd guess that the digital values don't change, and the volume is used at the D-A conversion. Since samples are integers, the way you describe would loose 1 bit of sound quality for every halving of volume.</p>
+<p>Oh right, volume isn't linear, its logrhythmic - a 100:1 decrease is only 20dB.</p>
+<p>[I've never done low-level D/A work, just guessing from first principles]</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/norwegianjazzbass" target="_blank">norwegianjazzbass</a>
+			<div class="markdown"><p>Really dont wanna be that guy, but its DAC.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/superdisk" target="_blank">superdisk</a>
+			<div class="markdown"><p>Note that the 0-1 thing only applies for floating point samples.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pedantic_piece_of_sh" target="_blank">pedantic_piece_of_sh</a>
+			<div class="markdown"><p>It just plays the same thing, only louder.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MorrisCasper" target="_blank">MorrisCasper</a>
+			<div class="markdown"><p>I'm not sure whether that's true for all devices. I know that at least Sonos speakers have a default setting called &quot;loudness&quot; that gives you more low end and high end on low volumes than with loud volumes to keep the sound balanced</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/diablo75" target="_blank">diablo75</a>
+			<div class="markdown"><p>One louder.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GlyphGryph" target="_blank">GlyphGryph</a>
+			<div class="markdown"><p>If the volume is muted, the speakers don't receive a &quot;waveform&quot; at all, so no, they won't play it. One muted sound is identical to another as far as the speaker is concerned - and that's true whether its muted on the computer or on the wire just before it hits the speaker.</p>
+<p>There's nothing to <em>play</em>, so nothing plays, it doesn't just play at zero volume, whatever that would mean.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/T-Geiger" target="_blank">T-Geiger</a>
+			<div class="markdown"><blockquote>
+<p>In this case all the memory resources are used at full power during this process.</p>
+</blockquote>
+<p>While probably system dependent, other physical resources will also be fully engaged.</p>
+<p>I have a laptop from Dell that turns HDMI audio off when nothing is outputting sound.  This is a problem, for example, when watching a playlist of videos.  Inbetween each video, the audio is shut off.  When the new video starts, it will take a couple of seconds to renegotiate the handshake with my receiver.  This results in me missing the first few seconds of audio.  The solution is to have something playing muted sound in the background.  One of those 10 hour videos works well for this.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/oby100" target="_blank">oby100</a>
+			<div class="markdown"><p>This guys 100% right. Some video games actually have a &quot;disable sound&quot; option for potato PCs so your CPU never actually processes the sound.</p>
+<p>If it didn't work like this, you wouldn't be able to quickly mute and unmute sound</p></div>		</li>
+					</ul>
+	

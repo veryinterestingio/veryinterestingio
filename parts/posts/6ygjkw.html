@@ -1,0 +1,71 @@
+<li class="post" data-handle="6ygjkw">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/6ygjkw/eli5_when_somebody_mutes_a_computer_does_the/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/6ygjkw" onclick="return false">When somebody mutes a computer, does the computer play the sounds at zero volume, or does it not play the sounds at all?</a>
+		</h2>
+		<!--<span class="date">2017-09-09</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: When somebody mutes a computer, does the computer play the sounds at zero volume, or does it not play the sounds at all?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dmn9l4x">
+		<a class="author" href="https://www.reddit.com/user/iosdevcoff" target="_blank">iosdevcoff</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Sound card actually has a digital mixer, which mixes sounds from all audio sources and redirects the final signal to the output which can be called &quot;master&quot;. When you mute the master, it basically sets the output volume to 0. But all the audio sources still process and produce sounds - this way when you unmute you continue from the proper position and with proper effects. In this case all the memory resources are used at full power during this process.</p>
+<p>But every individual software can handle muting differently - it depends on implementation. But again usually it's playing at 0 volume. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dmn7rjv">
+		<a class="author" href="https://www.reddit.com/user/IamAPengling" target="_blank">IamAPengling</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Actually it completely depends on who is processing the sound. In any application like a media player, usually there will be an entire function (set of commands) that is executed to proceed sound and output it. Usually at zero volume, there's a good chance the function isn't executed at all. Executing and processing sound takes up system resources, and a good program will not process the sound to then discard it. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dmn9tqs">
+		<a class="author" href="https://www.reddit.com/user/greenSixx" target="_blank">greenSixx</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The data will be sent to whatever output device you have muted:  either the player itself or the speakers.</p>
+<p>The playback device specified above will know if it is muted or not.</p>
+<p>If it is muted it will play no sound.</p>
+<p>Otherwise it will play the sound at whatever volume is specified.</p>
+<p>More details:  if the music player is muted the sound data will not be sent to the speakers.  If the speakers are muted, depending on the drivers/coding/design the sound data will either be processed and not played or will be ignored until the speaker itself isn't muted.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dmngycm">
+		<a class="author" href="https://www.reddit.com/user/masteriskofficial" target="_blank">masteriskofficial</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Audio Systems engineer here! It varies from platform to platform, but generally speaking the process goes like this:</p>
+<ul>
+<li>
+<p>The program (think of the computer program as the top layer of a cake) &quot;creates&quot; the sounds, then sends them down a layer to the operating system. This is done through a pre-built set of coding instructions called an API, or Application Programming Interface. (Examples: OpenAL, OpenSL ES)</p>
+</li>
+<li>
+<p>The operating system grabs the sounds (which are still in the form of digital files) and puts them into separate &quot;tracks&quot; (Example: ALSA). It mixes all the tracks together, then makes the final mixed track available to the bottom layer of the cake -- the driver/sound card.</p>
+</li>
+<li>The sound card is where the digital signal gets turned into an analogue signal made out of voltages, which is the &quot;language&quot; your speaker can understand. Here, a typical driver (software that lets your computer talk to the sound card) will apply the overall volume setting to the sound. Basically, every 8 milliseconds or so (again, this varies by system) it will push 8 milliseconds worth of sound data to the DAC (digital-analogue converter). When the volume is set to zero or mute, it will typically not even bother running the calculations to lower the volume -- instead, it sends a <strong>null buffer</strong>, or 8 milliseconds worth of zeros. Many newer/premium devices (like iPhones or high-end Androids) have &quot;smart amplifiers&quot;, which detect these zeros and stop amplifying the sound. That is why when you are talking to someone on your phone speaker and the person stops talking, the background noise will often cut out entirely, then come back when they start talking again. (There is more to it -- things like gates and dynamics processing, but that's the general idea).</li>
+</ul>
+<p><strong>TL;DR it is not playing the sounds at all. However, the program you are using will still spend energy on creating the sounds and trying to send them to the speakers.</strong></p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dmn9zdc">
+		<a class="author" href="https://www.reddit.com/user/Grandpa82" target="_blank">Grandpa82</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It depends of the computer that you are using.   </p>
+<p>Most computers, including PCs plays the audio at Zero volume.  Only a few devices disables the audio processor when mute is selected.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/6ygjkw" onclick="return false"><span>show</span></a>
+</li>
