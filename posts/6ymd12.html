@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5:How do FBI track down anonymous posters on 4chan?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="6ymd12">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/6ymd12/eli5how_do_fbi_track_down_anonymous_posters_on/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/6ymd12" onclick="return false">How do FBI track down anonymous posters on 4chan?</a>
+		</h2>
+		<!--<span class="date">2017-09-10</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Reading the wikpedia page for <a href="https://en.wikipedia.org/wiki/4chan#Arrests_for_child_pornography_and_cyberbullying" target="_blank">4chan</a>, I hear about cases where the FBI identified the users who downloaded child pornography or posted death threats. How are the FBI able to find these people if everything is anonymous. And does that mean that technically, nothing on 4chan is really truly &quot;anonymous&quot;?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dmopkzp">
+		<a class="author" href="https://www.reddit.com/user/thephantom1492" target="_blank">thephantom1492</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Nobody is trully anonymous. Even hackers that use proxy can, in theory, be tracked back. But most of 4chan do not use any proxy at all.</p>
+<p>Not quite ELI5 but should be easy to follow.</p>
+<p>For administrative purpose the forum store the poster IP address.</p>
+<p>The web server also have a log with every ip address with a timestamp and what they did, the formay might be like &quot;ip-address  2016-09-07 13:21:32.1234 get URL errcode filesize&quot; and in some country the hoster might be required by law to keep the logs.</p>
+<p>Then you have the internet provider for the hoster that in most country they are required to keep the logs (which do not contain the data but just the header and size (think of the postal service that would take a picture of the labels and physical size). There is some intermediate provider that is most likelly also required to keep the same logs, and finally the user's provider that also keep those logs.</p>
+<p>The police can ask for a warrant to get the information from the forum owner, if he do not have the logs then they will ask the web hosting compagny. Then they find the ip address of the client, ask for a warrant for the client's isp, which give them the account owner and address.</p>
+<p>For those that hide behind a VPN, it get more complicated mainly due to the fact that it is around the world and international cooperation is complicated and require quite more effort.</p>
+<p>They get the forum owner info, notice it is a vpn, request info from vpn, but they don't have logs because they are in a country that don't mandate it. request web hosting isp logs then vpn hosting compagny logs and then match the packets flow... Once they matched it, they can check the VPN data which other connection had the same packet pattern: what came out of the vpn had to come in from somewhere. Then, with the timestamp and packet size and other information, they can be pretty sure out of any resonable doubt that the outgoing connection came from THAT incomming connection at the VPN end. They now have the true client ip info. Get the warrant for that client isp, and they get the account holder. Repeat if required. It take time, LOTS of effort, and some country have ridiculous short time for the logs. I beleive canada and usa is 6 months, but some under defelopped part of the world have zero log, and some refuse to cooperate together. I know that some place in africa is 2 weeks data retention.</p>
+<p>BTW, here is one of my apache log line: 192.168.2.23 - - [28/Apr/2017:09:34:30 -0400] &quot;GET /public/serveur/20170427_160015_HDR.jpg HTTP/1.1&quot; 200 4289991
+http/1.1 is the protocol used, 200 is the status code, in this case a &quot;ok&quot; message, while 4289991 is the file size. I beleive that instead of http/1.1 if someone post an image it would say &quot;POST&quot; instead of &quot;GET&quot;, which as you can guess make thing easy to search for: &quot;search log for this filename, find the line containing POST&quot;</p>
+<p>As for TOR (read edit bellow), the same can be applied: match the victim log to the tor exit log, match the outgoing packet to the incomming packet (which can be a small issue as there will be a size mismatch, but the timestam should match withim a few ms and the size will be simmilar), repeat until you hit the entry tor server, match with the client ip, figure out that there is no other connection that match, thru being trully that one. Now you found the originating account holder. The issue with tor is the complexity of working internationally, and the fact that each step get harder to convince a judge that the data is still valid and no error has been made.</p>
+<p>EDIT: For Tor, this is an extremelly over simplified explanation. But the main issue is that it is too much of a trouble to get enought proof and follow the communication that they do not do it. Packet maching of encrypted data is a royal pain to do, and the fact that the nodes are overloaded cause a royal headache. Plus the chance of error is so high that it would not hold in court. And at the end they still can't know what was transfered unless the endpoint is in the clearnet. If the endpoint is on Tor then good luck. One of the issue is that you do not know really where the hidden server is in the world. Even if you do know you can't know what exactly got transfered. Those server will most likelly not have any usable log, usually the actual logs will reside in ram only, so if the police seize the server then all the log goes poof. Meaning that they will most likelly not be able to track back anything. What they did to catch some is to install some virus/hack on the page and run the server for a while and hope that the person catch the virus and the virus will expose them. Or they just read everything and try to match the info collected with some other piece of info and close down that way on some suspect.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dmord5e">
+		<a class="author" href="https://www.reddit.com/user/I_Stab_You" target="_blank">I_Stab_You</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A couple of things to note here;</p>
+<ul>
+<li>
+<p>Since 2008, Christopher &quot;Moot&quot; Poole, the founder of 4chan has been cooperating with the FBI and Governmental Agencies allowing them access to the IP-Addresses of posters when needed. He also famously appeared before a Court to describe the nature of this sort of IP-Address tracking and how it could be used to identify an individual. He is no longer incharge of 4chan but I'm assuming this policy hasn't changed much.</p>
+</li>
+<li>
+<p>Since 2009, The FBI and/or other agencies have been running &quot;Honeycombing&quot; operations on sites like 4chan and other Chan boards, including the Famous TORChan which was in the onion web. In these Honeycombing operations, they will post a &quot;Bait&quot; image of either CP or other illegal activities (including drugs and what not) with a post asking them to follow a link to an external site. This site is under the full control of the involved agency and they then use it to try and coerce personal information from the person involved and try and pin them for conspiracy or intent.</p>
+</li>
+<li>
+<p>Since 2011, 4chan has kept detailed backlogs going a number of months of posts / threads on all boards. These logs are used to perform lookups for certain patterns when they need to identify a single individual. Things like typing pattern recognition. This can then be used to create a profile of the person which can then be cross referenced to other sources to try and identify an individual.</p>
+</li>
+<li>A lot of people posting images online don't realize that the images contain metadata. Most mobile phones will encode the exact location that the image was taken at (Lat / Long), if you don't scrub this metadata it is very easy to identify you. I think 4chan now automatically removes metadata from posted images but for a long time inexperienced posters were caught and publicly doxxed using this technique.</li>
+</ul></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dmoip6x">
+		<a class="author" href="https://www.reddit.com/user/Fauler_Lentz" target="_blank">Fauler_Lentz</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In some cases, wesbites like Reddit give law enforcement a user's IP if it's relevant for criminal cases. But even if that is not possible, there are means to track users.</p>
+<p>For example, it's possible to link a user on 4Chan to his other activities on the internet through his style of writing and interests. This way, they might identify someone who posts childporn anonymously on 4Chan as a Reddit user with a prolific posting history, which might shed light on personal information. They might even find his Facebook account with his real name, all through data that the person posts publicly on the internet.</p>
+<p>There are also some more shady techniques, like a correlation attack. What that means is that they monitor outgoing traffic of an internet user and compare that to the posts on 4Chan. So if an anonymous guy posts an image with a size of X at time Y and the suspect has outgoing traffic of size X at time Y, they've got a match. This might be sheer coincidence the first time it happens, but if it happens several times in a row, it's enough for a court order. This is how they got a guy who <a href="https://www.dailydot.com/crime/tor-harvard-bomb-suspect/" target="_blank">issued a bomb threat through TOR</a>.</p>
+<p>Edit: Better link</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dmolhn5">
+		<a class="author" href="https://www.reddit.com/user/shocksalot123" target="_blank">shocksalot123</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The Chan sites are only anonymous in the sense that anyone can post anything without having to make an account or provide a name, they are not anonymous in the commonly misconceived form of hiding ones identity and being completely free of digital-trails. Every time you post on a Chan site your IP is recorded (its hidden to public but clear to admins), thus if you post something forbidden they can then report the post and share your IP to authorities. Hackers have also been able to 'see' posters IP addresses on 4chan in the past and have used this for both good and evil, for example when annon was posted up images of an actual freshly murdered body, some batman-esk hackers managed to track down the up-loaders location just from the IP activities. </p>
+<p>In short; you are never truly anonymous. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dmolwke">
+		<a class="author" href="https://www.reddit.com/user/Mynameisaw" target="_blank">Mynameisaw</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'd decribe the two main ways as,</p>
+<ol>
+<li>
+<p>User error. The user makes no attempts to cover their tracks. Everything you do online essentially leaves a footprint, your PC itself has several identifiers, the connection routes you use have identifiers, etc. Imagine robbing someone's house when there's thick snow. All they have to do is follow the footprints and they've found your house with the stolen TV inside.</p>
+</li>
+<li>Connecting the dots. Even if the user has made substantial attempts to cover their tracks, they used a common alias that they've used many times. So they know the user FuckNut12 posted CP. They do a general search for FuckNut12 and find a hotmail address with that name, which is also used on Reddit, Youtube and a few forums. Through court orders they can obtain personal information that relates to that username, and then once they have name, address and other identifiers, they can then get a warrant to search that persons PC. On which they find the evidence linking to the 4Chan post. </li>
+</ol>
+<p>A mix of the two is also used, connecting usernames to different sites, gathering IP information based on connections, getting the relevant information from ISP's, VPN providers and the like. </p>
+<p>Mostly it's down to the user. If you take every single measure possible, you probably won't ever be found. But due to human nature we often unintentionally leave clues and traces due to our reliance on familiarity or memory recall. I believe the Silk Road guy was caught through a series of posts he'd made well before he founded Silk Road for example. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/6ymd12" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
