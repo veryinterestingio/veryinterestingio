@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>What are p-values? What would it mean to go from a p-value of 0.05 to 0.005?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="6yr9z6">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/6yr9z6/what_are_pvalues_what_would_it_mean_to_go_from_a/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Mathematics">Mathematics</span>
+			<a href="/posts/6yr9z6" onclick="return false">What are p-values? What would it mean to go from a p-value of 0.05 to 0.005?</a>
+		</h2>
+		<!--<span class="date">2017-09-11</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>A month ago, <em>Nature</em> made waves by publishing <a href="https://www.nature.com/articles/s41562-017-0189-z.pdf" target="_blank">a commentary</a> that the standard p-value should be changed from 0.05 to 0.005. If my intro to statistics covered p-values, I have completely forgotten, and the description in the commentary is abstract for me.  </p>
+<ul>
+<li>What are p-values? Is <a href="https://xkcd.com/882/" target="_blank">the last panel of this XKCD comic</a> accurate?</li>
+<li>Why is the standard 0.05?  Is it related to the fact that 95% of a normal distribution is within two standard deviations from the mean?</li>
+<li>What would the new standard mean in practical terms?  Would it wreak havoc with the current social sciences? </li>
+</ul>
+<p>(cross-poted to /r/explainlikeimfive/ and /r/askscience)</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dmpsm2g">
+		<a class="author" href="https://www.reddit.com/user/tadrinth" target="_blank">tadrinth</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>EDIT for clarity:  The proposal under consideration is about changing how we interpret p-values.  So I need to go through what p-values are, then we can talk about the proposed change to a threshold called alpha that is used when we interpret p-values.  </p>
+<p>The p-value is the likelihood of getting data at least as unlikely as the data you actually got, <em>given that the null hypothesis is true</em>.  If you leave out any part of that definition, you are not talking about p-values and you will mess up in your reasoning (and I would ding you points on your exam, I used to teach intro statistics).</p>
+<p>Null hypothesis testing is a probabilistic version of proof by counterexample.  You assume something, you show that your data is very unlikely given that assumption, and that provides evidence that your assumption is false.</p>
+<p>For example, you might assume that your drug is no better than placebo (is equally likely to cure patients).  Then you administer the drug to a bunch of patients, and the placebo to a bunch more patients, and you compare how many patients were cured. </p>
+<p>If more of the patients who got the drug get better, then you have evidence against the null hypothesis that they're the same. </p>
+<p>But, if roughly similar numbers of patients were cured, then you haven't shown anything at all; maybe your drug isn't better, or maybe you just didn't have enough patients to prove anything.</p>
+<p>The bigger the difference between the two, the smaller the p-value, because it's less likely the drug and placebo are the same if they cure different numbers of people.</p>
+<p>The more people you have in the study, the smaller the p-value, because who gets better has an element of chance, and you might randomly have some placebo people get better on their own. </p>
+<p>If there's no element of chance, you don't really need p-values; it'll just be really obvious, since one thing is always better.  P-values are for when you cannot tell by eye because there's too much data and the difference is too small, or when you want to prove the difference to someone.</p>
+<p>In practice, we want to make up our minds at some point, even though this whole thing is probabilistic.  To do that, we say that if the p-value is below a certain threshold (EDIT for clarity: this threshold is called alpha; the proposal under consideration is lowering alpha from 0.05 to 0.005), we reject the null hypothesis.  If you designed your experiment right, if the null hypothesis is false, then some other hypothesis of interest must be true, and then your experiment will show support for that other hypothesis.  </p>
+<p>Lowering that threshold is demanding more evidence before we are willing to reject the null hypothesis.  It basically says how often we are willing to reject the null hypothesis when it's actually true.  Going back to the drug example, if we insist on a p of 0.05, that means that out of every 20 drug trials <del>where we showed the drug is better than placebo, we will be wrong one time and the study didn't really show them to be different</del> EDIT where the drug isn't better than placebo, we'll average one study that incorrectly finds that the drug is better (a false positive). If we ask for a p-value of 0.005, then we'll only be wrong 1 in 200 drug trials.  The threshold is essentially arbitrary; the 2 standard deviations thing is probably why that particular threshold was picked, yes, it makes it really easy to calculate since we can almost always assume an approximately normal distribution when doing these tests.</p>
+<p>Given just how many drug trials are performed, that might be a good thing to do; we don't want to approve a drug that doesn't actually do anything!  All drugs have side effects, and all drugs cost money, so drugs that don't do anything are bad.</p>
+<p>Now, if you've been paying attention, you might note that the p-value just talks about the likelihood of the null hypothesis.  And we don't actually care about the null hypothesis at all! We want to know if our hypothesis is correct, not if our null hypothesis is wrong.  </p>
+<p>This is a fundamental limitation of p-values and the philosophy of statistics that spawned them, because that philosophy does not really believe in probabilities, only proportions.  So it isn't about the probability of a study being wrong, it's about the proportion of studies that we're willing to accept being wrong in a certain way.  Asking about the probability of a hypothesis is a nonsense question; hypotheses must be either true or false.</p>
+<p>The other philosophy of statistics is perfectly happy to assign probabilities to hypotheses, with the probability representing our own uncertainty about whether the hypothesis is true or false.  In reality, it's one or the other, but since we don't know, probabilities are a great way to measure our uncertainty.</p>
+<p>Unfortunately the other philosophy of statistics often involves math that was untractable before computers, and the p-value philosophy had a very aggressive advocate, and so p-values became extremely popular, even though 99% of the people using them are using them incorrectly because they forget that the p-value is the probability of the data GIVEN THAT THE NULL HYPOTHESIS IS CORRECT.  They leave off that part and just treat the p-value as the probability that the null hypothesis is correct.  </p>
+<p>This ignores the probability of the null hypothesis given everything else you know, which is what you need to transform from what the p-value actually is to what people think it is.  And if the hypothesis your testing is deeply unlikely to be true, which is extremely common since there are many, many possible hypotheses, then you need WAY more evidence before you decide to assign high probability to it, and just taking the p-value will mess you up rather badly.  </p>
+<p>This is all also ignoring the fact that if you really want to reject the null hypothesis, you can just run 20 studies and one of them will come up rejecting just by chance (at a p-value of 0.05).  Going to 0.005 would require 200 studies to get one to come up by chance.  </p>
+<p>And there are many, many, <em>many</em> ways to fiddle with your data to turn one dataset into 20 datasets, find one that rejects, and then not really talk about the other 19.  Or to otherwise get a low p-value when you shouldn't.  I've seen analyses where the math in a paper would reject the null hypothesis something like 60% of the time for totally random data.  </p>
+<p>So, if we lower to 0.005, it will be harder to publish papers, because papers only get accepted if they say &quot;we rejected the null hypothesis (which is taken to mean 'my hypothesis was right')&quot;; saying 'we failed to reject the null' is taken as 'my study didn't show anything and was a giant waste of time'.   Whether this would be catastrophic, I couldn't tell you; it will certainly be bad for labs publishing papers about results that aren't real.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dmps2k3">
+		<a class="author" href="https://www.reddit.com/user/Kroutoner" target="_blank">Kroutoner</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The comments in here so far are stating that a p-value is the probability that the results observed in a study were due to random chance. This is an oft-quoted statement of the definition of p-values, and I always find it vague enough to be both right and wrong. If you understand p-values correctly you will likely understand it the correct way, and if you do not already understand p-values then you may understand the statement incorrectly. </p>
+<p>A better statement of the meaning of p-values is: &quot;a p-value is the probability that you would observe what you observed, or more extreme, given that the null hypothesis is actually true.&quot;
+This definition requires you to understand the more general framework of hypothesis testing, including the null and alternative hypothesis. Often the null hypothesis is a kind of straw-man hypothesis; something you set up to provide evidence against. A common null hypothesis (for example for one sample t-tests) is that the true population mean of the population you are measuring is exactly zero.  The alternative hypothesis is also involved in the hypothesis test and provides meaning to the &quot;more extreme&quot; part of the p-value definition. If the alternative hypothesis was &quot;the true population mean is not equal to zero&quot;, then obtaining a value more extreme than what you observed would mean obtaining a sample mean that's absolute value is greater than the absolute value of the sample mean you actually observed. If the alternative hypothesis was &quot;the true population mean is greater than zero&quot;, then more extreme would mean obtaining a sample mean that is strictly greater than the sample mean you observed. </p>
+<p>Changing the significance level from 0.05 to 0.005 would have a few effects. It would decrease the chance of getting positive scientific results when there's actually no effect. Remember, no means absolutely no effect, strictly 0. It does not mean an effect that is small enough to be unimportant. On the other end, decreasing the significance level decreases power, that is it decreases the chance that you correctly detect an effect when one actually exists. In the social sciences measured p-values are often relatively large compared to the physical sciences, so this would make publication in the social sciences more difficult.</p>
+<p>This slate article has a decent and brief discussion on the impact of changing the significance cutoff.
+<a href="http://www.slate.com/articles/health_and_science/science/2017/08/how_will_changing_the_p_value_threshold_affect_the_reproducibility_crisis.html" target="_blank">http://www.slate.com/articles/health_and_science/science/2017/08/how_will_changing_the_p_value_threshold_affect_the_reproducibility_crisis.html</a></p>
+<p>As for the particular choice of 0.05, this came about as a completely arbitrary choice of a reasonably smallish number that roughly coincided with 2 standard deviations of a normal distribution.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dmq3ocm">
+		<a class="author" href="https://www.reddit.com/user/Fala1" target="_blank">Fala1</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In addition to what other people have I said I just want to quickly mention that the p-value is calculated from your data.<br />
+Before you conduct your study you have to settle on a cut-off for your future p-value. This is called the alpha value.</p>
+<p>Technically and pedantically speaking you change your alpha value from 0.05 to 0.005, not the p-value.<br />
+You can't change your p-value, since it's just a calculation from your dataset. (Well you can, by changing your dataset, but that's not what you mean) </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dmpkbmx">
+		<a class="author" href="https://www.reddit.com/user/tbdabbholm" target="_blank">tbdabbholm</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A p-value is the probability that the results achieved in the study were due to random chance. Usually p&lt;0.05 is used as a threshold to determine if the study has significant results. This means practically that if the results the study showed have a higher than 5% chance of occurring randomly the study hasn't given any evidence that changes the current theory (which is why these studies aren't published which could also be a problem). </p>
+<p>5% was chosen because it's low but not unreasonably so. (And also because we seem to like 5 in our base 10 number system).</p>
+<p>Changing it from 0.05 to 0.005 would be good in that results would almost certainly disprove currently held theories but the problem would be that such results (in some disciplines) might be quite difficult to get. For example, psychology research has almost a 0% chance of ever getting a study to have that low a p-value. Human bodies just can't be controlled as much as say a physics experiment which get up to 6 sigma (p&lt;0.0001).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dmpk2f8">
+		<a class="author" href="https://www.reddit.com/user/iorgfeflkd" target="_blank">iorgfeflkd</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A p-value is the probability that a random process would give you the data you observed. So if you flip 10 coins and get 9 tails, there's about a 1% chance of having that happen randomly with a 50-50 coin. So if you were testing the hypothesis that the coin is rigged, you could say the coin appears to deviate from fairness with p=0.01 significance.</p>
+<p>However, it's still possible that you just got weirdly lucky with tails and that the coin is fair. So to test this further, you could do 1000 flips, which if they continued to be strongly biased to tails, would further strengthen the significance of your coin study. However, if you initially flipped 9 heads and then you end up with like 495/1000 heads, you probably just had weird luck on the first ten.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/6yr9z6" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
