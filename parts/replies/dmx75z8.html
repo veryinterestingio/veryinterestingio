@@ -1,0 +1,62 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><blockquote>
+<p>a synchronous speed</p>
+</blockquote>
+<p>Good post. I'm a wind turbine controls engineer, so I'd like to let you know that this assumption is wrong. (Modern) wind turbines have variable speed generators. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aquoad" target="_blank">aquoad</a>
+			<div class="markdown"><p>Do they have lots of phases that get rectified to DC and then inverted to whatever is needed for transmission? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/iranoutofspacehere" target="_blank">iranoutofspacehere</a>
+			<div class="markdown"><p>From what they seem to have discussed... some of them do.</p>
+<p>Modern power electronics are getting cheaper, so it's actually possible to rectify the generator output to DC and invert it back to AC at utility (or at least single wind turbine) scales. </p>
+<p>The doubly-fed induction generator (DFIG) setup seems like It uses a VFD to generate the power for the field winding. If we think of the field winding as a big permanent magnet, feeding it with a VFD lets us rotate that magnet however we want. We can rotate it so that the difference in speed between the input shaft and the 'permanent magnet' field winding is always 1200rpm (resulting in 60Hz electrical speed) and the power can be fed directly from the generator to the grid.</p>
+<p>For what it's worth, the DFIG setup sounds more efficient and that it would have a similar level of control compared to the inverter method. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wiznillyp" target="_blank">wiznillyp</a>
+			<div class="markdown"><p>Yes, Typically, wind turbines produce high frequency outputs that are rectified in groups to a central DC Link and pushed to the grid by an inverter.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/scornucopia" target="_blank">scornucopia</a>
+			<div class="markdown"><p>Some do. The trend for large turbines is towards gearless PMSGs (permanent magnet synchronous generators) with rectification and inversion. Last I checked, this newer system was only economical for turbines larger than about 3MW, so it's mostly found in very new offshore turbines (often 5MW or 8MW). Below 3MW, DFIGs (doubly-fed induction generators) are (or were last time I checked) more economical.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/scornucopia" target="_blank">scornucopia</a>
+			<div class="markdown"><p>This (&quot;Original&quot;, below) seems to have been misunderstood, so I feel I should clarify.</p>
+<blockquote>
+<p>wind turbines have variable speed generators.</p>
+</blockquote>
+<p>Yes we say that, but the generator itself is just a hunk of iron and copper. If you remove the VFD (variable frequency drive electronics) from the rotor, the machine is just a 6-pole AC machine and it has a synchronous speed (1200 RPM) like any other 6-pole AC machine. I <em>did not say</em> the generator (considered as a whole including the rotor-side controller) was synchronous, I said it <em>has a synchronous speed</em> of 1200 RPM. it does.</p>
+<p>What enables the shaft to be driven at 1100 RPM or 1300 RPM and still get 60 Hz out is drive electronics (VFD) connected to the rotor that enables the rotor's magnetic field to rotate a bit faster or a bit slower than the physical rotation of the shaft.</p>
+<p>If you get rid of the electronics and just connect a battery to the field coils (rotor windings) to provide a steady magnetic field, the magnetic field rotates exactly as the mechanical rotation of the shaft, the machine is synchronous, and the electrical output frequency is just f = RPM*np/120  (f=60 Hz for RPM=1200 and np=6).</p>
+<p>There is <em>absolutely nothing unusual</em> about identifying the synchronous speed of a generator used in asynchronous service.</p>
+<p>Original:</p>
+<blockquote>
+<p>No, the synchronous speed is still 1200 RPM. The fact that 60 Hz output can be produced over a range (maybe +/- 30% around the synchronous speed) by driving the rotor/field windings with AC (from the VFD/RSC) doesn't change the synchronous speed of the generator itself.</p>
+</blockquote></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>Utility-scale wind turbines have asynchronous generators and do not output 60 Hz. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aquoad" target="_blank">aquoad</a>
+			<div class="markdown"><p>Yay! An actually useful and informative answer.  It makes sense for the armature windings to be big and beefy and smaller in number, since it's a lot of power and you don't want to have to deal with exorbitant voltages since it makes the winding design more difficult. </p>
+<p>As for the field coil, since it isn't carrying as much power, is it just that it's not a big deal for it to be at like a kv or two so you can use cheaper winding wire than big fat formed copper coils? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/scornucopia" target="_blank">scornucopia</a>
+			<div class="markdown"><blockquote>
+<p>As for the field coil, since it isn't carrying as much power, is it just that it's not a big deal for it to be at like a kv or two so you can use cheaper winding wire than big fat formed copper coils?</p>
+</blockquote>
+<p>I don't know.</p>
+<p>For a DFIG (used in most recent wind turbines), the RSC (rotor side controller) is rated at around 30% of the nameplate output (so, say 700kW for a 2MW turbine), which is still a fairly significant amount of power. </p>
+<p>From theory, for a given magnetic flux and core material/design (i.e. so many Webers cutting the armature windings), the mmf should be fixed (i.e. the same ampere-turns) so there's a choice between lots of turns and low current (implies high voltage) and few turns and high current (implies low voltage) as long as the product of the current and turns is the same (with a fudge-factor for non-ideality).</p>
+<p>I don't know what the trade-offs are or how generator designers decide. I'd guess that there's some other consideration (physical size, weight) that plays a role.</p></div>		</li>
+					</ul>
+		</ul>
+	
