@@ -1,0 +1,96 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Revro_Chevins" target="_blank">Revro_Chevins</a>
+			<div class="markdown"><p>There are a lot of different methods through which AI can determine your location usually through simulating vision and sound within the game. Enemies can't truly hear or see you.</p>
+<p>A common technique is to use RayCasts to give enemies eyesight. Essentially a RayCast is just a vector drawn directly from a set point (usually the enemy's head) with a set length. RayCasts are stopped by the level geometry (walls, floors and basically any object within a level) If the player crosses the RayCast, the enemy is notified of the player's position and usually told to attack. Most games create a fan of RayCasts to detect players so the player doesn't have to be perfectly facing an enemy in order to be detected. If you've ever played a game like Metal Gear Solid, you're probably used to seeing enemies with vision cones. That's basically it. </p>
+<p>From here the AI can do a number of different thing depended upon how its programmed. It can keep the RayCast pointed at you for a certain amount of time, hold onto your position indefinitely, give up your position after you've gotten far enough away from an enemy, give up your position after a certain amount of time without being seen, save your last known position and search the surrounding area, stay still, take the shortest path towards you, take a longer path in order to confuse you, return to a patrol route if it doesn't find you again, or (if it's really poor AI) just forget where you were the second you run out of sight. </p>
+<p>AI can be quite complex or very simple. Sometimes the smartest enemies have the simplest AI.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fuck_the_haters_" target="_blank">fuck_the_haters_</a>
+			<div class="markdown"><p>How can an ai slow itself down to human speed?</p>
+<p>Say I'm hiding behind a wall. And an enemy is looking for me. An AI can probably take thousands of data points in a second.  How is the AI telling the enemy to look for me in a very slow manner?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/featherfooted" target="_blank">featherfooted</a>
+			<div class="markdown"><blockquote>
+<p>How is the AI telling the enemy to look for me in a very slow manner?</p>
+</blockquote>
+<p>Again, it varies from game-to-game.</p>
+<p>A few ways:</p>
+<ul>
+<li>a rule that says an enemy can't look in the same place more than once every 1000 milliseconds, giving you an opportunity to move before it comes back</li>
+<li>a rule that says an enemy only 'follows its gut' 50% of the time (e.g. stupidity, which you can ratchet up or down based on difficulty)</li>
+<li>a rule that says the game itself will 'trick' the AI with false information every once in a while (e.g. a distraction)</li>
+<li>a rule that says an enemy might be looking directly at your location, but can only see you 50% of the time (a la DnD detection roll)</li>
+<li>a rule that says the AI can only see you if you move <em>while</em> it's looking at you (i.e. non-aggression and waiting for the player to make a mistake then capitalizing on it)</li>
+</ul>
+<p>Literally ask yourself, how would you play hide-n-seek with a three-year-old? You feign not knowing, you intentionally waste time, etc.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PositronCannon" target="_blank">PositronCannon</a>
+			<div class="markdown"><p>It's simple enough to code the enemies to use a certain speed depending on the situation. We say &quot;AI&quot;, but at the end of the day it's nothing more than a bunch of human-made code, and unintended bugs aside, the AI will always behave as intended by the coder.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hotpotato70" target="_blank">hotpotato70</a>
+			<div class="markdown"><p>The point of AI is to appear difficult enough to be fun. It's certainly possible to handicap the AI as others suggested, but it's also possible to code it to know exactly where you are, but have it avoid you on purpose. This is similar to how parents play with their kids hide-and-go-seek.</p>
+<p>I don't know how real games code it, but it would appear to me that you can code AI to appear realistic better if it knows everything, but makes moves as if it doesn't, that way it can adjust to the level of human player.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/theinsanepotato" target="_blank">theinsanepotato</a>
+			<div class="markdown"><p>To expand on this, the programmers could make it so the game only considers you to be &quot;Found&quot; if the character/3D model &quot;looking for you&quot; can actually &quot;See you.&quot;</p>
+<p>Lets say youre playing a level of Super Mario, where you have to control Mario and hide from Bowser. The game loads up a room with some ledges and crates and rocks and other objects to hide behind. You load up a 3d model of Bowser, and you load up a 3d model of Mario, and you put them in the room. You have the game engine draw a straight line starting from bowser's face, and continuing until it hits an object. This basically represents Bowers field of vision; what he can 'see.' If the object it hits is Mario, then the game has 'found' you. If the line hits anything that is NOT Mario, then it has <em>not</em> found you. If the the straight line from Bowsers face <em>would</em> hit you, but youre hiding behind another object like a wall or a crate or a rock, then the line never actually hits mario and hits the crate or rock instead, and thus, Bowser cannot 'see' you and thus has not found you.</p>
+<p>If you want to go further, you can also make it so that moving Mario too fast around makes noise, and if you make noise, the game will turn bowser to face in that direction (he 'heard' you making noise) and if the line from bowser hits you when he turns that way, youve been 'found.'</p>
+<p>In reality it wouldnt likely be just a line representing the field of vision, but more like a cone, starting at bowsers face and expanding wider as it goes further out. The game checks if mario is in front of that cone, and not hidden behind an object, and if yes, then bowser 'sees' you.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/iridisss" target="_blank">iridisss</a>
+			<div class="markdown"><p>For those interested, the phrase &quot;video game line of sight&quot; can help find a lot of information on this. Bonus if you include names of games which feature stealth as a mechanic, like Dishonored, or Skyrim. Note that the game doesn't have to feature stealth as a gameplay path, as LoS is often used for determining aggro (when an open-world enemy sees you and chases/attacks).          </p>
+<p>And as an aside: some games may also feature a proximity detector, so that you can't get too close without &quot;aggroing&quot;. This is almost <em>never</em> used in stealth-based games, so as to allow for stealth melee kills.You'll find it in the latter of my example above; where you can't get right behind the back of an open world enemy.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jewmangi" target="_blank">Jewmangi</a>
+			<div class="markdown"><p>In the original starcraft, the AI could see the whole map all the time. You had no way of surprising it, just had to out-maneuver it.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kendrone" target="_blank">kendrone</a>
+			<div class="markdown"><p>Reminds me of trying to get the achievement for defeating 7 elite AI in an eight team FFA. The bastards treated every base as a gold base, increasing their income over mine.</p>
+<p>Surprisingly, turtle terran didn't work for me.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jozz11" target="_blank">Jozz11</a>
+			<div class="markdown"><p>I picked a map with floating island and Insta floated base to island and filled the edges with missile turrets until in could build some battle cruisers and reclaim a chunk of map </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dukeofpizza" target="_blank">dukeofpizza</a>
+			<div class="markdown"><p>This achievement was super easy to cheese, it was one of the first ones I got after seeing a guide for it online. Basically pick a map where you will start on an island, build tons of scv and light defenses then just mass build battle cruisers. Wait for 5-6 of the AI to murder each other then mop up.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AwkwardSpaceTurtle" target="_blank">AwkwardSpaceTurtle</a>
+			<div class="markdown"><p>in sc2 u can proxy 1 guy or 2 guys down then  &quot;start&quot; on 2 mains with 2 expos. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lightningbadger" target="_blank">lightningbadger</a>
+			<div class="markdown"><p>This sounds like a great add on to alien isolation</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ModerateDanger" target="_blank">ModerateDanger</a>
+			<div class="markdown"><p>The alien in isolation actually has 2 brains. 1 tries to find you, the other knows where you are at all times and feeds it hints on which way to look.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ShetlandJames" target="_blank">ShetlandJames</a>
+			<div class="markdown"><p>Great game. Too draining to play more than once for me though </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RemtonJDulyak" target="_blank">RemtonJDulyak</a>
+			<div class="markdown"><p>Is it bad A:I gave me anxiety in the first minute after beginning, when everything was normal and I just had to talk to the rest of the crew?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dandroid126" target="_blank">dandroid126</a>
+			<div class="markdown"><p>Was the computer in StarCraft an unstoppable god, or did I just really suck when I was 10?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/elBenhamin" target="_blank">elBenhamin</a>
+			<div class="markdown"><p>I downloaded it recently since it became free and relearned to the point I could win against 2 computers. I then hop on battle net and get smoked.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jewmangi" target="_blank">Jewmangi</a>
+			<div class="markdown"><p>A little bit of both ;)</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
