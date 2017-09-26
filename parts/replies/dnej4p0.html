@@ -1,0 +1,68 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/vamediah" target="_blank">vamediah</a>
+			<div class="markdown"><p>Also, the way RAM is used now has some weird/fascinating side effects:</p>
+<ul>
+<li>up until first Pentium (486 and before), the RAM refresh was programmable, you could slow it down or turn it off and watch RAM literally &quot;fade away&quot; which manifested as random errors in programs</li>
+<li>you can freeze memory sticks to low temperatures with e.g. liquid nitrogen and the charge will last longer, which allows you to turn off computer, put the RAM sticks into another and retrieve encryption keys that were stored in memory. This is called <a href="https://en.wikipedia.org/wiki/Cold_boot_attack" target="_blank">cold boot attack</a></li>
+<li>the physical cells on the RAM stick are organized in a specific fashion, if you flip them in a specific order, you will flip adjancent bits which can have security implications. See <a href="https://en.wikipedia.org/wiki/Rowhammer" target="_blank">rowhammer attack</a></li>
+<li>RAM bits ocassionally are flipped by cosmic radiation (and it won't be detected unless they have ECC). It is extremely rare, but if you have millions of computers, it starts to manifest. See <a href="http://dinaburg.org/bitsquatting.html" target="_blank">bitsquatting</a>.</li>
+<li>if you programatically can control frequency and voltage, you may cause glitches that cause RAM bits to flip (<a href="https://blog.acolyer.org/2017/09/21/clkscrew-exposing-the-perils-of-security-oblivious-energy-management/" target="_blank">article</a>, warning: extremely technical)</li>
+</ul></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/stanatstan2" target="_blank">stanatstan2</a>
+			<div class="markdown"><p>The bitsquatting experiment was really cool, thanks for sharing. Any idea how they know a memory error occurred instead of a simple typo (typesquatting) from the beginning though? Is it possible to tell?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/vamediah" target="_blank">vamediah</a>
+			<div class="markdown"><p>Because they selected the domain names that can't be caused with high probability due by typo errors. E.g. microsoft.com vs iicrosoft.com</p>
+<p>EDIT: example from the <a href="http://media.blackhat.com/bh-us-11/Dinaburg/BH_US_11_Dinaburg_Bitsquatting_WP.pdf" target="_blank">paper</a> (nobody ever types Microsoft updates address by hand):</p>
+<pre><code>download.iicrosoft.com  
+ 91.198.175.xxx 
+ "GET   
+ /v9/windowsupdate/redir/muv4wuredir.cab?1010161718 
+
+HTTP/1.1"   
+ "Windows-­‐Update-­‐Agent" </code></pre></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rusty_ballsack_42" target="_blank">rusty_ballsack_42</a>
+			<div class="markdown"><p>Ok all of this is really cool! Thanx for sharing!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dubanx" target="_blank">Dubanx</a>
+			<div class="markdown"><blockquote>
+<p>RAM bits ocassionally are flipped by cosmic radiation (and it won't be detected unless they have ECC). It is extremely rare, but if you have millions of computers, it starts to manifest. See bitsquatting.</p>
+</blockquote>
+<p>While cosmic rays do occasionally cause bits to flip it's much more common for a bit to be switched by other means (within the earth's magnetosphere). For example, the magnetic field of a bit switching can occasionally cause the bit next door to flip as well. This, and other sources of bits randomly flipping, are fairly common but rare enough and low impact enough that you usually don't notice it. You've probably had it happen a few dozen times to a computer you were using if you use computers to any significant degree, which as a redditor you probably have.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zwlegendary" target="_blank">zwlegendary</a>
+			<div class="markdown"><p>What you describe is actually a particular type of RAM, called dynamic RAM (DRAM). There is also static RAM (SRAM) which doesn't need to be refreshed, because its cells are made from configurations of transistors rather than leaky capacitors. SRAM is faster than DRAM, but its cells are also larger and therefore more expensive to manufacture, so these days it's generally only used in very small quantities where performance is paramount, such as the L1 cache in your processor.</p>
+<p>SRAM cells don't leak but their state is basically encoded in a feedback loop formed by the transistors from which they are made; if the transistors lose power then the feedback loop is destroyed and the cell loses its data.</p>
+<p>SRAM was commonly used as working storage in old cartridge-based gaming consoles, like the NES and SNES. Consider <a href="https://snescentral.com/0/1/6/0164/SNS-ZL-0-pcb-front-9233.jpg" target="_blank">this circuit board</a> from The Legend of Zelda: A Link to the Past, for example. The large chip in the top right of the image is the SRAM which was used to store save games.</p>
+<p>How can you use SRAM for save games if it requires power? When system power falls below a certain voltage threshold (as a result of the console being powered off), power is automatically switched over to the coin cell battery using a diode (or in some other cases, a special supervisor chip). This allows save games to be preserved even when the cartridge is removed, because power is never actually lost unless the battery dies.</p>
+<p>Many old cartridges from that era have lost their ability to store save games because these coin cell batteries die after about a decade or so. They can be restored by opening them up, desoldering their batteries, and replacing them with new ones.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/alexforencich" target="_blank">alexforencich</a>
+			<div class="markdown"><p>This is true. And battery backed SRAM can have extremely low leakage, so low that the battery can last for years. Most motherboards even these days use battery backed SRAM to store BIOS settings, and the battery also runs a low power 'real time clock' chip to keep track of time when powered off.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rusty_ballsack_42" target="_blank">rusty_ballsack_42</a>
+			<div class="markdown"><p>Oh that is very nice to know. Thank you! </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/z0rb0r" target="_blank">z0rb0r</a>
+			<div class="markdown"><p>What about solid state drives?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EvanDaniel" target="_blank">EvanDaniel</a>
+			<div class="markdown"><p>Solid state drives are flash memory. They differ from memory cards basically by having a fancier controller and a different interface, but that's about it. The storage on a smartphone is the same.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/frozenyogurttheif" target="_blank">frozenyogurttheif</a>
+			<div class="markdown"><p>The design quality is generally a lot higher where SSDs  are designed to a much higher fault tolerance, and in particular far higher write cycle counts. These are after all products that are used in a fundamentally different setting. They're not really the exact same products in that regard. A lot of work goes into producing the of longevity and fault tolerance seen in consumer and enterprise SSDs, and especially high-end drives like Samsung's Pro SSD series (on the consumer side).</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
