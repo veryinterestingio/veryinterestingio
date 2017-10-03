@@ -1,0 +1,84 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sanels" target="_blank">sanels</a>
+			<div class="markdown"><p>the first way(measuring voltage) is a very naive and bad way of doing it. Reason being is the voltage sags depending how much of a load is on it. Some cells have odd characteristics where the voltage may read good but the second you put any load on them they tank. That's the reason coulomb counters are used, they don't care about the voltage and just integrate the current measurement vs what it knows the battery can do. They do require calibration however(which consists of full charge then full discharge).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Davecasa" target="_blank">Davecasa</a>
+			<div class="markdown"><p>Soc estimation by voltage is generally understood to include load compensation. It works pretty well for chemistries with a large voltage swing through the charge/discharge cycle, like lead acid. Lithium chemistries, especially LiFePO4 and it's family, are very flat, so in the 20-80% range voltage tells you almost nothing about soc. This is where you need coulomb counting in addition to voltage. The problem is that cc drifts over time, hence the combination. A good integrated chip is learning and self calibrating constantly, you don't really need to do full cycles anymore.</p>
+<p>Of course in the real world, the answer to this is you buy a product from TI because they figured this all out already. BQ34Z100 is a good place to start if you're interested in the topic. I use it everywhere I get a chance. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/adtw" target="_blank">adtw</a>
+			<div class="markdown"><p>What would you recommend for a lead acid battery? I'm having a very hard time tracking my solar batteries state of charge - can't go by voltage because the panels open circuit at 20v (regardless of amperage) and the charge controller steps it down to 14v. That's way more than enough for the batteries to be completely depleted @ &lt;10.5v but still reading 14v+ because of the controller. </p>
+<p>I can go by critical voltage at night but that's not really useful as the battery won't last long if I only know when it's near fully depleted. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cycle_stealer" target="_blank">cycle_stealer</a>
+			<div class="markdown"><blockquote>
+<p>BQ34Z100</p>
+</blockquote>
+<p>Just checked TI website on this and it says 'Not recommended for new designs', which implies there is a newer device available. Do you know it's part number?</p>
+<p>EDIT: Got it <a href="http://www.ti.com/product/bq34z100-g1/description" target="_blank">http://www.ti.com/product/bq34z100-g1/description</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/1Davide" target="_blank">1Davide</a>
+			<div class="markdown"><blockquote>
+<p>the first way(measuring voltage) is a very naive and bad way of doing it.</p>
+</blockquote>
+<p>On the contrary, you  <em>must</em> include the voltage to calibrate the Coulomb Counting.</p>
+<p>Coulomb Counting is accurate though relative, and Voltage Translation is absolute though inaccurate.</p>
+<p>/I design Battery Management Systems for a living</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Eggmont" target="_blank">Eggmont</a>
+			<div class="markdown"><p>What kind of systems do you design? </p>
+<p>I only ask because I've seen several integrated into UPSs I've worked with and every last one if them has performed worse than just leaving them on constant float  </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/elsjpq" target="_blank">elsjpq</a>
+			<div class="markdown"><p>Hi, I've seen this interesting tech I'm not familiar with, don't suppose you could explain it?</p>
+<p><a href="https://qnovo.com/technology/" target="_blank">Qnovo</a> claims to extend service life of Li-ions that are fast charged using &quot;algorithms&quot;. I didn't know that was possible; I thought it was all down to the cell structure? Any guesses to what's actually happening? I don't think it's simple CC-CV...</p>
+<p>They're also claiming to have &quot;real-time EIS&quot; on-chip, but how you do EIS with a load attached, especially if it varies?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bmayer0122" target="_blank">bmayer0122</a>
+			<div class="markdown"><p>If I wanted to get up to speed in this area enough to design simple BMS what would the name of the class or books should I look into?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/not_american_ffs" target="_blank">not_american_ffs</a>
+			<div class="markdown"><p>So how does a battery know when it's fully charged?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/profossi" target="_blank">profossi</a>
+			<div class="markdown"><p>It depends on the battery chemistry.  </p>
+<ul>
+<li>
+<p>With lithium-ion (including Li-Po) batteries it's super easy. When the charger begins to charge an empty battery, it initially delivers a constant current to the battery. As the cells fill up, their voltage rises, until they reach the maximum permissible cell voltage (e.g. 4.2 V). At that stage the charging circuit begins to reduce the current in order keep the voltage at or below the maximum. Once the charging current must be reduced to neglible levels, you know that the battery is fully charged.  </p>
+</li>
+<li>
+<p>Lead acid batteries are charged in a similar manner to lithium, except that once the battery is fully charged the charger switches to float charging, where a tiny current is delivered to the battery to counter self discharge. Obviously the maximum cell voltage is also different from lithium, usually around 2.4 V.</p>
+</li>
+<li>Nickel–metal hydride batteries are charged at a constant current until the battery is determined to be full. This is accomplished either by sensing the temperature (a full battery will rapidly heat up) or the voltage (when the battery is fully charged, the cell voltage will <em>drop</em> slightly). Nickel-cadmium batteries are similar IIRC.</li>
+</ul></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cav3dw3ll3r" target="_blank">cav3dw3ll3r</a>
+			<div class="markdown"><p>Wouldn't the coulomb counter be measuring current? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/profossi" target="_blank">profossi</a>
+			<div class="markdown"><p>Yes. By measuring how fast <em>energy</em> (as opposed to current) is leaving each second, you'd be integrating <em>power</em> instead of current and you'd get a count in Joules (or Wh) instead of Coloumbs. It makes little sense to count energy, since power is proportional to both current and voltage, and voltage may fluctuate depending on load.<br />
+The Coloumb is the SI unit of electric charge, equivalent to a constant current of 1 A for 1 s. 1 mAh is the same as 3.6 C.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Bobbias" target="_blank">Bobbias</a>
+			<div class="markdown"><p>Specifically 1 coloumb is equivalent to the charge carried by ~6.242e18 electrons (or protons... technically it's -1 c for electrons). 1 amp is 1 c of charge passing a given point in 1 second.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cuulcars" target="_blank">cuulcars</a>
+			<div class="markdown"><p>Right, and battery capacity is usually measured in Amp-hours rather than the Watt-hours we see for typical electric meters. That's because most batteries are designed to run at a constant voltage +- a few percent. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/r_smart" target="_blank">r_smart</a>
+			<div class="markdown"><p>Just to add on to this, they often combine both methods as well as an algorithm that tries to keep track of the total charge of the battery, as that value will change over time. Lastly temperature of the battery will change how much energy can be drawn the battery and is also usually accounted for (in fancier fuel guages anyway). </p></div>		</li>
+					</ul>
+	
