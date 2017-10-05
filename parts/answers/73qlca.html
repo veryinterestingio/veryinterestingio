@@ -1,0 +1,70 @@
+<div class="answers">
+	<div class="answer" data-handle="dnso0fk">
+		<a class="author" href="https://www.reddit.com/user/Treczoks" target="_blank">Treczoks</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Modern forensic technology can recover data even if it was overwritten, even several times. Because if you overwrite a track of data on the medium it does not &quot;reset&quot; the original contents to zero. </p>
+<p>Or, as a simplified example: if a &quot;1&quot; is stored as a +1.0 strong impulse, and a &quot;0&quot; as a -1.0 strong one, then overwriting an existing &quot;0&quot; with a &quot;1&quot; might actually give you a +0.9, while overwriting an old &quot;1&quot; with a new &quot;1&quot; might give you a +1.1. Both read as ~+1 and return as a &quot;1&quot;, and maybe even the drives electronics does not see them as anything but a +1.</p>
+<p>Now if you take a high-end specialized measurement device, you might read those patterns with a lot more decimal digits: +1.1 -0.9 -1.1 +0.9 - The harddisks normal electronics would have read &quot;1001&quot;, but a forensic system might read this as &quot;1001&quot; written over a &quot;1100&quot;. And the more digits they can get (and they have a lot of time to thoroughly analyze each track!), the more &quot;Generations&quot; can be recovered.</p>
+<p>And if they are really determined to read that disk, even denting and shredding does not do the job. It is possible to read the magnetization of each fragment, and puzzle the original contents back together, at least to some extend.</p>
+<p>Therefor, if you want to get rid of the information you have to heat the drive beyond the Curie point. And that needs some proper equipment.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dnspwlm">
+		<a class="author" href="https://www.reddit.com/user/letme_ftfy2" target="_blank">letme_ftfy2</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You are getting a lot of either miss-informed, out-dated or just plain wrong answers that go into way too much detail and speculation. Since this is an ELI5 question, I'll do my best to answer:</p>
+<ol>
+<li>
+<p>Because it is the fastest, and the safest way to ensure that the data is impossible to retrieve. *</p>
+</li>
+<li>Because it is included in some 3-letter agencies' guide to properly dispose of a hard-drive.</li>
+</ol>
+<p>This should conclude the question part. Now, to address some of the nuances and misconceptions in this thread.</p>
+<ul>
+<li>There is a lot of speculation about the possibility of data retrieval after a full HDD &quot;wipe&quot;. First, we must discuss what could be considered a wipe. </li>
+</ul>
+<p>a) delete files or quick-format the drive from the operating system</p>
+<p>b) write 0's on every available memory location.</p>
+<p>c) write a multiple of patterns on every available memory location, X amount of times (where X is different based on what 3-letter agency guide-book you follow)</p>
+<p>Now, for a) it is known, demonstrated and widely accepted that this will NOT guarantee the deletion of data. Depending on a multitude of factors, such as operating system, partition type, etc. data CAN be retrieved after this operation. There are a lot of tools that can perform data retrieval in these scenarios, some of them free to use and available for download.</p>
+<p>b) should be seen, for all intents and purposes as SAFE. There are a lot of old tales, myths and misconceptions about how one can infer the data previously written at a location, and all that mumbo-jumbo. While I will concede that <em>maybe</em> this could have been the case decades ago, in a <em>laboratory environment</em> with <em>perfect conditions</em>, that is very much not the case in any real-world scenario. There is no currently available commercial vendor that will even attempt to recover a 0-filled modern high-density HDD. There are no academic papers published that even hint of this being possible (in fact there are some that have published very much against such claims). It is a myth, it will not happen in real-life, move on.</p>
+<p>c) is a sort of b) on steroids. If b) could be considered safe, then this will be obviously safer. Alas, the problem with both b) and c) is that it takes a lot of time to completely over-write a HDD, so it stands to reason that a faster method would be preferred when dealing with a lot of hosts.</p>
+<p>*** Note 1: The above comment does not relate to some edge cases of HDDs that use an on-board firmware (a controller) that deals with bad sector reallocation. There are cases where some sectors could be marked as bad, transparent to the OS, and those sectors might be skipped when over-writing the HDD during a wipe.</p>
+<p>*** Note 2: The above comment only refers to magnetic HDDs. The subject of data forensics on SSDs is even more convoluted and controversial. Research presented at a recent DefCon conference stated that forensics retrieval of data from SSDs depends widely on a series of factors, such as controller type, OS used (and TRIM support active/not) and so on. Look for it if you are interested. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dnsfxw8">
+		<a class="author" href="https://www.reddit.com/user/Sheeshomatic" target="_blank">Sheeshomatic</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Think of a hard drive like a notebook. Imagine writing important stuff on that notebook really hard. If you do a simple delete, you're just erasing the cover that says what's in it. Someone can still open it and read what you wrote. You can also overwrite it, which would be like tearing off that top sheet and writing over the dents in the notebook with other data. Even AFTER doing that, someone could still maybe figure out what was written before (just like rubbing it with the side of a pencil). It's messy and you might not be able to make it all out, but maybe enough to be dangerous. Clearly, the more times you repeat writing over that page, the harder that is. Plus it takes forever to cover every inch of that paper.</p>
+<p>Your solution then? Light the damn thing on fire. Or crush it, break it, physically damage it (it should be noted that just like taping a shredded notebook back together, it is possible to retrieve data from broken drives in some cases, but it's very time consuming, very difficult and because data is written in bits spread all over the drive and not in neat rows as in a notebook, even harder still.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dnsdnqe">
+		<a class="author" href="https://www.reddit.com/user/MidnightExcursion" target="_blank">MidnightExcursion</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Some NSA guidelines for hard drives include </p>
+<p>c) Disintegration: Disintegrate into particles that are nominally 2
+millimeter edge length in size. It is highly recommended to disintegrate
+hard disk drive storage devices in bulk lots with other storage devices.</p>
+<p><a href="https://www.nsa.gov/resources/everyone/media-destruction/assets/files/storage-device-declassification-manual.pdf" target="_blank">https://www.nsa.gov/resources/everyone/media-destruction/assets/files/storage-device-declassification-manual.pdf</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dnsdjtj">
+		<a class="author" href="https://www.reddit.com/user/krystar78" target="_blank">krystar78</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Problem with overwriting 5-6 times which is commercially enough takes time.  It could take hours to do that level of writing for an entire drive.   Physically destroying the drive takes seconds to minutes and is basically impossible to recover if it's completely destroyed.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

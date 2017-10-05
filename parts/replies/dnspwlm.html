@@ -1,0 +1,66 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mortalwombat-" target="_blank">mortalwombat-</a>
+			<div class="markdown"><p>The FBI (I’m assuming that’s the three letter agency you are talking about) doesn’t actually require destruction. Well, I can’t speak for their own internal policies, but they have a set of policies that all agencies must follow if they are to access their Criminal Justice Information System. CJIS is the database of wanted persons, missing persons, stolen cars, etc. the guidelines for hard drive do have some pretty strict DoD level formatting requirements, which is what most agencies seem to do. You can also degauss a drive or physically destroy it. </p>
+<p>Because of the time involved in wiping a drive to the required level, many degauss or destroy the drive. It’s quicker and cheaper as you mention in point 1. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/iLikedItTheWayItWas" target="_blank">iLikedItTheWayItWas</a>
+			<div class="markdown"><p>I think the 3 letter agency he is referring to is closer to NASA, just with a little less... aeronautics...</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/my_invalid_name" target="_blank">my_invalid_name</a>
+			<div class="markdown"><p>NSA, CIA, FBI, DEA, DOD, DHS, NRO</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wingchild" target="_blank">wingchild</a>
+			<div class="markdown"><blockquote>
+<p>the guidelines for hard drive do have some pretty strict DoD level formatting requirements, which is what most agencies seem to do. You can also degauss a drive or physically destroy it.</p>
+</blockquote>
+<p>I was with DoD from 2001 to 2008. I worked at the Pentagon, the Army Research Lab, and CENTCOM HQ. </p>
+<p>From memory, if we were disposing of a Secret drive (or higher), guidance was to degauss that unit. After degaussing the HDD would be mechanically shredded, then what remained would be burned. It was fairly certain no data would be recovered from any surviving particles.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/-RagnarDanneskjold-" target="_blank">-RagnarDanneskjold-</a>
+			<div class="markdown"><p>You left out one crucial step.</p>
+<p>Make sure you have a properly filled out DLIS FORM 1867 for each HDD. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/darktyle" target="_blank">darktyle</a>
+			<div class="markdown"><p>First of all: Thanks. </p>
+<p>I regularly get annoyed when people claim that overwritten data can be restored. It is a myth and has been debunked several times. </p>
+<p>Here is an old post discussing the original paper that claimed it was possible: <a href="http://www.nber.org/sys-admin/overwritten-data-guttman.html" target="_blank">http://www.nber.org/sys-admin/overwritten-data-guttman.html</a></p>
+<p>Additionally I want to bring up another fact why you never can be sure data is really gone when you just overwrite it:</p>
+<ul>
+<li>maybe the program you used to overwrite the data was compromised and tricked you, thus didn't do anything</li>
+<li>maybe the operating system was compromised and the 'real' program do overwrite the data was never ran</li>
+<li>maybe the operating system was compromised and the program you used to overwrite the data was tricked (the overwriting never reached the disc itself)</li>
+<li>maybe the disc controller was compromised and never actually performed the overwriting even after the operating system told it do do it</li>
+<li>and so on ....</li>
+</ul>
+<p>We can possibly think of a ton of reasons why overwriting the (sensitive) data might not go as expected.</p>
+<p>All those points of failure to destroy the data are simply gone when you physically destroy the disc. When some technician (or 2) see with their own eyes how the disc is shred into pieces, they can be sure that all data on that disc is gone. Forever. As simple as that.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/colohan" target="_blank">colohan</a>
+			<div class="markdown"><p>It is useful to understand why the tales of &quot;overwrite many times&quot; came from.  It largely comes down to &quot;how accurate is your hard drive&quot; and &quot;how does it lie to you&quot;?</p>
+<p>a) Accuracy.</p>
+<p>If you are going to write onto a hard drive platter, you want to make sure your head is in the right place, otherwise you risk overwriting the wrong stuff.  Over time we've learned how to position the head more and more accurately (if you look at discussions of how long it takes for a head to seek between tracks, you'll see folks talk not only about &quot;seek time&quot; (the time to move), but &quot;head settle time&quot; (the time to find the exact center of the track and stop vibrating)).  We've also learned how to write a smaller and smaller &quot;bit&quot; onto the surface of the drive.</p>
+<p>This means:  with an older drive, your bits may be written &quot;wide&quot; (sort of like a can of spraypaint not giving crisp edges...).  And if the head position is a tiny bit off, in theory each newly written bit may not completely overwrite the previous one -- it may be a little off to the side.  So if you have a sensor and sensor positioning mechanism which is much more precise and accurate than the original hard drive read head itself, you may have been able to reconstruct the data by looking for the &quot;overspray&quot; of the writes off to the side of the track.</p>
+<p>By overwriting data multiple times you increase the odds of writing completely on top of prior written bits.</p>
+<p>I honestly don't know if folks successfully employed this type of attack, but it was at least possible in theory -- which is enough to get government secrecy folks to add it to the rule book.</p>
+<p>With modern drives the size of the bits on disk is small enough and the accuracy of the read/write positioning is such that it is much less likely that such an attack would work now or any time in the future against today's drives.</p>
+<p>b) Lies.</p>
+<p>Hard drives tell the OS a &quot;logical&quot; address when positioning the head.  If a part of the disk starts to go bad, then the hard drive will copy the data from that part of the drive to another part of the drive, and just abandon the original copy.  This is all done transparently to the filesystem.  (Unless the filesystem is specifically asking for this type of diagnostics from the drive.)  This means that you may think your hard drive is fine, and you have overwritten all the data -- but there might be a few spare partially damaged tracks left untouched by your overwrite.</p>
+<p>So if you are super paranoid, and don't want to lose even a tiny bit of data (think: encryption keys) to the &quot;enemy&quot;, then overwriting the data at an LBA level such as with the unix &quot;dd&quot; command may not be good enough.  This is a case of where &quot;overwrite many times&quot; won't help you.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/letme_ftfy2" target="_blank">letme_ftfy2</a>
+			<div class="markdown"><p>Absolutely, two valid points and nice additions. Thanks!</p>
+<p>I believe your point a) could be attributed to Gutmann's '96 paper, and subsequent introduction of the 35-pass wipe in some versions of DoD standards.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ender1200" target="_blank">ender1200</a>
+			<div class="markdown"><p>Another good reason to physically destroy data containing devices is to avoid human error. Wiped disks looks exactly like ones still containing classified information, and big organizations and companies tend to throw old hard disks and data storage devices regularly. Meaning that the risk that someone will mistakenly throw a device still containing classified data into the clean devices pile is a real concern. Devices that have been shattered with a sledgehammer are easy to tell apart from still operating ones.</p></div>		</li>
+					</ul>
+	
