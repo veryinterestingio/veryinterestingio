@@ -1,0 +1,63 @@
+<div class="answers">
+	<div class="answer" data-handle="dnzhawe">
+		<a class="author" href="https://www.reddit.com/user/xilefian" target="_blank">xilefian</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>EDIT: For the actual 5 year olds, feel free to ignore anything written between the (parenthesis) - this is extra stuff for people to Google-search for if interested.</p>
+<hr />
+<p>I program 3D graphics engines.</p>
+<p>To calculate a triangle, you just need 3 points and then you fill the space between them. This simple nature allows for some optimisation; we know that only the pixels between these 3 points will be modified when rastered. We can use this knowledge to simplify how the triangle is shaded, so simple texture mapping is just a case of interpolating texture co-ordinates between these points (keeping depth in mind for perspective correctness). There's more optimisations to be had here that will take a lot of explaining (our GPUs have evolved to be very good at dealing with space between 3 points).</p>
+<p>To calculate a rounded surface, you need an equation for the 3D curve, as well as the limits of the surface. Interpolating texture co-ordinates here would involve re-using that equation over and over again, quite the expensive operation. That equation may also &quot;push&quot; the pixels of the surface out into unexpected directions, so optimisations related to the flatness of a simple triangle are going to be much more difficult (they'd need the 3D curve equation to be used again - clipping would definitely be more complex).</p>
+<p>As a result, early graphics hardware evolved to be very efficient with triangles and all the research and development has been spent there, resulting in real-time graphics to be as amazing as it is right now in its current state. To go back and make a new way of rendering would involve a new class of graphics acceleration hardware that doesn't have all the years of development of the triangle-based hardware we have, that's not a good trade-off.</p>
+<p>The graphics hardware we have now is also great at sending additional information along with the XYZ positions of a triangle vertex, so we can send texture UV, XYZ normal, reflectivity, roughness, and more as additional numbers tied to triangle vertices and these get interpolated between the triangle points too, very handy.</p>
+<p>As GPUs get more and more generalised as compute-oriented machines, rather than triangle-rastering-oriented machines, we may see new types of rendering (real-time ray-tracing is possible now, as is voxel based rendering) but these almost always will be slower than using current hardware to render a triangle, so we see these techniques getting used in parallel to triangle-based rendering to achieve effects that aren't as efficient with a triangle-based world (voxels are fast for real-time global illumination, ray-marching [limited ray-tracing] is faster for limited reflections in scenes limited by the amount of triangles displayed).</p>
+<p>Perhaps one day we'll gain a &quot;curve&quot; shader where we can use a curve equation to do a perfectly smooth surface between the points of a triangle (I expect the nature of current raster hardware will allow for some cheats here, interpolating between fragments come to mind), but for the time being that's slower than just having lots of triangles to better estimate the curve with current hardware.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dnz4w3k">
+		<a class="author" href="https://www.reddit.com/user/accidentallybrill" target="_blank">accidentallybrill</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are methods for making &quot;true&quot; round volumes and geometry objects in 3D software. Its called Parametric modelling (or it's cousin NURBS) and it's often used by drafters, engineers and architects because it's great at dimensions, simulations and converting models into coordinates machines can use to make real world objects.</p>
+<p>However parametrics have no way to be distorted or textured. At least, not in software meant to run real-time like in video games.</p>
+<p>Polygons trade off real object detail for the ability to easily squish together points in 3D space (vertices: the corners of polygons). This enables Animation.</p>
+<p>Vertices can also have their XYZ 3D coordinates collapsed into 2D coordinates (called UVs) and this allows textures.</p>
+<p>It's easier for computers to handle lots of polygons than it is for it to calculate the presence of surfaces and objects from mathematical functions, which change every time the object moves. This wouldn't be a big deal for something mechanically shaped like a gun, but it would be a horrible nightmare for something shaped like a person or a creature.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dnz93p6">
+		<a class="author" href="https://www.reddit.com/user/brmarcum" target="_blank">brmarcum</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Straight lines and flat planes are FAR simpler and faster to calculate, i.e. render, in real time. When processor time and computer memory were more expensive, this mattered a lot. Memory dictates how many shapes you can have at any one time (Ever see a tree come out of nowhere in the distance as you walk across a map? Somewhere behind you another one disappeared, freeing that memory space.) and the processor speed tells you how fast you can change their location in 3D space.</p>
+<p>Memory is a lot cheaper now, and processors are stupid fast, so you can have way more polygons and they render very quickly, which results in you clearly seeing the bad guy jump out and get you.</p>
+<p>Remember how cinematic sequences a few years ago were far better quality graphics than the game graphics? The cinematic is a stored video file that gets pulled from memory one chunk at a time and that chunk is processed into colors that are sent to the screen pixels. Video file processing is cheap, timewise, and easy to do because the file data never changes. The processor doesn't have to &quot;think.&quot; It plays beginning to end every time, so the quality can be much higher. Game graphics constantly change with player input, so the quality wasn't as good, but good enough to keep you playing.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dnzk60o">
+		<a class="author" href="https://www.reddit.com/user/HomunculusEmeritus" target="_blank">HomunculusEmeritus</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Have you ever seen those animations or drawings where you start with a triangle  and they add another side to become a square, and another to become a pentagon, and so on to hexagon,  and on and on until you get a circle?  Triangles, rectangles, etc, are all polygons and all polygons cane be broken down into triangles.  </p>
+<p>Triangles are the simplest polygon we have.  </p>
+<p>And that circle you're finally getting, if done on a computer, can be seen as a bunch of triangular shaped wedges all neatly placed to look like a shape curved at the edges.  Almost like as if a pizza were made up of a thousand triangular slices instead of 8 pieces that actually do have one curved side.  </p>
+<p>It turns out that any curved shape can be replicated on a screen, to greater and greater detail and smoothness, just by using smaller and smaller triangles.  </p>
+<p>And triangles are really easy for computers to calculate and fill with color.  The problem is that the more detail and smoothness you want, the more triangles you need.  And that can really add up when you want things to look like they aren't made up of a bunch of triangles.  </p>
+<p>We got started doing it this way because of the fact that visual images on a screen are made of pixels: individual points of light in a rectangular grid.  So by the very nature of screen technology itself all images on a screen are geometric approximations of curves and shapes.  </p>
+<p>And triangles fill the gap quite nicely between curved surfaces and the straight lines forced on us by pixel technology..</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dnz771a">
+		<a class="author" href="https://www.reddit.com/user/rlbond86" target="_blank">rlbond86</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Graphics are defined using math. The equation for a triangle (the basic shape for drawing) is much simpler than the equation for a circle or sphere or other round shape. That means that implementing drawing based on triangles is cheaper and faster.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

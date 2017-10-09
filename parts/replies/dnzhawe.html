@@ -1,0 +1,75 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/made-of-questions" target="_blank">made-of-questions</a>
+			<div class="markdown"><p>I would also highlight that using polygons is effectively splitting the rendering of a big shape in smaller tasks that can be performed in parallel. This is a cornerstone of computer science. GPUs are very good at performing multiple, simple operations in parallel.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xilefian" target="_blank">xilefian</a>
+			<div class="markdown"><p>You can still get this parallelism with other primitive types. A curve equation with limits will still need multiple curves to describe a model, and it would still need clipping (potentially generating more curves). So this certainly isn't a feature unique to polygons.</p>
+<p>Easier to imagine; a voxel-based renderer with their millions of points would almost certainly want to take advantage of parallel compute. Transforming a voxel to the screen is no different to transforming a triangle vertex to the screen.</p>
+<p>Even the shading of pixels would be the same type of parallelism. The reason for GPUs being parallel machines is based on an observation of the data interaction (well, lack-of interaction). If any other primitive type was used then the same observations would be had and parallelism implemented for that scenario.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kakkoister" target="_blank">Kakkoister</a>
+			<div class="markdown"><p>Voxels are a terribly inefficient way to go about the geometry side of things, it's as much a brute-force way of representing an object as ray-tracing is for lighting. It has its usefulness for generating worlds or in more artistic usages, but when it comes to pushing realistic graphics... It's just terrible, way too much bandwidth wasted on moving around these dense numbers of points, and not to mention the ridiculous amount of memory and disc space that would be required for any decently detailed AAA world.</p>
+<p>We can already do parametric surfaces in any GPU that is using the unified shader pipeline (Nvidia 8xxx series and newer). We just don't see it much because its usefulness is extremely limited, dynamic tessellation and displacement on the GPU is efficient enough for generating smoothed surfaces with fine details that would otherwise be crazy to be importing directly as a raw model, you get the best of both worlds, the smoothness of parametric shapes, and the &quot;infinite detail&quot; potential of voxels, but with much less data.</p>
+<p>The direction we seem to be headed is more of a hybrid approach where we use voxels to aid in destructions and lighting, but do the rendering on generated polygons. Best of both worlds!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ReneG8" target="_blank">ReneG8</a>
+			<div class="markdown"><p>Isn't this tglhe reason why graphics cards are used for crypto currency mining?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/addol95" target="_blank">addol95</a>
+			<div class="markdown"><p>Yes. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/animal531" target="_blank">animal531</a>
+			<div class="markdown"><p>A good explanation, but I'd also approach it from the historic side.</p>
+<p>A long time ago our games were all 2d. The games would have you playing for example a character or a race car, which internally would just be a 2d collection of pixels that the player would move around the screen as the player used the controls. This worked pretty well, since the screens of the time didn't have a lot of pixels and just moving a group of pixels around is pretty fast; so we had games with animated characters jumping around, and even a bit of background/world animation going on.</p>
+<p>But humans live in a 3d world, so we obviously tried to make some games that match reality. Adding 3d calculations onto the 2d is costly and the hardware of the time in the 80's was very limited and far too slow to calculate 3d math for every pixel on the screen. So instead they drew the world using only a few lines, for example Battlezone in 1980 <a href="https://www.youtube.com/watch?v=Ctr54kopo8I" target="_blank">https://www.youtube.com/watch?v=Ctr54kopo8I</a></p>
+<p>Hardware became a bit better, so they had more CPU power and could add to the way they were drawing (or rendering) the games. For example those obstacles in the Battlezone video that your brain can loosely identify as a &quot;pyramid&quot; could now each have colored sides, making it look a lot more like a solid thing. For example on this cube you break it down into triangles and each triangle can have a specific color: <a href="https://en.wikipedia.org/wiki/File:Shading3.PNG" target="_blank">https://en.wikipedia.org/wiki/File:Shading3.PNG</a></p>
+<p>Hardware got better still, and many additions was added to the lighting model, such as for example Gouraud/Phong shading. They were still rendering the same triangles, but now each pixel in the triangle could be interpolated between 3 corner colors: <a href="https://en.wikipedia.org/wiki/Gouraud_shading#/media/File:D3D_Shading_Modes.png" target="_blank">https://en.wikipedia.org/wiki/Gouraud_shading#/media/File:D3D_Shading_Modes.png</a></p>
+<p>Then we took the next step and figured out that we could take a source image and map it onto a triangle, so then we had texture mapping: <a href="https://en.wikipedia.org/wiki/Texture_mapping#/media/File:Doom_ingame_1.png" target="_blank">https://en.wikipedia.org/wiki/Texture_mapping#/media/File:Doom_ingame_1.png</a></p>
+<p>After this point the old 2d graphics cards and CPU's really started to struggle, but then the invention of the modern 3d graphics card came around. The design of these cards were based on the above mentioned principles where the game world/characters would be broken down into triangles and then modified/rendered to the screen. In old systems the CPU did all the calculations, and then the 2d card just drew the results. But now with the 3d cards the 3d card would do part of the calculation, thereby speeding things up tremendously. With the 1st generation of 3d gfx cards we went up from 320x240 to 640x480/800x600 and with much crisper and better looking textures, which was a huge increase in quality at the time.</p>
+<p>Since then our cards have stuck to this upgrade model. We're still exploiting the base of using triangles to power our engines, because it's really the fastest way to do things. Everything else that we've added since then has just been to enhance the way our triangles look (animations, shaders and many many graphics card tricks).</p>
+<p>As hardware gets better triangles can become smaller, and this is where my parent's post kicks in. With our GPU's becoming more powerful we might get to the point where we can use curves instead of triangles, and way down the line in the future we may be able to go back to pixels, albeit with each having a full 3d calculation + lighting with many light reflections/refractions etc. behind it.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/guspaz" target="_blank">guspaz</a>
+			<div class="markdown"><p>It's interesting to point out that early 3D gaming consoles (like the Sega Saturn, and the Sony Playstation) were basically just evolutions of 2D gaming consoles, with 3D polygons being rendered as perspective-corrected 2D sprites.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kakkoister" target="_blank">Kakkoister</a>
+			<div class="markdown"><blockquote>
+<p>reflectivity, roughness, and more as additional numbers tied to triangle vertices</p>
+</blockquote>
+<p>Just gotta point out that this usually isn't done, since you want to be sampling the map per-pixel to pick-up whatever variations are happening on the texture within the triangle. Otherwise if no texture, the smoothness/metalness/specular is going to be solid all over and thus there isn't a need to interpolate that value anyways.</p>
+<p>Also, raytracing on the GPU still renders triangles, it's just additional computation on top. Limited amounts of raycasting has started to be used more recently for generating real-time reflections to add a lot more depth to environment, we actually use it in the current game we're working on, it's quite nice!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xilefian" target="_blank">xilefian</a>
+			<div class="markdown"><blockquote>
+<p>Just gotta point out that this usually isn't done, since you want to be sampling the map per-pixel to pick-up whatever variations are happening on the texture within the triangle. Otherwise if no texture, the smoothness/metalness/specular is going to be solid all over and thus there isn't a need to interpolate that value anyways.</p>
+</blockquote>
+<p>It's very dependant on the data involved, you can't blanket say that all situations will use a map (not suggesting you're saying that, just want to make clear that do what's best for the data is important), some situation will be able to cope with per-vertex roughness for PBR if they're made up of a single material with no 'blemishes' or similar. Always do what's best for the data.</p>
+<p>For reflectivity, we've had the vertex 'specularity' for many, many years now and it still lingers around, so that's another case where it's still done. Specular maps exist, but again, always do what's best for your data.</p>
+<p>PBR solutions usually expect a map to describe materials, as you stated, but this is from observation of the type of data a scene designed for PBR needs.</p>
+<p>Ray-tracing implementations can have whatever primitives they desire. Triangles can be used, spheres can be used as well, all sorts can be used. There isn't a single technique for ray-tracing that everyone uses and implementors certainly don't take an oath to only use triangles. Same goes for GPU accelerated ray-tracing; solutions can use triangles (and most do, they're great for describing surfaces) but there's no reason why they can't include curved surfaces and spheres. Most GPU ray-tracing demos actually have sphere primitives thrown in.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kakkoister" target="_blank">Kakkoister</a>
+			<div class="markdown"><blockquote>
+<p>some situation will be able to cope with per-vertex roughness for PBR if they're made up of a single material with no 'blemishes' or similar. </p>
+</blockquote>
+<p>You would be programming a custom shader that samples the texture in the vertex program to be able to interpolate it (and then also have to implement your own mipmap LOD management since you have to use tex2Dlod with defined mip level, assuming you want mips), that's not something that happens by default in a standard shader and I've never really heard of a use scenario where you would bother doing that just to gain a slight edge on some objects that had a purely gradient smoothness/metallness texture, as it would be pointless for a solid color or detailed texture, solid would require no texture, plus, interpolating the value around the triangle wouldn't remain true to whatever gradient you have on the texture, you could end up with visible facets on the model due to the way the gradient was laid out.</p>
+<blockquote>
+<p>For reflectivity, we've had the vertex 'specularity' for many, many years now and it still lingers around,</p>
+</blockquote>
+<p>Are you talking about storing the specular values in the vertex color channels? Cause yeah in that case that's just a general scenario of utilizing what suits the needs of the game. For the material layering shader I wrote for our current game we actually store extra meterial layer blend values in the vertex color to utilize as a per-object tweaking of the blending while still sharing the same materials and blend map, it's quite handy :)</p>
+<p>And yeah a raytracer can be made to trace against say voxels instead, though in the case of parametric/math shapes in modern ray-tracers, the shapes are usually still sliced into triangles, but it's definitely possible to do them raw, but pretty rare these days!</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
