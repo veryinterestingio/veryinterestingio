@@ -1,0 +1,48 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CrateDane" target="_blank">CrateDane</a>
+			<div class="markdown"><blockquote>
+<p>The thing about digital storage is the data is not erased when you delete a file, it's only removed form the &quot;index&quot; so to speak. If you have a 60GB file which is just straight 1s for all of its bits, and you delete it, they don't become 0, they stay at 1 but your file system will set the memory addresses as available for new files to be written to. In the same vein you could have a 60GB file filled with straight 0s. That's why when you delete a file there are file recovery tools that can scan your drive and recover them, as long as you haven't overwritten the data with a new file, it's 1s and 0s all are there and can be read.</p>
+</blockquote>
+<p>This applies to mechanical hard drives, but not really to solid-state storage. The TRIM command will label a chunk of data as out of use, and then the storage controller will get rid of it as part of garbage collection. It may take a little while for the controller to get around to it, but the data will not hang around indefinitely as it would on a hard drive.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Deto" target="_blank">Deto</a>
+			<div class="markdown"><p>Why do they do that?  Security or is there another reason?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TotallyNotAVampire" target="_blank">TotallyNotAVampire</a>
+			<div class="markdown"><p>Blocks on an SSD can't be written to multiple times, without first erasing the entire block in a time consuming process. So SSDs copy each block one writes to, and enqueued the old copy for erasure so that it can be reused.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CrateDane" target="_blank">CrateDane</a>
+			<div class="markdown"><p>It's mainly to spread write activity evenly across the whole drive, because otherwise heavily used cells will wear out prematurely (this is not a concern for hard drives, which have practically unlimited write endurance).</p>
+<p>The fact that flash memory can only be erased one full block at a time is also a factor; so smaller chunks (pages) of data that needs to be kept has to be written somewhere else before deletion.</p>
+<p>These factors combine to cause write amplification, which the controller is designed to minimize. Some controllers also compress the data before it's written to the flash memory (which means both counteracting write amplification and improving the transfer speed).</p>
+<p>The storage controller is simply in a better position to manage these factors than the OS, so it uses a Flash Translation Layer to keep track of where the OS thinks data is, and where it actually happens to be at any given time.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/saxmaster98" target="_blank">saxmaster98</a>
+			<div class="markdown"><p>Say I have a full 1TB hard drive. I wipe it and install 500GB of data exactly and tell the computer to fill the remaining space “with 0s”. Would this have any effect on it or does it just free up the space for new things to be written over top of it, with the data still technically there? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Pzychotix" target="_blank">Pzychotix</a>
+			<div class="markdown"><p>It would fill the remaining space with zeros if you specifically told it to do so.</p>
+<p>It should also be noted that data is any combination of 1s and 0s, which means that all zeros is a valid form of data.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sonrilol" target="_blank">Sonrilol</a>
+			<div class="markdown"><p>I'm not sure I fully understand your question, but let me try to answer it anyway.</p>
+<p>Let me say first that all storage needs some space for it's file system. This file system is what is created when you format a drive, and what it does is tell the drive the kind of system it's going to use to store files so the operating system knows what it's working with. For this you are reserving some of it's storage to run it, and that is why if you have a 1TB drive you don't actually have 1024 GB's worth of space. A few GB (which will depend on block size) will be needed to index the drive so the operating system can read/write. </p>
+<p>Now if you brute force write 0s over this and any other place save where you had your 500GB of data, say with dd under Linux for example, the drive becomes unusable. Not only that but chances are you lose at least some of the data unless it was sequentially stored or it all consisted of very small files. The data might be sequentially stored if you just straight copied the data and never touched it, because it's easier to get hits when reading if the files are sequential so that's what operating systems try to do. But if it's seen some use, it will be fragmented. The reason for this is filesystems have what is called a block size which is how they organize the whole thing. Any file exceeding block size gets split up and written into different blocks. The order in which this blocks need to be read to make up the file is stored in the filesystem and you just wiped that so your 500GB of data is scrambled in little 4KB (which is the standard block size on most PCs) chunks all over the place.</p>
+<p>Now all of the above is not entirely true because AFAIK if you just write over 0s there are some recovery techniques that will work on hard drives. But that's forensic level stuff, and you will need some specialized equipment.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GummyKibble" target="_blank">GummyKibble</a>
+			<div class="markdown"><p>Furthermore, encrypted drives (eg on any version of iOS released in the last few years), it’s not possible to tell the difference between an empty chunk of storage and one filled with all 1 bits because both would be statistically indistinguishable from randomness. An encrypted drive will be approximately 50% 0 and 50% 1, even  if it’s freshly formatted and contains no real data yet.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/alexforencich" target="_blank">alexforencich</a>
+			<div class="markdown"><p>And all (or at least all high density) NAND flash is 'whitened' with a scrambling or encryption algorithm to limit interference between adjacent bits. So on average, half of the bits will be set regardless of the data written.</p></div>		</li>
+					</ul>
+		</ul>
+	
