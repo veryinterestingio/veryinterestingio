@@ -1,0 +1,72 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MrVanillaIceTCube" target="_blank">MrVanillaIceTCube</a>
+			<div class="markdown"><p>If you just held the same note (say a B-flat) for 10 seconds, and then played it back at 2x speed, you'd get 5 seconds of whatever note is twice as high in pitch.</p>
+<p>Is there a way to adjust the playback so it gave you 5 seconds of B-flat? And then could you apply this to more complicated sounds than just a single note, like a conversation? Eg listening to a lecture on 2x speed without the lecturer's voice going Mariah Carey.</p>
+<p>I obviously know fuckall about audio or musical notes, plz forgive my ignorance.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/snkn179" target="_blank">snkn179</a>
+			<div class="markdown"><p>Also, Bb at 2x speed is just Bb an octave higher. This works for any note, double its frequency and you get the note an octave higher.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheyCallMeStone" target="_blank">TheyCallMeStone</a>
+			<div class="markdown"><p>This is why the same notes on different octaves sound the &quot;same&quot; to our ears! </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GalaxyKong" target="_blank">GalaxyKong</a>
+			<div class="markdown"><p>A lot of analog and FM synthesis uses ratios for pitch control i.e; a ratio of 4:1 is going to be 2 octaves higher than a ratio of 1:1, and 4 octaves higher than 0.25:1.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KahBhume" target="_blank">KahBhume</a>
+			<div class="markdown"><p>You would have to remove some of the waveforms that make up the sound (like, every other one to make it half the length). The challenge is to ensure that when you paste two waveforms back together that they do so smoothly. Bad edits often result in pops in the audio.</p>
+<p>There is software to do this automatically, although I'm not sure about the resulting quality.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/filthy_harold" target="_blank">filthy_harold</a>
+			<div class="markdown"><p>When you playback a digital recording, it is played back as a series of individual samples. The sample rate is typically going to be 44.1kHz for CD quality audio (including iTunes stuff). Thus, if you want to speed up the pitch, you playback at 88.2kHz for 2x pitch. If you want to playback at 2x speed but the same pitch, you would still playback at 44.1kHz but you would discard every other sample. Smoothing out the glitches is a filter on top of the playback. You would sample the 2x sped up audio at a higher sample rate and apply a low pass filter, eliminating the glitches by smoothing out anything that transitions a little too quickly. I'm not exactly sure what this process is called in audio engineering but it's what you would do for DSP in RF engineering and they aren't too different (just lower frequencies).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/try_harder_later" target="_blank">try_harder_later</a>
+			<div class="markdown"><p>Yes, it's possible, but it uses some mathematical tricks (fast fourier transform and its reverse, or some other algorithm) and this degrades the quality. Tends to give it a sound that can be described as &quot;autotune&quot;. </p>
+<p>The speed up function in vlc does this, and you can use audacity to edit music to do this too. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OpusPhil" target="_blank">OpusPhil</a>
+			<div class="markdown"><p>To be more accurate, the higher pitch is not because you're shortening the duration between the waves but rather because you are shortening the waves themselves (actually more like squeezing them)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eqleriq" target="_blank">eqleriq</a>
+			<div class="markdown"><p>yes you are shortening the &quot;duration between the waves.&quot;</p>
+<p>&quot;the waves themselves&quot; can be described by the durations between them.</p>
+<p>the accurate way of saying what you're both mangling is that sounds occur via frequency and speeding up sound literally means you're increasing frequency</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OpusPhil" target="_blank">OpusPhil</a>
+			<div class="markdown"><p>What is your definition of a wave?</p>
+<p>EDIT: The reason I ask is that it's important to realize that it's not just the duration between wave forms getting smaller, the waves themselves are changing shape. I drew a quick terrible picture in terms of waves on the ocean: It's not just the space getting smaller (<a href="https://i.imgur.com/iDoWUZj.jpg" target="_blank">like this</a>), but the wave crests themselves are getting skinnier too (<a href="https://i.imgur.com/AvbJYK4.jpg" target="_blank">like this</a>). If you think of waves as just the peaks (the frothy parts of my terrible drawing waves), there isn't really a difference. Hope this clarifies.<br />
+EDIT II: Changed &quot;waves&quot; to &quot;wave crests&quot; for extra clarification</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Killspree90" target="_blank">Killspree90</a>
+			<div class="markdown"><p>Yeah he pretty much said exactly what op said but tried to be smart about it and it ended up just not working</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/saschanaan" target="_blank">saschanaan</a>
+			<div class="markdown"><p>you are shortening the duration between amplitudes*
+that should fix it</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/johnny_mclovin" target="_blank">johnny_mclovin</a>
+			<div class="markdown"><p>Heyyy, I literally just posted this response to what he said, now I don't feel sooo stupid. </p>
+<blockquote>
+<p>So, it's similar to if you took a straight &amp; squeezed the two ends together, shortening the distance &amp; time it takes to get from one end to another, but it's technically going the same distance, so it must increase in speed, thus resulting in a higher pitch? </p>
+<p>I swear to god I haven't smoked myself retarded lol. </p>
+</blockquote></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Wi11Power" target="_blank">Wi11Power</a>
+			<div class="markdown"><p>Can you raise the frequency but then lower the pitch of the sound and maintain the same &quot;speed&quot;? If so, how would frequency be affected? Is it possible to change pitch without changing frequency from a single, original sound source?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/johnny_mclovin" target="_blank">johnny_mclovin</a>
+			<div class="markdown"><p>So, it's similar to if you took a straight &amp; squeezed the two ends together, shortening the distance &amp; time it takes to get from one end to another, but it's technically going the same distance, so it must increase in speed, thus resulting in a higher pitch? </p>
+<p>I swear to god I haven't smoked myself retarded lol.</p></div>		</li>
+					</ul>
+	
