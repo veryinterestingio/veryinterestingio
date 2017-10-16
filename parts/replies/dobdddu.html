@@ -1,0 +1,56 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/im_not_afraid" target="_blank">im_not_afraid</a>
+			<div class="markdown"><p>In the final step, the computer has to do exp(n) where n is transcendental. How does a computer compute a transcendental number to the power of another transcendental?</p>
+<p>Oh maybe it uses the taylor expansion for exp(n).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thephoton" target="_blank">thephoton</a>
+			<div class="markdown"><p>Most computer math is not done with transcendentals, just close approximations in the form of floating point numbers (a certain set of  rational numbers). The computer never actually stores or manipulates pi, just an approximation like 3.14159 (but in binary).</p>
+<p>Only in a symbolic math system (like Mathematica, for example) are you going to be manipulating actual transcendentals on a computer, and then you'll just keep track of them symbolically.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dudelookatree" target="_blank">dudelookatree</a>
+			<div class="markdown"><p>Typically computers do not use the Taylor expansion for exp(n), since it converges slowly, especially for large n. exp(n) can be found quickly and accurately with this algorithm:</p>
+<pre><code>separate n into whole and fractional parts w and f
+compute e^w using exponentiation by squaring
+compute e^f using an approximation
+multiply e^w * e^f</code></pre>
+<p>Notice that the approximation for e\^f only needs to be accurate in the range [0,1]. This makes it easy to approximate with a polynomial to a high degree of accuracy.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/XkF21WNJ" target="_blank">XkF21WNJ</a>
+			<div class="markdown"><p>There's a chance they might secretly use powers of 2 rather than e. Since 2^w (for whole w) is a lot easier to calculate quickly than e^w (calculating 2^w is basically just 1 instruction).</p>
+<p>That means you'll need to approximate 2^f with a polynomial, but at that point it doesn't matter much if you use e^f or 2^(f).</p>
+<p>To get exp(x) all you need to do is just calculate 2^(x/log(2)^) .</p>
+<p>They might do the same for logarithms.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/frogjg2003" target="_blank">frogjg2003</a>
+			<div class="markdown"><p>exp(x)=sum(x^(n)/n!) is exactly how it's calculated almost all the time (with the possible exception being large negative x).</p>
+<p>Edit: formatting</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dudelookatree" target="_blank">dudelookatree</a>
+			<div class="markdown"><p>You should never see this formula in computer code. It converges slowly, each term is expensive, and floating point error builds up quickly.</p>
+<p>Also, there's a mistake in your formatting. exp(x)=sum(x^n /n!)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gustavelund" target="_blank">gustavelund</a>
+			<div class="markdown"><p>Convergence is probably a problem, this taylor series doesn't converge quickly. Typically one has to sum the small summands first, which makes this even harder.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Shattered_Sanity" target="_blank">Shattered_Sanity</a>
+			<div class="markdown"><p>Wait, if n is not an integer how can you take the factorial?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JustAGuyFromGermany" target="_blank">JustAGuyFromGermany</a>
+			<div class="markdown"><p>Not only on computers. That's the actual definition of exponentiation for real (and to some extent complex) numbers used in mathematics. The fact that this extends the definition with integer and rational exponents, is a consequence of exp's functional equation exp(x+y)=exp(x)*exp(y), not an ingredient of the definition. In particular: One does not need to know about continuity to work with powers of real numbers.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/quipsy" target="_blank">quipsy</a>
+			<div class="markdown"><p>Doesn't it work for all complex numbers as well? You have to be careful about what cut of Log you're on?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Denziloe" target="_blank">Denziloe</a>
+			<div class="markdown"><p>Had to scroll down quite a way to get the answer to the actual question.</p></div>		</li>
+					</ul>
+	
