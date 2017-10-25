@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>What is happening when a computer generates a random number? Are all RNG programs created equally? What makes an RNG better or worse?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="781ujb">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/781ujb/what_is_happening_when_a_computer_generates_a/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/781ujb" onclick="return false">What is happening when a computer generates a random number? Are all RNG programs created equally? What makes an RNG better or worse?</a>
+		</h2>
+		<!--<span class="date">2017-10-25</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>What is happening when a computer generates a random number? Are all RNG programs created equally? What makes an RNG better or worse?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="doqhwer">
+		<a class="author" href="https://www.reddit.com/user/hydrophysicsguy" target="_blank">hydrophysicsguy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>RNGs use some algorithm to decide on a number which is based on the some previous number (or more over a large set of previous numbers) this is why all RNGs need a seed to get started, they need some way to generate the first letter. How you get that seed is a bit of a different discussion.</p>
+<p>Now not all RNGs are equal, there a few ways to make how random it is, one is to use a chi-squared method to see if the distribution is random (ie normally you want a uniform distribution). You can also plot the current number as a function of previous numbers (known as a k-space plot) the higher dimension you can graph in without some pattern emerging the better. Finally you can look at the period of the number generator, the number of numbers you must generate to begin seeing a pattern emerge. For a very good generator like the mersenne twister method the period is 2^(19937) -1 numbers (so you should never see the same number pattern appear for practically all situations)</p>
+<p>Edit: spelling </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dor269a">
+		<a class="author" href="https://www.reddit.com/user/Chamale" target="_blank">Chamale</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Some great answers here talking about what makes a good pseudo-RNG. I'm going to tell you about a bad one.</p>
+<p>In Pokémon Red, Blue, and Yellow, when the player encounters a wild Pokémon, the species is determined by comparing a random value between 0 and 255 to a lookup table for the current location. For example, the game might make a Rattata appear if the number in question is 0 to 127, Nidoran♀ if the number is 128 to 216, Spearow if the number is 217 to 242, and Nidoran♂ if the number is from 243 to 255.</p>
+<p>The Gameboy has a weak processor and it runs games at 60 frames per second. Rather than running a random number generator 60 times per second while the player is walking through areas where Pokémon are found, the &quot;random number&quot; predictably increases by one 30 times per second. This might have been a reasonable solution for some applications, but when it comes to generating random Pokémon encounters, it has a problem: The RNG loops every 8.53 seconds, and in some circumstances, the length of a battle can be very close to that time. This means that a player can have a series of encounters with the same Pokémon because the RNG is returning a similar result every time. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="doquhdd">
+		<a class="author" href="https://www.reddit.com/user/Riftyo" target="_blank">Riftyo</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I've studied quite a bit of mathematical stochastics and is currently getting my masters in statistics so I might be able to answer this in a different way from most of the people with background in IT.</p>
+<p>what if I told you there are several different kinds of randomness? For this endeavour, lets talk about two of them. We have &quot;True randomness&quot; and &quot;Pseudo-randomness&quot;.</p>
+<p>True randomness is probably the kind of randomness the average person thinks of when mentioning randomness. This mean it's random in every sense, it's not possible to predict the outcome. Generating a number sequence that is truly random very very VERY hard for a human. If you sat down with a pencil and scribbled down a bunch of different numbers this series would NOT be true random (yes there are ways to check this). Computers are completely unable to generate these numbers on their own and none of the numbers made from a RNG will ever be &quot;true random&quot;. Nature on the other hand is really good at making up these kind of numbers.</p>
+<p>So, let's pretend you're coding a program and want to implement randomness, how would you do it? Let's create a function(RNG) with an input (seed) that spits out a corresponding number, along with a new seed, from a finite sequence! Sure, the sequence will repeat itself eventually, but let's make it ridicolously long and pretend it dosen't. This is a kind of hyperrandomness, because as the sequence repeats itself, this means it is not a random sequence. Hyperrandomness is basicly what it sounds like, kind of random but.. not really.</p>
+<p>This difference between randomness may not seem like such a big deal, and when it comes to most applications it really isn't. But when modelling bonds or other more advanced stochastic models these limitations becomes a huge pain in the ass. There are computer-parts that you can buy that actually will generate true randomness by taking inputs from the physical world, but these are really slow compared to hyperrandom nrgs.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dor5z4w">
+		<a class="author" href="https://www.reddit.com/user/dmazzoni" target="_blank">dmazzoni</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There's an implicit assumption in the vast majority of these answers that computer random number generators are <em>deterministic</em>, and that random number generators must be implemented in <em>software</em> unless you hook the computer up to a physical hardware random number generator.</p>
+<p>That just isn't true, and in fact computers have been generating random numbers using much more sophisticated techniques.</p>
+<p>The most recent advancement is that since 2012, all new Intel processors <a href="https://en.wikipedia.org/wiki/RdRand" target="_blank">include a hardware random number generator built-in</a>. It uses a hardware entropy source that is believed to be impossible to predict or bias within the limits of today's technology.</p>
+<p>Even if your computer doesn't include a hardware random number generator, your operating system provides functions that use external sources of entropy. For example, Linux uses <a href="https://blog.cloudflare.com/ensuring-randomness-with-linuxs-random-number-generator/" target="_blank">timestamps from the keyboard, mouse, network, and disk</a> as a source of entropy.</p>
+<p>We call these inputs sources of entropy because they're highly unpredictable - but they don't give us other desirable properties of random numbers, like uniformity. We want all numbers to be equally likely.</p>
+<p>To spread out the entropy through all bits of the random number so that all of the bits are equally likely to be either one or zero, a cryptographic hash function is used - for example, Linux uses SHA-1. This results in a <a href="https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator" target="_blank">cryptographically secure</a> random number - one that guarantees that there's no polynomial-time algorithm that could predict the next bit or recover previous values in the sequence.</p>
+<p>Not all applications need random numbers that good. But it's a myth that ordinary computers can't generate good random numbers. They can, and they do. If they didn't, attackers would be trying to attack flaws in random number generators to break encryption.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="doqyvih">
+		<a class="author" href="https://www.reddit.com/user/blackboy211" target="_blank">blackboy211</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Depends on the program really. I know an online poker company use sound levels in the street as their random seed. So if a car or truck drives down the street past the office it could ultimately affect if you get pocket aces or not. Some boring RNGs use the internal system clock or even your mouse position on the screen as the seed.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/781ujb" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

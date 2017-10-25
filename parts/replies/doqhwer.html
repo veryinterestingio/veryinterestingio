@@ -1,0 +1,109 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tashkiira" target="_blank">tashkiira</a>
+			<div class="markdown"><p>Um, I think you made a layout mistake there, the -1 should be fullsized.  2^19937 -1</p>
+<p>(the Mersenne method gets its name from Mersenne primes, which are primes that are in the form 2^k -1, where k is a positive odd integer.  Not all Mersenne numbers with odd k's are prime, but the method hits quite a few primes, more than random chance would suggest.  A Mersenne number with an even k is not prime, since it will have a not-necessarily-prime factorization of (2^m -1)*(2^m +1), where m=k/2. )</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hydrophysicsguy" target="_blank">hydrophysicsguy</a>
+			<div class="markdown"><p>Oh shoot yeah sorry I'm still new, didn't know it'd format like that</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tashkiira" target="_blank">tashkiira</a>
+			<div class="markdown"><p>No worries.  :D It's not like I was faultless--it's been pointed out to me that Mersenne numbers must have a prime k, not just an odd one.  Which in retrospect is obvious because 3 is prime at k=2.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Makenshine" target="_blank">Makenshine</a>
+			<div class="markdown"><p>Pretty sure that k has to be a prime number, not just a positive odd integer. I might just be remembering incorrectly though</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/apple_dough" target="_blank">apple_dough</a>
+			<div class="markdown"><p>Yes, k has to be a prime number. it has to do with the ways x^n-1 can be factored for a constant natural number x and a varying natural number n.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fake--name" target="_blank">fake--name</a>
+			<div class="markdown"><p>Did you mean pseudo-random number generators?</p>
+<p>A actual random number generator uses some real (as in not-computable) phenomena to generate it's output.</p>
+<p><del>The only real use of PRNGs are either encryption (because they're <em>completely</em> predictable), or a mechanism to generate random numbers faster (by continually re-seeding the PRNG with a lower-rate actual random source).</del> Alone, they're not an actual source of randomness.</p>
+<p>PRNGs are useful where you need <em>predictable</em> random-looking data.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kougabro" target="_blank">kougabro</a>
+			<div class="markdown"><blockquote>
+<p>The only real use of PRNGs</p>
+</blockquote>
+<p>there are plenty of other uses for PRNG, starting with pretty much any monte carlo method, which have application in statistics, machine learning, statistical physics, particle physics, biophysics, population genetics, etc... </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tminus7700" target="_blank">tminus7700</a>
+			<div class="markdown"><p>Like quantum noise. From a diode, for instance.</p>
+<p><a href="https://en.wikipedia.org/wiki/Hardware_random_number_generator" target="_blank">https://en.wikipedia.org/wiki/Hardware_random_number_generator</a></p>
+<p>Can be used to generate <a href="https://en.wikipedia.org/wiki/One-time_pad" target="_blank">one time pad encryption</a>. It can be extremely fast. As fast as the memory can be read. But suffers from  the necessity to securely convey a copy of the data pad the receivers.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/orangejake" target="_blank">orangejake</a>
+			<div class="markdown"><p>That, and encrypting a second thing under the key breaks it completely.  It's information theoretically secure, but not even IND-CPA^(1). For essentially all applications, there are <em>much</em> better encryption algorithms.</p>
+<p>1 --- Encryption schemes that are IND-CPA secure essentially mean that if an adversary has access to some function f(m) = Enc_k(m), so some way of generating encryptions of whatever they want, it doesn't help them decrypt things.  So looking at how things change when they're encrypted doesn't really tell them any pattern.  This is essentially the weakest type of security that's used anywhere for encryption schemes.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hardcore90skid" target="_blank">Hardcore90skid</a>
+			<div class="markdown"><p>How 'accurate' in true randomness is that popular atmospheric static website? </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+			<div class="markdown"><blockquote>
+<p>A actual random number generator uses some real (as in not-computable) phenomena to generate it's output.</p>
+</blockquote>
+<p>This contrast of &quot;real&quot; with &quot;computable phenomena&quot; is not something I'm familiar with in a computing context. If you're alluding to some physics material, please state so.</p>
+<blockquote>
+<p>The only real use of PRNGs are either encryption (because they're completely predictable),</p>
+</blockquote>
+<p>The fundamental requirement for cryptographically secure PRNGs is the <em>next-bit test</em>: it should be computationally hard (read: not possible in polynomial time) to predict the (k+1)<em><em>th</em></em> bit with probability of success non-negligibly better than 0.5,  given the first k bits of a random sequence. PRNGs that don't satisfy this requirement are not suitable for encryption.</p>
+<blockquote>
+<p>or a mechanism to generate random numbers faster (by continually re-seeding the PRNG with a lower-rate actual random source)</p>
+</blockquote>
+<p>These two statements are completely incongruous. Seeding a PRNG is done when a different random sequence is desired. It has no effect on its performance.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/UnreasonableSteve" target="_blank">UnreasonableSteve</a>
+			<div class="markdown"><p>It's more like real (based on physical / hardware phenomena) vs abstract (calculated based on a preset seed value). </p>
+<p>Good PRNGs are computationally difficult to predict, but it's hard to prove that a PRNG has no weakness that may increase its predictability. True RNGs are computationally impossible to predict.</p>
+<p>The final quote you quoted I think you've misunderstood. Often true RNGs are slow. To generate numbers faster than the true RNG might allow directly, the PRNG is seeded with values from the true RNG.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/quasielvis" target="_blank">quasielvis</a>
+			<div class="markdown"><p>I ran a little test with the Mersenne Twister generating 1million random numbers from an initial seed of 0 and counted up the number of times 0-9 appeared in the last digit, eg. for 1791095845 I would +1 to the '5' tally. </p>
+<p>Result was:</p>
+<p>[100035, 100466, 99877, 100526, 99746, 100291, 99643, 99749, 100147, 99520]</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>statistics.median(l)
+99956.0</p>
+<p>statistics.mean(l)
+100000</p>
+<p>statistics.stdev(l)
+349.8955399671292</p>
+</blockquote>
+</blockquote>
+</blockquote></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/omg_drd4_bbq" target="_blank">omg_drd4_bbq</a>
+			<div class="markdown"><p>Fyi, I know that's an easy quick test to do, but it's not really how you'd test an RNG. If you'd like to know more, PM me. I've done a bunch of stuff with rngs. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/N3sh108" target="_blank">N3sh108</a>
+			<div class="markdown"><p>Care to share here? :)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/quasielvis" target="_blank">quasielvis</a>
+			<div class="markdown"><p>Yeah I know. I wasn't trying to prove anything academically, it was just something I was playing around with and thought I may as well paste the result here. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shagieIsMe" target="_blank">shagieIsMe</a>
+			<div class="markdown"><p>Given that the range doesn’t end at #####9 in base 10, there will be an uneven distribution from the pigeonhole principal. </p>
+<p>Try running the ent tests on it instead.
+<a href="http://www.fourmilab.ch/random/" target="_blank">http://www.fourmilab.ch/random/</a></p></div>		</li>
+					</ul>
+		</ul>
+	
