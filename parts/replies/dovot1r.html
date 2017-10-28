@@ -1,0 +1,152 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lewisj489" target="_blank">lewisj489</a>
+			<div class="markdown"><p>You make so many great points thankyou. So if I select ID 9329482, the DB (depending on the engine obviously) would just search through the indices? Thinking of it like that, I guess it's very much doable. </p>
+<p>Thanks for your response. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/redblobgames" target="_blank">redblobgames</a>
+			<div class="markdown"><p>You can usually “partition” (or “<a href="https://www.raphkoster.com/2009/01/08/database-sharding-came-from-uo/" target="_blank">shard</a>”) the data so that you know from the ID which of the tables it's in. For example, you might say that the last two digits of the ID tell you which of the 100 partitions to look in. When you want to look up ID 9329482, you would look at the last two digits and say that it must be in partition 82. That way you don't have to look in all of them. Partitions can be stored in separate tables or separate machines. It's the same kind of idea as partitioning a physical file or card catalog by having separate folders for A, B, C, etc., or separate folders for 2015, 2016, 2017, etc., or having separate library shelves for dewey decimal 100s, 200s, 300s, etc.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/WernerHoffmann" target="_blank">WernerHoffmann</a>
+			<div class="markdown"><p>With Oracle 12.2, you’re able to shard the entire database to break it up similar to partitioning but at the entire DB level. Doing that would allow you to completely separate hosts, storage, everything, and they would only share a shard key. It’s like a cross between clustering and partitioning if your DB design can support it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gamerbrozer" target="_blank">Gamerbrozer</a>
+			<div class="markdown"><p>Is this similar to hashing? I am learning about different data structures right now and I think I came across something similar to this.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JerseyMike3" target="_blank">JerseyMike3</a>
+			<div class="markdown"><p>I found this surprisingly more interesting than I thought I would. Is this why most websites that track/keep/distribute large swaths of data are usually constructed in a way where you scroll down and it'll 'load more information? Is this done as a stop gap as to not load too much to fast from either user or host end? </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/anechoicmedia" target="_blank">anechoicmedia</a>
+			<div class="markdown"><blockquote>
+<p>So if I select ID 9329482, the DB (depending on the engine obviously) would just search through the indices?</p>
+</blockquote>
+<p>It's both easier and harder than that description makes it sound.</p>
+<p>Imagine a human searching a phone book for the number associated with a name. The brute force solution would be to scan every page until you find the name, but we are spared doing this because the book is helpfully presorted alphabetically. This enables a naive search strategy - open to roughly the middle of the book, see what direction you need to go, open to the middle of that half, and so on, until you end up on the right page. To help you on your way, there's usually a table of contents, which gives you the rough locations of entries, perhaps down the nearest first letter or so.</p>
+<p>But what if you need to do the inverse - find the owner of a given phone number? You'd have to scan the entire phone book, because it's not in the order you need to apply a search heuristic. Or what if you only have a first name, and the book is sorted by last name? We're stuck again. The book can't be sorted by more than one value at once, can it?</p>
+<p>The way to solve this is to sacrifice some storage space to gain a lot of search speed. We do that by duplicating portions of our data - basically, print more than one copy of the phone book, each sorted a different way, and only containing exactly the information we need to lookup in that way. Each duplicated portion of the data has its own table of contents suitable to that sort - meaning you can get right down to the the level of an individual entry by checking only a few pages.</p>
+<p>Databases vary in their implementations, but the principle is the same. You have some mass of data, which is usually analogous to a giant spreadsheet table. To find individual records in that table, you pick which columns of the table you most frequently search by and create an ancillary data structure somewhere else, which is an index on those values, that makes it easier in some way to find records via that column. The index contains pointers back to corresponding locations in the &quot;real&quot; table for finding related values.</p>
+<p>It is not uncommon for real-world databases to take up more space in indexes than &quot;actual data&quot;, because consumers of that data want fast access to it via a variety of lookup parameters.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DataDecay" target="_blank">DataDecay</a>
+			<div class="markdown"><p>I find it funny when I find index tablespaces bigger than the schemas tablespaces. Generally when I see that I look up the most used queries and their explain plans and I regularly find old indexes that were never removed which are generally screwing up the other indexes. It's not the quantity of indexes but the quality that's important. However I will say I have run into databases that do effectively exhibit what your saying.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/notgivingtwofux" target="_blank">notgivingtwofux</a>
+			<div class="markdown"><p>This example of the phone book has given me clarity.  And would do the same for a five year old. This is true ELI5. Thank you!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mmmyerss" target="_blank">mmmyerss</a>
+			<div class="markdown"><p>Very informative, thank you. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thecukoosnest" target="_blank">thecukoosnest</a>
+			<div class="markdown"><p>Thank you for your question. Extremely interesting thread.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xcOoE22awjiaLmyAxepO" target="_blank">xcOoE22awjiaLmyAxepO</a>
+			<div class="markdown"><blockquote>
+<p>The software doesn't need to know that the person's first name is JOHN, it just needs to know that that user's pointer is here and it points to that table and then that table points to the next connected bit of data, etc. It is a chain of tables.</p>
+</blockquote>
+<p>That's not a fair analysis. You don't have a pointer to where the next bit of data is stored on disk. You have an index. Instead of scanning through all records for user_id=23852 you can do a binary search because the index is ordered.</p>
+<p>log base 2 of 800 billion = 40 (jeeze, I didn't think it was that small!), so you'd only have to check about 40 rows before finding the one you're looking for.</p>
+<p>Assuming anyway that this is how indexes are implemented; I'm not a DBA. I don't think we can do better than O(log n) anyway.</p>
+<p>This doesn't get into sharding and horizontal scaling though.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/vikinick" target="_blank">vikinick</a>
+			<div class="markdown"><p>Yeah that's how indexing works. Granted you need some overhead for maintaining the tree structure, but it is magnitudes faster.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xcOoE22awjiaLmyAxepO" target="_blank">xcOoE22awjiaLmyAxepO</a>
+			<div class="markdown"><p>I just mean it's not a direct pointer O(1) lookup -- you have to go through the index which is O(log n).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mowshowitz" target="_blank">mowshowitz</a>
+			<div class="markdown"><p>Er, do you mind ELI5-ing this? I use SQL Server regularly but only to query, I've never quite understood what &quot;indexing&quot; refers to and how it makes identifying records faster.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dahimi" target="_blank">dahimi</a>
+			<div class="markdown"><p>A database table contains rows and columns of data.  Generally speaking the rows of data aren't ordered.  Thus if you want to query the table for specific criteria, you'd expect to have to check half the rows to find it.  In large databases this is fairly prohibitive.</p>
+<p>So what indexing does is create another data structure where by data from some of the columns (or a single one) is sorted along with a pointer to where the data exists in the original table.  This new data structure because it's now sorted can be searched far more efficiently.  So instead of having to do a row by row search of the data, you could do something like a binary search of the data which requires a lot fewer comparisons on average to find a specific record.</p>
+<p>Essentially when considering what columns in the table to index, it helps to think about which columns your application typically uses in its &quot;where&quot; clauses.  This is why things like primary keys and other database constraints are often automatically indexed, because the database system has to do lot of work searching through the table to ensure these constraints are maintained.</p>
+<p>It's the exact sort of thing that occurs in a book index.  Certain criteria is used to establish what terms will be in the index, and then they show up in alphabetical order along with what page(s) in the book the term appears on.  This of course is far more efficient then it would be for you to read the whole book and keep a note of every page the term you're interested in appears on.</p>
+<p>The trade off of course is the additional resources required to deal with this new data structure as well as keep it updated when records are added/removed/changed.  Using the book analogy again, an index in a book requires the book to contain more pages.  It also requires something to do the work of figuring out all the pages the terms in the index appear on and must be kept up to date as new chapters are authored, changed, or even removed.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xcOoE22awjiaLmyAxepO" target="_blank">xcOoE22awjiaLmyAxepO</a>
+			<div class="markdown"><p>If I tell you I'm thinking of a number between 1 and 800 billion and you have to guess it, and I'll tell you if it's higher or lower, than your first guess should be 400 billion. That will cut your search space in half. If I tell you higher, then your next guess should be 600 billion -- now we've limited the potential numbers down to 200 billion (one quarter of our initial search space) with only 2 guesses. Each time you guess exactly half-way between the upper and lower bound. You could pick a different number, but if you keep guessing wrong it'll take you much longer to find my number, so the optimal solution is to always use the half-way point. In the worst case scenario you can guess my number with only 40 guesses.</p>
+<p>This is what's called a &quot;binary search&quot;.</p>
+<p>Now imagine instead of trying to guess my magic number, you're searching for a user id. As long as the user ids are sorted in ascending order, you can use this 'trick' to find the user id very, very quickly. If the user ids are all over the place though (not sorted), then you can't perform a binary search. This is exactly what an index is -- it's just a sorted version of the thing it's indexed on. i.e. if I create an index on &quot;user_id&quot; it might be something like</p>
+<ul>
+<li>the data for user 1 is stored at offset 28586</li>
+<li>the data for user 2 is stored at offset 1832</li>
+<li>the data for user 3 is stored at offset 459294
+...</li>
+</ul>
+<p>And so forth. This &quot;index&quot; will contain 800 billion rows like that, but we can search through it super quick because we know it's in sorted order. Once we find our user id in the index, it tells you where to find the rest of the data for that record. Alternatively, we could store <em>all</em> the data for the user in the index too but then we'd be duplicating all the other user data for each index we create, so instead we just say where you can find the data.</p>
+<p>Now when you create a new user, it appends a new record in the main table data and it also inserts a new entry into the index, in the correct position so that our index stays sorted.</p>
+<p>This is why if you create lots of indexes your writes can slow down a little bit, but generally it's not too expensive to insert into an index. An index also takes up disk space to store this lookup information, but not a ton of space because we haven't copied all the data into the index, just the user id and where to find the rest of the data.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hugo_ijslijk" target="_blank">Hugo_ijslijk</a>
+			<div class="markdown"><p>To add to what some of the other commenters have mentioned, SQL Server (and probably other SQL databases too) use a B+ tree instead of a binary tree. The difference here is that the tree branches out in more than 2 directions (instead, every id 0-99 goes to the first, 100-199 to the second, etcetera). It's also built up from the bottom instead of the top and uses an algorithm to balance itself automatically. </p>
+<p>At the bottom of the tree (the leafs) the pages are located where your data would be (either the whole row on a clustered index (default for primary key) or the key you're searching for (non-clustered index)).</p>
+<p>Source: literally had a class on this yesterday</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/k0rm" target="_blank">k0rm</a>
+			<div class="markdown"><p>Why use an index instead of a hash?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Teripid" target="_blank">Teripid</a>
+			<div class="markdown"><p>A hash is just a shortcut to compare or simplify. You still have to find the original value or a matching hash. Indexes often use both. </p>
+<p>Hashes get used all over the place as well. Passwords are very often stored as a hash value. If I have 25 fields in a table and want to see if the row is changed, I don't compare 25 values individually, I combine them then hash that result and compare to the old record's hash. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/failburt" target="_blank">failburt</a>
+			<div class="markdown"><p>A hash would required resolving hash collisions and would also require computing the hash.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xantrel" target="_blank">xantrel</a>
+			<div class="markdown"><p>A hash is just a mapping from one value to another. There are some data structures that use hashes to achieve O(1) reads. Basically hashing the key gives you the index of the value, if you know the length of each record, all you have to do is multiply the index * record_length to get the exact address of the record.</p>
+<p>PostgreSQL does have an index based on hashes, however they impose severe limitations. Hashes aren't ordered, so you can't sort or query by range like with standard indices. You also can't select wildcard values (all records starting with this value), which is very fast in a standard index.</p>
+<p>Basically, if you will always be searching by the full value, and will only retrieve one specific value every time (never a range), then hash indices are very good. But because of their limitations not many people use them.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JustFoundItDudePT" target="_blank">JustFoundItDudePT</a>
+			<div class="markdown"><p>Just two days ago I had an argument with our DBA because he was saying our table had too many records (1.9M) - We were having a performance issue retrieving some records and that's the excuse he used. </p>
+<p>What an idiot!!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DNRTannen" target="_blank">DNRTannen</a>
+			<div class="markdown"><p>Then the data needs to be properly indexed. Having 1.9M records of raw data will kill any search, if it's not properly indexed. A DBA worth his salt wouldn't be faxed by that, assuming he has the authority to edit them accordingly.</p>
+<p>One of our DBs has a (sharded) collection of about 22 million files, which also includes the blob data for each for JPGs, pdfs, word docs etc. If we can get them to retrieve in &lt; 1s then you can sure as hell index some basic varchar data.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JustFoundItDudePT" target="_blank">JustFoundItDudePT</a>
+			<div class="markdown"><p>Yea I know that. Btw the data is indexed. </p>
+<p>The problem is that we are using a product that fires a cursor to retrieve the queried data sorted. When the query is executed directly in sql management studio it works in 300ms however when fired through the webservice it takes around 14 seconds due to this cursor.</p>
+<p>The DBA seemed like he didn't want to analyze so he was just saying that the DB had too many records, which was clearly not the problem.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ChicDoom" target="_blank">ChicDoom</a>
+			<div class="markdown"><p>To be fair here normalization is hard.  Like my brain starts to fail once you 4NF and once you start getting shit tons of records you really need to move beyond 3NF.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FazeNazi" target="_blank">FazeNazi</a>
+			<div class="markdown"><blockquote>
+<p>A DBA worth his salt wouldn't be FAZED by that</p>
+</blockquote>
+<p>... is what you meant, right? RIIIGHT?! </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/klh_js" target="_blank">klh_js</a>
+			<div class="markdown"><p>Maybe you search on non-indexed fields? The speed of that usually depends on the number of records.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JustFoundItDudePT" target="_blank">JustFoundItDudePT</a>
+			<div class="markdown"><p>It was indexed. He even said the table had too many indexes :)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/viveleroi" target="_blank">viveleroi</a>
+			<div class="markdown"><p>My current employer suffers from similar issues. From top brass who insist on making manual changes to the DB to database developers who put in minimal effort, while both have zero legit experience in enterprise-level database design... we have a database that is extremely slow, crashes regularly, and has horrifically designed schema. I am no database expert but even I clearly see the mistakes they're making.</p></div>		</li>
+					</ul>
+		</ul>
+	

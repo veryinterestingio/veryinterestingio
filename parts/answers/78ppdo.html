@@ -1,0 +1,57 @@
+<div class="answers">
+	<div class="answer" data-handle="dovyce2">
+		<a class="author" href="https://www.reddit.com/user/kekoap" target="_blank">kekoap</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The simplest answer to your question is that the billions of users (and trillions of other pieces of data associated with those users) are stored on a database split across thousands of machines.  Every piece of information has an ID associated with it, and each ID maps to a particular portion of the database hosted by a particular set of machines responsible for that portion of the database.  Software abstractions allow you to fetch the data associated with various IDs efficiently without worrying about the details of how the data are stored across the machines.</p>
+<p>If you want more details on Facebook in particular, a good starting point is to look into things they've written about TAO, a system they built on top of MySQL and memcache to manage their distributed data store.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dovot1r">
+		<a class="author" href="https://www.reddit.com/user/the_mellojoe" target="_blank">the_mellojoe</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The good news is that data isn't stored in one giant table.  It is actually made up of multiple tables.  Tools exist that then link those tables and read the information in them fairly effeciently.  Oracle, MySQL, etc handle massive amounts of data pretty easily.  Because these tools don't actually care what the data is, they just need the reference points, they can quickly retrieve the data.  </p>
+<p>Think of how RAM works: fast switching pointers.  This is how you get a user's data out of billions in a table.  The software doesn't need to know that the person's first name is JOHN, it just needs to know that that user's pointer is here and it points to that table and then that table points to the next connected bit of data, etc.  It is a chain of tables.  Again, most of the retreival of the data isn't getting ALL of the data, it is just getting the pointer.  That pointer leads to the next pointer, and so forth.  Just fast swapping pointers and then one DISPLAY of the data.  </p>
+<p>Big Data as it is termed, is a huge industry specifically for this challenge.  It isn't perfect, but an entire industry exists simply to find better ways to store data so that that pointer chain can be processed faster and faster.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dovpq32">
+		<a class="author" href="https://www.reddit.com/user/mrmemo" target="_blank">mrmemo</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Background:  I work with data for a living.</p>
+<p>You mentioned the word &quot;big&quot;, and that's really appropriate here because some data can't be stored on a single logical volume (disk drive).  Think of a standard database like a file system on your hard drive.  Each element of the database has an index, and you can query the disk via index to retrieve records, kind of like accessing a file on your computer.  The database engine keeps a record of where each bit of data is stored, so it can fetch them on request.</p>
+<p>What happens when you have so many records that indexing them becomes impossible?  For example, you might have far more data than can fit on a single drive.  Or you might have so many dimensions to your data that indexing it properly becomes too computationally expensive.</p>
+<p>This is where we transition into &quot;big data&quot;.  Big Data refers to database storage systems that help manage very large or very dimensional data structures.  This happens by storing the data itself across multiple drives / volumes, and creating aggregated indexes or &quot;nodes&quot; to slice the data for retrieval.</p>
+<p>The actual mechanics of this can be pretty complicated, but there are drop-in solutions like Hadoop to streamline the process.  Depending on how quickly you want the data retrieved, how deep the data is, how many simultaneous calls you expect, and a host of other factors, you'll set the number of nodes accordingly to balance cost (each new aggregation requires disk space and horsepower) and function (more nodes = faster retrieval).</p>
+<p>You might be surprised by what data actually qualifies as &quot;big&quot; data.  With proper indexing and partitioning, a SQL DB can handle millions upon millions of records without flinching.  On the other hand, a poorly optimized DB can result in slow read times and clunky operation with just a few million transactions.  Data is neat!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dow6tvn">
+		<a class="author" href="https://www.reddit.com/user/TheNak1123" target="_blank">TheNak1123</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Big Data Engineer here. The ELI5 answer is that your data is replicated to multiple machines in easier to handle chunks. Say you have a table with 100 rows. What Facebook does is splits these tables into 5 machines each holding 60 rows. &quot;But wait, that's 300 rows. Why did my data increase?&quot; Well because if we had a unit of data in just one place, then you create a bottleneck. If everyone was viewing Elon Musk's FB page, then the one machine with Elon's page wouldn't be able to handle traffic for the other 19 people. By duplicating the data, Elon's FB page can be stored on three different machines. Finally, you have one more machine that routes incoming requests for data. &quot;Looking for Elon Musk's page? Go to machine A. TheNak1123's page? Go to Machine B. Elon again? Go to Machine C.&quot; The key point to remember is that storage is cheap. A 1 TB hard disk costs a consumer like you or me 50 bucks. The key resource for these companies is time. By throwing money to buy more computers and splitting up the data, Facebook can efficiently organize and use large quantities of data on the scale of Exabytes (Millions of Terabytes).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dow2gm3">
+		<a class="author" href="https://www.reddit.com/user/spinur1848" target="_blank">spinur1848</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Recognize that 1 billion users is really just a Google and Facebook problem and maybe a handful of others. </p>
+<p>The basic pieces of relational databases, if used properly, ensure that most of the time you don't actually need to store whole records. You store the bits that are unique and then just keep links to the bits.</p>
+<p>Then you make sure that you never ask questions that require you to scan the entire database. </p>
+<p>Think about a library. You don't have to look at every single book to find something specific. You look up the book in the catalogue, get the books call number and then go right to the specific shelf you need. Databases work this way too. The library catalogue is a database index.</p>
+<p>For those rare cases when you do want to browse in a library, you don't pick random shelves, you arrange the shelves in sections that have books of the same type. So you can browse, but not the whole library. For databases this is partitioning or sharding. </p>
+<p>Lastly, modern databases can do some special things with indexes when you're not looking for individual records but you want to count things. Most analytics queries aren't actually for individual records but for aggregates. You can define views and indices on particular types of aggregates so that asking those kinds of questions is more like going to one specific shelf in a library instead of scanning all the books one by one.</p>
+<p>You need good database design, good database admin, and in very rare circumstances brand new tech. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

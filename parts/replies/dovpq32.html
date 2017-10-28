@@ -1,0 +1,76 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lewisj489" target="_blank">lewisj489</a>
+			<div class="markdown"><p>Thank you for your response, data really is incredible. You mentioned users at it got me wondering some more. How does concurrency work with DB's this large?</p>
+<p>And not to be too greedy, but could you give me some insight about how data (Maybe like banking historical transactions, Facebook activity) is stored? Is it stored as a blob or a pivot table? Or something completely different? </p>
+<p>Thanks</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mrmemo" target="_blank">mrmemo</a>
+			<div class="markdown"><p>I can sure try!</p>
+<p>Concurrency relies on a combination of smart memory allocation and scalable storage.  As a VERY rudimentary example, let's look at three bits of data: A, B, and C.  Users 1 and 2 are requesting data concurrently.  User 1 requests AB, User 2 requests BC.</p>
+<p>A smart memory allocation system will recognize the overlap in those concurrent requests.  Element B is requested twice, so both queries can share access to the short-term storage of B from a single place in volatile memory.</p>
+<p>As you might imagine, this breaks down if you've got multiple users requesting large chunks of dissimilar data.  In these cases, you want your partitioning (where the data is physically stored) to be performed intelligently so the same drive isn't trying to serve too many masters at once.  Let's say you've got 2 drives in RAID-0; simple striping, data is distributed across the drives.  A good partitioning structure will store dissimilarly-indexed data on different drives, reducing the potential for bottlenecks in a single disk.</p>
+<p>There's SO much more depth to the field, and I'm no DBA expert, but I try to keep informed just enough to be dangerous... ;)  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/somethingsome567" target="_blank">somethingsome567</a>
+			<div class="markdown"><p>I work for a software company (banking specifically myself) and while I am not the technical side (more a bridge between business and tech) I really relate to your last sentence. “Just enough to be dangerous”. If you’re looking to hold your own in an industry or position without dedicating all your time, you should understand this ideal. Thanks for the comments</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/archetech" target="_blank">archetech</a>
+			<div class="markdown"><p>Just a side note that there is a vast caching mechanism at FB.  Just about everything read is read from cache.  It used to be memcached, bit I'm not sure if they are still using that today.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rsminsmith" target="_blank">rsminsmith</a>
+			<div class="markdown"><p>Not a DBA but I do have to sometimes handle a few larger databases than most usual people do. Concurrency is always tricky, as mentioned several times several &quot;big data&quot; tools can make this easier. From my understanding (heavily, heavily simplified, as this can change based on application need), under the hood you'll have master and slave databases. Writes goes to master, reads go to slaves. Because of this, you're less likely to run into out-of-resources issues with writes, as the master databases don't have to deal with reading data. When the slave databases have downtime, they update their writes as dictated by the master. Sometimes these will cycle in and out as well, so if you have slaves A B and C, then C may catch up while A and B handle read requests, then C handles reads and A catches up on writes, etc. This is why in large websites, sometimes you don't see changes for a few seconds. For instance, on Reddit, if you post a comment and immediately refresh the page you probably won't see if for 5-10 seconds.</p>
+<p>Again, heavily simplified, and probably a ton of things DBAs could pick apart here. This also doesn't handle sharding, which can run in addition to master/slaves.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/5452580192" target="_blank">5452580192</a>
+			<div class="markdown"><blockquote>
+<p>How does concurrency work with DB's this large?</p>
+</blockquote>
+<p>The answer is quite often that it doesn't. Especially for data readers.</p>
+<p>Often it really doesn't matter. e.g if you're seeing stock levels or up/down votes, it's not the end of the world if you see '60 points' if the actual value, if you used a system that guaranteed concurrency for every reader would say '62 points' - eventually the copy you are reading from will be updated to reflect changes.</p>
+<p>A lot of web based stuff has, potentially a lot of readers but far fewer users that can actually edit or change the data.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/garistroll" target="_blank">garistroll</a>
+			<div class="markdown"><p>Hey dude, i have some questions to ask you. What types of hardware is present in a server other than hard drives? How does the power supply look like? How many watts of electricity is being used everyday?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/randomtask16" target="_blank">randomtask16</a>
+			<div class="markdown"><p>Our bigdata solution currently under deployment consists of a large HP / vMware infrastructure running Linux OS combined with IBM Power series Oracle  databases and front end applications. Not directly tied, but interdependent archtecturally (Database A stores data from platform X until it can be combined with database B and integrated into the SSP platform on &quot;bigdata&quot; aka Hadoop.</p>
+<p>Hardware costs themselves are only a small part of the picture, other items such as support contracts, professional services, end of life etc are all factored in. Even our relatively small IT dept is budgeted in the 100's of millions range. Google, facebook, Apple and others are easily billions.</p>
+<p>Power isn't really measured in watts, but Kilowatts. Primary, Secondary feeds, primary and secondary generators, HVAC, etc are all considered in the design and budgeting from the start.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AxiomStatic" target="_blank">AxiomStatic</a>
+			<div class="markdown"><p>Don't forget the cost or backup, availability and network security software packages. Minimal compared to hardware but not cheap.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Flimflamsam" target="_blank">Flimflamsam</a>
+			<div class="markdown"><p>You can look up this kind of stuff, but servers vary greatly depending on requirements. Like a home PC, if you throw a few drives in there and a meaty graphics card, you’re going to need a bigger PSU.</p>
+<p>Servers are computers, there’s nothing really special about them in a general sense. It’s more that the components are typically higher grade in order to last - since servers are always turned on. Components are just the same though, the exception being that servers will probably have crappy graphics cards in. RAM, hard drives, CPUs, network cards - all commonly known PC parts, they’re just of higher performance and higher quality (in theory). You can make any computer a server, as long as it’s got the horse power to handle the services it will be hosting. I’ve ran servers personally at home for over 20 years, and very rarely ever on actual server hardware. Just on regular PCs with better hard drives and a decent PSU.</p>
+<p>A main physical difference is that most servers are cased within specifically sized cases - universally standardized - so that they fit within racks that are used. They’re 19” wide, and the vertical measurement is a “U”, which if I recall is approx 2” but I’m going off memory of a 1U “pizza box” that I used to have at home.</p>
+<p>Source: have worked on machines of all types and architectures (DEC, SunSparc, PC, Apple) - actually a software dev, but in the olden days I wore many hats - and fucked about with a lot of shit in my spare time. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AxiomStatic" target="_blank">AxiomStatic</a>
+			<div class="markdown"><p>Main differentiator in today's world is the use of a hypervisor and server software on VMs.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/garistroll" target="_blank">garistroll</a>
+			<div class="markdown"><p>How do you wire up all the components and still be able to run without crashes, black screen etc?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cleverusername10" target="_blank">cleverusername10</a>
+			<div class="markdown"><p>I’ve never personally seen my companies computers (few have), but I did own a rack server from another data center at one point. They have all the same things as normal computers: so many sticks of ram, 2-6 hard drives, usually 2 CPUs, a power supply, a few USB ports, two gigabit Ethernet ports. Mine had a video card that was about as powerful as a toaster.</p>
+<p>Check out the picture in this article of the intervals of a rack server: <a href="https://www.theregister.co.uk/2012/03/09/ibm_xeon_e5_server_lineup/" target="_blank">https://www.theregister.co.uk/2012/03/09/ibm_xeon_e5_server_lineup/</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/vaderfader" target="_blank">vaderfader</a>
+			<div class="markdown"><p>it also depends on what you want to do with the data, if you're looking for like end reporting or query access then haddoop will perform poorly as the tables are sharded against multiple slave computers.</p>
+<p>however, having the data sharded allows the multiple computers to perform like a transform on the data, basically a manipulation like a summary aggregation or really whatever is needed to convert the data to it's normal form - for hadoop the java module or library that is used is map reduce, it basically automates some portion of the code for multithreading, and then this is ran on all the computers where the data is stored.  <strong>getting data is difficult but manipulation is easy</strong></p>
+<p>sometimes this data is then pushed out to another database that is optimized for retrieval, there are several databases that have been mentioned - oracle, mysql, mango, vertica. the first 2 are row store so they need to be indexed for performance, mango - i have no idea what no-sql is tbh, and vertica is a columnar store database - basically it store's its data in columns - which need to have their primary key's sorted for performance. <strong>getting data is easy manipulation is expensive</strong></p>
+<p>all of these different end databases come with their pro's and cons and have different rules for optimization, basic rule would be try to set the min row count table as the base for row databases, but there's more to it. i hope i got the right use of shard vs partition, i think i did, but the subject can get pretty complex.</p></div>		</li>
+					</ul>
+	
