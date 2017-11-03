@@ -1,0 +1,42 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/myintel" target="_blank">myintel</a>
+			<div class="markdown"><p>Number 1 is correct. There is a BS chip in the cable for Apple MFI. When it first launched it cost about $3.50 to purchase the chip from Apple but now it's closer to $1. Knockoff cables have tried to clone the chip but usually get something wrong which is why the phone says it is an unsupported device. </p>
+<p>I believe the phone will still charge but only at ~350mA meaning a full charge will take about 5 hours for an iPhone. </p>
+<p>Some say it's a cash grab by Apple, others say it's to regulate quality, but either way the chip costs more than every other piece of the cable combined(in the case of a basic 1m cable).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GodOfPlutonium" target="_blank">GodOfPlutonium</a>
+			<div class="markdown"><p>Close but not quite. The way an apple phone knows a phone is connected ot the charger is that instead of the data lines giving data, theyre literally just receiving some combination of 2v and 2.7v static voltage on the data lines. Anyone can do this with resistors to make a voltage divider. 2v on both lines means the charger can provide 500 ma, though only legacy chargers really use this, the stock iphone 'sugar cube'charger has one line at 2.0v and one at 2.7v (i forgot which one is which), which signals that the phone can draw up to 1000ma. The stock ipad charge has the lines switched (the opposite lines have 2 and 2.7v on them) This tells the ipad that it can draw 2000ma out of it. Fun fact: while plugging in an iphone 5 or lower will only pull 1000ma, if you plug a iphone 6 or better into an ipad charger, itll charge faster, not at 2000ma but something like 1300 - 1600 ma. Theres also chargers with 2.7v on both lines meaning the charger can provide up to 2400ma, though apple doesnt sell any of these.</p>
+<p>Android phones have a different charging spec where the two data lines are just shorted together to mark the usb port as a charger. The way these regulate current is that when the phone starts pullling too much power theyll lower the voltage  that theyre supplying(on the 5v lines, not the data lines). Note that this is the proper way to do a usb charger as this method is actually listed in the offical usb spec.</p>
+<p>Of course this all a mute point as any modern phone, apple ones included have a chip that lets them recognize both types of chargers. Also sometimes youll see 'smart chargers' that say they &quot;identify your phone and supply the proper charging signal&quot;. In reality they have a chip in them that is actually just doing one of these first then the other to see what the phone will accept.</p>
+<p>also apple doesnt check if a charger is counterfeit via some fancy detection. All they do is do 2)  of what u/aj67891 said, they say the charger is counterfeit if the voltage or amperage is too low OR the charger cuts out multiple times. You can test this by using a genuine apple charger and lightning cable, and plugging it in and out every few seconds, after 3 or 4 times you get the &quot;accessory not supported&quot; messege</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bluesatin" target="_blank">bluesatin</a>
+			<div class="markdown"><p>If it's just a case of outputting some static voltage, why do the electronics in Apple lightning cables have complicated chips in them including serial communication protocol sections?</p>
+<blockquote>
+<p>Also on the chip is the EPROM, with likely 64 or 128 bits of storage (visual inspection only, full RE not completed). There are also some large driver transistors, quite a bit of analog circuitry, and a fair amount of capacitance. This is certainly all consistent with a serial communication chip including some simple security features.</p>
+<blockquote>
+<p><a href="https://www.chipworks.com/about-chipworks/overview/blog/inside-apple-lightning-cable" target="_blank">https://www.chipworks.com/about-chipworks/overview/blog/inside-apple-lightning-cable</a></p>
+</blockquote>
+</blockquote></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BenTheHokie" target="_blank">BenTheHokie</a>
+			<div class="markdown"><p>I recently read a couple pages in the latest USB power delivery spec and it looks like there's some negotiation between the charger, the cable, and the device to determine what the charger and cable can provide and what the device can accept. It hurt my brain trying to understand it. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/the_great_zyzogg" target="_blank">the_great_zyzogg</a>
+			<div class="markdown"><p>I kind of doubt I2C or SPI would be used. Those are usually used for one on board chip to communicate to another. They are typically 3 V signals that aren't meant to be put out on cables. </p>
+<p>Apple likes to use their lighting connector on their products, which seems to be USB compatible. I'm speculating here(which you kind of have to as I don't think they release technical details on their products), but you could have the charger act as a USB host to just give an authorization code to the device to unlock charging. Or if they use on-the-go USB connections, their product can be the host and check if the correct charger device is connected. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Inhumanskills" target="_blank">Inhumanskills</a>
+			<div class="markdown"><p>I don't think it's a cash grab more of a &quot;We don't want to be responsible when your $2 charger from China breaks your phone.&quot; </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/spiderskizzles" target="_blank">spiderskizzles</a>
+			<div class="markdown"><p>That's certainly the excuse but most of us realize that it is just a cash grab </p></div>		</li>
+					</ul>
+		</ul>
+	

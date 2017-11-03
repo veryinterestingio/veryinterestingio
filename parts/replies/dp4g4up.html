@@ -1,0 +1,47 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Elevated_Misanthropy" target="_blank">Elevated_Misanthropy</a>
+			<div class="markdown"><p>This is actually a fairly old issue dating back to the earliest days of integrating rechargeable batteries into electronics, and corporate malfeasance isn't entirely at fault for once.</p>
+<p>There are actually three separate voltage and current problems that the equipment have to address: The battery's electrochemical requirements, the phone's charge circuits' electrical requirements, and the charger / cable's electrical capabilities. </p>
+<p>When a battery is being charged, the input voltage and current have to match the electrochemical charging curve, otherwise the bulk of the energy gets wasted. Lithium cells in particular are extremely finicky, and require complex charging circuits. All of these circuits use a transistor to turn on the current to the battery, and most phones can control the circuits via a software interface. </p>
+<p>For the charge circuits to function efficiently, they need to be able to draw both constant current and constant voltage. Depending on the gague of the charger wire, the ideal charging current may be higher than what the cable can safely carry.</p>
+<p>Finally, the charger (which is actually either a dc-dc or ac-dc converter) has both a maximum and an ideal current rating, which may be lower or higher than either the cable or the charge circuits' ideal.</p>
+<p>Apple and the rest of the mobile device ecosystem use variations on the same techniques, which boil down to using a combination of active and passive circuits to signal what each component needs, or is capable of providing. </p>
+<p>In Apple's case, The &quot;official&quot; Lightning^(TM) cable comnector standard contains one-or-more Apple-proprietary SMT ICs that identify it as an &quot;authentic&quot; device, and define the cable's power and data handling capabilities. Both the cable and the charger negotiate with the phone using Apple-proprietary communication protocols, although non-Apple chargers can work as long as they support the USB-Battery-charge active-signalling standards. </p>
+<p>Samsung and most other manufacturers use the
+industry standard USB Battery-charge specification which uses both active and passive components to signal the current capacities for the cable and the charger. Because they are published standards, and the lower current signals are made by inserting simple resistors across the D- and D+ pins, it's easier to make a  &quot;counterfeit&quot; charger for these devices. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GodOfPlutonium" target="_blank">GodOfPlutonium</a>
+			<div class="markdown"><p>One thing to note, it is easy to make counterfit apple chargers too, because they arent using an IC. what they do is they put a static voltage on the D+ and D- lines, of either 2 volts or 2.7 volts . Depending on which line is 2 volts and which one is 2.7 volts the charger is identified as a 1 amp or 2 amp charger respectively (0.5 and 2.4 amp can also be done using both lines at 2v or 2.7v respectively, though apple does not sell chargers matching those)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bluesatin" target="_blank">bluesatin</a>
+			<div class="markdown"><p>Are you sure about that?</p>
+<p>It seems surprising they wouldn't have any integrated circuits in their chargers considering even their lightning <em>cables</em> have integrated circuits built into them for DRM and other purposes.</p>
+<blockquote>
+<p>We have confirmed that the Lightning cable does have four chips embedded in it, plus some passive devices. Two of these chips are very simple (only a couple of transistors), and the third is an NXP NX20P3. However, the fourth and arguably most interesting of these is the TI chip.</p>
+<blockquote>
+<p><a href="https://www.chipworks.com/about-chipworks/overview/blog/inside-apple-lightning-cable" target="_blank">https://www.chipworks.com/about-chipworks/overview/blog/inside-apple-lightning-cable</a></p>
+</blockquote>
+</blockquote></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nickandre15" target="_blank">nickandre15</a>
+			<div class="markdown"><p>But is the iPhone rejecting these chargers due to detected voltage/current stability problems or just because the communication protocol is old? I was under the impression it was the latter, so a $150 bench power supply with the wrong signaling will show up as “unsupported.”</p>
+<p>Tldr why I surround myself with only Anker Chargers. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Elevated_Misanthropy" target="_blank">Elevated_Misanthropy</a>
+			<div class="markdown"><p>The communications protocol should be the limiting factor. Unless the cable and/or power supply contains the signaling ICs, resistors, or voltage dividers to inform it of higher capabilities, then the phone will default to the lowest common denominator of 5VDC at 500mA.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SleepMyLittleOnes" target="_blank">SleepMyLittleOnes</a>
+			<div class="markdown"><blockquote>
+<p>draw both constant current and constant voltage.</p>
+</blockquote>
+<p>As a note, they do not draw both constant current and constant voltage simultaneously, that is exceptionally difficult without either very low current or very low voltage delta. Lithium battery charging is done <a href="http://www.tjinguytech.com/charging-how-tos/how-lipo-chargers-work" target="_blank">efficiently</a> in two phases: first a constant current phase which does the bulk charging and the voltage varies. Then the float charge of constant voltage.</p>
+<p>Unlike other battery chemistries which <strong>must</strong> be charged with a constant current phase (<a href="http://batteryuniversity.com/learn/article/charging_nickel_metal_hydride" target="_blank">NIMH</a>) LI batteries can be charged with only constant voltage, it is just slower.</p></div>		</li>
+					</ul>
+		</ul>
+	
