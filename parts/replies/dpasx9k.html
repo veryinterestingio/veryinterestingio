@@ -1,0 +1,67 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FractureMechanist" target="_blank">FractureMechanist</a>
+			<div class="markdown"><p>There are some practical applications of this in engineering. For example the concept of stress intensity factor was developed to represent the local stress state at a crack tip. This is necessary because the stress is inversely proportional to the radius from the crack tip. So the SIF was developed as a way of representing the the stress as the distance from the crack approaches zero. This is commonly used in fracture mechanics because SIF is used as the primary indicator of material strength, and has been seen to accurately predict the load under which materials will fail. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DaffGrind" target="_blank">DaffGrind</a>
+			<div class="markdown"><p>Forgive me if I'm wrong, but aren't all polar coordinates where we require r&gt;=0 isomorphic to the riemann sphere?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FractureMechanist" target="_blank">FractureMechanist</a>
+			<div class="markdown"><p>I’m not entirely sure. I was talking about radius as a physical distance in a circle around the crack tip. It doesn’t necessarily use polar co-ordinates. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FlyingByNight" target="_blank">FlyingByNight</a>
+			<div class="markdown"><p>What do you mean by <em>isomorphic</em>? That’s usually reserved for algebraic structures: groups, rings, fields, etc. Do you mean <em>homeomorphic</em> or <em>diffeomorphic</em> instead?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Arkin0ne" target="_blank">Arkin0ne</a>
+			<div class="markdown"><p>Thank you for this! I know there are alot of technical mathmeticans out there, but i just want to say thank you Fracturedmechanist for sharing a real life example that is easy to paint a picture of. That's coming from a math teacher who works in US where kids hate and don't understand math more often then not.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IM_ALiiive" target="_blank">IM_ALiiive</a>
+			<div class="markdown"><p>What distinguishes these methods from simply taking the limit with the denominator approaching zero?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/functor7" target="_blank">functor7</a>
+			<div class="markdown"><p>Limits allow you to access the infinite points without actually having them. Though, the way that limits work in Calculus is more modeled off of the extended real line, rather than the projective real line, so arithmetic doesn't really transfer well. So you can't really divide by zero using limits, you can only take limits on either side of zero of things like 1/x.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kallikanzarid" target="_blank">Kallikanzarid</a>
+			<div class="markdown"><p>Nothing, the usual embedding of the complex plane into the Riemann sphere gives you a coordinate patch, and a sequence z_n = n z for some non-zero complex number z has the only point not in the patch as its limit.</p>
+<p>If you transition to the other usual patch (f(z) = 1/z), this sequence will become f(z_n) = 1/z * 1/n with zero as it's limit (that's how you verify that this sequence even has a limit).</p>
+<p><a href="https://en.wikipedia.org/wiki/Riemann_sphere#As_a_complex_manifold" target="_blank">https://en.wikipedia.org/wiki/Riemann_sphere#As_a_complex_manifold</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kered13" target="_blank">Kered13</a>
+			<div class="markdown"><p>You can only take a limit with respect to a function (strictly speaking, a continuous function). Sometimes you need to discuss terms like 1/0 when they don't arise from functions.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NerdyWeightLifter" target="_blank">NerdyWeightLifter</a>
+			<div class="markdown"><p>Ok. Is this anything like homogeneous coordinate systems?</p>
+<p>I used these recently. I was kind of surprised that these don't get taught as the usual way to do this stuff, since it's so clean as a method.</p>
+<p>In 2d, the usual line formula taught in school (y=mx + b) breaks down at vertical lines because the slope (m), being rise/run gets divide by zero.</p>
+<p>With homogeneous coordinates you represent a point (x,y) with a vector 3 as (x/w, y/w, w), usually representing points as (x,y,1). From there, the cross product of two points is a line (also a Vector3), and the cross product of two lines is the intersection point, though you have to divide the w back into the x and y to get there real 2-space values. If w is zero, it's not an error. It means the lines were parallel.</p>
+<p>Kinda neat. Also works in 3d, for points and planes as vector 4's as (x/w, y/w, z/w, w) but 3d lines get trickier</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/suto" target="_blank">suto</a>
+			<div class="markdown"><p>Yes.</p>
+<p>The easiest way to create projective n-dimensional space is to take the nonzero points in (n+1)-dimensional space and &quot;mod out&quot; by (nonzero) scalar multiplication. That is, two points are identified if they are scalar multiples of each other. The result is that each &quot;projective point&quot; is a line though the origin in the Euclidean space one dimension higher. (Lines are one dimensional so collapsing lines to points should drop the total dimension of the space by one, one would think.)</p>
+<p>For example, suppose we want to create the projective real line. We take the nonzero points of <strong>R</strong>^(2), that is pairs of real numbers (X,Y) where at least one is nonzero, and for any nonzero real number r, we say (X,Y)=(rX,rY).</p>
+<p>To see what this looks like geometrically, imagine the plane with the origin removed, and instead of working with points we are working with lines (though the origin). Every line (other than Y=0) has exactly one point lying on the unit circle with positive Y-coordinate, so these form a semi-circle. The two endpoints both lie on the line Y=0 and so represent the same &quot;projective point.&quot; But this just means that the two ends of the semicircle are joined, which is a circle, and exactly what the projective line is.</p>
+<p>[eta: perhaps a clearer way to think of it is to actually imagine projecting onto a line. Consider the line Y=1, which is a copy of the Euclidean line. Every line in two-space intersects this exactly once--creating a dictionary between points on the line and projective points--except for the line Y=0, that being the unique line through the origin parallel to the given line. This line is the &quot;point at infinity,&quot; and notice that if you wiggle it a bit one way you end up really far right on the line Y=1 and if you wiggle it a bit the other way you end up really far left, showing that going right or left leads to the same point in the projective line.]</p>
+<p>When doing standard algebraic geometry in Euclidean space, we consider a polynomial p(x) and look at the zero set p(x)=0. But we can't quite do this in projective coordinates. For example, again in the projective line, consider a polynomial like p(X,Y)=X+2. In the plane, the zero set is the set of points (-2,Y) for all Y. But this doesn't work in the projective line; for example, (-2,1) and (-4, 2) represent the same point, but the latter isn't a solution to this equation. So we must instead consider only &quot;homogeneous polynomials,&quot; that is, polynomials satisfying P(rX,rY)=r^(d)P(X,Y) for some whole number d. We can also recognize these by seeing that each summand is the same degree (which turns out to be d), e.g.,  if P(X,Y)=X^(2)+XY, then</p>
+<p>P(rX,rY)=(rX)^(2)+(rX)(rY)=r^(2)X^(2)+r^(2)XY=r^(2)(X^(2)+XY)=r^(2)P(X,Y)</p>
+<p>It turns out that there's a dictionary between polynomials in n variables and homogeneous polynomials in n+1 variables, and it is as you described. When you convert to homogeneous coordinates, you're embedding your curve in the projective space and &quot;completing it&quot;, that is, adding any points at infinity that were &quot;missing&quot; before.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cyberjourer" target="_blank">cyberjourer</a>
+			<div class="markdown"><p>Here is an article that explains the relationship between homogenous coordinates and projective spaces.</p>
+<p><a href="http://deltaorange.com/2012/03/08/the-truth-behind-homogenous-coordinates/" target="_blank">http://deltaorange.com/2012/03/08/the-truth-behind-homogenous-coordinates/</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NerdyWeightLifter" target="_blank">NerdyWeightLifter</a>
+			<div class="markdown"><p>Hey, great article. Thanks.</p>
+<p>That explains it well.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

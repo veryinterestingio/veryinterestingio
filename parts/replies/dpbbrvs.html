@@ -1,0 +1,45 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/techcaleb" target="_blank">techcaleb</a>
+			<div class="markdown"><p>An example of a well defined use of &quot;division by zero&quot; is the dirac delta function. It is defined as the limit of  e^-(t/a)^2 / (|a|* sqrt(pi)) as a goes to zero. We write it as δ(t). The useful property of this is that, while the &quot;value&quot; of the function at t=0 basically tends to +infinity from both sides, the integral (area under the curve) equals 1. </p>
+<p>It's used extensively in signal processing. If you want the area to change, you just multiply it by a value - so c*δ(t) has an area of c. You can also shift it (like any other function) so δ(t-t0) is centered at t0. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dcnairb" target="_blank">dcnairb</a>
+			<div class="markdown"><p>Delta functions are used allllll over the place in nearly every area of physics. they’re super useful tools.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/3Innovative5Me" target="_blank">3Innovative5Me</a>
+			<div class="markdown"><p>I was going to come up with a response, but it's probably just impulse.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Drugbird" target="_blank">Drugbird</a>
+			<div class="markdown"><p>Actually, dirac delta &quot;function&quot; is not a function at all, but a distrution.</p>
+<p>Simply speaking, it doesn't really have an f(x)=something form, but is instead simply defined by it's behavior in integrals: integral of (δ(t - d) * f(t) dt = f(d).</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/danbandanban" target="_blank">danbandanban</a>
+			<div class="markdown"><p>At t=0, the expression e^[-(t/a)^2] evaluates to 1, so the entire expression becomes 1/(|a|*sqrt(pi)). Am i missing something? What does this imply?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/urides" target="_blank">urides</a>
+			<div class="markdown"><p>A mathematician might have a better answer than me but the short of it is that the delta “function” isn’t defined properly outside of the limit or (as I’ve seen it in physics) outside of an integral. In other words, you can’t just use the exponential expression by itself without also taking the limit.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/techcaleb" target="_blank">techcaleb</a>
+			<div class="markdown"><p>Careful, remember that a tends to zero giving you e^-(0/0)^2. So you can't quite look at it that way. However, even if you do simplify it the way you did, it still tends to infinity as a approaches zero. The main reason for the unusual form is that, no matter what value you have for a, the area under the curve is constant. This is how we can make it meet the definition that the integral over a period  containing t=0 equals 1.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AbsentGlare" target="_blank">AbsentGlare</a>
+			<div class="markdown"><p>You can think of the simpler version of the dirac function, actually it's not a function in the traditional sense of the word, it's more of a mathematical tool.</p>
+<p>The simpler version is a function that evaluates to zero everywhere, except on a triangle, centered at the origin, with base 2e and infinite height, where it is evaluated with the limit as e approaches zero. An integral of the dirac function becomes 1 if it contains the origin, zero otherwise. This is because the area under (1/2)(base)(height) = (1/2)(2e)(inf) = (limit)(1/2)(2)(0*inf) = 1.</p>
+<p>It allows us to do some interesting operations in linear systems.</p>
+<p>The discrete analog is the kronecker delta function, which has a value of 1 at the origin and evaluates to zero everywhere else. Very strange things happen when we sample something into the discrete domain.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Works_of_memercy" target="_blank">Works_of_memercy</a>
+			<div class="markdown"><blockquote>
+<p>The fundamental issue is that, once you divide by zero, you lose information.</p>
+</blockquote>
+<p>You mean, when you <em>multiply</em> by zero. You don't have to lose information when dividing by zero: the result is undefined in real arithmetic so you can define it however you want including without losing information, by saying that <code>x / 0 = x * (1/0)</code>, thus generating an individual &quot;infinite value&quot; for each real number. So then <code>(x / 0) * 0 = x</code> roundtrips just fine.</p>
+<p>The problem is with multiplying by zero, because it's already defined to have a particular value, namely zero, and you can't redefine it to produce a bunch of differently flavored variations of zero that'd allow you to recover the original number.</p></div>		</li>
+					</ul>
+	
