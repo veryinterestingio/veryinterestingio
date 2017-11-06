@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>Why don't modern cellphones create interferences near speakers any more?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="7ak01b">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/7ak01b/why_dont_modern_cellphones_create_interferences/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/7ak01b" onclick="return false">Why don't modern cellphones create interferences near speakers any more?</a>
+		</h2>
+		<!--<span class="date">2017-11-06</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>15 years ago, when my cellphone was near speakers, I'd know a few seconds before that someone was going to call, because the cellphone getting in touch/syncing with the nearest GSM relay would create interferences and the speakers would go BZZZ BZZZZZ BZBZBZ or something like that.  </p>
+<p>Now, why don't modern phones do that any more? I've looked for an answer, and found some clues about why it DID that before, although I couldn't find any clear answer. Most commonly found answer has something to do with (pardon my lack of technical english) frequency bursts going from 0 (not receiving) to X MHz (X being the carrier's frequency) while syncing the call.  </p>
+<p>Even if I can understand why this would create interferences, I'm wondering what has changed today, and why we don't get thoses burst interferences any more. Are modern phones always emitting/receiving, so that there are no &quot;0 to X MHz on syncing&quot; bursts anymore? is it a change in frequencies being used by carriers? something else?  </p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dpb4wn9">
+		<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>So, for our friends that don't know, the buzzing is a signal in the AM range.</p>
+<p>The effect is well known since the rollout of GSM in Europe begun (see Stephen Temple's <em>&quot;Inside the Mobile Revolution</em>&quot;, Ch. 22). What's happening is that in TDMA, each transmitter gets a time slot in which to transmit, and then remains silent until the next slot. This pattern (transmit-silence-transmit) leads to the power amp delivering large amounts of energy within either the 850/950 or 1800/1900 MHz GSM bands, and in these bands it results at a ~217 Hz-modulated intervals IIRC. The signal is detected on any transistors or diode structures in chips, on multiple points of an amplifier simultaneously, including power regulator chips, batteries, and so on. It can occur even inside the handset itself. In GSM's 800-900 MHz range, any 80mm-long copper trace works like a quarter wave antenna, or stripline resonator.</p>
+<p>You can see the spectrum of the burst <a href="https://m.eet.com/media/1072712/C0433-Figure1.gif" target="_blank">here</a>. The transmission power is near 2 Watts (yeah, GSM is power hungry). The resulting detection at an audio chip results in a voltage transient that looks like <a href="https://m.eet.com/media/1072713/C0433-Figure2.gif" target="_blank">this</a>; note the shift in both the supply and the ground. The output of the amplifier will eventually be clipped and filtered down to the audible range, but distortion can produce frequency components at any sum/difference of multiples of the original frequencies.</p>
+<p>The reasons subsequent RANs (UTRAN, GERAN, E-UTRAN) don't present this problem are:</p>
+<ul>
+<li>First and foremost, awareness of the problem. For example, back in 1990, when GSM was being rolled out across EU, this interference even affected devices like hearing aids, and there was major cause for concern, which translated in safety requirements for the development of subsequent standards</li>
+<li>TDMA was abandoned. Instead, CDMA was adopted, where each channel uses the entire spectrum all the time, and multiplexing is achieved with frequency convolution with a signal that is orthogonal between every pair of transmitters; read more <a href="https://en.wikipedia.org/wiki/Code-division_multiple_access#Code-division_multiplexing_.28synchronous_CDMA.29" target="_blank">here</a></li>
+<li>Power requirements for user equipment became more stringent. For example, one of the first prototype chips for E-UTRAN claimed power consumption below 100 mW during the demo; see <a href="https://web.archive.org/web/20110927212306/http://www.electronicsweekly.com/Articles/2007/09/14/42179/ntt-docomo-develops-low-power-chip-for-3g-lte-handsets.htm" target="_blank">here</a>. <em>Don't take that at face value, the demo was a tranmission of a few seconds. Still a remarkable difference w/ GSM</em>.</li>
+</ul>
+<p>I'm not aware if audio components changed their design to avoid problems like this.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dpbkqcq">
+		<a class="author" href="https://www.reddit.com/user/SYNTHLORD" target="_blank">SYNTHLORD</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>My iPhone 6 makes my guitar amp buzz. Any elaboration on that? </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dpb42is">
+		<a class="author" href="https://www.reddit.com/user/mspk7305" target="_blank">mspk7305</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They do... It is just better quality speakers shield against interference better than cheap stuff does. Also, the frequencies are different today, so the range of conditions in which stuff will happen is also different. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dpd4kfa">
+		<a class="author" href="https://www.reddit.com/user/ArenVaal" target="_blank">ArenVaal</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The phone I'm reading this on DOES interfere with speakers, if I plug it into a stereo using an six cord.  I have to move it around to find a quiet spot.  </p>
+<p>Honestly, though, because the phone has an FM radio tuner built in that uses the headphone/speaker cord as an antenna, I think it might be the six cord receiving the phone's ESN signal and feeding it to the speakers...</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">3 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/7ak01b" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
