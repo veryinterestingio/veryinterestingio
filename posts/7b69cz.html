@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: Why is it so hard to make a current-gen console emulator?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="7b69cz">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/7b69cz/eli5_why_is_it_so_hard_to_make_a_currentgen/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/7b69cz" onclick="return false">Why is it so hard to make a current-gen console emulator?</a>
+		</h2>
+		<!--<span class="date">2017-11-09</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Why is it so hard to make a current-gen console emulator?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dpflhvq">
+		<a class="author" href="https://www.reddit.com/user/coherent-rambling" target="_blank">coherent-rambling</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>An emulator is a program which uses a computer to pretend to be a different computer or console. When you run programs natively on the console, you push a button and the console calculates a response. When you push a button in the emulator, it can't just calculate a response directly, because that response won't be in the same format the game expects - instead, the emulator has to do extra work to decide <em>how the console would perform that calculation</em>.</p>
+<p>If one of your friends asks you what your favorite candy is, you can answer immediately. But if they ask what your <em>brother's</em> favorite candy is, you have to think about it for a minute.</p>
+<p>Similarly, an emulator needs some extra time to do those extra calculations. But games need very rapid responses, so pushing a button has an immediate effect. That means the emulator needs to run on a computer which is a lot faster than the hardware it's emulating. Not a big deal when you're using a modern quad-core processor to emulate a Super Nintendo. But modern consoles use a lot of the same components as modern computers, and are roughly the same speed. That means there's not really any time to do those extra calculations.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dpg7wgh">
+		<a class="author" href="https://www.reddit.com/user/koresho" target="_blank">koresho</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>People answering “because of architecture” or “processing power” are not really correct. They used to be correct, but not so much anymore. </p>
+<p>The Xbox One and PS4 use standard x86 CPUs just like your PC. They also use essentially off the shelf motherboards, ram, and graphics chips. The drivers are different, but driver compatibility layers don’t add much overhead. </p>
+<p>The difference is one of complexity and will. As the newer consoles and games have approached PC level complexity and power, the ability for relatively small groups of reverse engineers to legally make emulators has been reduced. Note that to legally make an emulator (at least according to US copyright law), you cannot have anyone on your team with inside knowledge- you must be entirely flying blind while reverse engineering the process. </p>
+<p>For a simple system like the N64 or SNES, not a huge deal. These days, there’s just not enough people interested in putting in the massive amount of work it would take to emulate a modern console. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dpg0roa">
+		<a class="author" href="https://www.reddit.com/user/mredding" target="_blank">mredding</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Software developer here,</p>
+<p>CPU instructions do not map 1:1 between different processor architectures. There are subtle side-effects when trying to faithfully reproduce a foreign instruction on a host platform. There are incongruencies in timing, memory access, instruction cycles, and interrupts. In order to reproduce some of these effects, an emulator will have to perform them in software, which lends to additional overhead. When trying to keep instruction timing in sync with the original platform, some instructions may execute too fast, so the emulator has to wait to deliver it, or maybe it executes too slow, so the rest of the emulator has to wait for it to arrive, and the emulator is trying to pretend that the slow instruction on the host CPU is actually very fast in the emulated environment.</p>
+<p>This timing is crucial because old games especially didn't use calculus to pace a game like all modern games do. Instead, they relied on the speed of the CPU. So if you run on a faster CPU, the whole game would run faster. Are you old enough to remember when x86 clones all had a Turbo button? This was to slow the CPU down to properly run older software that was written so naively.</p>
+<p>And then you have to consider older platforms especially were realtime, and your emulator is running in a multi-tasking OS, so the emulator is going to be interrupted, and so that has to be taken into account. And on a PC, you have any number of video hardware capabilities that won't map to the original platform. In order to faithfully reproduce the original NES would require an x86 processor running at 5 GHz. No emulator or hardware exists that does this, and great compromises are made to provide a suitable user experience. Most people don't notice or care, but a faithful reproduction will also include all the bugs of the original platform. I have friends who will only play Tecmo Super Bowl on the original NES because no emulator spills the runtime data into the video buffer on the bottom of the screen like the original, and the game doesn't lag when too many sprites are on the screen like the original. This is part of the experience for them and they swear it changes the game.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dpfiy0z">
+		<a class="author" href="https://www.reddit.com/user/TokyoJokeyo" target="_blank">TokyoJokeyo</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>An emulator tries to respond to the software in the same way that the real system would. For example, some games exploit unusual behavior or glitches in the hardware, and an accurate emulator will faithfully replicate this. This means that the more complicated the console system is, the more complex the emulator becomes. Perfectly replicating the console is not possible on current hardware, so that some sacrifice of accuracy is necessary. And now you're dealing with all sorts of bugs in many different games that pop up because of that lack of perfect accuracy. Finding special handling for each of those takes a lot of development work.</p>
+<p>There is an emulator, DICE, that mimics the Pong console down to the very circuits--it's <em>exactly</em> the same. No current hardware could do that for a Playstation 4 and let you play a game in real time. Even consoles like the SNES can't be emulated with perfect accuracy and still run on consumer hardware.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dpgad2q">
+		<a class="author" href="https://www.reddit.com/user/seanprefect" target="_blank">seanprefect</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>you can run code in software or hardware, running code in hardware is much much much faster than running it in software.
+An emulator is software pretending to be hardware. so the hardware that the emulator runs on has to be much much much faster than the original hardware.
+thats why you can't emulate modern systems you'd have to have a computer doing in software what those modern systems do in hardware </p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/7b69cz" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
