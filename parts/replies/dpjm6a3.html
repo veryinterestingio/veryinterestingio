@@ -1,0 +1,80 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blackdynomitesnewbag" target="_blank">blackdynomitesnewbag</a>
+			<div class="markdown"><p>C is not context free. You can use the typedef decorator to change what is valid code</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cbarrick" target="_blank">cbarrick</a>
+			<div class="markdown"><p>You bring up some cool subtleties.</p>
+<p>The concrete syntax tree of C needs to know the difference between type names and identifiers. But the <em>abstract</em> syntax tree doesn't and can be parsed by a CFG. In other words, if we let the distinction between type names and identifiers be a semantic issue, then C is context free. This is how clang works.</p>
+<p>The ANSI standard gives a context free grammar for C: <a href="http://www.quut.com/c/ANSI-C-grammar-y.html" target="_blank">http://www.quut.com/c/ANSI-C-grammar-y.html</a></p>
+<p>But you're right in that not <em>all</em> programming languages are context free. Python is the most prominent exception to the rule.</p>
+<p><strong>Edit:</strong> Even though Python is not context free, it is <em>not</em> described by a transformational-generative grammar like natural language. The <em>transformational</em> part is what separates the cognitive aspects of NL and PL with respect to syntax.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fredo3579" target="_blank">fredo3579</a>
+			<div class="markdown"><p>can you elaborate on how python is not context free?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/comex" target="_blank">comex</a>
+			<div class="markdown"><blockquote>
+<p>In other words, if we let the distinction between type names and identifiers be a semantic issue, then C is context free.</p>
+</blockquote>
+<p>I'm pretty sure that's not true in all cases (although it's likely true for most common code).  Due to operator precedence in particular, the <em>shape</em> of the syntax tree can depend on whether an identifier is a type or variable.  For example, the code</p>
+<pre><code>(a) - b * (c) &amp; d</code></pre>
+<p>could mean any of these things:</p>
+<ul>
+<li>if <code>a</code> and <code>c</code> are both variables: <code>(a - (b * c)) &amp; d</code></li>
+</ul>
+<p>(multiplication → subtraction → binary AND)</p>
+<ul>
+<li>if <code>a</code> is a type: <code>(((a) -b) * c) &amp; d</code></li>
+</ul>
+<p>(negation → cast → multiplication → binary AND)</p>
+<ul>
+<li>if <code>c</code> is a type: <code>(a - (b * ((c) &amp;d)))</code></li>
+</ul>
+<p>(address-of → cast → multiplication → subtraction)</p>
+<ul>
+<li>if <code>a</code> and <code>c</code> are both types: <code>((a) -b) * ((c) &amp;d)</code></li>
+</ul>
+<p>(on the left, negation → cast; on the right, address-of → cast; multiplied together)</p>
+<p>I tried to draw the resulting syntax trees in ASCII:</p>
+<pre><code>   #1:              #2:          #3:                 #4:
+
+    &amp;                &amp;            -                   *
+   / \              / \          / \                 / \
+  -   d            *   d        a  *              cast cast
+ / \              / \             / \             /\    / \
+a   *          cast  c           b  cast         a  -  c  &amp;
+   / \         /\                   / \             |     |
+  b   c       a  -                 c   &amp;            b     d
+                 |                     |
+                 b                     d</code></pre>
+<p>As for the ANSI standard, its grammar treats type names and variable names as different tokens - in other words, it assumes the 'lexer hack'.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/real_edmund_burke" target="_blank">real_edmund_burke</a>
+			<div class="markdown"><p>The notions of “deep structure” and transformational grammars are controversial in psycholinguistics (the subfield of linguistics that is interested in how humans understand and produce language). For example, construction grammar theory has no transformation, not to mention the rich Connectionist/PDP literature.</p>
+<p>I’m not saying people definitely don’t perform syntactic transformations, but there’s nothing about natural languages that imply transformations. Natural languages as empirical objects (i.e. the collections of things people can say and understand) are well-modeled as context-sensitive languages, which can be specified with a generative grammar.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bsmdphdjd" target="_blank">bsmdphdjd</a>
+			<div class="markdown"><p>Programming languages are not context free. </p>
+<p>For example, an operation appropriate for a scalar might not be appropriate for an array or a hash. The result of an operation on a string may vary depending on whether the string contains characters or a number.An assignment may be illegal if the target has been declared constant. Etc., etc.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cbarrick" target="_blank">cbarrick</a>
+			<div class="markdown"><p><a href="https://en.m.wikipedia.org/wiki/Context-free_language" target="_blank">Context freedom</a> is a concept in formal language concerning <em>syntax</em>.</p>
+<p>What you described is context dependence in <em>semantics</em>. In both PL and NL, semantic correctness is checked as a separate process <em>after</em> syntactic correctness.</p>
+<p>Chomsky gave the classic example of the difference between syntax and semantics in NL with the sentence <a href="https://en.m.wikipedia.org/wiki/Colorless_green_ideas_sleep_furiously" target="_blank">&quot;Colorless green ideas sleep furiously&quot;</a>. In PL, the classic example of semantic correctness is type checking.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blackdynomitesnewbag" target="_blank">blackdynomitesnewbag</a>
+			<div class="markdown"><p>That doesn’t mean a language isn’t context free. You could still write a parser for that language that doesn’t have to keep state to determine if the syntax is valid. Type checking is not syntactical. See my other example for “context” in a language.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tywien" target="_blank">Tywien</a>
+			<div class="markdown"><p>The problem here is, that languages are not context free, but they are always described by a context free grammar, but this is only because context free grammars can be parsed efficiently, and not context free ones cannot. But the part that makes pl not context free can efficiently be represented by a table and used on top of a context free grammar to properly interpret a pl.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
