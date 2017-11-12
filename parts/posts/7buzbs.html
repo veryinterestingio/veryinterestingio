@@ -1,0 +1,97 @@
+<li class="post" data-handle="7buzbs">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/7buzbs/eli5_what_are_neural_networks_specifically_rnns/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/7buzbs" onclick="return false">What are neural networks? Specifically RNNs.</a>
+		</h2>
+		<!--<span class="date">2017-11-12</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: What are neural networks? Specifically RNNs.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dpl1wbq">
+		<a class="author" href="https://www.reddit.com/user/kouhoutek" target="_blank">kouhoutek</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The little league team you coach just won the big game, and you ask them if they want to go out for pizza or for burgers.  Each kid starts screaming their preference, and you go with whatever was the loudest.</p>
+<p>This is basically how a neural net works but on multiple levels.  The top-level nodes get some input, each detects a certain property and screams when it sees it...the more intense the property, the louder they scream.</p>
+<p>Now you have a bunch of nodes screaming &quot;it's dark!&quot;, &quot;it's has red!&quot;, &quot;it's roundish!&quot; as various volumes.  The next level listens and based on what they hear they start screaming about more complex features.  &quot;It has a face!&quot;, &quot;It has fur&quot;, until finally get to a level where it is screaming &quot;It's a kitty!&quot;.</p>
+<p>The magic part is no one tells them when to scream, it is based on feedback.  Your little league team went for burgers, and some of them got sick.  Next week, they might not scream for burgers, or might not scream as loudly.  They have collectively learned that burgers might not have been a great choice, and are more likely to lean away from the option.</p>
+<p>A neural net gets training in much the same way.  You feed it a bunch of kitty and non-kitty pictures.  If the net gets it right, the nodes are reinforced so they are more likely to do the same thing in similar situations.  If it is wrong, they get disincentivized.  Initially, its results will be near random, but if you have designed it correctly, it will get better and better as the nodes adjust.  You often have neural nets that work without any human understanding exactly how.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dplaz38">
+		<a class="author" href="https://www.reddit.com/user/LtLabcoat" target="_blank">LtLabcoat</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The current top analogy is so unrelated to neural networks that it doesn't help, so let me try expand on it:</p>
+<p>Imagine someone is looking at an object, like a cat. They write down lots of traits that the object has - for example, &quot;four legs&quot;, &quot;furry&quot;, &quot;brown&quot;, &quot;has whiskers&quot;, etc. Now let's say you want to make a machine that, when given that list, will figure out what the object is. </p>
+<p>The simplest way to make that machine is obvious: make a list of qualities for every object in the world, and then have the machine check which of those lists matches the one you just wrote for that cat. It'd work, but obviously this is far too much work to do. So you think &quot;Hey, a lot of these objects have a lot in common - why do I need to make separate lists for each one?&quot;</p>
+<p>So instead, you have lots of smaller machines that only asks one question. For example, a machine that checks &quot;Is this an animal?&quot;, and it'll see if &quot;is breathing&quot; or &quot;has a heartbeat&quot; or such are on the list, and say &quot;Yes, this is an animal&quot;. And then there's another machine that checks &quot;Is this a mammal&quot;, and that'll ask the animal-checking machine for if it's an animal and then check the list for &quot;has hair&quot;. Some machines would only check the list, and some would ask many other machines for their answers, and some would do both. And eventually, just from machines-asking-machines-asking-machines, you have a final machine that answers with &quot;Yes, this is a cat&quot;.</p>
+<p>...Of course, even making those smaller machines is still too much work for categorising every object in the world, so instead you try have it build itself - using random guesses for what the categories should be - until you end up with a working system. This can result in crazy smaller machines, like one that might ask &quot;Does it have two legs, two arms, and nose hair longer than 3.5cm?&quot;, but it should overall work fairly similar to the cat-detecting model I just talked about.</p>
+<p>Right, now as for Recurrent Neural Networks, it's pretty simple: it's exactly the same as what I just said, but where smaller machines can also ask questions from the <em>previous</em> list's answers. For example, in voice recognition, one machine might go the &quot;It is/isn't an 'ow' sound&quot; machine and instead ask &quot;Was the <em>previous</em> thing he said an 'ow' sound?&quot;.</p>
+<p>(The one thing I didn't mention is that most small machines would actually have answers in a probability rather than yes/no, but that's not true for all neural networks.)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dpl9z34">
+		<a class="author" href="https://www.reddit.com/user/spudriffic" target="_blank">spudriffic</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Let me give this a try.</p>
+<p>Neural networks are a computing architecture inspired by biological brains, although they are not an exact replica.</p>
+<p>The brain is a network of connected cells called neurons. Each neuron takes input from other neurons. If the signal from all of the input neurons is strong enough, then it fires and sends its own signal to downstream neurons. Brains learn by creating and destroying connections between neurons, and altering the strength of existing connections.</p>
+<p>Neural networks are simpler than biological neurons, but they are inspired by the same principle. A neural network takes input in the form of numerical data. It passes that input through multiple layers of neurons. Each neuron adds up the input from the layer above it, and sends its own output to the layer below. Eventually the last layer in the stack produces an output.</p>
+<p>The network learns by a process called back-propagation. To train a network, you show it samples of input, and the matching samples of output. Back-propagation alters the strength of connections between individual neurons so as to reduce the error between the sample output (&quot;what the output should have been&quot;) and the actual output that the network produced when it saw the sample input.</p>
+<p>After many, many such training iterations, the network may have configured its connections (or &quot;weights&quot;) so that it is able to make meaningful correspondences between inputs and outputs.</p>
+<p>As a simple example, a neural network might learn to recognize cows by looking at a series of pictures. Some of those pictures are cows and some are not. The pictures are turned into numbers (pixel by pixel) and passed into the top layer. The output from the bottom layer will have a signal strength that is interpreted as &quot;yes, cow&quot; or &quot;no, not cow&quot;. If the network got it right or wrong, the connections that helped/hurt the conclusion are strengthened/weakened accordingly.</p>
+<p>A recurrent neural network (RNN) is the same concept, with one extension. The neurons don't just process the input coming from the layer above, but also connect back to themselves so that they have a way to &quot;remember&quot; their prior states and prior input. There are various specialized neurons such as long short-term memories (LSTMs), gated recurrent units (GRUs), etc that accomplish this in fairly sophisticated ways. </p>
+<p>Hope this helps? Happy to explain in vastly more detail any part that you like. I realize this answer isn't literally meant for a five year old but I hope it's accessible to most non-technical adults.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dplbdy6">
+		<a class="author" href="https://www.reddit.com/user/BullockHouse" target="_blank">BullockHouse</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The insight behind neural networks is that if you take a bunch of simple equations that each do a tiny little bit of processing (like adding up the results of other equations and tweaking the value based on its size), and you stack enough of them together, they can do pretty much anything you want. You just need to find the right &quot;settings&quot; or &quot;weights&quot; for them so they do the specific thing you want instead of something else.</p>
+<p>We've discovered special rules that let us take the output values we want and the input values we want and adjust the math in between to make the whole network more likely to produce the desired output when it's fed the desired input. Repeating this over many input-output examples eventually leads the network to &quot;generalize&quot; - i.e. to capture the structure of the information so well that it can work on inputs it hasn't seen before. </p>
+<p>A &quot;neural network&quot; is just a big stack of these simple equations that have been tuned using one of these special rules to map a particular set of input and output examples together. Once it's &quot;trained&quot; in this manner, it can be used on new examples to do useful work without needing human judgement.  </p>
+<p>An RNN (or recurrent neural network) is simply an extension of this, where the network is solving a problem that takes place over many steps, so many copies of the network are initialized in sequence, each being fed some information from the past copy like a colossal game of telephone, letting it preserve some &quot;memories&quot; from the past and make multiple outputs before stopping. </p>
+<p>As an example, you can use an RNN to generate text. If you feed it text one letter at a time, and train it to predict the next letter of the text, it'll eventually get pretty good at it: it'll &quot;remember&quot; some information about the letters that came before, and use that context to make a guess at the next letter. Once it's trained, you can feed it its own output as input (basically telling it &quot;you were right&quot; after each guess) and it'll happily spit out line after line of text that structurally resembles the text it was trained on. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dplpoz1">
+		<a class="author" href="https://www.reddit.com/user/bluestockingsociety" target="_blank">bluestockingsociety</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><strong>Actual ELI5:</strong> You know those stupid captchas? They have you select boxes--which ones have signs, which ones have trees, etc. By looking at them, you know which ones to select. Even if you could only see what's in each box individually, you would be able to figure out pretty well whether or not there's a tree there because we've seen trees before (training data). So, let's say we have an image and we know what trees look like, even when we can only see a little box of the image. Now, we have a new picture. We start off with a teeny tiny box--not sure, but we've learned something. Then, we get bigger boxes over the entire image--we've learned a little more. There's something that looks textured like bark, something that could be a leaf. Even a larger box now--okay, we can tell that those are clusters of leaves and here's an entire branch. Now we know it's a tree.</p>
+<p>Let's say that now, we have a video. We figured out that the picture is of a tree, but now we want to know if the next frame also has a tree. If you're smart, you think &quot;of course!&quot; not that much can change from frame to frame. So we look at the next picture in the video and do the process over again, except this time, we know, &quot;hey, this box said it had bark texture or a leaf shape last time&quot; and we can figure out if it's the same this time.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>If you want the tedious explanation: </p>
+<p><strong>Neural Nets:</strong> an input (images, a sentence, etc.) goes into a series of nodes in hidden layers, which output what you want (yes/no, things that are discrete - classification, a regression - possibilities, various values, etc.). What happens in the hidden layers, broadly, is that in the first layers, features are made by some mathematical process. Further layers would generalize upon features, getting more and more abstract. A NN can be as small as 3 layers (input --&gt; hidden --&gt; output) or larger like what you see with CNNs.</p>
+<p>CNNs are a specific kind of NN that use convolutions of different sizes (matrix size) and strides (how far each convolution occurs from one another). Imagine a convolution as a box going over an image--it can be 5x5 pixels big or 25x25 pixels big or 2x2 pixels big and move over 1 pixel at a time or 20 pixels at a time. Each of these decisions end up affecting what features are output. There are other parameters to tune like learning rate (how fast things are learned--too fast and one bad training example can screw you up, too slow and it just takes forever to get a functioning CNN), momentum, weights, etc.</p>
+<p>In networks, everything is initialized randomly. Then, as training data goes in, each layer of nodes gets their numbers changed by these mathematical processes. Epochs are how many times you run your training data through, you do it until you reach a plateau, which you can determine by the validation accuracy plateau-ing (95% would be good, but if you plateau at 30%, you know you need to fix something--you don't just keep training and hope it gets better).</p>
+<p><strong>Reccurent Neural Networks:</strong> These are particularly useful for things like sentences and videos, where what comes before and after are important. This is a broad area, so I'm not going to explain each one. RNNs are basically just NNs where the input data is not only your training data, but also what the output of previous/posterior nodes has been. There's a feedback loop connecting it to past decisions so that those are carried forward. The issue with these are that there are so many operations--you know how 2^10 = 1024, but 2^20 = 1048576. Imagine that, but on a huge scale, where the values of these nodes can quickly explode to huge numbers or vanish to near-zero. The following is supposed to solve that issue.</p>
+<p>LSTMs are a specific RNN that can learn long-term dependencies. We have a list (cell): they figure out which information we want to throw away from the list (forget gate) and what we want to add based on input data (input gate), and then update the list. As you run through it, some old bullet points of the list still make it through and some new ones are there too. But, how much the new items influence your list depends on a parameter you set. The gates start to learn how much data is supposed to flow and what should flow the way CNNs learn feature detectors.</p>
+<p>How does this solve numbers exploding or vanishing? It does so by adding functions instead of multiplying. So if one of your numbers is smaller or larger, it's no(t as big of a) biggie. </p>
+<p>Source: PhD student, this is my area. I can expand on more, but I figure things would get too long and I skipped over things like backpropagation and gradient because I figured the layperson wouldn't care. I got lazier and lazier...so the latter is a lot less specific, sorry!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/7buzbs" onclick="return false"><span>show</span></a>
+</li>

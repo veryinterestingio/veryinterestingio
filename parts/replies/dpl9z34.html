@@ -1,0 +1,93 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ProgramTheWorld" target="_blank">ProgramTheWorld</a>
+			<div class="markdown"><p>How does back propagation work on RNN?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/funmaker0206" target="_blank">funmaker0206</a>
+			<div class="markdown"><p>Very poorly and without realizing it you've opened a can of worms with that question. The reason for LSTMs and GRUs is that RNNs suffer from what is called a vanishing gradient. What this means is that as you go farther and farther back in time the EFFECT of that particular input diminishes to zero. This is really bad because you don't want your RNN to completely forget the past. For stock prediction sure last month may be more import than a decade ago. However a decade ago the stock market crashed so you don't want to forget what that looked like.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheSlimyDog" target="_blank">TheSlimyDog</a>
+			<div class="markdown"><p>That's why the STM in LSTM is short term memory? Also, why is there not a way of reinforcing the past memories that diminish before they start having no effect?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Falcon3333" target="_blank">Falcon3333</a>
+			<div class="markdown"><p>I'm going to try to give you a nice explanation,</p>
+<p>Computer Scientists use Back Propagation when you already know what they Neural Net should be outputting.</p>
+<p>If I'm teaching a Neural Net how to read letters and I have a big set of peoples hand-writing, and then record the letters that people wrote down, I can hand that to the neural net and let it take a guess at what letter I've just shown it (lets say I've shown it someones handwriting of the letter A) but it gets it wrong and guess the letter W.</p>
+<p>Because we know what the Neural Net guessed (W) and we also know what the output should of been (A) we can go through each connection in the Neural Nets brain and slightly tweak each connection so the output is a little closer to an A instead of a W. This is done with Calculus which is all Back Propagation is, the Calculus itself is pretty complicated but most people don't even concern themselves with it and just use the code.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ProgramTheWorld" target="_blank">ProgramTheWorld</a>
+			<div class="markdown"><p>As a computer science graduate you can use more technical terms in the explanations ;) but what I'm curious is that how do you perform back propagation on a graph with cycles. I do have some knowledge on the basics of back propagation in which I know it computes dJ/dW by applying the chain rule, but then how do you find the partial derivative if you can go down the chain forever?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drcopus" target="_blank">drcopus</a>
+			<div class="markdown"><p>You don't really need to know what the network should be outputting, you just need to have some differentiable function of the weights. Take generative adversarial networks for example; the generator's loss function is a measure of the discriminators success.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sanders0492" target="_blank">Sanders0492</a>
+			<div class="markdown"><blockquote>
+<p>Happy to explain in vastly more detail any part that you like.
+All of it, please. Thanks.</p>
+</blockquote></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/spudriffic" target="_blank">spudriffic</a>
+			<div class="markdown"><p>I'll give you an answer with a bit greater level of detail, and I hope this will be useful.</p>
+<p>I know this isn't always true for everyone, but I understand things best when I understand them mathematically, because it's a complete and exact description. And fortunately the math behind neural networks is pretty easy.</p>
+<p>A neural network is just a big stack of tensor operations. (A tensor is just a grid of numbers of indeterminate dimension -- a vector is a one dimensional tensor, a matrix is a two dimensional tensor, etc.)</p>
+<p>Let's take the example of a simple image processor. The input is a 20x20 pixel grey scale image. That is represented as a 400-element vector, where each element is a float denoting the level of grey with 0 as black and 1 as white. (I'm making this an easy example -- this isn't necessarily how image data would really be represented, but it's easier to follow).</p>
+<p>Connection strengths (weights) are also represented as floats. Every neuron usually has a weight for every individual input. Let's say our network is twenty neurons wide. Then our weight matrix is 400 weights x 20 neurons.</p>
+<p>So applying the layer of neurons is just a matrix multiply: y = W dot x, where y is the output of the layer, W is the weight matrix, and x is the input vector. That equation just means you are multiplying each input by its corresponding weight, and then, for each neuron, summing up the total.</p>
+<p>You then apply an activation function to the sum of (weights times inputs). Basically this is the logic that determines whether or not the neuron has received enough input activation that it should fire. I won't go into much detail here unless you care, but typically an activation function is chosen to output -1 or 0 when the neuron is not activated, 1 if it is fully activated, and a number in between when the neuron is on the threshold of activation.</p>
+<p>Remember, we are trying to replicate the behavior of a biological neuron -- we are trying to apply varying connection strengths to a number of inputs, sum the result, and decide whether or not we should fire based on the total value. We're just doing this in a mathematical way that is easy for computers to handle and can be calculated quickly.</p>
+<p>So a neural network is really just a big stack of these y = Wx calculations. (In practice we also add a bias weight which serves to shift the range of the input, so the calculation is y = Wx + b).</p>
+<p>The operation for a neural network is simply to assemble the input vector (e.g. for an image, put all the pixel values into a vector), create a set of random weights W and random biases b, and then repeatedly calculate y = Wx + b for each layer.</p>
+<p>To train the network, you use backpropagation. This is a clever and efficient way to calculate the partial derivative of each weight with respect to the output. You then determine the error between the actual output and the desired output, when the network is activated by the corresponding input. Because you know the partial derivative of each weight, you can adjust each weight so that weights that are very &quot;wrong&quot; change a lot, and weights that are &quot;almost right&quot; don't change very much. Repeated iterations of this process -- if everything goes right -- converge on a set of weights that map input features onto outputs in a meaningful way.</p>
+<p>I hope this was helpful. It's definitely the way I like to think and learn about things, but I realize it's gone well past an ELI5.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/-casper-" target="_blank">-casper-</a>
+			<div class="markdown"><p><a href="https://www.youtube.com/watch?v=aircAruvnKk&feature=youtu.be" target="_blank">https://www.youtube.com/watch?v=aircAruvnKk&feature=youtu.be</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bart2019" target="_blank">bart2019</a>
+			<div class="markdown"><p>It's more like ELI15, but I quite like it.</p>
+<p>An extra question, though maybe not for you to answer: I've heard of &quot;fuzzy logic&quot;, where there is not only &quot;yes&quot; and &quot;no&quot; as an answer, but also &quot;mmm...&quot;. (Be gentle, it's been more than a decade.)</p>
+<p>Can these neurons also be not binary, but more fuzzy? If no, does it fail for some reason? If yes: what works best, for example using <a href="http://reference.wolfram.com/language/ref/Files/Clip.en/O_1.png" target="_blank">a function with a linear slope between 0 and 1</a>), or does it have to be <a href="http://www.audacity-forum.de/download/edgar/nyquist/nyquist-doc/examples/rbd/02-distortion/softclip.jpg" target="_blank">more softened instead of having hard corners</a>? </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hemlock_hearts" target="_blank">hemlock_hearts</a>
+			<div class="markdown"><p>This is awesome thank you</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gromps_Of_Dagobah" target="_blank">Gromps_Of_Dagobah</a>
+			<div class="markdown"><p>the idea is basically, you have a bunch of little decision makers, all hooked up to each other. you train the decision makers by making some louder and some quieter. the loud ones end up being more influential, and the quiet ones less so.<br />
+to train something, you manually put in the result you want. op said cow vs not-cow as an example. you put in the picture, and tell it if it should be cow or not cow. if the box got it right, it looks at what was loud and makes it louder, and what was quiet, and makes it quieter. if it got it wrong, it makes the quiet ones louder, and the loud ones quieter. eventually, you have a bunch of decision makers that are the right volume to get it right most of the time.<br />
+the cool part is that you have &quot;layers&quot; of these decision makers. layer 1 might take info right from the input, then layer 2 would take from layer 1, layer 3 from layer 2, and so on.<br />
+the idea is that these layers can eventually do some really complicated things.  </p>
+<p>the idea of back-propagation is basically you say &quot;the end is this, the start is this, you figure out the middle&quot;  </p>
+<p>you could theoretically do this with math, but computers have to make millions of decisions and tweaks to get close, which wouldn't be reasonable for a person to do, but it is technically doable.  </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HomunculusEmeritus" target="_blank">HomunculusEmeritus</a>
+			<div class="markdown"><p>So how does it test?  It must have criteria; colors, shape of colors, what?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/spudriffic" target="_blank">spudriffic</a>
+			<div class="markdown"><p>It does, but not in the way you might think.</p>
+<p>It's not preprogrammed in any way with concepts such as colors or shapes. Rather, it is assigned a random set of starting weights (that is, connection strengths between neurons), and then those weights are trained via backpropagation until the network learns correspondences between features and outputs.</p>
+<p>When you analyze the behavior of neurons in a trained network, you usually do find that they have learned some features of the data on which they were trained. For example, neurons in a network that is trained to recognize images will learn to look for patterns of color, shape, and so forth. But these concepts are emergent -- they arise from the training process; they aren't built into the network explicitly by any human action.</p>
+<p>You could think of the process as resembling evolution in a sense, in that there is no intelligence explicitly guiding the process, but rather there is an information ratchet (survival of the fittest; backpropagation) that allows order to emerge from chaos.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HomunculusEmeritus" target="_blank">HomunculusEmeritus</a>
+			<div class="markdown"><p>I've read this a few times now.  It always takes me a bit.. especially when holding everything together for both the flow and the big picture.</p>
+<p>This is a really satisfying answer.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/funmaker0206" target="_blank">funmaker0206</a>
+			<div class="markdown"><p>Typically the input data is just a fraction of the whole data set. Once a network is done training you test it on the other part to make sure the network didn't overfit to the data it was given.</p></div>		</li>
+					</ul>
+		</ul>
+	

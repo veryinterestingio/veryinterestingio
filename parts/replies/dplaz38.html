@@ -1,0 +1,32 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ethrael237" target="_blank">ethrael237</a>
+			<div class="markdown"><p>I work with machine learning, and this is so far the best explanation I've read: both factually correct and easy to understand. </p>
+<p>One of the keys is that the network also figures out the <em>categories</em>, which is why you need a huge amount of data. You can build something similar with less data if you define the categories yourself and find a way to code them into the network, but that's generally too much work, and not as powerful because letting the data drive the categories is better than trying to decide them yourself.</p>
+<p>Edit: another thing that's important, is that those categories are in computer terms, and not interpretable by us. They are not human concepts like &quot;furry&quot;, &quot;four legs&quot;, or anything like that, but rather, things like &quot;three brown pixels next to a blue one in this specific configuration&quot;</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/vogon-it" target="_blank">vogon-it</a>
+			<div class="markdown"><p>I think both answers are kind of glossing over the learning part. The top answer pretty much says NNs learn &quot;like humans&quot; and this one implies it's a random process. So in the first case you end up describing a network of magical black boxes and in the second some weird, inefficient way of composing functions.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Wonderboywonderings" target="_blank">Wonderboywonderings</a>
+			<div class="markdown"><p>I'd like to hear expansion on how the machines decide what the categories are. I'm hung up on that. Thanks!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BoredomCalls" target="_blank">BoredomCalls</a>
+			<div class="markdown"><p>If you take all of the values of neurons on the highest level, you can think of them as a position in a high dimensional space. Like X and Y coordinates, but there are thousands of values instead of two. Visualizing it in 2D is an easy way to understand it though. Neural networks will ideally attempt to segment data, which can be thought of as grouping similar inputs near each other in this space. It doesn't know the actual word &quot;dog&quot;, but every time it sees one it will give a set of coordinates pretty close to other dogs it's seen. The pile of cat locations might be fairly close, while automobiles are probably far away. Then, to get a useful answer out of these values, one last step (which is aware of the &quot;ground truth&quot;, the correct category the object belongs in) does it's best to draw lines that separate the groups of points. Anything between these lines is a dog, anything between these lines is an airplane, etc. Any time the network puts an object in the right spot it reinforces the neuron connections that caused it to do so, and if it's in the wrong place those connections are penalized instead. Over time it finds the best way to separate the data you show it into the correct categories.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Wonderboywonderings" target="_blank">Wonderboywonderings</a>
+			<div class="markdown"><p>Great! Thanks.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dzekistan" target="_blank">Dzekistan</a>
+			<div class="markdown"><p>Usually the categories are completely not human understandable. The knowledge is too abstract and fuzzy over the whole network. Sometimes you can design a neural net that there is structure, see convolutional neural nets for example.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/waltwalt" target="_blank">waltwalt</a>
+			<div class="markdown"><p>So hot dog, not a hot dog. And go from there.</p></div>		</li>
+					</ul>
+	
