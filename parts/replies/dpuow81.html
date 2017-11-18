@@ -1,0 +1,43 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MaxBondoc" target="_blank">MaxBondoc</a>
+			<div class="markdown"><p>u/Schnutzel above explained how the keys were made using modular arithmetic. Is this a different method of cryptography? It sounds a little bit more related to modular forms, a concept I'm slightly familiar with. Or is this the same as Schnutzel's modular arithmetic and I am just misunderstanding?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Docdan" target="_blank">Docdan</a>
+			<div class="markdown"><p>Originally, I thought he was doing something different, but it turns out he just got some of the variables confused and edited it by now. So yes, he pretty much used the same method.</p>
+<p>Modular arithmetic is quite common in cryptography, so just the fact that someone is using it doesn't mean it's the same protocoll. For example, here's another rough outline what else you can do with modular arithmetic:</p>
+<p>Normally, for Integers, there is no square root of 2. But in mod 7, there is, because 3^2 =9=2 mod 7. So depending on your modulo, numbers that normally aren't squares can be a square in that mod.</p>
+<p>Now, if you have a mod with a prime number, there are some theorems that allow you to quickly figure out if the number is a square or not (roughly half of the numbers will be squares, regardless which prime you use). But if you look at a number modulo N=p*q, it will only be a square if the number is a square in p and also a square in q. So, in order to figure out if a number is a square in modulo N, you need to know the factorization of N.</p>
+<p>However, outsiders can easily construct squares in N by squaring any number in mod N, but only the person who knows p and q can reverse this process and tell you if the number you sent is actually a square.</p>
+<p>So this principle can be used to transmitt information as well. However, this means that each number can only transmitt one bit of information at a time (by either sending a square or not a square).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/neuralgoo" target="_blank">neuralgoo</a>
+			<div class="markdown"><p>So one quick question:</p>
+<p>I follow the math that you explained, but I am not entirely sure how the decoding part is performed. If the encrypted message is &quot;y&quot; what do I do to &quot;y&quot; with my knowledge of p and q? </p>
+<p>The example that you showed applies (p-1)<em>(q-1) to &quot;a&quot; and returns 1 (or &quot;a&quot; if I apply (p-1)</em>(q-1)). How do I get x out of y?</p>
+<p>thanks for a good ELI5!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Docdan" target="_blank">Docdan</a>
+			<div class="markdown"><p>You just need to prepare a pair of exponents e and d, so that e*d=1 mod (p-1)(q-1). Then they cancel each other out.</p>
+<p>You publically tell people the public exponent e, so that they can encrypt messages with it, and you can use d to decrypt it, since x^e^d =x^ed =x^1 mod N</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MeNoGoodReddit" target="_blank">MeNoGoodReddit</a>
+			<div class="markdown"><pre><code>a^\(p-1)*(q-1)</code></pre>
+<p>Gives you:</p>
+<p>a^(p-1)*(q-1)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Docdan" target="_blank">Docdan</a>
+			<div class="markdown"><p>Thank you, kind sir. Quick question, what exactly does the &quot;\&quot; mean syntactically? Is it something that tells the code that the brackets are not part of the ^ command?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MeNoGoodReddit" target="_blank">MeNoGoodReddit</a>
+			<div class="markdown"><p>It's an &quot;escape character&quot;. It tells the parser to treat the next character as, well, a character, instead of markup. So to write \^ on reddit you would type \\^. Since \^( means &quot;make all the text superscript until you encounter a )&quot;, you need to escape the ( for it to be treated as a character.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

@@ -1,0 +1,88 @@
+<li class="post" data-handle="7d2uzz">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/7d2uzz/eli5_encryption_and_decryption_with_prime_number/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Mathematics">Mathematics</span>
+			<a href="/posts/7d2uzz" onclick="return false">Encryption and decryption with prime number factorisation</a>
+		</h2>
+		<!--<span class="date">2017-11-18</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I'm really good at math and I have a decent grasp of computer science. I understand that multiplying two prime numbers to get a huge number is easy, but checking out if a huge number has only two prime factors is a monumental task for a computer. What I don't get is how this is used for encryption and coding and decoding messages. I keep reading about this in books and they keep talking about how one side is the key or whatever but they never really explained how it all works. Every book seems to love explaining the whole large-numbers-take-a-lot-of-time-to-factorise concept but not how it actually works in encryption. I understand basic message coding--switch around the alphabet, add steps that changes a message into a mess of letters; then the recipient has to do all those steps backwards to change it back. How do prime numbers and huge numbers fit into this? How does knowing a pair of factors enable me to code a message and how does knowing the product enable my recipient to decode it?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dpumq6g">
+		<a class="author" href="https://www.reddit.com/user/Schnutzel" target="_blank">Schnutzel</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>So, this kind of encryption revolves around <a href="https://en.wikipedia.org/wiki/Modular_arithmetic" target="_blank">modular arithmetic</a>. In modular arithmetic, you have some number called the modulus (&quot;M&quot;). Whenever you perform a certain arithmetic operation (such as addition or multiplication), you divide the result by M and keep the remainder. For example if M = 17 then 12 + 9 = 21 = 4 (mod M), because when dividing 21 by 17, the remainder is 4, and similarly 12 * 9 = 108 = 6 (mod M) because the remainder of 108/17 is 6.</p>
+<p>Certain operations in modular arithmetic aren't easily reversible. Normally, if I have two numbers n,y and I want to find the x such that x^n = y, then it's just a matter of taking the nth root of y to find x. However in modular arithmetic, if I have n,y and modulus M, and I want to find the x such that x^n = y (mod M) then there's no easy way of doing it - the easiest way is no better than &quot;guessing&quot; different values of x until we find the right one.</p>
+<p>It turns out that in modular arithmetic, the operation x^n is reversible if I know the prime factors of n (this is based on <a href="https://en.wikipedia.org/wiki/Euler%27s_theorem" target="_blank">Euler's theorem</a>). This means that if I have n,y and M and I know the factors of n, then I can find the x such that x^n = y (mod M). So how do I use this to encrypt a message? I choose a pair of prime numbers p,q, and use them to calculate n=p*q. Then I also choose a large number M &gt; n. So M,n are my public key, and M,p,q are my private key. Now, anyone can take my public key and use it to encrypt a message - they need to convert the message to a number x, and then calculate y = x^n (mod M) and send me the result. Since only I know p,q, only I can calculate the original x from y. <strong>Oops! See edit below!</strong></p>
+<p>This is basically how the <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem\)" target="_blank">RSA</a> encryption algorithm works. In reality, this system isn't used directly for encryption because it's too complicated, however it is used for <a href="https://en.wikipedia.org/wiki/Key_exchange" target="_blank">key exchanges</a> and <a href="https://en.wikipedia.org/wiki/Digital_signature" target="_blank">digital signatures</a>. </p>
+<p><strong>Edit:</strong> Oops! I made a terrible mistake. The number n=pq needs to be the modulus, not the exponent. The exponent can be (almost) any number. So you pick a modulus M=pq and a number e, so the public key is (M,e) and the private key is (p,q,e). Encryption is done by calculating x^e (mod M).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dpuphub">
+		<a class="author" href="https://www.reddit.com/user/cuby87" target="_blank">cuby87</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>ELI5 version: All data is stored as numbers. Using &quot;*&quot; but it's not a multiplication of course, just to simplify.</p>
+<ol>
+<li>Alice wants to send 5 to Bob</li>
+<li>Alice does 5 * BobsPublicKey = 42 and sends 42 to Bob</li>
+<li>Bob does 42 * BobsPrivateKey = 5</li>
+</ol>
+<p>The key idea is to choose a mathimatical operation &quot;*&quot; where:</p>
+<ul>
+<li>BobsPublicKey * BobsPrivateKey is an easy operation, meaning decoding 42 to 5 is easy</li>
+<li>knowing 42 and BobsPublicKey, it would take a huge amount of computer power to find 5.</li>
+</ul>
+<p>Edit: bad naming</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dpuqnv5">
+		<a class="author" href="https://www.reddit.com/user/Not_The_Truthiest" target="_blank">Not_The_Truthiest</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Other's have answered your specific questions. If you're interested in more though, I suggest The Code Book by Simon Singh. </p>
+<p>Warning - Simon Singh is a very addictive author, and you'll probably buy Fermat's Last Theorem and Big Bang pretty soon after. :)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dpv39yy">
+		<a class="author" href="https://www.reddit.com/user/trandana" target="_blank">trandana</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In short: computers have difficulty factoring large prime numbers. Even extremely powerful supercomputers still take a very long time to factor large prime numbers. So by multiplying two very large prime numbers together you can create a very large non-prime number that will be very hard to find the correct factors for. The keys are the two prime numbers, the public key is the multiplied non-prime number. If a shortcut method was found to factor numbers faster with a computer, this form of encryption would no longer be effective. (And the person who found the shortcut would be a very rich/famous person)</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dpuow81">
+		<a class="author" href="https://www.reddit.com/user/Docdan" target="_blank">Docdan</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There's a lot of different things you can do with large prime numbers (and their product), since they have many interesting properties. The main idea is that you need to find some structural element that says something about the two prime factors of your large number, so that you can use the knowledge of those factors as a key to solving the encryption.</p>
+<p>Here is one simple example: If you look at numbers in modulo p (p being a prime number), for example, 7, you will find the following property: When taking the n-th power of every number 1, 2, 3, 4, 5 or 6, it will eventually loop around and return to the original number. </p>
+<p>2^2 =4, 2^3 =1, 2^4 =2; 3^2 =2, 3^3 =6, 3^4 =4, 3^5 =5, 3^6 =1, 3^7 =3, etc. (modulo 7)</p>
+<p>The important part here is that this means that one step before you loop around, you will reach 1. If you try this out with enough numbers, you will notice that the length of every single loop is either p-1, or a number that divides p-1 (in the case of p=7, this means that all loops are either length 1, 2, 3, or 6). This brings us to the fact that, no matter which prime number &quot;p&quot; you pick, and no matter which number &quot;a&quot; you pick as your base, the following statement is always true: a^(p-1)=1 mod p.</p>
+<p>Now, from this, you can also prove a similar statement for the more general case if you don't have a prime number, but rather the product of two prime numbers N=p*q: </p>
+<p>a^(p-1)*(q-1) =1 mod N.</p>
+<p>Add 1 more to the exponent, and you will be back at your original a.</p>
+<p>And this is the important part for your encryption method. Let a be the message you wish to encrypt. All you have to do is openly give someone a public exponent (known by everyone) and the corresponding N that they should use to encrypt messages towards you. Everyone knows N, but nobody except you knows the factorization p and q. And in order to complete the loop, you can't use N, you need to know (p-1)*(q-1).</p>
+<p>So everyone has access to the tools they need to send you a message, but only you have access to the information needed to loop back to the original message.</p>
+<p>Note: I hope I didn't get anything wrong for the theorems, it's been a while since I looked into Field Theory, but this is the general idea how these things work. There are many theorems that describe a hidden property of N that depends solely on its prime factors p and q, and any such theorems are potentially useful for cryptography.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/7d2uzz" onclick="return false"><span>show</span></a>
+</li>
