@@ -1,0 +1,15 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Duckboy_Flaccidpus" target="_blank">Duckboy_Flaccidpus</a>
+			<div class="markdown"><p>Good example but I think OP was also interested in the totality of the file size. I.e. all the data constituted in a file, in the aggregate, that will generate it's <em>size</em> property e.g. header, format, font, date created, author and other meta-data as it were that all is counted as the whole file size and not just the human readable text data of the file.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/uberhaxed" target="_blank">uberhaxed</a>
+			<div class="markdown"><p>Memory and disk space can only be addressed in blocks so regardless of how small the contents of your file, the smallest file on disk will still be the smallest block size, which on most 32 bit systems is 2^12 bits. Regardless of how many bytes are in the file, the &quot;actual&quot; space consumed will be a multiple of the block size. I think the OP is asking for the actual number of bits, which is just going to be 8 times the number of bytes in the file. Similarly, 32-bit systems cannot rend blocks smaller than 8 bits so this will always be a multiple of 8. For the most part, the number of bytes in the file is just the number of characters (if it is a text file). Files without text restrictions are also addressed in byte sized blocks and will be a multiple of 8. As far as </p>
+<blockquote>
+<p>header, format, font, date created, author and other meta-data </p>
+</blockquote>
+<p>Most operating systems (and file systems since they have to be supported by what ever operating system is accessing them) have fixed width fields for these, even if you do not consume the maximum amount (e.g. file name) so this will not impact the size in any variable way. </p></div>		</li>
+					</ul>
+		</ul>
+	

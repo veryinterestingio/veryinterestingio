@@ -1,0 +1,132 @@
+<li class="post" data-handle="7dknhg">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/7dknhg/if_every_digital_thing_is_a_bunch_of_1s_and_0s/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/7dknhg" onclick="return false">If every digital thing is a bunch of 1s and 0s, approximately how many 1's or 0's are there for storing a text file of 100 words?</a>
+		</h2>
+		<!--<span class="date">2017-11-20</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I am talking about the whole file, not just character count times the number of digits to represent a character. How many digits are representing a for example ms word file of 100 words and all default fonts and everything in the storage. </p>
+<p>Also to see the contrast, approximately how many digits are in a massive video game like gta V?</p>
+<p>And if I hand type all these digits into a storage and run it on a computer, would it open the file or start the game?</p>
+<p>Okay this is the last one. Is it possible to hand type a program using 1s and 0s? Assuming I am a programming god and have unlimited time.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dpynz67">
+		<a class="author" href="https://www.reddit.com/user/ThwompThwomp" target="_blank">ThwompThwomp</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Ooh, fun question! I teach low-level programming and would love to tackle this!</p>
+<p>Let me take it in reverse order:</p>
+<blockquote>
+<p>Is it possible to hand type a program using 1s and 0s? </p>
+</blockquote>
+<p>Yes, absolutely! However, we don't do this anymore. Back in the early days of computing, this is how all computers were programmed. There were a series of &quot;punch cards&quot; where you would punch out the 1's and leave the 0's (or vice-versa) on big grid patterns. This was the data for the computer. You then took all your physical punch cards and would load them into the computer. So you were physically loading the computer with your punched-out series of code</p>
+<blockquote>
+<p>And if I hand type all these digits into a storage and run it on a computer, would it open the file or start the game?</p>
+</blockquote>
+<p>Yes, absolutely! Each processor has its own language they understand. This language is called &quot;machine code&quot;. For instance, my phone's processor and my computer's processor have different architectures and therefore their own languages. These languages are series of 1,0's called &quot;Opcodes.&quot; For instance 011001 may represent the ADD operation. These days there are usually a small number of opcodes (&lt; 50) per chip. Since its cumbersume to hand code these opcodes, we use Mnemonics to remember them. For instance 011001 00001000 00011  could be a code for &quot;Add the value 8 to the value in memory location 7 and store it there.&quot; So instead we type &quot;ADD.W #8, &amp;7&quot; meaning the same thing. This is assembly programming. The assembly instructions directly translate to machine instructions.</p>
+<p>Yes, people still write in assembly today. It can be used to hand optimize code.</p>
+<blockquote>
+<p>Also to see the contrast, approximately how many digits are in a massive video game like gta V?</p>
+</blockquote>
+<p>Ahh, this is tricky now. You have the actual machine language programs. (Anything you write in any other programming language: C, python, basic --- will get turned into machine code that your computer can execute.) So the base program for something like GTA is probably not that large. A few MegaBytes (millions to tens-of-millions of bits). However, what takes up the majority of space on the game is all the supporting data: image files for the textures, music files, speech files, 3D models for different characters, etc. Each of things is just a series of binary data, but in a specific format. Each file has its own format.</p>
+<p>Thank about writing a series of numbers down on a piece of paper, 10 digits. How do you know if what you're seeing is a phone number, date, time of day, or just some math homework? The first answer is: well, you can't really be sure. The second answer is if you are expecting a phone number, then you know how to interpret the digits and make sense of them. The same thing happens to a computer. In fact, you can &quot;play&quot; any file you want through your speakers. However, for 99% of all the files you try, it will just sound like static unless you attempt to play an actual audio WAV file. </p>
+<blockquote>
+<p>How many digits are representing a for example ms word file of 100 words and all default fonts and everything in the storage.</p>
+</blockquote>
+<p>So, the answer for this depends on all the others: MS Word file is its own unique data format that has a database of things like --- the text you've typed in, its position in the file, the formatting for the paragraph, the fonts being used, the template style the page is based on, the margins, the page/printer settings, the author, the list of revisions, etc.</p>
+<p>For just storing a string of text &quot;Hello&quot;, this could be encoded in ascii with 7-bits per character. Or it could use extended ascii with 8-bits per character. Or it could be encoded in Unicode with 16-bits per character.</p>
+<p>The simplest way for a text file to be saved would be in 8-bit per character ascii. So Hello would take a minimum of 32-bits on disk and then your Operating System and file system would record where on the disk that set of data is stored, and then assign that location a name (the filename) along with some other data about the file (who can access it, the date it was created, the date it was last modified). How that is exactly connected to the file will depend on the system you are on.</p>
+<p>Fun question!  If you are really interested in learning how computing works, I recommend looking into electrical engineering programs and computer architecture courses or (even better) and embedded systems course.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dpyh18t">
+		<a class="author" href="https://www.reddit.com/user/swordgeek" target="_blank">swordgeek</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It depends.</p>
+<p>The simplest way to represent text is with 8-bit ASCII, meaning each character is 8 bits - a bit being a zero or one. So then you have 100 words of 5 characters each, plus a space for each, and probably about eight line feed characters. Add a dozen punctuation characters or so, and you end up with roughly 620 characters, or 4960 0s or 1s. Call it 5000.</p>
+<p>If you're using unicode or storing your text in another format (Word, PDF, etc.), then all bets are off. Likewise, compression can cut that number way down.</p>
+<p>And in theory you could program directly with ones and zeros, but you would have to literally be a god to do so, since the stream would be meaningless for mere mortals.</p>
+<p>Finally, a byte is eight bits, so take a game's install folder size in bytes and multiply by eight to get the number of bits. As an example, I installed a game that was about 1.3GB, or 11,170,000,000 bits!</p>
+<p><strong>EDIT</strong> I'd like to add a note about transistors here, since some folks seem to misunderstand them. A transistor is essentially an amplifier. Plug in 0V and you get 0V out. Feed in 0.2V and maybe you get 1.0V out (depending on the details of the circuit). They are <em>linear</em> devices over a certain range, and beyond that you don't get any further increase in output. In computing, you use a high enough voltage and an appropriately designed circuit that the output is maxxed out, in other words they are driven to saturation. This <em>effectively</em> means that they are either on or off, and can be treated as binary toggles.</p>
+<p>However, please understand that transistors are not <em>inherently</em> binary, and that it actually takes some effort to make them behave as such.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dpyhg22">
+		<a class="author" href="https://www.reddit.com/user/ecklesweb" target="_blank">ecklesweb</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>TL;DR: a MS word file with 100 words uses approximately 100,000 bits (binary digits, that is, 1's and 0's).</p>
+<p>Here's the longer explanation:
+First, we refer to those 1's and 0's not as digits, but as bits (binary digits).  </p>
+<p>Second, a text file is technically different from a MS Word file.  A text file contains literally just that: text.  So for a true text file, the size is, as you deduced, the character count times the number of bits to represent a character (8 for ASCII text).  </p>
+<p>A MS Word file, by contrast, is a binary file that contains all sorts of data besides the 100 words.  There is information on the styles, the layout, the words themselves, and then there's metadata like the author's information, when the file was edited, and if track changes is on, information about changes that have been made.  That info is actually what takes up (by far) the bulk of the spaces a MS Word file consumes.  A plain text file of 100 words would be about 6,400 bits; a MS Word file with the same words is about 100,000 bits (depending on the words, of course).</p>
+<p>Your benchmark for comparison, GTA V, takes about 520 billion bits.</p>
+<p>Hand type all those bits into storage?  Eh, it's a little fuzzy.  What you're talking about is somehow manually manipulating the registers in RAM.  And, sure, if you had a program that would let you do that (wouldn't be hard to write), then yeah, I guess so.  You could type in the 1's and 0's in to the program, the program would set the registers accordingly.  If it's a file you're inputting, then it's just about flushing the values of those registers to disk (aka, saving a file).  If it's a program you're inputting to run, then you've got to convince the OS to execute the code represented in those registers.  That's a bigger trick, particularly with modern operating systems that use signed executables for security.</p>
+<p>Can you hand type a program in 1's and 0's?  Sure.  No one does that, obviously, though on vanishingly rare occasions a programmer will use a hex editor on code -- that's an editor that represents the bytes as 16 bit pairs.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dpysiul">
+		<a class="author" href="https://www.reddit.com/user/trackerFF" target="_blank">trackerFF</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This actually seems to be more of a statistical question. Every ASCII character can be represented by 7 bits, but are often stored in 8/16/etc. bit data structures, and there are 128 different ASCII characters. But the clue here is obviously &quot;words&quot;. A word can be of different size, and obviously the sentence &quot;a a&quot; will have a smaller size than &quot;this word&quot;, but how is the distribution of 1's and 0's? </p>
+<p>Some characters/letters are going to be used more than others. The letter 'e' is vastly more used than 'z', for example. And some ASCII characters used even less, especially in the context of words. A word is simply a sequence of characters, and in binary, they translate letter-for-letter, meaning that if </p>
+<p>t = 01110100
+h = 01101000
+e = 01100101</p>
+<p>then &quot;the&quot; = 01110100 01101000 01100101</p>
+<p>Thus we see that a word and the binary length is proportional to number of letters in the word. </p>
+<p>If W_l = length of word, then E[w_l] would be the expected length of a word in some document, and IIRC, that number is just over 5. So in a 100 word document, we'd have 5*100 characters, or 500 different characters. That's 4000 1's and 0's, if each character is represented by a 8-bit data structure. </p>
+<p>Exactly how many 0's and 1's would depend on the word. Letter for letter, not in the context of words, the frequency is (most to least): EARIOTNSLCUDPMHGBFYWKVXZJQ</p>
+<p>If you take the letters a - z, the 1 and 0 distribution is roughly 46% and 54%, uppercase letters simply shift the third bit from 1 to 0
+whitespace has seven 0's, and one 1, so if there are 80 whitespace in a 100 word document, that would mean 560 0's and 80 1's. </p>
+<p>SO, I would estimate, in a 100 word document / text file, with whitespace between words: </p>
+<p>around 1800-2000 1's, 2500 - 2700 0's. If that's the question. You could easily make a program (in python, for example) which generates numerous 100 word text files from some NLP dataset, then run statistics / character frequency, and then convert to binary and count each 0 and 1. Do that N times, and calculate the statistics.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dpz8ru1">
+		<a class="author" href="https://www.reddit.com/user/meisteronimo" target="_blank">meisteronimo</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Thats a fun question. Each character is usually a byte, which is 8 bits (a bit is a 1 or 0).</p>
+<p>For instance: <strong>01000001</strong> - is a capital 'A'</p>
+<p>Taking the first 100 words in the english dictionary (I found the list online), <strong>A</strong> to <strong>Ableness</strong> here is how the sequence starts:</p>
+<ul>
+<li>01000001 - &quot;A&quot; <strong>uppercase</strong> <em>is signified by the first 3 bits (010)</em></li>
+<li>00100000 - space character</li>
+<li>01000001 - &quot;A&quot;</li>
+<li>01000010 - &quot;B&quot;</li>
+<li>00100000 - space character</li>
+<li>01000001 - &quot;A&quot;</li>
+<li>01100010 - &quot;b&quot; <strong>lowercase</strong> <em>is signified by the first 3 bits (011)</em></li>
+<li>01100001 - &quot;a&quot;</li>
+<li>01100011 - &quot;c&quot;</li>
+<li>01101011 - &quot;k&quot;</li>
+<li>01100101 - &quot;e&quot;</li>
+<li>00100000 - space character.</li>
+</ul>
+<p>In the first 100 words in english there are <em>895 characters</em>, including spaces. So that would be </p>
+<pre><code>895 * 8(bits) = 7160(bits)</code></pre>
+<p>So there are about <strong>7000 or so</strong> ones or zeros in 100 words. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/7dknhg" onclick="return false"><span>show</span></a>
+</li>
