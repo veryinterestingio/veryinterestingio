@@ -1,0 +1,66 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Astromike23" target="_blank">Astromike23</a>
+			<div class="markdown"><blockquote>
+<p>The p value is the probability of observing the result you did given the assumption of the null hypothesis.</p>
+</blockquote>
+<p>Almost: it's the probability of observing a result <em>at least as extreme</em> as you did, given the null hypothesis. Your p-value includes not only the result you saw, but also any results that were even further from what the null hypothesis would predict.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Senecarl" target="_blank">Senecarl</a>
+			<div class="markdown"><p>Quite right. Thanks for clarification!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/catmeow321" target="_blank">catmeow321</a>
+			<div class="markdown"><p>Why does &quot;atleast as extreme&quot; mean? Is it equivalent to &quot;as more extreme or as less extreme&quot; ? I cannot figure out what atleast means it sounds like within not outside</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mabolle" target="_blank">mabolle</a>
+			<div class="markdown"><p>It usually means &quot;having a test value this far from zero, or farther&quot;.</p>
+<p>Virtually every statistical test relies on computing a test value, which follows a certain probability distribution. Like with any probability distribution, the probability of being <em>anywhere in particular</em> on the curve is infinitesimally small, but you can integrate the probability over a given stretch of the curve and get a meaningful answer. This is what a p value does.</p>
+<p>For example, if you're carrying out a t-test, your test value is <em>t</em>, which follows <a href="http://www.itl.nist.gov/div898/handbook/eda/section3/gif/tpdftb.gif" target="_blank">a distribution like this</a>. <em>t</em> always has a mean of zero - meaning any <em>t</em> far from zero, whether very positive or very negative, indicates that there is a real difference between your sampled groups. (Positive or negative in this case is arbitrary, and simply depends on which group you chose as the reference.) For a significance cutoff of 0.05, if we assume that either group may have a larger mean than the other (i.e. the test is two-tailed), this means that the shaded area in the picture corresponds to a significant value of <em>t</em>. As you can see, it starts at a certain point and runs toward infinity in both directions.</p>
+<p>So to calculate your <em>p</em> value, place your obtained <em>t</em> value on the x-axis and integrate under the probability curve from there and onto infinity.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HelpfulAssistant" target="_blank">HelpfulAssistant</a>
+			<div class="markdown"><p>This just means that p≤0.01, since probability is sometimes best represented over a range of values. If you wanted <em>any</em> number between 0 and 9, the probability of selecting 2 is essentially p=0 because 2.001 and 2.0001 and 2.00001 are also included in possible options. On the flip side, the probability of selecting a number between 2 and 3 is p=0.1 because this covers the whole range. Out of an infinite pool (or very very large pool), it is often best to explain probability with this in mind.
+The probability of the null hypothesis being true give your results is at most p=.01, but may also include values more <em>extreme</em>, or lower.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/metabyt-es" target="_blank">metabyt-es</a>
+			<div class="markdown"><p>Fully agree. To more directly answer OP's question, a p-value is based not only on the null hypothesis, but (in the case of generalizable inference) also that your data is indeed a representative sample. In this case, a p of 0.01 says that, given the null hypothesis (and other assumptions about the specific test used), there is a 1% chance of observing the data you did by random chance. Assuming all the randomness you observe is due to sampling variation (e.g., if your dependent variable is deterministic conditional on your sample, like height), then you can interpret this as a 1% chance that your results are from sampling error.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ATAD8E80" target="_blank">ATAD8E80</a>
+			<div class="markdown"><blockquote>
+<p>In this case, a p of 0.01 says that, given the null hypothesis (and other assumptions about the specific test used), there is a 1% chance of observing the data you did by random chance.</p>
+</blockquote>
+<p>The null hypothesis <em>is</em> that random chance is the only force at play. And if you mean the &quot;chance&quot; of getting a particular value from a distribution, then this is pretty much always the case (if your sampling distribution has 0 variance then you probably don't need any stats). Cleaner to say either &quot;given the null hypothesis, there's a 1% chance of observing (data at least as extreme as) the data you did&quot; or &quot;there's a 1% chance of observing (data at least as extreme as) the data you did by chance alone.&quot;</p>
+<blockquote>
+<p>Assuming all the randomness you observe is due to sampling variation (e.g., if your dependent variable is deterministic conditional on your sample, like height), <strong>then you can interpret this as a 1% chance that your results are from sampling error.</strong></p>
+</blockquote>
+<p>No: <a href="https://en.wikipedia.org/wiki/Confusion_of_the_inverse" target="_blank">https://en.wikipedia.org/wiki/Confusion_of_the_inverse</a></p>
+<p>An example for your intuitions:</p>
+<p>There a bag with 100 coins. You randomly select a coin, flip 5 times, get 5 heads. There's a 3.1% chance of this happening if it's a fair coin, so p = .031. What's the chance that it's a fair coin (that the null hypothesis is true/that chance is the only force at play)? What's the chance it's a fair coin if you know the bag contained 50 fair coins and 50 unfair (double-headed) coins? If the bag contained 99 fair coins and 1 unfair coin? 100 fair coins and 0 unfair coins?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Senecarl" target="_blank">Senecarl</a>
+			<div class="markdown"><p>Very good points. Would be easier if we knew OPs study.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfb-" target="_blank">mfb-</a>
+			<div class="markdown"><p>Even if your experiment design is perfect a p-value of 0.01 doesn’t necessarily indicate you found anything, especially if you look at many places (look-eslewhere effect aka trials factor) or if the effect is very implausible.</p>
+<p>Take 100 exactly symmetric dice and see if they roll each number 1/6 of the time. You expect some p&lt;0.01 results for individual dice just by chance.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ATAD8E80" target="_blank">ATAD8E80</a>
+			<div class="markdown"><blockquote>
+<p>You expect <em>some</em> p&lt;0.01 results for individual dice just by chance.</p>
+</blockquote>
+<p>This seems needlessly vague. p≤.01 entails a false positive rate of precisely 1% (and a ~63% chance of a p&lt;.01 result in 100 dice; &gt;50% chance of a p&lt;.01 with &gt;68 dice).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfb-" target="_blank">mfb-</a>
+			<div class="markdown"><p>There are even more options if you look for each side individually.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
