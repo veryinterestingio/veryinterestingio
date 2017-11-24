@@ -1,0 +1,46 @@
+<div class="answers">
+	<div class="answer" data-handle="dq59h0v">
+		<a class="author" href="https://www.reddit.com/user/bitz12" target="_blank">bitz12</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Something a friend told me is a cool trick to think about it. The first term is 1, so leave that. The second is 1/2, also leave that. The third and fourth is 1/3 and 1/4, but if we subtract a little from that we can change the terms to 1/4 and 1/4. The next four terms are 1/5, 1/6, 1/7, and 1/8. If we subtract some amount from those terms (calculating the exact amount doesn’t matter), we can change those terms to all be 1/8. Continue doing this infinitely. Then simplify the terms, so the two 1/4’s become 1/2 and the four 1/8’s become 1/2 and so on. Then we are left with 1+1/2+1/2+1/2... which is clearly a divergent series. The amount we subtracted doesn’t matter because even though we subtracted from the series, it is still divergent, so it will tend towards infinity if we include the amount or not.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dq51mio">
+		<a class="author" href="https://www.reddit.com/user/functor7" target="_blank">functor7</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you have a function f(x), then the integral of f(x) for x=1 to N will be approximately equal to the sum f(1)+f(2)+...+f(N) (as long as f(x) isn't a terrible function). This means that, for f(x)=1/x, that </p>
+<ul>
+<li>1 + 1/2 + 1/3 + ... + 1/N ≈ ln(N)</li>
+</ul>
+<p>And so, even though 1/x goes to zero while ln(x) goes to infinity, so does the sum 1+1/2+.... In fact, we can get a measure of this difference and ln(N) as N-&gt;infinity and this is the <a href="https://en.wikipedia.org/wiki/Euler%E2%80%93Mascheroni_constant" target="_blank">Euler-Mascheroni Constant</a>.</p>
+<p>There is also a nice visual representation of all this. If you line up a bunch of blocks of width 1, but height 1/n for n=1,2,3,..., then the combined area of these blocks will be the sum 1+1/2+1/3+... But you can easily fit the graph of 1/(x+1) underneath these blocks, see <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Gamma-area.svg/1200px-Gamma-area.svg.png" target="_blank">this</a>. This shows that the integral of 1/(x+1) for x=0 to infinity is smaller than 1+1/2+1/3+... Since this integral is infinity, so must be the sum.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dq56akw">
+		<a class="author" href="https://www.reddit.com/user/suugakusha" target="_blank">suugakusha</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Let's be a little naive and pretend that it does converge to a finite value, so that 1 + 1/2 + 1/3 + 1/4 + ... = S.</p>
+<p>Now group the numbers in the sum in pairs: (1 + 1/2) + (1/3 + 1/4) + (1/5 + 1/6) + ...    </p>
+<p>Since 1&gt; 1/2, 1 + 1/2 &gt; 1/2 + 1/2 = 1.  So the first group is strictly larger than 1.  Likewise, the second group is larger than 1/2, the third group is larger than 1/3, and so on.  </p>
+<p>So, (1 + 1/2) + (1/3 + 1/4) + (1/5 + 1/6) + ... &gt;     1 + 1/2 + 1/3 + ... and therefore, S&gt;S, which is impossible.  So S can't actually exist.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dq55ku9">
+		<a class="author" href="https://www.reddit.com/user/Agnoctone" target="_blank">Agnoctone</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The short answer is that the series does not decrease fast enough. </p>
+<p>A good illustration is to look at the partial series H_n = 1 + 1/2 … + 1/n and then consider the difference between D<em>n = H</em>(2^n) - H_(2^(n+1)) = 1/2^n + … 1/2^(n+1) .</p>
+<p>There is 2^n terms in this sums, and its smallest term is 2^(-(n+1)). Thus, the difference D<em>n is greater than 1/2. Therefore, it takes us more and more term to add more than 1/2 to the result of the series, but we reach this point eventually.  Indeed, the whole series can be written as the sum of its difference: H</em>(2^n) = D<em>0 + … + D</em>(n-1), so for any number x, we know that H_(2^(2 * x)) &gt; x .</p>
+<p>In other words, the partial series grows slowly since multiply by 2 the number of summed terms approximately adds a constant term; but it does grow.</p>
+<p>And to make the link with the logarithm function clearer, one can notice that ln 2 &gt; 0.5. So the previous result is perfectly coherent with H_n ∈ ln n + γ + O(1/n) .</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dq5gzw3">
+		<a class="author" href="https://www.reddit.com/user/yassert" target="_blank">yassert</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><blockquote>
+<p>Shouldn't the series converge if we're eventually just going to be adding 0 to it?</p>
+</blockquote>
+<p>Compare to your knowledge of ln(x). As x goes to infinity, ln(x) gets arbitrarily large at ever slower rates. The terms ln(n+1) - ln(n) are all positive go to zero too, yet when you add them up you get a diverging series. If you can reconcile how this works for ln(x) you can understand the harmonic series.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
