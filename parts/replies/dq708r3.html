@@ -1,0 +1,63 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Namika" target="_blank">Namika</a>
+			<div class="markdown"><p>The FCC recently gave ISPs the authority to redirect your traffic to other webpages whenever they feel they need to. </p>
+<p>Since no one listens to the radio anymore (which the government used to rely on for emergency message broadcasts), the feds gave ISPs the authority to redirect user traffer whenever the ISP needs to urgently notify people of something. The spirit of the rule is so if there is public danger, like a chlorine gas spill, radiation leak, etc, ISPs can notify everyone to stay indoors or seek shelter or whatever. They do this by instantly redirecting everyone's web traffic to an emergency bulletin page with relavent information for public safety. </p>
+<p>Since most emergencies are local and not at the federal level, ISPs have quite a bit of flexibility in deciding when they can turn to MITM redirects for notifications. So many now use that ability for things like copyright violation notifications.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MyOtherAcctsAPorsche" target="_blank">MyOtherAcctsAPorsche</a>
+			<div class="markdown"><p>In argentina they use that to get you to remain with them when cutting the cord, offering discounts and such.</p>
+<p>Would using 8.8.8.8 DNS avoid this?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PropgandaNZ" target="_blank">PropgandaNZ</a>
+			<div class="markdown"><p>Nope, the dns just changes a url into an ip address (ie Google.com to 192.168. etc). Once you get that back you request the page from the ip address, ISP can send you something else. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/2girly4me" target="_blank">2girly4me</a>
+			<div class="markdown"><p>Not always. Using Google's Public DNS would help. However, ISP's can also modify/replace the contents of the data being sent to you.</p>
+<p>It's best to use 8.8.8.8 alongside HTTPS to avoid MITM (man in the middle) attacks.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Halvus_I" target="_blank">Halvus_I</a>
+			<div class="markdown"><p>Got a link to the law?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/billdietrich1" target="_blank">billdietrich1</a>
+			<div class="markdown"><p>I can't find any such law or regulation.  In general, it looks like ISPs do what they want, and maybe later FCC or Congress stops some of it.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mysticpoisen" target="_blank">Mysticpoisen</a>
+			<div class="markdown"><p>How recently was this? They've been doing it for years. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/coyote_den" target="_blank">coyote_den</a>
+			<div class="markdown"><p>It’s not really a MITM if they are simply redirecting you to a nastygram and not decrypting, examining, and re-encrypting your reddit session. So it’s legal.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OnlyHereforthePr0n" target="_blank">OnlyHereforthePr0n</a>
+			<div class="markdown"><p>This is officially called SSL DPI (Deep Packet Inspection) and you probably agreed to it without knowing as it was most likely buried deep in the Terms of Service from your ISP. </p>
+<p>It is important to know that this is TRIVIAL to set up so most ISPs likely have this in place. Along the same lines, I wouldn't be surprised to see this on most corporate networks as well. We are currently implementing this where I work and we are not a large organization. The official word on this where I work is: &quot;Banking sites and heathcare sites are exempted from SSL DPI, but you should not expect any guarantee of privacy on a corporate network&quot; and realistically how are they going to know if I am visiting a banking site or heathcare site without first performing the SSL DPI.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Halvus_I" target="_blank">Halvus_I</a>
+			<div class="markdown"><p>In a corporate setting, you never had privacy in-network. That is a VERY different relationship to citizen/ISP</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OnlyHereforthePr0n" target="_blank">OnlyHereforthePr0n</a>
+			<div class="markdown"><p>True enough.</p>
+<p>While the relationship is different, I still wouldn't be surprised to find out that an ISP is actively monitoring packets from their customers. They could wrap it up in legal-speak, package it as &quot;protecting copyrights&quot; (blocking torrents) or &quot;keeping our children safe&quot; (blocking kiddie porn) and dump it in the ToS for now and then leverage that to prioritize/deprioritze traffic based on the ISP's pricing tiers should Net Neutrality get shot down.</p>
+<p>Of course, I could just be a paranoid old IT dinosaur, too.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/coyote_den" target="_blank">coyote_den</a>
+			<div class="markdown"><p>It’s not SSL DPI. What happened was the account was flagged for piracy so they simply did a DNS redirect to a warning page. </p>
+<p>SSL DPI requires a certificate signed by the org using it be installed as trusted on the client. Reason for this is the DPI box intercepts all SSL requests, so every SSL site will appear to have the DPI’s cert.</p>
+<p>Your ISP can’t just do the same or your browser would throw up warnings that the certificate isn’t trusted or doesn’t match the domain.</p>
+<p>It also breaks a lot of applications that use certificate pinning, as in the app makes sure the cert is signed by the right CA.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/permalink_save" target="_blank">permalink_save</a>
+			<div class="markdown"><p>Without having their private key or using them as a proxy, how can it do this and not throw a huge red flag to the browser? Your corporate LAN is a lot easier to set this up but once traffic hits the router, it's out and a lot easier to tell if you get mitm. Any documentation on using this outside of a local network? I don't see how it's possible for an ISP to implement this outside of your router.</p>
+<p>Edit: I'm assuming you're doing what the quote is in  <a href="https://www.reddit.com/r/networking/comments/6043f6/how_does_deep_packet_inspection_dpi_work_with/df3mftc/" target="_blank">this post</a> so no I haven't installed certs from my ISP nor would I ever do that. I don't know what the post is saying with just reassigning all certs but that would fuck everyone over, if even possible, and there would be hell to pay for something of that nature. Not to mention people would notice when their self signed cert is showing trusted for no reason. You are talking before the ISP which is a way different environment. This would be a monumental undertaking for n ISP and would likely end i  lawsuits.</p></div>		</li>
+					</ul>
+		</ul>
+	
