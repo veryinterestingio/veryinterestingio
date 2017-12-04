@@ -1,0 +1,69 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/agate_" target="_blank">agate_</a>
+			<div class="markdown"><blockquote>
+<p>They are simple dumb bent pipes in orbit. </p>
+</blockquote>
+<p>Then how do satellite operators keep people from &quot;borrowing&quot; their satellites?  If I want to video chat with my friend in Fiji, can we just aim two dishes at a convenient Echostar and blast away? If we used some sort of spread-spectrum encoding, we could avoid cross-talk with the satellite's official ground stations.  Is it really as wide open as you're suggesting?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/millijuna" target="_blank">millijuna</a>
+			<div class="markdown"><p>That's the dirty little secret. There is no security at all on the satellites when it comes to customer access. The reason why it isn't a total free for all is that uplink equipment is still relatively expensive and difficult to operate. A typical 40W Ku-Band transmitter sells for north of $8000. Hell, on some occasions when I needed to test things, I'd find an unused frequency and pop up for a few seconds just to make sure things worked.</p>
+<p>Also, it's entirely possible for a satellite operator to geolocate an offending wildcat/pirate transmitter and sick the National Authorities on you. About 10 years ago SES Americom called me up looking for some help in tracking down a wildcat. They knew I worked for a company that built small flyaway VSAT terminals. What they needed me to do was uplink a strong, narrow signal to the satellite that they could use as a reference. They needed it done with a small diameter antenna because they needed something with wide enough sidelobes that it would put up a detectable signal on an adjacent satellite.
+Anyhow they had me run this over the weekend and proceeded to do very careful Doppler and phase measurements. After a weekend's worth of work, they were able to narrow the offender down to a 0.5 by 1 mile ellipse, just west of Detroit. They were pretty sure it was a HughesNet dish on a gas station that had gone bad.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/_pelya" target="_blank">_pelya</a>
+			<div class="markdown"><p>Interesting read.</p>
+<p>I always imagined the satellite would somehow pinpoint your location and transmit the signal to you using directional antenna. Oh well, it looks like the whole continent can listen to the downlink network traffic, good thing it's encrypted.</p>
+<p>Few more questions, if you're not tired typing. </p>
+<p>How much radio bandwidth does a typical satellite cover? Are there still satellites that broadcast using a single frequency?</p>
+<p>When shifting the frequency, does it shift up or down? I think the satellite also needs to insert time gaps if shifting up, because higher frequency means that the data is also transferred faster.</p>
+<p>What physical layer modulation is used? I guess it's not AM or FM. I was thinking that modern modulation schemes, such as QAM or QPSK used in LTE, require to perform at least some math to determine phase information, to be able to retransmit it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Wise_Kruppe" target="_blank">Wise_Kruppe</a>
+			<div class="markdown"><p>You find an unused frequency to test? I just cross my fingers, come up with a modulated carrier at whatever tx power i chose when I had my eyes closed, and wish everyone else on the satellite good luck. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Roachmeister" target="_blank">Roachmeister</a>
+			<div class="markdown"><p>But what about the non-customer communications? I.e., the signals sent to the satellite's onboard computer for orbit maintenance, frequency control, etc. What protocols would be used for that?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kill-69" target="_blank">kill-69</a>
+			<div class="markdown"><p>satellite hacking is a real thing. <a href="https://www.wired.com/2009/04/fleetcom/" target="_blank">https://www.wired.com/2009/04/fleetcom/</a></p>
+<p>Check out /r/RTLSDR/ you can see the sat data for a few bucks</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/surgura" target="_blank">surgura</a>
+			<div class="markdown"><p>Thanks for the knowledge. As a follow up question: information gathering satellites do require some for of coms that is not just relaying. Do you know how they do that? Software wise that is. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/millijuna" target="_blank">millijuna</a>
+			<div class="markdown"><p>I'm not as familiar with that side of the world, but from what I've seen, it's pretty special purpose and robust as the other poster said.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sqfqs" target="_blank">sqfqs</a>
+			<div class="markdown"><p>Are you referring to telemetry and control?  A satellite will normally have a frequency dedicated to control, which will use a very robust but low data rate form of signalling.  This type of communication is usually just a command sent to the satellite, as an example SPELL is a language used to write satellite commands.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ts_sci_sap" target="_blank">ts_sci_sap</a>
+			<div class="markdown"><p>Yea, finally something I actually work with. The constellation that I work the ground comm network utilizes NSA Type 1 encryption for both uplink and downlink. Specifically KS-252, MYK-16/17, MYK-6/12 and KGV-31. All of the info here is applicable to commercial sats but once you move over to others types, things get a little different. Such as time-tagging on the SV and then on the ground and comparing to ensure correct latency calcs are applied to the various links.  Multiple redundant links on different bands for assured comms not matter the environment.</p>
+<p>The one thing that is really applicable to it all, even with the crazy tech you put along the pipe, it really is just a serial cable that is 36,000km long.  </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tophatvf1" target="_blank">tophatvf1</a>
+			<div class="markdown"><p>what IP traffic are you using satellites for? ... I ran a data backbone for 10 years  that literally circled the globe..and  to be honest with you we always stayed terrestrial ...the latency on a geosynchronous satellite link was unacceptable 300 milliseconds up and 300 down  (even when Telco had an undersea cable outage  and we're on alt path we wouldn't let them nail us up on satellite link)</p>
+<p>as for Cisco WAAS as I've dealt with that and other WAN accelerations(riverbed) . had to write some really bizarre policy-based routing configurations to deal with asynchronous routing issues  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/millijuna" target="_blank">millijuna</a>
+			<div class="markdown"><p>As mentioned in another comment, it supplies phone and internet service to two small, remote communities with no possibility for connectivity through any means other than satellite. Due to terrain and legal issues, fixed microwave isn't practical, nor is a fiber run. So, they're stuck with satellite. It's actually quite impressive how well it works, the VOIP over it is near toll quality, once you get used to the lag, and hell, even T.38 faxing works reliably (National Park Service wanting to submit payroll so they can pay their rangers, and the restaurant and their food ordering).</p>
+<p>I mostly went with WAAS because I was able to score a setup dirt cheap off of fleabay.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tophatvf1" target="_blank">tophatvf1</a>
+			<div class="markdown"><p>reminds me up some installs I did in Blackwater Falls State Park in West Virginia</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dotnorma" target="_blank">dotnorma</a>
+			<div class="markdown"><p>How do phone calls work out with the latency since they are essentially real time? (Ive never had any type of satellite service)</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

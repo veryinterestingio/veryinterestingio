@@ -1,0 +1,79 @@
+<li class="post" data-handle="7gwhfz">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/7gwhfz/does_satellite_communication_involve_different/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/7gwhfz" onclick="return false">Does satellite communication involve different communication protocols?</a>
+		</h2>
+		<!--<span class="date">2017-12-04</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Are there different TCP, UDP, FTP, SSH, etc. protocols for talking to satellites? For example to compensate for latency and package loss.</p>
+<p>I imagine normal TCP connections can get pretty rough in these situations. At least with 'normal' settings.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dqme96c">
+		<a class="author" href="https://www.reddit.com/user/millijuna" target="_blank">millijuna</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For once, a question that I am more than an armchair expert in! </p>
+<p>So what you need to understand is that most geostationary communication satellites in use don't know anything about protocols, data, or anything else like that. They are simple dumb bent pipes in orbit. They simply take the radio signal that's transmitted to them, shift its frequency, amplifies it, and retransmits it back to the ground. They do not demodulate or decode what's being sent through them.</p>
+<p>This is done for a couple of reasons. First, modems are power hungry and often sensitive to radiation. Putting that on a spacecraft increases your power demands, and thermal control issues. All of that reduces the power you have available for your transmitters. It's also, of course, impossible to service or uograde something once it's in orbit.</p>
+<p>Because all of this, the standard option is to put the complex equipment on the ground where it's easy to power, cool, upgrade, and service.</p>
+<p>Now as far as the second part of your question, it's a mix of protocols. The network I operate is just running standard IP (over HDLC). The trick is that all satellite modems include various forms of Forward Error Correction (FEC). This is basically redundant/checksum data that lets the far end modem reliably reconstruct the data, even in sub optimal conditions. The net result of that is as long as my signal to noise ratio is above a certain threshold, the link is quasi error free. Maybe one bit in a billion will be wrong. There is virtually no packet loss if designed right, the satellite link is really just like a (very) long serial cable.</p>
+<p>Now latency is an issue, mostly when it comes to the TCP window size. I have Cisco WAAS deployed, which does a bunch of tricks to make things more useable. It fakes out the acks to get things going, does de-duplication and compression where it can, and a bunch of other things. The biggest thing that hurts it is the move to SSL everywhere. My performance took a nosedive when Facebook switched to SSL by default. Prior to that it was eminently cacheable.</p>
+<p>TL,DR: the standard protocols work fine as long as the network is designed properly. The satellites themselves don't care.</p>
+<p>Edit: Thanks for the Gold!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dqn0bz5">
+		<a class="author" href="https://www.reddit.com/user/teridon" target="_blank">teridon</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In contrast to the excellent answers /u/millijuna has given, all of my experience is with a few different science data satellites, rather than commercial data service satellites.  I'll note up-front that science data satellites tend to use tried-and-true standards rather than the latest technology.  The latest tech is reserved for demonstration satellites (which I haven't worked on...)</p>
+<p>The satellites I've worked on used CCSDS standards, such as the <a href="https://public.ccsds.org/Pubs/727x0b4.pdf" target="_blank">CCSDS File Delivery Protocol</a> for transferring files.  For telemetry; i.e. spacecraft health and safety data, or science data: onboard information is packaged into packets; several packets are packaged into &quot;frames&quot; (see <a href="https://public.ccsds.org/Pubs/102x0b5s.pdf" target="_blank">CCSDS &quot;Packet Telemetry&quot;</a> ) , which have Reed-Solomon error-correcting codes added on to them.  The frames are then convolutionally-encoded.</p>
+<p>Both Reed-Solomon and convolutional encoding help to compensate for noisy data links.</p>
+<p>The data is downlinked using various kinds of radio-frequency (RF) links -- e.g. QPSK.  You can <a href="https://deepspace.jpl.nasa.gov/dsndocs/810-005/208/208B.pdf" target="_blank">read about how NASA's Deep Space Network (DSN) does it.</a></p>
+<p>For ground-to-ground links, some systems use yet another CCSDS standard called &quot;Space Link Extension&quot; (SLE).   SLE consists of several protocols, and not all of them are used by a particular system or satellite.  The older satellites don't understand SLE, so they continue to use the older CCSDS standards such as Packet Telemetry.  Some of the newer satellites understand one or more of the SLE protocols.</p>
+<p>Uplink is a yet another standard; e.g. the <a href="https://public.ccsds.org/Pubs/202x0b3s.pdf" target="_blank">CCSDS Telecommand Standard</a></p>
+<p>You can find detailed information about the CCSDS standards (e.g. SLE) by reading the <a href="https://public.ccsds.org/publications/bluebooks.aspx" target="_blank">CCSDS blue books</a></p>
+<p>For more on error-correction, see this <a href="https://www.reddit.com/r/askscience/comments/3y8r77/how_are_satilites_that_are_very_far_away_able_to/" target="_blank">previous askscience post</a>.  Maybe a real expert like /u/ericGraves can chime in if you have specific questions. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dqmvq8i">
+		<a class="author" href="https://www.reddit.com/user/marsokod" target="_blank">marsokod</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Some spacecraft are using TCP over HDLC, with IPsec for security. But that does not work over long distance. As far as ESA probes are concerned, and also for a good part of the scientific satellites in Europe, protocoles defined by the CCSDS are used: <a href="https://public.ccsds.org/default.aspx" target="_blank">https://public.ccsds.org/default.aspx</a> </p>
+<p>When controlling the satellite, you will send telecommands and receive telemetries. When you have a satellite that is far away, you will typically send a bunch of time tagged telecommands that the satellite will record and run when the times comes. And the spacecraft will send bunches of telemetry at the next contact. If the satellite is close enough, you can do all this in real time during the contacts, though you are still planning activities for when you cannot talk to the spacecraft.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dqme0ab">
+		<a class="author" href="https://www.reddit.com/user/jsveiga" target="_blank">jsveiga</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I've used satcom links for TCP/IP (not to talk to the satellite, but through the satellite), and didn't have to use anything different, from the user point of view. I suppose the packets are encapsulated in something different from your wifi or ethernet cable at the lower layers, but at the TCP/IP layers, it's the same.</p>
+<p>Remember that TCP/IP was conceived to be robust and able to recover from packet losses. Lost packets are resent, and it lowers your final throughput, but a properly sized link (antenna gain, tx/rx power and sensitivity) should minimize that.</p>
+<p>For latency, there's no way to &quot;compensate&quot;. Gaming and other real time applications will suck, but there's no workaround for the speed of light.</p>
+<p>The latency issue will be much better with the new generation of data satcoms, which will use non-geostationary lower orbit sats, but it still won't be like ground fiber.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dqnf6x5">
+		<a class="author" href="https://www.reddit.com/user/Qacer" target="_blank">Qacer</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you take a look at the 7 layers of  OSI, you can see this in another perspective. The radio frequency part (wireless signal) of satellite communication is Layer 1. TCP/IP is Layer 3. As you go up in layers, the higher layer is just a payload to a lower layer. So you often hear, &quot;layer 3 rides on layer 2 and 1.&quot;</p>
+<p>In essence, the protocols that you mentioned are all payloads of a layer 1 communications medium, so they ideally do not really have any awareness on how it gets transported from point A to B. I say ideally because your Layer 1 implementation still matters. For example, if you're using smoke signals as a Layer 1 medium to transmit TCP/IP packets, then you'd have to use trickery on the TCP/IP protocol to bypass its timeout settings and such because transmitting information via smoke would involve additional processing, which in turn translates to higher latency. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/7gwhfz" onclick="return false"><span>show</span></a>
+</li>
