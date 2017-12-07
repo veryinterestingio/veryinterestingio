@@ -1,0 +1,115 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BlueRajasmyk2" target="_blank">BlueRajasmyk2</a>
+			<div class="markdown"><p>Or more generally, if they have a max value, store them as base-(max-value) numbers.  The concern then becomes, is your processor-word large enough to store that value?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rational1212" target="_blank">rational1212</a>
+			<div class="markdown"><blockquote>
+<p>store them as base-(max-value) numbers</p>
+</blockquote>
+<p>Basically, modulo.</p>
+<p>eg. </p>
+<p>Given 3 numbers (x, y, and z) in the range of [0-10], [0-15], and [0-300]. Given that there is enough room in an integer to store all values.  % is the modulo operator.</p>
+<p>N = x + y*11 + z*11*16</p>
+<p>x = N % 11</p>
+<p>y = (N /11) % 16</p>
+<p>z = N / (11*16)</p>
+<p>Edit:</p>
+<p>Forgot to mention where the magic numbers came from.</p>
+<p>There are 11 values in the range [0-10]. </p>
+<p>There are 16 values in the range [0-15].</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/__deerlord__" target="_blank">__deerlord__</a>
+			<div class="markdown"><p>Is there something special about 11 and 16? </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ProfessorTenebrae" target="_blank">ProfessorTenebrae</a>
+			<div class="markdown"><p>I see, so how would I do these numbers?</p>
+<pre><code>int[] numbers = new int[] { 4, 52, 736, 1261};</code></pre>
+<p>Like this?</p>
+<p>(w [0-5], x [0-60], y [0-800], z [0-1300)</p>
+<p>N = w + x*6 + y*6*60 + z*6*60*800</p>
+<p>w = N % 6</p>
+<p>x = (N / 6) % 60</p>
+<p>y = (N / (6*60)) % 800</p>
+<p>z = N / (6*60*800)</p>
+<p>I feel like something is off there.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hoover889" target="_blank">Hoover889</a>
+			<div class="markdown"><p>Division and modulo operations are slow. Why not just directly address the blocks of memory in 1 byte chunks using a Union type</p>
+<pre><code>union Example
+{ 
+  __uint64 A;
+  __uint8[8] B;
+};</code></pre></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ProfessorTenebrae" target="_blank">ProfessorTenebrae</a>
+			<div class="markdown"><p>Never used bit shifting, I understand how it works but not how to implement it, but that method sounds like it would work really well. So how would I do it? I predominately use C# if it helps.</p>
+<p>The values wouldn't be too large. Maybe 3-4 digits in length at most.
+It wouldn't be complex, just a test of sorts.</p>
+<pre><code>int combineInts(int[] intArray)
+{
+    int output;
+    output =
+        //Function to combine ints in "intArray"
+    return output;
+}
+
+int[] retrieveInts(int storedInts)
+{
+    int[] output;
+    output =
+        //Function to retrieve ints from 'storedInts'
+    return output;
+}</code></pre></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Madpenguin_CH" target="_blank">Madpenguin_CH</a>
+			<div class="markdown"><p>Well since other people have already suggested different things which probably work just as well if not better this is semiredundant but basically “bitshifting“ is just multiplying them by 2^<em>amount of bits</em> which will make e.g. 0000 0000 0000 1111 times 2^4 into 0000 0000 1111 0000 as you can see if you now add these numbers, the individual bits don't interfere so</p>
+<p>0000 0000 0000 0100 (not shifted at all)</p>
+<p>+</p>
+<p>0000 0000 0010 0000 (shifted by 4 once)</p>
+<p>+</p>
+<p>0000 1000 0000 0000</p>
+<p>=0000 1000 0010 0100 so the bits are all “conserved“.</p>
+<p>So the simplest most basic implementation is (pseudocode):</p>
+<p>Int stack=0</p>
+<p>int addvalue(int ToAdd) {</p>
+<p>stack=stack*(2^maxbits) ;
+//makes room for new element</p>
+<p>stack=stack+ToAdd;</p>
+<p>return 0;
+}</p>
+<p>Int readElement() {</p>
+<p>LastElement=modulo(Stack;2^maxbits); #Reads element</p>
+<p>stack=stack/(2^maxbits);
+//Because it's an integer the bits shifted to 2^-1 and lower simply get dropped so this pops the element of the stack and pushes the rest of the stack to the right- basically the reverse of the add functions left shift</p>
+<p>return LastElement;
+}</p>
+<p>There might be minor mistakes in there (haven't done proper coding for a while) +things you should probably add like a check if the input is indeed lower than 2^maxbits or if the list is full and adding an element would push the leftmost element off the stack etc. in addition to other improvements.</p>
+<p>Edit: Reddit formatting...eeeh- i hope it's readable enough.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ProfessorTenebrae" target="_blank">ProfessorTenebrae</a>
+			<div class="markdown"><p>xD If you type space 4 times before something it'll turn it to code if you make sure there's a line inbetween.</p>
+<pre><code>Int stack=0
+int addvalue(int ToAdd) {
+    stack=stack*(2maxbits) ; //makes room for new element
+    stack=stack+ToAdd;
+    return 0; }
+Int readElement() {
+    LastElement=modulo(Stack;2maxbits); #Reads element
+    stack=stack/(2maxbits); //Because it's an integer the bits shifted to 2-1 and lower simply get dropped so this pops 
+        the element of the stack and pushes the rest of the stack to the right- basically the reverse of the add functions left shift
+return LastElement; }</code></pre>
+<p>I did want the code though, thanks!</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jacky4566" target="_blank">jacky4566</a>
+			<div class="markdown"><p>Or just use the appropriate box for the number in question. Not everything needs to go into a uint32_t  some compilers will even combine booleans into a byte. </p></div>		</li>
+					</ul>
+	
