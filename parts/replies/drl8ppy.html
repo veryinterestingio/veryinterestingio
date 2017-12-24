@@ -1,0 +1,53 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DangerousCyclone" target="_blank">DangerousCyclone</a>
+			<div class="markdown"><p>Annnnd here's the computer engineer coming in and telling the software engineers how computers actually work. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/WoW-Wee" target="_blank">WoW-Wee</a>
+			<div class="markdown"><p>Haven't seen that side of the debate before. Are you telling me the people running the servers of PokerStars really don't have to bounce a high powered laser off a wall, or factor in ambient noise level in one of many locations to randomly shuffle a deck of cards? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DangerousCyclone" target="_blank">DangerousCyclone</a>
+			<div class="markdown"><p>Um well I don't know. What I mean is that software engineers tend to have a very basic understanding of how computers work. They tend to abstract away the inner workings and make assumptions about them, which aren't always true . This makes it easier for them to focus on creating abstractions and designs of complex programs while not having to deal with things like memory. </p>
+<p>This isn't always true and there are many programmers who write their code in a way that it takes full advantage of the hardware, like maximizing use of the cache for faster performance. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Seldon314" target="_blank">Seldon314</a>
+			<div class="markdown"><p>The problem with computer generated entropy is that it's limited. You only get that much random data and it might not be enough.</p>
+<p>This is why the data gets pooled (basically stored for later use), which is usually enough, but again not for everyone. Solution to that is obviously another source that generates random data (noise from radio signals also gets used sometimes, or if you have fun doing it you can get creative and use built some crazy system).</p>
+<p>Edit: In linux there is /dev/random which provides true random numbers as well as /dev/urandom that uses those  as seed to generate more data (which is usually fine).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IshKebab" target="_blank">IshKebab</a>
+			<div class="markdown"><p>Not really because true random number generators are very rarely used. Really only for seeding a PRN or generating keys, and even for those applications it isn't that common. Plenty of chips don't have them at all.</p>
+<p>I wouldn't explain the 0.001% case to someone who didn't know how it works 99.99% of the time.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Voltrondemort" target="_blank">Voltrondemort</a>
+			<div class="markdown"><p>I'll admit my knowledge is out of date, but afaik most random number libraries still use a PRNG in tandem with hardware Rand because the hardware is much slower.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jeanpuetz" target="_blank">Jeanpuetz</a>
+			<div class="markdown"><blockquote>
+<p>Which way it goes depends on tiny truly random temperature fluctuations inside the CPU.</p>
+</blockquote>
+<p>Isn't that basically the same thing as a seed though? Even if the seed in this case is truly random?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eliminate1337" target="_blank">eliminate1337</a>
+			<div class="markdown"><p>It doesn't have to feed the number into any algorithm, you can just get raw random bits.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nedjeffery" target="_blank">nedjeffery</a>
+			<div class="markdown"><p>Yes but the cache of randomness can run out if you are using it up faster than it can be produced. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/190n" target="_blank">190n</a>
+			<div class="markdown"><p>That Wikipedia article says that it takes two 256-bit samples from the random circuit, feeds them into AES to get a single 256-bit value, then feeds that into a cryptographic PRNG.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/uber1337h4xx0r" target="_blank">uber1337h4xx0r</a>
+			<div class="markdown"><p>If the seed is truly random,  then it still counts as random.   The idea is &quot;if I was to recreate the conditions as physically as possible and rerun the program would I get a different result?&quot; </p>
+<p>I could technically set my clock to exactly zero each time to get a game able pseudo random number each time.   I could record frame counts to run a game the same way each time (which is how people do perfect speed runs BTW). </p>
+<p>But I can't get my cpu temperature exactly the same down to the nano degree. </p></div>		</li>
+					</ul>
+		</ul>
+	

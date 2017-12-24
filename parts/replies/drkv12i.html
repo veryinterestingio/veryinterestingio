@@ -1,0 +1,88 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MrGruntsworthy" target="_blank">MrGruntsworthy</a>
+			<div class="markdown"><p>One company, I forget which, uses a wall of fecking lava lamps to seed their random number gen.</p>
+<p>A wall. Of Lava lamps.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tcrypt" target="_blank">tcrypt</a>
+			<div class="markdown"><p>CloudFlare. They use it for <em>cryptographically secure</em> random number generation as opposed to pseudo random number generation like the parent explained. For things like games a PRNG is usually sufficient but for things like generating secure keys real world entropy like the LavaRand system are the way to go.</p>
+<p><a href="https://blog.cloudflare.com/lavarand-in-production-the-nitty-gritty-technical-details/amp/" target="_blank">https://blog.cloudflare.com/lavarand-in-production-the-nitty-gritty-technical-details/amp/</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rurunosep" target="_blank">rurunosep</a>
+			<div class="markdown"><p>For things like games, a PRNG isn't just sufficient, it's usually preferable. True randomness is overkill. But pseudo randomness is sufficient <em>and</em> deterministic if you want that, like for generating worlds with seeds.</p>
+<p>The original Elite in 1984 had a massive, procedurally-generated open world that persisted between saves. So big it couldn't possibly fit on the computer's storage, let alone the disc. It basically just &quot;unpacked&quot; the chunks of the world you were in as necessary by procedurally generating them with a consistent seed. Other uses including sharing a Minecraft world with a single number, making daily challenges where everyone can try the same procedurally generated dungeon, like in Spelunky, by just publishing one number, or reproducing a &quot;random&quot; series of events for debugging purposes.</p>
+<p>There are few situations outside of cryptography or scientific simulations where true randomness is worth giving up the benefits of pseudo randomness.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Voltrondemort" target="_blank">Voltrondemort</a>
+			<div class="markdown"><p>Even then, as mentioned in the blog you linked, they <em>still</em> us a PRNG, just a more sophisticated CSPRNG instead of a normal PRNG.  The lava lamps just help intermittently seed the CSPRNG with fresh entropy - most of the values are still generated from previous values via a very elaborate deterministic function.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/StoneCypher" target="_blank">StoneCypher</a>
+			<div class="markdown"><p>they use it for marketing.  lava lamps are less effective and more fault prone than simple ICs made by intel</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ReverseEngineered" target="_blank">ReverseEngineered</a>
+			<div class="markdown"><p>How about <a href="https://www.geek.com/chips/need-to-roll-the-dice-1-million-times-per-day-meet-the-dice-o-matic-786961/" target="_blank">rolling and taking pictures of dice</a>? Not nearly as easy as it sounds.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Lm339" target="_blank">Lm339</a>
+			<div class="markdown"><p>There is a micro-controller called the propeller that uses clock jitter and other analog noise that resides inside chip to generate real random numbers. I am not 100% sure how it works, but here is a link where the owner/creator of Parallax, the company that makes the propeller chip, talks about it. His name on the forum is cgracey. </p>
+<p><a href="http://forums.parallax.com/discussion/93061/real-random-number-generator-object" target="_blank">Chip Gracey expalins the random number generator</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Plasma_000" target="_blank">Plasma_000</a>
+			<div class="markdown"><p>There are a whole lot of different &quot;true random number generators&quot; out there which use several methods of generating random numbers from on a chip.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DonHac" target="_blank">DonHac</a>
+			<div class="markdown"><p>Excellent distinction between RNG and PRNG.  To quote John von Neumann, the father of computer architecture: &quot;Any one who considers arithmetical methods of producing random digits is, of course, in a state of sin.&quot;</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kingcoyote" target="_blank">kingcoyote</a>
+			<div class="markdown"><p>There's also quasi random number generation, also known as low-discrepancy sequences. It's closer to pseudorandom, but has a more normal distribution. It is useful when generating computer graphics, to give a semi even distribution of points without creating a pattern until high n is reached.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sweetjimmytwoinches" target="_blank">sweetjimmytwoinches</a>
+			<div class="markdown"><p>How does the random number gen command in basic/gwbasic/qbasic work, I know the crappy games I made in the late 80's I could get a random number from a single command? I know it's not truly random, but within the command I could give a range like for a 20 sided dice and it would give me a seemly random number between 1-20. It's syntax was so simple and worked.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/malmad" target="_blank">malmad</a>
+			<div class="markdown"><p>Is there a non arithmetic means of producing random digits?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Vitztlampaehecatl" target="_blank">Vitztlampaehecatl</a>
+			<div class="markdown"><p>Would a roulette wheel count?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DonHac" target="_blank">DonHac</a>
+			<div class="markdown"><p>Using physical randomness, whether it be rolling dice or counting nuclear decays.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gnorty" target="_blank">gnorty</a>
+			<div class="markdown"><p>There are several ways that I have seen used, and certainly a lot more that I haven't. Ones I have seen include random keypresses from the user, random mouse movements, sampling some unpredictable variable from outside, like white noise from a noisy input (this obviously requires a device that has the means to sample the signal). </p>
+<p>Usually just the least significant bit is taken which gives the greatest unpredictabilit, and the RNG will run the sample as many times as required to give a large enough random number.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mic_Check_One_Two" target="_blank">Mic_Check_One_Two</a>
+			<div class="markdown"><p>Interestingly enough, RNG manipulation is frequently used in things like video game speedruns and intentional glitching.</p>
+<p>A good example is in Final Fantasy 12. There is a certain chest (from this point on, referred to as the Zodiac Chest,) that has a tiny chance of giving you <a href="http://finalfantasy.wikia.com/wiki/Zodiac_Spear" target="_blank">the strongest weapon in the game</a>. The probability of this Zodiac Chest giving the item is <em>drastically</em> reduced (or even eliminated entirely, as the chest can be made to disappear completely,) if you open any specific forbidden chests earlier in the game. The forbidden chests aren't labeled or marked any differently, and they're all sitting out in the open begging to be unlocked. So unless you <em>already know</em> that it'll kill your chances of getting a good roll at the Zodiac Chest, you'll likely bungle your chances pretty early on. Basically, unless you play the game following a guide that specifically warns not to open the chests, you'll likely open one of the forbidden chests and lock yourself out of getting the Zodiac Spear.</p>
+<p>So, why is this important? Because the Zodiac Chest's roll for the weapon is based on the same RNG used to determine attack damage and critical hits. By resetting the console, you reset the RNG's seed. So you save right before entering the area, and reset. Then, based on the count and pattern of your critical hits, (you simply stand there and attack yourself over and over again, counting the regular hits vs critical hits,) you can determine whether or not the chest will give the Zodiac Spear. When you know it will, (based on that aforementioned pattern of critical hits,) you enter the area, (chest spawns are determined when you enter the area containing the chests,) and claim your Zodiac Spear.</p>
+<p>It's also commonly used in Pokemon, to get perfect pokemon. When a wild pokemon is spawned, it pings the RNG to determine things like the pokemon's stats. So by manipulating that RNG, you can ensure that the wild pokemon you're going to encounter will <a href="https://bulbapedia.bulbagarden.net/wiki/Pseudorandom_number_generation_in_Pok%C3%A9mon#RNG_abuse" target="_blank">have perfect stats</a>, be <a href="https://pokemondb.net/pokedex/shiny" target="_blank">shiny</a>, etc. It can also be used for breeding perfect/shiny pokemon. This is actually a pretty controversial topic, as Pokemon often has a competitive aspect; RNG-manipulated pokemon have been used in tournaments and competitions. Some argue that it's cheating since you're essentially picking your pokemon's preferred stats. The counter-argument is that anybody can do it without the use of third-party equipment/software, and that it's simply removing the guesswork from things: Basically, &quot;you can get the same by grinding over and over again, and eventually you'll catch a perfect pokemon... Or you can simply <em>ensure</em> that you get a perfect pokemon.&quot;</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GuudeSpelur" target="_blank">GuudeSpelur</a>
+			<div class="markdown"><p>Another good videogame example is Golden Sun. Random item drops after battles are seeded by tracking which kinds of moves you used during the fight. So you can guarantee rare item drops by resetting the game so it has to pull a fresh seed, running into the correct random encounter, and then using a specific sequence of moves.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fs0i" target="_blank">Fs0i</a>
+			<div class="markdown"><blockquote>
+<p>in things like video game speedruns and intentional glitching</p>
+</blockquote>
+<p>It was also used in games like Counter-Strike: Global Offensive to predict where 'random' shots would land. In the game when you are moving (or jumping, falling, shooting a lot), your weapon gets more inaccurate. When you fire a weapon, the bullet won't land where your crosshair is, but <em>somewhere else</em>. </p>
+<p>Certain cheats provided a way to remove that randomness by calculating what seed the server was using, figuring out where the bullet would land relative to the crosshair, and then move it so the bullet would land where the user would think it would land.</p>
+<p>Of course, Valve patched it when they found out, because it was a way to cheat. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bbqburner" target="_blank">bbqburner</a>
+			<div class="markdown"><p>Just in case, with the new Pokemon Sun and Moon, there's no actual need to resort to extreme RNG manipulation to get the perfect Pokemon as the game now allows you to have a perfect 6 IV pokemon (any pokemon including legendaries) via the hyper training NPC.</p></div>		</li>
+					</ul>
+		</ul>
+	

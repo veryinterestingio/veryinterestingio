@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>How does a video game or software randomly decide something?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="7law0k">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/7law0k/how_does_a_video_game_or_software_randomly_decide/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/7law0k" onclick="return false">How does a video game or software randomly decide something?</a>
+		</h2>
+		<!--<span class="date">2017-12-24</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I've been wondering this for a long time and has never really found an answer to this.</p>
+<p>When a game has a certain percentage chance of getting a critical hit for instance, how does it decide wether or not give you one? I don't quite understand how a computer can just randomly decide something without having a real conscience. It's not like in real life where you can flip a coin or something, it has to have a certain pattern instead, right?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="drkv12i">
+		<a class="author" href="https://www.reddit.com/user/Voltrondemort" target="_blank">Voltrondemort</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Well that depends - are you asking what algorithm they use to determine a critical hit?  Or how the random component of that works?</p>
+<p>Because the former is basically &quot;whatever teh programmer wants&quot;.  But how an RNG (Random Number Generator) works is much more interesting.</p>
+<p>As you've apparently surmised, computers are deterministic.  They don't do things randomly - everything has defined inputs and defined outputs.  So how do they generate a random number, right?  That's why <em>this is actually a really good question</em>.</p>
+<p>They use what's called a &quot;pseudorandom number generator&quot; (PRNG) which is a program that <em>isn't</em> random.  It's not.  It's just a mathematical formula that's so crazy it <em>looks</em> random... but it is still deterministic.</p>
+<p>It can't pull the number from nowhere, so it needs an <em>input</em>.  I put in a 1, I get 81.  I put in a 2, I get 875.  I put in a 3, I get 294.</p>
+<p>What's important is that, being deterministic, when I put in a 1 again, <strong>I still get 81 back</strong>.</p>
+<p>Now, to make it simple, they sometimes hide this input number so it loops on itself - so I only provide the <em>first</em> number, and then each subsequent run of the PRNG, it will just use the last number it generated.</p>
+<p>So I put in a 1, and I get 81, and then I don't have to put in something again - it will use 81 next time to get, say 788 for me.  And then I'll ask it for another number, and it will use 788 as its input to generate... say... 294.</p>
+<p>What's important is that this is <em>still</em> deterministic.  If I start up a new RNG, and I seed it with the number 1 again?  It will still return 81, 788, 294, etc. in that order.</p>
+<p>This is called &quot;seeding&quot; a random number generator.  If you play minecraft, that word sounds familiar - many procedurally-generated videogames will let you provide a &quot;seed&quot; - now you know what that means!  The &quot;seed&quot; is the first number for the RNG, so if you use the same seed to run the procedurally-generated world twice, you get the same world twice, because it wen through the same pseudorandom numbers in the same order.</p>
+<p>Now, what if I don't provide a seed?  Well then the computer needs to find a seed by itself.  The clock works.  The current date and time is always unique.  You can get pretty good random numbers by seeding from the clock (note, a computer's &quot;clock&quot; includes the date).  Seed from a number that is the total number of milliseconds that's passed since January 1st, 1970.</p>
+<p>The challenge is when you need to be really sure that nobody else can figure out your random number.  It needs to be a secret.  This is important for encryption.  Everybody knows what time it is, and if they know your pseudorandom number generation algorithm, they can make the same numbers.</p>
+<p>That's when sources of &quot;entropy&quot; are important.  Source of chaos that the computer can read to find something <em>truly</em> random it can use to seed the RNG.  Fluctuations of the electrical power supply is a good source for this, for example.  Reading this data is slow, so it's still just used as a seed - after that initial fetch from the truly random source, the computer still just calculates the next random number from the previous ones.</p>
+<p>edit: on Entropy, the most <em>extreme</em> source of randomness is quantum physics.  Quantum physics are fundamentally random.  And the easiest-to-detect form of quantum physics?  <strong>radioactivity</strong>.</p>
+<p><a href="https://www.youtube.com/watch?v=SxP30euw3-0" target="_blank">So here's a video of some guys using deadly radioactive Strontium-90 to generate random numbers</a></p>
+<p>Seriously, if you like computers and you like videos, if you have a question about computers look up Computerphile on Youtube.  They do <em>fantastic</em> work.</p>
+<p>edit2: wow, this blew up like nothing I've ever written.  Okay, I feel I should clarify something: these are toy examples.  A real, proper PRNG is dealing with much larger numbers than 788 (a 32-bit integer has 4 billion values, and a 64-bit integer has 18 quintillion values) and then they're hammered into the range the programmer wants <em>after</em> the PRNG is done calculating them.  Second, the &quot;input&quot; can be more than just the one previous value.  For example, the Mersenne Twister is one of the most common PRNGs, and it stores <em>hundreds</em> of old random numbers and uses them all to help generate the next one.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="drkxlw2">
+		<a class="author" href="https://www.reddit.com/user/Voltrondemort" target="_blank">Voltrondemort</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Okay, now to answer the other half of the question:</p>
+<p>Once we've <em>got</em> a random number generator (see my other comment explaining how that works), the question is how we use it.</p>
+<p>The simplest case - let's say your design says that we should crit 20% of the time.</p>
+<p>In that case, the function for DoesAttackCrit will do the following:</p>
+<ol>
+<li>Get the global random number generator (it's already been seeded properly in your game's start-up code).</li>
+<li>Generate a random number from 0 to 99.</li>
+<li>Check if that random number is less than 20.</li>
+<li>If it's less than 20, tell the system &quot;true&quot; which means that a crit happened.</li>
+<li>If it's more than or exactly 20, tell the system &quot;false&quot; which means the crit did not happen.</li>
+</ol>
+<p>The system might have modifiers to &quot;nudge&quot; the random number - for example, in Team Fortress 2, there's a modifier - it keeps track of how much damage you've done in the last 20 seconds, and nudges the chance upwards with the amount of damage you've dealt.  So if you're kicking ass, the normal 2% chance of a crit can go up to 10%.  It also raises the likelihood of a crit if you use a mielee weapon.</p>
+<p><a href="https://wiki.teamfortress.com/wiki/Critical_hits" target="_blank">https://wiki.teamfortress.com/wiki/Critical_hits</a> for details of TF2's crits.</p>
+<p>Every game will have its own logic for crits, but they'll all almost certainly use a pseudorandom number generator as part of the logic to make that decision.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="drl97ip">
+		<a class="author" href="https://www.reddit.com/user/kadathsc" target="_blank">kadathsc</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>An important point is that often in games what appears random, really isn’t. I’m not talking about pseudo-random vs true random. Instead we need to remember that games are meant to be entertaining and true randomness is frustrating.</p>
+<p>The first thing is that in some games the results are predetermined, though they might appear random to the user. This is sometimes used to prevent cheating but also for other tricks.</p>
+<p>Next, in some cases the game will override what is normally random behavior and make it deterministic. For example, in Halo the last bullets in a magazine behave differently than the initial ones giving a damage boost to the player, so that if they were facing an enemy and emptied the clip they might come out alive. The result is that the player has a cool experience and more fondly remembers the game than if the bullets had been balanced.</p>
+<p>In other games you are sometimes guaranteed failure, while in others the more you fail the greater your odds are at winning. For example, in X-COM the more shots you miss the more likely you’ll make your next shot. Because true randomness sucks, and people expect subconsciously that their turn to win should come up (because our brains suck at statistics).</p>
+<p>So, more often than not things appear random but really aren’t , and game designers are actually not interested in true randomness because it conflicts with the real intent of entertaining people.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="drl8ppy">
+		<a class="author" href="https://www.reddit.com/user/eliminate1337" target="_blank">eliminate1337</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Other comments about computers not being able to generate random numbers are wrong. This problem was solved years ago and now computers are able to generate <a href="https://en.wikipedia.org/wiki/RdRand" target="_blank">true random numbers</a>. The CPU contains a circuit that is stable in two ways and can collapsed to one way or another. Which way it goes depends on tiny truly random temperature fluctuations inside the CPU.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="drla333">
+		<a class="author" href="https://www.reddit.com/user/JayFoxRox" target="_blank">JayFoxRox</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><a href="https://www.youtube.com/watch?v=MiuLeTE2MeQ" target="_blank">I really like this video by pannenkoek</a> (and most other videos on his channels to be honest).</p>
+<p>It not only shows how the RNG works, but also how to exploit it.</p>
+<p>Others in this discussion will probably give you more details about other sources of randomness, but I think the simple RNG used in Mario 64 is a great start into the topic.</p>
+<p><em>(However, I knew the concepts in advance, so maybe the video doesn't help you too much)</em></p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/7law0k" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
