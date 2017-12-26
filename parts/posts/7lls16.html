@@ -1,0 +1,87 @@
+<li class="post" data-handle="7lls16">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/7lls16/eli5_how_does_the_satellite_business_work_how_do/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Economics">Economics</span>
+			<a href="/posts/7lls16" onclick="return false">How does the satellite business work? How do the small telecom companies get access to satellites that costed millions to get into orbit?</a>
+		</h2>
+		<!--<span class="date">2017-12-26</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: How does the satellite business work? How do the small telecom companies get access to satellites that costed millions to get into orbit?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="drnoft0">
+		<a class="author" href="https://www.reddit.com/user/rjk57" target="_blank">rjk57</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Hello, I worked at a satellite operator for some years, so I should hopefully be able to answer this :)</p>
+<p>Satellite operators (people like Eutelsat, SES, etc.) are the people who will take a big loan of hundreds of millions of £s/$s and order a satellite from a satellite manufacturer (such as Airbus Defence and Space, Thales, Boeing, Lockheed Martin, etc.). The operators will also pay for the launch vehicle (provided by Arianespace, Krunichev, SpaceX, etc.)… depending on how big the satellite is they either have to buy the whole rocket, or maybe they can split the cost with another operator… but the big telecom satellites usually take up a whole rocket.</p>
+<p>Fast-forward 2-3 years: the satellite the operator ordered has been manufactured, tested and launched into space. After launch there is a period of time where the satellite operators will manoeuvre the satellite to its correct position: for telecom satellites this is usually somewhere in the geostationary arc, an orbit with an altitude of 35,786 km, which allows the satellite to orbit with just the right velocity, such that from the POV of someone looking up at it from the Earth, it seems to stay stationary. Once the satellite arrives at its “slot” there will be a period of commissioning where they test all the various systems and ensure nothing broke during launch! Commissioning usually takes a couple of weeks.</p>
+<p>THEN! They’re up and running! The satellite and the launch cost hundreds of millions, and GEO satellites usually only last 15-20 years before starting to malfunction / running out of fuel and requiring them to be “retired”. So the operators have got to sell the services and make their money back plus profit before this expensive asset fully depreciates.</p>
+<p>You asked about telecom satellites, so I’m going to assume this satellite is one which can provide two-way data services, i.e. internet for Bob in Mount Everest, who has a special dish on his house. How do they do this? Well the satellite operator has not only gone and bought a satellite and a launch vehicle, but they also have a “gateway” (aka &quot;teleport&quot;) – a massive dish on the Earth that is very close to an internet exchange / has fibre-optic lossless connections to an internet exchange. The gateway also has fancy modems called “hubs”. Using the TCP/IP protocol, desired data is routed from the web to the hub, but it must then be somehow sent to the satellite, for subsequent retransmission to Bob in Mount Everest who is waiting to receive his data via his small dish and modem. How is this done? Well the data is “modulated” onto RF spectrum! Don’t want to get too technical… but you basically encode 0s and 1s onto a RF wave by altering the “phase” and/or “amplitude” of the wave… There are actually rules for this (see DVB-S2 or DVB-S2X). Anyway, the data has been modulated onto a physical signal, and the big dish on the gateway transmits that towards the satellite.</p>
+<p>The satellite receives the signal, sends it to some electronics that changes the frequency (because you can only use certain frequencies for Earth-to-Space link and different ones for Space-to-Earth links) then amplifies the signal and retransmits it. This chain of electronics on the spacecraft, this ability to receive a signal and retransmit…  is called a “transponder”….. and this is where the operators make their money.</p>
+<p>There is a relationship between how much data in a given time period is required to be sent (i.e. Mbps), and how much spectrum is required to achieve this. Transponders on the spacecraft are defined by chunks of spectrum (36 or 54 MHz wide chunks most commonly). What happens is small ISPs, usually dedicated to providing internet to rural areas, will lease a certain number of transponders (or a portion of a transponder), and when they do that, the operator will also ensure they sort out access for the ISP at their gateway (i.e. allow the ISP's router in the exchange to talk with their own routers in the exchange, which in turn link back to the hubs in the operator's gateway, and also configure their hubs to send the ISP's data to the spacecraft). Operators can also provide to the ISP the dishes that the ISP’s customer will need, acting as a wholesaler effectively.</p>
+<p>And that how it works! ISP sells Bob in Mount Everest a small dish and modem. Bob pays lots of money for a capped link (capped down and up) and gets pretty constant coverage (pending extreme weather.. maybe Mount Everest wasn’t such a good example!). The ISP has leased capacity (transponders) off a satellite which is owned by a satellite operator. The transponders have coverage over Mount Everst. The ISP pays $/MHz/month usually, and the more Mbps they need, the more MHz (i.e. transponders) they need to lease.</p>
+<p>This explains the &quot;forward&quot; link, namely Bob downloading something. But the same thing happens for the &quot;return&quot; link (Bob uploading something / requesting data from a web page).. just in reserve.. Bob's computer requests data, this is sent to Bob's modem, which modulates the data onto an RF wave which is subsequently transmitted by Bob's dish. The satellite receives this, changes the frequency of the signal, amplifies and retransmits towards the gateway. Gateway receives, demodulates and hooks into the web at the internet exchange.. the satellite is almost transparent, except for the increase in latency.</p>
+<p>TLDR; satellite operators buy, own, launch and operate satellites. ISPs lease capacity on these satellites and use it to provide data to their own customers. ISPs make money from customers, operators make money from ISPs.</p>
+<p>Edit: corrected some rogue apostrophes.. and just wanted to say thanks for the Reddit gold!</p>
+<p>Edit2: added a final paragraph to talk about the return link, added a TLDR, and made minor edits/spelling corrections</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="drne4mq">
+		<a class="author" href="https://www.reddit.com/user/WeDriftEternal" target="_blank">WeDriftEternal</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>So, now the real answer </p>
+<p>There’s a lot of satellites up there with a lot of capacity. It’s a very mature industry and capacity is always available. There’s actually a lot more space than the sat owners can sell at market rates. </p>
+<p>Space/capacity on the satellites are leased out to other companies. It’s actually not that expensive. In fact tons and tons of companies big and small lease space on the various satellites up there. This is standard procedure. You can even pay companies to do all your uplink and downlink too, and again, this is quite mature industry and totally normal and reasonably priced.  Nearly every company that isn’t a satellite company just leases space and pays someone else to deal with the uplink and technical stuff. </p>
+<p>Actually launching a satellite?  Well, unless you’re literally a satellite company, you don’t need as much space as you put onto a satellite, so it’s kinda a waste, you’d just have to rent out the rest of it. Instead you just lease space on someone else’s sat. </p>
+<p>Think about it like you building an apartment building vs renting an apartment in the building  </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="drnf2jd">
+		<a class="author" href="https://www.reddit.com/user/myrrh09" target="_blank">myrrh09</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'm assuming you're talking about the communication satellite industry.  There are several other ways to make money with satellites, but comm sats seems to be your question.</p>
+<p>Every satellite that launches contains a range of frequencies of RF energy they can broadcast pointed at the earth.  If I'm a small telecom company, I talk to the satellite owner to lease some of that frequency space -- leasing bandwidth.  That bandwidth correlates pretty closely to a data rate that can be passed through those frequencies.  The higher the data rate the higher the bandwidth, but the more I can do with it. Low data rates might be something like satellite phones, higher data rates might be something like video conferencing.</p>
+<p>For instance, Gogo Inflight Internet, available on many of the major US airlines, leases bandwidth from (I believe) Inmarsat to provide inflight Internet.  They pay Inmarsat to use those frequencies, and make money by charging fliers to use the internet. Inmarsat spends a lot of money up front to do the launch, and a small amount of money per year later to maintain the service.  So the longer a satellite is on orbit the more money they can make.</p>
+<p>Recently, satellite companies have been expanding their reach.  Lower frequencies that have been in use for a while (think C-band), broadcast across the entire earth, so you can really only use those frequencies once.  Higher frequencies have shaped footprints on the earth, allowing re-use.  In the Inmarsat example above, Gogo leases Ku frequencies which are only broadcast onto North America (and in some cases, only the US).  That allows them to use the same frequencies to service South America.  Ka, even higher frequencies, result in even smaller footprints -- on the order of a couple states -- allowing much more re-use.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="drndvgb">
+		<a class="author" href="https://www.reddit.com/user/mongohands" target="_blank">mongohands</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>npr answered this question recently in a great 4 part podcast <a href="https://www.npr.org/sections/money/2017/12/01/567267573/planet-money-goes-to-space" target="_blank">here</a>. Essentially everyone and their mother is trying to put a satellite in space which creates lots of competing companies trying to do it with the best cost to risk ratio. That, combined with the development of &quot;small tech&quot; (think smart phones), made satellites compact and efficient rather then massive and expensive. Got a couple hundred thousand dollars lying around? You could have your own spy satellite.</p>
+<p>Also any small telecom company is relatively large compared to most small business. They're bound to have at least a few million in capital. They could negotiate deals to use existing satellites or send their own.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="drnek26">
+		<a class="author" href="https://www.reddit.com/user/BcuzNoReason" target="_blank">BcuzNoReason</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Imagine a stage surrounded by a huge stadium, with famous singers from several different countries all there on stage and singing to the audience. The audience, while all mixed together, can hear exactly who they want through magic earphones. </p>
+<p>The stage is like a satellite chasis, and the singers are what we call the 'payload' (because it pays the bills har!). It's the part of the satellite that broadcasts down to earth some useful service.
+The payload can service a HUGE number of people, several different countries or half the planet sometimes, and for decades in some cases, so it's like the stadium will constantly sell tickets to a lot of people for a long time to fund the initial cost of getting everyone together and singing. </p>
+<p>Compared to some other services like having a small party with all those singers (say, fiber optic internet to a small village), satellite service can be much cheaper than alternatives through economy of scale. </p>
+<p>So small telcoms can be represented by just getting one or two singers into the show, and not having to set up the whole production.</p>
+<p>Source: I actually work with these types of satellites on a daily basis</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/7lls16" onclick="return false"><span>show</span></a>
+</li>
