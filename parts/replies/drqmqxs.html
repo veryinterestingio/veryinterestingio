@@ -1,0 +1,95 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ternal38" target="_blank">ternal38</a>
+			<div class="markdown"><p>A few of the other details:</p>
+<p>-Some clocks use the net frequency </p>
+<ul>
+<li>residential solar panels here in Belgium look for a 50hz frequency from the net to sync with , they would refuse to sync due to  the difference in frequency.(more details in posts below)</li>
+</ul>
+<p>-Also there are A lot of different countries here sharing the same net so imagine the politics involved of lowering a net's frequency dependant on load.</p>
+<p>A little sidenote , any motor with a frequency drive wouldn't mind at all that the frequency was lowered a bit.
+However a lot of automation hardware has a 50hz filter on its inputs to avoid faulty measurement from induction, most of these filters would be less effective , effectiveness depending on what type of filtering is used .</p>
+<p>Sources: technician as a job , undergrad electronics education</p>
+<p>Edit : solar panels</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/merc08" target="_blank">merc08</a>
+			<div class="markdown"><p>Those all sound like problems with changing the system currently in place due to additions built to take advantage (or mitigate) quirks in the system.  If it was originally designed to lower the frequency instead, how would it impact the development of devices connected?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/robot_mower_guy" target="_blank">robot_mower_guy</a>
+			<div class="markdown"><p>As stated above, old clocks would have been a problem as decent local internal clock sources were not yet cheap enough. Old school television sets also needed to sync with the mains as that's how it got its clock source. This is why American television sets would operate at 30Hz and European sets would operate at 25Hz.</p>
+<p>Edit: I was wrong about the television sets. See comment below. </p>
+<p>Getting equipment to operate at different frequencies is possible now, but very expensive to the point its not worth it. For example, big air conditioners use 3phase, and slowing the frequency by 10% would slow the compressor by the same 10% which would cause a significant drop in performance (greater than 10%).</p>
+<p>About to board a plane, otherwise I would enjoy going into more detail. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ternal38" target="_blank">ternal38</a>
+			<div class="markdown"><p>Development is not really an issue you can incorporate this in future designs easily.
+However asking the entire industry to review their automation hardware is a tremendous cost.
+Systems need to be replaced , that means downtime , downtime means major losses.
+Next huge loss would be cost of the new equipment and paychecks to the electricians doing the actual work.
+Some industries couldn't afford this.</p>
+<p>And this still leaves the fact that all motors are 50hz(60 in USA) so gl putting frequency inverters on each motor....</p>
+<p>If it was designed to operate at a lower frequency some issues still pop up when you raise the frequency then ...</p>
+<p>Induction motors(frequently used) rpm formula:</p>
+<p>Rpm=frequency<em>(2/number of poles)</em>60</p>
+<p>So a 4 pole(they always come in pairs) induction motor on an european 50hz net has 1500 rpm
+2 pole motor has 3000rpm</p>
+<p>The 60 is derived from hz( periods/s) to rpm(in minutes)</p>
+<p>So even if its designed for a lower frequency then the rpm of your motor still wouldn't match the nominal speed in a machine.
+For some machines this wouldn't matter , for some it does.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drake7707" target="_blank">drake7707</a>
+			<div class="markdown"><blockquote>
+<p>-most residential solar panels here in Belgium look for a 50hz frequency from the net to sync with , some models would refuse to sync due to the difference in frequency.</p>
+</blockquote>
+<p>All models should refuse to sync iirc. One way to have the safety ensured when there's a maintenance crew is to change the frequency so that the solar panels stop feeding into the grid.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shagieIsMe" target="_blank">shagieIsMe</a>
+			<div class="markdown"><p>There are people who are fanatical about recording the proper time for events.  There's a database that maintains a <a href="https://www.iana.org/time-zones" target="_blank">history of time</a>.  It has such gems in it as:</p>
+<pre><code># In early February 1948, in response to California's electricity shortage,
+# PG&amp;E changed power frequency from 60 to 59.5 Hz during daylight hours,
+# causing electric clocks to lose six minutes per day.  (This did not change
+# legal time, and is not part of the data here.)  See:
+# Ross SA. An energy crisis from the past: Northern California in 1948.
+# Working Paper No. 8, Institute of Governmental Studies, UC Berkeley,
+# 1973-11.  https://escholarship.org/uc/item/8x22k30c</code></pre>
+<p>So... just consider the joys of having your electric clock lose 6 minutes per day and historians trying to figure out what times things happened.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/e-herder" target="_blank">e-herder</a>
+			<div class="markdown"><p>You have some good points. I posted this elsewhere and am pasting it here, do some research on v/hz limiters and core saturation. </p>
+<p>&quot;Transformer cores and generator stator cores would oversaturate leading to severe overheating very quickly leading to severe irreperable damage if frequency dropped that much and the system somehow tried to ride it through. The gens are unlikely to pull out of phase at anything but the most severe conditions which i suppose this would qualify as, potentially leading to pole slip and severe generator damage depending on generator type (salient pole or non) and prime mover type. these would probably cause the most large scale damage to the generation and transmission/distribution systems as a whole. </p>
+<p>You are definitely right that different units have different overload capabilities and react differently to these absolutely extreme conditions. </p>
+<p>Customer loads would mostly be motor damage, and with modern motor controls that would be limited. Most electronics would protect themselves. &quot;</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ErieSpirit" target="_blank">ErieSpirit</a>
+			<div class="markdown"><p>To clarify your comment a bit (retired EE here who designed system wide generation control systems for utilities, and dealt with this very thing).</p>
+<p>Generators are synchronous machines, and every generator in an interconnected grid by definition run at the same speed. Each utility in a grid is responsible for generating enough power to meet its demands +/- power it is buying or selling across its interconnecting tie lines to neighboring utilities. The calculation to determine the needed power generation is to net out the power flow  on its tie lines and adjust generation so that net number meets the amount being bought or sold (called Area Control Error, or ACE). Two additional factors are entered in, the first being the frequency control error, so if under frequency more power is generated. Second is the grid wise integrated frequency error in order to make up for past over/under frequencies. The latter is coordinated grid wide.</p>
+<p>If a given utility cannot meet its own requirements, and has not bought power to make that up, it will draw unscheduled power over its tie lines. This will start to drag the system frequency down, which will cause other utilities to generate more. It does not cause any specific fault currents on the generators themselves.</p>
+<p>If all utilities on the grid cannot keep up, then this will cause a grid wide frequency droop, which does ocassionally happen. Since as you pointed out the load side of things does not like any significant drop in frequencies the utilities will start shedding loads as necessary to keep their ACE at the target point.</p>
+<p>This whole process does not cause fault currents between generators.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Wetmelon" target="_blank">Wetmelon</a>
+			<div class="markdown"><p>So you really just have a basic PI loop on frequency?  Neat.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ErieSpirit" target="_blank">ErieSpirit</a>
+			<div class="markdown"><p>Yeah, there are actually a bunch of PID loops and calculations. Once the ACE is calculated (net power imbalance plus frequency error plus integrated frequency error), then a calculation is run to determine the most economic loading of each generator in the system. From that a control PID is applied to bring each generator to its desired load point. The ACE is typically calculated every 4 seconds, and the generator PID as fast as the processor allows.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rivalarrival" target="_blank">rivalarrival</a>
+			<div class="markdown"><p>All good, except for one part: If they are attached to the grid, they would all naturally slow in sync. A generator that found itself slightly &quot;ahead&quot; of the grid would face a much higher load that would bring its speed down; a generator that fell &quot;behind&quot; the grid would face a much lower load, and thus speed up, or even be pushed ahead of its kinetic power source. </p>
+<p>You recognize the phenomenon when you talk about induction motors slowing in sync, but you forget that the only major difference between a generator and an induction motor is whether the shaft is driven by kinetic energy, or it's driving a kinetic load. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Timbitkiller" target="_blank">Timbitkiller</a>
+			<div class="markdown"><p>Another thing to take into account is the turbine itself. Typically designed for either 1800 or 3600 rpm a turbine is a finicky beast and if you were to just arbitrarily slow down a turbine to operate outside of its design speed you may introduce vibrations that can damage the equipment. </p>
+<p>I have a few clients with turbines that have a mind of their owns who go through strange harmonics during ramp up or shit downs. </p>
+<p>One of my mills goes through 2 or 3 vibration trips every time they start up their 6 MW backpressure turbine generator, but once it's up to speed it runs very smoothly. </p></div>		</li>
+					</ul>
+		</ul>
+	
