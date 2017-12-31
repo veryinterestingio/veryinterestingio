@@ -1,0 +1,56 @@
+<div class="answers">
+	<div class="answer" data-handle="drvg6z0">
+		<a class="author" href="https://www.reddit.com/user/ludonarrator" target="_blank">ludonarrator</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A CPU can only work on stuff in its cache and the RAM of the device (be it PC / Mac / console / mobile / etc). However, such memory is volatile, and loses all its data if it is not powered. To solve this problem, secondary storage exists: hard disk drives, DVD drives, USB disks, flash memory, etc. They hold persistent data that is then transferred to the RAM as and when needed, to be worked on by the CPU. </p>
+<p>Now, when a computer boots up, a lot of its core processes and functions are pre loaded into RAM and kept there permanently, for regular usage. (The first of this stuff that loads is known as the <em>kernel</em>.) They are also heavily dependent on each other; eg, the input manager talks to the process scheduler and the graphics and memory controllers when you press a button. Because these are so interconnected, shutting one down to update it is not usually possible without breaking the rest of the OS' functionality*.</p>
+<p>So how do we update them? By replacing the files <em>on disk</em>, not touching anything already in memory, and then rebooting, so that the computer uses the new, updated files from the start. </p>
+<p>*In fact, Linux's OS architecture and process handling tackles this modularity so well that it can largely update without a restart.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="drvidt7">
+		<a class="author" href="https://www.reddit.com/user/ThisIsntGoldWorthy" target="_blank">ThisIsntGoldWorthy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The only correct answer is that it is simply easier to treat the code as immutable, and restart the program whenever you want to change the code. It is more than possible to design systems, even operating systems or other low level programs which don't need to be rebooted in order to update(this concept is called 'hot swapping'), but it is harder to design those systems and sometimes also harder to reason about their correctness. Imagine it this way: Rebooting to update software is like putting a car into a garage and upgrading the engine. Doing a live update is like upgrading your engine while you are going down the highway at 65mph.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="drv3l1x">
+		<a class="author" href="https://www.reddit.com/user/Wesside" target="_blank">Wesside</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>That entirely depends on the system, and what is being updated.</p>
+<p>Linux can largely be updated with no restarting required, but that's because it can disable individual sections of the system, update them, then turn them back on.</p>
+<p>Windows can't do this, so it needs rebooting for system updates because it can't change files that are in use (typically anyway).</p>
+<p>As far as consoles, I'm not sure, since the PS3/4 have a <del>Linux</del> FreeBSD backend so they <strong><em>can't</em></strong> hot patch, while the Xbox and Nintendo systems I've got no experience with so I can't really say.</p>
+<p>I'm sure someone will give a vastly more in depth reason though.</p>
+<p>[Edit] Updated as /u/blue_collie pointed out PS3/4 are FreeBSD not Linux backends.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="drv4q63">
+		<a class="author" href="https://www.reddit.com/user/BerugaBomb" target="_blank">BerugaBomb</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Windows places locks on files in use.  The reasoning is you don't want to open a file, make changes but not save, and then have something else make changes to the file and save them.  Because when you do save the file, you'll overwrite the changes made by the other process.  So when your computer is on, a lot of system files are locked.  If windows needs to make changes to one in a patch, it'll set a flag and upon reboot, make the change since the file will no longer be in use at that point.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="drvh5ob">
+		<a class="author" href="https://www.reddit.com/user/robododo" target="_blank">robododo</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I used to work on Windows, so I can speak a bit as to why the xbox needs this.</p>
+<p>Windows requires rebooting because of a few key OS processes that cannot be simply replaced and restarted. For instance, lsass.exe, which is responsible for logging you in and taking care of lots of security &quot;stuff&quot;, cannot be shut down and replaced at runtime. This could, possibly, be fixed. However, untangling the dependencies and sorting things out safely would be a nightmare.</p>
+<p>There were so many things on Windows that would be a lot easier if back-compat wasn't so important. However, we always had to be sure the last 20+ years of applications would run after any changes. This makes things a bit tricky at times, to say the least :)</p>
+<p>The reboot pain is understood, and that's why new features have been added over time to help make things easier. &quot;Use my sign in info to automatically finish setting up my device after an update or restart.&quot; is one such baby step.</p>
+<p>edit 1: Sorry if it wasn't obvious, but I'm talking about Windows because xbox runs Windows.</p>
+<p>edit 2: Also, if the hypervisor is being patched, a reboot is almost always needed. Reliably hot patching the hypervisor is possible, but it's much simpler to reboot when applying hypervisor updates.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

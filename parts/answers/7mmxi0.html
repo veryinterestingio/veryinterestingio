@@ -1,0 +1,49 @@
+<div class="answers">
+	<div class="answer" data-handle="drv5nd9">
+		<a class="author" href="https://www.reddit.com/user/memmerto" target="_blank">memmerto</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>IBM's POWER server chips have supported 2 threads per core since POWER5, 4 threads per core since POWER7 and 8 threads per core since POWER8.  As someone else said, multiple threads really only helps in server applications when you're hitting the server with 10s or 100s of concurrent clients.</p>
+<p>There are limits - decreasing efficiency - as the thread counts get higher, due to concurrency, cache efficiency, and main memory latency.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="drv3hwe">
+		<a class="author" href="https://www.reddit.com/user/alsaway" target="_blank">alsaway</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Oh there are, just usually in server software. Sun has 8+ threads per core. These are a lot more beneficial in things like file servers. I had a client a few years ago running on the T2 (or T3?)?. It was running some advanced mathematical computations and they couldn't figure out why it ran incredibly slow. So much so that my 3 year old laptop (at the time) ran their computations faster than their &quot;top of the line&quot; server.</p>
+<p>The problem became thread switching. When it served small pieces the thread switching wasn't as pronounced, but trying to do huge computational tasks the system was burdened by it.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="drv8ed1">
+		<a class="author" href="https://www.reddit.com/user/istasber" target="_blank">istasber</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This is kind of an over simplified analogy, but hyperthreading is sort of like those fast food restaurants that have two order speakers in the drive thru, but only one person taking orders.</p>
+<p>When a car gets to one of the speakers that needs some extra time to decide, orders can still be taken from the other speaker, so one person (cpu core) can effectively handle multiple orders (threads) at once.</p>
+<p>But there's some logistical problems that can come up, keeping the orders straight, making sure the right car gets the right order, etc. The more speakers (hyperthreads) you add without increasing the number of workers (cpu cores), the more likely or costly these logistical problems will be, and the rarer the benefit will be (i.e. you'd now have to have two completely indecisive cars holding up speakers to get the full benefit, but you have to pay the logistical all of the time, even when every car has their exact order and payment ready to go).</p>
+<p>There's probably cases where there's enough uncertainty or delay in the operations that more than two hyperthreads per core makes sense (like in databases or other types of data servers), but it's just not beneficial enough in every day tasks to make up for the cost of adding it to desktop/laptop CPUs.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="drv7zpl">
+		<a class="author" href="https://www.reddit.com/user/axislegend" target="_blank">axislegend</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><blockquote>
+<p>Multi-threading allows higher end CPUs to have each individual core act as two virtual cores</p>
+</blockquote>
+<p><del><em>IMO (could be wrong) multi-threading commonly refers to the use of multiple threads in programming, and has nothing to do with what you described. Read up on hyper-threading instead.</em></del></p>
+<p>What hyper-threading does, essentially, is do some extea bit of work on a logical processor when the other logical processor on the same physical core is stalled (waiting for resources). Note that, even though you get two logical processors, they still share the same physical resources (the physical core). </p>
+<p>Although this approach provides greater efficiency (in the form of parallelism), the combined computing power of the two logical processors is still less than that of two physical processors, because one has to wait until the other stalls, or it can be described as “work-stealing”. This limitation can be observed when running parallelized algorithms on a hyper-threading enabled CPU: As you gradually increase the number of processors available to the algorithm, the speedup you get is linear at first, but slows down when the number of processors hits the number of physical cores.</p>
+<p>Because of its “work-stealing” nature, there is a rapidly diminishing return of adding extra logical processors to a physical core. Thus why hardware designers tend to only include two.</p>
+<p>Edit: reading through others’ comments, it seems that there are server-grade CPUs that have more than two logical processors per core. I’ll admit I don’t know much about the server-side of things. But I imagine that’s only justifiable given the specific workloads the design is optimizing for.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="drv7395">
+		<a class="author" href="https://www.reddit.com/user/digilec" target="_blank">digilec</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>As others have said, there is no limit to software multi-threading.
+Do you mean hyper-threading? </p>
+<p>If so it's probably because the gains would only be marginal at best.</p>
+<p>Hyper-threading is an intel CPU feature which provides 2 virtual cores per each physical core. This allows parts of the CPU pipeline to continue to work on the other virtual core when it would otherwise be blocked. </p>
+<p>It's not the same as full software based multi-threading which is essentially time division multiplexing of the entire CPU core.</p>
+<p>There aren't that many cases in typical program code where instructions use totally different parts of the CPU core for long durations, so the gains are slight.</p>
+<p>TL;DR one hyper-threading core is not equivalent to two dedicated cores.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>

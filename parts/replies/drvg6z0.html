@@ -1,0 +1,101 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/archlich" target="_blank">archlich</a>
+			<div class="markdown"><p>To expand upon the answer. The core processes and functions are referred to as the kernel.</p>
+<p>Linux processes that are already running during these updates will not be updated until the process is restart.</p>
+<p>Also, there are mechanisms to update the kernel while it is running. One example of this is the ksplice project, but writing these patches is non-trivial.</p>
+<p>The short answer, is that it's much easier to restart and have the system come up in a known consistent state.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mirziemlichegal" target="_blank">mirziemlichegal</a>
+			<div class="markdown"><p>To expand on this expansion. Not all shutdowns and reboots are strictly necessary just because the computer wants it. They reboot so that it's always a clean boot with a fresh system, not thinking to much about if it would be possible to avoid it. New patch =&gt; better reboot asap, its' easier than even starting to think about if the patch really needs it. </p>
+<p>A reboot may also be needed not because it's is impossible to patch the system in a way that it doesn't need one, but because it may be extremely difficult to do so reliable. </p>
+<p>Take Windows for example, if you install a patch that patches something you don't even use and the computer wants a reboot, it doesn't really need it, it just doesn't decide if it has to. It's always a yes.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Richy_T" target="_blank">Richy_T</a>
+			<div class="markdown"><p>Windows has definitely got better about it. I often find I might be installing 2 or 3 things at a time so when it asks me about rebooting, I say no. Most of the time whatever it is works just fine.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FallenAege" target="_blank">FallenAege</a>
+			<div class="markdown"><p>What about drivers? I always have to restart after installing drivers</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/faece" target="_blank">faece</a>
+			<div class="markdown"><p>To expand the expansion of the expansion, it's technically possible to do everything without a reboot by having kernels that are not monolithic. Some platforms today are actually capable of  getting all kinds of updates and not rebooting completely but these are not the ones that most people use at home.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VibraphoneFuckup" target="_blank">VibraphoneFuckup</a>
+			<div class="markdown"><p>This is interesting to me. In what situations would using ksplice be absolutely necessary, where making a patch that could update without a restart be more convenient than simply shutting the system down for a few minutes?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HappyVlane" target="_blank">HappyVlane</a>
+			<div class="markdown"><p>I don't have experience with ksplice, but generally you don't want to do a restart in situations where uptime matters (think mission critical stuff). Preferably you always have an active system on standby, but that isn't always the case and even if you do I always get a bit of a bad feeling when we do the switch to the standby component.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/archlich" target="_blank">archlich</a>
+			<div class="markdown"><p>When it's more than one system. When you're running tens, or hundreds of thousands of systems that require a hotfix and a rolling restart is not fast enough.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NumNumLobster" target="_blank">NumNumLobster</a>
+			<div class="markdown"><p>for most people shutting down isnt a huge deal.  for servers, banks, accounting systems, building security systems etc any down time can be expensive.  there are ways to mitigate it on that side too but if its an important enough system best sometimes not to take it down and flirt with what might happen</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fsdaasdfasdfa" target="_blank">fsdaasdfasdfa</a>
+			<div class="markdown"><p>Not all updates are updating code that runs in the kernel. Most (all?) widely used general purpose OSes also have dynamic libraries which are provided by (and thus patched by) the vendor but loaded by third party applications. For example, applications on iOS that want to render webpages load a dynamic library written by Apple that implements basic Web browser functionality; if Apple wants to patch that library and ensure the patched version is loaded, they have to kill any processes that loaded the old version.</p>
+<p>Without doing away with this architecture (and replacing it with isolated stateless services or something) or tracking which processes have loaded which libraries, a reboot is a simple way to ensure that all dynamic libraries potentially used by third party processes are reloaded.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/archlich" target="_blank">archlich</a>
+			<div class="markdown"><p>You can update dlls, or shared libraries while running. But processes that use that shared library will require a restart, since they're linked against the older version.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shmageggy" target="_blank">shmageggy</a>
+			<div class="markdown"><p><del>None of the other answers above this one (there are 7 right now) actually give the technical answer to the question like this one does. Hopefully this makes it farther up.</del> edit: yay</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Snoopy_Doggy" target="_blank">Snoopy_Doggy</a>
+			<div class="markdown"><p>This isn't the actual answer. Persistent vs transient memory is part of it, yes, but it's absolutely possible to have a system which never requires a reboot, like Linux, it just takes more effort to do so. </p>
+<p>Meaning, it's <em>much</em> simpler to reboot after updating core software than it is to write code to properly shut down and reload all modules in the correct order as if it were a fresh reboot. And it doesn't necessarily save you that much time in exchange for all the effort. A reboot is often quicker. </p>
+<p>Windows is a special beast, its updates often have to work during mid-bootup sequence, since in general it's hard, if not near-impossible for every single change to track every possible dependent consequence of that change, while things are running. </p>
+<p>Imagine trying to change your car's engine or transmission while it's running and you get the point. Or even just the coolant (ouch!).</p>
+<p>I write this in all seriousness as a professional programmer with decades of experience.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jnkml18" target="_blank">jnkml18</a>
+			<div class="markdown"><p>Most of the time people still reboot for Linux kernel patching. Ksplice and live kernel patching isn't really something most production environments are comfortable with.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/primatorn" target="_blank">primatorn</a>
+			<div class="markdown"><p>Anything is possible given enough resources and tolerance for an occasional system “hiccup”. Given enough RAM, one could stand up a second copy of the kernel and switchover to it on the fly.  One could equip kernel subsystems with the ability to save state/quiesce/restore state (some of it is already there for power management/hibernation) and design kernel data structures in a way that allows to track every pointer that needs to change before such a switchover is possible. Hot-patching technologies like KSplice do something like that, albeit in a much more targeted manner - and even their applicability is greatly limited. So yeah, it is possible to design a non-rebooting system, but our efforts are better spent on things other than making the scheduler hot-swappable. Reducing boot time and making applications resumable go a long way towards making an occasional reboot more tolerable - and that’s on top of other benefits. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/masklinn" target="_blank">masklinn</a>
+			<div class="markdown"><blockquote>
+<p>This isn't the actual answer. Persistent vs transient memory is part of it, yes, but it's absolutely possible to have a system which never requires a reboot, like Linux, it just takes more effort to do so.</p>
+</blockquote>
+<p>Significantly so, and it's much harder to test as you need to handle both patching the executable in-memory and <em>migrating existing in-flight data</em>, and any corner case you missed will definitely lead to data corruption.</p>
+<p>Erlang/OTP has built-in support for <a href="http://erlang.org/doc/reference_manual/code_loading.html#id90252" target="_blank">hot code replacement</a>/<a href="http://erlang.org/doc/design_principles/release_handling.html" target="_blank">live upgrades</a> yet even there it's a pretty rare thing as it gets hairy quickly for non-trivial systems.</p>
+<p>For kernels/base systems, things get trickier as you may need to update bits of applications alongside the kernel.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/2317" target="_blank">2317</a>
+			<div class="markdown"><p>Farther or further though?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CommanderCuntPunt" target="_blank">CommanderCuntPunt</a>
+			<div class="markdown"><p>It doesn’t really matter for the purposes of this explanation, but I thought a cpu can only manipulate data that is loaded into a register. Isn’t the ram and the cpu cache just another level of storage meant to get things into registers faster?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SomeoneStoleMyName" target="_blank">SomeoneStoleMyName</a>
+			<div class="markdown"><p>This is called a load/store architecture and is the most common, it's what ARM and all the other RISC designs use. On desktops we still generally use Intel/AMD x86 CPUs though which are a register memory architecture. They can read directly from memory for operations, although I believe they always have to write the result to registers.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/splidge" target="_blank">splidge</a>
+			<div class="markdown"><p>But a modern x86 implementation will split any instruction with a memory operand into micro-ops: a load and then the operation itself with pure register operands.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ludonarrator" target="_blank">ludonarrator</a>
+			<div class="markdown"><p>Quite right; I decided to pack it all up into just two groups to simplify the answer: </p>
+<p><code>(CPU + RAM) || (SSD/HDD)</code>.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MaltersWandler" target="_blank">MaltersWandler</a>
+			<div class="markdown"><p>It can only manipulate data in registers, yes, but it can execute code from RAM.</p></div>		</li>
+					</ul>
+		</ul>
+	

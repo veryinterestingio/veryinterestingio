@@ -1,0 +1,41 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/foleyatwork" target="_blank">foleyatwork</a>
+			<div class="markdown"><p>Speaking as a software engineer, this answer makes sense to me.</p>
+<p>And rather than building a thing that does live code swapping you'd probably be better off optimizing the reboot.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EmperorArthur" target="_blank">EmperorArthur</a>
+			<div class="markdown"><blockquote>
+<p>And rather than building a thing that does live code swapping you'd probably be better off optimizing the reboot.</p>
+</blockquote>
+<p>Especially because systems need to be turned off and on all the time.  A properly designed production system not only will deal with computers failing, but will also bring extra computers online when dealing with heavy loads.  The faster you can bring failed systems and new systems up, the less likely bad things (tm) are to happen.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/yiliu" target="_blank">yiliu</a>
+			<div class="markdown"><p>Another metaphor: it's like renovating an office building while people are working inside. You could do it, by moving desks and departments, and handing all the resulting confusion (think of the poor mail room), and doing a lot of cleanup and maintenance. If you mess up the temporary addressing, or your blueprint is off, things could grind to a halt (i.e. crash) real quick. Worse, you might send things to the wrong address and cause weird stuff to happen (send your important records to the incinerator instead of the archive, send salary information to a department other than accounting), causing permanent issues (i.e. data corruption).</p>
+<p>Or, you could kick the employees out, gut the building, rebuild, and then welcome the employees back.</p>
+<p>Key point: an in-place upgrade requires a plan for not just the new structure, but for the processes and daily goings-on (i.e. cached data, in-memory data structures, open files, and so on). You need to ensure that either things behave exactly as before, and that a brief interruption won't be an issue, or you need to plan how to handle the changes.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JayStar1213" target="_blank">JayStar1213</a>
+			<div class="markdown"><p>This is a far better metaphor since it's practical and actually happens. The other makes it sound impossible when it's far from. It's just a pain.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ShadoWolf" target="_blank">ShadoWolf</a>
+			<div class="markdown"><p>I think there might be another side to this.  The technical hurdle of a hotswapabilty is sort of rooted in how things have evoled.  Like we don't expect a kernel module or system driver to have method to transfer and merger it system state to a newer version of said driver. But if that was a key focus back in the 80's we would have likely created a whole tool chain of technologies to make it simpler</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/yiliu" target="_blank">yiliu</a>
+			<div class="markdown"><p>That's definitely true. Linux is better at in-place upgrades than Windows, despite not really being built for it. Languages like Erlang are built from the ground up to allow for running upgrades.</p>
+<p>Having said that, upgrading a running system fundamentally can't be <em>as</em> easy as upgrading a system that's not. Erlang manages what it does by setting significant limits on the style of programming: it's strictly functional and message-passing, in a specialty-designed VM. Even so, upgraded code needs to handle multiple versions of messages and whatnot. There's also an associated performance penalty.</p>
+<p>Trying to accomplish the same sort of in-processes upgrade in a language like C or Java would be pretty crazy.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Wertsir" target="_blank">Wertsir</a>
+			<div class="markdown"><blockquote>
+<p>Rebooting to update software is like putting a car into a garage and upgrading the engine. Doing a live update is like upgrading your engine while you are going down the highway at 65mph.</p>
+</blockquote>
+<p>And, like in the metaphor, changing it while driving is not only much more <em>difficult</em>, but also far more likely to break when you hit something you didn't see coming.</p></div>		</li>
+					</ul>
+	
