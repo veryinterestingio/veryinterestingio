@@ -1,0 +1,51 @@
+<div class="answers">
+	<div class="answer" data-handle="ds31wd3">
+		<a class="author" href="https://www.reddit.com/user/golden_one_42" target="_blank">golden_one_42</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>the simple version is that they shine a laser UP, and watch for it's reflection/refraction in the air. </p>
+<p>then, they apply the opposite of that reflection to the image they record, and end up with a pretty clear image.  </p>
+<p>someone will likely give a more detailed answer, but that's the simple version.  </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ds3f3q6">
+		<a class="author" href="https://www.reddit.com/user/larryobrien" target="_blank">larryobrien</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>First, there's the basic concept: the atmosphere distorts the light in the same way that a rippling surface of water will distort what's beneath. If you can physically distort a mirror such that it cancels out those ripples, you get a vastly sharper image at the imager. </p>
+<p>You can figure out the distortions that are present by looking at how a point source such as a star is distorting. Most targets are &quot;faint and fuzzy&quot; and require very long exposures for enough photons to collect in the pixel sensors to produce data. So you cannot generally use the target as the point source. If there happens to be a natural star that's close to the target in the field-of-view, you can do AO on that. (&quot;Natural Guide Star&quot; NGS.) </p>
+<p>But since the FOV is quite small, often AO involves shooting a laser into the sky. There is a layer in the atmosphere about 90Km up that is rich in sodium atoms. A laser that produces a 589nm light (a shade of yellow) at about 15-20W (which is a lot!) is directed into the sky alongside the target.  Traditionally, these have been single point-source but a new generation of &quot;multi-conjugate&quot; AO systems are coming online that have multiple lasers (the artificial guide stars they produce look like the &quot;5&quot; pattern on a 6-sided die). </p>
+<p>So these &quot;artificial guide star(s)&quot; are your point-source that are rippling according to the atmosphere. You insert a small pick-off mirror into the light path and direct the AGS image into a &quot;wavefront sensor&quot; (WFS). I'm going to hand-wave a little and just say &quot;this measures the ripples / distortion and calculates the necessary corrections at about 1000 times per second.&quot; (/u/tatsuling does a good job explaining this in his answer.) </p>
+<p>The corrections are sent to a &quot;deformable mirror&quot; that is downstream in the light path. The deformable mirror corrects the distortions and bounces the light into the instrument. (Fun fact: pretty much <em>all</em> the mirrors in the instrument are deformed at various frequencies to correct for gravity, vibration, etc. They're really amazing dynamic systems.) </p>
+<p>How good is AO? Gemini Observatory's multiple-lasers GeMS instrument can produce &quot;angular resolution (the size of the smallest detail that can be resolved) of 0.04 to 0.06 arcsecond over a field of 85 arcseconds squared, which significantly beats the typical resolution in &quot;seeing&quot; limited (non-AO) conditions of 0.5 arcsecond at good astronomical sites.&quot; </p>
+<p>P.S. If you've returned some of your Christmas gifts for credit, you can buy yourself a kit: <a href="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=3208" target="_blank">https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=3208</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ds3g9kf">
+		<a class="author" href="https://www.reddit.com/user/xloud" target="_blank">xloud</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The key to understanding adaptive optics is a device called a Shack-Hartmann. Search Wikipedia for it to see a diagram. It's basically a special lens that works like an insect eye: splitting the view into hundreds of little images. </p>
+<p>Other posters already mentioned the laser guidestar which gives the Shack-Hartmann a simple dot to look at. If there were no distortions, the insect lens would just see 100 images with the laser dot in the middle. Instead if there are distortions, the dot won't be in the middle of each image - and that's how you measure how much adapting your adaptive optics have to do.</p>
+<p>The total atmospheric aberration can be summarized as a &quot;tilt&quot; offset at each point in an image. So the Shack-Hartmann can measure how much the dot is away from the center in each of the little images produced by the insect eye lens.</p>
+<p>Now that we know the quantity of the distortion measured at each point in the image, it's up to a deformable mirror to make the correction. The deformable mirror is just a regular mirror with a bunch of motors behind it, so tiny adjustments can be made to it - essentially creating a warped funhouse mirror.</p>
+<p>For each point where the Shack-Hartmann measured a deflection of the laser dot, the mirror deflects a corresponding correction. This results in a clear image! </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ds3axij">
+		<a class="author" href="https://www.reddit.com/user/tatsuling" target="_blank">tatsuling</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The adaptive optics system I have worked with is designed for a solar telescope and works basically like this. </p>
+<p>An image is taken (really many that are averaged) to use as a reference to match corrections to. </p>
+<p>Then a grid of pinholes are used to get multiple images from across the lens area. Each pinhole image is matched against the reference image to find how far that area of the lens is deflected by the atmosphere. </p>
+<p>This data is fed to a mirror that has many surfaces that can be deformed to reflect the light that hits just that area.</p>
+<p>I'm leaving out many details so it's ELI5.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ds3hto6">
+		<a class="author" href="https://www.reddit.com/user/Eksander" target="_blank">Eksander</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Adaptive Optics are based on feedback control which uses real time measurements. You have array sensors which measure real time wave deformation thus being able to estimate a shape function. The mirror in the optics system can then be shaped to flatten the anomalies </p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
