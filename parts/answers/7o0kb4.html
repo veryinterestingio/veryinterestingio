@@ -1,0 +1,95 @@
+<div class="answers">
+	<div class="answer" data-handle="ds67a99">
+		<a class="author" href="https://www.reddit.com/user/zoox101" target="_blank">zoox101</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are already some great answers here, but this is a really important issue for everyone to understand, so I'm going to do my best to ELI5 it even further.</p>
+<p>At it's heart, your computer works just like a library. It's constantly reading and moving information just like students read and move books. And just like any good library, your computer has a friendly librarian: Ms. Kernel. </p>
+<p>Whenever you go to check out a book, you give Ms. Kernel the title and she goes to fetch it for you.</p>
+<p>However, this library may contain some pretty secret stuff, so Ms. Kernel always checks to make sure you've got permission to read the book you're asking for.</p>
+<p>Back in the old days, Ms. Kernel had to do all the work herself, and as you might imagine, it was painfully slow. However, recently we've gotten better at designing computers that can do multiple operations at once, meaning that Ms.
+Kernel now has a bunch of assistants helping her out. Yay!</p>
+<p>This is great for the library, because now it can handle more people than ever before. However, it also creates a weakness that was only just discovered.</p>
+<p>Here's how it works...</p>
+<p>You, a mischievous ne'er do well, want to read Suzie's diary, which she keeps in the library. However, Suzie hasn't shared her diary with you, so Ms. Kernel won't let you check it out. So you decide to do something rather clever...</p>
+<p>Rather than asking for the diary directly, you ask Ms. Kernel to do two things...</p>
+<ol>
+<li>
+<p>Fetch Suzie's diary</p>
+</li>
+<li>Fetch a book where the first word in the title is the first word in Suzie's diary</li>
+</ol>
+<p>Now, back in the old days this wouldn't have been a problem. The first thing Ms. Kernel would have done would be to ask Suzie if you could read her diary. When Suzie said no, Ms. Kernel would have stopped.</p>
+<p>However the assistants make things more complicated. </p>
+<p>To save time, Ms. Kernel asks one assistant to ask Suzie for permission while the other goes to find the two books you asked for.</p>
+<p>When the first assistant tells Ms. Kernel that Suzie said no, the second one gives her the books which Ms. Kernel sets on her desk. </p>
+<p>Ms. Kernel tells you that you can't have the books. However, because they're sitting on the desk, you can read the titles. The first one's called &quot;Suzie's Diary&quot; and the second one's called &quot;The Cat in the Hat&quot;. </p>
+<p>Because you asked for a book that has a title that begins with the same word as the first word in Suzie's diary, you know that the first word in the diary must be &quot;The&quot;.</p>
+<p>If you wanted to, you could repeat this process for every word in the diary, until you could read the whole thing. </p>
+<p>The problem with this exploit is that it works in every library that has assistant librarians, which covers just about every modern processor out there.</p>
+<p>The only real fix is to force the assistants to run the check before fetching the books, which will slow down the library as a whole.</p>
+<p>The biggest issue is that the parallel processing (assistants) is leaving the cache (desk) in a different state than they found it, even though the permission check failed. </p>
+<p>Thankfully, there isn't any known malware that exploits this bug, but the safest thing to do is to update your devices as soon as a fix is released, to prevent then from being affected in the future. </p>
+<p>The performance issue shouldn't be a major problem for most personal devices (small library, few assistants) but will likely cause a performance decreases on larger machines (i.e. university supercomputers). </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ds612bs">
+		<a class="author" href="https://www.reddit.com/user/Koooooj" target="_blank">Koooooj</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The security flaw allows a program to use speculative execution and caching to read data that should not be accessible.</p>
+<p>Speculative execution is a technology where a processor is allowed to guess what the result of some slow check will be and to carry on down one path of execution.  If the processor guessed right, hooray!  Some time was saved.  If it guessed wrong then all of that execution gets undone (&quot;unwound&quot;) and the processor continues down the correct path.</p>
+<p>Caching is a technique where data is stored on the processor itself instead of in RAM.  While RAM is incredibly fast by most standards, it's slow compared to the CPU itself.  In order to keep the CPU fed with data there's a chunk of blindingly fast memory right on the processor itself.  The CPU tries to keep data that's used frequently in the cache.  </p>
+<p>One version of the bug plays out as follows:</p>
+<ol>
+<li>
+<p>Request a very slow check that's going to fail but that the processor guesses will succeed.</p>
+</li>
+<li>
+<p>Based on the assumption that that check succeeded, read some memory you're not supposed to have access to.</p>
+</li>
+<li>
+<p>If a certain bit of that illegally accessed memory is a 1, load one certain value from memory; otherwise, load a different value from memory.</p>
+</li>
+<li>
+<p>Wait for the processor to figure out that it guessed wrong; steps 2 and 3 roll back.  The check in step 1 was the security check, so the program doesn't get killed by the OS for reading someone else's memory.</p>
+</li>
+<li>Load each of the two values from step 3 and see which one loads faster.  That tells you which value was loaded during speculative execution and thus tells you the value of the bit that you're not supposed to have access to.</li>
+</ol>
+<p>You can repeat that for every bit in a byte, every byte in a kilobyte, and so on.  You can read whatever memory you want with this. </p>
+<p>There are two other variants of the bug which play out somewhat similar but more complex.</p>
+<p>This bug is especially bad because it exists at the hardware level.  You can't just fix the bug in the OS.  What you <em>can</em> do is change the way that memory is tracked.  This is brutal on the performance of the system, but it prevents the hardware bug from allowing you to access anything important. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ds6nud0">
+		<a class="author" href="https://www.reddit.com/user/mrbeehive" target="_blank">mrbeehive</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><strong>I'm not gonna focus so much on <em>how</em> the bug works, but <em>why</em>:</strong></p>
+<p>Think of you and Nicolas Cage planning lunch at the same sandwich place every Wednesday at 2pm. I don't know what you might be doing with him, but after a while, it becomes habit, and you start just showing up at the sandwich place without planning ahead with Nic. This means you have to spend less time planning, which is great. Unfortunately, sometimes he doesn't show up because he's a busy man, and you have to call around among all of your other Hollywood friends to figure out where he is. You could have avoided this with a bit of planning, but you figure - this is still faster on average, so you'll just keep expecting Nicolas Cage to show up for our weekly sandwich appointments. You'll call around if you have to.</p>
+<p>Because we want our computers to be fast, people designing computers are very interested in 'planning to make it go faster on average'. In CPU design, this kind of guessing game where you assume something to be true so you can make other things go faster is called <em>Branch Prediction</em>. Your computer guesses at the result of a calculation, and then starts preparing for the next thing that should happen <em>if that guess turns out to be right</em> while actually performing the calculation. If the prediction turns out to be right, then that's great, you can skip all the things you did while performing the calculation. If it turns out to be wrong, you have to go back and redo some work - like you, when need to call around to figure out where Nicolas Cage went because you decided to skip on planning.</p>
+<p>As a part of branch prediction, computers do <em>Speculative Execution</em>. Instead of trying to guess and do <em>one</em> thing in advance, just <em>start doing all of them at the same time</em> in advance, and then commit to whatever option turns out to be the right one, once you know which one that is. It's a bit like Nicolas Cage in <a href="https://www.youtube.com/watch?v=lufECeWtN34" target="_blank">Next</a>. In this movie, Cage can see the future, and he does it by trying a whole bunch of different futures, and then doing the one which turns out to be good for him. If you ask him to do a series of tasks that might depend on each other, he'll do all the things at once, but only the ones that turn out to be the 'correct' ones actually happen.</p>
+<p>So assume that you're having lunch with Nicolas Cage, and you ask him to fetch you the Declaration of Independence. I don't know why you need it, but <a href="https://youtu.be/mcf4tXYjaxo?t=1m28s" target="_blank">he's up for it</a>. However, none of you know if he's actually allowed to take it. No worries though, because Nicolas Cage can split into three future Nicolas Cages: One of them <em>asks if he's allowed to take it</em>, one of them <em>just takes it</em>, and the third keeps eating lunch with you. If Nic-Cage-1 asking for permission figures out that you can take the Declaration of Independence, then Nic-Cage-2 already has it. If you don't get permission, well then Nic-Cage-3 is still there eating lunch with you. </p>
+<p>This is where the security flaw pops up.</p>
+<p>The problem is that modern computers allow the security check to happen <em>after</em> the actual thing that's being done has already finished, because this lets us speed up the programs running on the computer. Now, we thought this wasn't a problem - after all, the future in which Nicolas Cage has the Declaration of Independence only happens if he's allowed to take it, in my previous example. But because computers exist in the real world and don't have super powers like Nicolas Cage, the calculations of the 'future-mode' of your computer <em>are still happening somewhere on the computer</em>, even if you aren't allowed to see the results.</p>
+<p>We thought this was fine: If you can't see the data in future-mode, and the security check denies you from accessing it in current-mode, in theory it's still secure. What the people working on these security exploits have found out, is that we can recreate the bytes of data that were being moved around in future-mode by looking at how the calculations themselves changes current-mode. And if we want to fix this, we have to make sure that security checks always happen <em>before</em> data starts getting moved around. Unfortunately, all of this future prediction happens at the hardware level, and has been a part of mainstream CPU design for many years, which is why fixing the flaw is going to be very difficult.</p>
+<p><strong>tl;dr: Though still good, your computer isn't quite as good at time wizardry as Nicolas Cage</strong></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ds668c1">
+		<a class="author" href="https://www.reddit.com/user/Raestloz" target="_blank">Raestloz</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Essentially:</p>
+<p>Your boss have a good secretary who are so good she can guess what you'd want when you ask her to do something, and she'd do it beforehand</p>
+<p>Usually this is something benign like &quot;can you arrange a meeting with boss?&quot;, she'd respond with &quot;I've already arranged it, here is the schedule&quot;</p>
+<p>But sometimes this secretary is far too good for herself, and would fetch documents based on her guesses.</p>
+<p>By making a certain request, you can make this secretary guess that you'd need some secret files and fetch those files without thinking too much, and you'd be able to read those files</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ds5zcpv">
+		<a class="author" href="https://www.reddit.com/user/sickofallofyou" target="_blank">sickofallofyou</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>One of them allows a hacker to read protected virtual memory (bad if you're dealing with sensitive data, hacker can read your classified data), the other allows the hacker to use one infected low priority program to compromise a high priority secure program, AND the attempts by the secure program to secure itself actually make it an easier target.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>

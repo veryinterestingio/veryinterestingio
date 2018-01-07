@@ -1,0 +1,56 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/keepcrazy" target="_blank">keepcrazy</a>
+			<div class="markdown"><p>That was a fantastic eli5. I would add a clarification since most people don’t know how memory actually works in an intel processor:</p>
+<p>The memory accessible to a program is not addressed as one big block of memory. What your program sees is it’s own “page”. For one program address. 0x0080000 May contain a 1, but for another the same address contains a 2.  Where each program’s address 0x80000 exists in ACTUAL memory is managed by the operating system. </p>
+<p>This is called virtual address space and was actually originally created to allow a 32 but processor to address more than 4GB of RAM. </p>
+<p>Operating systems then used this as a way to “sandbox” apps, preventing them from seeing one another. </p>
+<p>However, an app needs to be able to see the operating system so a portion of the OS / kernel is also mapped into that same memory for making system calls.  When you have a call to the operating system, it grabs the information it needs from the call, swaps into its own memory page, executes the request, swaps the app back into memory and returns the result. </p>
+<p>But all this page swapping is relatively slow. (It doesn’t actually copy anything, it just changes the address space, but it still wipes out many processor optimization’s.). So, to make things faster, the kernel/os is mapped into each apps page, but restrictions are placed on those addresses to ensure the app can’t access that memory directly. </p>
+<p>Well, this exploit bypasses those restrictions. </p>
+<p>(Did I get that right?)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/essellburns" target="_blank">essellburns</a>
+			<div class="markdown"><p>&quot;There's no such thing as 2&quot; - Philip J Fry.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/keepcrazy" target="_blank">keepcrazy</a>
+			<div class="markdown"><p>Memory is not actually addressed on a bit by bit basis.  Memory addresses are all byte addresses.  There is no processor instruction to get a particular bit.  So the memory at address 0x80000 can contain from 0 through 255. </p>
+<p>Further a 32 bit processor will (generally) fetch 32 bits (so addresses 0x80000-0x80003) and a 64 bit processor will fetch 64 bits. They’ll then discard the unneeded bits. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ElMachoGrande" target="_blank">ElMachoGrande</a>
+			<div class="markdown"><p>How hard is it to exploit this in a effective way, for example to gain admin rights? As far as I can see, it's not exactly scalpel accuracy.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Koooooj" target="_blank">Koooooj</a>
+			<div class="markdown"><p>The attack does give scalpel accuracy, but the challenge is figuring out which room your patient is in. </p>
+<p>The attack makes it possible to probe any arbitrary memory address, but it's slow enough that you want to be precise about where you look. </p>
+<p>One security feature that many operating systems and hypervisors use is a randomization on where the kernel is loaded in address space. You have to know where the kernel is loaded in order to know where to look. </p>
+<p>That's why another part of the attack (which I haven't had time to digest yet) focuses on determining where to look. </p>
+<p>By my reading this vulnerability is &quot;Very Very Bad™.&quot; It requires a very skilled hacker to pull it off, but such a skilled hacker should be able to dump key parts of kernel memory and severely compromise the system. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MnkyMcFck" target="_blank">MnkyMcFck</a>
+			<div class="markdown"><p>For point 1, won’t the processor start to learn to guess that the check will fail after so many occurrences? Or is it a static policy?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mitame" target="_blank">Mitame</a>
+			<div class="markdown"><p>If I understand it correctly, part of the exploit that the researchers developed was to convince the processor that it would pass before it actually checked. This was done by reverse engineering what the processor actually does to speculate if the check will pass or fail. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ImprovedPersonality" target="_blank">ImprovedPersonality</a>
+			<div class="markdown"><p>It’s probably not too hard to trick the branch prediction into taking a certain path. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/heyheyhey27" target="_blank">heyheyhey27</a>
+			<div class="markdown"><p>IIRC you can actually <em>tell</em> the c++ compiler which way it should predict a branch. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Koooooj" target="_blank">Koooooj</a>
+			<div class="markdown"><p>An unrevealed part of the attack (at least in the documentation I've read; there's a lot to sift through) is how exactly you get the processor to guess wrong. </p>
+<p>I'd bet that it's some form of executing that code a bunch of times with checks that pass, which signals to the processor that the check will always/usually pass. That should be enough to get the processor to guess wrong when you try a check that doesn't pass. </p></div>		</li>
+					</ul>
+		</ul>
+	
