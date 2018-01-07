@@ -1,0 +1,139 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+			<div class="markdown"><p>Good overview!</p>
+<p>Just a couple minor additions for the benefit of those that want to delve in. cc /u/NonindustrialFront </p>
+<blockquote>
+<p>What operations can be speculatively executed?</p>
+</blockquote>
+<p>Any and all instructions. The CPU does not care. Any instruction will be speculatively executed as long as it lies after a branch instruction.</p>
+<blockquote>
+<p>A modern CPU has extra logic that makes a best estimate what the result will be (which code to execute next) and start working on the following code.</p>
+</blockquote>
+<p>The <a href="https://en.wikipedia.org/wiki/Branch_predictor" target="_blank">branch predictor</a>. There are many different <a href="https://danluu.com/branch-prediction/" target="_blank">kinds</a>.</p>
+<blockquote>
+<p>The first case can be reduced by software that makes sure these dependencies are not too fast behind each other</p>
+</blockquote>
+<p>The <a href="https://en.wikipedia.org/wiki/Instruction_scheduling" target="_blank">instruction scheduler</a>. Instruction scheduling happens during compilation, and makes sure that the order of execution of instructions is such that the CPU pipeline is maximally utilised.</p>
+<blockquote>
+<p>If the prediction turns out to be wrong then the result of this predictive execution has to be discarded</p>
+</blockquote>
+<p>An interesting note here is that even if the results and side-effects of the non-retired instructions are discarded, they have observable effects on the committed paths. Committed paths being the ones proved to be the correct execution paths based on the evaluation of branching instructions. This is the basis behind the two most recent <a href="https://googleprojectzero.blogspot.de/2018/01/reading-privileged-memory-with-side.html" target="_blank">attacks</a>, dubbed &quot;Meltdown&quot; &amp; &quot;Spectre&quot;. (It's a tiny bit more nuanced for 'Meltdown', read the <a href="https://meltdownattack.com/meltdown.pdf" target="_blank">paper</a>)</p>
+<p>On speedup: as far as prototypes went, one would measure performance targets with and without speculative execution, by measuring the answer to questions like:</p>
+<ul>
+<li>What is the ratio of correct to total predictions?</li>
+<li>Does this ratio depend on the workload? (<a href="https://www.eecs.umich.edu/techreports/cse/99/CSE-TR-417-99.pdf" target="_blank">yes</a>)</li>
+<li>What were the performance bottlenecks prior to speculative execution, and have they seen improvements?</li>
+<li>Does speculative execution introduce new bottlenecks?</li>
+<li>Does speculative execution uncover opportunities for more optimisations? (<a href="http://ieeexplore.ieee.org/document/888343/" target="_blank">yes</a>)</li>
+</ul>
+<p>etc.</p>
+<p>Historically, it has now been established that speculative execution offers massive performance gains. So much, in fact, that branch misprediction is a significant <a href="http://ieeexplore.ieee.org/document/1620789/" target="_blank">impediment</a> in contemporary CPUs.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Zardoz84" target="_blank">Zardoz84</a>
+			<div class="markdown"><blockquote>
+<p>Historically, it has now been established that speculative execution offers massive performance gains. So much, in fact, that branch misprediction is a significant impediment in contemporary CPUs.</p>
+</blockquote>
+<p>The fact is that Pentium 4 bad performance is related to this. Intel try to ramp up clock speeds using a very long pipelines on the Pentium 4. One of the problems was the Pentium 4 branch predictor wasn't good (for today standards or compared against Athlon cores of his time). Every time that it failed, the long pipeline must be reset, needing a long time (again, compared against a Pentium 3, K6-2/3 or Athlon cores) to execute the correct branch. So, if the branch prediction fails with frequency, the result is that the performance is inferior.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+			<div class="markdown"><p><a href="http://www.agner.org/optimize/microarchitecture.pdf" target="_blank">More info</a> - section 3.4.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/yakadoodle" target="_blank">yakadoodle</a>
+			<div class="markdown"><p>So, at compile time a second line of instructions is added to the code (that are designed to interact with the processor)? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+			<div class="markdown"><p>What do you mean by 'second line of instructions'?</p>
+<p>The instruction scheduler either rearranges the order of instructions, or inserts operations to deal with data hazards (&quot;bubbles&quot; or no-ops) and minimise pipeline stalls.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dsf900" target="_blank">dsf900</a>
+			<div class="markdown"><p>No- speculative execution is done entirely in hardware and is transparent to the end user (the programmer, or compiler).</p>
+<p>Speculative execution happens when the processor doesn't know what code it needs to execute next, such as when you have an if/else statement. The processor guesses (predicts) what code branch will be taken, and starts executing that branch all on its own.</p>
+<p>There are some software techniques, for example GCC's __builtin_expect() macro, that allow programmers to influence what branches may be done speculatively, but that doesn't actually communicate anything to the processor. It actually tells the compiler to generate code that puts the most likely code all together in a single execution path, so that branching off that path becomes unlikely.</p>
+<p>Exactly how the branch predictor works is processor specific and proprietary, so exactly what optimizations are done will be processor specific as well. However, processor companies want you (or more accurately, compiler writers) to be able to generate fast code, so they let us in on the basics. The link below is an example of this for Intel processors:</p>
+<p><a href="https://software.intel.com/en-us/articles/branch-and-loop-reorganization-to-prevent-mispredicts" target="_blank">https://software.intel.com/en-us/articles/branch-and-loop-reorganization-to-prevent-mispredicts</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/elfardoo" target="_blank">elfardoo</a>
+			<div class="markdown"><blockquote>
+<p>that branch misprediction is a significant impediment in contemporary CPUs.</p>
+</blockquote>
+<p>Is that something that AI can/will help with?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+			<div class="markdown"><p>There's plenty of bibliography in using neural networks to implement branch predictors:</p>
+<ul>
+<li>
+<p><a href="https://www.cs.utexas.edu/~lin/papers/tocs02.pdf" target="_blank">Daniel A. Jiménez and Calvin Lin. 2002. Neural Methods for Dynamic Branch Prediction</a></p>
+</li>
+<li>
+<p><a href="https://www.cs.utexas.edu/~lin/papers/hpca01.pdf" target="_blank">Dynamic Branch Prediction with Perceptrons</a></p>
+</li>
+<li>
+<p><a href="https://www.researchgate.net/profile/Adrian_Florea/publication/228976068_STATIC_AND_DYNAMIC_BRANCH_PREDICTION_USING_NEURAL_NETWORKS/links/09e415044ac5a1672c000000/STATIC-AND-DYNAMIC-BRANCH-PREDICTION-USING-NEURAL-NETWORKS.pdf?origin=publication_detail" target="_blank">Static and Dynamic Branch Prediction Using Neural Networks</a></p>
+</li>
+<li><a href="https://www.microarch.org/micro36/html/pdf/jimenez-FastPath.pdf" target="_blank">Fast Path-Based Neural Branch Prediction</a></li>
+</ul>
+<p>etc.</p>
+<p>And Samsung is already using <a href="http://www.theregister.co.uk/2016/08/22/samsung_m1_core/" target="_blank">an implementation</a>.</p>
+<p>PS. AI != NN and vice versa, but I'm making the assumption..</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheAgentD" target="_blank">TheAgentD</a>
+			<div class="markdown"><p>AI is a bit of a strong word for it, but branch prediction is pretty much simple machine learning; you try to predict if a conditional branch will be taken or not based on when/if it was taken before.</p>
+<p>It's worth noting that you're not gonna be able to do perfect prediction, but in 99% of cases it's trivial to predict it. For example, in the case of a simple loop that loops 100 times, you have a conditional branch at the end of each iteration which checks if the loop is done. If it's not done yet, we jump back for another iteration. In this case, the first 99 times we do this check, we're always gonna take the branch.</p>
+<p>This means that a simple branch predictor that guesses that whatever happened last time the conditional branch was executed will happen once again will be 98% accurate (last iteration will be a misprediction, the second time the loop runs the first iteration will be another misprediction). A slightly more advanced predictor that just picks whatever most often happened over the last 5 branches will be 99% accurate.</p>
+<p>TL;DR: You don't need a particularly smart predictor to predict a huge number of branches correctly.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NonindustrialFront" target="_blank">NonindustrialFront</a>
+			<div class="markdown"><p>I've seen speculative execution using neural nets in research at Harvard and Boston University.  They use the program's virtual memory as their predictor function's input to get expected future states and execute from that future state.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NonindustrialFront" target="_blank">NonindustrialFront</a>
+			<div class="markdown"><p>Slightly off topic, but if Intel cemented these branch predictors into the silicon, how can OS developers push a software update to circumvent any vulnerabilities in Intel's implementation?  Also, how is this software fix related to the up to 30% observed drop in performance after the fix? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+			<div class="markdown"><p>The vulnerabilities are not in the branch prediction. They are in speculative execution. It is still possible that they may not be fixable through microcode updates, manufacturers have not made clear technical announcements.</p>
+<p>The 30% performance hit is alleged numbers for the Linux PTI patches (entirely in software). The hit varies with the workload.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dsf900" target="_blank">dsf900</a>
+			<div class="markdown"><p>You're referring to the Kernel Page Table Isloation (KPTI) patches that adress the Meltdown vulnerability. The OS developers aren't able to &quot;fix&quot; Intel's implementation, they're only able to mitigate the impact of the vulnerability.</p>
+<p>The vulnerability allows a userspace program to arbitrarily read all of the kernel's memory. This in effect allows a malicious program to read any memory on the system anywhere, so no data on these systems can be considered secure.</p>
+<p>The KPTI patchset makes that first step impossible- reading the kernel memory- by unmapping the kernel from the process memory space while running in user mode. Normally both kernel and user memory will stay mapped (accessible, warmed up in the cache and TLB) while a program is executing in user-mode, but the processor memory protection mechanisms prevent user-mode code from accessing the kernel memory. This allows the machine to efficiently switch between executing kernel mode and user code, and is critical for programs that make system calls frequently. </p>
+<p>The Meltdown vulnerability allows a malicious program to circumvent those regular memory protection mechanisms on Intel processors and access that kernel memory which is mapped but supposedly not able to be accessed.</p>
+<p>The OS developer's solution is to unmap the kernel memory and flush all caches every time you switch between running kernel code and user code- essentially every time a program makes a system call. <em>Every time a system call is made the entire cache context of a program is reset.</em> When this happens, and the TLB and L1 caches are flushed, the system has to recover as though it is coming up from a cold start. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dsf900" target="_blank">dsf900</a>
+			<div class="markdown"><p>Also- since the performance impact varies largely based on how frequently the user/kernelspace boundary is crossed, the effect of this patch varies widely by workload. I've seen some numbers that are 5% penalty or less, but I've also seen numbers as high as 50% for some very intensive file/network applications like databases and distributed computing. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/quasianagrammatic" target="_blank">quasianagrammatic</a>
+			<div class="markdown"><p>Super ignorant question: what kind of logic is that &quot;extra logic&quot; that makes predictions? Surely more than Boolean.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drahcirenoob" target="_blank">drahcirenoob</a>
+			<div class="markdown"><p>It's still Boolean logic as is all logic in a computer.  In many cases, It's dependent on the placement of instructions in the original code, the size of variables relative to their comparators, and a  whole slew of other complicated topics.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/quasianagrammatic" target="_blank">quasianagrammatic</a>
+			<div class="markdown"><p>Thanks. That's what I was ignorant of, that it's all boolean logic. Could there be non-Boolean computing? Does that even make sense?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+			<div class="markdown"><p>I'd point you to <a href="https://danluu.com/branch-prediction/" target="_blank">this article</a> as an introduction. Basically, the branch predictor wants to predict branch targets for an execution/instruction history. The article discusses how you can encode that in a circuit.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/quasianagrammatic" target="_blank">quasianagrammatic</a>
+			<div class="markdown"><p>Thanks! That got way too specific, but the first part was clarifying</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
