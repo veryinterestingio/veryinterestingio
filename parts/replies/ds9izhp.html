@@ -1,0 +1,65 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KitsapDad" target="_blank">KitsapDad</a>
+			<div class="markdown"><p>Shouldn't there be a mathematical formula that could generate all the prime numbers? I mean, it currently isn't known but isn't it possible it exists?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Frobeniu5" target="_blank">Frobeniu5</a>
+			<div class="markdown"><p>Depends what you mean by a formula. More specifically, the operations that are allowed as part of it. There's no polynomial whose integer values are all primes. But if you allow some simple operations like taking remainders and the floor function there's a simple formula. See this <a href="https://en.wikipedia.org/wiki/Formula_for_primes#Prime_formulas_and_polynomial_functions" target="_blank">wiki page</a> for details.</p>
+<p>Probably what you really mean is a fast and efficient algorithm that outputs the prime list. That's why it's really a computer science type problem rather than a pure math one. </p>
+<p>If you slightly alter the task of outputting the list, and turn it into a yes/no decision problem, you could ask if that's polynomial time, in which case the answer is &quot;probably not&quot;. See <a href="https://www.quora.com/Number-Theory-Is-there-a-polynomial-time-algorithm-for-computing-the-n-th-prime-or-is-the-problem-of-computing-the-n-th-prime-provably-NP-hard" target="_blank">here</a>. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/you-get-an-upvote" target="_blank">you-get-an-upvote</a>
+			<div class="markdown"><p>The AKS primarlity test runs in O((log n)^(12)).  Since log(n) is the number of digits, this is polynomial in the number of digits (i.e. the input size).  The test was discovered in 2002.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/archlich" target="_blank">archlich</a>
+			<div class="markdown"><p>Should isn’t a great word to use. That conveys the thought that the entire field of mathematics is provable and we haven’t discovered it yet. There isn’t an algorithm that we know of. There may never be an algorithm either.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kcazllerraf" target="_blank">kcazllerraf</a>
+			<div class="markdown"><p>There in fact are a number of algorithms for <a href="http://mathworld.wolfram.com/PrimeFormulas.html" target="_blank">generating the n^th prime</a>, however they are all horrifically slow. One of the linked algorithms boasts O(2^n ) speed, which would be absolutely absurd to try to use.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/vexalis" target="_blank">vexalis</a>
+			<div class="markdown"><p>Sorry if this is a dumb question, and it may be that my understanding of an algorithm is incorrect. If an algorithm is a set of steps that can be repeated to find an answer, then would it not be true that you could write a computer program that does the following, and it would be an 'algorithm':<br />
+1) starting at 1, check if prime<br />
+2) add one, check if prime<br />
+3) repeat step 2 infinitely<br />
+This is approach is simply trial and error, but it probably qualifies as an algorithm. Or maybe your point is something relating to solvable and unsolvable problems in mathematics, like p and non-p problems. I really don't know very much about this, not trying to split hairs, just curious.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NNOTM" target="_blank">NNOTM</a>
+			<div class="markdown"><p>How so? The sieve of Eratosthenes for example seems to qualify as an algorithm that can generate all prime numbers.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kcazllerraf" target="_blank">kcazllerraf</a>
+			<div class="markdown"><p>There in fact are a number of formula for <a href="http://mathworld.wolfram.com/PrimeFormulas.html" target="_blank">generating the n^th prime</a>, however they are all horrifically slow (taking on the order of seconds for prime(3) = 5 and hours for prime(5) = 11 on a standard laptop). The question then becomes whether one can be found that is reasonably fast, and that is an unknown at this point.</p>
+<p>*Algorithms -&gt; formula</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Iskendarian" target="_blank">Iskendarian</a>
+			<div class="markdown"><p>Sure it can! Just ship with a lookup table of the first hundred primes. That's way faster!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/benmww" target="_blank">benmww</a>
+			<div class="markdown"><p>It's not that slow. Fairly easy to get n=1000. Seriously, if this were true this would mean it takes billions of compute cycles to find the 3rd prime. Even the super simple algorithm &quot;check if the previous entries are factors, if true +1, if false add to the list and then +1&quot; shows this to be obviously wrong. Unless I've misunderstood your point.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/F0sh" target="_blank">F0sh</a>
+			<div class="markdown"><p>There are much faster algorithms, like &quot;for each number m&gt;1, try and factorise it and if you find exactly 2 factors, increment the counter i, until i is n at which point if m is prime, output m and halt.&quot;</p>
+<p>This will take nanoseconds.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dellwind" target="_blank">Dellwind</a>
+			<div class="markdown"><p>Makes sense. ..can you give an example or two of actual important open questions? Would like to read up on it</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Frobeniu5" target="_blank">Frobeniu5</a>
+			<div class="markdown"><p>The most important open problem, at least in number theory, is the <a href="https://en.wikipedia.org/wiki/Riemann_hypothesis" target="_blank">Riemann Hypothesis</a>. This is a statement that we think is true, but that we've made almost no progress towards proving since the 19th century. It comes down to a particular infinite list of numbers all being equal to 1/2, and this has been checked by computer for the first ten trillion or so. Its truth is the missing ingredient in a great many other incomplete proofs, so we really need to prove it, but we have no idea how to even approach it. Significant new ideas are needed.</p>
+<p>As an example of a different sort, the <a href="https://en.wikipedia.org/wiki/Langlands_program" target="_blank">Langlands Program</a> is a great web of related conjectures, some of which have been proven, many that have not, and others which still need to be made precise. Many mathematicians continue to work on it and breakthroughs do occur once in a while. It's one of the great research programs of the last 60 years or so, and will be an active area for a while to come. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lukaas33" target="_blank">lukaas33</a>
+			<div class="markdown"><p>Why do you think math isn't more discussed?
+Is it because it's more abstract than most other sciences or because it's more difficult?</p></div>		</li>
+					</ul>
+	
