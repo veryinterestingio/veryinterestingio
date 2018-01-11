@@ -1,0 +1,106 @@
+<li class="post" data-handle="7oy9py">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/7oy9py/why_dont_emails_arrive_immediately_like_instant/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/7oy9py" onclick="return false">Why don't emails arrive immediately like Instant Messages? Where does the email go in the time between being sent and being received?</a>
+		</h2>
+		<!--<span class="date">2018-01-11</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Why don't emails arrive immediately like Instant Messages? Where does the email go in the time between being sent and being received?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dsd47a2">
+		<a class="author" href="https://www.reddit.com/user/justscottaustin" target="_blank">justscottaustin</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><ol>
+<li>
+<p>You hit send. Your &quot;client&quot; (phone app, Outlook, web app, whatever) connects to an email <em>server</em>. Prior to this your client was just sitting there letting you write the mail.</p>
+</li>
+<li>
+<p>The mail is now sent to <em>your</em> server. Like dropping a letter at the post office box. The server now checks to see where it's going, looks up his way to get there and connects to the other server (the recipient's mail server).</p>
+</li>
+<li>
+<p>Assuming that's all good (it can reach that server), the recipient's server says &quot;ok...I will take that.&quot; If something is wrong, it gets denied and either goes into a black hole or informs you or someone else of the problem depending on configuration.</p>
+</li>
+<li>
+<p>The recipient's server now applies a bunch of checks (SPAM and virus filtering) then any rules that the server has to apply then any rules the recipient wants applied.</p>
+</li>
+<li>
+<p>Finally this drops the message wherever it actually belongs which will usually be where you sent it.</p>
+</li>
+<li>Here it sits until a client (phone, Outlook, whatever) asks the post office &quot;got anything for me?&quot;</li>
+</ol>
+<p>In the case of IM, you are directly connected to a service which is routing the information between users in &quot;real time&quot; because you have both agreed to use the same service to do so, skipping all those other bits.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dsdprud">
+		<a class="author" href="https://www.reddit.com/user/xzez" target="_blank">xzez</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There's a few reasons for this</p>
+<p>But first, the gist of an emails journey is as follows:</p>
+<p>S --&gt; MS --&gt; MS --&gt; R</p>
+<p>Where S = Sender, MS = Mail Server, R = Recipient. There may be one or many intermediate mail servers in the email's path.</p>
+<p><strong>Email processing</strong></p>
+<p>When an email is sent it may traverse one or more mail servers, each one of which may perform it's own processing on the email: spam filtering, virus scanning, message integrity, sender verification (SPF/DKIM). Each one of these things should be relatively quick, on the order of fractions of a second. By and large most of this processing is done by the endpoint mail server. Intermediaries mostly just pass it along.</p>
+<p><strong>Server load</strong></p>
+<p>Sometimes one of the mail servers will be overloaded and unable to processes email immediately. The email will instead be queued to send later.</p>
+<p><strong>Email is polling</strong></p>
+<p>(edit) Some (POP3) email clients are polling, that is, they have to connect to an email server and ask &quot;is there any mail for me?&quot;. Most POP3 email clients have a polling interval of something like 5 min to a few hours. IMAP and some web implementations can receive push notifications when a new email arrives.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dseueg0">
+		<a class="author" href="https://www.reddit.com/user/jrobharing" target="_blank">jrobharing</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It’s like transferring money between banks. If it is the same bank company, it happens practically instantaneously, but if they are two different banks, then after you say “send this money to that account”, the bank holds the money while contact is made between the two banks to verify the account on the other end actually exists before sending it.</p>
+<p>In that example, the banks represent email servers, and the accounts represent email inboxes. The money being transferred is the email.</p>
+<p>Emails go to the email server your email provider has, then tried to find the email server of the recipient. Once it finds that server, it requests the other server to find the email address. Once the sending server confirms the address exists, it then sends the email.</p>
+<p>Instant messengers have a bit more going for them. First, they are they exact same program. That means, they are connecting to the exact same server to handle transferring these messages. It doesn’t need to confirm anything with any other unknown servers. It already has the information for the recipient, and just sends it along.</p>
+<p>It also doesn’t hurt that an email is literally a file being sent over the internet. While the IM is a proprietary text string being sent across the internet. Nothing to save and copy, though this is minimal impact in regards to time, it just speaks to the difference in what is actually being handled by the server(s).</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dsdvie5">
+		<a class="author" href="https://www.reddit.com/user/PinballHelp" target="_blank">PinballHelp</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You e-mails can arrive immediately depending upon the technology that is used.</p>
+<p>I run my own mail server, and mail is delivered instantly.  I can tell when mail is delayed because I have access to my server logs and know exactly when mail enters/exits my server.</p>
+<p>There are three main sources of delays:</p>
+<ol>
+<li>
+<p>The interval that you have your mail client set up to check mail.   This can be configured.  Typically you shouldn't have it set more than once every 5-10 minutes otherwise it can put unnecessary stress on the server.</p>
+</li>
+<li>
+<p>The time from which you compose/send your mail and when it actually is routed to the SMTP (outbound) gateway server for delivery.   On many e-mail clients this may be set to the same interval as when you check mail (i.e. it will send any queued mail when it checks), although you usually have a keyboard option to immediately send mail in the queue.</p>
+</li>
+<li>Spammers - As others have said... believe it or not, it's true..99% of all e-mail traffic is spam.  It's that bad of a problem.  And more and more systems are not using RBL (relay blacklisting) in favor of content filtering.   If you use RBL filtering, you can handle more mail faster, but it can block entire systems and some providers don't like to use it (I'm a fan of it).  So you use content-based filtering, which when dealing with spam, consumes huge amounts of server resources, and if spammers hit a server really hard with multiple connections, that server will <em>throttle</em> open connections and stop accepting mail until it can catch up.  This happens all day, every day somewhere or another.</li>
+</ol>
+<p>Contrary to what people think, virus scanning services are not really a significant cause for delay.  People will notice delays with plain text e-mail as much as they will large file attachments.</p>
+<p>Often times, someone will tell you, &quot;I just sent you an e-mail.&quot;  But the e-mail message may be sitting in a queue and hasn't been transmitted to the server - it all depends upon how their e-mail client is configured.  I've seen people compose an e-mail on their laptop, hit &quot;send/(queue)&quot; and then close the laptop and put it on stand by.   The e-mail won't be sent until the next time they restart their laptop and the e-mail program handshakes with the server.   They'll say, &quot;I sent the message!&quot; but actually they just composed it, and it wasn't sent out to the Internet.  That's a common problem.</p>
+<p>So if you're sending someone an e-mail, make sure you force your e-mail program to check/send-queued-messages before shutting down.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dseqydz">
+		<a class="author" href="https://www.reddit.com/user/LilyZar" target="_blank">LilyZar</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Instant messenger either has direct peer to peer communication or it will go via 1 hub.</p>
+<p>Emails are different. Firstly they are larger in size and carry extra header info. Then when you submit the email it goes to your exchange. The exchange them needs to do a DNS lookup of the domain of the email address to see which exchange to send it to. It sends it to the exchange then the receipients exchange needs to forward it to the right person. </p>
+<p>This all takes computation time, and if you think exchanges are dealing with millions of emails a day your email will be held in a queue to be processed at the different exchanges.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/7oy9py" onclick="return false"><span>show</span></a>
+</li>

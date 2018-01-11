@@ -1,0 +1,42 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/penny_eater" target="_blank">penny_eater</a>
+			<div class="markdown"><blockquote>
+<p>Things like gmail are a bit of an exception, where by they can send a push notification to the browser when a new emails arrives (this is not part of the normal email specification).  </p>
+</blockquote>
+<p>Push notifications are part of IMAP which has been a spec standard and widely supported for like 15 yrs. You are thinking only about POP3.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/spychipper" target="_blank">spychipper</a>
+			<div class="markdown"><p>A bit longer than 15 years, the first RFC for what is now called IMAP was released in 1986. The first version of what we use now was released in 1988.</p>
+<p>I remember setting up IMAP in pine on my first mail account in 1993. Ok, so pine was a bad email client, sue me, it was easy to learn. :)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/penny_eater" target="_blank">penny_eater</a>
+			<div class="markdown"><p>I was trying to guesstimate the wide support timeframe.  I too did my share of setting up IMAP servers in the 90s (always alongside POP3) but it was clunky and the network connectivity wasnt quite where it needed to be for push notification subscriptions to be practical over WAN.  By the early 2000s there was no excuse not to be using IMAP.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Bad-Science" target="_blank">Bad-Science</a>
+			<div class="markdown"><p>Server load is really overlooked. I manage mail servers.</p>
+<p>Over 90% of all email is spam, and it sometimes comes in waves. A server could be hit with 10,000 emails, 99.99% of which are spam. Well configured servers can figure this out pretty quickly (IP blacklists, checking RDNS). But a less efficient server might waste a lot of time running every message through antivirus tests and spam filters before discarding it. This means that your message can be stuck in a queue for minutes or even hours if a server is totally overwhelmed.</p>
+<p>I've had servers get so locked up that the only practical solution was to flush the entire incoming mail queue and let it start over.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PinballHelp" target="_blank">PinballHelp</a>
+			<div class="markdown"><p>This is so true... and something I forgot to mention that I will add to my post...</p>
+<p>Spam can come in waves.   E-mail servers are typically set up to handle x number of concurrent connections.   If a spammer sends out a ton of requests to a host system, that system may shut down open connections until it can catch up with the active connections - it does this to avoid running out of memory/cpu time and/or crashing.</p>
+<p>mail gateways are programmed to re-try after a certain amount of time if they don't get through to the destination server.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PinballHelp" target="_blank">PinballHelp</a>
+			<div class="markdown"><p>More details on the e-mail journey:</p>
+<pre><code>(smtp)          (smtp)           (POP3/IMAP)</code></pre>
+<p>S ---------&gt; MG ----------&gt; MS -----------&gt; R</p>
+<p>The upper line is the protocol.
+S=sender,
+MG=Mail Gateway
+MS=Mail Server
+R=Recipient</p></div>		</li>
+					</ul>
+	

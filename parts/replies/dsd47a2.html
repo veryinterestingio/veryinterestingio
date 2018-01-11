@@ -1,0 +1,82 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dvogel" target="_blank">dvogel</a>
+			<div class="markdown"><p>It's worth noting that in steps 2 and 4, each respective server usually doesn't act on demand. The message goes into a queue. The MTA moves messages through a series of queues. Some MTAs only work on one queue at a time. The reason this is worth noting is that the slowest email sent-received times are usually due to hitting worst case queueing on multiple servers (there's usually more than two MTAs between you and the recipient).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/yertle38" target="_blank">yertle38</a>
+			<div class="markdown"><p>Or gray listing for spam, right? It was my understanding that’s what makes some emails take a long time. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sparkybear" target="_blank">Sparkybear</a>
+			<div class="markdown"><p>That can be one of the process the message is queued for. It's not just for getting the message where you want it sent, it's also for spam filters, scanning attachments, email service scans, server scans, etc.</p>
+<p>lastly then if you have Individual filters in your client (like rules in Outlook), those will be run on your machine after the email is delivered, but it can take a long time to complete depending on the number of filters you have. Generally, this is quick, but rules are run sequentially and can take a while depending on your machine.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dr1fter" target="_blank">dr1fter</a>
+			<div class="markdown"><p>I think this is a very important part of the answer. The architecture as described by u/justscottaustin isn't necessarily any different from the IM case, but things are actually done differently along the way even if only because instant delivery isn't a requirement.</p>
+<p>I do wonder what the throughput between the servers of the top two email providers might look like. I imagine communication between remote servers must be a bottleneck in some configurations, but most email is pretty lightweight -- and of course you may not really pay it at all if you're sending to someone at the same provider. Then email can be much faster... and even still, the system just doesn't bother being &quot;instant.&quot;</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/meditonsin" target="_blank">meditonsin</a>
+			<div class="markdown"><blockquote>
+<p>3. Assuming that's all good (it can reach that server), the recipient's server says &quot;ok...I will take that.&quot; If something is wrong, it gets denied and either goes into a black hole or informs you or someone else of the problem depending on configuration.</p>
+</blockquote>
+<p>Depending on the error that happened in this step, the sending server will usually keep the mail in its local queue and retry to send it every now and then. If several retries failed, the server might inform the user. It can take days before a mail server stops trying and throws the mail away entirely.</p>
+<p>This is also where some slowdowns can happen by design. One common anti SPAM technique is so called &quot;grey listing&quot;, in which the receiving server deliberately rejects the first connection attempt of an (unknown) sending server but accepts the second attempt (hoping that a spammer won't bother to try again). How quickly the mail gets to the recipient depends entirely on the retry interval of the sending server in this case.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Cuttlefish88" target="_blank">Cuttlefish88</a>
+			<div class="markdown"><p>By the way, spam is a normal word, not an acronym, and doesn’t need to be in all capital letters. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mrrp" target="_blank">mrrp</a>
+			<div class="markdown"><p>Not only doesn't it need to be in capital letters, it shouldn't be. &quot;SPAM&quot; is the meat-like product in the can. &quot;Spam&quot; and &quot;spam&quot; refer to unsolicited bulk email.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sub_pup" target="_blank">Sub_pup</a>
+			<div class="markdown"><p>Had a an email be held by sending server for 29 hours. Almost cost a big sale and they had the nerve to blame us when the headers and routing showed their our server didn't see it for 29 hours after he hit send.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/matts2" target="_blank">matts2</a>
+			<div class="markdown"><p>Things happen. I had an email arrive at the destination several <em>months</em> later. Never got an error message. I had re-sent the original when the recipient said they didn't get it. Then one day the original just showed up.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/The_Original_Miser" target="_blank">The_Original_Miser</a>
+			<div class="markdown"><p>You seem to know this but most don't.  Email is not instant.  Back in the day those queues were processed by modems when long distance rates were low.  Email would get there in a few hours or the next day.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hiptobecubic" target="_blank">hiptobecubic</a>
+			<div class="markdown"><p>If you read the spec, then you'll see that it can be held for much longer. Email providers <em>try</em> not to, but there are no promises. If you have a critical deal that's time sensitive you should contact the recipient to ensure they got it and consider using a different method altogether.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/El_Impresionante" target="_blank">El_Impresionante</a>
+			<div class="markdown"><p>I once sent an email to my office email from my personal email (GMail), and it got delivered after 4 days! I had completely forgotten about the mail when it actually arrived.</p>
+<p>It just had some zipped php files as an attachment. Not sure why it took 4 days though.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/1600DOCTORB" target="_blank">1600DOCTORB</a>
+			<div class="markdown"><p>This is a really good explanation. But just to take a step back, the design philosophy of email was very different to that of instant messaging. Email was designed as a reliable but slow “store and foreword” service. Servers accept the email, then decide where to send it next. There is built-in redundancy so that if your main server goes down the email will go to a backup server then eventually meander its way to you. Lots of retry logic is built into the system to deal with servers that are down or slow. </p>
+<p>This was in keeping with the overall design goals of the internet at the time, which was to route traffic around damaged sections of network for example on the case of nuclear war. Speed was very much of a secondary consideration. By contrast, IM protocols were designed specifically to work in real time. If you can’t deliver the message now, forget it and move on. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PROBABLY_POOPING_RN" target="_blank">PROBABLY_POOPING_RN</a>
+			<div class="markdown"><p>This is important. Email is all about redundancy. If you can't deliver you retry and retry and retry. It's not unreasonable to expect that even correctly configured email servers will fail to accept your email if they're under high load. </p>
+<p>I work as a sysadmin for messaging and email systems in a large global business, and we had some developers whose automated email was failing because they weren't retrying after the servers rejected their first attempt. Hilariously they wanted us to give their email higher priority so that they didn't have to retry, which completely violates the SMTP RFC. </p>
+<p>Email is not infallible, clients should ALWAYS retry delivery. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/deadheadphonist" target="_blank">deadheadphonist</a>
+			<div class="markdown"><p>You're not the only person who's experienced that little &quot;misunderstanding&quot; unfortunately. I've had to have that conversation with devs many times regarding the reliability (and speed) of e-mail.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ZNixiian" target="_blank">ZNixiian</a>
+			<div class="markdown"><blockquote>
+<p>Hilariously they wanted us to give their email higher priority</p>
+</blockquote>
+<p>Oh, come on. I hate those people who don't bother reading specs for stuff they're implementing.</p>
+<blockquote>
+<p>violates the SMTP RFC.</p>
+</blockquote>
+<p>There's so many things in the common specs that so few people seem to know about. The 'retry for 72 hours' rule is one of my favorites, and has been very useful for me personally on the few occasions my mail server went down (once from misconfiguration, once from a datacenter power failure).</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
