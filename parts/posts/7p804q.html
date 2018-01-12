@@ -1,0 +1,127 @@
+<li class="post" data-handle="7p804q">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/7p804q/eli5_what_are_quaternions_and_octonions_what_are/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Mathematics">Mathematics</span>
+			<a href="/posts/7p804q" onclick="return false">What are quaternions and octonions? What are they used for and how?</a>
+		</h2>
+		<!--<span class="date">2018-01-12</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: What are quaternions and octonions? What are they used for and how?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dsfemoa">
+		<a class="author" href="https://www.reddit.com/user/onlyconscripted" target="_blank">onlyconscripted</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>to a 5 year old.
+quaternions are a way to make sense of rolling a ball. if you took a normal ball and placed it on the ground, then drew a dot on the top, one side and the front, you'd have some useful marks to look at while it rolled along the ground.</p>
+<p>if you then tried to record the position of those dots while it rolled, you might think you need to write down 3 numbers. unfortunately, you need to record where 'up' is. so you need to write that down as well. so you write down 4 numbers.</p>
+<p>quaternions are a neat little package for writing down 4 numbers for when rolling a ball and making it sensible later on</p>
+<p>(edited because phone typos)</p>
+<p>(edit again: its pretty funny how many responses this got. my assumption is that lots of people took maths classes high enough to tackle these, but the teachers never had useful enough analogies, and instead persisted in trying to explain maths with more maths....)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dsfisnd">
+		<a class="author" href="https://www.reddit.com/user/JulesOf" target="_blank">JulesOf</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><blockquote>
+<p>What are they used for and how?</p>
+</blockquote>
+<p><strong>Video games!</strong><br />
+Video games are hard but cool math. If you ever asked your teacher &quot;What do I need this for?&quot;, the teacher should have said &quot;Video games!&quot;.</p>
+<p>Now, Quaternions can be used in video games as a mathematical means of describing the orientation of an object in three dimensional space, for example the current world of the level. Most of objects are controlled by using matrices (Matrix, but not the movie), but a considerable part of generating these matrices is done using Quaternions.</p>
+<p>&nbsp;</p>
+<p>To understand why Quaternions are helpful in video games, I need to introduce you into two common problems that will help you understand how rotations depend on each other.
+&nbsp;<br />
+&nbsp;    </p>
+<p><strong>Issue number 1: Rotation order.</strong>    </p>
+<p>Imagine a plane on a runway. The plane has three axises: X-axis the one the plane rotates around when it takes off (From wingtip to wingtip). Y-axis is towards the direction of travel (When the plane does a barrel roll, it rolls around the Y axis). And Z-Axis is the one it rotates around when it is on the ground driving around the airport.</p>
+<p>Now I give you the following instructions for a plane on a runway facing north:</p>
+<ol>
+<li>Rotate the plane around its X-Axis by 45 degrees. (This looks like the plane has just taken off)    </li>
+<li>Then rotate the plane around its Z axis by 90 degrees. (This looks like the plane is taking off, but looking towards the right of the runway)    </li>
+</ol>
+<p>If I reverse these instructions, you get a different outcome:
+The plane is now going off the runway towards the East. And it is still facing up correctly at 45°. No weird sideways flying here.</p>
+<p>The more axes you add, the more erratic the result will become if you do not follow the rotation order.
+&nbsp;<br />
+&nbsp;    </p>
+<p><strong>Issue number 2: Gimbal Lock</strong>    </p>
+<p>You are inside this plane and it keeps going up at 45 degrees. But you sit in a cool pilot chair that will always keep you upright so your drink never spills. This chair will counteract all the rotations the plane currently does to move you back to a level position where your drink does not spill.
+Now the plane has kept pulling up and is now going exactly straight upwards. (X = 90°)</p>
+<p>The chair compensates for this well, as it only applies the opposite rotation of the plane to your seat. But remember the chair is still fixed to the plane, so the chair itself is now at 90° like the plane.
+Then, suddenly, the plane is grabbed by a wind gust and shaken around, and it is now flying straight up AND 45° around its Z axis towards the left.</p>
+<p>The Pilot chair cannot help you counteract this, as it is not able to do the opposite rotation here. The rotation order would need to be first 45° around Z, and then 90° around X. It cant do this and your drink will spill.
+&nbsp;<br />
+&nbsp;    </p>
+<p><strong>Fix: Quaternion</strong>    </p>
+<p>To fix the chair, the engineers will need to cheat and allow the chair to turn around an extra axis to fix any rotation-order mess that may have occurred. This fourth axis is a joker, and it will need to be perpendicular to one of the three axes of the chair to help out when needed. </p>
+<p>And when taking this extra joker axis into account, we no longer have a three rotations, but four. The construct of dealing with this is called Quaternion and it is some pretty tough math(s) which others have tried to explain here.</p>
+<p>Now, in video games with characters, each arm and leg is made up from virtual bones that let the character bend the knee or hold weapons. These virtual bones are exactly like the special pilot chair in the plane. That is where quaternions are used.</p>
+<p>&nbsp;
+edit: man fuck reddit formatting...</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dsfeznh">
+		<a class="author" href="https://www.reddit.com/user/gvargh" target="_blank">gvargh</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Imagine a Nerf dart stuck to the screen of a smartphone. Now, pick up the phone and turn it around so that the dart points in some direction. The <em>direction</em> the dart is pointing can be considered to be the direction the phone itself is pointing. </p>
+<p>Now lay the phone on a table and spin it; the dart will be facing up the whole time, but it will also be <em>rotating</em>. The somewhat involved mathematical combination of direction and rotation is an <em>orientation</em>.</p>
+<p>A quaternion allows you to use 4 numbers to describe an orientation in 3D (real life) space. This is really neat and quaternions have a lot of useful mathematical properties which makes them great at this task. They are common in 3D animation, for example, because animations use a &quot;skeleton&quot; made up of &quot;bones&quot;, and all of these bones have an orientation. Animation often involves rotating these bones between different orientations that represent &quot;poses&quot;, and this is much easier to do with quaternions than with other mathematical objects like matrices.</p>
+<p>Octonions are similar but for 7D space which makes them not very useful for most people.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dsfehww">
+		<a class="author" href="https://www.reddit.com/user/mizmato" target="_blank">mizmato</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'm going to try my best at this.</p>
+<p>So think about these numbers: 1, 2, -3, 5.5, 2/3, and π (pi). These are all used in what we call the Real Number System. You know lots of these numbers, and you also know how to add them and multiply them very well. With each system there are some rules we cannot break, like any number multiplied by 0 is always 0. Using these numbers and rules we can solve lots of equations; however, there are some equations which we cannot solve by using Real Numbers.</p>
+<p>For example, what is the solution to x <em> x + 1 = 0? We have x </em> x = -1, so x is the square root of -1. Well, what exactly is the square root of a negative number? Well, it's definitely not Real. In fact, we call the square root of a negative number an Imaginary Number. Using Imaginary and Real numbers we create what is known as the Complex Number System. A Complex Number is a combination of a Real Number plus an Imaginary Number. For example, 3 + 2i, is a Complex Number where the letter i indicates an Imaginary Number.</p>
+<p>What's so interesting about this Complex Number System? Well just like the Real Number System there are specific rules on addition and multiplication. Most notably is that i * i = -1. We can solve different types of problems using this Complex Number System that we couldn't in the Real Number System---but remember, with this power comes more rules to follow. </p>
+<p>Now here come Quatternions. You can think of Quatternions as like Complex Numbers with four components. An example of a Quatternion is 1 + 2i + 3j + 4k. Like above, the letters i, j, and k stand for different imaginary numbers. Quatternions must follow the rule i <em> i = j </em> j = k <em> k = i </em> j <em> k = -1. Here's a huge key point about Quatternions---order of multiplication DOES matter. i </em> j = k BUT j * i = -k. Using these rules we can solve lots of problems we could not do easily using just Real Numbers.</p>
+<p>Well, what about an example? Quaternions are used in computers graphics a lot where we want to visualize 3-dimensional space. Think about a 3-D graph with 3-axes. We have the x-axis, y-axis, and z-axis. Now replace them with the i-axis, j-axis, and k-axis. Some cool things we can do with math on Quaternions is rotation. So if you have some computer image encoded as a Quaternion vector and want to tilt it a few degrees, you can just 'multiply' the vector for that image by a specific Quaternion to get the same image but rotated just as wanted. We could do this in other systems but the math works out very quickly and smoothly in this system.</p>
+<p>Now what about Octonions? We apply similar ideas and add on four more terms to Quaternions. You can see the specific rules they must follow <a href="https://en.wikipedia.org/wiki/Octonion" target="_blank">here</a>.</p>
+<p>As we continue to move down this chain we can do some cool things we couldn't very well in the simple system most people use on a day to day basis. But in doing so we are restricted by more and more rules. Knowing the strengths and weaknesses of each system is one of the many fun things students and masters in math explore.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dsfeag2">
+		<a class="author" href="https://www.reddit.com/user/konik6444" target="_blank">konik6444</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Let me try instead, I did a whole thesis on quaternion transformations with the purpose of developing a monitoring system with sensors to help the revalidation of people with back issues.</p>
+<p>Quaternions are indeed a 4-dimensional representation of 3d rotations and an extention of the complex numbers, but have a much easier way of interpreting than explained here already.</p>
+<p>Let's start out with Euclidian-rotations. These correspond with the rotations shown on a gimbal. There are 3 axis and you can rotate an object around these. If we ignore the gimbal-lock for one second you can represent any position with three numbers (x,y,z).</p>
+<p>Quaternions use a different system. Imaging an object and stabbing it with a long needle. You can now rotate the object around the needle with an angle (theta). The needle can be respresented by a vecor (a, b, c) and the angle gives d.</p>
+<p>We can already see that there are 4 variables here that determine the rotation, but they are not quaternions yet. There values need to be transformed to form the eventual (x, y, z, w) values that make a quaternion. I'm on my phone and don't know them by heart, so i'll fill them in later</p>
+<p>X = ...
+Y= ...
+Z=...
+W=...</p>
+<p>From this point you have a quaternion with wich all sort of special transformations can happen. Combining rotations is now linear wich has great applications.</p>
+<p>In short, they are a different and difficult way of representing 3d positions, to afterwards make calculations easy.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/7p804q" onclick="return false"><span>show</span></a>
+</li>

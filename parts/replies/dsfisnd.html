@@ -1,0 +1,64 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tymscar" target="_blank">tymscar</a>
+			<div class="markdown"><p>So I tried visualizing the gimbal lock problem and even after years of reading about it I still cant see the problem. I followed the example you gave in my head and I dont see why the chair cant just rotate the same way(well opposite) to what the plane does. Can you please explain how I can visualize it better?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JulesOf" target="_blank">JulesOf</a>
+			<div class="markdown"><p>Have a look at some of the animated Gimbals on the internet. The issue lies in that they are all depending on the next level above it. The innermost ring is tied to the middle-ring. The middle ring is tied to the outer, and the outer is tied to the plane in my example. (This is a physical manifestation of the rotation order!) Since the plane is already offset by 90 degrees, all the other gimbals are offset so too. </p>
+<p>On the ground the middle ring will turn  only left-right, but in the situation where everything is rotated by 90° up, that middle ring will now align with the outer ring, and so we have lost a possible axis of rotation (Called degree of freedom), because the middle ring now only does what the outer ring was able to to before the plane started going directly up.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tymscar" target="_blank">tymscar</a>
+			<div class="markdown"><p>Isnt this mitigated by simply moving the other two rings forcing the locked one to change?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dishevel" target="_blank">Dishevel</a>
+			<div class="markdown"><p>Here you go, even time stamped for maximum efficiency.   </p>
+<p><a href="https://youtu.be/zc8b2Jo7mno?t=41" target="_blank">https://youtu.be/zc8b2Jo7mno?t=41</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tymscar" target="_blank">tymscar</a>
+			<div class="markdown"><p>Ive seen it but I still dont get why it cant just rotate the outer one 90 degrees and then the middle one one 180</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/greyfade" target="_blank">greyfade</a>
+			<div class="markdown"><p>Have you ever played an FPS where you can look straight up?</p>
+<p>Do that and then try to turn left or right. You'll notice immediately that you spin around the up-direction.</p>
+<p>That's a gimbal lock.</p>
+<p>Of course, in most FPSes, you don't actually have a roll axis, but you get the same effect when you multiply rotation matrices for the X, Y, and Z axes in a fixed order.  (Like in games where you're in a plane or something, and you pull up and suddenly can't yaw.)</p>
+<p>The reason it happens is that when you do a rotation around one axis 90°, the next two rotations end up being around that axis. Look straight up, and now suddenly both roll and yaw are the same rotation.</p>
+<p>Quaternions fix that problem by reframing it: Instead of doing rotations around three fixed axes and adding them together, it creates a new axis of rotation (in your look direction, for example).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CoolHandIckx" target="_blank">CoolHandIckx</a>
+			<div class="markdown"><blockquote>
+<p>Do that and then try to turn left or right. You'll notice immediately that you spin around the up-direction.</p>
+<p>That's a gimbal lock.</p>
+</blockquote>
+<p>No it's not. Fps games don't typically have 3 axis camera rotation.</p>
+<p>You would have to make a really shitty fps game to get gimbal lock on camera movement.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LastSeenEverywhere" target="_blank">LastSeenEverywhere</a>
+			<div class="markdown"><blockquote>
+<p>matrices (Matrix, but not the movie), </p>
+</blockquote>
+<p>I'm actually taking game development as my undergraduate major right now, and every single math prof, every single time we talk about matrices ALWAYS MAKES THIS JOKE AND IT IS NEVER FUNNY.</p>
+<p>But seriously thank you for explaining gimbal lock as well as you did, if only this was posted BEFORE my math final last semester and not after...I might save the permalink to this comment tbh.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Terr_" target="_blank">Terr_</a>
+			<div class="markdown"><p>Don't be too mad at them, they're trying to recapture their youth from 18 years ago :P</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CptnStarkos" target="_blank">CptnStarkos</a>
+			<div class="markdown"><p>You are implying that teachers were young 18 years ago? Heheh</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/saltysailor9001" target="_blank">saltysailor9001</a>
+			<div class="markdown"><p>upvoted for first paragraph alone, games have almost every kind of math in them and it's a shame math teachers don't jump on the opportunity.</p></div>		</li>
+					</ul>
+	
