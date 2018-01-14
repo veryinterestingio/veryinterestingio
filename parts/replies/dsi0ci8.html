@@ -1,0 +1,140 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thephantom1492" target="_blank">thephantom1492</a>
+			<div class="markdown"><p>I will add some info not so ELI5.</p>
+<p>The old black and white CRT have two oscillator inside. One drive the horisontal deflection coil, the other drive the vertical deflection coil. Those coil deflect the electron beam, which is shot from the electron canon at the back of the tube. Both oscillator are synchronised with some embedded signal in the video stream.</p>
+<p>Once the oscillators are synchronised, it simply take the incomming signal, feed that to an amplifier, and control the canon power.</p>
+<p>When the horisontal oscillator scan from left to right, the canon is on, when right to left the canon is turned off. Same for the vertical: the up-down is on, and down-up is off.</p>
+<p>For color tv, thing got really messy. They couln't make a new standard, it had to also work on black and white tv. There was not much extra space left in the signal.</p>
+<p>Color tv use three colors: red, green and blue. </p>
+<p>The way they hacked their way in is: they added a third oscillator. When the electron beam is on the left of the screen, still outside of the visible portion (and yes, the signal is bigger than the actual display size), it send 6 full oscillation. Those are used to sync the third oscillator. Then instead of sending a stable signal, they instead send an oscillation at around the proper level for the black and white. </p>
+<p>The black and white tv see it as a bit of noise, rendering the image slightly less clean, barelly visible. But here is the magic: the oscillation is dephased based on the color they want to transmit. A bit lagging or leading compared to the local oscillator (which is basically the zero).</p>
+<p>Depending on how much off the oscillation is, it set the chrominance, that's it, the color component of the image.</p>
+<p>The signal level define the luminence.</p>
+<p>Due to the change in signal, they had to alter the framerate slightly. Black and white run at 30fps (actually 60 half frames a second... interlaced... meh). Color run at 29.97fps (or 59.94 half frame a second).</p>
+<p>This is for NTSC. For pal it is simmilar, but they change the chrominance direction every line. Hence the PAL: Phase alternating line. And the framerate is 25fps instead.</p>
+<p>There was a few issues with NTSC, like if the local oscillator wasn't precise enought, the reference can get off. The left of the screen is ok, but go green or pink as it go to the right of the screen (due to the induced error).</p>
+<p>PAL patched the issue by inverting it each time, one line get green, the next get pink. Guess what! It mostly average out! Which mean the eye will see it as if it was a single line, of the correct color. Of course, it is not perfect, but quite better than green or pink...</p>
+<p>Then... Digital.</p>
+<p>Digital basically transmit a mpeg2 or h264 video stream and an AC3 audio stream. The video and audio streams are cut into small pieces, and then they send one piece of video and one of audio, with some extra data (header) so the decoder can identify what is what.</p>
+<p>The tv receive the signal from the antenna, extract the digital data, split the streams, send the video to the video decoder chip, the audio to the audio decoder chip (take note that they may integrate both in the same chip too). Then the video decoder send it to the lcd driver. The audio decoder to the audio amp, to the speaker.</p>
+<p>The same stream can also contain other kind of data, like a description, subtitle, tv channel name, date and time of the day and more stuff.</p>
+<p>The digital is pretty much the same as most modern video files, like mkv, mpeg2 and the like (not avi! those are old!).</p>
+<p>The digital stream can also contain more than one channel, which is really just another set of video and audio(s) stream.</p>
+<p>This is why you can get 15-1 15-2 15-3, is it some different stream within the same channel.</p>
+<p>Now, why more than one stream on the same channel? It is in part due to the old tv channel legacy. Each tv channels have a 6MHz wide bandwidth. Analog or digital. However, with digital, it is a compressed signal, so it take less space than the analog counterpart. This allow some magic: increase the resolution for example, and yet still have some space left to fit more data. Compress more and you can fit 2 HD channels on the same frequency. Or 1 HD and 3 SD... I think they can even fit 7 SDTV stream...</p>
+<p>As for the 0-255 (8 bits), it is half true. First, it is 0-255 for each of the three colors (giving 24 bits). But the signal it get do NOT contain 24 bits of information, but less than that, depending on the compressor used (codec) and the bitrate they allowed it to use. It could be 15 bits worth of information. The human is bad at seeing the difference between the colors, but better between the light level. So, the codec will actually allocate more bits to the luminance, and less to the chrominance. And it's even worse/better: the eye isn't equally good/bad for each of the three colors. So one of them may have more bits allocated to it. Some codec will also put every pixel for the luminance, but one on two for the chrominance, and then will just double it when it display it. The human eye is that bad with colors...</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/glipglopz" target="_blank">glipglopz</a>
+			<div class="markdown"><p>That was great ! Thank you. For everyone else wondering if it's worth it, it's an ELI21</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/joushou" target="_blank">joushou</a>
+			<div class="markdown"><p>We should have more ELI classes. ELI5, ELI16, ELI21, ELI40, and ELI80. The last one is just ELI5 in disguise.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/slashcleverusername" target="_blank">slashcleverusername</a>
+			<div class="markdown"><p>If you want the scientifical truth for all ages, from 5 to 105, we can’t get there without this classic and authoritative explanation from Björk. </p>
+<p><a href="https://youtu.be/75WFTHpOw8Y" target="_blank">https://youtu.be/75WFTHpOw8Y</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ShadeofIcarus" target="_blank">ShadeofIcarus</a>
+			<div class="markdown"><p>I've read both the parent comment and this, and I'm just going to consider my TV magic and move on. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/schumannator" target="_blank">schumannator</a>
+			<div class="markdown"><p>I’ll try to actually ELI5. </p>
+<p>The image on the TV is made of a bunch of dots called sub-pixels. Each dot is a tiny light, and they come in threes: one for red, green and blue. Each trio of sub-pixels makes a single pixel. The amount of light from the red/green/blue can be mixed together very precisely to make any color of light. </p>
+<p>So how do you control that? </p>
+<p>Every pixel has an address, just like your neighborhood. The video signal is just a bunch of numbers, the address of each pixel, and then a value of brightness for each color of sub-pixel. A tiny computer processor in the tv will take all the addresses and update the pixels row-by-row. This happens insanely fast! To make movement look smooth, the whole monitor needs to update the pixels at least 24 times-per-second (or Hz). Most computer monitors nowadays work on 30 Hz, but some top-tier gaming monitors and TV’s can refresh at 120 Hz!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/widowhanzo" target="_blank">widowhanzo</a>
+			<div class="markdown"><p>ELI3: Modern TVs are basically giant monitors with a small computer inside. They play video just like you play YouTube on your PC.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OGNatt" target="_blank">OGNatt</a>
+			<div class="markdown"><p>HAHHAHAAHHA me too! I didn't get that at all!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Eruanno" target="_blank">Eruanno</a>
+			<div class="markdown"><p>Extra sidenote: because NTSC had that funky color thing going, it was jokingly referred to as Never The Same Color :p</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RangerSix" target="_blank">RangerSix</a>
+			<div class="markdown"><p>And because of all the funky maths they had to do to get color working in the first place (including dropping from a nice, round 30 frames per second to 29.97...wtfever frames per second), it's also known as:</p>
+<p><strong>N</strong>ot<br />
+<strong>T</strong>he<br />
+<strong>S</strong>martest<br />
+<strong>C</strong>hoice</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/whitcwa" target="_blank">whitcwa</a>
+			<div class="markdown"><p>Yes, PAL was Perfection At Last and SECAM was System Essentially Contrary to the American Method. </p>
+<p>PAL's advantage over NTSC decreased as TV sets became more stable. The Vertical Interval Reference signal was introduced in the 1970's and made hue adjustment unnecessary. It was in use by almost all TV stations and receivers by the mid-80's. The increased flicker of PAL made NTSC superior at that point, IMHO. I'm a broadcast maintenance engineer who has worked with both PAL and NTSC. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thephantom1492" target="_blank">thephantom1492</a>
+			<div class="markdown"><p>And PAL to &quot;Perfect At Last&quot;</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eddieafck" target="_blank">eddieafck</a>
+			<div class="markdown"><p>I'm afraid it is from 0 to 255 which equals to 256 levels. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/themisfit610" target="_blank">themisfit610</a>
+			<div class="markdown"><p>Aaaaaaaaactually in 8 bit video it's generally 16-235. The rest is headroom ;)</p>
+<p>New HDR services use 10 bit, so 64-960</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jcharney" target="_blank">jcharney</a>
+			<div class="markdown"><p>like there’s noise inherent at either end of the range, or that it can spike beyond the range and “clip” otherwise?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dirtmens1" target="_blank">dirtmens1</a>
+			<div class="markdown"><p>Say for example I am transcoding a video and I see 8bit or 10bit, would that always be the amount of colour variants each pixel will have? </p>
+<p>So in basic terms, 10bit will give a lot more colour variants and as a result, a more detailed picture, but at the result of a larger video file? </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eddieafck" target="_blank">eddieafck</a>
+			<div class="markdown"><p>i didn't know. is this because of the non linear human eyes? Or is it due to something else? Some insight will be nice ;) </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JayPetey238" target="_blank">JayPetey238</a>
+			<div class="markdown"><p>Sweet Jesus, I'm a developer and have always wondered why things go to 255 instead of 256. For some reason the option of 0 indexed never entered my brain. I feel very small right now...</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IminPeru" target="_blank">IminPeru</a>
+			<div class="markdown"><p>In CS everything starts at 0</p>
+<p>The ones who index at 1 aren't programmers, or use MATLAB</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bacje16" target="_blank">bacje16</a>
+			<div class="markdown"><p>You... are a developer?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/goldfishpaws" target="_blank">goldfishpaws</a>
+			<div class="markdown"><p><a href="http://neukolln.net/img/memes/aw-look-how-cute-array-starts-at-1-oh-no-its-retarded.jpg" target="_blank">http://neukolln.net/img/memes/aw-look-how-cute-array-starts-at-1-oh-no-its-retarded.jpg</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Deinos_Mousike" target="_blank">Deinos_Mousike</a>
+			<div class="markdown"><p>Don't be afraid - not many numbers are scary</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DRZEUS13" target="_blank">DRZEUS13</a>
+			<div class="markdown"><p>Seven is a scary number</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ochib" target="_blank">Ochib</a>
+			<div class="markdown"><p>3 is the magic number and 1 is the loneliest number.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/havok7777" target="_blank">havok7777</a>
+			<div class="markdown"><p>I was wondering this : in the RGB color palette how was initially set the range of color ? I mean how does a computer ,say, know what is red? In the physical world we can make color out of pigments .
+Is it the monitor itself that translates data into color with it's hardware or it happens whitin CPU?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HonestIncompetence" target="_blank">HonestIncompetence</a>
+			<div class="markdown"><p>In the monitor, each pixel has a red, a green and a blue &quot;subpixel&quot;, which can be turned on individually. The computer doesn't know colours, it just knows when we tell it we want red, i.e. (255,0,0), it should turn on the first (red) subpixels to full intensity and not use the others at all.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bob4apples" target="_blank">bob4apples</a>
+			<div class="markdown"><p>Each pixel on the screen has three separate cells: red, green and blue.  You can see them by looking at a white screen with a magnifying glass (the bigger and lower resolution the screen, the easier it is to see them).  The video signal typically iterates through each pixel in order telling the display how bright each of the three cells corresponding to that pixel should be.  This is an approximation: exactly what the signal looks like and the mechanism that makes the cells go from black to fully lit depends greatly on the technology.  NTSC is works entirely differently from HDMI and  CRT works entirely differently from LED.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/classicsat" target="_blank">classicsat</a>
+			<div class="markdown"><p>It doesn't &quot;know&quot;, it just assumes because the builder of the system has assigned those bits to three ADCs which output voltages, and those go to inputs on the display  which illuminates blue, red, or green light elements.</p></div>		</li>
+					</ul>
+		</ul>
+	
