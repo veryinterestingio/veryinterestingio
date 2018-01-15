@@ -1,0 +1,120 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kinglokilord" target="_blank">kinglokilord</a>
+			<div class="markdown"><blockquote>
+<p>Android uses the Dalvik runtime,</p>
+</blockquote>
+<p>I thought they switched to ART. Or is that basically the same thing? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fatherrabbi" target="_blank">fatherrabbi</a>
+			<div class="markdown"><p>They did indeed switch to ART back in 5.0 IIRC</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/floatboth" target="_blank">floatboth</a>
+			<div class="markdown"><p>And they kinda sorta merged Dalvik back into ART in 7.0. Well, not literally, but JIT is back. So there's no longer a slow-ass recompilation of all the apps when updating the OS, yay!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/butterblaster" target="_blank">butterblaster</a>
+			<div class="markdown"><p>Yes, but ART is also <em>basically</em> a Java VM, and so it handles garbage collection in a similar way. The vast majority of Android apps did not need to be recompiled to work on ART. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/conanap" target="_blank">conanap</a>
+			<div class="markdown"><p>IIRC ART was much more developed, stable and optimized compared to Dalvik</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MaltersWandler" target="_blank">MaltersWandler</a>
+			<div class="markdown"><p>I know you said &quot;basically&quot;, but I want to clarify that ART is not a VM, it compiles apps into native machine code on installation. It has garbage collection though, but it's much better than the Dalvik one.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rex1030" target="_blank">rex1030</a>
+			<div class="markdown"><p>Yes they are all Java based.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xilefian" target="_blank">xilefian</a>
+			<div class="markdown"><p>ART is the same in the sense that it's a virtual machine with garbage collection, however it's far better than Dalvik as it's more optimised for mobile devices.</p>
+<p>ART <del>slowly compiles the Java byte-code in processor machine-code as features of an app are used</del> (<a href="https://www.reddit.com/r/explainlikeimfive/comments/7pvzmu/eli5_what_does_ios_do_differently_to_android_for/dskrltj/" target="_blank">this is Dalvik, my bad</a>) ART compiles the Java byte-code and it stores this translated binary so the next time you run the app the high-performance, memory-optimised, power-optimised machine-code version will be ran rather than the original Java byte-code. This makes ART a bit more difficult to port to future architectures compared to Dalvik, but the mobile world has settled on ARM for the time being so it's little concern.</p>
+<p>Dalvik collects garbage when an app is using too much memory (hits a ceiling, garbage is collected and the ceiling could be raised). ART has a smarter garbage collector, which will garbage collect memory when a convenient time arises. What is that convenient time? Maybe when your phone screen turns off, or when you navigate away from the app and are unlikely to return to it for a few minutes, maybe it's before VSYNC when there's still time to do processing, or perhaps it's never because the app keeps on re-allocating similar objects so ART can reuse blocks of memory.</p>
+<p>The ideal time to garbage collect is when the user isn't looking at the device - so in the future the &quot;convenient time&quot; could be whenever you blink your eyes!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MaltersWandler" target="_blank">MaltersWandler</a>
+			<div class="markdown"><blockquote>
+<p>ART slowly compiles the Java byte-code in processor machine-code as features of an app are used</p>
+</blockquote>
+<p>That was Dalvik, it's called tracing just-in-time compilation (JIT), ART uses ahead-of-time compilation (AOT) to compile entire apps to native machine code.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pedroishii" target="_blank">pedroishii</a>
+			<div class="markdown"><p>ELI2?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/conanap" target="_blank">conanap</a>
+			<div class="markdown"><p>let's say you're a chef and you put stuff you need to cook in the fridge.<br />
+In android, you hired someone to clear out the fridge for you. But because the hired person doesn't know exactly when you might still need the food in the fridge, they clean it less often. To accommodate for this, you want a bigger fridge.<br />
+In iOS, you clean the fridge yourself, every time you finish cooking. Since your fridge really only ever has the amount of food for 1 cooked meal, it can be pretty small.<br />
+Now replace you with the CPU / OS, fridge with RAM and food / meal as memory needed by the software<br />
+edit: for those who are interested in an even deeper understanding, the above is not 100% correct. If you don't care / can't understand beyond \^, stop here. The hired person is garbage collection, but that's actually part of the OS. The programmers are the ones that have to tell the OS to clear out the fridge on iOS, whereas the OS takes care of it for you on Android, but you hit that problem where it isn't the most efficient. On garbage collectors I've worked with, they usually clean it out when all references of something is gone. Basically when it's no longer used by any prorgamme, it's removed.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kamnyah" target="_blank">Kamnyah</a>
+			<div class="markdown"><p>Wow this is an awesome analogy.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Iamnotacookiemonster" target="_blank">Iamnotacookiemonster</a>
+			<div class="markdown"><p>That was beautiful. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mourningblade" target="_blank">Mourningblade</a>
+			<div class="markdown"><p>If you want to keep going with the fridge analogy (which is great, btw), we can explain a few different types of garbage collection:</p>
+<p>Stop-and-copy: you have two refrigerators (left and right). Every so often, your cleaning person has all the cooks stop what they're doing, looks to see what they still need, then puts that in the same spot in the other fridge, tells everyone where the new stuff is, then cleans out the old fridge while the cooks get back to work. Smarter cleaners can do this when the head chef stops the kitchen between shifts.</p>
+<p>Ref counting: you have one refrigerator. Every time a cook starts using something, they put a sticky note on the batch in the fridge. When they're done they pull the sticky note. The cleaner watches for stuff that doesn't have a sticky note anymore. This seems simple, but it means every cook is spending a little time on a lot of sticky notes when they could be cooking. Sure does make the cleaner's job easy, though.</p>
+<p>Generational: you have six refrigerators.  Cooks put new stuff in the rightmost fridge. When a fridge starts getting full, the cleaner has everyone stop what they're doing and checks to see if anyone is using stuff in that fridge. Everything that's being used from that fridge gets moved one fridge to the left, and the fridge is cleaned out very fast. Once stuff gets to the leftmost fridge, it is permanent and is probably never checked again. The good news here is that since most stuff that's put in the first fridge isn't used for very long, and anything that makes it to at least the third fridge is very unlikely to be garbage, you actually don't spend much time checking to see if anyone is still using stuff.</p>
+<p>There's fancier versions of this, like your cleaner may go get you a bigger fridge if it notices you're running out of room or if your having to collect garbage frequently. There's really fancy versions of this that don't require you to stop the kitchen.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/humaninthemoon" target="_blank">humaninthemoon</a>
+			<div class="markdown"><p>So, if used memory is garbage, then the Android way of handling used memory that is no longer needed is just like the garbage man. Periodically, the garbage man comes around and collects all the data stored in memory that's no longer needed. You need a large enough dumpster to hold the data until the garbage man comes.</p>
+<p>Apple's way of handling this is more like if you took your own garbage to the dump when needed. You can use a smaller dumpster since you don't have to wait for the garbage man to come, but it's more work and planning required so the dumpster doesn't overflow.</p>
+<p>Sure, it's not 100% accurate, but hopefully that helps.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AndrijKuz" target="_blank">AndrijKuz</a>
+			<div class="markdown"><p>So is Apple's approach more CPU intensive?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hibbel" target="_blank">hibbel</a>
+			<div class="markdown"><p>Objective-C has added automatic reference counting long ago. Using this, you don't need a garbage collector to run periodically. Instead, memory is released as the last reference to it is deleted.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BigBigFancy" target="_blank">BigBigFancy</a>
+			<div class="markdown"><p>ARC is great. Basically as easy as garbage collection from a programmer’s perspective. And basically as efficient as manual malloc/free during runtime.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kaffiene" target="_blank">kaffiene</a>
+			<div class="markdown"><p>Not really. Reference counting destroys cache consistency on desktop architectures</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jussnf" target="_blank">jussnf</a>
+			<div class="markdown"><p>Built-in shared_ptrs?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RotsiserMho" target="_blank">RotsiserMho</a>
+			<div class="markdown"><p>Yes, and the compiler automatically inserts them. Basically you write your code without worrying about lifetimes (for the most part) and the preprocessor/compiler analyzes the code and wraps any variables used by multiple entities in a shared_ptr-like wrapper. Most other things get wrapped in a unique_ptr-like wrapper if I understand correctly. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mrSnout" target="_blank">mrSnout</a>
+			<div class="markdown"><p>Is it like in JavaScript?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bnovc" target="_blank">bnovc</a>
+			<div class="markdown"><p>From a code writing perspective perhaps, but JavaScript has to do this on the fly. You can think of the ObjC approach as having a bunch of “free(...)” lines inserted in before compiling. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gamebuster" target="_blank">gamebuster</a>
+			<div class="markdown"><p>Kind of, but in Objective C, it is done quite naively and it is prone to memory leaks caused by circular references, where you have 2 objects referencing each other. This is because objects have a &quot;reference count&quot; number, which increments for every reference and decrements whenever a reference is removed. When 2 objects reference each other, both objects have a reference count of 1. They don't know what object they are being referenced from, so they assume it is just anyone and these objects are not being deleted. This can be avoided by using weak references. Weak references are references that aren't counted, so the reference can point to an object that no longer exists if it has no other strong (normal) references.</p>
+<p>Javascript (and Java, and I'd guess the android runtime as well) use some kind of tree. If you have 2 objects that are referencing each other, but are no longer referenced anywhere else (thus impossible to use), it is no longer attached to the tree and it gets deleted somewhere in the future.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xilefian" target="_blank">xilefian</a>
+			<div class="markdown"><p>Javascript is implementation specific. Could be automatic reference counting, could be a garbage collector, could be a magical computer fairy that swoops down in your sleep and cleans up the RAM.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
