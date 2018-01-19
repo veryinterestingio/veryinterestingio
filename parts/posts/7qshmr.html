@@ -1,0 +1,154 @@
+<li class="post" data-handle="7qshmr">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/7qshmr/eli5_out_of_order_processing_and_tomasulos/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/7qshmr" onclick="return false">Out of order processing and Tomasulo's algorithm</a>
+		</h2>
+		<!--<span class="date">2018-01-19</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Out of order processing and Tomasulo's algorithm</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dss4fm0">
+		<a class="author" href="https://www.reddit.com/user/gattan007" target="_blank">gattan007</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'm going to explain this how I would explain it to an actual 5 year old. This will be at a very different level than the other answers, but maybe it will help some things click for you.</p>
+<p>Consider making dinner at your house. Someone gave you instructions to follow so that the dinner gets made correctly. You are going to make a spaghetti sandwich.</p>
+<ol>
+<li>
+<p>Boil water</p>
+</li>
+<li>
+<p>Add pasta to water</p>
+</li>
+<li>
+<p>Boil pasta for 10 minutes</p>
+</li>
+<li>
+<p>Drain water from pasta</p>
+</li>
+<li>
+<p>Add sauce to pasta</p>
+</li>
+<li>
+<p>Pre-heat oven to 400 degrees</p>
+</li>
+<li>
+<p>Put bread in oven</p>
+</li>
+<li>
+<p>Bake bread for 5 minutes</p>
+</li>
+<li>
+<p>Remove bread from oven</p>
+</li>
+<li>
+<p>Turn off oven</p>
+</li>
+<li>
+<p>Slice bread</p>
+</li>
+<li>
+<p>Put pasta between bread slices</p>
+</li>
+<li>Eat</li>
+</ol>
+<p>Now, you could follow the instructions exactly as written and make a delicious spaghetti sandwich. However, you would be wasting time. There is no reason to wait for the pasta to cook before you start the oven. As written, it will take 10+5=15 minutes to make this meal. If you cooked the pasta and bread at the same time, you could make the meal in 10 minutes. You do this by executing the same steps in this new order:</p>
+<ol>
+<li>
+<p>Pre-heat oven to 400 degrees</p>
+</li>
+<li>
+<p>Boil water</p>
+</li>
+<li>
+<p>Put bread in oven</p>
+</li>
+<li>
+<p>Add pasta to water</p>
+</li>
+<li>
+<p>Boil pasta for 10 minutes</p>
+</li>
+<li>
+<p>Bake bread for 5 minutes</p>
+</li>
+<li>
+<p>Remove bread from oven</p>
+</li>
+<li>
+<p>Turn off oven</p>
+</li>
+<li>
+<p>Slice bread</p>
+</li>
+<li>
+<p>Drain water from pasta</p>
+</li>
+<li>
+<p>Add sauce to pasta</p>
+</li>
+<li>
+<p>Put pasta between bread slices</p>
+</li>
+<li>Eat</li>
+</ol>
+<p>This is out-of-order execution. It is the processor figuring out that some of these steps aren't dependent on each other, so you can do them in a different order to get things done faster. This is possible because the resources you need to make the pasta (stove) and the resources you need to make the bread (oven) are different. Tomasulo's algorithm is a way of keeping track of which things are dependent on each other, and what resources are free, at any given point in time to get things done as quickly as possible.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dsrta0r">
+		<a class="author" href="https://www.reddit.com/user/thixotrofic" target="_blank">thixotrofic</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Well, here goes, to hold you over until hopefully somebody with more background in this answers your question.</p>
+<p>For out-of-order execution, the first two sections of <a href="https://en.wikipedia.org/wiki/Register_renaming" target="_blank">this</a> page do a good job of explaining the situation, and also the problems that register renaming, which is a technique used by Tomasulo's Algorithm, tries to solve.</p>
+<p>Instructions are usually thought of as being processed sequentially by the CPU. However, when an instruction can take a long time, for example because of a memory access, out-of-order execution can allow us to start running some other instructions while we wait. Specifically this is out-of-order because there are instructions later on that complete before one higher up in the instruction set.</p>
+<p>So there's the potential to use processor cycles much more efficiently if this idea can be implemented correctly. However, naturally there are dependency issues with this idea. There can be trouble if we try and execute an instruction ahead of another instruction that, for example, provides parameters for the out-of-order instruction.</p>
+<p>Tomasulo's algorithm is pretty uncharted territory for me, but the general idea is that it is a way to implement out-of-order execution to prevent some of the dependency issues we would expect. If an instruction doesn't have its operands ready as it's preparing to be issued, it refers to a flag set to the algorithm to know where to look for the value when it gets computed and will stall until all its operands become available. When each instruction completes, it also puts its result into some logic that will inform other instructions waiting on it that one of their operands has become available. Along this process, register renaming is used so that values are not read out-of-order with reservation stations where instructions can look up operands that cannot be overwritten by other instructions.</p>
+<p>See <a href="https://en.wikipedia.org/wiki/Tomasulo_algorithm" target="_blank">here</a> and <a href="https://courses.cs.washington.edu/courses/csep548/06au/lectures/tomasulo.pdf" target="_blank">here</a>.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dss3beq">
+		<a class="author" href="https://www.reddit.com/user/luisluix" target="_blank">luisluix</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>IIRC when I took advanced arch,</p>
+<p>variable 1 = 5*9</p>
+<p>variable 2 =  2+4</p>
+<p>variable 3 = variable 2 + variable 1</p>
+<p>on a basic level we have something that does sums and something else handles multiplications, and they take different times. We know that multiplication takes longer, and sums are done quickly. So while we wait for the multiplication to finish, we can start doing the sum.</p>
+<p>Since our last variable needs both results, it will get the sum first, and its gonna wait for the multiplication to finish. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dss6xgw">
+		<a class="author" href="https://www.reddit.com/user/Glacise" target="_blank">Glacise</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Going to try my best. I'm assuming you mean out of order in regards to Tomasulo's algorithm. </p>
+<p>To boil it down Tomasulo's algorithm is when you grab an instruction, or a piece of code, you copy it, and begin working on it. Think of this like having a book you want to read. If you take the book to read the chapter you want then no one else can read it. If you photo copy that chapter, then the book can be used by someone else even while you use that chapter!</p>
+<p>TS algorithm does this by copying the information it needs and running that code with it's own copy of the values. This prevents a bunch of issues which aren't very ELI5 but it basically boils down to more people using the book at once. </p>
+<p>The out of order part is a little trick the algorithm uses that makes things go a little faster. Basically the program starts working on what it can rather then waiting for every piece to be there. For example say you are making a sandwich. You have to toast the bread, slice the meat then make the sauce. If you start making the bread and it is in the oven, you would still want to cut the meat and make the sauce while waiting for the bread. If the sauce is going to be ready before the bread you wouldn't want to wait for the bread to finish. It would be faster to finish the sauce. </p>
+<p>The out of order basically means you can start any step that isn't dependent on a previous step and finish that step before the other. We do this every day by multitasking. </p>
+<p>Non out of order would be like starting the shower then starting to brush your teeth but having to keep brushing till you finish showering. Just because we started the shower first doesn't mean we have to finish it first. It sounds crazy but without OOO a processor has to finish showering before it can finish brushing it's teeth. </p>
+<p>TLDR: TS algorithm copies everything to prevent issues and can start AND stop a task while another is going on with OOO.</p>
+<p>Edit: wording and basic restructure</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dssl0oa">
+		<a class="author" href="https://www.reddit.com/user/MistaSmiles" target="_blank">MistaSmiles</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The problem being solved is that sometimes a processor is idle, and for maximum speed you want it always working. One of the reasons it is idle is because you have to wait on incoming information before going on to the next step; for example in a paralell scheme you might not be able to do 4 tasks at the same time.</p>
+<p>One way you can solve this by guessing whats coming &amp; acting appropriately. The obvious issue with this is sometimes you guess wrong &amp; need to redo the calculations. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/7qshmr" onclick="return false"><span>show</span></a>
+</li>

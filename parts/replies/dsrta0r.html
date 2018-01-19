@@ -1,0 +1,15 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chessdolphin" target="_blank">chessdolphin</a>
+			<div class="markdown"><p>That helps a lot, thanks!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/7446353252589" target="_blank">7446353252589</a>
+			<div class="markdown"><p>Tamasulos algorithm is not as complicated as it seems. At it's base level it is just a protocol for keeping track of which registers and CPU components are being used for each instruction, which allows building a dependency graph between instructions. Then, you are often able to find cases where instructions can be executed in advance, most importantly, memory accesses.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/420Blaze1t" target="_blank">420Blaze1t</a>
+			<div class="markdown"><p>I've always seen Tomasulo as a way to create a hardware linked list of the various dependencies as instructions are being called or scheduled thus eliminating hazards by &quot;pointing&quot; to a register which is actually a &quot;pointer&quot; to something else. As instructions complete EX the very last pointer on this chain copies the value up the chain and the entry is removed from the chain. As new instructions are scheduled, the chain increases and the new element is oriented to point to the head of the chain. </p>
+<p>Registers are just labeled by R2/whatever but Tomasulo replaces R2 with a temporary R2 entry called Pa (example) inside the reservation station at slot S1. If another instruction with R2 comes along, a new entry is allocated inside the reservation station at S2 called Pb, and that entry points to R2. Except the first R2 is actually inside the reservation station at S1 with value Pa, so the slot at S2 holds a pointer Pb (was R2) that's pointing to R2 (Pa) thus the reorder unit links Pb to Pa. You can see that the original instruction chain R2-&gt;R2-&gt;whatevers next (instruction 2-&gt;instruction 1-&gt;whatevers next) is replaced by Pb-&gt;Pa-&gt;R2 (instruction 2-&gt;instruction 1-&gt;original name). When previous instructions complete and R2 is known, R2 feeds back into entry S1 so Pa has a value, which means S2 gets Pb replaced by Pa, which means S2 gets Pb replaced by R2.</p></div>		</li>
+					</ul>
+		</ul>
+	
