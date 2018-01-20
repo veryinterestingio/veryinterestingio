@@ -1,0 +1,72 @@
+<div class="answers">
+	<div class="answer" data-handle="dsspdye">
+		<a class="author" href="https://www.reddit.com/user/Agouti" target="_blank">Agouti</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They look like they are strobing because (for most of them) on mains power they actually are! Much like when whatching TV, however, something called ”persistence of vision” smooths it all out for you. When blinking or looking away quickly your brain &quot;preserves&quot; what you saw in that instant and you can spot it. You can also see it when something is moving quickly across your vision. </p>
+<p>Similar stuff happens when you dim LEDs (like LED car taillights when the brakes aren't on), though much, much faster through something called PWM. The LEDs are switched on and off really quickly - when they are on for half the time they look half as bright.  </p>
+<p>In theory PWM is too fast to be perceivable (when done right) but it seems a lot of people are actually sensitive to it!</p>
+<p>You can also get strobing from HID headlights because they often use AC to get the thousands of volts they need to ignite.</p>
+<p><em>This bit goes a little beyond ELI5 but hopefully still helps. My inbox kinda exploded and I've tried to answer repeated questions in the edits.</em></p>
+<p>Strobing is (historically) very common with LEDs driven from mains AC. You can often see the effect if you wave your hand back and forth while focusing on a stationary spot - instead of smooth motion blur  you can see a series of hand images, like stills from a movie. Cheap camera phones also sometimes  show it. So why does this happen with LEDs but not other lights?</p>
+<p>In your mains AC, the voltage alternates from positive to negative and back again 50 or 60 times per second. That means that 100 or 120 times a second the voltage is exactly <strong>zero.</strong> Zero voltage, zero power.</p>
+<p>In traditional incandescent lights there is a fillament which is heated super hot to provide light. This fillament takes time to cool down - much longer than the mains supply takes to go through zero - and so it can stay hot, keep putting out light, and there is (almost) no flicker. </p>
+<p>In LEDs, there is no fillament to heat and they react <em>very</em> quickly. When the voltage to them starts to drop towards zero, the lights dim and turn off, coming back on again as it voltage goes back up. As this is happening at 100 or 120 Hz, most people wont notice it.</p>
+<p>Cheap or traditional triac based dimming can seriously exacerbate the issue with mains strobing.</p>
+<p>In higher quality power supplies for LEDs, they use &quot;smoothing capacitors&quot; and/or purpose designed LED drivers to help the LED stay lit through the low/zero volt bits and this reduces the strobing effect.</p>
+<p>Incidentally, flourescents also strobe (though to a lesser degree) and most video cameras have special software to help hide this.</p>
+<p>Obviously with battery (DC) powered stuff, excluding dimming, there is no AC and so no strobing. </p>
+<p><strong>E:</strong> typos</p>
+<p><strong>Late E2+:</strong> Some battery powered things can use DC to DC transformers which can in turn cause strobing, so the above has caveats. LED car headlights may fall into this category.</p>
+<p>I have assumed above that we are talking about incandescent replacement globes which almost always have a full bridge rectifier. For single diode lights (Christmas lights, dim indicators, or other decorative lighting) it is half the frequency and more noticeable.</p>
+<p>The flicker many people mention in slow motion footage of car LED taillights is almost certainly PWM dimming for combo brakes/running lights.  Brakes on, full power, running lights, dimmed.</p>
+<p><strong>Regarding strobing headlights</strong>, chances are they are HID lights not LED. HIDs need thousands of volts and have transformers (called ballasts) to get this, in turn meaning almost certainly an AC voltage being produced. Much like flourescent tubes, or arc lamps, there is no fillament to help it ride the zero crossing in the AC signal and they strobe. If it is absolutely LED then I would suspect it has to do with being a fancy matrix LED configuration which automatically controls the beam pattern (PWM?). Might also be DC to DC transformers at play.</p>
+<p>I also found it really interesting how many people have issues with PWM lights. Common wisdom used to be anything above 1 kHz was impossible to see with the naked eye... the exact frequency used in PWM is kinda arbitrary though, apart from lower is easier. Nothing stopping someone using PWM at say 200 Hz instead, which might be where the issue lies.</p>
+<p>If strobing bothers you the good news seems to be that a lot of newer high quality LED globes have switch-mode and/or smoothing built in, however it's not clear how to tell from the box. I did a search on Amazon and I couldn't find the right magic words. YMMV. If you have the chance to use them in person, at least one variety will stay on for a fraction of a second after you turn them off, so you might be able to look for this. Dimmable sorts might also be better.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dssmnx1">
+		<a class="author" href="https://www.reddit.com/user/mmmmmmBacon12345" target="_blank">mmmmmmBacon12345</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They're often dimmed using PWM(pulse-width modulation) in cheap applications.  Basically they're turned on and off really quickly and by changing the ratio of on time to off time you can change how bright it appears to your eyes.</p>
+<p>The problem with this is that when they move through your vision(you turn your head or they move) or you wave something in front of them you'll get weird results because its not on all the time.  There is a distinct image that only appears at specific locations on your retina instead of being a blurry smear across it like your brain expects from a continuous source.</p>
+<p>Good applications will instead provide constant power and control how much current is flowing through the LED.  Providing constant power means they aren't turning on and off and don't leave you with the weird jittering effect.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dsszmut">
+		<a class="author" href="https://www.reddit.com/user/ABrokenBinding" target="_blank">ABrokenBinding</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The short answer is that it is a relationship between the frequency at which the driver operates and the visible flicker that the human eye can see from an LED light source.</p>
+<p>LEDs are DC components by nature. Apply a DC voltage and current, and voila! Light. </p>
+<p>Commercializing such a device requires extra components, specifically an LED driver, which takes the AC that your home provides and coverts it to DC that can then power a series of LEDs. These drivers have an operational frequency, the rate at which they cycle the power to the LED. In modern LED lamps, these frequencies are well north of 2000 Hz. However, a driver that is compact enough to fit in a retrofit lamp comes at a cost. So some manufacturers will still use drivers that operate at 100 Hz to save money/cut corners.</p>
+<p>That's all well and good, however research in the past 20-some years has shown that the human eye can detect LED flicker at an average of 100 - 120 Hz in LED sources.</p>
+<p>Why is this not a problem with the old tungsten lamps, you ask? Well, LEDs turn on and off instantly in response to the power supplied to them, on the order of microseconds, while tungsten lamps operate by heating a filament to a peak temperature. 50 or 60 Hz is not perceivable by the human eye when the rate of change is so slow, in this case hundredths of seconds. Filament heats up, cools down, rinse, repeat, but that change is slower than the power cycle of your house. </p>
+<p>In general, most modern LED lamps/retrofits don't have this issue anymore as the cost of components has dropped precipitously to the point where practically anyone can compete in the open market with LED products.</p>
+<p>Dimming, specifically PWM dimming of LED lamps using residential wave form chopping dimmers, is an entirely different matter. Mostly because cross-manufacturer standards are slow to solidify.</p>
+<p>Source: M.S. from the Lighting Research Center at Rensselaer Polytechnic Institute, and years of developing LED lighting fixtures for commercial applications.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dssphx6">
+		<a class="author" href="https://www.reddit.com/user/intrepidzephyr" target="_blank">intrepidzephyr</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you’re referring to Christmas lights, they’re usually directly driven from the AC power in the wall through a diode (like a check valve for electricity, one way flow) and a resistor (to drop the voltage to something the string of LEDs can handle).  AC current flows back and forth, but LEDs can only operate in one direction.  The diode allows the flow one way, so the LED’s only work half of the time.  In the us, AC power changes direction of flow 60 times per second (60Hz, funnily because it’s a pleasing tone to hear hum, and for that reason alone).  The LEDs can only use half of those cycles, so they flash 30 times per second.  When you’re looking at this flashing LED string, it appears like they’re solid ON, but dart your eyes and they’ll flash!  Your persistence of vision is what fills in the gaps, because it takes a second for your eyes to refresh their electrochemical reactions.  </p>
+<p>Try recording these LEDs on a slow motion camera, like some phones have.  You’ll see the flashing.  Even without a slow motion feature, most phone cameras will mix in and out of sync with the LEDs flashing, so they could fade from on to off slowly. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dssmrcy">
+		<a class="author" href="https://www.reddit.com/user/Skyhawk_Illusions" target="_blank">Skyhawk_Illusions</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It must be noted that this is not always true. Having played with the Saturn model of the 2000s toy astrojax, I can attest that it is entirely possible to have LEDs that don't appear to strobe when you shift your vision that quickly.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
