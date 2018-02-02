@@ -1,0 +1,57 @@
+<li class="post" data-handle="7u4umz">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/7u4umz/eli5_how_storage_companies_like_dropbox_keep/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/7u4umz" onclick="return false">How storage companies like Dropbox keep files safe if all of your files are stored in one gigantic cluster that other users use</a>
+		</h2>
+		<!--<span class="date">2018-02-02</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Specifically, how does someone like Dropbox, who for a long time hosted all their stuff on AWS, keep your files separated from other users files?  They give away 2GB of free storage for every new user and I know with Amazon's S3 storage buckets you get up to 5GB for free. Does that mean every new user got their own S3 bucket and if they paid for an account that bucket increased or did Dropbox have one massive bucket that had free accounts with 2GB of storage and paid accounts with more?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dthn5zh">
+		<a class="author" href="https://www.reddit.com/user/dmazzoni" target="_blank">dmazzoni</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Imagine Dropbox is a giant storage facility, like the ones where you can rent a storage locker and put all of the things from your attic.</p>
+<p>To prevent people from trying to break into others' storage units, customers don't actually get to enter. If you want to store stuff you just walk up to the front gate and hand them a box, along with your ID, and they store it for you. Later when you want to access it, you give them your ID and ask for the box by its name, and they retrieve it for you.</p>
+<p>With this model, they don't really need separate storage lockers for every user. They just need to do a really good job of keeping track of who owns which box, and never give a box to someone who isn't authorized to open it. The boxes could be in one giant room, organized alphabetically by name. All that matters is that the boxes are tagged with names and owner IDs.</p>
+<p>In this analogy, Amazon is simply leasing them the land where they bought the storage lockers. That has no effect on their security.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dthtqdf">
+		<a class="author" href="https://www.reddit.com/user/l01cd3v" target="_blank">l01cd3v</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>As other users pointed out, you don’t have access to the storage system. You interact with software they created that handles user identification and access controls to files.</p>
+<p>The free 5GB on S3 is part of the free tier, so only true for the first 12 months.</p>
+<p>Also Dropbox completed migration out of AWS in 2016, they have their own storage backend now. Google “dropbox s3 migration” and you’ll find a few articles that talk about it.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dthltts">
+		<a class="author" href="https://www.reddit.com/user/audiotecnicality" target="_blank">audiotecnicality</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It really doesn't matter.  Whether Amazon gives Dropbox separate buckets or one bucket, Dropbox only allows their users to access the files that user uploaded.</p>
+<p>AWS is like a massive self-storage facility.  Now if Dropbox rents out one whole warehouse that's already divided up into closet-sized units, or installs their own closets into a massive empty warehouse, they still issue their users a lock and key to where they can only access the closet they have permission to.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dthuaum">
+		<a class="author" href="https://www.reddit.com/user/risfun" target="_blank">risfun</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's kinda like the safe deposit boxes or  PO boxes, they're all hosted in one place but users have their own lock. The hosting place might have a back door for all but there are secure policies to avoid misuse,</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dthr0wb">
+		<a class="author" href="https://www.reddit.com/user/factbased" target="_blank">factbased</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Doesn't have anything to do with S3 buckets. Keep an account associated with the data and do authentication before allowing access to it. Same as with Gmail, iTunes, etc.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/7u4umz" onclick="return false"><span>show</span></a>
+</li>
