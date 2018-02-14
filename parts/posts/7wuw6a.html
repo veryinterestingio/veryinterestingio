@@ -1,0 +1,77 @@
+<li class="post" data-handle="7wuw6a">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/7wuw6a/eli5_why_we_use_gradient_descent_to_solve/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Mathematics">Mathematics</span>
+			<a href="/posts/7wuw6a" onclick="return false">Why we use gradient descent to solve optimization problems, when we can just derive the function and make it equals to zero?</a>
+		</h2>
+		<!--<span class="date">2018-02-14</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>In my calculus classes I've made a lot of optimization problems just doing the following steps (roughly):</p>
+<ul>
+<li>Find out what is the function to be optimized</li>
+<li>Make the derivative</li>
+<li>Make the derivative equals to zero, and find the X</li>
+</ul>
+<p>But, with gradient descent we make steps toward the direction that seems to be the correct one, since the method above just gets the right result, why can't we just use it?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="du3ckl2">
+		<a class="author" href="https://www.reddit.com/user/Koooooj" target="_blank">Koooooj</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The approach of &quot;find the derivative and set it equal to zero&quot; is easy when the function has only a single variable, especially if the function is relatively simple.  If I ask for the extrema of f(x) = 3x^3 - 4x^2 + 5x -12 then the derivative is easy to take, the derivative is a quadratic function, and the zeroes can quickly and easily be worked out by hand using the quadratic equation.</p>
+<p>If I ask for the extrema of f(x, y) = x^2 + 4xy + 2y^2 -3x + 4y -12 then you suddenly have a much more difficult problem on your hands.  You could find df/dx and df/dy and look for locations where both are zero, but it's possible that those places are locations where df/dx is in a minimum and df/dy is in a maximum; these are called saddle points and are not extrema.</p>
+<p>If I ask for the extrema of f(a, b, c, d, e) = &lt;some complicated function of every combination of a, b, c, d, and e with exponents on each up to 3&gt; then you have the same problem, but now you need to find locations where df/da, df/db, df/dc, df/dd, and df/de are all zero and all in the same direction.  Hopefully you can see how this problem quickly explodes in complexity.</p>
+<p>Gradient descent is often used on problems with hundreds, thousands, even millions of variables.  The explicit approach may be mathematically sound but that's not worth anything if it would take billions of years for a supercomputer to calculate.  Gradient descent is simple and fast and can give results that are accurate, hence its widespread use. </p>
+<hr />
+<p>EDIT: This response was given when the post was minutes old; it was intended for OP who obviously has a background in calculus, hence straying from the normal level that ELI5 caters to.  Now that it has gained some traction, the simpler explanation is as follows:</p>
+<p>The question is &quot;We learned how to solve this kind of problem in class.  The solution approach seems pretty straightforward, and it gives an answer that is exactly correct.  Why does this other method exist that only gives an approximate solution?&quot;</p>
+<p>The answer is &quot;As you look at more and more complicated questions it gets harder and harder to use the exact approach.  A little bit of complexity in the problem makes for a LOT of complexity in the solution.  The approximate method is nice because it never gets <em>too</em> complicated.  You can make a computer do that method and get a result when a computer would take billions of years to find the exact value.&quot;</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="du3cmub">
+		<a class="author" href="https://www.reddit.com/user/hitlerallyliteral" target="_blank">hitlerallyliteral</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The derivative being 0 is necessary but not sufficient for it to be a maximum point-it could be a minimum, or it could be neither. Also, it's possible to think of functions with derivatives whose roots aren't analytically solvable. Eg y=e^x -2x</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="du49vph">
+		<a class="author" href="https://www.reddit.com/user/ElMachoGrande" target="_blank">ElMachoGrande</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Finding the derivative is easy if you have a function, but in the real world, you often don't have that, just a data set, and you can't derive that.</p>
+<p>Say, for example, that you have a landscape, and want to find the highest mountain. You can't derive that landscape, and, let's assume that we are doing this on foot, so searching the entire continent is not an option. So, we need some other way to do it, such as &quot;Walk in whatever direction slopes up&quot; or &quot;Walk towards the highest point we can see and explore further&quot; (which would be random sampling to find areas of interest in mathematics). Note, however, that neither of these methods are guaranteed to give the highest point, but that's the real world problem, very often data is too big to be exhaustingly searched. We could just get stuck on some random mole hill on a large flat plain.</p>
+<p>So, the reason for not simply teaching the derivative method is that it only works in a few cases, and they want to teach other, more general methods.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="du3czna">
+		<a class="author" href="https://www.reddit.com/user/mmmmmmBacon12345" target="_blank">mmmmmmBacon12345</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Taking the derivative of a single variable function works well enough and you can get the max/min from that.</p>
+<p>F(x,y)=sin(1/2 x^2 - 1/4 y^2 + 3) cos(2x+1-e^y)</p>
+<p>That's going to take you quite a while.</p>
+<p>Gradient descent is a heuristic for getting the <em>local</em> maxima/minima when you cannot just differentiate the function.  It works on any function and works reasonably quickly.  There are a lot of ugly functions out there that are incredibly hard to differentiate so it becomes faster to have the computer do multiple gradient descents from random starting locations rather than struggling to differentiate, there are also straight up non-differential functions which are impossible to differentiate.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="du5t5do">
+		<a class="author" href="https://www.reddit.com/user/zip37" target="_blank">zip37</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>To add to previous answers: it is very easy to implement on computers, it is a very popular method for neural network training, since it usually involves a lot of variables and an explicit solution for a problem might not be feasible.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/7wuw6a" onclick="return false"><span>show</span></a>
+</li>
