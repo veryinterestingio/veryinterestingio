@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5:If my router has 200Mbps and has 4 computers attached via Ethernet, does it split the 200Mbps between all Ethernet cables and has a separate 200Mbps for Wifi, or does it split the 200Mbps between Ethernet AND wifi?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="7zg471">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/7zg471/eli5if_my_router_has_200mbps_and_has_4_computers/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/7zg471" onclick="return false">If my router has 200Mbps and has 4 computers attached via Ethernet, does it split the 200Mbps between all Ethernet cables and has a separate 200Mbps for Wifi, or does it split the 200Mbps between Ethernet AND wifi?</a>
+		</h2>
+		<!--<span class="date">2018-02-25</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I'm really curious as of how wifi and ethernet works.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dunqpg3">
+		<a class="author" href="https://www.reddit.com/user/awkbr549" target="_blank">awkbr549</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The 200Mbps is the maximum rate at which the router can transfer data. So whether the data is being sent via ethernet or WiFi, the total maximum data rate is 200Mbps. If only one computer is using the Internet, then that computer can use up to 200Mbps (though it usually doesn't, unless you are streaming high quality video or something). If you havr two computers using the Internet, each computer can use up to 200Mbps, but eachis limited by how much traffic the other is generating. This applies for three and four computers as well. </p>
+<p>This is becauae of how the TCP and UDP protocol work. Each use packets, which is just small chunks of data that is manageable by most routers. TCP (ie file download) makes sure each packet arrives in the correct order without corruption, but UDP (ie video streaming) doesn't (because who cares if a 1 of a billion pixels is wrong, or if 1 frame of 60 fps is lost). If all computers are sending and receiving just as many packets as the others on the same router, then the data rate will be shared among all computers equally. This is because the packets have to be temporarily stored on the router before forwarding, meaning that sometimes the buffer gets filled and can't hold anymore data. Once packets are lost, each TCP connections slows its transfer rate, to give the buffer time to make more room. This phenomena is call TCP Sharing, which also means if one computer on the network is downloaded 10 files and the other computers are only downloading 1 or 2 files, the computer with more connectiona/downloads will get most of the data rate.</p>
+<p>UDP doesn't care about slowing down, so when the buffer of the router gets full, the packets are lost forever. YouTube gets arround this by taking into consideration whether or not you receieved the UDP packets (through ACKs, or acknowledgements, part of the protocol), and sends less high-quality data (aka less packets or packet size) so that you still get some kind of video stream. This is what is happening when you are watching a video and the quality suddenly drops.</p>
+<p>TL;DR 200Mbps is the maximum rate for data leaving or entering your house, and it is split evenly among the number of connections (ie how many file downloads) each computer is using, not split evenly among ethernet or WiFi nor split evenly among each computer intentionally.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dunt618">
+		<a class="author" href="https://www.reddit.com/user/Thomas9002" target="_blank">Thomas9002</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This depends on what you're meaning by the 200Mbps speed.<br />
+Is it your internet speed? If so the router can receive 200Mbps from the internet, and has to divide the speed on those devices.  Every combination is possible (it doesn't matter if 4 PCs get 50Mbps each, or, one could get all of the 200Mbps etc).<br />
+.<br />
+Now your router has other kind of speeds as well.<br />
+E.g. it may have 600Mbps Wifi and 4 Gigabit Ethernet ports.<br />
+Ethernet: Every device that's connected via gigabit ethernet can receive and send 1000Mbps simultaneously without slowing down other devices. (that means PC1 can send 1000Mpbs to PC2 while PC2 can send 1000Mbps to PC1 and at the same time PC3 can send 1000Mbps to PC4, and PC4 can send 1000Mbps to PC3).<br />
+.<br />
+Wifi:<br />
+Unlike ethernet wifi can only be used by one device at a time.<br />
+So you could send a file from an ethernet device to a wifi device with 600Mbps.<br />
+But you could only send a file from one wifi device to another wifi device with 300Mbps (Device 1 sends it to the router, the router sends it to device 2) (however there's an exception if one of the devices uses 2,4 Ghz, and the other 5 Ghz).  </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="duo0rg6">
+		<a class="author" href="https://www.reddit.com/user/rabidelfman" target="_blank">rabidelfman</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Network Engineer here.</p>
+<p>I'm going to assume that you mean you have an Internet connection at 200Mbps.  That 200Mbps is split between all four computers.  Each computer will be able to use <strong><em>up to</em></strong> 200Mbps of that bandwidth.  If you begin downloading things on each computer, they will be fighting for bandwidth, and it will be split among the four computers - it won't be split evenly, either.</p>
+<p>If you mean the actual router itself, then that is most likely talking about the Wi-Fi connection being 200Mbps.  If you are connecting via Ethernet, those Ethernet ports are dedicated 10/100Mbps or 10/100/1000Mbps Ethernet ports.  Meaning, they will <strong><em>always</em></strong> provide the maximum bandwidth possible.</p>
+<p>Where it gets hairy is the Wi-Fi.  Technically, you will each get a 200Mbps connection to the router over Wi-Fi, however, it can vary wildly due to the nature of wireless signals.  The wireless signal can be disrupted by pretty much anything - microwaves, refrigerators, TVs, anything that has electronics, and thus, a magnetic field of its own.  This is one reason why it's very difficult to fully saturate a wireless connection (i.e. it's very difficult to get max speeds off of Wi-Fi). </p>
+<p>The router itself will be able to provide maximum bandwidth to all connection types, since they are handled differently and it more than likely has the processor capability to handle it all.  Once you start getting up into A LOT of connected devices, it gets pretty clumsy and starts slowing connections down, dropping clients, gives priority to the Ethernet connection, etc.</p>
+<p>I hope this helps!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dunoqfx">
+		<a class="author" href="https://www.reddit.com/user/furyoffive" target="_blank">furyoffive</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The 200Mbps is for all devices. So one device could take up the entire 200Mbps over wifi or ethernet. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dunp61f">
+		<a class="author" href="https://www.reddit.com/user/Shaftway" target="_blank">Shaftway</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It depends on the router somewhat. Usually that is throughput between the LAN and WAN. That means from machine to machine on the LAN side you may get 200 or you may get 100.</p>
+<p>The WiFi is counted towards the total throughput.</p>
+<p>So let's say you had 3 computers, all downloading, 2 wired in and one on the WiFi. The one on the WiFi is limited by WiFi speeds, so it'll max out at 54 Mbps (IIRC), but realistically you'll see ~40 Mbps. The remaining 160 Mbps will be split by the two wired machines. Then multiply everything by .8 for network overhead and other inefficiencies.</p>
+<p>Now, your router might have advanced controls, like Quality Of Service. That would let you prioritize or deprioritize specific machines, so you could tune that to get better performance on your pr0n/gaming machine, and worse performance for your Nest (or whatever low-priority stuff you have)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/7zg471" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
