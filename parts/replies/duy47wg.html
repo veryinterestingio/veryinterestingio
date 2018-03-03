@@ -1,0 +1,111 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BackburnerPyro" target="_blank">BackburnerPyro</a>
+			<div class="markdown"><p>For anyone interested in what this is, it's a special case of Newton's Method for finding roots of equations (so to find the square root of 2, we try and find the roots of the polynomial x^2 - 2).</p>
+<p>There is a good deal of literature and a nice theorem (Kantorovich) that details when exactly Newton's method works (it will sometimes fail), and as it turns out, Newton's method is actually an amazing algorithm for root-finding, because it works often and when it works, it &quot;superconverges&quot; to the solution—the number of correct digits doubles each time you iterate the method.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mustrum_R" target="_blank">Mustrum_R</a>
+			<div class="markdown"><p>It reminds me of that time when my Optimization Techniques professor was greatly disappointed that our minds didn't blow up when he said Newton's method has superliner convergence (near possible solution). After that he spent fifteen minutes explaining what superliner convergence is till he was sure everyone's minds were blown.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NotThisFucker" target="_blank">NotThisFucker</a>
+			<div class="markdown"><p>&quot;Are you not amazed? We're not leaving until you're amazed.&quot;</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/arjunmohan" target="_blank">arjunmohan</a>
+			<div class="markdown"><p>Well that's b cause the first order derivative of a square is linear....right?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Equolizer" target="_blank">Equolizer</a>
+			<div class="markdown"><blockquote>
+<p>It reminds me of that time when my Optimization Techniques professor was greatly disappointed that our minds didn't blow up when he said Newton's method has <strong>superliner</strong> convergence (near possible solution). After that he spent fifteen minutes explaining what <strong>superliner</strong> convergence is till he was sure everyone's minds were blown.</p>
+</blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Superliner_\(railcar\)" target="_blank">?</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/colbymg" target="_blank">colbymg</a>
+			<div class="markdown"><p>When does it fail? I wanna see if I can crash my cheapo calculator</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ryuukiba" target="_blank">ryuukiba</a>
+			<div class="markdown"><p>It'll fail for other polynomials, not the sqrt if I recall correctly, also, it can fail depending on your starting guess. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/asphias" target="_blank">asphias</a>
+			<div class="markdown"><p>Unfortunately your cheapo calculator has some extra algorithms in place to ensure that it doesn't fail.</p>
+<p>The beauty of math is that we can not only use the method to calculate things, but we can also use other math to calculate when exactly this method will work and when it will fail. We can (and in fact the people who programmed your pocket calculator did) then make sure to check beforehand if our calculation would fail, and make sure to use another method, or a different starting number, to ensure your calculator won't break.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheCMaster" target="_blank">TheCMaster</a>
+			<div class="markdown"><p>Interesting. When does it fail?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BackburnerPyro" target="_blank">BackburnerPyro</a>
+			<div class="markdown"><p>So Newton’s method involves taking a derivative of a function (necessarily from R^n to R^n for the method to make sense) and inverting it (in general, think inverting a matrix, although for your standard real-valued functions it’s just taking the reciprocal of the derivative).</p>
+<p>Obviously if your iteration runs into a point where the function isn’t differentiable, it fails because you can’t compute a derivative to continue on. If your iteration runs into a point where the derivative is not invertible, the method fails because we can’t compute an inverse (for real valued functions, that means we hit a point where the derivative is zero so we end up dividing by zero. This is actually a problem when computing cube roots, but if you do the math you can see that this failure is actually kind of rare when computing cube roots (if you know measure theory, the starting points for which Newton’s method fails are a set of measure zero).</p>
+<p>Of course, Newton’s method fails if there are no roots to begin with.</p>
+<p>This is by no means a complete classification—functions can get pretty crazy. There is literature on characterizing the successes and failures of Newton’s method for complex valued functions (see Dierk Schleicher or John Hubbard).</p>
+<p>If you’re wondering, Kantorovitch’s theorem says, in rough terms, if your initial guess is close to the actual root, and your function has a large derivative, and the function happens to be locally “well-behaved” in a certain sense (i.e. Lipschitz, if you’re curious), we can GUARANTEE that Newton’s method converges to a root with that initial guess. This is also not a complete classification but it is an extremely powerful theorem.</p>
+<p>If you are a numerical analyst designing root finding algorithms, you are likely putting some thought into how to choose the “initial guess”, to ensure a higher rate of convergence and a higher chance of satisfying the conditions of Kantorovitch’s theorem, so that you KNOW your algorithm will always find a solution.</p>
+<p>That was a mouthful so please ask me any questions you desire! And if you have any super technical questions I will bring them to my professor who is an expert in this stuff.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/seeasea" target="_blank">seeasea</a>
+			<div class="markdown"><p>How do calculators make guesses? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tkannelid" target="_blank">tkannelid</a>
+			<div class="markdown"><p>By writing a number out in base 10, you've calculated a lot of properties about it. You've gotten the base 10 logarithm of it, roughly. Like if you write out the number 52521, it's got five digits, so it's about 10^5 -- its logarithm, base 10, is going to be at least 5 and less than 6.</p>
+<p>A property of logarithms is that <code>log(sqrt(x))</code> is equal to <code>log(x)/2</code> -- that means you're looking for something with about half as many digits. So we know <code>sqrt(52521)</code> will be between 100 and 999. We can use the midpoint between them as our first guess, and that's going to be close to correct. In this case, that would give us about 500, while the real value is 229 and a bit.</p>
+<p>There are a couple refinements on that idea that do even better.</p>
+<p>(Your calculator probably uses base 2 on the inside, which is pretty much the same.)</p>
+<p>But the method I described, Newton's Method, works even if you choose something silly for your first guess, like 0. It just takes a couple extra steps. Division is slow, though, so it might be worth it to do the extra work to make your first guess better.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/strawberryfirestorm" target="_blank">strawberryfirestorm</a>
+			<div class="markdown"><p>Wow, I had never realized that property of logarithms. Looking at the zeta function, it makes total sense though. I learned something today!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ryanmrf" target="_blank">ryanmrf</a>
+			<div class="markdown"><p>Was playing around with this in excel and basically ended up on the same idea before reading your post.</p>
+<p>If your first guess is really bad, the process is slow.  I.e. if you try to calculate the sqrt of 3000 and your first guess is 1500, then it takes 9 steps to converge to 54.7722558.  (Assuming that your second guess is the average of 1500 and 2, etc.)</p>
+<p>If your first guess is more reasonable like 50, then it only takes 4 steps to converge to 54.7722558.</p>
+<p>How do you get a reasonable guess?  Count the number of digits and divide by two, rounding up.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Vilsetra" target="_blank">Vilsetra</a>
+			<div class="markdown"><p>I'm not following how Newton's Method works if you choose 0 for your first guess. </p>
+<p>55/0=undefined. 55/((0+undefined)/2)=undefined, and so on, no?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gyroda" target="_blank">gyroda</a>
+			<div class="markdown"><p>They have a set rule for it. Might just be &quot;n/2&quot; as an initial guess. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hoihe" target="_blank">Hoihe</a>
+			<div class="markdown"><p>When learning to code, I wrote a simple function to calculate X's square root.</p>
+<p>Here's how it worked in pseudo-code.</p>
+<pre><code>User input: X
+ Y = 0
+Computer starts the following recursive:  
+Multiply Y by itself.
+Compare Y*Y to X. If lower, add +1 to Y. Repeat until Y*Y is either equal to or higher than X.
+
+If Y*Y = X, then return Y as the root.
+
+If not, save the following variables:
+LowerNeighbour= Y-1
+HigherNeighbour= Y
+Guess = (LowerNeighbour + HigherNeighbour) / 2
+
+Afterwards, apply Newton's Method.
+
+Check if root*root &lt; X.
+
+Repeat Newton's Method until ((Root*Root) / X) * 100 &gt; 99.9999
+
+If X &gt; root*root, repeat Newton's method until 100* (X / (Root*Root)) &gt; 99.9999</code></pre>
+<p>Basically, guess the 2 neighboring whole squares' roots</p>
+<p>(for 55, you'd take 7 <em> 7 (49) and 8 </em> 8 (64) as the neighbors. Then take their average (7+8)/2 and then insert it into Newton's Method.)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Stryker295" target="_blank">Stryker295</a>
+			<div class="markdown"><p>You're quite correct, ignore u/pitchesandthrows.</p></div>		</li>
+					</ul>
+	
