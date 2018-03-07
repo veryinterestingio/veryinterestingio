@@ -1,0 +1,182 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pirateaccountant" target="_blank">pirateaccountant</a>
+			<div class="markdown"><p>Okay this makes perfect sense!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/arthurpreis" target="_blank">arthurpreis</a>
+			<div class="markdown"><p>Going further, that's why you have to select the right files to download accordingly to your architecture and operating system. A Windows executable (exe) for 64bit processors will have machine code and system calls that are different from a 32bit Linux distro, even if both are the same program (from the users perspective).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Vall3y" target="_blank">Vall3y</a>
+			<div class="markdown"><p>Also, there's work in figuring out software from reading the binary using special software (called reversing or reverse engineering). This is most commonly used to discover exploits in code</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/WhyattThrash" target="_blank">WhyattThrash</a>
+			<div class="markdown"><p>Not just that: also drivers, system capabilities, sometimes programming language used etc will differ. So it's a bit simplified, even from a user perspective, to call it &quot;the same&quot; program. Since the experience from using it might be wildly different due to all those kind of differences. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wirWarKonigeMann" target="_blank">wirWarKonigeMann</a>
+			<div class="markdown"><p>but why does blender run on literally everything even your ti83</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Overtime_Lurker" target="_blank">Overtime_Lurker</a>
+			<div class="markdown"><p>Just thought I'd add an example of machine code and how it deviates from the source code, albeit slightly less ELI5:</p>
+<p>Sometimes a programmer will want &quot;something&quot; to happen 4 times, so they write some  source code like this:</p>
+<pre><code>i = 0;
+while(i &lt; 4){
+    ...
+    "something"
+    ...
+    i++; &lt;--- this increments i by 1
+}</code></pre>
+<p>The programmer essentially trusts the compiler to write up all of the proper instructions, which look something like this:</p>
+<pre><code>1: store value 0 in register ECX
+2: if ECX is greater than or equal to 4, set some flag to 1, otherwise set it to 0
+3: if that flag is 1, jump straight to line 9
+4: "something"
+5: "something"
+6: "something"
+7: increment ECX by 1
+8: jump straight to line 2
+9: the rest of the program
+...</code></pre>
+<p>Initially ECX will be 0, so the program reaches all the way to line 8, executing all the &quot;something&quot; lines along the way. Line 8 always sends the processor back to line 2 so it can check ECX again, run to line 8 again, until finally ECX is &gt;= 4, and the processor jumps straight to line 9, skipping all of the &quot;something&quot; loop instructions and continuing on with the rest of the program. Already, the arrangement of the logic is a bit different, because the compiler chooses to check if ECX is &gt;= 4, even though the programmer said to check if &quot;i&quot; &lt; 4. The same effect is achieved, the programmer and user would be none the wiser, but this is just one difference among many that make it impossible to get the exact source code back.</p>
+<ul>
+<li>More examples:</li>
+</ul>
+<p>The logic of a machine instructions loop is pretty easy to work out, but other conversions get even more obscure, such as with function calls. The source code would have a nice, clean &quot;player.move(float x, float y, float z)&quot;, which has an obvious purpose, but once compiled that would be converted to several instructions storing three values from registers and RAM in other registers and RAM locations where the new function can use them, saving the current function's program counter and return address, and then jumping to the start of the player.move() function. Since the parameters are floats, the instructions inside the function also have to move them to the stack of float registers before working on them (the float registers can't even be directly accessed by instructions, floats like the number 5,104.567 are loaded into float registers, worked on by specific instructions, then moved back to the main registers or RAM). And none of the parameters would have the original easy-to-read names used by the programmer. They would just be mostly arbitrary register names and numbers pointing to RAM locations, which preserve the logic laid out by the programmer, but are not as easily read as the source code. All of the references to the parameters inside the function would also be converted to the RAM locations and register names where they were stored by the instructions leading up to the function call.</p>
+<p>As if that wasn't enough, the compiler will also shift around instructions to optimize execution. Modern processors run multiple instructions at a time in different stages, but sometimes an instruction needs some value from the previous instruction before it should run. In such cases the processor has to pause that instruction to wait for the previous one to finish, wasting time, so the compiler tries to avoid these orderings of instructions, rearranging the programmer's code as long as it achieves the original logic laid out by the programmer. The original logic is once again preserved, but the exact layout of the original source code becomes more difficult to determine.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ChipAyten" target="_blank">ChipAyten</a>
+			<div class="markdown"><p>I'll stick to GUI's and let yalls' handle all that</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DirtyProjector" target="_blank">DirtyProjector</a>
+			<div class="markdown"><p>This is also a bit off, no?  First of all, you’re trusting the human who wrote the compiler to convert the code you wrote to machine code. And then machine code is interpreted from ASM into binary which is what the computer understands.  </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/3skil" target="_blank">3skil</a>
+			<div class="markdown"><p>I just want to add that the programming language Ruby is, IMHO, the best language to use when explaining for non-programmers. The above code can be written like this :
+<code>4.times do "something" end</code> which is really close to the English language. i++ is easy to understand for us, but probably not for a noob. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SoaDMTGguy" target="_blank">SoaDMTGguy</a>
+			<div class="markdown"><p>To add to this: All of the code that makes a game compiles down to a <em>tiny</em> file. &quot;dota2.exe&quot;, which contains all the computer code that makes Dota, is only 315,000 bytes.</p>
+<p>There are a few more things that get downloaded with the game:</p>
+<ol>
+<li>
+<p>External &quot;libraries&quot;. Code that is written by someone else, which you use help your game work (at my job, we have a library which handles media playback for us, for example).</p>
+</li>
+<li>
+<p>Assets: Pictures, textures, sounds, movies, etc. This is the vast majority of a games size, and explains why Battlefield 4 is many times the size of Dota 2.</p>
+</li>
+<li>Configuration files: These are read by the program and tell it where to look for files, whether or not it needs to update, and probably contain much of the text in the game (character names, menu titles, ability descriptions, item descriptions, etc)</li>
+</ol></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pease_pudding" target="_blank">pease_pudding</a>
+			<div class="markdown"><p>External libraries are not necessary third-party, either.</p>
+<p>I'm not familiar with dota, but I would be surprised if the entire game is coded in ~315k. There will probably be a lot of engine and network code in libraries/dll's, even if they were written specifically for dota.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tetramir" target="_blank">tetramir</a>
+			<div class="markdown"><p>But let's not confuse the executable (Dota.exe), and all the other files: assets, libraries and config files. Those things are not part of the &quot;code&quot; of the game.</p>
+<p>I'm making this comment because your answer might be a tiny bit confusing.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/icouldnotseetosee" target="_blank">icouldnotseetosee</a>
+			<div class="markdown"><p>Uh... Sorry mate, no. Modern applications are modularised, the dota2.exe file is just the root executable that bootstraps the rest of the application, which is contained in all those other files. Most of those 'external libraries' as you put it, won't be third party, that's where the game code is, and they will take up a lot more space than 315 KB.</p>
+<p><a href="https://github.com/id-Software/DOOM-3-BFG/tree/master/neo" target="_blank">Look at DOOM 3s source code</a> if you want an idea of how much code it takes to build a game.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Auxaghon" target="_blank">Auxaghon</a>
+			<div class="markdown"><p>Why isn't it possible for a computer to translate a compiled code back to a language?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sl236" target="_blank">sl236</a>
+			<div class="markdown"><p>It's possible to some extent, but it doesn't much help. The instructions the computer natively executes are very simple and carry no meaning beyond manipulation of numbers. </p>
+<p>The original source code has structure and naming that helps you see, not just what is done, but why it is done and what meaning was intended by it. </p>
+<p>This semantic information, which is actually key to easily understanding code of any complexity, is thrown away during the compilation process, since the computer does not need it and in many cases changing or removing structure helps performance; and there is no way to recover it.</p>
+<p>Imagine opening up your car bonnet and looking at the engine. You could spend some time making drawings of all the parts and how they fit together, but that still wouldn't help you easily grasp how the whole thing works the way the original labelled blueprints, assembly and component manuals would; and making any repairs or tuning without these things would take a lot of study and work.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kuhnmeisterk" target="_blank">Kuhnmeisterk</a>
+			<div class="markdown"><p>Meanwhile my professor has me diassembling assembly code trying to figure out how to unlock the password protection.  First two programs, checjnthe strcmp, last onenis dynamically loaded and has 100s of pages of code.  Pls save me</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/papasmurph" target="_blank">papasmurph</a>
+			<div class="markdown"><p>Also, for instance, a CPU doesn't care what you name things, so all names are replaced by addresses that the CPU can use to address and access specific data.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mardytime1209" target="_blank">mardytime1209</a>
+			<div class="markdown"><p>First time hearing the word bonnet to describe the hood of a car. Cool.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/iliveoncaffiene" target="_blank">iliveoncaffiene</a>
+			<div class="markdown"><p>Because there are any number of ways (programming languages) and compilers that could have created that code.
+Also, a lot of compilers have options to &quot;obfuscate&quot; (make it overly complicated and hard to read) after compiling.
+All of these things make it very difficult (but not completely impossible) to translate it back to a programming language.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mykepagan" target="_blank">mykepagan</a>
+			<div class="markdown"><p>Best answer, have an upvote.  This sort of thing is done to maintain or reverse-engineer old programs where the original source code is lost and everyone who worked on it is retired/dead/hiding. There are companies that do this for a living, but in the industry it is considered close to a last resort. Most companies would choose to just recreate the program from scratch rather than go through this tedious process :-)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BenderRodriquez" target="_blank">BenderRodriquez</a>
+			<div class="markdown"><p>Even if you manage to translate it back to something that it is readable it is missing one of the most vital components in a large code-base: the comments and documentation.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/oscarboom" target="_blank">oscarboom</a>
+			<div class="markdown"><p>Obfuscating is usually used for programs like javascript that are not normally compiled which means the source code is the distributed program.  And it is even easier to reverse obfuscate than it is to reverse compile.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Osbios" target="_blank">Osbios</a>
+			<div class="markdown"><p>Think about it like cooking.</p>
+<p>If somebody gives you a cake you can guess some of the ingredients or preparation steps.</p>
+<p>But most of the information is lost, e.g. how long and how often it was in the oven? What is the exact mix of ingredients and when and how did they get mixed in? Maybe there are even conditional ingredients and steps? Like one tablespoon of unicorn tears when the cooking happens during a full moon!</p>
+<p>Something like a bigger game is like a recipe with a few million ingredients that can be mixed in a few more million ways. So there is no reasonable way to get the original source code information out of the final application.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ChloePlusOthers" target="_blank">ChloePlusOthers</a>
+			<div class="markdown"><p>Hey! Machine code isn't that difficult!! /s</p>
+<p>*<br />
+* A hello world program<br />
+*<br />
+ORG 00<br />
+A6FE        MOVE #$FE,SP    <em> initialize stack pointer<br />
+9120        MOVE #$20,B     </em> Point at data<br />
+9800 main   MOVE (B),A      <em> Get a character<br />
+8000        CMP  #$00,A     </em> Is this the terminator?<br />
+C108        BEQ  done       <em> Yes - jump to end<br />
+8D00        PUSH B          </em> Save B on the stack<br />
+93E3 print  MOVE $E3,B      <em> Move OSR to B<br />
+8100        CMP  #$00,B     </em> Can we print ?<br />
+C1FD        BEQ  print      <em> If not, grab OSR again<br />
+A2E2        MOVE A,$E2      </em> Output this char<br />
+8F00        POP  B          <em> Retrieve B<br />
+0101        ADD  #$01,B     </em> Increment data address<br />
+E002        JMP  main       <em> Repeat<br />
+F000 done   HALT            </em> Stop the program  </p>
+<p>* the data<br />
+* (stored as unpacked ASCII)<br />
+org 20<br />
+0048      H<br />
+0065      e<br />
+006C      l<br />
+006C      l<br />
+006F      o<br />
+0020<br />
+0057      W<br />
+006F      o<br />
+0072      r<br />
+006C      l<br />
+0064      d<br />
+0021      !<br />
+000D      <cr><br />
+000A      <lf><br />
+0000      Terminator  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Minetoutong" target="_blank">Minetoutong</a>
+			<div class="markdown"><p>And you probably need to change that for every single computer no?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ArcanianArcher" target="_blank">ArcanianArcher</a>
+			<div class="markdown"><p>For every different architecture, at least.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
