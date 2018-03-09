@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>Why is the background smooth in IBM in atoms?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="82ag9v">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/82ag9v/why_is_the_background_smooth_in_ibm_in_atoms/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Physics">Physics</span>
+			<a href="/posts/82ag9v" onclick="return false">Why is the background smooth in IBM in atoms?</a>
+		</h2>
+		<!--<span class="date">2018-03-09</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>In <a href="https://en.wikipedia.org/wiki/IBM_\(atoms\)#/media/File:IBM_in_atoms.gif" target="_blank">this picture</a> it says the background consists of &quot;a substrate of chilled crystal of nickel&quot; but why isn't this background also a bunch of individual atoms? Why is it smooth?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dv95c0a">
+		<a class="author" href="https://www.reddit.com/user/buttwarmers" target="_blank">buttwarmers</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are a lot of incorrect and inaccurate responses in this thread but hopefully this post will clear things up. It's pretty detailed but I'm always happy to answer additional questions about all things STM related. </p>
+<p><strong>SHORT ANSWER</strong><br />
+It says in the paper that this figure came from that the atomic structure of the nickel surface is not resolved. </p>
+<p><strong>LONG ANSWER</strong><br />
+The resolution of STM (Scanning Tunneling Microscope, how this image was taken) images depends greatly on both the geometry at the end of the scanning tip (rough diagram of STM <a href="https://www.researchgate.net/publication/258395126/figure/fig11/AS:320237095407624@1453361881764/A-schematic-STM-setup-When-a-tip-is-brought-several-angstroms-away-from-a-sample-and-a.png" target="_blank">here</a>) as well as any mechanical or electromagnetic noise that gets introduced into the tunneling current signal before it is processed by a computer program. In the previous figure, the tip is depicted as an atomic pyramid with tunneling occurring from a single atom, which would nearly always give atomic resolution images. In reality, the tip will have multiple atoms at approximately the same distance from the sample, leading to the tunneling current being spread out over a larger area, which is what ultimately limits your resolution. Just to prove to you that they <em>were</em> capable of resolving the nickel (110) surface reconstruction, <a href="https://i.imgur.com/aeyvFhp.png" target="_blank">here</a> is another figure from the same paper in which you can see the rows from the nickel atoms. Even <em>further</em>more, <a href="http://images.slideplayer.com/14/4353513/slides/slide_12.jpg" target="_blank">here</a> is what the pure nickel (110) reconstruction looks like. This image was taken in 1995, and the image in the original post was taken in 1989. The STM was invented in 1981. Modern STMs are obviously capable of higher resolution, but it's typically due to better noise filtering and vibrational isolation of the STM stage, not the sharpness of the tip.</p>
+<p>Additionally, they say that greyscale is assigned according to the slope of the surface. This is known as a <em>derivative image</em> as opposed to a typical STM image which measures the height change of the STM tip as it rasters across the surface while attempting to maintain a constant voltage and tunneling current (10 mV and 1 nA current were used to obtain the image in the original post). Since the xenon atoms protrude 1.6 Angstroms (1 Angstrom = 10^-10 meters) from the surface, which has height fluctuations on the order of picometers (10^-12 meters), the slope is much sharper over the xenon atoms than over the nickel substrate. <a href="https://i.imgur.com/sf8aaxV.jpg" target="_blank">Here</a> is another image from the same data set that produced the image in the original post but has been post-processed to better show the surface morphology. I would imagine that this is the &quot;real&quot; topological image as opposed to the derivative image shown in the original post.  </p>
+<p><strong>Source</strong>: I'm a PhD student that does a lot of STM as part of my research. Also, I actually read the paper that this image comes from.  </p>
+<p>The original paper is behind a paywall, but in case you are interested in reading it for yourself, you can see it <a href="https://drive.google.com/open?id=1jWY7ztqcP8qW8JjzxqGA8Z5ig5v6Leit" target="_blank">here</a>. </p>
+<p>EDIT: Some additional points.<br />
+STM requires the probe tip to be metallic otherwise the tunneling current will be convoluted by the tip's density of states (you only want to probe your sample, not your tip). The sample must be conducting (not necessarily metallic, though you need to scan at voltages that fall outside the band gap). Since STM relies on tunneling, there must be available filled states to tunnel from or empty states to tunnel into (depending on whether the applied bias is positive or negative). The sample must also be conductive enough to complete the feedback loop circuit (if your sample is not conductive, no current will flow through the feedback loop and your tip will crash into the surface).  </p>
+<p>In addition to imaging using STM, you can also do something known as Scanning Tunneling Spectroscopy, or STS, using the exact same instrument. I've explained that STM works by moving the tip around and measuring how much the tip has to approach or retract to maintain a constant voltage and tunneling current. Well, STS is similar except the tip remains stationary at a single spot on the sample and sweeps the voltage while measuring current at a constant height from the sample. By plotting the derivative of the current (dI/dV) against the voltage, you can create a picture of the density of states at the surface at a range of voltages. This can provide valuable information about the electronic structure of your sample, including things such as the band gap and doping type. I am typing this from my phone but can provide examples of STS plots for a variety of materials </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dv93xj6">
+		<a class="author" href="https://www.reddit.com/user/jugglefire" target="_blank">jugglefire</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Scanning probe microscopy doesn't work like normal microscopes. The objects are not &quot;seen&quot; as much as they they are &quot;sensed&quot; or &quot;felt&quot; through a fine needle like probe. The reason for this is because individual atoms are smaller than a wavelength of visible light so it is impossible to see them.</p>
+<p>In a nutshell here is how a scanning probe microscope works:</p>
+<p>First the atoms being scanned need to be super-cooled to as near absolute zero as possible that way the atoms won't move around and vibrate so much. In the case of the &quot;IBM&quot; atoms they are xenon atoms on a nickel surface. </p>
+<p>Then imagine a fine needle like probe that can sense the tiny force fields of individual atoms being positioned to the exact point where the final atom on the very tip of the probe can sense the outer or valence shell of a single atom's array of electrons. The probe can even be adjusted so it can pick up and move a single atom from one place to another. That's how they were able to arrange the atoms to spell out &quot;IBM&quot;.</p>
+<p>The very tip of the probe is only sensing one atom at a time. In this case the xenon atoms on top of the surface, rendering the nickel atoms that make up the surface &quot;invisible&quot; to the probe.</p>
+<p>Hope that helps. Source - I have met and spoken with Don Eigler and even asked him the same question you posted here. He is the scientist who led the whole team that accomplished this man-on-the-moon moment in nano-technology. I still say he deserves a Nobel Prize for his work. He did this back in 1989.</p>
+<p>Don are you seeing this?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dv9admx">
+		<a class="author" href="https://www.reddit.com/user/Nergaal" target="_blank">Nergaal</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Scanning Tunneling Microscope (STM) is exponentially sensitive to distance.  If the distance between the microscope's tip/sensor and the xenon atoms making up the IBM was say X, and the distance between the tip/sensor and the nickel background was 2X (double), the latter signal was somewhere around 1000 times less strong (or in other words, the peaks on xenon atoms looked 1000 times taller/more defined than the background nickel atoms/gaps even though they were only at half the distance).  </p>
+<p>This is because STM uses the quantum tunneling effect to measure distances smaller than atom sizes:</p>
+<p><a href="https://en.wikipedia.org/wiki/Quantum_tunnelling" target="_blank">https://en.wikipedia.org/wiki/Quantum_tunnelling</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dv9d7hc">
+		<a class="author" href="https://www.reddit.com/user/mandragara" target="_blank">mandragara</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The background is too 'far away' for the STM tip to resolve.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">3 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/82ag9v" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
