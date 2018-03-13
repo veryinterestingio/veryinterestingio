@@ -1,0 +1,58 @@
+<div class="answers">
+	<div class="answer" data-handle="dvhslys">
+		<a class="author" href="https://www.reddit.com/user/gatzdon" target="_blank">gatzdon</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Sorry for the mobile link.</p>
+<p>Shazam and others like it use a variation on Fourier Transforms to generate a fingerprint that is extremely compact and easy for a computer to analyze.  </p>
+<p>This is also part of the secret that allowed mp3 files to be so compressed and yet play back at high quality.</p>
+<p><a href="https://en.m.wikipedia.org/wiki/Fourier_transform" target="_blank">https://en.m.wikipedia.org/wiki/Fourier_transform</a></p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dvhof5d">
+		<a class="author" href="https://www.reddit.com/user/taysteekakes" target="_blank">taysteekakes</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I actually worked with Shazam for a while when my employer at the time was partnering with them. They generate a &quot;fingerprint&quot; of the audio and then I assume they segment that in a way that you can then search on parts of songs.</p>
+<p>It's probably similar to this project <a href="https://github.com/worldveil/dejavu" target="_blank">https://github.com/worldveil/dejavu</a></p>
+<p>More descriptive blog post: <a href="http://willdrevo.com/fingerprinting-and-audio-recognition-with-python/" target="_blank">http://willdrevo.com/fingerprinting-and-audio-recognition-with-python/</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dvhucnv">
+		<a class="author" href="https://www.reddit.com/user/vlmutolo" target="_blank">vlmutolo</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I have read a bit about the general procedure of fingerprinting songs, and a few friends of mine worked on developing their own version of the software. DejaVu, the software linked in another comment, has an excellent description of the process, complete with visuals. For those who don’t want to look it up, I can provide an overview. </p>
+<ol>
+<li>
+<p>The software most likely starts by converting whatever audio input it gets directly into a “wav” file or something equivalent. These files are a time series of amplitudes of diaphragm compression from the mic. This is a map of a sound signal in the time domain. This is pretty common way to represent sound, and is most likely what you’ve seen if you work with any software like GarageBand or the like. </p>
+</li>
+<li>
+<p>Then, the software takes a discrete Fourier transform of the data. The method used to do this is the FFT (Fast Fourier Transform). If you’ve never heard of this process, it can be difficult to conceptualize. In essence, it takes data in the time domain and maps it into the frequency domain. This means that it calculates the amount of the signal that is made up of different frequencies. This is possible because any signal can be created by a combination of different frequencies at different amplitudes. The FFT extracts those amplitudes. </p>
+</li>
+<li>
+<p>I lied a little in the last step. Instead of taking the FT on the entire time stream at once, we take it on small amounts at a time. Maybe a second or so. This is often called the “bin” size. The bin size is arbitrary, and there are advantages and disadvantages to making it larger or smaller. So, for a three minute song, using a bin size of half a second, we would have 360 bins. For each bin, the frequency information is extracted. Now, we have a series of bins, chronologically ordered, and the frequency information extracted from them. </p>
+</li>
+<li>
+<p>With this information, we can begin to implement fingerprinting techniques. The most common way to do this is to finding “peaks” in the data for each bin. This means finding local maxima. There may be (and most likely <em>will</em> be) several per bin. The reason we do this is that peaks tend to survive noise. In the presence of static, as long as there is a sufficient signal to noise ratio, the peaks ought to retain their relative locations to each other (location meaning how many bins away it is from another peak). </p>
+</li>
+<li>
+<p>The collection of local maxima and their locations with respect to one another is the fingerprint of the song. You can then calculate this fingerprint for many songs. </p>
+</li>
+<li>To identify a song, record a small sample of audio, and then apply the same process to this sample. The local maxima locations will partially match with a previously calculated fingerprint. The better the match, the greater our confidence in the identification. </li>
+</ol>
+<p>There are many different things to consider when using this method:</p>
+<ul>
+<li>Windowing functions for the FT of the bins</li>
+<li>Bin size</li>
+<li>Peak finding techniques (and acceptance and denial of peaks)</li>
+</ul></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dvi6xrn">
+		<a class="author" href="https://www.reddit.com/user/captaincool" target="_blank">captaincool</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The core algorithm has been published: <a href="http://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf" target="_blank">http://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf</a></p>
+<p>And their engineering blog has more implementation details on how their production implementation works scattered around, depending on details you're looking for: <a href="https://blog.shazam.com/tagged/engineering" target="_blank">https://blog.shazam.com/tagged/engineering</a></p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dvijeh7">
+		<a class="author" href="https://www.reddit.com/user/zarquan" target="_blank">zarquan</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There's a good paper on how Shazam works here: <a href="https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf" target="_blank">https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf</a></p>
+<p>As other people have mentioned, they use a clever simple fingerprinting algorithm based on spectrograms of the song. Per the paper, it's fairly resilient against noise and can work with fairly short samples.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
