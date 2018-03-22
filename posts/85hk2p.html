@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>How do people colorize old photos?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="85hk2p">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/85hk2p/how_do_people_colorize_old_photos/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/85hk2p" onclick="return false">How do people colorize old photos?</a>
+		</h2>
+		<!--<span class="date">2018-03-22</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I saw a post about someone colorizing a black and white picture and I realized I've not thought on this until now. It has left me positively stumped. Baffled if you will. </p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dvxp882">
+		<a class="author" href="https://www.reddit.com/user/amorphousalbatross" target="_blank">amorphousalbatross</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>AFAIK, <a href="https://github.com/richzhang/colorization" target="_blank">this is the cutting edge in colorization.</a> (Note there is a paper linked in the readme). </p>
+<p>They trained a neural net with greyscale versions of photos as the input, and using the original photos as the expected outputs. After training the neural net on a large enough dataset, it can (hopefully) generalize to any greyscale image that you input.</p>
+<p>However, this method is much less reliable than manually adjusting photos. It mostly ends up guessing what color an object should be, while people manually colorizing photos can use historical knowledge to know what color some objects were. For example, if it’s a photo of a military official from China in the 1800’s, a historical can consult original sources to know the exact color of their coat, shirt, and badges - but the neural network just has to do its best with what it has in the image.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dvxpmc9">
+		<a class="author" href="https://www.reddit.com/user/_whatdoido" target="_blank">_whatdoido</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Hi,</p>
+<p>I do work in computer vision with applications in graphics. Seeing that as /u/mfukar has removed a lot of comments, mentioning manual reconstruction or photo-editing I will refrain from discussing colourisation from that angle -- however those methods are still very much applicable (computer-assisted manual colourisation).</p>
+<p>Let's start with describing how colours are represented in an image, and what makes an image 'black-and-white'. The conventional and most-popular form of representing coloured images is to separate the image in to three colour channels: RED, GREEN, and BLUE (RGB). These colours correspond roughly to the colour-sensitive photoreceptors in our eyes, hence why we have RGB screens. In contrast, grayscale images -- what you call black-and-white images -- represent the image with only one colour channel. This can be simulated in an RGB colour image by setting all 3 channels to the same value.</p>
+<p>With the introduction out of the way let us now discuss traditional colouring methodologies, skimping over non-CS related detail such as colour selection. In its early stages, colourisation required a lot of manual work both with selecting the colours and identifying object boundaries. How traditional computer-science methods can help is with edge-detection algorithms that can define object borders (Canny, Sobel, etc), or information-retrieval approaches that attempt to colourise objects based on a 'texture bank' (e.g. <em>Automated Colorization of Grayscale Images Using Texture Descriptors and a Modified Fuzzy C-Means Clustering</em>, 2011). The latter is a collection of coloured 'reference' image whose colours are automatically retrieved by an algorithm based on the texture of the greyscale patch to colourise.</p>
+<p>However, with the hype surrounding deep-learning (DL) it is sinful to not mention how DL approaches colourisation. A popular implementation is by Zhang (Colorful Image Colorization, 2016), powering <em>colorizebot</em> (/user/pm_me_your_bw_pics). This architecture utilises a convolutional neural network (CNN, the Stanford course CS231n gives an excellent rundown) which gained popularity in 2012 when it revolutionised image classification on the ImageNet challenge (ImageNet Classification with Deep Convolutional Neural Networks, 2012).</p>
+<p>The architecture was 'trained' to predict the colours of an image given some grayscale input. To do this the authors converted the millions of images from the ImageNet dataset into grayscale (recall that this can easily be done by merging all 3 colour channels), and having the network predict the original colours of the image in the HSV colourspace. Results of the first-few iterations will be terrible as the network weights are initialised with random noise, but after a few epochs of 'back-propagation' where neuron-weights are corrected and adjusted to minimise a loss function, colourisation quality improves.  </p>
+<p>EDIT: changed 'image quality' to 'colourisation quality', I have a more layman-friendly explanation below.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dvy0k3h">
+		<a class="author" href="https://www.reddit.com/user/_DeanRiding" target="_blank">_DeanRiding</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I know there have been a tonne of answers already, but Vox did a cool video about this subject a few months ago <a href="https://www.youtube.com/watch?v=vubuBrcAwtY" target="_blank">https://www.youtube.com/watch?v=vubuBrcAwtY</a></p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dvy1on0">
+		<a class="author" href="https://www.reddit.com/user/FastProgrammer" target="_blank">FastProgrammer</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There is a question of accuracy vs artistic intent. Some photos that have been colorized will simply not have accuracy but artistic intent. While others will have a more accurate reference to the subject's color tone and pallette. </p>
+<ol>
+<li>
+<p>Manual coloring can be simply referencing known color ads, diagrams and notes, personal journals from the time period or guessing based on color trends of the time period.</p>
+</li>
+<li>Computerized colorization has come light years ahead through the use of what's called deep learning. The most famous version of image processing comes through the term deep convolutional neural networks or CNN for short. </li>
+</ol>
+<p>Basically you take the pixels from the black and white and look at their assigned values. It's a mathematical spectrum from 0 to 255 with 1 channel. </p>
+<p>You start by looking at a group of the nearest pixels next to the one you're looking at. You do some math on all of these pixels. Then keep sliding over to the pixel next to it. </p>
+<p>This happens as many times as it makes sense. Then it can look at the outputs of all those pixels you just looked at. It does this multiple times as well. </p>
+<p>The intended output would be 3 channels of red, green and blue 0-255 for each for that one specific pixel. </p>
+<p>The computer does this over and over again until it feels it can discern  a pixel's color. </p>
+<p>Now HOW it does it is a matter of debate. If you're looking for artistic value vs accuracy. Accuracy wise you can provide a training set that was colored photos turned black n white. You can then let the computer check it's work over iterations until it's fairly accurate. </p>
+<p>There will still be a lot of variance but that's one way computers do it. I can get deeper but it's actually mathematically heavy and it's not the first neural net you should really learn imo.</p>
+<p>I've added some videos that may either help or make it more confusing.
+<a href="https://www.youtube.com/watch?v=JiN9p5vWHDY" target="_blank">https://www.youtube.com/watch?v=JiN9p5vWHDY</a>
+<a href="https://www.youtube.com/watch?v=jajksuQW4mc" target="_blank">https://www.youtube.com/watch?v=jajksuQW4mc</a></p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dvxwohy">
+		<a class="author" href="https://www.reddit.com/user/MightBeAProblem" target="_blank">MightBeAProblem</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This isn't the most scientific response, but I assume you want a full answer so will help out anyway. When it came to black and white photos from the dark room, the photos had to be developed on a specific kind of paper that could absorb pastels. We then carefully painted thin layers of pastel over the photograph, which color eyes is the photo but does not replace the black. I know this isn't the modern procedure, but I do miss it. It was a very satisfying hobby. Hope that helps!</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/85hk2p" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

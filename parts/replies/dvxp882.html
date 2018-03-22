@@ -1,0 +1,49 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/_kim" target="_blank">_kim</a>
+			<div class="markdown"><p><a href="https://www.cs.huji.ac.il/~yweiss/Colorization/" target="_blank">Here</a> is another quite interesting approach to colorization which works by minimizing the difference between the colors of a pixel and its neighbors taking the similarities of the underlying gray value pixels into consideration.</p>
+<p>The user can add constraints to the optimization by manually coloring some regions. Thus, it is possible to use historical knowledge for specific parts and let the algorithm do the rest.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ndwolf" target="_blank">ndwolf</a>
+			<div class="markdown"><p>Is there a way to feed the neural-net a quick mock-up of the historical to influence its decisions?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Happydrumstick" target="_blank">Happydrumstick</a>
+			<div class="markdown"><blockquote>
+<p>Is there a way to feed the neural-net a quick mock-up of the historical to influence its decisions?</p>
+</blockquote>
+<p>Sure, create a formal language for describing the colour of items, feed it into a recurrent neural network and use the recurrent neural networks output as an input into a convolution network, and pass in the greyscale image as the second input to the conv net. </p>
+<p><a href="https://arxiv.org/pdf/1412.2306.pdf" target="_blank">Andrej Karpathy and Li Fei-Fei from standford U</a> has used something like this for image captioning.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SirNanigans" target="_blank">SirNanigans</a>
+			<div class="markdown"><p>Your comment has made me wonder for the first time in my life how we got so damn far with technology.</p>
+<blockquote>
+<p>...create a formal language for describing the colour of items, feed it into a recurrent neural network and use the recurrent neural networks output as an input into a convolution network, and pass in the greyscale image as the second input to the conv net.</p>
+</blockquote>
+<p>I'm not that old, but when I was born there was no such thing as a computing technology this advanced. Even the internet (dial-up at the time) seemed simpler than this and we're only talking about adding color to pictures. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pcomet235" target="_blank">pcomet235</a>
+			<div class="markdown"><p>Is this what I see when I hoverzoom a facebook photo and it tells me I'm seeing &quot;Two people, standing out doors, smiling&quot; ? </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/amorphousalbatross" target="_blank">amorphousalbatross</a>
+			<div class="markdown"><p>I think the only way to give the neural net historical context is to give it historical photos and their manually colorized counterparts as part of the training data set. However, this won’t guarantee that the same object gets colored the same way each time. Like if you gave it a colorized photo of Hitler with his blue eyes as part of the training data, there’s still a possibility that the neural net would choose his eyes to be hazel in another photo that you input of him. </p>
+<p>Once you train a neural net, it becomes a bit of a black box that just gives an output, and it’s tough to give them instructions in any way besides retraining it on new data.</p>
+<p>/u/_kim gave a good example of a way of accomplishing colorization using historical data (although it is far less automated, but if you want historical accuracy that’s probably the way to go for now).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mathemagicat" target="_blank">mathemagicat</a>
+			<div class="markdown"><p>Would it be possible to create a neural net that could be trained to produce a set of possible outputs, and then further refined by manually selecting the best output each time?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tdogg8" target="_blank">tdogg8</a>
+			<div class="markdown"><p>Image recognition on that scale is not as easy or effecient as just using color recognition. It's a lot harder to get a computer to recognize a US marine from 1942 than it is to recognize the contrast between two colors.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thijser2" target="_blank">thijser2</a>
+			<div class="markdown"><p>I'm currently working on a system that in case of old photos (damaged) could be better for my master thesis, I should be evaluating the results of my algorithm this week. It does this by running a complex visual simultaneity algorithm against a large database of images and selects the onces that have the same content. It than uses style transfer based techniques to transfer the colour. </p>
+<p>Also worth noting is that Zhang's work works best when it's part of the 2000 classes the neural network was trained off of which is a weakness when either multiple objects are present or the thing that has to be colourized isn't any of those classes. </p>
+<p>It's also worth noting that you can perfectly well try multiple automatically or semi automatic methods and then pick the best one after which you fix the flaws manually. </p></div>		</li>
+					</ul>
+	
