@@ -1,0 +1,69 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/WRSaunders" target="_blank">WRSaunders</a>
+			<div class="markdown"><p>Exactly, if you have 5V TTL circuits, and 4 AA batteries, you're expecting 6V from the batteries, which you can regulate down to 5.0V.  However, 4x1.2 = 4.8V which combines with 0.3V of regulator drop to only give you 4.5V to power the circuit.  That's enough drop to cause occasional faults, like when the user does something that lights a light or makes a sound.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Thelgow" target="_blank">Thelgow</a>
+			<div class="markdown"><p>Yea, also some led colors have different requirements. I tried putting purple in a 360 controller and swore I wired it correctly. I put red in, comes tight up. Blue, good. Back to purple, nothing. I plug the charge cable in and it blinded me.<br />
+So I went with a mix of red and blue and had the unknown bonus of blue dimming as battery died like a built in meter. Red was good right up controller would die.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PinchieMcPinch" target="_blank">PinchieMcPinch</a>
+			<div class="markdown"><p>The voltage drop across various LEDs in the same range is pretty well determined by its colour. Red has the lowest foward voltage of the visible lengths, purple/violet tend to be highest.</p>
+<p><a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPVT2vqfm0jhMsVt57cww-XpT-YD9lxQVC3uKOHStzSpSW9Go2" target="_blank">Example table</a></p>
+<p>So it's totally normal that a circuit designed to light a red LED might not be able to cut it when you swap it out with an LED with a higher foward voltage (Vf)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/0OKM9IJN8UHB7" target="_blank">0OKM9IJN8UHB7</a>
+			<div class="markdown"><p>The minimum voltage for a high signal with TTL logic is 2.7 volts, 4.5 should be plenty. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/WRSaunders" target="_blank">WRSaunders</a>
+			<div class="markdown"><p>That's the output side of the noise margin, it's really 2.7V for the minimum &quot;high&quot;.  That also presumes the Vcc is 5 ± 0.25V.  Lowering the voltage of the chip's power in would also impact the internal logic.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zmasta94" target="_blank">zmasta94</a>
+			<div class="markdown"><p>What does TTL stand for?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Treczoks" target="_blank">Treczoks</a>
+			<div class="markdown"><p>We had a device that usually ran with four rechargeables, and if you wanted to use it with AA batteries instead, you had to use a &quot;battery dummy&quot; and three batteries. It also worked with four batteries, but then the voltage controller just burned off the excess voltage.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/whitcwa" target="_blank">whitcwa</a>
+			<div class="markdown"><p>That is half true. The voltage of an alkaline or carbon-zinc cell decreases over its life. An alkaline isn't considered discharged until it reaches 0.9V. It is well past middle age when it's voltage drops below a ni-cd or ni-mh. If a device stops working when the battery is still at 75%, it is a terrible design. Still, that may be the reason for the warning. </p>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Nickel–cadmium_battery#Voltage" target="_blank">Unlike alkaline and zinc–carbon primary cells, a Ni–Cd cell's terminal voltage only changes a little as it discharges. Because many electronic devices are designed to work with primary cells that may discharge to as low as 0.90 to 1.0 V per cell, the relatively steady 1.2 V of a Ni–Cd cell is enough to allow operation. </a></p>
+</blockquote>
+<p>There is a second possible reason. Alkalines have a higher internal resistance than ni-cd or ni-mh. Some devices take advantage of that resistance to act as a current limiter. Poor circuit designs can draw too much current from lower resistance rechargeable batteries and burn out. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/voucher420" target="_blank">voucher420</a>
+			<div class="markdown"><p>That's why my micro RS4 is faster on 4 rechargable cells compared to 4 brand name disposables. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/whitcwa" target="_blank">whitcwa</a>
+			<div class="markdown"><p>For high drain applications, alkalines are terrible. They are great for low drain things like smoke detectors or clocks. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RustiDome" target="_blank">RustiDome</a>
+			<div class="markdown"><p>Do not use akaline for fast discharge items they are best suited for clocks or keeping on stand by for emergency. NiCD and NiMH are great for higher pulling items though. Yes the voltage is a little bit lower but they can keep the amps up.  Thats why when you put akalines in a camera it can only take a few shots then it seems dead, they can keep up the amps.  </p>
+<p>If your interested in more knowledge of battery tech you can get alot of info here. </p>
+<p><a href="http://batteryuniversity.com/" target="_blank">http://batteryuniversity.com/</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/j_from_cali" target="_blank">j_from_cali</a>
+			<div class="markdown"><blockquote>
+<p>Poor circuit designs can draw too much current from lower resistance rechargeable batteries and burn out.</p>
+</blockquote>
+<p>&quot;Poor circuit designs&quot;---what an understatement!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kerbaal" target="_blank">kerbaal</a>
+			<div class="markdown"><p>Saved three whole cents....PER UNIT! Plus burned out units increase sales. Whose design is poor now?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MistrX" target="_blank">MistrX</a>
+			<div class="markdown"><p>It made <a href="https://goo.gl/images/MHbN8K" target="_blank">this game</a> more easy though. Less voltage? More slowdown!</p></div>		</li>
+					</ul>
+	
