@@ -1,0 +1,66 @@
+<div class="answers">
+	<div class="answer" data-handle="dwf1lmp">
+		<a class="author" href="https://www.reddit.com/user/NebXan" target="_blank">NebXan</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>When you make a change to a document in Word, for example, Word saves a copy of that change in memory and puts it on a stack. Stacks are a type of data structure where the data items are organized in Last In First Out (LIFO) structure. Sort of like a stack of pancakes, the newest one goes on top and is also the first one to be eaten.</p>
+<p>When you undo, the last change you made is read and removed from the top of the stack, and then used to revert your changes.</p>
+<p>You can read more about stacks here:
+<a href="https://en.m.wikipedia.org/wiki/Stack_(abstract_data_type" target="_blank">https://en.m.wikipedia.org/wiki/Stack_(abstract_data_type</a>)</p>
+<p>Source: computer science student</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dwfcior">
+		<a class="author" href="https://www.reddit.com/user/felheartx" target="_blank">felheartx</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Real eli5 at the end of the post. </p>
+<p>Every answer so far forgot to mention a pretty important fact:</p>
+<p>Every program is responsible for handling the key combination itself.</p>
+<p>Sure some very basic stuff like text boxes have their copy, paste, cut, undo, redo,... functionality provided by windows, but that's it.</p>
+<p>Programs that are more complex (paint, Photoshop, even Microsoft Word is a lot more complex than just a simple text box) have to implement the undo thing themselves.</p>
+<p>There are a few different ways to do it, and most programs can get away using a sort of &quot;cheat&quot;. They simply store a full snapshot of the state of what you are editing (text, images, video, audio, scripts,... Whatever) up to a certain limit. Many programs have a setting in their options window for that (called something like undo buffer size).</p>
+<p>Some programs don't save full snapshots but instead they save the changes (deltas) which takes a LOT less space. </p>
+<p>And yet others (where applicable) even save what it is you actually did. For example in paint it would save &quot;start stroke at 234,921 and go to coordinate 764,613, then release the brush&quot;.
+And on undo it would just &quot;regenerate&quot; all the previous actions again onto a blank canvas, omitting the last action. </p>
+<p>All approaches have their advantages and disadvantages and it depends on the specific program what strategy a program actually uses to implement its undo and redo functionality (if it even has one) </p>
+<p>Eli5:
+Program saves whatever you are doing everytime you do something into a big list. When you undo it just goes back one step in the lost and loads the data there. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dwfgh44">
+		<a class="author" href="https://www.reddit.com/user/rpetre" target="_blank">rpetre</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Everybody answers about &quot;Undo&quot; in Word but the first thing I thought was the suspend feature of bash (in Linux).</p>
+<p>OP, you should provide context.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dwf1l0k">
+		<a class="author" href="https://www.reddit.com/user/WRSaunders" target="_blank">WRSaunders</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>When you hold down the control modifier key and hit Z, your keyboard hardware sends 26 to the keyboard interface circuit.</p>
+<p>Your operating system has a driver for that keyboard interface circuit, that decides which keyboard user has &quot;focus&quot; and sends keystrokes to them.  If Ctrl-Z does something special in a program, it's because that program's keyboard handler has &quot;if (data = 26)&quot; in it someplace.</p>
+<p>When Ctrl-Z does something different at the system level, there is an &quot;if (data = 26)&quot; someplace in the driver, before the keystroks is passed to a program.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dwfh25l">
+		<a class="author" href="https://www.reddit.com/user/natterca" target="_blank">natterca</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Ctrl+Z is commonly implemented through a &quot;command pattern&quot;.</p>
+<p>When you bold text, move a box, or whatever in your program, a &quot;command&quot; is created.  The command is an object that contains the data of the change (e.g. box id, 'new location') and two actions:</p>
+<ul>
+<li>do</li>
+<li>undo</li>
+</ul>
+<p>If you tell the command to &quot;do&quot; it's action then it performs the action.  The &quot;undo&quot; action performs the logically opposite function.</p>
+<p>Each action's do &amp; undo code is specific to the command.  For example, a &quot;move box&quot; command has the logic to move the box.  The &quot;bold&quot; command has logic to bold text.  From a command perspective we don't really care how it is done, just that you can &quot;do&quot; and &quot;undo&quot; an action.</p>
+<p>These commands are held in a &quot;command buffer&quot;.  When you press Ctrl+Z the undo action of the last command is called.  The prior command becomes the last command and it can be undone.  This can be repeated until there are no more commands to undo.</p>
+<p>You can also &quot;redo&quot; a command (Ctrl+Y) which calls &quot;do&quot; on the last undone command.  Like the undo chain, there is a redo chain to the next command that was undone. [The command buffer is a &quot;doubly linked list&quot;].</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
