@@ -1,0 +1,57 @@
+<div class="answers">
+	<div class="answer" data-handle="dwjhbd9">
+		<a class="author" href="https://www.reddit.com/user/WhackAMoleE" target="_blank">WhackAMoleE</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>First, you'd need a theory of physics in which you can prove that true randomness exist in the world. This is an open research problem, so nobody can put an upper bound on how long that would take.</p>
+<p>But no finite sequence of numbers can ever be judged absolutely random. There is always a polynomial of degree n + 1 that will fit any n points.</p>
+<p><a href="https://en.wikipedia.org/wiki/Lagrange_polynomial" target="_blank">https://en.wikipedia.org/wiki/Lagrange_polynomial</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dwjqd5f">
+		<a class="author" href="https://www.reddit.com/user/tehzayay" target="_blank">tehzayay</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The question you really want to ask is the opposite: how long would it take to determine that a random number generator has some structure, i.e. is NOT truly random? The most general answers to this question and specific ones like it are pretty advanced, and are the subject of considerable research in statistics.  I will answer this with an example, and the reason you can never truly determine that there is no structure (your original question) will become clear by the end. </p>
+<p>Suppose I have a random number generator which picks an integer from 1-10 but it has a preference for the number 5. The probability that it picks 5 is 0.1+x, and the probability for it to pick each of the other nine choices is 0.1-x/9. This is a not-truly-random number generator, and we can choose x to be anything in the range [0, 0.9] to decide how strong its preference for the number 5 is. </p>
+<p>If we run this random number generator N times and count how many times we get the number 5, we should observe an excess over the expected value of N/10. The actual number of times I expect to get 5 is N/10 + N x, and the Gaussian uncertainty of this will be its squareroot: sqrt( N/10 + N x ). Google Poisson statistics if you'd like to know more about that. </p>
+<p>Now for simplicity let's just say x is small, so that the uncertainty is (approximately) simply the squareroot of N/10. If that uncertainty is much smaller than the excess I observe, then I can confidently say there is preference for the number 5.</p>
+<p>So the condition is that N*x is much larger than sqrt( N/10 ), which I can rewrite with some algebra as:</p>
+<p>N is much greater than 1 / ( 10 x^2 )</p>
+<p>Let's look at each thing here to understand a bit more. First, the 10 comes from our specific example of choosing from 10 numbers. That could be anything in the general case. Second, the number of trials I need grows with 1 / x^2 which makes sense; if x is smaller, I need more trials. Third, in the limit as x goes to zero, N will get infinitely large! This is one way to understand why we can never truly say it is random, because there can always be arbitrarily small structure that we would need infinite trials to detect. </p>
+<p>Lastly, what do I mean by &quot;much greater&quot;? That depends on how confident you want to be. For example, I could have a genuine random number generator and get 5 a hundred times in a row. I would then conclude with very high confidence that it is not random! But I would be wrong; that's because the probability to draw 5 a hundred times in a row by pure chance is extremely low. In practice, the confidence level that people use is generally between about 2 and 6 standard deviations. 2 corresponds to a confidence level of about 95%, and 6 corresponds to about 99.9999998%.</p>
+<p>So I will write for my final answer:</p>
+<p>N = k^2 / ( 10 x^2 )</p>
+<p>Where you may choose any k from about 2-6, and any small x to determine a specific number for N. </p>
+<p>Here's another reason why you can never say that it's truly random: because to reach 100% confidence, k would have to be infinite, and therefore so would N. So to say for sure whether a number generator is random or has structure, we would need to have arbitrarily high confidence (k -&gt; infinity), as well as a probe for arbitrarily small structure (x -&gt; 0). Both of these make N explode to infinity, so it can never be done. But that's no fun, so let's at least plug in some numbers and get an answer. </p>
+<p>If x = 0.01, this represents an 11% chance to draw 5 and a 9.89% chance for each of the other numbers. I'll choose k = 3, which gives me a confidence of about 99.7%.</p>
+<p>N = 3^2 / ( 10 <em> 0.01 </em> 0.01 ) = 9 / 0.001 = 9000.</p>
+<p>So I would need, on average (since it's all probability after all), 9000 trials to determine with 99.7% confidence that my generator is not random.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dwjojjs">
+		<a class="author" href="https://www.reddit.com/user/jns_reddit_already" target="_blank">jns_reddit_already</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There is a Stanislaw Lem novel called <a href="https://en.wikipedia.org/wiki/His_Master%27s_Voice_\(novel\)" target="_blank">His Master's Voice</a> - part of the premise is that an astronomical noise source is used to publish a table of random numbers, and the table author gets sued when the 2nd volume starts repeating the first - turns out it is a message (maybe) and that has a period of over a year.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dwjy1cy">
+		<a class="author" href="https://www.reddit.com/user/fdrandom2" target="_blank">fdrandom2</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I had to try and do this in a practical sense while <a href="http://strainer.github.io/Fdrandom.js/" target="_blank">developing</a> pseudo-random number generators. There are collections of different tests that can be applied to check for noticeable patterns, most of which need a few tens of millions of numbers to read through.
+I ran some additional testing to look for tiny fairly simple biases in the stream in the order of about 1 billionth of a percent. They required about a trillion numbers to reliably distinguish between the output of a well configured version of a generator and a not so well configured version.</p>
+<p>After crunching so many random numbers I was left with the impression that many of the fast modern generators available to programmers are perfect to all practical appearances.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dwjp6ux">
+		<a class="author" href="https://www.reddit.com/user/ouemt" target="_blank">ouemt</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Forever. &quot;The next number restarts the previously given sequence.&quot;</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
