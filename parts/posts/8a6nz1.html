@@ -1,0 +1,71 @@
+<li class="post" data-handle="8a6nz1">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/8a6nz1/eli5_antialiasing_what_it_does_and_how_it_works/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/8a6nz1" onclick="return false">ELI5 Anti-aliasing, what it does and how it works</a>
+		</h2>
+		<!--<span class="date">2018-04-09</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5 Anti-aliasing, what it does and how it works</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dwwb8gs">
+		<a class="author" href="https://www.reddit.com/user/ariadesu" target="_blank">ariadesu</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It makes ugly stair-step like lines on the screen appear smooth by adding low contrast pixels where the stair-stepping is most obvious. </p>
+<p>Reference:<br />
+<a href="https://i.stack.imgur.com/pA7uy.png" target="_blank">Close up</a><br />
+<a href="https://helpx.adobe.com/content/dam/help/en/photoshop/ps-key-concepts/aliasing.png" target="_blank">Result</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dwwkraq">
+		<a class="author" href="https://www.reddit.com/user/karatelemon" target="_blank">karatelemon</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Pixels are squares. Squares only have right angles, so if you try to make a diagonal line, close up it will look like a staircase.</p>
+<p>We add some pixels onto the stairs that are midway between colours to soften the line, so it doesn’t look so jagged</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dwwek95">
+		<a class="author" href="https://www.reddit.com/user/kulseran" target="_blank">kulseran</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Take a piece of graph paper. Place a pencil on it at an angle, and mark every square it touches with another pencil. As a computer, you can't partially fill a square, but you can choose how dark to fill it in. So, if you fill in every marked square as dark as possible, you get an ugly stair-step. If you instead fill in some darker, some lighter, and even lightly color a few cells the pencil didn't touch, then when you step back, you get a much smoother looking line.</p>
+<p>Basically, in computer graphics, it's trivial to determine if a pixel is covered by a given triangle being drawn (in 3d graphics, basically everything's made of triangles). However, it's often the case, that on the edge of any shape, the pixels are actually only partially covered. So then the question is what would be <em>behind</em> the triangle? Ideally you'd figure out how to compute the %coverage on every pixel for every triangle, and get an exact color. This is <em>very</em> expensive to figure out exactly. Instead it's often cheated by doing things like rendering the scene 4x as large so that you can just blend together every 4 pixels (like having finer grid graph paper, you can trace out your pencil more exactly, then get the right 0:4, 1:3, 2:2, 3:1, 4:1 color blend).</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dwwh2pe">
+		<a class="author" href="https://www.reddit.com/user/helemekoko" target="_blank">helemekoko</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It makes the rough edges smoother. Very common in gaming. But it is just not in graphics. Aliasing occurs in signal processing too.</p>
+<p>It happens in analogue to digital and digital to analogue convertors. When you want to convert a signal from continuous to discrete by sampling it you will have some distortions and aliases. Why the data is sampled is because discrete data is much more efficient to work with, it is easier to store, transfer etc. Imagine you have your continous sinusoidial signal converted to discrete points. If you use a good sample rate you should be able to reconstruct a sin graph by discrete points instead of a continual data. </p>
+<p>During the conversion, depending on factors like sample rates, you can result in noisy data, distortions and innacurracies. Because nothing is perfect. When you produce the discrete signal from the continuous source with a insuffienct sample rate, aliasing and frequency ambuigity occurs. To prevent this we use anti aliasing filters. It helps reduce the noise and distortions that occur during sampling. It basically attenuates the higher frequencies so that the alias ones are cut off.</p>
+<p>It is a way to make noisy data reduced.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dwx3y3r">
+		<a class="author" href="https://www.reddit.com/user/Manucapo" target="_blank">Manucapo</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Just wanted to add that aliasing is not just a problem in computer imaging.  Aliasing is a general problem of storing analog ( infinitely small changes) signals into digital ( discrete jumping changes) mediums.   </p>
+<p>A smart man caller Shannon figured out that if you want to accurately store a signal that repeats itself 20 times in a second. You must sample it ( measure it ) at least 40 times per second. If you sample it faster you get no additional information and thus waste resources. </p>
+<p>If you sample it slower however you store a distorted version of the original signal. </p>
+<p>For an example of other tipes of aliasing.   If you measure a pure sine Audio wave of 400 hz and you measure it with a sampling rate of less than 800 hz. You will not get back a pure sine wave when you play back your recording. </p>
+<p>So if you have a digital system to record music that sample at 44.1  khz ( thousand times per second) you could not accurately store frequencies higher than about 22 khz. If you did your recording will become distorted. So before you record your music into your computer you would first filter out of the signal any frequencies close and above to the 22 khz mark.  This is also an example of something you could call an anti-aliasing filter.     </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/8a6nz1" onclick="return false"><span>show</span></a>
+</li>
