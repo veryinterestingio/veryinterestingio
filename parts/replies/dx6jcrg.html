@@ -1,0 +1,94 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ISUJinX" target="_blank">ISUJinX</a>
+			<div class="markdown"><p>Can't you grade password entropy based on simply the length of text in the box and number of different character sets included?</p>
+<p>So you wouldn't need to send anything to the server at all.  And if you write your checking code properly, you wouldn't parse the characters to an array, you would parse if a letter fell into a certain character set, and then count the length.</p>
+<p>Or am I way off?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfukar" target="_blank">mfukar</a>
+			<div class="markdown"><p>There are multiple ways to do it; whether they are useful quantifications is a much more nuanced question.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/whythecynic" target="_blank">whythecynic</a>
+			<div class="markdown"><p>Exactly. The NIST recommends looooooong easily remembered passwords with NO restrictions on numbers, caps, special characters, &amp;c. As in, long-ass long.</p>
+<p>For example &quot;I'd rather be a sparrow than a snail, yes I would, I surely would&quot; is a better password than &quot;!@f0F#mmhK&quot;, and much more easily remembered. This also reduces the need for password resets, which are another massive security hole.</p>
+<p>Although authenticator app-based 2FA is quite possibly the best common easily-available solution to login security.</p>
+<p>Source: digital forensic investigator.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bradfordmaster" target="_blank">bradfordmaster</a>
+			<div class="markdown"><p>Typically you'd just do it in javascript, which only runs on the browser of the persons computer. There's really no need to repeatedly send the password back and forth to some other server to process it and &quot;rate&quot; it.</p>
+<p>Sure theoretically you could locally compute the length and number of different character sets, and then send that data to the server and get a response about the &quot;grade&quot;, but if you're going to do that you already have 90% of what it takes to just grade it in the client, so that's what is usually done</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/erh" target="_blank">erh</a>
+			<div class="markdown"><p>A &quot;server&quot; isn't magic. Any logic that might run there can run on the client side too, so unless it's using some set of data that isn't available to the client side (too big, not licensed, etc...) then yes, the same approach for grading the password can be used.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/haribofiend" target="_blank">haribofiend</a>
+			<div class="markdown"><p>Just trying to arrange a line of thinking:</p>
+<p>Would that mean the best strategy would be to hash/encrypt passwords on the client side before shipping to the server?</p>
+<p>I'm a noob to this.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dongpirate" target="_blank">dongpirate</a>
+			<div class="markdown"><p>That seems like a good idea, but is actually worse. Google &quot;pass the hash&quot;.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SinglePartyLeader" target="_blank">SinglePartyLeader</a>
+			<div class="markdown"><p>It's not that it's worse, just that it's unnecessary since the hash effectively just becomes the password. The issue with the pass the hash exploits are more than just the principle of client side hashing, they have to do with vulnerabilities in the Windows authentication system. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/princekolt" target="_blank">princekolt</a>
+			<div class="markdown"><p>No, because then there would be no difference between the password being stored in plain text or hashed. You want the server to perform an operation on the provided password, and then compare the result of that operation to the &quot;known good&quot; result.</p>
+<p>Edit: To add a bit, if you want to protect the authentication method by operating on some secret on the client side, that's what Client Certificate Authentication is all about. If done properly, it is a lot safer than user+password authentication, but it is more cumbersome, and if users can't be bothered to use different passwords per service, then they definitely won't use different certificates per service.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VegaWinnfield" target="_blank">VegaWinnfield</a>
+			<div class="markdown"><p>I’m not really a crypto expert so take this with a grain of salt, but as I understand it, there is an even better option in which a static hash doesn’t even have to be sent across the wire. If you hash on the client side an attacker can still log in as you if they intercept the login message. With this protocol, the interception of one message isn’t enough to log in in the future.</p>
+<p><a href="https://en.wikipedia.org/wiki/Secure_Remote_Password_protocol" target="_blank">https://en.wikipedia.org/wiki/Secure_Remote_Password_protocol</a></p>
+<p>Also, as far as I’m concerned, hashing on the client side is of minimal value. You still need to rehash on the server side and if the developer is conscientious enough to has on the client side they are probably going to try to do the right thing on the server side too.</p>
+<p>Really, what I want as a customer is for website developers to outsource password management to a 3rd party that specializes in it.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/moomaka" target="_blank">moomaka</a>
+			<div class="markdown"><blockquote>
+<p>However, if a client sends a password in plain text to a server and it is received, then it is necessarily true that at some point, it exists in plain text at the server. The idea is to minimise that amount of time.</p>
+</blockquote>
+<p>Assuming by 'client', you mean a web browser, the 'raw' password is always sent to the server. The server has to hash the password to compare to the stored version. You can't, in any secure or reliable fashion, hash the password in a browser. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/if_it_was_a_snake" target="_blank">if_it_was_a_snake</a>
+			<div class="markdown"><p>Uh, hey... you're definitely wrong. You can securely hash the password in the browser and send it to the server. I'm a Senior Javascript Engineer and it's totally possible.</p>
+<p>In fact, there are entire interfaces programmed in primarily Javascript that can be run in the browser and solely exist to securely hash and secure passwords, such as KeeWeb.</p>
+<p><del>Even on HTTPS, it's worth hashing a password in the browser to prevent man-in-the-middle attacks. (Edit: To clarify, it's not foolproof. But even HTTPS and TLS have updates to patch flaws, and sometimes the user clicks past / ignores browser cert warnings.)</del></p>
+<p>Edit2: It's true that HTTPS and TLS have been found to have flaws, and sometimes a user might ignore important cert warnings, but I should have immediately realized that a MITM attacker could just modify the Javascript so the password is not sent in hashed form.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MasterPatricko" target="_blank">MasterPatricko</a>
+			<div class="markdown"><p>Uh ... I think you are mixing two different questions.</p>
+<p>Is it technically possible to hash client side? Yes, of course. Every hash algorithm <em>can</em> be implemented in JavaScript or whatever.</p>
+<p>Does hashing client side add any extra security to <em>your</em> website (assuming standard protocol, not some fancy key exchange)? No. The submitted hash effectively becomes the password; you are still sending it over to the server, so you still depend on HTTPS/encryption to prevent man-in-the-middle attacks and replay attacks, and server-side hashing to avoid storing the &quot;password&quot;.</p>
+<p>Are there <em>any</em> benefits to hashing client side? Well, <em>if</em> your server is compromised and the server-side hashing broken, it somewhat mitigates password-reuse attacks across different websites, since you are effectively forcing a unique password on every visitor. However, most servers haven't even got the server-side hashing right, so it's not high up on the priority list of security experts.</p>
+<blockquote>
+<p>Even on HTTPS, it's worth hashing a password in the browser to prevent man-in-the-middle attacks.</p>
+</blockquote>
+<p>To be clear: this is wrong. You can hash client-side if you want, but it does not in any way prevent man-in-the-middle attacks on your server. It's only using a secure channel like HTTPS (or a <a href="https://en.wikipedia.org/wiki/Secure_Remote_Password_protocol" target="_blank">more advanced protocol</a>) that can prevent MITM.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Wootery" target="_blank">Wootery</a>
+			<div class="markdown"><blockquote>
+<p>Even on HTTPS, it's worth hashing a password in the browser to prevent man-in-the-middle attacks.</p>
+</blockquote>
+<p>As /u/MasterPatricko already said: no, it's not. There's a reason security-sensitive websites don't bother with hashing in JavaScript. If your HTTPS connection is compromised, the attacker can just replay your authentication to the server as usual.</p>
+<p>HTTPS+certificates are what protect you from MITM. Nothing you do in JavaScript can help.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/moomaka" target="_blank">moomaka</a>
+			<div class="markdown"><blockquote>
+<p>such as KeeWeb</p>
+</blockquote>
+<p>I would not use that to generate passwords, it's using Math.random as an entropy source which is not a cryptographically secure prng. <a href="https://github.com/keeweb/kdbxweb/blob/906e927d3e3384db4dd393f6a9cbba00b1c85720/lib/crypto/random.js#L20" target="_blank">https://github.com/keeweb/kdbxweb/blob/906e927d3e3384db4dd393f6a9cbba00b1c85720/lib/crypto/random.js#L20</a></p>
+<p>Additionally, there are a number of password hashing algorithms that can not run without transferring the salt / cost factor to the client which is a horrible idea.</p>
+<p>So, like I said, no one hashes the password on the client...</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
