@@ -1,0 +1,56 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Autarch_Kade" target="_blank">Autarch_Kade</a>
+			<div class="markdown"><p>Just to tack on some info I found interesting: Netflix is the reason AWS is so huge.  Netflix grew in popularity and needs so dramatically, it forced an expansion of Amazon's cloud services.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/w315" target="_blank">w315</a>
+			<div class="markdown"><p>Got a source for this? I don't doubt that Netflix is a huge AWS customer, but AWS has millions of customers so I don't believe a single customer &quot;forced an expansion&quot; of AWS.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Autarch_Kade" target="_blank">Autarch_Kade</a>
+			<div class="markdown"><p><a href="https://www.contino.io/insights/whos-using-aws" target="_blank">According to an article in Business Insider from January 2016, Netflix placed enormous demands on the resources available to AWS at the time, often pushing the service to its limits and beyond. The ongoing pressure from Netflix, combined with Amazon's willingness to improve its service and meet its customers' requirements, pushed AWS to develop into the full, enterprise-scale integrated set of services that it is today.</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/factbased" target="_blank">factbased</a>
+			<div class="markdown"><p>I don't have the details, but don't believe Netflix is more than a small sliver of AWS right now. But I think the claim was about early on, before those millions (?) of other customers, and before Netflix was serving up the content from their own Open Connect CDN.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lolzfeminism" target="_blank">lolzfeminism</a>
+			<div class="markdown"><p>If you are using AWS to run a business bigger than $1B, then sooner or later you will find that Amazon is directly competing with you. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Barneyk" target="_blank">Barneyk</a>
+			<div class="markdown"><p>Do you know if Netflix does something different with how their buffering works?</p>
+<p>I know some streaming sites that buffers very little so an interruption causes a buffer immediately while Netflix often seems to deal with it better.</p>
+<p>And that is when the interruption is in my home, I might be messing about with the wifi or something.</p>
+<p>This is my experience from very limited testing so it doesn't say much, but I would love to know any details about it.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/newerNan" target="_blank">newerNan</a>
+			<div class="markdown"><p>Netflix doesn't store it's videos in one large file.mp4, for 1080p, and another for 720p.</p>
+<p>Instead, it splits them up into many, many video clips, just a few seconds long. And it does this for loads of different quality profiles, ranging from potato quality to 4k HDR. And I mean, a lot of different profiles, not just the 720/1080 you get on YouTube.</p>
+<p>When you stream netflix at a given level of quality, it will keep getting the next video clip of the same profile and keep it playing seemlessly in the client. The client is also constantly measuring how fast it's able to download the next clip, and will keep a couple clips lined up in memory as a buffer.</p>
+<p>If you're speed fluctuates, with traditional streaming, you've run out of buffer, and you're stream pauses while it buffers to download some more before it can play again. With netflix however, if it can see it's buffer is reducing in size, it will switch down to a lower quality profile, where the clips are smaller in size, and therefore can be downloaded faster. This way, you never miss a second of footage, it just keeps playing seemlessly but the quality has dropped slightly. </p>
+<p>Similarly, when your internet connection speed goes a little faster, it can tell that it's downloading the clips faster than it needs to, so it racks up the quality profile again.</p>
+<p>You may notice this when you first start playing a movie or TV show. In order to play as quickly as possible, the quality usually starts off a little low, but soon gets better by itself.</p>
+<p>YouTube does do this too, to an extent, but it's 'clips' are a lot longer, and it doesn't have as many varying levels of quality profiles, so buffering, although generally good, still causes video to pause from time to time.</p>
+<p><strong>Edit:</strong> if you like, you can even see this in action. Some netflix clients let you see the video bitrate it's currently streaming at. (My Samsung TV lets me hit the info button, you'll have to Google to find the equivalent for other clients).</p>
+<p>Next time you start a film or show, hit it as soon as it starts playing, and keep an eye on it, you'll see it rise every few seconds as the video plays and the quality becomes noticeably better until it stabilises. Then you can try and cause internet speed loss, by downloading something on the side, or moving further away from WiFi, and you'll notice it start to come down too.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BinaryRockStar" target="_blank">BinaryRockStar</a>
+			<div class="markdown"><p>I have no specific knowledge of Netflix but this sort of thing is an engineering trade-off. Take the different usage patterns of Netflix and YouTube.</p>
+<p><strong>Netflix</strong> can assume (and will verify this with collected usage pattern analytics) that any given video will be watched beginning to end, possibly in multiple sessions (e.g. let's watch the rest of the movie tomorrow), possibly with pausing (toilet break) but unlikely to skip forward. In this case it makes sense to buffer as much as possible because that data will be streamed to your device anyway, and having one less stream open to the servers reduces server load. </p>
+<p>Add to this the fact that as mentioned above the data is likely streaming from your ISP so it costs them nothing to send the data, and the decision to use long buffers makes itself.</p>
+<p><strong>YouTube</strong> can not assume much about usage patterns. It is likely the user will want to skip ahead through an intro sequence, or just skip through the waffle if it's a streamer or YouTube personality that likes to talk. They will have thorough analytics on which types of videos get skipped around on so they can tailor buffer size to the video, but on the whole they have to be conservative with what they send to the user.</p>
+<p>Add to this the fact that YouTube is streaming from their own servers, so every byte they don't have to send is a win for them bandwidth (and therefore cost) wise. Again, the engineering decision to have short buffers makes itself.</p>
+<p>TL;DR: Netflix users watch entire videos and it is free for Netflix to send data so they send it all ASAP. YouTube users skip around videos and it costs YouTube to send data so they keep buffers small to minimise costs.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/factbased" target="_blank">factbased</a>
+			<div class="markdown"><p>I don't know what they do in their streaming software. Having a source close to you (at your ISP) helps, but having a larger buffer sounds likely as well, since you mention a difference when your own network is failing.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MailOrderHusband" target="_blank">MailOrderHusband</a>
+			<div class="markdown"><p>But Netflix is the problem. The ISPs are the solution!
+-Ajit Pai</p></div>		</li>
+					</ul>
+	
