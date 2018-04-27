@@ -1,0 +1,71 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/immibis" target="_blank">immibis</a>
+			<div class="markdown"><p>Additionally: On Linux you can do all of these things, <em>with confusing results</em>. So it definitely makes sense to ban it on Windows.</p>
+<p>On Linux:</p>
+<ul>
+<li>If you delete a file while it's open, you can keep it open. Saving it may or may not put the file back, depending on the program.</li>
+<li>If you rename a file while it's open, programs with it open won't update the name, and saving it might save normally (with the new name), or put the file back with the old name, depending on the program.</li>
+<li>The file keeps taking up disk space (that you can't see!) until you close it. Or it might not. Depending on the program.</li>
+</ul></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TrinityF" target="_blank">TrinityF</a>
+			<div class="markdown"><p>Notepad++ does this on windows for files it has opened.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheFotty" target="_blank">TheFotty</a>
+			<div class="markdown"><p>That is because Notepad++ (like notepad.exe) opens files, reads them into memory, and then closes the file and removes any handle to that file. If Notepad++ were, say, in the middle of writing out bytes to a large text file, there would be a locked writing handle on the file, and you wouldn't be able to delete it or rename it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/spoko" target="_blank">spoko</a>
+			<div class="markdown"><p>Basically: If it's an awesome thing to do, Notepad++ does it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SquidCap" target="_blank">SquidCap</a>
+			<div class="markdown"><p>Which is also the way about half the time i edit some config file and test it, seeing no results i remember that one should not close notepad++ application but close the tab.. It is my mistake but as it is non-conventional behavior.. it is an exception that one had to remember only on notepad++</p>
+<p>If you ask me, this should be under options, not defaulot behavior. Once again, niche use has taken over the majority: most notepadd++ use requires the file to be saved on exit. I would say: 99% of it.. Not the only program that &quot;invents&quot; a new behavior that fixes a marginal program but since it is so neat, it is now default option for everyone..</p>
+<p>btw, i love notepad++ and can't live without it.. The fact that it does not save on exit as default is pretty much my only real complaint. Well, maybe it's frequent updates which i should not complain but they are not updates that are that critical...usually about update to some ide function or something..) It is just another dialog i have close down since i don't want to update now! i want to complete my task now! and update can wait after exit...</p>
+<p>World is far from perfect and decisions like this is just a tiny, tiny particle in the saharan desert of poor user &lt;-&gt; machine interfacing and interaction. But, they affect millions and cause millions of files, million of compilers to churn out previous builds. </p>
+<p>It is actual waste when niche options are &quot;mainstreamed&quot;.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Cathy_Garrett" target="_blank">Cathy_Garrett</a>
+			<div class="markdown"><p>This is what makes it even possible to update a library on disk while a program is running with that library mapped to its instruction memory. The hard drive space where the old version of the library is stored is still there, still memory mapped, until the last program with it dynamicly loaded closes, but there's absolutely no problem updating the library on different disk space, under the library's name (old library having been deleted), and ldconfig makes it so all newly launched programs see the new hotness library, not the old and busted one. This leads to the possibility that there may actually be two (or more) versions of the same library (especially libc) operating in a system where the library was updated and then new programs launched using it while old programs using the previous version continue to plod along in the background.
+There is absolutely no problem with doing this. It does not make the Linux system unstable in any way. In fact, there are distroes that utilize fully containerized software that means any number of different, even incompatible, versions of libraries can be fully installed and usable on a system at the same time and you can decide at launch time, with some ld.so jiggery-pokery, which version of what libraries you want this program to link against, so you could theoreticly have as many different versions of libc memory mapped from different parts of the hard drive as you have programs that dynamicly linked against the generic &quot;libc&quot; library. Of course, at that point, you've largely given up the benefits of dynamic loading in the first place.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Yancy_Farnesworth" target="_blank">Yancy_Farnesworth</a>
+			<div class="markdown"><p>It's a double edged sword. If the library receives a critical security update, it won't be truly applied until all processes that need it are restarted. Ultimately Linux will assume you know what you are doing for things like this by allowing you to run the older version. Windows makes the opposite assumption - that you don't know what you are doing and you actually want to update it.</p>
+<p>They're both fine assumptions to make in certain situations. It just irks me when people bitch about Windows requiring restarts once a month and Linux doesn't (for most updates). And that 100% uptime is absolutely critical for typical consumer use cases. As a developer I generally assume the user, including myself, doesn't know what they are doing and err on the side of caution.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/llamaAPI" target="_blank">llamaAPI</a>
+			<div class="markdown"><p>I usually close Firefox before updating it on Linux, even though it seem to me that maybe I didn't had to. Should I? </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kaybobnelson" target="_blank">kaybobnelson</a>
+			<div class="markdown"><p>I came here to say that I knew Linux lets you change the name, but I didn't realize all the implications. Thanks for summing those up; I, for one, will be more careful now.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Em_Adespoton" target="_blank">Em_Adespoton</a>
+			<div class="markdown"><p>The reason is historical: the win16 and win32 APIs from Windows 3.1 and Windows 9x relied on the full path name as the file handle for reading and writing.  With Windows NT this switched to using the CSLID as the file handle reference, so there was no longer any technical reason for the locking under NTFS... but they couldn’t guarantee people weren’t using a FAT-formatted disk back in the day.</p>
+<p>So as you say, by the time Windows 7 rolled around, it was all policy.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cxa5" target="_blank">cxa5</a>
+			<div class="markdown"><p>Put file on a usb drive</p>
+<p>Open file</p>
+<p>Physically remove the drive</p>
+<p>Plug it back</p>
+<p>Rename file</p>
+<p>Take that, microsoft!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheRealLazloFalconi" target="_blank">TheRealLazloFalconi</a>
+			<div class="markdown"><h1>:(</h1>
+<p>Your PC ran into a problem it couldn't handle, and now it needs to restart.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cxa5" target="_blank">cxa5</a>
+			<div class="markdown"><p>50% chance that happens during step 1 or 2 </p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
