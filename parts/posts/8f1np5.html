@@ -1,0 +1,76 @@
+<li class="post" data-handle="8f1np5">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/8f1np5/in_the_cpu_manufacturing_process_how_do_they/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Physics">Physics</span>
+			<a href="/posts/8f1np5" onclick="return false">In the CPU manufacturing process, how do they apply copper to the silicon wafer after the pattern is etched?</a>
+		</h2>
+		<!--<span class="date">2018-04-29</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Just wondering how a very detailed pattern can be filled with metal (such as copper) in such a small scale (in nanometers). Surely molten copper will not work (that's just my assumption with the basic knowledge I have). Please enlighten me.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dy04kpx">
+		<a class="author" href="https://www.reddit.com/user/robged" target="_blank">robged</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The other responses here are partially correct in that they are ways to deposit copper on a wafer, but the do not describe the process used in a modern CPU. The process used is called a damascene process. First a trench in the silicon dioxide is etched using lithography, and then a &quot;barrier layer&quot; of several metals including tantulum nitride is deposited. This buffer layer keeps copper from electromigrating into the SiO2 and improves chip lifetime. Then a &quot;seed layer&quot; of copper is deposited. Both if these layers are deposited as described by others in the comments. What is different is that at this step only a small bit of metal coats the bottom of the trench and the sidewalls. The wafer is then placed in a chemical bath and an electrode is connected to the seed layer. Copper electroplating (like in an elementary school science project!) is used to completely fill in the trench and coat the entire wafer. Only the copper in the trench is desired, however, not the extra that gets everywhere, so a last step is to polish the surface using a slurry and a polishing pad which planarizes everything to be level with the top of the SiO2. You then deposit more SiO2 lithographically define another trench, and repeat.</p>
+<p>Edit: Changed to tantulum nitride and &quot;barrier layer&quot; based on u/clown-penisdotfart's comment. My mistake.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dxzwoub">
+		<a class="author" href="https://www.reddit.com/user/oh_i_dont_think_s0" target="_blank">oh_i_dont_think_s0</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The pattern on the Si wafer is defined using a photoresist and a shadow mask. The wafer is coated in resist, the mask applied and exposed to UV. Depending on the resist, either the exposed or unexposed areas will be removed all the way down to the Si by soaking in a developer.</p>
+<p>Following this, the patterned wafer will be placed into a deposition chamber - using either sputtering, or e-beam evaporation to evaporate your metal target. The metal vapour will condense all over the wafer, coating both the resist and the Si surface. </p>
+<p>The coated wafer is submerged in a solvent which removes the remaining resist, and the metal deposited on it, leaving behind only the metal deposited on the Si areas. This process is knows as 'lift off'</p>
+<p>There are many methods to deposit materials on Si wafers, but this is the simplest procedure. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dy0f4h5">
+		<a class="author" href="https://www.reddit.com/user/ROIDBOT" target="_blank">ROIDBOT</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For deposition (or etching, either or) of particles on (or off) a silicon wafer you get the wafer in the chamber, and bring it down to vacuum. This is done in two stages. First, you'll have one pump, the &quot;rough pump&quot; that gets the chamber from atmosphere to near vacuum.</p>
+<p>Then, the real pump, the turbo pump, the $50,000 pump that's built like a jet engine, ramps up. This pump gets the chamber to 10^-6 Torr. A vacuum. The strongest man in the world could not lift the lid chamber once it's brought down to vacuum.  Were the turbo pump to spin with air present would destroy the pump. It is that powerful at removing impurities at the atomic level. It takes a while to get it up to speed too...30k RPM? I think? [20k-90k] (<a href="https://en.wikipedia.org/wiki/Turbomolecular_pump" target="_blank">https://en.wikipedia.org/wiki/Turbomolecular_pump</a>)</p>
+<p>Next, depending on what temp you are running, and what you are etching or depositing, you begin RF generation. RF is going to be used to excite the gas to create a plasma. The gases used are sometimes simple as O^2, or as toxic as Chlorine or Flourine. </p>
+<p>These reactive gases will either adhere, or etch, the silicone wafer depending on the electrostatic charge applied at the bottom of the chamber. So you have a charge below, RF all around, and gas flowing in. What I did, software-wise, was wrote control software for this. Mostly under direction from doctors working in labs, who were working with customers like Intel, WD, Apple, etc.</p>
+<p>The first task ever given to me was writing software to lock out certain gases from being mixed, known as the forbidden pairs. If certain gases mixed, or if certain gases interacted with atmosphere, you get a deadly explosion. That was fun.</p>
+<p>Then, another task (back in the 90's) was developed software that would allow deep silicon etching. This meant you could cut down further into the silicon, leaving more room for circuits on the wafer, and less room for the &quot;Streets&quot; aka the areas cut away by either wet etch, or laser...or, believe it or not, diamond tipped saws.</p>
+<p>My name never got put on the patents because I quit the job. But anyway, the process of creating from cutting a silicon wafer (think of slices of bread cut from a tube of silicon) to the final chip that gets put into your phone...is a long, laborious process, costing tens of thousands of dollars, and millions of dollars of equipment.</p>
+<p>Eventually, the 6, 8 or 12 inch wafer (mm respective I forget off hand...200mm, etc) can have, depending on the process used, 40k tiny chips. Chips that only an electron microscope can see the workings of. Sensors for airbags...or new LED lighting. How each manufacturer cuts down the chips at the end can determine price. For plasma etched chips, it's costly because of the gas and time involved, but you get a higher yield. With wet etch, it's cheaper, or diamond cut...but then you are losing room on the wafer. Think of the wafer as real estate. The more you can put on it, the more you make.</p>
+<p>TLRD; gases are excited and react to the electrostatically charged wafer</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dy0hd2v">
+		<a class="author" href="https://www.reddit.com/user/sunketh" target="_blank">sunketh</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A lot of answers mention etching by lithography. Photolithography makes a pattern of photosensitive polymer material. Then etching (remove where exposed) or deposition (fill where exposed) can be done in that pattern. A typical processor in 2001 would need 100s of photolithography patterns called masks. This is the image giving cross-section. <a href="https://techreport.com/r.x/broadwell-14nm/interconnects.jpg" target="_blank">https://techreport.com/r.x/broadwell-14nm/interconnects.jpg</a>
+Each horizontal layer is one pattern.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dy046q2">
+		<a class="author" href="https://www.reddit.com/user/ionman999" target="_blank">ionman999</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Cu is deposited by a process called PVD. Plasma vapor deposition. A cu target above the silicon water is bombarded with electrons that knock off Cu particles which coat the silicon. Ultra thin layers can be made. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/8f1np5" onclick="return false"><span>show</span></a>
+</li>
