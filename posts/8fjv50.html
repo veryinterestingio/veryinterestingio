@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>[ELI5] Why CAN'T we have the characters '\', '/', ':', '*', '?', '&lt;', '&gt;', '|' in a file's name in Windows?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="8fjv50">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/8fjv50/eli5_why_cant_we_have_the_characters_in_a_files/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/8fjv50" onclick="return false">[ELI5] Why CAN'T we have the characters '\', '/', ':', '*', '?', '&lt;', '&gt;', '|' in a file's name in Windows?</a>
+		</h2>
+		<!--<span class="date">2018-05-01</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>[ELI5] Why CAN'T we have the characters '\', '/', ':', '*', '?', '&lt;', '&gt;', '|' in a file's name in Windows?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dy43k45">
+		<a class="author" href="https://www.reddit.com/user/flooey" target="_blank">flooey</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Each of them has a special meaning on the command line, so if they showed up in filenames they would lead to ambiguity.</p>
+<p>\ is the path element separator on Windows and / is both the path separator on Unix-style systems and the normal command switch character.</p>
+<p>: is the character that indicates a drive name as well as being the path separator for old (pre-OS X) Macintosh systems.</p>
+<p>? and * are characters used as wildcards (aka globs) when specifying files.</p>
+< and > are used to redirect input and output to files.
+
+| is used to send the input of one command to the output of another command.</div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dy496sm">
+		<a class="author" href="https://www.reddit.com/user/Snoring-Dog" target="_blank">Snoring-Dog</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>None of these are really five-year-old explanations.  Here’s my stab:</p>
+<p>Suppose you named your dog “dessert.”  After that, whenever you ask your parents “Can I have dessert?” they wouldn’t know whether to bring you sweets or the dog.  Similarly confusing dog names might be:  the trash, the car, etc.</p>
+<p>Special characters are like that, they have another meaning already and so if you use them as a name the operating system (your parents) gets confused.  Windows takes the approach of not letting you use them as names.  Linux requires you to be more specific about what you’re referring to - think of this as it making you say “Can you bring me my dog, dessert?.”</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dy45kzr">
+		<a class="author" href="https://www.reddit.com/user/Loki-L" target="_blank">Loki-L</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Because allowing that would make it too easy to really screw up.</p>
+<p>Other OSs like Linux are a lot more permissive when it comes to what characters you can use in filenames, but that comes at the cost of really simple shell scripts not really working the way you think they will if somebody actually goes all out an uses them.</p>
+<p>That is okay, though Linux people are all for giving their users the ability to shoot themselves in their own feet if they want to.</p>
+<p>Microsoft has a very different philosophy, they assume that idiots will use their OS and do everything in their power to idiot-proof it so that users and developers can't hurt themselves too much.</p>
+<p>With that comes a ton of restrictions like allowed characters in filenames that might not be strictly needed but make live a lot easier for everyone.</p>
+<p>Some characters like &quot;*&quot; and &quot;?&quot; are wildcards that mean any characters or any character. Allowing you to use them in filenames would open up the question of if you mean them literally or in their wildcard form when referring to a filename with them in it.</p>
+<p>Other characters are used in commandline to redirect output like &gt;&lt;|: and might be misinterpreted in that context. &quot;\&quot; is separates folders in windows and so on.</p>
+<p>There are also a bunch of words that you are not allowed to name a file because they were used for something special all the way back in the days of Microsoft DOS like &quot;PRN&quot; and &quot;LPT1&quot; which used to have to do withe printers and others like &quot;CON&quot;, &quot;AUX&quot;, &quot;NUL&quot; and &quot;COM1&quot; and so on.</p>
+<p>In theory you could probably do away with these restrictions, but Microsoft feels it is better to be safe than sorry so even today you are not allowed to use any of these out of fear that it might break something because programmers simply assume that you would not be able to use them.</p>
+<p>These assumptions can lead to all sorts of interesting effects when you mount a file-system from for example Linux in Windows where the rules are more lax and have to realize that the Windows OS is able to see these files but won't allow you to actually interact with them because it insists files like that couldn't possibly exist.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dy43idj">
+		<a class="author" href="https://www.reddit.com/user/drefan_rahl" target="_blank">drefan_rahl</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It has to do with coding/parsing. For example your computer uses &quot;/&quot; as a directory designation so C:/my documents/pictures it would recognize as 3 different levels of folder. If you were to name an image file &quot;apples/bananas.jpeg&quot; and your computer went to look up that file when you click on it it would instead see  &quot;bananas.jpeg&quot; in the &quot;apples&quot; folder. Each symbol has its own meaning and effect.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dy486i9">
+		<a class="author" href="https://www.reddit.com/user/jysung" target="_blank">jysung</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Relevant <a href="https://xkcd.com/327/" target="_blank">Xkcd</a>, maybe?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/8fjv50" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

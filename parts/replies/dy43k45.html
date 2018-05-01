@@ -1,0 +1,63 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Pandapoopums" target="_blank">Pandapoopums</a>
+			<div class="markdown"><blockquote>
+<p>| is used to send the <strong>output</strong> of one command to the <strong>input</strong> of another command.</p>
+</blockquote></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jaegermeiste" target="_blank">Jaegermeiste</a>
+			<div class="markdown"><p><del>Pretty sure that's an L, not a pipe</del></p>
+<p>Edit: conflated two unrelated comments on mobile into the genesis of a nonsense response. Move along, nothing to see here...</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JimmyRayIII" target="_blank">JimmyRayIII</a>
+			<div class="markdown"><p>TIL what conflated means. Had to go look it up after seeing this comment. Thanks!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Pandapoopums" target="_blank">Pandapoopums</a>
+			<div class="markdown"><p><a href="https://i.imgur.com/leymwyW.png" target="_blank">Hmmm...</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RowanStimpson" target="_blank">RowanStimpson</a>
+			<div class="markdown"><p>All good brah. You’re still the meiste of Jaegers.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Target880" target="_blank">Target880</a>
+			<div class="markdown"><p>All except \ and  null that you did not mentioned and likely : are only limitations because of how DOS was implemented not a fundamental limit for their special meaning. They have the same meaning in UNIX system that existed before that but you are still allowed to have the in filename</p>
+<p>A quick console test in linux</p>
+<pre><code>p@K:~/test$ touch "\?*&gt;&lt;|:\""
+p@K:~/test$ ls
+\?*&gt;&lt;|:"</code></pre>
+<p>So you can still have them but you have to escape, quote them etc to use them.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/UnsignedRealityCheck" target="_blank">UnsignedRealityCheck</a>
+			<div class="markdown"><p>L(inux)PT: if you have issues dealing with a file with an obscure name, add two dashes just before the file name. At least bash recognizes that as end of command parameters. E. g.</p>
+<p>ls -l -- oddfilename</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Turmfalke_" target="_blank">Turmfalke_</a>
+			<div class="markdown"><p>If that fails you can use ls -i to display the inode of the file and then nuke it with find:  </p>
+<pre><code>find . -inum [inode] -exec rm -i {} \;</code></pre>
+<p>That way you avoid having to type the name, which is great if someone decided to be creative with his file name.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wfaulk" target="_blank">wfaulk</a>
+			<div class="markdown"><p>That won't help in this case. Those special characters are interpreted by the shell, not the command itself.  The &quot;--&quot; flag is merely a common indicator to the command that &quot;there are no more flags after this&quot;, which makes it helpful when dealing with non-flag arguments that start with &quot;-&quot;.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RenaKunisaki" target="_blank">RenaKunisaki</a>
+			<div class="markdown"><p>LPT: don't use special characters in file names. Just because you can doesn't mean you should. They'll cause all sorts of issues with scripts and commands.</p>
+<p>(But if you do end up with such a name, that's a good tip to deal with it.)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/splenetic" target="_blank">splenetic</a>
+			<div class="markdown"><p>Sure you can do that. But if you later have a shell script, file manager, backup utility or anything else that goes through your file structure then you'd better hope that whomever wrote it was really careful about escaping filenames properly.</p>
+<p>There are ways of getting Windows to create filenames that don't match the spec (many years ago I ended up with a drive called <code>[:</code>) but, as with calling a Unix file <code>*</code> it's not something that's likely going to end well.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Pascalwb" target="_blank">Pascalwb</a>
+			<div class="markdown"><p>Oh fuck, I remember my project from school, I had to find some files in huge folder with hundreds of similar names and sub folders with special characters.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EveningPassenger" target="_blank">EveningPassenger</a>
+			<div class="markdown"><p>All correct. Also take a look at the POSIX standard and Microsoft's drama around whether to try and meet it or not in the 90s. A number of legacy Windows decisions are the result of that. </p></div>		</li>
+					</ul>
+	
