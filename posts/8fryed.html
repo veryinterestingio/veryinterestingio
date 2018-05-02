@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>Is a 128 Gb memory stick just made up of two 64 Gb chips &quot;glued&quot; together or is it an entirely different technology that suddenly occupies half the space?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="8fryed">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/8fryed/is_a_128_gb_memory_stick_just_made_up_of_two_64/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/8fryed" onclick="return false">Is a 128 Gb memory stick just made up of two 64 Gb chips &quot;glued&quot; together or is it an entirely different technology that suddenly occupies half the space?</a>
+		</h2>
+		<!--<span class="date">2018-05-02</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Memory sticks are so big on comparison to the chip inside them, so I guess they could stick 10 chips in it and create the &quot;biggest ever&quot; memory stick rather easily...</p>
+<p>Edit: I'm happy that my most successful post ever on Reddit has been this unpretentious, near ELI-5 on AskScience, one of my favorite subs!</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dy67jsr">
+		<a class="author" href="https://www.reddit.com/user/CcntMnky" target="_blank">CcntMnky</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Both.  Within one technology generation, there will be multiple capacities by stacking (inside the package) or grouping (packages on a board).  The technology investment is to achieve a next technology that does the same capacity in half the space, allowing to double.  This is usually by fabricating the same transistor in less area.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dy68qqj">
+		<a class="author" href="https://www.reddit.com/user/garrett_k" target="_blank">garrett_k</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I've worked in the storage industry, though not specifically on this type of device, so I might be missing a few minor details. Hopefully this will help, though.</p>
+<p>A quick search found <a href="http://codecapsule.com/2014/02/12/coding-for-ssds-part-6-a-summary-what-every-programmer-should-know-about-solid-state-drives/" target="_blank">this</a> article which is focused on high-performance programming. SSDs are very similar in relevant ways to USB sticks.</p>
+<p>In general, there are 3 major components to a flash drive (or even SSD).  There's the raw flash chip(s) themselves. There's the flash translation layer which is what makes the flash chips look and act like a drive. And then there's the interface controller which provides USB connectivity (or SATA connectivity, or whatever).</p>
+<p>When it comes to the engineering of these devices, there are lots of things to be considered including assembling costs, defect rates, market desire and willingness to pay.</p>
+<p>Using more than 1 flash chip means you have to pay more for additional assembly costs, if only the extra machine time to install it.</p>
+<p>The flash translation layer is also designed to handle a certain number of flash chips. (I'm assuming it's a separate IC, but SoC design keeps changing things). In general, supporting more chips means more connections which means more silicon and a larger packaging. If you can support a lot of flash chips you are likely able to support higher throughput (which is why SSDs are usually much faster than flash drives even for similar capacities). But if you're trying to go for cost minimization, you might use a shared bus if the flash chips support it and you're willing to take on additional debugging headaches.</p>
+<p>The interface layer probably isn't that interesting.</p>
+<p>If I was tasked with designing a USB memory stick of a particular capacity, I'd probably check to see if the cost of two smaller flash chips plus the cost of a translation-layer chip which supported two flash chips, plus costs of manufacturing, etc., were more or less than the cost of a single larger flash chip with the simpler translation layer, etc. And then do that. Because in this space customers seem to care almost exclusively about price and capacity to the exclusion of all else.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dy68y5a">
+		<a class="author" href="https://www.reddit.com/user/jnecr" target="_blank">jnecr</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There is a limit to the largest module of RAM that can be produced.  And that is limited by the largest individual DRAM chip and the largest &quot;rank&quot; that a system can handle.  The largest DDR modules <em>are</em> simply two smaller modules packed together onto the same PCB.</p>
+<p>The only 128GB DDR4 modules I could find are &quot;octal-ranked.&quot;  I.e. they are 8 individual modules placed on the same PCB.  64GB modules are commonly &quot;quad-ranked,&quot; however, older ones could also be octal-ranked.</p>
+<p>So, why don't we have 16-ranked modules? Because the systems that this RAM runs on is generally limited to 8 ranks per memory channel.  So, if you use a 128GB module, you cannot put any other modules in that memory channel.  Server systems frequently have 3-4 memory slots per channel.  So, you could either configure your system with a single 128GB module or with two 64GB modules, or with four 32GB modules.  The 32GB modules will be the cheaper option and therefore in servers where space is not limited the multiple module approach would be preferred.</p>
+<p>But, not all systems are large enough to allow for 4 modules/channel.  Which is why we have an octal-ranked 128GB DDR4 RAM module.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dy6ej4j">
+		<a class="author" href="https://www.reddit.com/user/thephantom1492" target="_blank">thephantom1492</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A memory stick can be made in several ways.</p>
+<p>1- It can be a single or multiple chips. If you open some usb keys you can see that only one side have a chip, the other may only have solder pads. For example, a 32GB could have one side used while the 64GB will have both.</p>
+<p>2- Some other will stack vertically some chips.</p>
+<p>3- You can take two or more dies (that's the internal of the chip) and put it in the same package.</p>
+<p>4- you can take the circuitry and double it then produce the die.</p>
+<p>5- you can stack the circuitry in the die (which is basically what 'vertical NAND' is).</p>
+<p>6- you can use a smaller process and shrink each cells, and fit more in the same space.</p>
+<p>And you can also use more than one of those. Each have their advantages and disadvantages. For example, adding two chip allow for a single design, single bill of material, but two sizes. You order in bigger quantity and get a better price on some parts, get a single setup for everything. All you have to do is tell the machine to not install the second chip. The overall price however is slightly higher as you now have 2 chips, and a single smaller one may be cheaper. A two chip solution can be faster (you can spread the read/write across both, and adding the speed), which also cause the smaller capacity to be slower.</p>
+<p>A smaller process is initially more costly, and there is more reject initially. Eventually it become cheaper as they fine tune as they use less materials.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dy645st">
+		<a class="author" href="https://www.reddit.com/user/Jigabit" target="_blank">Jigabit</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Answering your question about the stick being so much bigger than the actual chip inside. Many things to consider there. 1) that's not always true. There are some wickedly small and still high capacity memory sticks. 2) you have to consider that it's not just the memory chip inside. There is some power cirquitry and a controller chip also. The more actual memory modules you stick in there the more complicated control gets (you may need a bigger control chip) and also power cirquitry gets more complicated. For this reason a single higher capacity memory module is better but it's more costly. 3) I think this is done for ergonomic reasons as well. You could make the physical stick smaller but should you? It becomes easier to lose and harder to unplug/plug. So it will cost more and ultimately not actually be better, potentially worse actually, from a usability point of view</p>
+<p>Edit: to answer the original question about gluing modules together. Yes this happens all the time. Look at a ram stick. It says &quot;8 gb&quot; but has like... 12? Ish chips on it that make up 8gb total. Look at a video card. It says it has 4gb of memory but that too is spread across multiple memory chips. Ssds do the same. So yes you can make &quot;the biggest memory stick ever&quot; exactly how you Invision it. Just unlikely that it will be that small. Also memory sticks (unlike other things I've mentioned here) draw their power form the USB port which will very much limit how much &quot;things&quot; you can have on the stick.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/8fryed" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
