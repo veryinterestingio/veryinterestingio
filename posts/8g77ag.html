@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>How Precisely Are Satellites put into orbit? Is it to the meter?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="8g77ag">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/8g77ag/how_precisely_are_satellites_put_into_orbit_is_it/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/8g77ag" onclick="return false">How Precisely Are Satellites put into orbit? Is it to the meter?</a>
+		</h2>
+		<!--<span class="date">2018-05-04</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>How Precisely Are Satellites put into orbit? Is it to the meter?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dy9euid">
+		<a class="author" href="https://www.reddit.com/user/agate_" target="_blank">agate_</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It depends on how the satellite is to be used, but most standard rockets deliver their payload to an accuracy of about 10 kilometers in altitude.  If more precision is required, additional rocket burns can fine-tune the orbit.</p>
+<p><a href="http://www.spacex.com/sites/spacex/files/falcon_9_users_guide_rev_2.0.pdf" target="_blank">http://www.spacex.com/sites/spacex/files/falcon_9_users_guide_rev_2.0.pdf</a></p>
+<p><a href="http://www.arianespace.com/wp-content/uploads/2011/07/Ariane5_Users-Manual_October2016.pdf" target="_blank">http://www.arianespace.com/wp-content/uploads/2011/07/Ariane5_Users-Manual_October2016.pdf</a></p>
+<p>And in many cases, you don't need to place the satellite very precisely.  Even GPS satellites have orbital heights that vary by <a href="https://www.colorado.edu/geography/gcraft/notes/gps/ephclock.html" target="_blank">a kilometer or two</a>: it doesn't matter exactly where the satellite is, so much as the GPS sensor has the data to <em>know</em> where it is.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dy9gtm2">
+		<a class="author" href="https://www.reddit.com/user/DaBlueCaboose" target="_blank">DaBlueCaboose</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Hi, SatNav for the GOES constellation here.  Others are talking about the precision that launch vehicles can insert a satellite, so I'm going to touch on the precision of keeping an orbit.</p>
+<p>Most satellites locations are known within a decent margin of uncertainty.  There's a lot we can do to infer their location and velocity, like using radio signals, but those depend highly on our ability to calculate their orbit based on their ISV, or Initial State Vector, a six-element vector describing the satellites position in x, y, and z, and velocity in x, y, and z.</p>
+<p>Following the Orbit Determination, or OD, we create an Ephemeris file.  Assuming the OD is good, the ephemeris file is the best way for us to let people know where we're going to be.  It's a list of points given at a certain interval, so that others don't have to perform the OD themselves to figure out where we are.  This ephemeris is as accurate as our initial OD is, though, so if the OD is flawed the ephemeris will be, too.</p>
+<p>Between all of this is also the fundamental uncertainty of n-body orbital mechanics.  We have a pretty good idea of what things will do at a given time, but it's quite hard to calculate all the influences.    To this end, satellites often have a &quot;covariance bubble&quot; around them that defines the area of uncertainty around their possible position.  <a href="http://aero.tamu.edu/sites/default/files/images/news/S4.1%20Sabol.pdf" target="_blank">Here's</a> some more reading on Covariance and Monte Carlo simulations, although it's pretty heavy stuff.  Truthfully I'm not too solid on that particular concept.</p>
+<p>Anyway, in terms of <em>maintaining</em> the orbit, geostationary satellites perform regular maneuvers to maintain their Semi-Major axis (which affects the rate they drift East/West) and larger, less regular maneuvers to correct their Inclination (The higher the inclination, the more the ground trajectory becomes a figure-eight rather than a small dot).  The regularity of these maneuvers is somewhat arbitrary.  Our older satellites operate on a monthly-ish cadence for East-West/SMA maneuvers, and a yearly-ish cadence for North-South/Inclination maneuvers.  Our newer satellites, GOES-16 and GOES-17, have been automated so much that they can perform one of each every week!  I mentioned in another comment, this is much preferable because it keeps the location nice and tight and there's less room for error, but if I'm being completely honest it's a little less fun. </p>
+<p>Let me know if you have any questions!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dy9ewti">
+		<a class="author" href="https://www.reddit.com/user/LockStockNL" target="_blank">LockStockNL</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>From the <a href="http://www.spacex.com/sites/spacex/files/falcon_9_users_guide_rev_2.0.pdf" target="_blank">Falcon 9 user guide</a> the orbit insertion accuracy is as follows for the Falcon 9:</p>
+<p>For LEO injection (Low Earth Orbit):</p>
+<ul>
+<li>Perigee (the lowest point): +/- 10km</li>
+<li>Apogee (the highest point): +/- 15km</li>
+<li>Inclination (the angle between the orbit and the equator):0.1 degree</li>
+</ul>
+<p>For GTO (Geosynchronous Transfer Orbit, mostly used for comms sats):</p>
+<ul>
+<li>Perigee (the lowest point): +/- 10km</li>
+<li>Apogee (the highest point): +/- 500km</li>
+<li>Inclination (the angle between the orbit and the equator):0.1 degree</li>
+</ul></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dyatmsu">
+		<a class="author" href="https://www.reddit.com/user/aerorocks" target="_blank">aerorocks</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Hello, I can answer this!
+I put satellites into orbit for a living and do orbital mechanics all day long. I figure out how to get the satellite to space, keep it there, how much fuel it needs, when and where to burn the thrusters, how long it will survive, and many other things.  </p>
+<p>As others have said, it depends on the mission and the orbit. Most of my work is with geostationary and geosynchronous satellites. Geo sats live in what is called a orbital slot that is assigned to them and they usually have station keeping requirements (keep the sat where its supposed to be) which are defined in degrees, typically 0.05 degree &quot;station keeping box&quot;. Which means the sat must be within 0.05 degs from its assigned orbital slot, both in east west and in north south directions (the box). A satellite's orbit period is determined by its altitude and the orbit eccentricity (how circular it is). A geostationary satellite must have the proper altitude to have the correct period to match the rotation rate of the Earth and appear stationary in the sky. Satellites typically are within a few hundred meters of the desired altitude and the difference from a perfect 24 hour orbit is corrected for by periodic station keeping maneuvers (maybe once or twice per week, and we plan these 30 years worth at a time). These geostationary satellites are usually for things like communication, satellite tv/radio and things like that and they dont have to be in the perfect orbit. Something like a military missile warning satellite needs to be much more precise for accuracy in the measurements they are taking. </p>
+<p>Refueling to extend a satellite life is not really an option. Not only is it cheaper to just buy a new one, the logistics would be a nightmare. Currently they live about 20-30 years till they run are about out of fuel, then thee last bit of fuel is used to raise the orbit above the geo belt to the graveyard orbit where it will drift around for 100's of years. Also by the time it needs new fuel, a better more advance satellite can be sent up to replace it with new technology. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dy9s4f4">
+		<a class="author" href="https://www.reddit.com/user/mantrap2" target="_blank">mantrap2</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Satellites planned or intentionally achieved orbits are not event remotely to the meter accuracy.  </p>
+<p>In fact, GPS is a good example: there is uncertainty to the orbits even in the best of times, yet central to how GPS works is knowing exactly what the position (hence orbit) is - that's actually what is transmitted by a GPS satellite to your GPS receiver.  Using math and each of 3 or more satellite's exact position it's possible to triangulate your position.</p>
+<p>Because the orbit is uncertain, and changes over time, a standard part of operating the GPS system is to use a ground-based radar to determine the exact position of each satellite and thus determine it's <strong>current</strong> &quot;exact orbit&quot; (as an empirical fact rather than as an intention or operational fact) and then that data is uploaded to that satellite: the satellite is &quot;told&quot; what its orbit is.  This data is called &quot;ephemeris&quot; and it has to be uploaded every 2-4 weeks because of orbit variations that occur over time.</p>
+<p>These variations occur because of many causes.  </p>
+<p>One cause is atmospheric drag - though it's &quot;space&quot;, it not deep space with a near perfect vacuum; so there is some small amount of air molecules from the Earth even at GPS orbits.  These cause a drag force on the satellite, which changes the orbit over time.  </p>
+<p>Another is gravity differences: when a satellite passes above a mountain vs. ocean, it experiences different gravity and the direction of gravity changes.  </p>
+<p>The standard Newtonian orbital mechanics strictly make a key but untrue assumption: that all the gravity of the Earth or any other body being orbited is a &quot;point source of gravity&quot;.  This means that the gravity constant is actually constant and the force direction is in only one direction: in a radial direction between each point: the Earth point and the satellite point. </p>
+<p>Except the Earth has volume rather than zero infinitesimal volume as a point so this assumption is strictly never true but it's often a useful starting point for calculations.  To the extent that it's NOT true, the satellite will not follow the path predicted by classical orbital mechanics equations because of gravity differences.  </p>
+<p>So all of these have to be periodically corrected for GPS to work right hence you empirically remeasure on a regular basis.</p>
+<p>And in case you are wondering, GPS is one of those &quot;<a href="https://en.wikipedia.org/wiki/Life_After_People" target="_blank">Life After People</a>&quot; failing technologies - if the ephemeris updates were not possible, GPS would start to degrade fairly quickly and the position you get from it would start to become increasingly wrong.  </p>
+<p>Within a year GPS would easily be too dangerous to use for mission critical stuff like aircraft navigation - this is part of why GPS adoption for aircraft was delayed for so long after GPS was broadly deployed.  </p>
+<p>Within a few years, you wouldn't want to use it for foot navigation and a few years after that any position you got would simply be nonsense - almost a random number generator.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/8g77ag" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

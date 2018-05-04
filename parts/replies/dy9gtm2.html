@@ -1,0 +1,90 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/a_trane13" target="_blank">a_trane13</a>
+			<div class="markdown"><p>Yours is the only post that mentions we can't actually 100&#37; model n>2 orbital mechanics. I don't think most people are aware of this.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/matthew0517" target="_blank">matthew0517</a>
+			<div class="markdown"><p>We can model higher body problems almost perfectly with numerical methods.  There's no closed form certainly, but almost nothing has closed form solutions.</p>
+<p>The issue is the Earth is non spherical.  Those perturbations dictate stability in Earth orbits- the J2 correction is orders of magnitude larger than 3 body effects. </p>
+<p>See this Wikipedia article: <a href="https://en.m.wikipedia.org/wiki/Orbital_perturbation_analysis" target="_blank">https://en.m.wikipedia.org/wiki/Orbital_perturbation_analysis</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ivsciguy" target="_blank">ivsciguy</a>
+			<div class="markdown"><p>Orbital Mechanics was a fun class.  i remember I did a project to write a C++ program to model something in LEO.  We only used the first couple dozen larges sources of perurbation and it was fairly accurate.  The NASA program we had access took WAY more stuff in to account, but also took several minutes to run back then.  Loved that class, but ended up going the airplane route...</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zergling_Lester" target="_blank">zergling_Lester</a>
+			<div class="markdown"><p>What are the problems with that? I understand that we can't find closed-form solutions except in special cases, but numerical methods shouldn't really care?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mrthescientist" target="_blank">mrthescientist</a>
+			<div class="markdown"><p>The problem is it's a chaotic system.
+Small changes in initial parameters give large changes in final output, so any numerical uncertainty (measured location was wrong in the 4th decimal place, double precision isn't good enough for this one sample, the model doesn't capture the effects of a fly sneezing on the sixth day) all cause drift.</p>
+<p>There's actually a term for the longest a system can be simulated die to these words piling up. Can't remember it for the life of me.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/a_trane13" target="_blank">a_trane13</a>
+			<div class="markdown"><p>As the problem becomes more complex it becomes harder to model with numerical methods. That's where a lot of the uncertainty comes from when launching a satellite or probe. We aren't sure where Jupiter will be down to the kilometer.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ivsciguy" target="_blank">ivsciguy</a>
+			<div class="markdown"><p>Even just 8 years ago the better models took normal desktops hours to calculate the movement of something in LEO.  </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Me_ADC_Me_SMASH" target="_blank">Me_ADC_Me_SMASH</a>
+			<div class="markdown"><p>you can model anything, and you can compute solutions with as high an accuracy as you like</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ZombieAlpacaLips" target="_blank">ZombieAlpacaLips</a>
+			<div class="markdown"><p>Maybe, but the cost of doing so quickly exceeds feasibility for most projects.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sense_make" target="_blank">sense_make</a>
+			<div class="markdown"><p>But there will always be discrepancies unless it's a perfect model, which doesn't exist. However, it's very often close enough for the application in question.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/japes28" target="_blank">japes28</a>
+			<div class="markdown"><blockquote>
+<p>you can compute solutions with as high an accuracy as you like</p>
+</blockquote>
+<p>This just isn't true. That's not how the world works. There is uncertainty to every measurement. We may be able to compute OD solutions for Earth orbiters with high accuracy, but it is definitely not &quot;as high an accuracy as you like&quot;. There is always a limit to how accurate your solution will be based on the uncertainty of your measurements.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Allen_Maxwell" target="_blank">Allen_Maxwell</a>
+			<div class="markdown"><p>You don't use TLEs? Also, how do you find out the initial state vector?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DaBlueCaboose" target="_blank">DaBlueCaboose</a>
+			<div class="markdown"><p>A TLE is like giving someone a function y = mx+b and letting them find the points.  An ephemeris is like providing someone with a list of all the (x,y) points you calculated yourself.  So it's more precise to share an ephemeris where everyone's got the same points than to share a TLE where the calculations will be different for everyone's OD software.</p>
+<p>That being said, we do use TLEs in a lot of places, such as grabbing quick colocation data (are we near that guy's satellite?  We don't need to email him, just run a quick check against the TLE)</p>
+<p>Initial state vector is just position/velocity, which can be calculated by pointing an antenna at the satellite and calculating the Doppler shift.  Generally to get a good number from this you'll need a few stations.  This is called Ranging.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Allen_Maxwell" target="_blank">Allen_Maxwell</a>
+			<div class="markdown"><p>Makes perfect sense!</p>
+<p>How accurately does the ephemeris calculation end up being with orbital decay?  How complicated are your original OD software calculations that take this into account?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tyldis" target="_blank">tyldis</a>
+			<div class="markdown"><p>Ground station engineer here!
+We usually provide doppler and ranging data to the spacecraft operator during launch and early operations phase, which is combined with pointing data from the dish. From this the flight dynamics team will perform OD and produce ephemeris.
+Usually once the onboard GPS receivers are verified we no longer provide doppler and ranging data.
+Additionally there are public TLE available based largely on radar tracking.
+While TLE are less accurate, they are very compact and can be accurate enough for ground acquisition for 2-10 days. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/electric_ionland" target="_blank">electric_ionland</a>
+			<div class="markdown"><p>Do any of the GOES sats have electric propulsion on board? I was under the impression that with EP you had nearly daily stationkeeping burns. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DaBlueCaboose" target="_blank">DaBlueCaboose</a>
+			<div class="markdown"><p>Negative, all either hypergolics or monoprop</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RageQuitFPS" target="_blank">RageQuitFPS</a>
+			<div class="markdown"><p>How long until they run out of fuel?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ThrusterTechie" target="_blank">ThrusterTechie</a>
+			<div class="markdown"><p>Interesting, I thought the A2100 bus has an XR-5 Hall thruster onboard?</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
