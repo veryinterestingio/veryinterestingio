@@ -1,0 +1,47 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chazum0" target="_blank">chazum0</a>
+			<div class="markdown"><p>Consider that the first self contained digital camera invented by Steve Sasson at Kodak used a cassette tape to record the image data. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AngeloSantelli" target="_blank">AngeloSantelli</a>
+			<div class="markdown"><p>That sounds dope AF (light values recorded to multitrack tape)
+I’m sure that data is so small that on 2” tape you could fit nearly 100 light tracks. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/reikken" target="_blank">reikken</a>
+			<div class="markdown"><p>that would take a lot of tracks, though. typical displays have on other order of a million pixels. Even at a thousand tracks per tape, that's a few hundred or a few thousand tapes per video</p>
+<p>this is uncompressed, though. Someone would need to invent a way to compress it, that doesn't involve typical digital processing</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AngeloSantelli" target="_blank">AngeloSantelli</a>
+			<div class="markdown"><p>Yeah I got to thinking, light would need a hell of a lot more tracks, and to be played back in real time (no overdubbing/bouncing). </p>
+<p>Compression definitely would be necessary but I think that ends up eliminating some of the reason for using analog tape- continuously variable values. Maybe a digital tape or something like those industrial data storage tape systems would work well. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tuctrohs" target="_blank">tuctrohs</a>
+			<div class="markdown"><p>This wouldn't be compression per se, but staying in the analog domain, you could do frequency-division multiplexing: you could have multiple carrier frequencies across the audio band, and FM modulate each according to the brightness of a corresponding pixel.  Then each track could store the data for hundreds of pixels--say 720.  Then with 480 tracks, you could do 720x480 resolution. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zebediah49" target="_blank">zebediah49</a>
+			<div class="markdown"><blockquote>
+<p>Someone would need to invent a way to compress it, that doesn't involve typical digital processing</p>
+</blockquote>
+<p>Heterodyning comes to mind for the purpose.  It puts an upper limit on the frequency (i.e. color transition rate) that can be represented, but you can mux multiple signals together into a single channel.  If, say, you put a 100Hz maximum rate on each channel, you could [theoretically] fit 1000 raw channels into a 100kHz storage channel.  In practice you want to put some spacing between them, so you maybe only could fit 800 channels of that size in that amount of bandwidth.</p>
+<p>That was one of the tricks used to multiplex a set of telephone conversations onto a single long distance line, before the advent of digital encoding for the purpose.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kaybobnelson" target="_blank">kaybobnelson</a>
+			<div class="markdown"><p>Actually, event-based cameras are going down that route right now. They're still in their infancy (only really greyscale output) and the output is still discrete instead of analog, but it's asynchronous output (not complete frames for each time step) that only gives the increase or decrease in light intensity at each pixel. It's really quite efficient, considering the temporal fidelity you get out of it. It still has a way to go before it will match classical video, as far as human aesthetics are concerned, but the nature of the data and the characteristics of the hardware (1MHz sensing rate, 20 mW power, no extra cooling required, low data bandwidth) makes it extremely useful for machine vision / autonomy applications. Current small scale machines are controlled remotely and have a very low battery life. This will likely be the best hardware approach to address that to achieve completely independent, very small scale autonomous machines. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jadbal" target="_blank">jadbal</a>
+			<div class="markdown"><p>I'd imagine that this technology would require a dark reference at the beginning of each imaging session. True? Any white papers or other references you can share that describe the tech?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kaybobnelson" target="_blank">kaybobnelson</a>
+			<div class="markdown"><p>There are versions that do have integrated pixels that capture classical global shutter frames, but the core event-based output doesn't care what the initial reference is. It's focused on the change in the scene.
+The Robotics and Perception Group under the Institute of Neuroinformatics at the University of Zurich have gathered a <a href="https://github.com/uzh-rpg/event-based_vision_resources" target="_blank">pretty good list of resources on for this new technology, including journal articles and algorithms for processing this type of data</a>.
+One of my favorites there is <a href="http://www.rit.edu/kgcoe/iros15workshop/papers/IROS2015-WASRoP-Invited-04-slides.pdf" target="_blank">Davide Scarammuza's Tutorial on Event-Based Vision</a>. Davide also <a href="https://www.youtube.com/watch?v=5-fqEGgt-b8" target="_blank">spoke to a group at Microsoft last year</a> discussing event-based cameras starting at around 40 minutes in.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

@@ -1,0 +1,95 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ihaphleas" target="_blank">ihaphleas</a>
+			<div class="markdown"><p>Regarding the last paragraph, there would exist a Fourier series whose partial sums would approximate the brightness of the pixel at each time as close as you wanted.</p>
+<p>In fact, instead of Fourier series, one could use wavelets. Further, one might use &quot;different&quot; wavelet bases (? not sure if this is the correct term, it's been a while) for the different dimensions of film. That is, one can use wavelets which are discontinuous in space (modeling the sometimes abrupt changes of color between two objects in frame) but continuous in time (modeling the fact that movement through space is continuous ... but not modeling cuts well).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Shnatsel" target="_blank">Shnatsel</a>
+			<div class="markdown"><p>Daala is perhaps the most interesting and revolutionary video codec in recent memory, and it does a very similar thing. However, the decoding process from the internal wavefunction representation still produces discrete frames.</p>
+<p>Daala has a lot of cool interactive demos on both its internal workings and the internal workings of other codecs, <a href="https://people.xiph.org/~xiphmont/demo/index.html" target="_blank">check them out!</a></p>
+<p>Edit: Dirac video codec is wavelet-based, but I'm not sure to what extent.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CaptnYossarian" target="_blank">CaptnYossarian</a>
+			<div class="markdown"><blockquote>
+<p>the decoding process from the internal wavefunction representation still produces discrete frames.</p>
+</blockquote>
+<p>To be fair here, that's because the output device requires it - I don't think there's any general purpose display GPU that doesn't work on a frame-by-frame output.</p>
+<p>What you'd need to get to the point where you're not decoding to discrete frames is hardware that takes those functions/formats and applies that.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/firagabird" target="_blank">firagabird</a>
+			<div class="markdown"><p>I get that the output needs to be in discrete frames by necessity, but could a Daala encoded video be able to dynamically output the same exact refresh rate (or some multiple) as the display? The best use case would be to avoid the 3:2 pulldown effect entirely. An enthusiast use case would be seamless upscaling to a high refresh monitor e.g. 144Hz.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/exosequitur" target="_blank">exosequitur</a>
+			<div class="markdown"><p>Eventually, we can just directly encode the quantum wave function of the production, then we can play it back in real life.</p>
+<p>(/s  ^^/s) </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/2358452" target="_blank">2358452</a>
+			<div class="markdown"><p>Yes, each pixel is a time signal. You can represent any finite discrete time series as discrete fourier samples, or any integral continuous time sample as a fourier transform function.</p>
+<p>The problem here is that this representation does not compress the redundancy present in video very well. Fourier samples compress a static image well through high frequency precision discarding (where you store more precisely the lower frequencies). If you did the same to the temporal axis of a moving picture, you would get bluriness in moving objects and certain odd ringing phenomena. Also, this process would not be able to compress a common situation that is a translating object in the scene. In the time domain it's easy to detect moving objects and encode the (object, velocity) information allowing very good extrapolation and hence compression. Imagine it, for example, as storing a picture of a ball and its vector velocity, and simply displacing it every frame the given velocity (if the movement is uniform then you get extremely good compression).</p>
+<p>The basis of compressibility is twofold: </p>
+<p>1) Exploiting the limits of human senses and which artifacts humans don't mind (e.g. we can't distinguish past certain framerate/resolution) -- that's what discerns lossy compression; </p>
+<p>2) Exploiting the limited variability (i.e. compact distribution) of signals, in particular given starting information. If I give you the first frame of a video, it's not like anything else could come next (with high probability -- anything could come but certain nonsense is very unlikely), what comes next is almost always extremely predictable. Computationally efficiently predictable patterns are thus used to limit the data that needs to be encoded within the restricted predicted set, or as an error signal between the prediction and the true outcome (this error signal being small for predictable signals).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ihaphleas" target="_blank">ihaphleas</a>
+			<div class="markdown"><p>That's why I suggested wavelets as well. In fact, film is probably not repetitive enough to make Fourier &quot;compression&quot; useful.</p>
+<p>You might see my reply to /u/QuantumTM as well:</p>
+<p>&quot;Basically, yes. Although, you're going to have some loss because you can't store all frequencies.</p>
+<p>What you actually use is a three dimensional wavelet. You can look at pictures of 2D wavelets. Think of having 2D wavelets which are discontinuous to store a single frame. Now extend the wavelet in the time dimension --- but make this dimension a &quot;smooth&quot; wavelet, since motion through time is smooth.</p>
+<p>Depending on how well this is done, one can get some compression.</p>
+<p>Finally, there is no reason this has to be restricted to 2D film --- one could just as well use the same technique for a 3D scene which then changes through time. As I recall, wavelet compression might even start to be competitive for compression of moving 3D scenes.&quot;</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tdgros" target="_blank">tdgros</a>
+			<div class="markdown"><p>Mjpeg2000 uses wavelets and is the standard for HD video exchange today... And yes bases is  a correct term...</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/joho0" target="_blank">joho0</a>
+			<div class="markdown"><p>Actually, <a href="https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC" target="_blank">H.264 encoded streams</a> wrapped inside <a href="https://en.wikipedia.org/wiki/Material_Exchange_Format" target="_blank">mxf containers</a> is the current SMPTE HD broadcast standard.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/F0sh" target="_blank">F0sh</a>
+			<div class="markdown"><p>Isn't that just the wavelet compression of JPEG2000, which is spatial, not temporal?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dinosawrsareawesome" target="_blank">dinosawrsareawesome</a>
+			<div class="markdown"><p>JPEG2000 is the basis of redcoderaw, used by red digital cinema cameras, but most video at most levels is recorded and watched in some form of h.264 or prores, neither of which are wavelet based. </p>
+<p>You might be thinking of DCP? the format generally used for films at the cinema, which is indeed jpeg2000 based, it's not really mjpeg, as that's technically a container format. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sharfpang" target="_blank">sharfpang</a>
+			<div class="markdown"><p>Does that mean a wavelet-compressed movie could be played at an artificially increased framerate? If the wavelet tells about motion of an object over time, just generate extra frames in between the standard?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MadDoctor5813" target="_blank">MadDoctor5813</a>
+			<div class="markdown"><p>Presumably the wavelets, being based only the sampled points, would have no guarantee of accuracy in between those points:</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jochance" target="_blank">jochance</a>
+			<div class="markdown"><p>Right... kinda like up-scaling on a TV.</p>
+<p>There's actually an HDTV feature that is artificially increased frame rate like this. (IDK if it's using wavelets, probably depends on the TV) It makes things look.... weird. For me, it breaks the suspension of disbelief. Which it shouldn't. It should help, because it's more 'real'. 120 FPS is just closer to whatever my brain sees than 32 or w/e. Movies/TV that way look kinda like I'm looking through a window at the action instead of seeing it on screen. Instead of making it more 'real' though, it makes it feel very fake.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/QuantumTM" target="_blank">QuantumTM</a>
+			<div class="markdown"><p>If you assume the output wave to be lossless (think flac encoding over a spectrum) then I believe defining an arbitrary time in which to replay that wave form over shouldn't be an issue (though yoy would get issues of 'pitch shift' which may or may not be deseriable) </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/golddove" target="_blank">golddove</a>
+			<div class="markdown"><p>Unless we somehow make a way to record analog wavelets rather than record at a certain frame rate. Would this even be possible?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/F0sh" target="_blank">F0sh</a>
+			<div class="markdown"><p>Well yes, but it won't necessarily be that good. You don't have data for the intermediate frames so you're just guessing based on the data already there and it would be like zooming in on an image past 1:1, using whatever interpolation method you choose. The interpolation might be more intelligent, but there's a limit.</p>
+<p>A lot of the time this would be far less noticeable than spatial interpolation in a still image because you can't discern things happening in very short times, but for example, when something suddenly changed its motion, the interpolation is likely to go wrong and display objects in the wrong position briefly.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tonsofpcs" target="_blank">tonsofpcs</a>
+			<div class="markdown"><p>Yes.  If it's wavelet compressed temporally.   DWT &quot;compression&quot; within frames can be used to scale resolution.  It can also be used to help preprocess for DCT encoding. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mraindeer" target="_blank">mraindeer</a>
+			<div class="markdown"><blockquote>
+<p>precious </p>
+</blockquote>
+<p>pretty sure they meant <em>previous</em>, just in case anyone else was wondering.</p></div>		</li>
+					</ul>
+	

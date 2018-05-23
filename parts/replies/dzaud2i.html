@@ -1,0 +1,51 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Saloncinx" target="_blank">Saloncinx</a>
+			<div class="markdown"><p>Vector/Flash and CGI are the first thing that came to mind, as they're just a series of directions that happen in real tine, and not a frame by frame replay. However, once you save it to any kind of video format it'd be converted back into static frames.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shaxamo" target="_blank">shaxamo</a>
+			<div class="markdown"><p>Instead then, have a movie that plays out from start to finish in a game engine, with no pre rendering. Therefore storing a video without any static frame data.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Polyporphyrin" target="_blank">Polyporphyrin</a>
+			<div class="markdown"><p>This seems to be a fairly redundant approach since frames do work pretty well</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CarlosFer2201" target="_blank">CarlosFer2201</a>
+			<div class="markdown"><p>As you say, in game cut scenes in video games do this. It was specially necesarry back in older consoles that didn't have the memory (the discs and cartridges) to store video.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rocketman0739" target="_blank">rocketman0739</a>
+			<div class="markdown"><p>There are certainly games you can do that on. I remember making engine recordings on <em>Tribes 2.</em> Wonderful game.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MilhouseLaughsLast" target="_blank">MilhouseLaughsLast</a>
+			<div class="markdown"><p>It's still frames. It's just that the frames are created programatically. In flash specifically you set the number of frames for a tween or transition animation which combined with the frame rate you set determines the length of the animation.</p>
+<p>Edit: typo</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/its_zoj_yo" target="_blank">its_zoj_yo</a>
+			<div class="markdown"><p>It's rendered in frames sure, but it's not stored in a format of still frames.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fuzzymooples" target="_blank">fuzzymooples</a>
+			<div class="markdown"><p>Very early vector based game cabinets don't technically have frames, they worked using the principle of how fast they could draw and the length of something you could call a frame was when it was finished being drawn again.</p>
+<p>I saw an example of a modern implementation using lasers at a conference once - this guy - <a href="https://www.youtube.com/watch?v=FkHjG759ABY" target="_blank">https://www.youtube.com/watch?v=FkHjG759ABY</a></p>
+<p>If we used non-frame based displays it would technically be possible to describe video with vectors only limited by the draw speed of the laser and defined roughly in timepoints only... would be cool for things like watching a continuous simulation or something interactive </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Undertegnede" target="_blank">Undertegnede</a>
+			<div class="markdown"><blockquote>
+<p>you store each object's start point and end point.</p>
+</blockquote>
+<p>Something like this is actually used in modern compression formats. It's called motion vectors, and is highly efficient at handling panning shots for example. In a panning shot, the pixel difference between frames is high, but you can detect elements of a frame that are static, and moving around the frame.</p>
+<p>Some times you can see motion vectors at work in video that is corrupted, or very highly compressed.</p>
+<p>Image and video compression is a gigantic rabbit hole, and the more I learn about it, the more I realise I don't know, but it is super fascinating.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fantasy_masterMC" target="_blank">Fantasy_masterMC</a>
+			<div class="markdown"><p>yeah, considering that modern video codecs already simply store the difference between each frame, this would be a logical next step. It would go from whatever raw format contains all the relevant information, and perhaps use AI or something to identify objects in the video and distinguish it from background.
+The main challenge would be colors. It's easy to note the positions of an identified 'object', that could be done with a handful of vectors per second in theory.
+The problem would come in with the way lighting etc would create different-colored pixels.
+You could do something like select a 'start' color for each pixel and an 'end' color for each pixel, then let it select a 'path' of phasing through the colors that would be in between (RGB, HSV, or perhaps a set of custom pre-set types). This would make the identifcation of objects obsolete, though.
+But honestly, I have 0 clue if this would increase or decrease the efficiency.</p></div>		</li>
+					</ul>
+	
