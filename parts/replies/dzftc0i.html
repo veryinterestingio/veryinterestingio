@@ -1,0 +1,67 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Target880" target="_blank">Target880</a>
+			<div class="markdown"><p>You should compare that to if you use a camera in the real world. the camera have a fixed resolution but the thing you look at have a extremely high resolution</p>
+<p>Compare instead to what happen when you look at a mosaic in the real world. At a distance it looks like close to a painting but when you get closed individual stones start to be visible.</p>
+<p>Textures in a computer is like if every surface was covered with mosaic made of squares tiles in uniform colors. Then it is quite easy to realize that they need to be small squares if you what to be close to a object without noticing each individual square.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ImplicitWeevil" target="_blank">ImplicitWeevil</a>
+			<div class="markdown"><p>Or, stealing your camera example, it's like zooming in on a specific part of your picture on the screen. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Flater420" target="_blank">Flater420</a>
+			<div class="markdown"><p>This is exactly why digital zoom on cameras was vastly inferior to optical zoom. Optical zoom retains resolution (thus increasing pixel detail on an object), digital zoom just blows up the pixels.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/agentaileron" target="_blank">agentaileron</a>
+			<div class="markdown"><p>I like the mosaic analogy, well put</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dnalhop" target="_blank">dnalhop</a>
+			<div class="markdown"><p>So does that mean that all textures in a video game are done at full resolution, regardless of object size in game?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/seubz" target="_blank">seubz</a>
+			<div class="markdown"><p>Not exactly - otherwise your GPU couldn't handle it. Mip maps are generated for each texture and the appropriate one is selected based on the size of the object the texture is mapped to. Mip maps are basically series of the same texture computed at various resolutions - they also help with aliasing! More info here: <a href="https://en.m.wikipedia.org/wiki/Mipmap" target="_blank">https://en.m.wikipedia.org/wiki/Mipmap</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mazon_Del" target="_blank">Mazon_Del</a>
+			<div class="markdown"><p>Just as a minor correction on Mipmaps. Like in all things, Mipmaps are a tradeoff.</p>
+<p>Let's say you have a tree, and every leaf had a unique texture done in 4K, just in case it should happen to fill the player's screen. Silly, but alright.</p>
+<p>Without Mipmaps, if you are standing 100 feet away from a tree, the GPU needs to take time to sample the 4K image and figure out what pixels get to be what colors. It will do this quite happily, however in this scenario with thousands of leaves and such a massive image, it will take FOREVER and there goes your framerate.</p>
+<p>With Mipmaps, you end up roughly <del>doubling</del> increasing the size the texture takes in memory by 33%, but you gain a lot in speed. Now, instead of sampling from a massive texture, the GPU knows to grab the texture of appropriate resolution given the size of the object on the screen.</p>
+<p>So you are exchanging VRam use for processing cycles (and thus increased framerate), which is USUALLY the correct choice.</p>
+<p>If you've got some cycles to spare, what's not usually too expensive of a process to do is to let the GPU lerp between the two. So if say, you are far enough away that a change in distance might push you from one resolution level of the leaf texture to another, then what can be done instead is to combine the two textures.</p>
+<p>This is a convenient level-of-detail operation which makes it much harder, if not impossible, to spot when the texture is shifting from one resolution to the next.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SinisterMJ" target="_blank">SinisterMJ</a>
+			<div class="markdown"><p>No, there is so-called mipmapping. Textures are done in defined levels, usually 1/2 sizes. So you have an original texture being 4096x4096, and you then create the level 2048, 1024, 512, etc...</p>
+<p>When your object has a size of 400 pixel on screen, the algorithm uses the 512x512 texture to color the object. </p>
+<p>Edit: for more information, check <a href="https://de.wikipedia.org/wiki/Mip_Mapping" target="_blank">https://de.wikipedia.org/wiki/Mip_Mapping</a></p>
+<p>Edit2: if you wouldn't do this mip-mapping, you would run into real issues with the texture flickering. The pixel value is calculated (most of the time) using bilinear / trilinear (trilinear in case of mip-mapping) interpolation. If you have only one size, and use interpolation, you would get the 4 pixels closest to the position you want to display. When the texture is 4000x4000, and mapped to 400x400, moving just a subpixel would mean 4 totally different pixels are used to calculate the color, resulting in really irritating behaviour.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ZAVHDOW" target="_blank">ZAVHDOW</a>
+			<div class="markdown"><p>Oh dang, yea. Aliasing is a thing. Mip Mapping makes tons of sense when you bring that up.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CouldBeAPygmy" target="_blank">CouldBeAPygmy</a>
+			<div class="markdown"><p>No, we make the textures as big as we think is necessary.</p>
+<p>A small rock lying about somewhere doesn't need a 4096x4096 texture.<br />
+The more space objects will probably take on screen and the more often you see them, the bigger the texture.</p>
+<p>We're basically trying to be economic about it - use texture space where its most noticeable.</p>
+<p>That said, we also use multi-layering, so maybe for a small rock we use a smaller photographic texture and overlay that with a higher resolution noise texture and/or other layers so it looks more detailed.
+These noise or other textures can be reused for other layered materials as well.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Cymry_Cymraeg" target="_blank">Cymry_Cymraeg</a>
+			<div class="markdown"><p>Can you hotswap textures? So you start with a low resolution texture and progressively increase the resolution as the player gets closer?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/amapatzer" target="_blank">amapatzer</a>
+			<div class="markdown"><p>But couldn't the same be achieved by putting a magnifying glass to your television?</p></div>		</li>
+					</ul>
+	
