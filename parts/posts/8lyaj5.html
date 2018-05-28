@@ -1,0 +1,74 @@
+<li class="post" data-handle="8lyaj5">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/8lyaj5/eli5_how_does_the_googles_i_am_not_a_robot/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/8lyaj5" onclick="return false">How does the google's &quot;I am not a robot&quot; reCAPTCHA work? How are they able to differentiate between a physical click and a programmatic click.</a>
+		</h2>
+		<!--<span class="date">2018-05-28</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: How does the google's &quot;I am not a robot&quot; reCAPTCHA work? How are they able to differentiate between a physical click and a programmatic click.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="dzjx364">
+		<a class="author" href="https://www.reddit.com/user/danderwarc" target="_blank">danderwarc</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Heyyyy, my time to shine. I'm an info sec project manager at a financial institution and we just completed a project to implement reCAPTCHA at our login. </p>
+<p>Ok, so essentially there are two &quot;steps.&quot; Step 1 - as soon as you load up the page with CAPTCHA, a TON of info gets sent to to Google. IP address, browser information, all your mouse movements, etc.</p>
+<p>Then, all that gets fed into their proprietary machine learning algorithm. Google keeps secret what information the algorithm pulls in and looks at. We do know that tracking and anlyzing mouse movements is one of the things it does.</p>
+<p>Based on that, if it thinks you are human, you just get the checkbox and you get to move on. If the algorithm still isn't sure, that's when you get to step 2, the second request to do the picture matching. You don't have to get the pictures perfectly right, because again, while you are doing it, it's also tracking everything else, like mouse movements and click rates and such. Until the secret algorithm is satisfied that you're not a robot. </p>
+<p>Bonus info: once Google decides you are human, you get a unique token representing your log in attempt. Then, you provide that token to the website you are logging into. The website then takes that token and independently checks with Google to see if that login attempt was successful. Google confirms and you are then let into the website.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="dzjtlfe">
+		<a class="author" href="https://www.reddit.com/user/PsYcHo962" target="_blank">PsYcHo962</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>So a lot of people are talking about the image recognition and not the tick box you're talking about so I'll chime in here.</p>
+<p>Really it has nothing to do with the 'click' and everything to do with what happens before that. The way your cursor moves across the screen. If it immediately snaps to the box in a perfectly straight line then it's definitely a bot. Same with perfect curves. Human mouse movement, when you look very closely, is erratic and imperfect and that's quite hard to replicate with mathematical functions. </p>
+<p>Edit: so a lot of people have pointed out they're also checking cookies, Google account, headers etc. for a history of bot-like activity. And yes, while you could record human mouse movement and replay it, I doubt it would work more than once, and identical movement to a previous attempt is just as suspicious. Thanks to everyone contributing to this! Especially the people who know more than I do </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dzjgfrr">
+		<a class="author" href="https://www.reddit.com/user/dvhoose" target="_blank">dvhoose</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>As I recall, the &quot;I am not a robot&quot; is not a real CAPTCHA device. It's not meant to suss out humans vs robots. Google tracks statistics behind the scenes and if your activity looks human, it will offer the &quot;I am not a robot&quot; checkbox. Start doing things too quickly/frequently and it will engage the actual CAPTCHA test (Click all images with cars/signs/storefronts/whatever-else-Google-needs-to-train-its-self-driving-cars-to-identify).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dzjd8ar">
+		<a class="author" href="https://www.reddit.com/user/mittens2539" target="_blank">mittens2539</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>IIRC it kinda tracks your mouse as it moves around and makes sure it doesn’t like jump around or move in super straight lines like a program would. It makes sure that when you go to click, that there are some human movements in there. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="dzjkcud">
+		<a class="author" href="https://www.reddit.com/user/KiR-" target="_blank">KiR-</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>As far as I am aware, the majority of CAPTCHAs decide whether you are human or not on their own, they'll look at things like how your cursor moves (if it always moves in dead straight lines for example), and in general how much variance there is to your actions. Anything else (typing in the fuzzy word, &quot;click all squares with a shopfront&quot;, etc) is just you helping to train their machine learning to recognise the images.</p>
+<p>You can test this if you get a CAPTCHA that gives multiple challenges in a row, often, if you pass the first one successfully (the actual test), you can do the following ones slightly incorrectly and it will still pass you, because it doesn't know the answer itself, you're telling what the correct answer is.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/8lyaj5" onclick="return false"><span>show</span></a>
+</li>
