@@ -1,0 +1,24 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MaxWelling" target="_blank">MaxWelling</a>
+			<div class="markdown"><p>I found adversarial attacks extremely fascinating, since as I said above, humans do not seem to suffer from it (although I do not know how to backprop through my brain). This points to the fact that we are still doing something that is potentially suboptimal. </p>
+<p>Bayesian methods soften the problem, but it doesn't go away. I think we need more than just Bayesian modeling to be robust agains adversarial attacks.</p>
+<p>Good question. I have been swinging back and forth between these two options. In general the right question is how accurate of an answer can you get to your inference problem *within a given amount of time*. If you had infinite time then you should always use MCMC because it gives the right answer, where VI will not even given infinite compute. Now, often the error due to variance is higher then that of bias when you are given a short amount of time and VI can be very good. Note that the VAE uses both: it defines a variational bound and then samples from the posterior p(z|x). </p>
+<p>There was a phase when I thought MCMC always did better, but now that the variational distributions are so flexible (using things like normalizing flows) I prefer VI. However, tomorrow I could swing back to MCMC :-)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PresentCompanyExcl" target="_blank">PresentCompanyExcl</a>
+			<div class="markdown"><blockquote>
+<p>humans do not seem to suffer from it</p>
+</blockquote>
+<p>Aren't camouflage, or the eyes of a butterfly examples of adversarial attacks in nature? Athough they are not single pixel attacks, they presumably evolved to fool the vision of predators and therefore give an advantage.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Antipolar" target="_blank">Antipolar</a>
+			<div class="markdown"><p>There was a paper recently that suggested visual adversarial attacks which were created to work across against an ensemble of models also fooled real humans if presented for short periods of time!
+edit: paper <a href="https://arxiv.org/abs/1802.08195" target="_blank">https://arxiv.org/abs/1802.08195</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IborkedyourGPU" target="_blank">IborkedyourGPU</a>
+			<div class="markdown"><p>Which normalizing flows do you recommend for VI in VAE? The Inverse Autoregressive Flow, i.e., OpenAI's IAF-VAE?</p></div>		</li>
+					</ul>
+		</ul>
+	
