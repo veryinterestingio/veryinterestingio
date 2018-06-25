@@ -1,0 +1,48 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PronouncedOiler" target="_blank">PronouncedOiler</a>
+			<div class="markdown"><p>What's to stop someone from hosting a rogue DNS server that hands out bogus IP addresses? Seems like an easy way to do a man in the middle attack. Might not even be noticed if you pass the majority of the requests as desired.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheNewJasonBourne" target="_blank">TheNewJasonBourne</a>
+			<div class="markdown"><p>When a domain is registered, like reddit.com, the registration information contains records about which DNS server is the one that contains the correct IP address for reddit.com. It's called the authoritative DNS server. So anytime a computer needs to know what IP address is correct for reddit.com, its authoritative DNS server is asked.</p>
+<p>So what's to stop someone from putting a rogue DNS server on the Internet to hand out bogus IP addresses? Nothing, but no computers will ask it for an authoritative response to a name resolution query.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/btcraig" target="_blank">btcraig</a>
+			<div class="markdown"><p>That is certainly possible, but if I'm not mistaken you need to compromise the system doing the DNS lookup ahead of time. You need to be able to trick the target system in thinking your rouge server is the DNS server it wants. If you can manage that then you can definitely start handing out bad DNS records for whatever you want. It's not as easy as it sounds though. The only way I could that would work is if the DNS server is referenced by hostname, not IP address (ns.example.com vs 1.1.1.1*) then you can insert a hosts entry or similar to direct the hostname somewhere else.</p>
+<p>A similar attack is a rogue DHCP server, which is a bit easier to pull off. For the most part DHCP is a &quot;fire at-will&quot; protocol. If you fire off a DHCP request onto a network it goes to any node on the network that will accept it. If you can setup up a rogue DHCP server (and not have it get spotted) you can try to respond before the real DHCP server does and had out bogus networking details. This pretty easily spawns a MITM-attack when you tell the target system that its gateway is actually a server you control so it starts sending every packet through your server.</p>
+<p>When I was a sophomore in college a kid accidentally created a rogue DHCP server on our school's network by poorly wiring up a desktop as a makeshift gateway. The university reacted about how I would expect. They shut off the internet to our entire building (about 800 people at the time) while they tried to isolate where in the building this server was.</p>
+<p>*^(shamelessly namedropping the NS server you should be using)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/spiffdifilous" target="_blank">spiffdifilous</a>
+			<div class="markdown"><p>What you've described is a &quot;man in the middle&quot; attack. The attackers setup their own DNS server, and somehow manage to change the default DNS server for a particular computer or network to point to it, allowing them to redirect traffic wherever they like. This can be used to send traffic to malicious sites, and even replica sites with malicious content hidden from the end user. This is why we have SSL and TLS. SSL Certificates identify the server you're connecting to as authentic. So, if you were to go to <a href="https://reddit.com" target="_blank">reddit.com</a> while your DNS was compromised you would get an error saying the SSL certificate of the site you were trying to connect to was invalid. On public websites, this is a huge indicator that something is wrong. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thegroucho" target="_blank">thegroucho</a>
+			<div class="markdown"><p>You either need physical access or as somebody said - rogue DHCP server.</p>
+<p>But there's always DNSSec, assuming anybody uses it enmasse. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sfsmbf32" target="_blank">sfsmbf32</a>
+			<div class="markdown"><p>Stupid Question: Is the internet &quot;stored&quot;, for lack of a better word, anywhere? Like if all computers, servers, and routers just stopped interacting for a minute, would all that information be lost or would the re-connection of them put all that information back together?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Chewmon34" target="_blank">Chewmon34</a>
+			<div class="markdown"><p>A website is stored on whatever server (s) the people who own the website put it on.  If that server turns off (or has other issues), the website is gone until it comes back up.</p>
+<p>Think of it like cell phones.  If your friend's phone dies, they still exist, you just can't talk to them right now.  Once the phone is back up you're good to go.</p>
+<p>Technically Archive.org does backup the internet, so there are copies of websites available independent from the people who own the websites.  But that's someone's passion project, not a specific feature of the internet.</p>
+<p>Edit: maybe a good summary is the internet is not the websites, the internet is the network by which computers talk to each other.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thegroucho" target="_blank">thegroucho</a>
+			<div class="markdown"><p>Most of it will be there. A few servers don't like losing network and start losing data. But vast majority would still be there. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/spiffdifilous" target="_blank">spiffdifilous</a>
+			<div class="markdown"><p>If the network internet were to go down even for a second, all the information that was in flight (being transferred from A to B) would be lost forever. If the same thing were to include the servers that back the various sites and services, and they just all suddenly powered off, there would be a larger scale of data loss due to databases losing data during the crash. But, as has already been pointed out, the majority of the information available on the internet would be safe. </p>
+<p>It should also be pointed out, that this sort of scenario is almost impossible. Servers and networks are all built with various levels of redundancy to ensure continuity of service. So you don't have a single server with all your websites information. You have several, that are mirrors of each other, in a configuration commonly referred to as HA, or &quot;High Availability&quot;. This ensures that if one server crashes, dies, or needs to go down for maintenance there is no interruption. Networks are done much in the same way, where you have multiple devices acting as a single device in case one fails.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aNulgoodlove" target="_blank">aNulgoodlove</a>
+			<div class="markdown"><p>Thank you so much! </p></div>		</li>
+					</ul>
+	
