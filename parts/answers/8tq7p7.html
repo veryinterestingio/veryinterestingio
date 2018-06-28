@@ -1,0 +1,54 @@
+<div class="answers">
+	<div class="answer" data-handle="e19qsir">
+		<a class="author" href="https://www.reddit.com/user/Bill_Dugan" target="_blank">Bill_Dugan</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For Spider-Man 2 (2004), we at Treyarch had not made an open-world game before.  The way we did it was to lay out the map first - as /u/CptCap wrote, you can't place missions on an empty map.  We laid out an approximation of all of Manhattan using <a href="https://en.wikipedia.org/wiki/Autodesk_3ds_Max" target="_blank">3DS Max</a> (at the time we were a Max shop, not a Maya shop), both terrain and buildings.  We would export this to a format that the game engine would use, and export again each time we needed to.  </p>
+<p>The artists creating props (rocks, trees, fences, hot dog carts) would place them appropriately, and I do not remember where this occurred in the data pipeline, but I don't think it would have been in Max; it would have been in our exported format.  Populating the map went parcel by parcel, in a big grid of parcels - so several environment artists would work on parcels C21, C22, and C23 for a while, while several adjacent parcels remained gray boxes (placeholder buildings, no props probably, everything looks gray) for months because they hadn't been reached yet.  Different teams approach this differently; some teams want to complete 1 parcel absolutely to completion and polish before moving on to the next parcel; other teams want to do a first pass on all the parcels in the game, then a second pass, then a third pass until they're done.  The former has the 'beautiful corner' advantage of having the parcel go through the entire art pipeline, from the crude gray-box depiction of a building to the last little light glint by the visual effects artists; and the team gets to validate all their time estimates and get a better understanding of how long it really takes to complete a bit of the map; and maybe change the pipeline if part of it sucks.</p>
+<p>You asked about how they kept track of rocks, buildings, and pedestrians - on SM2 I believe these were parcel-by-parcel, so there would be a file on the disc called &quot;C21&quot; or whatever, and this file would contain a data blob listing locations of rocks and buildings within the C21 parcel; and when the player headed toward C21, that file would be loaded and the renderer would start drawing the buildings as appropriate.  (At the same time, parcel C16, far behind the player, would be discarded from memory to make room.)  I don't remember (and probably never knew) any technical details of how to optimally store this.</p>
+<p>Pedestrians were placed procedurally as you approached a parcel, and the pedestrian system would create or destroy the pedestrians as needed, and adjusted their velocity about 30 times a second (or maybe 15). </p>
+<p>In the end the SM2 world team replaced all the Max buildings with a Lego-like representation and then with even simpler representations, where there was a building base, a building 'middle' which had its textures repeat upward, and then a building crown.  Separate from this there were about 50 landmark buildings that were bespoke objects placed in the city.</p>
+<p>For missions, the designers and world team would decide on good places for the missions, taking into account the campaign, and build the internal spaces (like the Mysterio boss mission) if needed, or variants on external things if that was needed (like the Mysterio Statue of Liberty mission).  The designers would then use the CHUCK scripting language and Max to build the missions.  As always, some designers were more art oriented and others were more code oriented, and their missions were built accordingly.  Some designers wrote top-down missions where they said &quot;It would be awesome to play a Mysterio mission around the Statue of Liberty&quot; and others wrote bottom-up missions where they said &quot;It would be awesome to constrict the player's movement to test their swinging skills - how about an indoor theater that's on fire?&quot;</p>
+<p>Bill Dugan</p>
+<p>Executive Producer, Spider-Man 2 (2004)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="e19fcxq">
+		<a class="author" href="https://www.reddit.com/user/dragon-storyteller" target="_blank">dragon-storyteller</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Everyone is giving you detailed descriptions, but the truth is, the workflow differs greatly between studios and development teams. Some tend to rely on touched-up or even ingame procedural generation while others prefer to have it mostly handmade by designers, some place important locations on the map and fill in the blank while others start from one end and moving from there, etc. There is no single approach here to describe.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e19dt33">
+		<a class="author" href="https://www.reddit.com/user/andyglovertv" target="_blank">andyglovertv</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Noclip recently put out a video about Bethesda and the making of Fallout 76. They talk about how they start with the map first, decide what areas they definitely want to include and where, then fill in the gaps from there. </p>
+<p><a href="https://www.youtube.com/watch?v=gi8PTAJ2Hjs" target="_blank">https://www.youtube.com/watch?v=gi8PTAJ2Hjs</a></p>
+<p>( Edited for proper credit, thanks /u/eggsaladbob )</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e19cr4c">
+		<a class="author" href="https://www.reddit.com/user/CptCap" target="_blank">CptCap</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><blockquote>
+<p>The missions for the game’s campaign or the map itself?</p>
+</blockquote>
+<p>You can't place the missions on an empty map.</p>
+<p>Big open worlds are usually made in layers. The terrain is made first, then frozen. Buildings and roads are placed afterwards (using placeholder assets at first) and frozen too. Once the big stuff has been placed detail is added over time. </p>
+<p>[edit] Missions may be <em>written</em> in advance, and usually are, but when it comes to putting it all together in the engine and shipping the game, the big stuff usually goes first. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e19mnd0">
+		<a class="author" href="https://www.reddit.com/user/martijnxp" target="_blank">martijnxp</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Rockstar Games makes their open-world games differently. Once the general outlay of the world map is constructed, every designer gets their own little square within the map, and has /complete/ freedom to design the buildings/parks/lots or whatever their own way. </p>
+<p>They also make thousands of photographs of the city the game is based on (for instance, Los Angeles for GTA V), hence the extreme alikeness of some parts of the cities. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
