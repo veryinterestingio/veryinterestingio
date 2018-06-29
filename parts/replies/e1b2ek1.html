@@ -1,0 +1,53 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rlaager" target="_blank">rlaager</a>
+			<div class="markdown"><blockquote>
+<p>There is nothing inherent in internet protocols that would allow the two connections to be easily coordinated.</p>
+</blockquote>
+<p>I would agree that this is true in practice, but there is ongoing work in this area: <a href="https://en.wikipedia.org/wiki/Multipath_TCP" target="_blank">https://en.wikipedia.org/wiki/Multipath_TCP</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lavamensch" target="_blank">lavamensch</a>
+			<div class="markdown"><p>Oh, indeed, and there has to be. I was just trying to stay ELI5 and offer a solid counterpoint to all the &quot;HTTP Aggregation&quot; comments in the thread so far.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/alamaias" target="_blank">alamaias</a>
+			<div class="markdown"><p>My galaxy S7 edge has an option called &quot;Download Booster&quot; that can use both wifi and LTE to speed up downloading big files, is that not more or less what op is looking for? (though limited to big downloads)</p>
+<p>Seems to imply that it is possible? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DrBoomkin" target="_blank">DrBoomkin</a>
+			<div class="markdown"><p>It's very much possible and that's exactly what Samsung is doing. The issue is that this is not inherently supported by current Internet protocols.</p>
+<p>What Samsung probably does, is to start downloading the file from wifi, then cancel the download after downloading half. Meanwhile the same thing is done for the cellular data connection (with the download being started from the middle of the file). Then after both finished downloading, the 2 halves of the file are attached.</p>
+<p>As far as Internet protocols and the source is concerned, those are 2 different devices downloading the same file.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/argh523" target="_blank">argh523</a>
+			<div class="markdown"><p>It's possible in principle, but very complicated in <em>general</em>. For big files, it's straight forward: Like /u/DrBoomkin said, they probably start multiple connections for different parts of the file. Various software, like download managers for bowsers, have been doing that kind of thing since forever. </p>
+<p>But that only works for big files because it's very simple and &quot;dumb&quot;. You just pretend to be two different clients basically, ask for different junks of the file, and put the pieces back together on your end. But this doesn't work for normal browsing, where you only (mostly) get many small files. The browser would have to be kind of clever to decide what file to download on which connection, and it might just straight up not work if the files aren't &quot;static&quot; (something that was generated for you, with your username etc). It doesn't work for streaming either because those just bombard you with data one way, so you can't choose to skip half the packages on either connetions, and you'd just be downloading everything twice.</p>
+<p>All these problems can be solved <em>in principle</em>, if all the moving parts from everyone involved are built to solve that problem. But that's not at the top of anyones todo list.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/McSquiggly" target="_blank">McSquiggly</a>
+			<div class="markdown"><p>More likely it checks to see which is faster and uses that.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dkarlovi" target="_blank">dkarlovi</a>
+			<div class="markdown"><p>Wouldn't IP need to get expanded instead of TCP for this to work? You could then multiplex multiple IP connections seamlessly. Some routers + NAS solutions (Synology) have this option already even, IIRC.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blopp2g" target="_blank">blopp2g</a>
+			<div class="markdown"><p>I don't think ip would need to be expanded. You'll still have 2 ips (or more, just talking the case of wifi + mobile connection) with mtcp, it's just that tcp needs to know how to transport stuff to two different ips and how to handle splitting the data and such.
+That being said I'm not very experienced with protocols, thus I might be wrong with my take on this.</p>
+<p>I think the way this works with routers is by having a specific server in the middle between you and the target server, which would then load stuff from the target, split it and send it to you via your multiple connections. Certainly possible, too, but with mtcp there would ve no need for something in the middle, since every server capable of it would handle the multiple connections on its own.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rlaager" target="_blank">rlaager</a>
+			<div class="markdown"><p>IP has no concept of a connection. Connections are part of TCP in layer 4.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/theoxygenthief" target="_blank">theoxygenthief</a>
+			<div class="markdown"><p>The OS looks at the list of assets for a site and assigns those assets. Wifi fetches some of the assets, mobile data others. Wifi assist and the likes was created with HTTP sites in mind, it won’t help for streaming a song or video thus, as it’s single asset content where the OS can’t really exercise any control over workload.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Agouti" target="_blank">Agouti</a>
+			<div class="markdown"><p>Yes and no. In HTTP, at least, assets are almost always (in modern browsers) downloaded multi-threaded, one connection per. There is no reason you couldn't have different assets, such as images and CSS, downloading through different connections. It would require OS support to manage (and provide access) to both connections simultaneously... An issue for most Androids, less so for Windows/Linux. Mobiles also have issues with collisions, even between wifi and cellular.</p>
+<p>The main reason this hasn't been done is mainly that very, very few people need this sort of bi-network access. Normally you would simply fix the issue at the source - sketchy WiFi? Get a repeater or higher gain base station. Why faff around with mobile simultaneously.</p></div>		</li>
+					</ul>
+	
