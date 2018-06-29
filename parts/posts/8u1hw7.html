@@ -1,0 +1,95 @@
+<li class="post" data-handle="8u1hw7">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/8u1hw7/what_is_the_significance_of_eigenvalues_in_physics/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Mathematics">Mathematics</span>
+			<a href="/posts/8u1hw7" onclick="return false">What is the significance of eigenvalues in physics?</a>
+		</h2>
+		<!--<span class="date">2018-06-29</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>What is the significance of eigenvalues in physics?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="e1c3ea6">
+		<a class="author" href="https://www.reddit.com/user/frogdude2004" target="_blank">frogdude2004</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Eigenvalues have a lot of uses, and sort of depend on the context.</p>
+<p>Broadly, an <a href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors" target="_blank">eigenvalue problem</a> is one where a function inputs a vector and returns the same vector times a constant. This vector is the <em>eigenvector</em>, and the value is the <em>eigenvalue</em>.</p>
+<p>Now, this is very special, because they can be used to make a <em>spanning set</em>. A spanning set is a set of vectors that <em>span</em> a space. That means you can make any vector in the space by adding multiples of the basis vectors. An example of a basis you may be familiar with is [1 0 0], [0 1 0], and [0 0 1]. These vectors can be summed to make any vector in three dimensional space (e.g. [1.23 2.3 -4] = 1.23 <em> [1 0 0] + 2.3 </em> [0 1 0] + -4 <em> [0 0 1]. This is fundamental to Linear Algebra. (I don't remember my textbook for this course, but I think it may have been </em>Linear Algebra Done Right* by Sheldon Axler). </p>
+<p>Now, a <em>basis</em> is a spanning set where the vectors cannot be made by each other (<em>linearly independent</em>). The case I gave above is a basis: no matter how you configure multiples of [1 0 0] and [0 1 0], you can't get [0 0 1]. You can create other bases (they aren't unique: [-1 0 0] [0 1 1] and [0 0 -1] is a different basis for the same space). The important thing is that one exists.</p>
+<p>In the case of differential equations, of which there are many in physics, bases and eigenvalue problems are very important. Differential equations have multiple solutions (in fact, infinite). So it's important to find the different <em>families</em> of solutions that can be added up to create the spanning set of solutions. This is an <em>eigenvalue problem</em>: you want to find the vector that when input to the equation, results in itself times a constant (e.g. F(x) = c * x). Once you have this, you can find a general solution to the differential equation: any solution (analogous to 'any point in space') can be written as the sum of eigenfunctions (like our [1 0 0], [0 1 0], [0 0 1] above).</p>
+<p>Now when you add boundary conditions, you can solve for the constants and find the unique solution to your problem.</p>
+<p>So being able to solve differential equations requires eigenvalues!</p>
+<p>Here's an example: a mass on a spring obeys F(x) = - k <em> x. Since F(x) is the only force, F(x) = m </em> a = m * x''.</p>
+<p>We can then say that:</p>
+<p>x'' = -k/m * x</p>
+<p>This is a differential equation.</p>
+<p>It has two different solutions: x1 = sin( sqrt(k/m) <em> t) and x2 = cos( sqrt(k/m) </em> t) . Plug them in, and you'll see that they both obey the equation.</p>
+<p>These two solutions are linearly independent. No matter how many x1 we add together, we don't get x2.</p>
+<p>So we know in general, the solution is x = c1 <em> x1 + c2 </em> x2. You can plug this in to the equation to see that it is true. All springs will follow this formula.</p>
+<p>Now we can set the initial conditions. Let's assume k/m = 1 for simplicity. If we know the spring at time t = 0 is at the position x = 0, we can then say:</p>
+<p>x(0) = 0 = c1 <em> sin(0) + c2 </em> cos(0) = c2</p>
+<p>c2 = 0</p>
+<p>Let's say that the velocity, x', is 10 at t = 0 (it's moving 10 distance/time at t = 0).</p>
+<p>x'(0) = 10 <em> sqrt(k/m) = c1 </em> 1 <em> cos(0) + 0 </em> (...)</p>
+<p>c1 = 10</p>
+<p>Then the solution to this particular scenario is:</p>
+<p>x = 10 * sin(t)</p>
+<p>Does this make sense? I can elaborate or explain whatever you need. Or give more examples! </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="e1c1rd3">
+		<a class="author" href="https://www.reddit.com/user/IAmMe1" target="_blank">IAmMe1</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Eigenvalues are used in a lot of contexts in physics but the most prominent is probably in quantum mechanics.</p>
+<p>An assumption of quantum mechanics is that the physical state of a system is given by a (normalized) vector in a Hilbert space - if you're not familiar with this terminology, you can basically just think of this as an Nx1 matrix (column vector) where N might be very big.</p>
+<p>The Schrodinger equation tells us the following. Suppose that you know the state of your system at time 0. Then if you apply a certain operator (matrix) e^iHt to your state, where H is a Hermitian operator called the Hamiltonian, to a state, then you get the state of the system at time t. </p>
+<p>Now, for a general state (vector), this operator will act in a very complicated way and you'll get a totally different state. But in the special situation where the original state is an eigenvector of H, the whole state just gets multiplied by a (complex) number e^iEt where E is the appropriate eigenvalue. This is basically the same state - it turns out that multiplying by a number like this doesn't change any observable properties of the state.</p>
+<p>So eigenvectors of H are important because they are states that don't change their measurable properties in time. It further turns out that you should interpret E as the energy of that state.</p>
+<p>More generally, albeit a bit harder to motivate, in quantum mechanics, any observable quantity corresponds to a Hermitian operator. If you measure that quantity, the possible measurement outcomes are eigenvalues of said Hermitian operator. Correspondingly, measurement causes the state of your system to change (&quot;collapse&quot;) to an eigenvector of this operator whose eigenvalue is the measurement outcome.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e1cb07j">
+		<a class="author" href="https://www.reddit.com/user/Eksander" target="_blank">Eksander</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I study systems and control and eigenvalues of a system are important because  if they have negative real part, the system is stable. When you want to track a reference or stabilize a system to a certain equilibrium point (cruise control for tracking speed input, control beam angle to position a ball rolling on it, inverted pendulum, chemical reactions, keep a rocket going straight by actuating independent engines etc) what you do is design a controller which acts upon the current state (or most likely an estimation/measurement of it) and feeds it back into the input. Design of the system depends greatly on eigenvalues: they must be negative, so that the feedback ia stabilizing. If they are pure imaginary, they have oscillations which never end. If they are large, the system will be very fast to steady state. If they are imaginary with a real component you can compute a damping ratio, overshoot, natural frequencies and many other tools that help shape the response of the system to what the engineer /employer desires</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e1c3yt2">
+		<a class="author" href="https://www.reddit.com/user/chuminmybucket" target="_blank">chuminmybucket</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I study ocean acoustics. In my field, eigenvalues represent the acoustic modes and resonant frequencies of vibrating systems. They can also be used to find the ray paths of all sound waves that travel through a specific point in the ocean, assuming the conditions satisfy the acoustic wave equation, which is a linear 2nd order ODE.  </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e1cbvle">
+		<a class="author" href="https://www.reddit.com/user/Bounds_On_Decay" target="_blank">Bounds_On_Decay</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Eigenvalues show up in lots of contexts, but it's very hard to relate them all together in a rigorous mathematical sense.  The explanation with finite dimensional matrices isn't very illustrative, I don't think.   So here's an intuitive explanation:</p>
+<p>An eigenvalue is a property of an operator that tells you what real number the operator might act like, if the problem were one dimensional.  Just like derivatives allow us to pretend that complex systems are linear, eigenvalues allow us to pretend that multi-dimensional systems are one-dimensional.  </p>
+<p>For example, look at Hook's law.  It says F = k x, or the force is proportional to the displacement.  If k is negative, that means the force is in the opposite direction of displacement, which describes a spring (when you pull the spring to the left, the spring pulls back to the right).  If k is positive, that means that the displacement will increase at an exponential rate.  Obviously if k is zero the system is stable.  </p>
+<p>What if k is a matrix, and x and F are vectors?  Then the system behaves &quot;like&quot; a spring if k has negative eigenvalues, and it behaves &quot;like&quot; an exponential explosion if k has positive eigenvalues, and it behaves like a mix if k has eigenvalues of different signs.  What if x and F are infinite dimensional functions, and k is an operator?  Same thing.  </p>
+<p>For example, the wave equation is D_tt u = Laplace u.  The second derivative D_tt is the acceleration, so it's proportional to F.  The Laplacian is an operator with negative eigenvalues.  That means the wave equation should describe spring-like, oscillatory behavior, which is true.  </p>
+<p>The eigenvector (or eigenfunction or eigenstate) is the initial condition which, basically, isolates a single eigenvalue.  So if an operator has both negative and positive eigenvalues, then it matters a lot what sort of eigenvectors you put into it (the eigenvectors for negative eigenvalues will evolve like a spring).  </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/8u1hw7" onclick="return false"><span>show</span></a>
+</li>

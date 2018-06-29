@@ -1,0 +1,70 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/frogdude2004" target="_blank">frogdude2004</a>
+			<div class="markdown"><p>I'll add another example, because why not.</p>
+<p>Eigenvector equations are also really important in engineering! In physics, thing's are usually rigid and can't deform. This is great for spherical cows, but not so great for buildings, beams, etc.</p>
+<p>There's generally two sets of bases we use to describe a mechanical problem: deformed space, and undeformed space. Depending on a problem, one may be more accessible than another, but in general, it's important to understand how one maps to the other. What happens to each point as you deform the macro material?</p>
+<p>These are also eigenvalue problems. The maps have to obey a bunch of properties (e.g. they have to be 'smooth'- no tears or gaps), but they can usually be thought of as a <em>deformation tensor</em>, which acts on a vector, and it returns the new location of that vector. Basis vectors for the tensor don't change direction, they map to a multiple of themselves- these are the eigenvectors, and the eigenvalues are the strain. Manipulating these you can find things like the volume change of the object.</p>
+<p>When you do modelling with Finite Element Analysis, this is what the computer is doing behind the scenes! It's solving tens to millions of these eigenvalue equations for little cubes that make up your part, which in turn model the deformation.</p>
+<p>It's pretty neat when you look under the hood!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hubertortiz" target="_blank">hubertortiz</a>
+			<div class="markdown"><blockquote>
+<p>This is great for spherical cows, but not so great for buildings, beams, etc.</p>
+</blockquote>
+<p>Spherical cows mentions will never not be funny. 🙃
+(I’m a Physics person)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/frogdude2004" target="_blank">frogdude2004</a>
+			<div class="markdown"><p>Haha it's always funny to go from Physics-brand mechanics to Engineering-brand. A lot of the intuition carries over, but there's some pretty fundamental changes in the models. Stress and Strain had never really crossed my mind as important things to keep track of, but Stress is far more important to material systems than Force. Not altogether incongruent, but definitely s different way of thinking :p</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jewrisprudent" target="_blank">Jewrisprudent</a>
+			<div class="markdown"><p>Yea I seriously don't think spherical cow will ever grow old. Astronomy (though only undergrad) on this end.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cosurgi" target="_blank">cosurgi</a>
+			<div class="markdown"><p>Also in quantum mechanics the eigen stuff is very important. The energy levels of each atom or molecule (no matter how large) are the eigenvalues of a very specific Hamiltonian (*) which describes it (the molecule). The eigenvectors are the quantum wavefunctions. The differences between those eigenvalues represent the color of the light which we observe. We can calculate complex systems composed of dozens of atoms to design a better and cheaper LED light bulb which will shine in various light colors (my colleague does just that).</p>
+<p>(*) Hamiltonian is just a shortcut for writing/generating a very complex and often bizzare differential equation</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Drachefly" target="_blank">Drachefly</a>
+			<div class="markdown"><p>Not just Energy - ANY observable has eigenvalues for its possible observable values, and corresponding eigenvectors. Energy is only special in that its eigenvectors are stationary states.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ZarnoLite" target="_blank">ZarnoLite</a>
+			<div class="markdown"><blockquote>
+<p>It's solving tens to millions of these eigenvalue equations for little cubes that make up your part, which in turn model the deformation.</p>
+</blockquote>
+<p>Can you expand on that? I would think that the finite element equation is only an eigenvalue equation if the deformation is volumetric.</p>
+<p>ELI am familiar with the finite element method but not necessarily familiar with the methods used to solve the global system of equations.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/frogdude2004" target="_blank">frogdude2004</a>
+			<div class="markdown"><p>Hm, ok. I've been thinking about how to best explain this for a bit. <a href="http://solidmechanics.org/text/Chapter8_1/Chapter8_1.htm" target="_blank">Here's</a> some text about it.</p>
+<p>So, generally, FEA assumes that the macro PDEs are too complex to solve. So we do an iterative process to minimize an energy function of a lot of little elements. The energy function is governed by the linear elastic equations that govern normal shapes, so it's wrapped up in there. The stress/strain relationship is a tensoral relationship, where the principle strains are the eigenvalues of the deformation tensor.</p>
+<p>It's not something one usually thinks of as an eigenvalue problem, but it's another way of looking at it.</p>
+<p>Is that reasonable?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rhidus" target="_blank">Rhidus</a>
+			<div class="markdown"><p>I know quite a bit about linear algebra, but the application to differential equations and your example at the end was very insightful. Thanks. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/frogdude2004" target="_blank">frogdude2004</a>
+			<div class="markdown"><p>And that's a sort of simple one. It's important for wave equations (incl. quantum mechanics), heat equations, more complicated harmonics, etc.</p>
+<p>And as I mentioned in the other comment, stress/strain relationships are another common and useful application. If you know linear algebra well, a lot of theoretical engineering work is very simple. You won't know <em>what</em> you're doing, but you'll be able to do it :p</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/medikit" target="_blank">medikit</a>
+			<div class="markdown"><p>I used them frequently in the quantum portion of Physical chemistry though at the time I wish I had the linear algebra to better appreciate the mathematics.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/anotherdonald" target="_blank">anotherdonald</a>
+			<div class="markdown"><p>Look up Laplace transform. That's really cool. The <a href="https://en.wikipedia.org/wiki/Laplace_transform_applied_to_differential_equations" target="_blank">wikie link</a> is a bit obtuse, but there's more info if you google a bit.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/afoliveira" target="_blank">afoliveira</a>
+			<div class="markdown"><p>I wish I had someone explaining it to me like you did here when I first learned eingenvalues. Very nice explanation and example!</p></div>		</li>
+					</ul>
+	

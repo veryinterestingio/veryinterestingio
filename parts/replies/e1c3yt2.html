@@ -1,0 +1,23 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dago_Red" target="_blank">Dago_Red</a>
+			<div class="markdown"><p>What's the acoustic wave equation? I'm an optical engineer and do lots of ray tracing for optical systems. Waves are waves baby :D</p>
+<p>Bloody curious to see how acoustic ray tracing compares to optical ray tracing. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chuminmybucket" target="_blank">chuminmybucket</a>
+			<div class="markdown"><p>This ended up being a little more in depth since I got excited but here we go.</p>
+<p>The acoustic wave equation is a 2nd order linear ode that relates the partial pressure differential wrt space to the partial pressure differential wrt time. The relative term is of course the sound speed, which varies with temperature, depth, and salinity in the ocean. From here we can derive further to find particle velocity and acoustic intensity.</p>
+<p>This, along with other principles like Snell's law, is used mostly to solve acoustic wave interactions (reflections, transmission, and refraction) with different media. For ray tracing of acoustic waves, we can stratify a medium into layers of constant soundspeed and compute the amount of energy that is transmitted or reflected, as well as the angle of refraction, at the fluid boundary of each layer. </p>
+<p>In ocean acoustics, this is a really interesting problem because of something called the SOFAR (SOund Fixing And Ranging) channel, which is a phenomenon in temperate waters where the soundspeed has a minimum around 1000 meters depth. Sound rays that get refracted into this channel typically get stuck refracting around the SOFAR axis, and end up traveling for miles and miles without interacting with the surface or the ocean bottom. Because rays of different launch angles transverse different depths of the ocean, and because soundspeed is largely dependent on temperature, we can use the acoustic ray arrival times as a first order approximation of temperature.</p>
+<p>This is where the eigenvalues come back into play. In order to accomplish this, we need to compute all ray paths from an underwater source that pass through a receiver location. Given a soundspeed environment, we can derive an eigenfunction that computes the paths, number of turning points, and the number of surface and bottom reflections for each ray of a given launch angle from the source. Working backwards, if we measure the arrival times of each ray and can resolve them at the receiver location, we can determine soundspeed, and thus determine temperature over long distances (typically on the order of 1000 km).</p>
+<p>This explains a model for acoustic ray tracing in the ocean a little bit better: <a href="https://www.maritimeway.ca/acoustic-modelling/" target="_blank">https://www.maritimeway.ca/acoustic-modelling/</a></p>
+<p>More info on the SOFAR Channel: <a href="https://rvbangarang.files.wordpress.com/2014/01/sofar_channel.pdf" target="_blank">https://rvbangarang.files.wordpress.com/2014/01/sofar_channel.pdf</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dago_Red" target="_blank">Dago_Red</a>
+			<div class="markdown"><p>Wow thank you. That is so cool. </p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
