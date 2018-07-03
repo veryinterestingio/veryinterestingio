@@ -1,0 +1,94 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/needlzor" target="_blank">needlzor</a>
+			<div class="markdown"><blockquote>
+<p>This sacrifices usability for code simplicity (or development speed).</p>
+</blockquote>
+<p>If I may add, because it's not obvious for people who might not have any development experience, code simplicity also means much smaller chance of bugs. It's not just to make the life of the engineers easy.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LightOfOmega" target="_blank">LightOfOmega</a>
+			<div class="markdown"><p>Even without development experience, just being aware of how effective the K.I.S.S. method is at most situations in life makes it easy to figure out how it applies to programming too.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IdeaPowered" target="_blank">IdeaPowered</a>
+			<div class="markdown"><p>Is that when you make horns with your hands and stick your tongue out and wiggle it like crazy to attract mates or to frighten off threats?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Patriarchus_Maximus" target="_blank">Patriarchus_Maximus</a>
+			<div class="markdown"><p>Any time I'm about to do something, I ask myself: &quot;would an idiot do this?&quot; If he would, then I do not do that thing.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/michaelwins" target="_blank">michaelwins</a>
+			<div class="markdown"><p>Keep it super simple?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/konaya" target="_blank">konaya</a>
+			<div class="markdown"><p>Here it's good to make the distinction between <em>easy</em> and <em>simple.</em> Writing simpler code isn't necessarily easier to do.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/addicted_parrot" target="_blank">addicted_parrot</a>
+			<div class="markdown"><p>Is it you, Rich Hickey?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/13Zero" target="_blank">13Zero</a>
+			<div class="markdown"><p>It requires far more work in the design phase, but everything else is easier. Implementation, testing, debugging, etc.</p>
+<p>The only issue might be fine-tuning performance and resource consumption. That said, there's a pretty strong consensus that premature optimization is a problem. Write an understandable and working solution, then target resource-hungry code paths.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NewFolgers" target="_blank">NewFolgers</a>
+			<div class="markdown"><p>I'd add that if you want to support these sorts of features, the best way to do it is design it into the engine in the first place and ensure that the various functionality gets exercised regularly (and you should also enable debug versions of any related API's for a better chance of catching anything that could become a problem, since it's relatively easy to not allow any warnings/errors get added in the first place - e.g. some flawed practices that yield complaints with a debug library work fine in release., up until you choose to upgrade your library and then it doesn't work). That way it tends to not be a big deal to keep it supported. Trying to add this sort of thing after the fact tends to be - for me at least - a nightmare (and I'll probably suspect there's a nasty bug lingering somewhere even if it appears to work). Then when you do add this stuff, sometimes ease of development is better rather than worse (e.g. some devs like to switch between windowed/full screen or whatever - and it's nice if they can without much delay).</p>
+<p>tl;dr: The core dev/devs can sometimes add this in the beginning and ongoing support can be trivial. Force it in later though, and things might get screwed up. Your response is correct, but I'm adding that it doesn't have to be buggy in some circumstances, and how that works. I wish more management knew these things.</p>
+<p>Edit: For those still on this thread, I'm also trying to point out that attempting to apply K.I.S.S. early in the process without having decided where you're headed often burns people in the end. Same applies to optimization/performance. People are typically none-the-wiser of what happened and why -- don't be one of them. John Carmack just retweeted this, which says the same thing I'm trying to say: <a href="https://mobile.twitter.com/_Humus_/status/1011964081069330432" target="_blank">https://mobile.twitter.com/_Humus_/status/1011964081069330432</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Devildude4427" target="_blank">Devildude4427</a>
+			<div class="markdown"><p>Also efficiency often. Even if your game can reset that stuff without issue, some of the other services and assets may still be loaded in the memory. Restarting the game can remap the memory with only the new settings without any of the older unused ones. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/istandalonetoo" target="_blank">istandalonetoo</a>
+			<div class="markdown"><p>Very true! As a software engineer, when we have had this discussion internally, it's always &quot;we have 2 months of development time. Should we spend it allowing changing of graphics without a reboot? Or require a reboot and spend the time working on the performance, engine, or content?&quot; The decision is usually very easy to make 😊</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HideAndSeekChampion" target="_blank">HideAndSeekChampion</a>
+			<div class="markdown"><p>The forced restart isn't so bad if the program <em>restarts itself</em>. If i have go to find it in the menu again to restart it, I find that annoying.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/manuscelerdei" target="_blank">manuscelerdei</a>
+			<div class="markdown"><p>In a lot of cases that discussion happens too late. It's not that you should always include this feature in your game or anything, but your design <em>shouldn't rule it out</em>. Basically if your architecture properly tracks state and you've got well-defined tear down paths for your objects that properly break dependencies, implementing something like this isn't a big deal. </p>
+<p>If you find yourself saying &quot;This isn't possible to implement without a massive rewrite&quot; chances are you've fucked something up. </p>
+<p>Tear-down is one of the hardest problems in software and most people just ignore it completely. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xiroir" target="_blank">xiroir</a>
+			<div class="markdown"><p>I understand the sentiment, but for certain games, especially heavy taxing one's ( warhammer vermintide 2 for instance) it is extremely annoying to not be able to fiddle with the graphics all at once. I'd still like a better performance, engine or content more... so meh. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Adkit" target="_blank">Adkit</a>
+			<div class="markdown"><p>It makes me sad to see civ 5 force you to restart the game after changing any graphical settings even though the actual game hasn't even started yet so nothing needs to be loaded.</p>
+<p>You can't even change the settings mid game, you need to go to the main menu to do it, then restart, then reload. AND the loading time is insanely long when you start the game. Don't even get me started on mods that need to be loaded manually after every time you open the game.</p>
+<p>Efficiency... More like bad design.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kondrias" target="_blank">Kondrias</a>
+			<div class="markdown"><p>There is also physical limitations of the systems. If you were running on a super computer and the devs could assume that every player of  their game was also doing that. they could have the game do things differently and expect every computer to be able to handle the burden. but if you try and run too much through a system at once it can cause a critical error and just crash the game. Sometimes they make games not up to the most cutting edge tech so more people can play the game on their system.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Devildude4427" target="_blank">Devildude4427</a>
+			<div class="markdown"><p>Well, there are reasons for that. </p>
+<p>The game does load some assets when it starts, though your memory of course isn't going to be able to hold the whole game. You're not going to see these assets until you start, so of course you don't know that they are there.</p>
+<p>And again, you shouldn't change the settings from in game. I don't think I've even seen a game that lets you update video settings while in game. The closest I've seen is probably Minecraft, which even then I'm pretty sure blocks out the game to do that stuff in the background. Also, it normally runs awfully, so any memory dumps are just par for the course. Loading times bring long is due to the size of the game and your storage setup. Don't blame the game. There are hardware limitations there. Put it on an SSD or get enough RAM to load it entirely in one go. There's nothing devs can do to increase the data transfer speeds. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sailor_sega_saturn" target="_blank">sailor_sega_saturn</a>
+			<div class="markdown"><p>There are ways to unload stuff from memory; so that just ties back to <del>laziness</del> simplicity.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Devildude4427" target="_blank">Devildude4427</a>
+			<div class="markdown"><p>Sure, but that's not always efficient. I can do a memory dump, but that usually will drop a couple frames at least. In the menu screen, not too big of a deal, but in game it would be. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FrozenFirebat" target="_blank">FrozenFirebat</a>
+			<div class="markdown"><p>To expand on this, it depends on the graphics platform. For example: there are a couple of things in OpenGL that require a new context window to change. One could write code opening a new context window, transferring all reference to it, and closing the old one, but that's a lot of extra work.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lennybird" target="_blank">lennybird</a>
+			<div class="markdown"><p>It also just comes down to the setting being changed. If it's a simple post processing effect, that will likely be able to change on the fly. If it's something like lighting or shadows, that may require a dumping of what's currently baked into VRAM, and the safest, easiest way would be refreshing the entire rendering pipeline. </p></div>		</li>
+					</ul>
+		</ul>
+	
