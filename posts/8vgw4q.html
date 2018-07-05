@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: Why are 'bits' used instead of 'bytes' occasionally to describe computer storage or transfer speeds?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="8vgw4q">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/8vgw4q/eli5_why_are_bits_used_instead_of_bytes/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/8vgw4q" onclick="return false">Why are 'bits' used instead of 'bytes' occasionally to describe computer storage or transfer speeds?</a>
+		</h2>
+		<!--<span class="date">2018-07-05</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Is it literally just to make download speeds/hard drive capacities seem better to the layman?</p>
+<p>E.G. Internet companies sell 100mbps connections which can't get anywhere close to 100 megabytes/s</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="e1nabm8">
+		<a class="author" href="https://www.reddit.com/user/ameoba" target="_blank">ameoba</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Tradition.</p>
+<p>Network engineers care about moving bits around.  You can let somebody on the other side figure out what they mean.  You'll also often see things like I/O bus speeds measured in bits (or &quot;transfers&quot;) per second for similar reasons.</p>
+<p>The people writing software &amp; making data storage devices, OTOH, tend to care about what those bits <em>actually mean</em> so they think about the data organized into bytes.</p>
+<p>A lot of people might say that ISPs advertise speeds in terms of bits to make their products look faster but the convention goes back long before PCs and networking were widespread consumer products.  The original Ethernet was a 3Mbit/s standard.  Early modems were rated in terms of &quot;baud&quot; (bits of audio data per second) - with early examples being as low as 110 and 300 baud.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="e1nfr0c">
+		<a class="author" href="https://www.reddit.com/user/3e486050b7c75b0a2275" target="_blank">3e486050b7c75b0a2275</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's just a matter of conventions. Bandwidth is measured in bits per second while storage is measured in bytes. When it comes to kilobytes, megabytes and so on you have two standards the SI one and the binary one. The SI one uses 1000 as the multipllier while the binary one that your OS cares about uses 2^10 i.e. 1024. The advertised space in storage drives is in the SI  standard not the binary one so you end up seeing less space when you actually use the drive.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e1nqoep">
+		<a class="author" href="https://www.reddit.com/user/markfuckinstambaugh" target="_blank">markfuckinstambaugh</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A byte of data in storage is 8 bits, but transfer protocols often include extra bits and bytes for synchronization, error-checking, security, etc. Your internet company can say &quot;our switches and wires support 100mbps,&quot; but they can't guarantee what specific protocol will be used to communicate between you and someone else. </p>
+<p>Just as an example: Bluetooth Low Energy has a bit-rate of 1Mbps. Protocol version 4.1 can use 14 bytes (112 bits) just in overhead for addressing, security, and error-checking in order to send a message of 0-32 bytes (0-256 bits). </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e1nap3z">
+		<a class="author" href="https://www.reddit.com/user/skumgummii" target="_blank">skumgummii</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It doesn't happen occasionally at all, it has been the convention since forever. back in the early days of computing a bit is a bit is a bit, but depending on the machine architecture a byte wasn't always a byte when comparing two different machines.</p>
+<p>For example on your standard intel based machine of today 1 byte=8bits, but on a pdp8 from the 60's 1 byte = 6 bits. Even today on many embedded systems you have different sized bytes. So working in bits is just safer.</p>
+<p>The other guy who responded saying it has something to do with marketing is completely wrong.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e1nan48">
+		<a class="author" href="https://www.reddit.com/user/Runiat" target="_blank">Runiat</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The byte is a relatively recent invention, and not at all as commonly used as you probably think. There used to be computers running all sorts of different numbers of bits to a byte. </p>
+<p>The old SMS protocol for sending text messages over the cell network didn't use the 8 bit bytes we're used to, but a custom 7 bit character. If there's a limit to how many characters you can send in a message, it still does, even if your phone is able to pack Unicode characters into it. </p>
+<p>Most modern computers store all information 32 bits at a time. Even single-bit Boolean values are given an entire 32 bit block of RAM since it simply isn't worth packing them any tighter than that, and unless a programmer goes out of his way to change it, that's how they're sent over the internet (along with an IP address and packet header). </p>
+<p>Last I heard, French developers still referred to bytes as octets, though this was about a decade ago. </p>
+<p>Bits, on the other hand, had become essentially globally standardized by the time the internet was invented, so they can be used to measure speed without worrying about what hardware someone is using. </p>
+<p>(I'm sure there's still someone, somewhere, working on making non-binary bits) </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/8vgw4q" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
