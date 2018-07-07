@@ -1,0 +1,43 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SOberhoff" target="_blank">SOberhoff</a>
+			<div class="markdown"><p>It showed that mathematics cannot be automated.</p>
+<p>In the 1920s Hilbert had famously asked for an axiomatization for all of math in which proofs could be found by machine. In 1931 Gödel showed that it's impossible to axiomatize all of math. And in 1936 Church and Turing showed that, even if you settled for only a piece, unless that piece was trivial, there wouldn't be a way to automatically tell the truths from the non-truths. </p>
+<p>Regarding the halting problem in particular, consider Goldbach's conjecture. It states that every even number greater or equal to 4 can be written as the sum of two primes. You can easily write a computer program that searches for the first counterexample to this conjecture. This program will then run forever if and only if the Goldbach conjecture is true. If the halting problem was solvable, you could just feed this program to the halting machine and turn the crank to see if Goldbach's conjecture was true. A similar trick could also be done to settle the Riemann hypothesis. And it would've saved Andrew Wiles a lot of work on Fermat's last theorem.</p>
+<p>I hope this gives you a taste of the immense importance of the halting problem.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Lilkcough1" target="_blank">Lilkcough1</a>
+			<div class="markdown"><p>Great explanation,  thanks a ton for your answer!</p>
+<p>I definitely didn't consider how it could be used if such a program could exist. But I really understand now why it was such an important goal and the ramifications of the result we're familiar with now. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fireroot" target="_blank">Fireroot</a>
+			<div class="markdown"><p>I am by no means an expert but this is how I understand the impact it has. The halting problem would prevent a &quot;perfect bug checker&quot; from telling you if your program will encounter an error during runtime. There is no way for it to tell if the program would be caught in an infinite loop or if it will complete in a million years or in 2 seconds or get a null reference exception. The program has to run to be able to tell if, for a given input, it will succeed. If there were no halting problem we could make compilers that could identify every possible error and infinite loop to prevent programs from ever failing.</p>
+<p>This ignores other impossible mathematical things you could do with a halting checker but that would probably be the biggest practical use for one for a computer scientist.</p>
+<p>From a consumer perspective the halting problem is the reason operating systems can't warn you if a program has entered a bad state. The best they can do is see if the program is not communicating with the OS and label it as &quot;not responding&quot;. It may actually still recover but the OS has no way of knowing if the program is stuck or not. Hence the &quot;wait for this program to respond&quot; option when trying to close it.</p>
+<p>Also note that this only applies to Turing complete languages. Some languages, most notably SQL for databases, is a halting language which means that any SQL query can be guaranteed to halt. Some algorithms within languages can also be proven to be halting and these can be used when you need to be REALLY sure a program completes successfully.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SOberhoff" target="_blank">SOberhoff</a>
+			<div class="markdown"><p>Programs that run forever are only one of many possible ways that a program can be defective. I think it's a stretch to say that the halting problem is the only thing stopping us from writing compilers that identify &quot;every possible error&quot;.</p>
+<p>Besides, who even gets to decide what is and what isn't an error? Even in the case of infinite loops, every website is running an infinite loop. The webserver continuously serves new copies of the website to visitors, never stopping. It would be rather annoying if webservers got rejected by the compiler.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Abdiel_Kavash" target="_blank">Abdiel_Kavash</a>
+			<div class="markdown"><p>/u/Lilkcough1 /u/Fireroot</p>
+<p>So there is another result stronger than the Halting Problem called <a href="https://en.wikipedia.org/wiki/Rice%27s_theorem" target="_blank">Rice's Theorem</a>. This theorem states that, informally, if you have <em>any</em> non-trivial question about the eventual behavior of a computer program, that question is fundamentally undecidable for a general input.</p>
+<p>Here &quot;behavior&quot; means we are asking about something the program <em>does</em>, not questions about the source code or something like that. And &quot;eventual&quot; means that we care about the behavior of the program in some unbounded future, not just after finitely many steps. For example, if you asked whether the program halts in under 10 seconds, you can just run it for 10 seconds and see if it has halted or not. If you ask whether the program halts <em>ever</em>, the question is undecidable. Finally, &quot;non-trivial&quot; means that the question is not vacuously true or vacuously false - such as, &quot;this program prints an even prime greater than 2&quot; - we know that the answer to this question is always &quot;false&quot;.</p>
+<p>Rice's Theorem tells us that any such question is <em>undecidable</em> - there is no single algorithm that could take a program as an input and always correctly answer this question.</p>
+<p>This means that if you have a question like &quot;this database is secure&quot;, or &quot;this program will not erase my entire hard drive&quot;, or &quot;this program adds two numbers together and prints their sum&quot;; you will never be able to answer this question in general. You could painstakingly examine one particular program and prove that it does what it is supposed to; but it is impossible to have a universal verification algorithm that can decide this for any given program.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fireroot" target="_blank">Fireroot</a>
+			<div class="markdown"><p>I agree. Infinite loops are very important for many programs as long as meaningful work is still being done but identifying the state of a program is still important even in those loops. I’m not suggesting such a compiler could be used to evaluate a web server as a whole but it could definitely tell you if, during the course of serving a page, it would encounter an error or inescapable loop. If an infinite loop is the goal then at least you could be sure that it’s going to make it to the end of the loop so it can continue to serve another request. </p>
+<p>Compilers also can be very good at identifying possible problems in runtime. But there is no way to be absolutely sure it halts without encountering the halting problem. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ishiz" target="_blank">ishiz</a>
+			<div class="markdown"><p>One area of study for theoretical computer science is computability theory -- what types of problems can be solved and what problems cannot be? All the problems we typically see in computer science are decidable problems, problems that can be solved on a Turing machine. These can be further broken down into <a href="https://78.media.tumblr.com/dbecf3fb35b464cb99c7c27ee1f9d17d/tumblr_inline_n1jx3vLZK51qz8dvz.jpg" target="_blank">many other different categories of problems</a>. It's no surprise though that nearly all of the problems we face can be solved on a Turing machine. However, that means it's very interesting that there exists problems that cannot be solved on these machines. It also invites people to wonder, what if there was a type of theoretical machine (a so-called Oracle machine) that could solve the halting problem -- how would other computations be different on these machines?</p></div>		</li>
+					</ul>
+	
