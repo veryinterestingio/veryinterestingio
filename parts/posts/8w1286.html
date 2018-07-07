@@ -1,0 +1,68 @@
+<li class="post" data-handle="8w1286">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/8w1286/what_does_it_actually_mean_if_a_quantity_is_an/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Mathematics">Mathematics</span>
+			<a href="/posts/8w1286" onclick="return false">What does it actually mean if a quantity is an exact differential?</a>
+		</h2>
+		<!--<span class="date">2018-07-07</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I came across this sentence:
+&quot;since heat is not an exact differential it is not a property of the system. It is a path function.&quot;</p>
+<p>So how can those things be inferred just by knowing that heat is not an exact differential?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="e1ryxt2">
+		<a class="author" href="https://www.reddit.com/user/RobusEtCeleritas" target="_blank">RobusEtCeleritas</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The precise mathematical definition of an exact differential form is a differential form that can be written as an exterior derivative of another differential form.</p>
+<p>In thermoynamics, the one-form dU (the differential internal energy) is an exterior derivative (d) of a zero-form (a function) U.</p>
+<p>In other words, there is some function U that depends on the state of your thermodynamic system. Then taking the exterior derivative of that function gives you an exact one-form. A consequence of being an exact form is that the integral of the form is path-indepdent. So if you integrate dU over some path in the thermodynamic state-space, the result depends only on the initial and final states, and not on the path between them.</p>
+<p>Now for an example of an inexact form: heat. Heat is fundamentally a <strong>change</strong> in energy during some process. It's denoted by <del>d</del>Q, where the strikethrough denotes that it's an <em>inexact</em> one-form. There is no &quot;heat function&quot; Q (zero-form) whose exterior derivative is <del>d</del>Q. You can't point at a thermodynamic system in some state and ask &quot;How much heat does the system have?&quot;, that question is nonsense. So the differential heat cannot be written as an exterior derivative of a zero-form, so it's an inexact one-form. A consequence is that the integral of this one-form is path-dependent. During your thermodynamic process, if you move between the same initial and final points, but over different paths, the total amount of heat absorbed or released by your system will be different. It depends on the path you take.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="e1t084c">
+		<a class="author" href="https://www.reddit.com/user/Bounds_On_Decay" target="_blank">Bounds_On_Decay</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It clicked for me when talking about angular differential.  </p>
+<p>When integrating in the plane, we denote dx a vector pointing in the positive x direction, and dy a vector pointing in the positive y direction.  There are actual functions x and y (functions that take a point in the plane and return a number) and dx and dy are the derivatives of those functions.  </p>
+<p>If you integrate with radial coordinates, then there's a vector dr and a vector dtheta.  You can figure out which directions these point in.  The dr vector points away from the origin (in the direction of increasing radius) and the dtheta vector points counter-clockwise around the origin, in the direction of increasing angle theta.  </p>
+<p>Here's the punchline: there's a function r that is zero at the origin and increases away from the origin, and dr is the derivative of r.  But there is no function theta!  If you try to define it, the function would start at 0 and then you go round, now it's 2pi, then you go around again and now it's 4pi.  </p>
+<p>So dr and dx and dy are exact differentials, and dtheta isn't.  There is no theta for dtheta to be the differential of.  </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e1s0ijl">
+		<a class="author" href="https://www.reddit.com/user/WormRabbit" target="_blank">WormRabbit</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The short answer is that an exact differential is the one which, integrated along a path, gives a function which depends only on the path's endpoint (and not the path itself). The good thing is that this property can be checked locally via a system of differential equation that must be satisfied by the differential's components. I won't write them here, you can check the Wikipedia on the exterior derivative. If you know the Stoke's theorem then you can write them out yourself. If the integral along any two paths with fixed endpoints is the same, then the integral along any closed loop is identically 0. By Stoke's theorem, you can convert it into a statement that a certain double integral along any disk is identically 0, which can only be true if the differential integrated along those disks is identically 0.</p>
+<p>A well-known example comes from vector analysis. With any vector v in R^3 one can associate a differential (v; dx). Its exterior derivative can be again associated with a vector field. The differential (v; dx) is exact, by definition, if v is a gradient vector field of some function f, and it is a classical theorem that such a function exists if and only if the rotor (rot v) is 0.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e1t5eix">
+		<a class="author" href="https://www.reddit.com/user/malexj93" target="_blank">malexj93</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>RobusEtCeleritas gives a brilliant answer already, but I'll throw a little something in. A bit more hand-wavey, but only described in terms of multivariate calculus rather than differential geometry.</p>
+<p>An important distinction to be made is between a state function and a path function. A state function is a function which describes a system at a given point in time, and doesn't depend on the &quot;path&quot; taken to get there, i.e. it doesn't depend on the past states. A path function does depend on those past states, so it can't describe a system at a single instant -- there must be some information about how it got there to determine the value of these functions.</p>
+<p>The reason exact differentials describe state functions and not path functions is simply that exact differential is a function which can be written as the derivative of another function. A common example seen in multivariate calculus is a scalar-valued function of a vector, something like f(x,y,z). The derivative of a function like this is a vector of partial derivatives, called a gradient. So, if you have a function g(x,y,z) which is a vector-valued function, and it can be written as the gradient of a scalar-valued function like f, then g = df = (df/dx) dx + (df/dy) dy + (df/dz) dz is an exact differential (df/dx and so on are partial derivatives). The function g is also called a conservative vector field, and f is called a potential function, due to the properties they have in relation to physical quantities. The fundamental theorem of line integrals posits that the path integral over a conservative vector field is independent of the path, and thus the integral over a closed path is 0, hence the term conservative. So, f here is a quantity being conserved, it describes the state regardless of the path to get there.</p>
+<p>An inexact differential is simply a function (vector field in our example) that isn't the derivative of some other function. If we write a function g as before, where g = Adx + Bdy + Cdz, there may not be a scalar-valued function f with df/dx = A, df/dy = B, and df/dz = C. Then, we can't write g = df for any function f. Consequently, integrals taken over the vector field g are path-dependent. If we call h the function which represents the integral of g, then h is a function of the path, a path function. Since h is the integral of g, then we can in some way consider g to be a &quot;derivative&quot; of h, hence the notation g = đh.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">3 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/8w1286" onclick="return false"><span>show</span></a>
+</li>
