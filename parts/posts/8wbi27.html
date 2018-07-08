@@ -1,0 +1,82 @@
+<li class="post" data-handle="8wbi27">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/8wbi27/eli5_why_is_it_that_in_radio_frequencies_the/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Physics">Physics</span>
+			<a href="/posts/8wbi27" onclick="return false">Why is it that in radio frequencies, the lower the frequency the further range you get but less bandwidth?</a>
+		</h2>
+		<!--<span class="date">2018-07-08</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Was reading bout 5ghz vs 2.4 GHz WiFi . Basically why is attenuation proportional to frequency?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="e1u99j6">
+		<a class="author" href="https://www.reddit.com/user/GhostlyArmageddon" target="_blank">GhostlyArmageddon</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Think of a 5GHz signal as a fully loaded car, and a 2.4GHz signal as a fully loaded semi. </p>
+<p>Which do you think is easier to stop?</p>
+<p>A 5 GHz signal is tiny, and cannot pierce through many solid materials like buildings or mountains. They can even be disrupted by rain.</p>
+<p>In contrast a 2.4GHz signal is bigger in comparison and will pierce through more substances. </p>
+<p>As for information sending, imagine the lower bandwidth signal is someone talking really slowly. You'll get the information, but it will take a while.</p>
+<p>The higher the frequency the faster the talking.</p>
+<p>This is how I understand it.</p>
+<p>Source: Radio Technician</p>
+<p>Edit: The semi vs car analogy wasn't about the data transfer rates but rather about how hard it is to stop something big. I realize in retrospect I should have used a different analogy.
+I'm leaving it up because it still makes sense to me.
+Take it as you will.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="e1urouv">
+		<a class="author" href="https://www.reddit.com/user/TheDapperYank" target="_blank">TheDapperYank</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Bandwidth isn't the term you want.  Throughput or capacity is the term you want.  </p>
+<p>This is going to be more of an eli13</p>
+<p>Bandwidth is the span of frequency you're using, and it's functionally frequency independent.  </p>
+<p>How RF signals work is that they are generated at the frequency of the bandwidth you are interested in.  So a 20Mhz wide signal is generated from 0-20Mhz.  This is called the &quot;Baseband&quot;.  What happens next is the Baseband signal will get sent to the radio which will basically just shift it up to whatever your transmission frequency is.  For wifi that's either 2.4Ghz or 5Ghz.</p>
+<p>Now as for why you TEND to get higher throughput at higher frequencies is mostly due to RF noise and interference.  WiFi specifically uses a technique called Carrier Sense Multiple Access with Collision Avoidance.  In short this means that all the devices that want to transmit will listen and wait until they don't hear anyone else transmitting before trying to transmit their data.   So if you have lots of RF noise then the devices will refrain from transmitting till they think the RF environment is clear.  That and noise will impact how efficient/dense the data being sent is.  </p>
+<p>WiFi uses a waveform called Orthogonal Frequency Division Multiplexing (OFDM) where the spectrum is subdivided into smaller and smaller chunks of time and frequency that do not overlap, until you get to individual symbols.  These symbols are functionally a sine wave, and based on and amplitude and phase of the individual sinewaves it represents a series of 1's and 0's.  If the RF environment is clean then you can pack more 1's and 0's into a single sine wave.</p>
+<p>Now, for pathloss.  RF through freespace is NOT actually attenuated.  It just acts like it is because the RF energy is being spread out over the surface of an ever increase sphere the further away you are from the source.  The reason why lower frequency (larger wavelength) signals have less pathloss because the aperture of an equivalently optimal antenna will be significantly larger, touching more surface area of the sphere of RF energy.</p>
+<p>Doubling the frequency is equivalent to doubling the distance from a pathloss perspective.</p>
+<p>Source: am RF/Telecommunications Engineer</p>
+<p><strong>edit:</strong> spelling</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e1u9k5e">
+		<a class="author" href="https://www.reddit.com/user/Zwiebelbart" target="_blank">Zwiebelbart</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The <del>bandwidth</del> throughput reason is pretty straightforward: If you talk faster, you can have longer conversations in the same timespan. Higher frequency -&gt; higher <del>bandwidth</del> throughput.</p>
+<p>As for range, it's similar to driving a car: The faster you drive, the more noticable the windresistance becomes. High frequency radiation is dampened stronger than low frequency radiation, thus low frequency has a longer range.</p>
+<p>Edit: As has been pointed out, throughput is the word for data transfer rates. And according to u/TheDapperYank symbol-times are standardised and constant, so my first analogy is based on faulty assumptions anyway.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e1uq9gm">
+		<a class="author" href="https://www.reddit.com/user/jlcooke" target="_blank">jlcooke</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Radio is a kind of light (just way lower frequency than red).</p>
+<p>Radio travels at the speed of light - no matter what frequency.  High frequencies can carry more information in a given time because there there is more &quot;room&quot; for changes to be detected.</p>
+<p>Think of riding in a car over a bridge with the regular &quot;thump-thump .... thump-thump ... &quot; sounds.  The only way to communicate information is to suppress (0) or amplify (1) these &quot;thumps&quot; or &quot;peaks in the radio wave&quot;.  The more &quot;thumps per second&quot; you have the more 1s or 0s you can transmit.  ( <a href="https://en.wikipedia.org/wiki/Nyquist_frequency" target="_blank"><a href="https://en.wikipedia.org/wiki/Nyquist\_frequency" target="_blank">https://en.wikipedia.org/wiki/Nyquist\_frequency</a></a> )</p>
+<p>As for why high frequencies don't travel as far - it comes down to dispersion.  Make waves in a lake or a bathtub.  Slower waves are easier to see (peaks and troughs).  Faster oscillating waves are easier to see closer to the sources ... but as you look further from the sources these waves become &quot;smooched&quot; together.  You lose the &quot;thump-thump&quot; type features needed to convey information.</p>
+<p>Not a 100&#37; accurate explanation what's going on at the physics level - but this is the start I give my kids.</p>
+<p>Note: Some answers given talk about materials absorbing certain radio frequencies - which is correct but the effect you're describing in your question will also apply in empty space without any materials messing things up.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e1urhr5">
+		<a class="author" href="https://www.reddit.com/user/mithoron" target="_blank">mithoron</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A better lay definition would be that within a specific distance the intervening material will interact with a wave more often the shorter the wavelength is.  You have to adjust for specific sizes of material having a stronger than normal impact if they match the wavelength of the transmission, but that's the general rule.</p>
+<p>A good (not perfect) visualization would be to scatter balls across a pool table.  Then to simulate low frequency trace an s curve across the table with a stick and see how many balls you hit.  Then zig zag back and forth 10 times (at the same amplitude) and see how many you hit to simulate high frequency.  On top of this just one set of pool balls scattered on the table might be like passing through air, while 20 sets more like a cinder-block wall.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/8wbi27" onclick="return false"><span>show</span></a>
+</li>
