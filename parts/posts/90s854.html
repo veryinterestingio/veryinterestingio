@@ -1,0 +1,99 @@
+<li class="post" data-handle="90s854">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/90s854/supposing_i_have_an_unfair_coin_not_5050_but_dont/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Mathematics">Mathematics</span>
+			<a href="/posts/90s854" onclick="return false">Supposing I have an unfair coin (not 50/50), but don't know the probability of it landing on heads or tails, is there a standard formula/method for how many flips I should make before assuming that the distribution is about right?</a>
+		</h2>
+		<!--<span class="date">2018-07-24</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Title!</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="e2t3cv1">
+		<a class="author" href="https://www.reddit.com/user/Midtek" target="_blank">Midtek</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Yes, there is a more or less standard way of solving this problem, but there is a lot of latitude. For instance, it's well possible that your biased coin gives you results that look perfectly unbiased for any arbitrary number of flips. So you can never know <em>for sure</em> whether your coin is biased or unbiased.</p>
+<p>Suppose we have the following, significantly <em>easier</em> problem. We have two coins, X and Y, one of which has probability of heads <em>p</em> and the other has probability of heads <em>q</em>. But we don't know which is which. We randomly choose one coin and our goal is to determine whether our coin has chance <em>p</em> or <em>q</em> of showing heads. Note that we <em>know</em> the values of <em>p</em> and <em>q</em> <em>a priori</em>; we just don't know which coin is which.</p>
+<p>For the solution to this problem, <a href="https://math.stackexchange.com/questions/2033370/how-to-determine-the-number-of-coin-tosses-to-identify-one-biased-coin-from-anot/2033739#2033739" target="_blank">you can read this post on StackExchange</a>. The idea is that you need to flip the coin enough times so that you are confident that both you have X and that you don't have Y. The punchline is that if the coins have <em>p</em> and 0.5 as their chance for getting heads (so we are trying to distinguish a biased coin from an unbiased coin), then the minimum number of flips needed for a 5% error is roughly N = 2.71/(p - 0.5)^(2). Note that the closer the biased coin is to being fair, the more flips we need. If the biased coin is known to have, say, p = 0.51, then we need about 27,100 flips to distinguish between the two coins.</p>
+<p>[<strong>edit:</strong> Another user discovered a missing factor of 4 on the formula in the StackExchange post. I have since corrected the formula and the calculated value of n.]</p>
+<p>However, the problem posed in the title is much different since we do not know the bias of the coin <em>a priori</em>. This means that will not be able to write down the number of required flips once and for all. It depends on how biased the coin can be. As the calculation linked above shows, we may very well require arbitrarily many flips if the bias (deviation from fair) is allowed to be arbitrarily small. If the bias is bounded away from 0, then the above analysis can be applied to give an upper bound for the minimum number of flips.</p>
+<p>The best you can arguably really do in the general case is flip the coin with unknown bias many times and then consider a certain desired confidence interval. So let <em>p</em> be the unknown chance of getting heads on your coin. The procedure to distinguish this coin from fair would be as follows:</p>
+<ol>
+<li>Flip the coin <em>n</em> times and record the results. Let <em>h</em> = observed proportion of heads.</li>
+<li>Find the <em>Z</em>-value corresponding to a confidence level of γ. (There are plenty of calculators that can do this for you.)</li>
+<li>Calculate W = Z/(2n^(1/2)). This expression comes from the fact that the standard error for <em>n</em> Bernoulli trials with probability <em>p</em> is (p(1-p)/n)^(1/2), and this expression is maximized when p = 1/2. (Remember we don't know the value of p, so that's the best we can do.)</li>
+<li>The confidence interval for <em>p</em> is thus (h-W, h+W).</li>
+</ol>
+<p>Please note carefully what this confidence interval means. This means that if you were to repeat this experiment many times (or have many different experimenters all performing it independently of each other), then the proportion of experiments for which the confidence interval would actually contain the true value of <em>p</em> tends toward γ. It does <em>not</em> mean that there is a probability of γ that the true value of <em>p</em> lies in this particular interval (h-W, h+W), although that is a common misinterpretation.</p>
+<p>[<strong>edit:</strong> I've changed the description of a CI to be more intuitive and more correct! Thank the various followup comments for pointing this out to me.]</p>
+<p>As a particular example, suppose you flipped the coin 10,000 times and got 4,000 heads. You want a 99.99% confidence level. So h = 0.4 and γ = 0.9999. A confidence level calculator gives Z = 3.891, and hence W = 0.019455. Hence your confidence interval is (0.381, 0.419). So if many other people performed the same experiment and you collected all of the results, roughly 99.99% of the calculated confidence intervals would contain the true value of <em>p</em>, <em>and</em> they would all have the same length. So it's probably safe to say the coin is biased. Can't know for sure though based on just one CI. But if you repeat this process and get, say, 5100 heads, then your confidence interval is  (0.491, 0.529). So it's probably not safe to say the coin is biased in that case.</p>
+<p>In general, for this method, the number of trials required depends only on the desired confidence level. Whether you decide the coin is biased is a different question really. At the very least, you would want your confidence interval not to include p = 0.5. But this doesn't mean that can't be true. Confidence intervals are notoriously misinterpreted.</p>
+<p>Wikipedia has an article on this very problem. The method of using confidence intervals is described. Another method based on posterior distributions is also considered, and you can read the details <a href="https://en.wikipedia.org/wiki/Checking_whether_a_coin_is_fair#Posterior_probability_density_function" target="_blank">here</a>.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="e2t5atu">
+		<a class="author" href="https://www.reddit.com/user/l_-_l_-_l" target="_blank">l_-_l_-_l</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><em>EDIT: I've slightly modified what I originally wrote to more directly answer OP's question (previously I considered Chernoff bounds with multiplicative error, but I've changed it to use additive error so that the number of required flips is independent of the coin's bias).</em></p>
+<p><em>EDIT 2: for a different explanation of what I've written below, see <a href="https://en.wikipedia.org/wiki/Hoeffding%27s_inequality" target="_blank">this wikipedia article on Hoeffding's inequality</a> which is very closely related to the Chernoff bound. This article derives the same final answer I've written below. The nice thing about this solution is that it rigorously answers OP's question, in the sense that it tells you exactly how many coin flips you should do to obtain a specified precision on the true bias of the coin. One issue with the current top answer is that it relies on the central limit theorem and z-values. This is actually not necessary for this problem - the approach below is simpler and more rigorous, but perhaps less intuitive than the z-value approach.</em></p>
+<p>=================================</p>
+<p>One simple approach for studying this problem is to use the <em>Chernoff bound</em>, a very powerful bound which applies to situations where you have a sum (or average) of independent random variables. See for example <a href="http://math.mit.edu/~goemans/18310S15/chernoff-notes.pdf" target="_blank">these notes</a>, or <a href="https://en.wikipedia.org/wiki/Chernoff_bound#Additive_form_(absolute_error)" target="_blank">wikipedia</a>.</p>
+<p>Here is one form of the Chernoff bound which we can use on this problem. Say you perform <em>n</em> coin flips. Let <em>X</em> denote the total number of heads you got. Let <em>p</em> denote the coin's probability of &quot;heads&quot;. Then the Chernoff bound implies </p>
+<p>Pr[|X/n - p| &gt;= δ] &lt;= 2*exp[-2nδ^2]</p>
+<p>That is, the probability that the observed average number of heads (X/n) differs from the expected average number of heads (p) by more than δ is upper bounded by the quantity on the right hand side.</p>
+<p>Now, say we are willing to tolerate a probability of ε of being wrong. How many coin flips do we need to estimate p to within δ, and have a probability of no more than ε of being wrong? To calculate this, set the right hand side of the inequality to ε and solve for n:</p>
+<p>2<em>exp[-2nδ^2] = ε
+==&gt;     n = 1/(2δ^2) </em> ln(2/ε)</p>
+<p>Now let's plug in some actual numbers. Let δ=0.1 and ε=0.01. Plugging this into the above expression, we find that <strong>265 flips are sufficient to determine p to within an accuracy of ±0.1, with 99% probability of success</strong>. </p>
+<p>Let's do another one. Now set δ=0.01 and ε=0.001. Plugging this into the above expression, we find that <strong>38005 flips are sufficient to determine p to within an accuracy of ±0.01, with 99.9% probability of success</strong>. </p>
+<p>Here's an interesting feature of the above result. Note that the dependence of the number of required flips with  δ scales like 1/δ^2. So, for example, decreasing δ by a factor of 1/100 corresponds to multiplying the required number of flips by 10000. But the dependence with ε goes like ln(1/ε). This function increases very slowly as ε gets smaller and smaller, meaning that not too many additional flips are required to drastically decrease our probability of failure, for a given fixed confidence interval δ. </p>
+<p>So, to answer OP's question, *<em>1/(2δ^2 ) </em> ln(2/ε) flips are sufficient to deduce the true probability of heads, up to precision ±δ, and with probability of error given by ε.**</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e2t7685">
+		<a class="author" href="https://www.reddit.com/user/Ruby_Radiant" target="_blank">Ruby_Radiant</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Just to give a fun alternative:
+You can use a Bayesian analysis... determine a threshold you want (95% conditional likelihood) then produce likelihoods for 1 flip for each possible alternative (likely simplify to percentages to 1% or 5% intervals)... check your conditional likelihoods across your potential answers, then repeat with more flips until you get a conditional likelihood for one of the alternatives that breaches 95%. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e2tl9sb">
+		<a class="author" href="https://www.reddit.com/user/Funatiq" target="_blank">Funatiq</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>On a related note, you can do a fair &quot;flip&quot; with a biased coin. Suppose the chance for heads is p. Define the new HEADS as first heads, then tails, and the new TAILS as first tails, then heads. Because the first and second flip are independent of each other the chances for both outcomes is the same:</p>
+<p>P(HEADS) = P(heads)*P(tails)  = p*(1-p) =  (1-p)*p = P(tails)*P(heads) = P(TAILS).</p>
+<p>In case of two times heads or tails in a row, you just flip two times again.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e2u6o45">
+		<a class="author" href="https://www.reddit.com/user/GregHullender" target="_blank">GregHullender</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>When I was a principal research scientist at Amazon, I think the commonest question I got was of the form &quot;My test results showed 30 successes out of 40 attempts, so I want to say it was 75% successful, but my boss wants to know how confident we are of that measure. How do I compute that?&quot; Your problem testing a coin for fairness is just a special case of it.</p>
+<p>To answer them, I'd first ask what sort of confidence interval they wanted. 95% is about the minimum reasonable, with 99% or higher being safer. (There are lots of factors that can complicate the problem, but let's keep it simple.)</p>
+<p>Let A = 30 (the number of successes), let B = 10 (the number of failures) and let C = 0.99 for a 99% confidence interval. Then you compute two numbers as follows (I'll use the Microsoft Excel formula).</p>
+<p>beta.inv((1 - C)/2, A + 0.5, B + 0.5) = 55.2%</p>
+<p>beta.inv((1 + C)/2, A + 0.5, B + 0.5) = 89.2%</p>
+<p>&quot;Okay, tell your boss that you're 99% confident it's between 55.2% and 89.2% successful.&quot;</p>
+<p>If they said, &quot;Gee, that's too wide a gap: 33.9%,&quot; I'd tell them, &quot;You can shrink it by collecting more data, but it's quadratic in the limit, so if you want to cut the gap in half, you'll need four times as many samples.&quot;</p>
+<p>In this case, if A = 120 and B = 40 (multiplying both by 4) we'd shrink the interval to 66.5% to 83.0%, and, sure enough, the new gap of 17.5% is just about half the first one.</p>
+<p>Only rarely did anyone actually want to know <em>why</em> this works. Most people were just really happy to have something to use that someone signed off on. But for those who do want to understand it better, I strongly recommend &quot;<a href="https://projecteuclid.org/download/pdf_1/euclid.ss/1009213286" target="_blank">Interval Estimation for a Binomial Proportion</a>,&quot; (Lawrence D. Brown, T. Tony Cai and Anirban DasGupta;  <em>Statistical Science 2001</em>, Vol. 16, No. 2, 101–133). The formula I'm using above is the Jeffrey's interval, but there are other ways to do it.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/90s854" onclick="return false"><span>show</span></a>
+</li>

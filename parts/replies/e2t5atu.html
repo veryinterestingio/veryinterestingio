@@ -1,0 +1,38 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Midtek" target="_blank">Midtek</a>
+			<div class="markdown"><p>First of all, the calculation here is not quite correct. The Chernoff bound in this case gives</p>
+<blockquote>
+<p>P[ |X/n - p| &gt; δp ] &lt; 2 exp(-npδ^(2)/3)</p>
+</blockquote>
+<p>For one, you don't know the value of <em>p</em>. So not only is there a problem in setting δp to be a given deviation, for a given desired accuracy ε, we should also get that n depends on both ε and p.</p>
+<hr />
+<p>More important, the Chernoff bound doesn't actually give any indication of how many flips are required to give an estimation of the bias of the coin, let alone let you distinguish it from a fair coin. The Chernoff bound is just an inequality that describes the distribution of X/n, i.e., the proportion of heads after n flips. This isn't really useful. Even if we knew the value of <em>p</em>, we would <em>already</em> know the full distribution of X/n anyway. The issue is not trying to determine the distribution of X/n, but rather the distribution of <em>p</em> subject to our experimental data. The Chernoff bound does not give a method of using experimental data to determine whether the coin is biased.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/l_-_l_-_l" target="_blank">l_-_l_-_l</a>
+			<div class="markdown"><p>Ah yes I agree that for what I had before, n depended on p. This was basically because I was using a multiplicative chernoff bound. I recently edited my post to use an additive chernoff/hoeffding bound to remove the p dependence. I'm not quite sure what you mean by Chernoff not being useful to decide if a coin is biased. If we do many flips, and observe the empirical average to be say p=0.1, Chernoff bounds the probability of the true bias deviating more than δ from this value</p>
+<p>EDIT: also yes you're right, I screwed up a constant . fixed </p>
+<p>EDIT 2: I was just reading about this stuff more, and your claim</p>
+<blockquote>
+<p>The Chernoff bound does not give a method of using experimental data to determine whether the coin is biased.</p>
+</blockquote>
+<p>is not true. See for example <a href="https://en.wikipedia.org/wiki/Hoeffding%27s_inequality" target="_blank">this</a>, which essentially derives exactly the same result I have in my post. Maybe some of the confusion is just due to nomenclature (eg Chernoff vs. Hoeffding). I'm just thinking of Hoeffding's inequality as a type of Chernoff bound.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Midtek" target="_blank">Midtek</a>
+			<div class="markdown"><p>If <em>h</em> is the observed mean, the Chernoff bound will simply tell you a statement like &quot;the chance that h deviates from p by more than δp is less than this... <em>under the assumption that each coin flip is a Bernoulli trial with probability p</em>&quot;. But you don't know the value of p, so you can't use it. You would <em>like</em> a statement of the sort &quot;the chance that h deviates from p by more than δp is less than this... <em>period</em>&quot;. But that's not what the Chernoff bound says.</p>
+<p>Because the value of <em>p</em> is unknown, the only statements useful to us are about the distribution of <em>p</em> given the data. In the Chernoff bound, <em>p</em> is not a random variable.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NOTWorthless" target="_blank">NOTWorthless</a>
+			<div class="markdown"><p>Chernoff bounds are used to construct uniformly valid confidence intervals occasionally, so I’m not sure I agree with this. It is overkill in this case, but it isn’t wrong per se and it works quite generally. Note that the coverage of all of the usual confidence intervals also depends on p (exact non-randomized intervals do not exist for this problem as far as I know).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dankmeme96" target="_blank">dankmeme96</a>
+			<div class="markdown"><p>Dude you smart. I have no clue what most of this means but im happy people like you exist. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Parrywtf" target="_blank">Parrywtf</a>
+			<div class="markdown"><p>This is truly the right way to answer the question IMO (using Hoeffding bounds though, not Chernoff). It's true that we don't know p a priori, but if the coin flips are i.i.d. then implicitly we are guaranteeing that a fixed p does exist, and the problem then is to simply approximate it. As noted already ITT, a multiplicative approximation of p is not possible with n being independent of p (since p can be arbitrarily small), but an ε-additive error is possible with O(ε^{-2} log(1/δ)) samples with probability δ of failure. This latter bound is the Hoeffding bound, and it is the &quot;correct&quot; bound in the sense that it is tight for i.i.d. Bernoulli trials. </p></div>		</li>
+					</ul>
+	
