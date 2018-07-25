@@ -1,0 +1,114 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Stat_Cat" target="_blank">Stat_Cat</a>
+			<div class="markdown"><p><em>That’s</em> what ray-tracing is! I’d heard that term a number of times but never thought to look it up. Thank you!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Thanks-For_The-Gold" target="_blank">Thanks-For_The-Gold</a>
+			<div class="markdown"><p>Note that there's a bit of a difference between ray tracing and path tracing too. Ray tracing is kind of a simpler version of path tracing, and while both are improvements in quality over the standard approaches used by video games ray tracing is much more viable for realtime graphics since it's generally less computationally costly. Physically accurate rendering engines like Blender use path tracing, which is why it's still slow relative to the ray tracing game engines out there.</p>
+<p>For those who are interested, here's a brief (and rough) overview of the difference.</p>
+<p>Ray tracing casts a ray for each pixel you want to display, and when that ray hits an object in the scene it casts a ray from that location to every light in the scene. If that secondary ray hits another object before hitting the light, then that light doesn't contribute to the pixel, otherwise it does. So that pixel value ends up being kind of the average of all the lights that can strike the location, with colour information generated from the surface and the lights incident on it. So generally this is fairly efficient, but if there are lots of lights in the scene it can become inefficient.</p>
+<p>Path tracing cares not just about direct lighting, but also indirect lighting. It starts out the same way, shooting a ray for each pixel. But instead of that ray casting rays to each light when it hits an object, it just bounces onward to a new object, and keeps bouncing around the scene until it hits a light, exits the bounds of the scene, or hits a maximum number of bounces that's been set. The bounce direction is dependent on the surface - for a totally glossy surface it's determined by the law of reflections, and for a totally diffuse surface the direction is basically random. If it hits a light, it sends that info back to the previous bounce to calculate the brightness on that surface, and then that's passed back to the bounce before that to calculate the brightness on that surface, and so on until it reaches the original intersection. But a lot of the time it won't have hit a light, so we can't just shoot a single ray. Each pixel needs to shoot out hundreds or thousands of rays to get an accurate picture of all the direct and indirect lighting contributions, and if the lights are small it may need even more (things like bidirectional path tracing and metropolis light transport can help with this, but Blender doesn't offer that). But the big advantage is that we get indirect lighting, AKA global illumination. A subject can be illuminated purely by light reflecting off other objects, even if no lights are incident on it. A ray tracer would not capture this indirect lighting and would consider an object to just be completely shadowed if no lights are incident on it.</p>
+<p>So for realistic rendering path tracing is a requirement. However, for games ray tracing is a good compromise between enhanced quality and reasonable framerates. We still have a little while to go before ray tracing can be used for everything though, so mostly it's just used for dynamic shadows right now. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MadMinstrel" target="_blank">MadMinstrel</a>
+			<div class="markdown"><p>It's more accurate to say pathtracing is a very special subset of raytracing where you throw rays from the camera at geometry, hoping to find a light source which will over many samples average out into an image.</p>
+<p>Raytracing itself is nothing but finding ray/triangle intersections and has lots of applications in and out of graphics that don't necessarily have much to do with generating an image.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/afineedge" target="_blank">afineedge</a>
+			<div class="markdown"><blockquote>
+<p>Ray tracing casts a ray for each pixel you want to display, and when that ray hits an object in the scene it casts a ray from that location to every light in the scene. If that secondary ray hits another object before hitting the light, then that light doesn't contribute to the pixel, otherwise it does.</p>
+</blockquote>
+<p>i spent a few classes in 3ds MAX; am I correct in assuming that this is equivalent to me bumping up the setting for Light Bounces during a render? I have huge issues extrapolating this stuff to reality because I'm entirely unable to picture how photons bounce around, so if I'm totally off-base, feel free to tell me I'm being dumb.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tanney" target="_blank">tanney</a>
+			<div class="markdown"><p>now THIS is path tracing!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ImSpartacus811" target="_blank">ImSpartacus811</a>
+			<div class="markdown"><p>Ray tracing really just means &quot;not faking it in lighting&quot;. There are a lot of thing that get compromised in video games due to not using a proper ray traced methodology. </p>
+<p>It just turns out that video game makers have gotten very good at working around these limitations so you never notice them. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ChrisFromIT" target="_blank">ChrisFromIT</a>
+			<div class="markdown"><p>In a few game engines these days they do have the option to do simplified Ray Tracing, usually a certain amount of bounces and limited about of rays. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ph30nix01" target="_blank">ph30nix01</a>
+			<div class="markdown"><p>Unless they screw up..... colonial marines I'm looking at you </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pueojit" target="_blank">pueojit</a>
+			<div class="markdown"><p>There's a demo of Quake that is rendered entirely with ray-tracing. Despite decreasing quality (for more noise of course), it struggles to stay at 60 fps on the best of gaming hardware</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sunset__boulevard" target="_blank">sunset__boulevard</a>
+			<div class="markdown"><p>Fun fact: a lot of games use the same technique with very limited capability(usually a single or a few rays at most) for trajectory calculations. It's called ray-casting and frequently used for bullet trajectories(ray casted from weapon barrel) or sometimes even item interactions(casted from player's perspective/camera). Rays have functions associated to them so you can check if it collides with something for example. Not sure how frequently it is used these days though.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Craptastic19" target="_blank">Craptastic19</a>
+			<div class="markdown"><p>How often? All the freaking time. It's hard to find a 3d, first person game that doesn't use ray casting </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sabatatti" target="_blank">Sabatatti</a>
+			<div class="markdown"><p>Raycasting is very frequently used tool in games. Some games use it to detect objects or obstacles, other use it to trajectory/hit check, for measuring distances, seeing if character is grounded etc. Also there are things like spherecast and cubecast, that do the same thing, but with an geometric shape. These are very, very useful tools and very cheap in terms of computing power when used properly.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Reversi8" target="_blank">Reversi8</a>
+			<div class="markdown"><p>Ray tracing is starting to come into the picture for games as hardware gets more powerful. Yet to see how much it will actually get put into practice though.</p>
+<p><a href="https://www.anandtech.com/show/12546/nvidia-unveils-rtx-technology-real-time-ray-tracing-acceleration-for-volta-gpus-and-later" target="_blank">https://www.anandtech.com/show/12546/nvidia-unveils-rtx-technology-real-time-ray-tracing-acceleration-for-volta-gpus-and-later</a></p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jaseworthing" target="_blank">jaseworthing</a>
+			<div class="markdown"><p>It's also worth mentioning that the rendering time is inconsequential in comparison to the amount of time spent modeling/animating. They could use tricks similar to those used in video games to dramatically cut down on rendering time and still have a very photorealistic looking result, but why bother? Spending an extra 100 hours rendering to get a very minor improvement is well worth it.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/allthebigdumdums" target="_blank">allthebigdumdums</a>
+			<div class="markdown"><p>It's not that the time is inconsequential, it's more that it's cheap and easily parallelized. A frame might take 10h to render, but you can render every frame at the same time and have the whole thing done when you come back in the morning.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/iama_canadian_ehma" target="_blank">iama_canadian_ehma</a>
+			<div class="markdown"><p>How many frames would they do in an average day? Is that even a relevant measurement of their work?</p>
+<p>Edit: I guess a better way to frame (huehuehue) my question is, how many frames would they render in a 24-hour period?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/immibis" target="_blank">immibis</a>
+			<div class="markdown"><p>Theoretically you can render every <em>pixel</em> at the same time. It just depends how many computers you have.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fidodo" target="_blank">Fidodo</a>
+			<div class="markdown"><p>It's also the diversity of effects. In a game every unique lighting effect needs a bunch of optimization and special case code for that kind of effect. Ray tracing is kinda a global solution for tons of different kinds of effects.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RobertThorn2022" target="_blank">RobertThorn2022</a>
+			<div class="markdown"><p>This. They could use some of the tricks from games, but it wouldn't be 101% realistic then.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nuublarg" target="_blank">nuublarg</a>
+			<div class="markdown"><p>I don't think the word Colossal does it justice. The Current top of the line Graphics card has an MSRP of $700. The machine Nvidia used for their real time raytracing demo has $150,000 worth of GPUs in it.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NinjaLanternShark" target="_blank">NinjaLanternShark</a>
+			<div class="markdown"><p>&quot;Everything is real time if you have enough money.&quot;</p>
+<p>--Nvidia</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DucksRUs281" target="_blank">DucksRUs281</a>
+			<div class="markdown"><p>To be fair it was more of a proof of concept.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/allthebigdumdums" target="_blank">allthebigdumdums</a>
+			<div class="markdown"><p>Eh, not really. This was still a very simplified demo.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shadowndacorner" target="_blank">shadowndacorner</a>
+			<div class="markdown"><p>If you're referring to the storm trooper UE4 d3d12 raytracing demo from GDC, that's not even a remotely accurate number.  That came from misreporting that got widely spread.  The machine that ran it was a $60k workstation.  Still a ton of money, but less than half of $150k.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/s11houette" target="_blank">s11houette</a>
+			<div class="markdown"><p>And they only had two characters in a small room.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nuublarg" target="_blank">nuublarg</a>
+			<div class="markdown"><p>Three. And there was a Hallway scene from which Phasma walked from into the elevator.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fidodo" target="_blank">Fidodo</a>
+			<div class="markdown"><p>I don't think the number of characters matters as much as the number of light sources and kinds of materials being simulated.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

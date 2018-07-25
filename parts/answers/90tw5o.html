@@ -1,0 +1,51 @@
+<div class="answers">
+	<div class="answer" data-handle="e2t744h">
+		<a class="author" href="https://www.reddit.com/user/istandalonetoo" target="_blank">istandalonetoo</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The ELI5 answer is that games don't actually produce photo realistic images in real time. If you look closely, you can see imperfections that break the realism.   These mainly revolve around how lighting works.  In order to fix that imperfections, it takes a lot more time.  </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="e2t46m6">
+		<a class="author" href="https://www.reddit.com/user/dillusioneddude" target="_blank">dillusioneddude</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Games use a lot of tricks to fake the photorealism at less cost than doing it for real (compressing textures, popins, etc.). The most important one is the lighting. You may notice that shadows don't always look right in games. You know how when you hold something colored under a light, it starts to glow that color? Games don't do this because they don't simulate the light for real, they change the textures to make shadows and light.</p>
+<p>Real animation software takes no shortcuts and renders things with full textures and full detail. This software often calculates the path of each ray of light bouncing around the area until it runs out of steam. This calculation is what takes all the time because there are millions and millions of light rays to trace. </p>
+<p>Fun sidenote: a few weeks back, Nvidia managed to make real-time Ray tracing possible using some new technology they're developing, but so far it still take colossal amounts of power to run. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e2tiano">
+		<a class="author" href="https://www.reddit.com/user/EdgeOfProphecy" target="_blank">EdgeOfProphecy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Games use tricks to render wonderful looking graphics in real time.</p>
+<p>Lots of games do complicated math in advance that can take hours or even days to compute. The results of this are saved and kept around to be used for final calculations later. All the time that would’ve been spent doing those calculations is saved, because it takes no time at all to look up the answer to something.</p>
+<p>Think of it like baking a cake from cake mix vs baking a cake from scratch. Let’s say you have a ton of cake mix already. You don’t have to go through the effort of measuring out the sugar, flour, baking soda, mixing it all up, etc. All you do is add some eggs, maybe some oil or water, and then pour it into a pan. Most of the hard work is done for you, but you can only make that one cake. The mix can’t easily be used to make other cakes.</p>
+<p>Something like Blender is making a cake from scratch. It doesn’t have these clever tricks and shortcuts. In fact, programs like Blender are often used to pre-compute the math (cake mix) that games use to speed up their rendering!</p>
+<p>A great example is often lighting. If you have a scene where the light is going to be mostly consistent, maybe an inn in Skyrim for example, you can pre-compute simulated light bouncing around from the candles, fireplace, off of shiny objects that are immobile, etc. This lets you save the color and intensity of light at any point in the scene, and simply look it up when you’re trying to add light to an object. This is a huge savings in time, and the results look great because you did a bunch of math that you could never pull off real time to generate very high quality light.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e2t44uq">
+		<a class="author" href="https://www.reddit.com/user/Phage0070" target="_blank">Phage0070</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Games produce their impressive graphics with some cheats that won't work in all cases and cannot really be improved by just throwing more render time at the engine. For example the game might have a relatively simple model with textures and lighting maps produced ahead of time to make the desired effect. A program such as Blender on the other hand would be producing everything from scratch and actually rendering the geometry of a more complex model (from which the lighting and bump maps were produced) and the interaction of light with the model and texture. While this process is much more time consuming it can also produce a better image with more allowed time for calculations.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e2t9blh">
+		<a class="author" href="https://www.reddit.com/user/blobbybag" target="_blank">blobbybag</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There is a new version coming soon with a renderer called Eevee that does render very high quality in real time, though even with this, the full Cycles render will still look better.</p>
+<p>The truth is, there is a noticable difference in visual quality between even the best realtime render vs pre-rendered cgi.
+For a more specific example - A fancy renderer will simulate individual rays of light on the scene your rendering(ray tracing), but a realtime renderer will approximate it.</p>
+<p>It's also worth pointing out that games 'bake' lighting maps before hand, which can take a lot of time if it's a big complex scene. You get different savings depending on wether you want baked or realtime.
+Baked - more ram and space on HD
+Realtime - more gpu/cpu time</p>
+<p>You also can't move an object that has been baked into a lightmap, or it will leave it's shadow behind!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
