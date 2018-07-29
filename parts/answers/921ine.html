@@ -1,0 +1,62 @@
+<div class="answers">
+	<div class="answer" data-handle="e32k0gn">
+		<a class="author" href="https://www.reddit.com/user/Matraxia" target="_blank">Matraxia</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Most modern cars have 3 layers of security when it comes to keys.   Remote Identification, Physical Identification, and Encryption Identification.   </p>
+<p>Remote identification is your keyless entry.  It’s like when you yell for your mommy outside a locked room, if she recognizes your voice, she will respond and unlock the door to let you in.  Voices can be similar, so if in the rare case some other kid sounds like you, she could be confused and let the wrong kid in.</p>
+<p>Physical Identification is the cut key itself, or in the case of Push Button start, the physical proximity of the key.   When your mom opens the door, she would make sure you look like her child.  You have a unique face but doppelgängers or your twin brother could fool her into thinking another kid is you.   </p>
+<p>Encrypted Identification is the RFID chip inside the key that the immobilizer has to sense to allow the car to run.   Even if you can duplicate the remote entry or physical key, the RFID reader will still need to read the encrypted code programmed to each key matches to the Immobilizer before the car is allowed to remain running for more than a few seconds.   This is extremely difficult to duplicate and very short range, so the real key would need to be within a few inches of the ignition to work.  It’s like your mom verifying your fingerprint or DNA to make sure you are you, even if you look and sound like her child.   </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="e32gf3w">
+		<a class="author" href="https://www.reddit.com/user/hands_on_tools" target="_blank">hands_on_tools</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The key fob uses a rolling code that is stored in the fob and the security section of the ECU or immobilizer unit. The fobs are all registered at the same time and they all use a separate rolling code (multiple codes per car, sometimes 5 or 6 possible fobs)</p>
+<p>So you press unlock and the fob calls out to the car, the car answers and asks for a code and the fob replies with the code that the car is expecting. There are a buttload of combinations so it is VERY unlikely that it can unlock another car BUT it has been done before.</p>
+<p>It's often a lot more complicated when you have proximity unlock (smart entry), remote start, etc etc. The fob ID can also be used to preset stuff like mirror position, seat and steering position, etc etc. So you have your fob with your settings and your partner has theirs. You can both lock and unlock at the same time because the knows both fobs.  </p>
+<p>edit: there are a boatload of different ways that fobs communicate with cars across different manufacturers. Basically the fob and the car know the same secret handshake. they do a little secret handshake with each other when you ask the car to lock and unlock. The secret handshake is always changing though so I can't watch your handshake and then try it with your car, it'll know that that handshake is old and lame. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e32am2g">
+		<a class="author" href="https://www.reddit.com/user/dragonx254" target="_blank">dragonx254</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They don't. They absolutely could unlock another car of the same model.</p>
+<p>I believe Nissan has gone on record to say that they have something like only 3,000 (might've been 30,000) unique key configurations. So odds are you could find another car you could unlock.</p>
+<p>But unlocking a car is all you could do, since many car keys nowadays make use of transponders to prevent someone else's key from starting the engine.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e32r8er">
+		<a class="author" href="https://www.reddit.com/user/SlightlyLessHairyApe" target="_blank">SlightlyLessHairyApe</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>People often underestimate the scale of randomness involved in even minor cryptographic operations. I'm going to give some hokey comparison (all math and cryptography very approximate, it's just for scale)</p>
+<p>First of all, a bit is just a 1 or a 0. When we say that there is a 256-bit random number, we mean flip a fair coin 256 times and write down H or T each time. Nothing fancy, you can do this in a few minutes with paper and pencil, this isn't like galaxy-brain scale math here. </p>
+<p>But here comes the galaxy-brain part, while an actual string of 256 H/Ts is really small and can fit on an index card, the space of <em>all possible 256-bit numbers</em> is astronomical. This is 2^256 (2x2x2... 256 times) which is about 10^80, or 1 followed by 80 zeros</p>
+<p>So let's compare a bit -- Earth has about 10^50 atoms, so with a 256-bit number you could &quot;label&quot; each one with a unique number and never have a duplicate. The solar system has about 10*56 atoms, so we're still good. The entire Milky Way is 10^67 atoms, so we can still quite easily generate 256-bit numbers for each atom in the galaxy and never have a duplicate.  </p>
+<p>This is the just plain remarkable. Anyone can easily fit in their puny meat-brain the entire contents of a deck of playing cards. But every time you shuffle the deck (to full randomness), you are generating a configuration that is one out of 10^67, or one out of the number of atoms in the galaxy. </p>
+<p>So lets say for each car that comes off the line, you generate a 256-bit random number (picture a guy flipping coins) and write it down in the car and in the keyfob (and doesn't cheat and write it in his phone and sell it to me so I can steal your car). The fob can then do some math to prove to the car that it &quot;knows&quot; the same code, and that no other fob does. </p>
+<p>Let's say you made a rogue fob that starts at 000.....000 and goes to 999...9999 trying to guess the code. Then you went up to my car and hit the button and had it start guessing. That would take 2^255 tries to succeed (the -1 is left as an exercise for the reader). If you had it guess a billion times per second, it would still take 10^60 years. The age of the universe is only 15 billion years old, so you are talking about a trillion-trillion-trillion-trillion times the age of the universe to guess it.</p>
+<p>TLDR: For short strings that we can easily write down, the number of possible strings that can be randomly created is mind-melting.</p>
+<p>META: The TLDR is 132 characters, and English encodes about 2-bits per letter. So the TLDR is itself one such example of approximately 256-bits of information.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e32aoow">
+		<a class="author" href="https://www.reddit.com/user/hairlikemerida" target="_blank">hairlikemerida</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Absolutely. Your car key could probably unlock many cars. And as time goes on, the key gets more worn down, as does the cylinder, which makes older cars a prime target for thefts because you can pretty much slip in a screwdriver and it’ll work.</p>
+<p>Now that most newer cars are keyless, it’s a lot harder because the signals can be much more unique.</p>
+<p>The same goes for your house keys. I bet your house key could open up ten other doors. But you would never know unless you tried it on every single door.</p>
+<p>Manufacturers try to limit this by sending things that are keyed similarly to different parts of the country.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
