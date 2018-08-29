@@ -1,0 +1,43 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blaptothefuture" target="_blank">blaptothefuture</a>
+			<div class="markdown"><blockquote>
+<p>Its TTL gets decreased and the IP checksum gets recalculated (&lt;--- major stupid idea in the IP protocol, the TTL should have been left out of the checksum, IPv6 doesn't have one).</p>
+</blockquote>
+<p>I don't think it was stupid back in the 70s when that RFC was written. It's true today that header corruption is rare, but was that true 40 years ago? From a logical standpoint it makes sense to write a protocol with error checking built in.</p>
+<p>If you think about it it's more work, isn't it? If a router calculates an ipv4 checksum mismatch it drops the packet. If a corrupt ipv6 packet rolls through it gets forwarded erroneously to another router that then processes it and drops it. I guess it is trivial when you factor in how amazingly fast routing is these days.</p>
+<p>If my line of thinking is incorrect please teach me something I don't know.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Qjuh42" target="_blank">Qjuh42</a>
+			<div class="markdown"><p>The checksum was a good idea, just calculate it with everything but the TTL and the checksum can stay the same for the entire path, hence no need to recalculate it before sending.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blaptothefuture" target="_blank">blaptothefuture</a>
+			<div class="markdown"><p>With no checksum on the TTL what’s stopping forgery? I’m sure there would be a way to leverage that to simulate a network loop on DDOS some edge routers.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/broofa" target="_blank">broofa</a>
+			<div class="markdown"><blockquote>
+<p>From Sydney to Melbourne, about 1000 km, takes ... 5 milliseconds</p>
+</blockquote>
+<p>Sydney-&gt;Tokyo-&gt;Taiwan-&gt;Tokyo-&gt;Sydney is 20,000 km as the crow flies, so \~100 msecs round trip, right?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/futlapperl" target="_blank">futlapperl</a>
+			<div class="markdown"><p>About 133, yes.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/I_am_a_Dan" target="_blank">I_am_a_Dan</a>
+			<div class="markdown"><p>At that level, I promise nothing is looking at the IP header beyond his router, and the end point router. Everything else along the way will be using MPLS label switching which is exponentially faster than packet switching.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Terrafire123" target="_blank">Terrafire123</a>
+			<div class="markdown"><p>....You wouldn't happen to have any interest in ELI5:  MPLS label switching, would you?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RND_Musings" target="_blank">RND_Musings</a>
+			<div class="markdown"><p>IP lookups are probably still occurring between most ASs.</p></div>		</li>
+					</ul>
+		</ul>
+	
