@@ -1,0 +1,42 @@
+<div class="answers">
+	<div class="answer" data-handle="e53r4kg">
+		<a class="author" href="https://www.reddit.com/user/dabenu" target="_blank">dabenu</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The real answer here is: it can't. The percentage you see is always an estimate. The exact capacity of your battery is heavily impacted by things like temperature, discharge rate, age, etc. </p>
+<p>Your phone (or basically any device using a lithium battery) uses all methods described in other posts, but in the end the best it can do is an estimation. That's why you can sometimes run your phone several minutes while the battery is at 0%, and another time it drops dead at 5%.</p>
+<p>Some electronics brands (like Apple) are even known to make the indicator non-linear on purpose. So your battery could be half empty while the indicator purposely shows it at 80% or something. Presumably to prevent you from getting &quot;range-anxiety&quot;.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="e546r7b">
+		<a class="author" href="https://www.reddit.com/user/luxmonday" target="_blank">luxmonday</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Battery manufacturers use chips such as the BQ40z50 from Texas Instruments.<br />
+The cell is characterized for capacity, internal resistance and temperature along with data of degradation over time from previous batches. This data is loaded into the chip and used as a starting point for capacity estimation. A complex algorithm looks at how much energy was delivered last discharge cycle and uses that to predict the current discharge cycle.<br />
+This estimate will be quite accurate (better than 1%) since the chip has been monitoring the cell for its entire life.<br />
+If you plug in a different manufacturers cell, or the wrong data for the cell, the estimate will be wrong. A lot of this relies on characterization and historical data.<br />
+For less accurate needs (5%) you can use a look-up table using the cell voltage and get a reasonable estimate of run time. This table is non-linear and based on cell characterization. For low drain applications this is OK.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e53i726">
+		<a class="author" href="https://www.reddit.com/user/redyellowblue5031" target="_blank">redyellowblue5031</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Perhaps a bit more involved than you’d like, but <a href="https://batteryuniversity.com/learn/article/inner_workings_of_a_smart_battery" target="_blank">they</a> can explain much better than me. </p>
+<p>Tl;dr: Many smartphones use “smart” batteries which in addition to being a battery have their own monitoring hardware (like a coulomb counter, temperature sensor, etc.) attached and in addition to a positive and negative lead the device will have extra data lines for communicating this information.  </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e54aazt">
+		<a class="author" href="https://www.reddit.com/user/burner421" target="_blank">burner421</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Typically by columb counting i a  specialized microchip called a “fuel gauge” texas instruments makes some of the best ones, they create a lookup table for each cell sku from a manufacturer (cell id) that is used to create a piecewise linear function for aging, it uses thing like number of cycles, depth of dicharge and iperating temperature to make an educated guess (though a pretty good one) about the batterys remaining charge over its lifecycle</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e54ci3n">
+		<a class="author" href="https://www.reddit.com/user/Concillian" target="_blank">Concillian</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It measures voltage and compares it to the discharge curve at current load.</p>
+<p>This webstore page for a typical size of battery used in laptops shows the voltage relationship with load put on the battery, called the &quot;C-rate&quot;  This is expressed in a ratio of the current load over the capacity... (If a 2500 mAH battery is discharged at 2500 mA, the discharge rate is 1C, if it's discharged at 25 mA... 1/100C, 25A... 10C, etc...) Different discharge rates result in different voltages, so it needs to be programmed with a &quot;set&quot; of curves to characterize expected voltage at different loads.</p>
+<p><a href="https://www.powerstream.com/18650-high-discharge-rate.htm" target="_blank">https://www.powerstream.com/18650-high-discharge-rate.htm</a></p>
+<p>Phone batteries are not shaped the same, but all rechargeable batteries act in a similar fashion... You can see that the curve is non-linear, it changes a lot near 100% and zero, but not a lot between 80 and 20%...  so the OS keeps a table of battery voltage to % remaining and a table of how the voltage changes with different discharge loads.  A part of the OS monitors the curve over time, comparing actual to expected values and will modify these tables to account for battery degradation over it's lifetime in an attempt to keep the % remaining reasonably accurate, even though the battery has degraded (~10 years ago, phones were horribly inaccurate at this, but now they're quite good)</p>
+<p>But it all comes down to that a batteries &quot;voltage&quot; is not really constant... At full charge it's higher than at low charge.  Even though that's only a small change relative to it's nominal voltage, it's measurable and predictable with enough data.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
