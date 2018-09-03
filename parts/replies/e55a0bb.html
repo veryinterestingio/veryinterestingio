@@ -1,0 +1,77 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/giobs111" target="_blank">giobs111</a>
+			<div class="markdown"><p>i'd like to add that following ray bounces from light source to camera still is not cheap so instead they follow rays from camera to light source</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/winterborne1" target="_blank">winterborne1</a>
+			<div class="markdown"><p>Indeed.  This is primarily done so the GPU doesn’t have to worry about rays that end up out of sight of the camera.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/herbys" target="_blank">herbys</a>
+			<div class="markdown"><p>And that is what is normally called raytracing, casting rays from the light sources is called raycasting and is seldom used other that as a commitment for raytracing to calculate indirect lighting.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/herbys" target="_blank">herbys</a>
+			<div class="markdown"><p>And that is what is normally called raytracing, casting rays from the light sources is called raycasting and is seldom used other that as a commitment for raytracing to calculate indirect lighting.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/F0sh" target="_blank">F0sh</a>
+			<div class="markdown"><p>This is only half true. The point is that if a ray bounces outside the camera it doesn't contribute to the scene so it's not worth evaluating. But there is also no use casting rays from camera which never hit a light source - it's pretty much the same phenomenon. </p>
+<p>Instead you trace rays from the camera into the scene, let them bounce around and, when you want to stop bouncing, calculate illumination using a different method - waiting for them to bounce into a light would be much too slow. So at this point you probably cast a bunch of rays to see which lights illuminate that point (i.e. whether it's in shadow) and for those lights which are, calculate the distance and angle to the light and use that combined with the properties of the surface to calculate the illumination. A truly accurate rendering method would indeed just keep bouncing rays until they found a light, but this is too slow to be used in all but special situations. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nayhem_jr" target="_blank">nayhem_jr</a>
+			<div class="markdown"><p>So are both raycasting and raytracing happening to some extent, or is one of the methods faster?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JtheNinja" target="_blank">JtheNinja</a>
+			<div class="markdown"><p>And when tracing from the light, you can also do the same thing by tracing rays from each hit to see if you have a clear shot at the camera. However, you can’t do this from a specular surface, only a diffuse one, since a ray can only leave a specular surface at one particular angle, rather than the arbitrary angle towards the light/camera. When you’re tracing from the light only, it’s almost impossible to render mirrors or glass as a result.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ago_" target="_blank">ago_</a>
+			<div class="markdown"><p>Yes because ultimately you only want to color the pixels of a 2d screen, which are corresponding to the camera's back.</p>
+<p>If you wanted to generate a 3d hologram, then you would need to do this for all points of your space.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/janoc" target="_blank">janoc</a>
+			<div class="markdown"><p>Actually the the largest (most computationally expensive) problem with raytracing is efficient intersection testing of the rays with the scene. I am not quite sure how did Nvidia actually address that or whether this RTX stuff is just a marketing wank/new name for stuff that we had before already (and that people have implemented raytracing with too) - namely vertex/fragment/geometry shaders and compute shaders, maybe with a different optimization.</p>
+<p>That's why most raytracing demos tend to use things like spheres or metaballs where this is really trivial to calculate (just a comparison with the distance from the center). Doing this efficiently on a complex models consisting of tens of thousands of triangles (a typical game character) in a scene which could have around a million of triangles total and multiple light sources in a contemporary AAA game is quite a different story.</p>
+<p>&#x200B;</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/baseketball" target="_blank">baseketball</a>
+			<div class="markdown"><p><a href="https://en.wikipedia.org/wiki/Bounding_volume_hierarchy" target="_blank">Bounding Volume Hierarchy</a> puts the objects into a tree structure so you don't have to repeatedly compare things that will never intersect.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DeltaBurnt" target="_blank">DeltaBurnt</a>
+			<div class="markdown"><p>Just want to add that this is still really hard to do efficiently on GPUs. One of the problems with a GPU is you have thousands of threads trying to access memory at once. If they don't access memory just perfectly (via caching and banking) you get serialization of your computation which basically kills performance. When you raytrace you start jumping from parts of memory local to your thread to completely other parts of memory, it's hard to efficiently do the lookup for these rays when you're not positive that a ray from one side of the scene won't touch an object on the complete opposite side (and this is compounded when you add global illumination causing reflections and refractions).</p>
+<p>Basically GPUs work really well when you can ensure locality, that's really difficult to do with your typical BVH+pathtracing algorithms.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/elohyim" target="_blank">elohyim</a>
+			<div class="markdown"><p>Will raytracing in video games allow for real-time mirrored images?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xylempl" target="_blank">xylempl</a>
+			<div class="markdown"><p>It should. In the most basic case, the surface of the mirror will just need to have a material assigned that will cause the ray to bounce off of it without any diffusion.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kinokomushroom" target="_blank">kinokomushroom</a>
+			<div class="markdown"><p>Do you think transparent materials will have better refraction with ray tracing? I'd love to see realistic glass in games.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/karantza" target="_blank">karantza</a>
+			<div class="markdown"><p>It turns out that in a raytracer, perfect mirrors are often cheaper to calculate than normal diffuse objects. When a light ray hits a mirror, it bounces off in one and only one direction. When a light ray hits a diffuse object - anything that isn't a mirror, it actually has a probability of bouncing in nearly any direction. The way raytracers handle that to avoid getting noisy images is that they actually release many rays from each one of those diffuse collisions, to see where they all wind up going. <a href="http://www.kevinbeason.com/smallpt/result_40.png" target="_blank">It still looks noisy</a> in most cases unless you do <a href="http://www.kevinbeason.com/smallpt/result_25k.png" target="_blank">lots and lots of rays.</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CommodoreGuff" target="_blank">CommodoreGuff</a>
+			<div class="markdown"><p>Not to get too pedantic, but it's worth pointing out that the images you linked are from a path tracer, not a ray tracer (if anyone's interested, the specific images were generated by <a href="http://www.kevinbeason.com/smallpt/" target="_blank">smallpt</a>, a very nifty and short path tracer written in C).</p>
+<p>Ray tracers generally aren't going to be noisy, because they don't fully simulate global illumination. A ray-traced version of the second image would look pretty similar but not quite the same. The slight red and blue tints visible on the white walls (most noticeable on the top wall) would be gone. The bright spot on the blue wall would also not be there (nor would the much fainter reflections slightly above it).</p>
+<p>The basic ideas are similar, but path tracing is much more computationally expensive because it's essentially attempting to simulate every path a photon might take, whereas raytracing is really only interested in a much smaller number of paths. That said, it is still very easy to parallelize and thus is also well-suited to running on GPUs.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Zerotan" target="_blank">Zerotan</a>
+			<div class="markdown"><p>Should be interesting. They've had the workaround of having a camera behind the mirror all the way back to Duke Nukem 3D (Damn, I'm looking good), but getting moving mirrors (and other reflective surfaces) will be great, especially in car games.</p></div>		</li>
+					</ul>
+		</ul>
+	
