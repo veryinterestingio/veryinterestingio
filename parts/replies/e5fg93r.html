@@ -1,0 +1,64 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ShoobyDeeDooBopBoo" target="_blank">ShoobyDeeDooBopBoo</a>
+			<div class="markdown"><p>Isn't direction worked out using a digital compass?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nyrol" target="_blank">nyrol</a>
+			<div class="markdown"><p>Direction can only be determined using a digital compass, or a gyroscope, yes. An accelerometer in a phone can only tell you which direction you're moving relative to the phone itself. If you need orientation based on true cardinal directions, you need a digital compass. A gyroscope will aid in determining rotation to determine direction without much acceleration, and an accelerometer can only tell you which direction you're accelerating in.</p>
+<p>When you walk, your phone is accelerating in all sorts of directions (primarily up/down and back/forth) which can be used to characterize the fact that you're walking, but that has to be used in turn with the digital compass to determine direction, and for better accuracy, the gyroscope.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Halvus_I" target="_blank">Halvus_I</a>
+			<div class="markdown"><blockquote>
+<p>Direction can only be determined using a digital compass, or a gyroscope, yes.</p>
+</blockquote>
+<p>A gyroscope detects ORIENTATION in 3 DoF space, the magnetometer measures magnetic north.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mr_FeelsBadMan" target="_blank">Mr_FeelsBadMan</a>
+			<div class="markdown"><p>Wouldn't the movement of the phone technically be able to provide a small out of energy back into the battery through the gyroscope?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PurpleIcy" target="_blank">PurpleIcy</a>
+			<div class="markdown"><p>I thought accelerometer, as the name implies, allows you to tell how fast you are accelerating and or moving...??? Not which direction you are moving towards?</p>
+<p>I mean, you might think so, and you are &quot;&quot;&quot;kinda&quot;&quot;&quot; right as the chip that contains accelerometer literally has gyroscope in the same place and it just becomes pretty much the same thing, but accelerometer on it's own can't really tell that.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/brunette_bean" target="_blank">brunette_bean</a>
+			<div class="markdown"><p>The compass in phones uses a magnetic sensor alongside the accelerometer</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ShoobyDeeDooBopBoo" target="_blank">ShoobyDeeDooBopBoo</a>
+			<div class="markdown"><p>Ah ok, cool.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TriloBlitz" target="_blank">TriloBlitz</a>
+			<div class="markdown"><p>I think the compass is magnetic plus gyroscope, not accelerometer.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Davecasa" target="_blank">Davecasa</a>
+			<div class="markdown"><p>They use a single chip that has a 3 axis accelerometer, 3 axis magnetometer, 3 axis gyro, and often a pressure sensor thrown in as well for altitude. These measurements are combined to give orientation. Many of these chips do all the processing on board and output the answer. Look up BNO055 for an example.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hangs-Dong" target="_blank">Hangs-Dong</a>
+			<div class="markdown"><blockquote>
+<p>Your phone has, among tons of other gadgets and sensors, what’s called an accelerometer which tracks motion, tracks your acceleration, and also tracks which way the phone is pointing.</p>
+</blockquote>
+<p>Isn't the gyroscope what accounts for orientation?  The Accellerometer starts counting from when you choose to record it, making it relative?</p>
+<p>When I look at live accellerometer data, it's always seems to start at 0, not that 0 is it lying flat on a surface perpendicular to gravity.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Veliladon" target="_blank">Veliladon</a>
+			<div class="markdown"><p>The system's location daemon will normally knows the phone's location at all times in 3D space using a mix of whatever measurements it has available to it, accelerometers, compass, GPS, tower triangulation, wi-fi triangulation.</p>
+<p>For instance a GPS signal is limited by things like the laws of physics and the speed of light and will only get you down to 2m or so. So the phone's location daemon will also use multiple cell phone towers at the same time and it can start to pin it down the location even more. Like if I have a cell phone tower and I know the exact co-ordinates of the antenna and the delay to it I can calculate a pretty precise circle of where I am. When I only have &lt;10 miles for the signal to traverse, there's not a lot of variation in timing due to atmospheric interference. On the whole, over this short distance the atmosphere is pretty consistent unlike the ionspheric interference which can distort a fair bit over 12,550+ miles and you can get resolution a bit shorter than 2m. So you find where that circle overlaps cuts through your GPS circle and bam, you have a more precise location than just GPS alone.</p>
+<p>In the case of a compass it will only work when the phone is aligned with the magnetic field. In the case of accelerometers they work in three dimensions but will drift over time. So what you'll typically find is when the phone can get alignment with the Earth's magnetic field it will sync the accelerometer back with the cardinal direction and zero the drift while when the device isn't in alignment with the Earth's magnetic field it roughly knows which direction the device is pointing. This is also ditto for the GPS. When you're not actively using location services the phone will use accelerometer data to track a rougher position to save on battery. When you fire up location services your phone already has the ephemeris and almanac and it knows roughly where you are so it can get a fix on GPS satellites almost instantly and rapidly pin down your location.</p>
+<p>You get accelerometer data starting at zero because it's a giant pain in the ass to work with offsets. Would you rather work with having to offset every accelerometer calculation with the user's position or would you rather have the API and location daemon do all that dirty work for you?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drillbit7" target="_blank">drillbit7</a>
+			<div class="markdown"><p>When I run the Physics Toolbox app on my Android phone and view accelerometer data, with the phone flat on the table and screen up i see the z-axis acceleration is close to 1 g.  Meaning that the z-axis accelerometer is bending down under its own weight (force gravity).  When I hold the phone straight up, the y-axis acceleration is now 1 g.</p>
+<p>This is how the phone &quot;knows&quot; its orientation.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/username--_--" target="_blank">username--_--</a>
+			<div class="markdown"><p>to add to this, your accelerometer, as the name implies, measures acceleration/g-forces. Essentially, it can tell when you are moving in either direction.</p>
+<p>Now, that is the easy part. Now, you need to figure out what a human walk looks like by looking at how acceleration changes in different directions. i.e., when you are walking, you bounce up a little bit (or down) when you take a step.</p></div>		</li>
+					</ul>
+	
