@@ -1,0 +1,91 @@
+<li class="post" data-handle="9edvke">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/9edvke/eli5_how_do_the_tick_boxes_that_confirm_you_are/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/9edvke" onclick="return false">ELI5 : How do the tick boxes that confirm you are not a robot work?</a>
+		</h2>
+		<!--<span class="date">2018-09-12</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5 : How do the tick boxes that confirm you are not a robot work?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="e5odzi7">
+		<a class="author" href="https://www.reddit.com/user/Millkovic" target="_blank">Millkovic</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>So many incorrect answers here.</p>
+<p>Excerpt from 2016 paper <a href="https://www.blackhat.com/docs/asia-16/materials/asia-16-Sivakorn-Im-Not-a-Human-Breaking-the-Google-reCAPTCHA-wp.pdf" target="_blank">I'm not a human: Breaking the Google reCAPTCHA</a>:</p>
+<blockquote>
+<p>Once the user clicks in the checkbox, a request is sent to Google containing (i) the Referrer, (ii) the website’s
+sitekey (obtained when registering for reCaptcha), (iii) the cookie for google.com, and (iv) the information gen-
+erated by the widget’s browser checks (encrypted). The request is then analyzed by the advanced risk analysis
+system, which decides what type of captcha challenge will be presented to the user.</p>
+<p>“No captcha reCaptcha” [Figure 1]. The new user-friendly version is designed to completely remove the
+difficulty of solving captchas. Upon clicking the checkbox in the widget, if the advanced risk analysis system
+consider the user have high reputation, the challenge will consider to be solved and no action required from
+the user. For the remainder of the paper, we will refer to this type of captcha as the checkbox captcha.</p>
+</blockquote>
+<p>EDIT: ELI5: When you click on &quot;I'm not a robot&quot; checkbox, various data gets sent to the server. If analysis system  thinks you're not a robot, you passed the test; otherwise, you will be presented with image reCaptcha (for example: &quot;select all cars in the picture&quot;) or a text reCaptcha (distorted text you need to input).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="e5oe3b9">
+		<a class="author" href="https://www.reddit.com/user/talaron" target="_blank">talaron</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I don't like how many of the other answers are somewhat on the right track but add additional misinformation. So first of all: No, the code that does the robot-detection &quot;magic&quot; is very limited in what it can read and it cannot access anything outside your current browser tab. And while it may use the timing of your clicking behaviour, this is only a small factor in the whole detection process.</p>
+<p>So how does it work?</p>
+<p><strong>tl;dr: It uses Google's tracking database that is normally used give you better ads.</strong></p>
+<p>Since the tick-box technology (called reCATPCHA) is actually provided by Google, what it can access is Google's information about you. More concretely, it can access the unique number that Google assigned you the first time you used any of their services, and all the tracking information that Google collected for this number afterwards. So essentially, it uses the same power that normally allows Google to personalize your ads to instead see if the profile it has about you matches what a typical human would do.</p>
+<p>So why can't a machine simply use Google's services for a bit and then look like a human? Because timing is also an important factor. Google probably tracked you over the course of weeks or months, so if a spammer wants to pass the tick-box, they would need to spend weeks in preparation, which makes it very unrealistic to do that for their purposes. </p>
+<p>It is also spam-proof in the sense that you can't make a &quot;good&quot; tracking profile once and then use it for a while: If the same number in Google's database solves too many boxes in a short period of time, their &quot;rating&quot; in human-ness gets reduced and they may have to solve an additional &quot;find the street signs&quot; check. You can test it out yourself: Find a site that uses the tick boxes, click them, reload the page and do it again. After 3-5 times in a row, you get an additional prompt.</p>
+<p>As a side-note: While this technology works very well, it also has a big caveat: It rewards you for being a good &quot;Google citizen&quot; by using their services and letting them track you. If you for example use your browser's private mode or even a VPN to be more anonymous, you are treated as potentially evil and have to solve a lot harder images. In addition, it allows Google to track you even more because they can also collect all the websites you solved their tick-box checks on, and use that again to personalize your ads. So while the technique makes use of Google's immense power over the internet, it also amplifies it even more, which in my opinion might be dangerous for all of us in the long term.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e5o31xq">
+		<a class="author" href="https://www.reddit.com/user/fearer4000" target="_blank">fearer4000</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Tracks your behaivour before clicking it. Open tabs, history, IP, computer stats and running programs. It is a lot more complex and demanding method than the original distorted text photo captcha but is much more convenient for human users.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e5o3j4f">
+		<a class="author" href="https://www.reddit.com/user/vondpickle" target="_blank">vondpickle</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[edit: this answer is wrong, sorry :( ]</p>
+<p>One of the indicator is the way human being controlling mouse (for desktop). robot move the cursor very precise. Human? Wobbly. No matter how precise and careful you want it to, still wobbly wobbly.</p>
+<p>Edit: damn, wrong answer. I surely read about this somewhere. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e5og8zu">
+		<a class="author" href="https://www.reddit.com/user/RhynoD" target="_blank">RhynoD</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><strong>Please read this entire message</strong></p>
+<hr />
+<p>Your submission has been removed for the following reason(s):</p>
+<ul>
+<li>ELI5 requires that you search before posting.</li>
+</ul>
+<p>There are absolutely no exceptions to this rule. Please see this <a href="http://www.reddit.com/r/explainlikeimfive/wiki/how_to_search" target="_blank">wiki entry</a> for more details (Rule 7).</p>
+<hr />
+<p>If you would like this removal reviewed, please read the <a href="https://www.reddit.com/r/explainlikeimfive/wiki/detailed_rules" target="_blank">detailed rules</a> first. If you still feel the removal should be reviewed, please <a href="http://www.reddit.com/message/compose?to=%2Fr%2Fexplainlikeimfive&amp;subject=Can%20you%20review%20my%20thread?" target="_blank">message the moderators.</a></p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/9edvke" onclick="return false"><span>show</span></a>
+</li>
