@@ -1,0 +1,72 @@
+<li class="post" data-handle="9flzbk">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/9flzbk/eli5_why_do_electronics_need_to_turn_themselves/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/9flzbk" onclick="return false">Why do electronics need to turn themselves off and back on to update?</a>
+		</h2>
+		<!--<span class="date">2018-09-16</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Just got an update on my PS4 and it turned itself off and back on. I've always just taken as read that that step needs to occur but I don't really know why.</p>
+<p>&#x200B;</p>
+<p>Edit: A lot of similar answers basically saying it doesn't have to turn off and on but it's easier and cheaper if it does. This was my guess.</p>
+<p>Edit 2: Everyone who used the &quot;you can't fix a car while driving it&quot; metaphor, I hope you're happy. You ruined Mad Max: Fury Road for me. Thanks.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="e5xgpx1">
+		<a class="author" href="https://www.reddit.com/user/Jainarayan" target="_blank">Jainarayan</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'm not a gamer, but in the &quot;big systems&quot; (IBM) world I work in, there are two types of storage... working storage/memory; and permanent storage/memory. Updates are written to permanent memory, but the copy in working memory has to be refreshed. You don't have to power cycle the unit after an upgrade, but then the new features won't be available. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="e5xuiga">
+		<a class="author" href="https://www.reddit.com/user/Knowbody42" target="_blank">Knowbody42</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For the same reason you can't replace critical parts in a car while it's running.</p>
+<p>You can't remove the gearbox <em>while you're using it</em> and replace it with another gearbox, and expect the car to keep running in the meantime.</p>
+<p>Removing some critical files in the Operating System <em>while it's running</em> in order to replace them will cause the Operating System to stop working. Because it needs those files to run.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e5xizgv">
+		<a class="author" href="https://www.reddit.com/user/edman007-work" target="_blank">edman007-work</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Really, core operating system components, like drivers and kernels specifically are really hard to update without a reboot. Many systems, especially all in one type things (like a PS4) are configured to just always reboot after an update in case such a thing was updated. It makes it so the developer doesn't need to figure out what exactly needs to be restarted, and if it can be restarted. It also minimized testing because they can test the final configuration, after power off, and don't need to verify it works without a reboot.</p>
+<p>As for why core drivers are difficult to update, basically a driver needs to keep track of the state of it's associated hardware and respond to it in a timely manner. For example a keyboard has a caps lock, when caps lock is on you expect the letters to work different than when it's off. The keyboard might not actually have a feature to tell the computer if it's on or off, just if you pressed it or not. It's up to the driver to figure it out. Now reloading a running program is possible, but you need to know where in the code it is so you can stop it and start the new program in the same spot. Ideally the memory locations will be the same between old and new, and you can just transfer the memory. In real life, people program in high level languages which auto-allocate that stuff, so everything is practically scrambled. Also, the update might have deleted the spot the old code was at so you might not be able to transfer the running code. And further there is a chance that if it's a driver it never supported the new feature (for example number lock), so adding the number lock will result in an unknown state. Things get even more complicated when you talk about other things using the driver (think about a network card adding a feature while some other program is using it, how does the old program learn about the new feature?).</p>
+<p>My example was simple, real drivers are implementing things that take hundreds of pages to describe. The only sure way to do it is write a program that converts between old and new memory, with is about 1000 times more work than it's worth. It's way easier to just say reboot which will pull the reset line on all hardware and set everything to a known state.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e5xipy3">
+		<a class="author" href="https://www.reddit.com/user/bagelmountain" target="_blank">bagelmountain</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's not the electronics as such.  It's the software (programs) inside them.  When you turn on the PS4, it loads various programs into its memory, in order to turn a bunch of chips into a working gaming system.  By far the simplest way to update those programs is for the machine to download the new version, store it in place of the old version, and so next time the machine starts up it will load the new version rather than the old one.  </p>
+<p>&#x200B;</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e5xtuin">
+		<a class="author" href="https://www.reddit.com/user/dutchwonder" target="_blank">dutchwonder</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In an update you are installing new files in place of old files that are potentially intended to be used in the process(What makes the computer actually do things) that is continuously running. If these files are open and in use, whether through references or as the actual code running, then you cannot replace those files without stopping the process as you cannot read and write at the same time (this ensures data integrity). </p>
+<p>Thus the reboot is needed to switch from running the old files in the process to running the new files in the process. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/9flzbk" onclick="return false"><span>show</span></a>
+</li>

@@ -1,0 +1,56 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/capilot" target="_blank">capilot</a>
+			<div class="markdown"><p>Best answer, IMHO.</p>
+<p>A few details:</p>
+<p>Correct; you can't update an operating system's files while it's running.</p>
+<p>So there are two approaches. One is to have a spare partition in the system's file storage that contains a whole 'nother bootable operating system (a smaller one, with just enough features to allow it to upgrade the main) — typically called the Recovery partition. The device reboots to the Recovery partition, and the operating system there takes the file system updates and applies them to the main partition. Once the updates have been applied and validated, the device reboots back to the main partition and Bjorn's your uncle. This is how Android does it.</p>
+<p>The other approach is to put the Recovery operating system into a ramdisk and boot to that. This does the same thing, but doesn't use up a partition in your device's main storage.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/never_safe_for_life" target="_blank">never_safe_for_life</a>
+			<div class="markdown"><p>This is why computers are so cool and physical metaphors often fall short. In ELI5 speak he's saying you create a second engine next to the first one, start running the car off it, update the main engine, then switch back to it when it's done.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DoomBot5" target="_blank">DoomBot5</a>
+			<div class="markdown"><p>Except you're just running the engine, not the entire car. That's because to update the main engine you need an engine running to do the updates. Once you're done, you restart the entire car.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shit_frak_a_rando" target="_blank">shit_frak_a_rando</a>
+			<div class="markdown"><p>You can update Linux while it's running. Even the kernel (the core part of the OS) can be updated without restarting.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/capilot" target="_blank">capilot</a>
+			<div class="markdown"><p>Well color me impressed. That's really cool.</p>
+<p>Actually, many years ago, when SunOS was a thing, I wrote a small tool that would allow me to hot-swap any binary in the system; even the libraries that the tool itself depended on. It wasn't hard, it simply took advantage of the fact that a file still exists on disk even after you've deleted it, as long as any program anywhere has it open.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RhymenoserousRex" target="_blank">RhymenoserousRex</a>
+			<div class="markdown"><p>Right but you can't update the hardware firmware without a restart, which is what's happening in the case of a LOT of electronics devices. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Savanna_INFINITY" target="_blank">Savanna_INFINITY</a>
+			<div class="markdown"><p>If I update the kernel I need restart, to use the newer one. With security patches you don’t need to restart.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sacoPT" target="_blank">sacoPT</a>
+			<div class="markdown"><p>This is the explanation I was going to give</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dudedustin" target="_blank">dudedustin</a>
+			<div class="markdown"><p>This isn’t quite accurate. A database for instance handles reading and writing at the same time by design. It’s actually quite common in that respect.</p>
+<p>It’s just a tad more work to use a database for things than stick with what we have.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thezapzupnz" target="_blank">thezapzupnz</a>
+			<div class="markdown"><p>How is the example of a database reading and writing simultaneously relevant? I'm struggling to see the link with operating system components and the reading and writing of data by a database. Perhaps you're talking about the concept of atomicity; in this case, it's up to the database software to determine how to deal with atomicity (transaction catalogues or locking come to mind). That still doesn't have anything to do with replacing system files whilst they're in use, not as far as I can see.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Knowbody42" target="_blank">Knowbody42</a>
+			<div class="markdown"><p>The data <em>inside</em> the database is separate from the software that <em>runs</em> the database.</p>
+<p>You can change the data inside the database quite freely, but you can't just change the <em>software that runs</em> the database the same way.</p>
+<p>On a large scale, they tend to solve this by having redundancy. There are multiple database servers running at the same time, and they keep some of the servers running while they upgrade the others.</p>
+<p>Which is a bit like performing road works by closing just the lanes they're currently working on.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/never_safe_for_life" target="_blank">never_safe_for_life</a>
+			<div class="markdown"><p>A database is different from an operating system. Databases have the requirement that they keep running so a lot of engineering effort goes into making live patching possible. Databases also aren't interfacing with the low level / physical components of the computer, which makes it easier. </p></div>		</li>
+					</ul>
+		</ul>
+	
