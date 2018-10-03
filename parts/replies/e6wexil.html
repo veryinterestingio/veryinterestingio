@@ -1,0 +1,152 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/typer525" target="_blank">typer525</a>
+			<div class="markdown"><p>The example above gets as far as basic number crunching. Which is fine if you want a computer to activate the circuit to add the numbers you give it. But how do we give a circuit activation meaning?</p>
+<p>To further /u/Zomunieo's example:</p>
+<p><strong>Key Idea 3: Operations can put their results in a memory location, and other operations can access that location</strong></p>
+<p>When you add 1 and 2, you have to specify a location for the computer to put the result when it is done otherwise the result will be lost when the next line of code is run. Think of this like a box. The result of adding 1 and 2 will be placed in Box 1. Then if the next operation is to add Box 1 and the number 3 together and put the result in Box 2, it will look in Box 1 and find 3, and it will activate the adding circuit again to get the result (6) and put it in Box 2.</p>
+<p>This allows groups of instructions to interact with each other. Which is great if your program is to solve a math expression piece by piece. But what if you want to change what your program does depending on some unknown factors? Maybe you want to keep adding 5 to a box until it is bigger than 20?</p>
+<p><strong>Key Idea 4: Some operators can change the flow of a program</strong></p>
+<p>There exists some operators that tell the computer to move to a different location in the program. There are two such types, the jump, and the branch. The jump is straightforward, simply tells the computer to continue reading instructions from a new location. The branch does the same thing, but where it jumps to is dependent on two values/boxes. One type branch operator will jump to Location A if the two values/boxes contain the same value, Location B if they do not match. Others types will jump to A if the first value is bigger, B if the second value is bigger. If you want to keep adding 5 to a Box 1 until it is greater than 20, you can have the following:</p>
+<blockquote>
+<p>Start:</p>
+<p>Branch, go to A if Box 1 &lt; 20, otherwise go to B</p>
+<p>A:</p>
+<p>Add Box 1 and 5 and put the result in Box 1</p>
+<p>Jump, go to Start</p>
+<p>B:</p>
+<p>End of program</p>
+</blockquote>
+<p>This allows a group of instructions to do different things (and thus activate different circuits), based entirely on the initial values of the boxes. From here, it is all about getting creative with your various operators, boxes and program flow to accomplish what you want.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tech_society" target="_blank">tech_society</a>
+			<div class="markdown"><p>If you want to go deeper than this, I highly recommend reading:</p>
+<p><a href="https://en.wikipedia.org/wiki/Code%3A_The_Hidden_Language_of_Computer_Hardware_and_Software" target="_blank">Code: The Hidden Language of Computer Hardware and Software</a></p>
+<p>It explains that core question of how the computer turns bytes into programs. I can't recommend this book enough.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Commonsbisa" target="_blank">Commonsbisa</a>
+			<div class="markdown"><p>You just go straight from numbers to complex lines of code. </p>
+<blockquote>
+<p>Start:</p>
+<p>Branch, go to A if Box 1 &lt; 20, otherwise go to B</p>
+</blockquote>
+<p>How does a computer understand this in terms of just 1s and 0s?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RPBiohazard" target="_blank">RPBiohazard</a>
+			<div class="markdown"><p>There are 3 types of components called &quot;gates&quot; - AND, OR, and NOT. AND and OR take two inputs, either can be 0 or 1. An AND gate spits out a 1 only when both of its inputs are 1 and 0 the rest of the time, and an OR gate spits out  a 1 unless both of its inputs are 0. A NOT gate just take one input, and swaps it from a 0 to a 1 or a 1 to a zero. You can look up Truth Tables to understand this better.</p>
+<p>&#x200B;</p>
+<p>With these components, we can make (incredibly complicated in the case of computers) circuits that will allow binary bytes to interact in any way we like with other bytes. So to analyze the above example, in assembly code it would look something like this:</p>
+<p>&#x200B;</p>
+<p>COMPARE (contents of box 1), #20</p>
+<p>&#x200B;</p>
+<p>IF LESS THAN, BRANCH TO A</p>
+<p>&#x200B;</p>
+<p>GO TO B</p>
+<p>&#x200B;</p>
+<p>where each piece is represented with a binary byte in the machine. The circuitry is set up such that when the byte corresponding to &quot;COMPARE&quot; is used, the next two bytes will  have their sizes compared, and a &quot;greater than&quot; flag (a dedicated bit in a specialized piece of memory called  a register) is turned on, indicating that the comparison found that a &quot;less than&quot; relationship was found. Then, the IF LESS THAN, BRANCH TO instruction is encoded to look at the flag, and if it sees a 1, then it will fill the Program Counter (a register which holds the memory location of the next instruction to compute) with the address (memory location) of A. If our flag is 0, our Program Counter will just go to the next instruction, which will fill it with the address of B.</p>
+<p>&#x200B;</p>
+<p>&#x200B;</p>
+<p>Don't feel to discouraged if you don't understand, this is taught in second year of most electrical and computer engineering programs. There are plenty of resources online if you'd like to learn this stuff in better detail!</p>
+<p>&#x200B;</p>
+<p>&#x200B;</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/StefanMajonez" target="_blank">StefanMajonez</a>
+			<div class="markdown"><p>There's a separate program (either a compiler or an interpreter) that translates code into numbers (machine code) the computer then understands.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tuatha-an" target="_blank">Tuatha-an</a>
+			<div class="markdown"><blockquote>
+<p>How does a computer understand this in terms of just 1s and 0s?</p>
+</blockquote>
+<p>First let's write this out with a bit of code (Java for those curious) and I'll make my example slightly different for the sake of simplicity.</p>
+<pre><code>1. public int eli5Method(int x){
+2.     if(x&lt;20){
+3.         x = x + 5;
+4.     }else{
+5.         x = x - 5; 
+6.     }
+7.     return x;
+8. }</code></pre>
+<p>If anyone wants a line by line breakdown of I'd be happy to write one up but for the time being I'll just deal with the comparison (the &quot;if&quot; statement)</p>
+<p>An 'if' statement takes whatever you put inside it and determines whether or not that thing is true (1) or false (0).</p>
+<p>In this example the computer will take the value stored in the variable x (some 32-bit integer) and compare it with 20. It looks at these two values (in binary) and can determine which one is bigger.</p>
+<p>Let's say x is 6.</p>
+<pre><code>x  : 00000000 00000000 00000000 00000110 
+20 : 00000000 00000000 00000000 00010100</code></pre>
+<p>Looking at these two values the computer will accurately determine that 20 is larger.</p>
+<p>So the 'if' statement returns a '1'. Because it returned a '1' it will execute the code following the 'if' statement and <em>skip</em> the code following the 'else' statement. Were the value for x higher it would have returned a '0', skipped the 'if' code and ran the 'else' code.</p>
+<p>So for eli5Method(6) the computer would return a value of 11. Accurately determining that 6 is less than 20 and then adding 5 to the original value.</p>
+<p>If we ran eli5Method(24) the computer would return 19.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ender505" target="_blank">Ender505</a>
+			<div class="markdown"><p>Hopefully you aren't using too many &quot;goto&quot; commands ;)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zucker42" target="_blank">zucker42</a>
+			<div class="markdown"><p>Actually, in machine code, jump instructions (equivalent to gotos) are the only type of control flow instruction. That's why goto was included in languages like C.</p>
+<p>Though you might have aware of this and just been making a lighthearted <a href="https://www.xkcd.com/292/" target="_blank">velociraptor</a> joke.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KeetoNet" target="_blank">KeetoNet</a>
+			<div class="markdown"><p>They're all goto at that level.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OffbeatDrizzle" target="_blank">OffbeatDrizzle</a>
+			<div class="markdown"><p>&quot;What's a goto?&quot;</p>
+<p>- Some AI Scientist using Python</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/coolguy2006" target="_blank">coolguy2006</a>
+			<div class="markdown"><p>I kinda understand it logically, but how exactly do you get something physical to follow these rules?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KapteeniJ" target="_blank">KapteeniJ</a>
+			<div class="markdown"><p>Basically it's a circuit design. It might be easier to understand if you play a game like Manufactoria. After a couple of levels, see how this could be implemented in physical world mechanically, like in this video <a href="https://www.youtube.com/watch?v=D5h8bdWcLA8" target="_blank">https://www.youtube.com/watch?v=D5h8bdWcLA8</a></p>
+<p>With electricity it just gets faster because instead of marbles dropping or something, you use electricity going through the system. The basic idea however is much the same.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SourceTheFlow" target="_blank">SourceTheFlow</a>
+			<div class="markdown"><p>It might sound stupid, but you can watch some minecraft redstone videos. In essence that is exactly how a computer operates. There are a lot of videos of people making simple calculators.
+Basically, there are so-called gates that output 1 or 0 depending on the inputs. E.g. an OR-gate ouputs 1 if any of the (2) inputs is 1. Using those gates, you can make physical machines that f.i. add two numbers in binary.
+Generally, you can make all gates from a NOT-Gate (the only one minecraft has built in).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JKTKops" target="_blank">JKTKops</a>
+			<div class="markdown"><p>You might have meant NAND rather than NOT as NOT gates only take one input.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/methodrunner" target="_blank">methodrunner</a>
+			<div class="markdown"><p>No joke, making a Minecraft CPU was what made me understand how you can put transistors together to make a processor</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Naoumovitch" target="_blank">Naoumovitch</a>
+			<div class="markdown"><p>Basically same way you make a light bulb produce light when you flip a switch on - by making a circuit that lets the electric current flow in the desired direction. In case of computers, the presence of the current means 1, the absence of the current means 0. You can use transistors to direct the electric current in a complex circuit as you see fit.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/weirdbuttholetinge" target="_blank">weirdbuttholetinge</a>
+			<div class="markdown"><p>Although I appreciate your super in depth answer, this is explain like I'm FIVE, not explain like I'm on my 5th year towards a doctorate in computer programming.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mrlazyboy" target="_blank">mrlazyboy</a>
+			<div class="markdown"><p>Pssh, we learn this in first year of computer science :P</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nairdaleo" target="_blank">nairdaleo</a>
+			<div class="markdown"><p>In more layman terms:</p>
+<p>You can assign meaning to those 0’s and 1’s and save them in memory (be that a magnetic strip or a punch card)</p>
+<p>For example on one processor 0110 may mean “add”, in another it may mean “read”</p>
+<p>The 1’s and 0’s following are the values to operate on, for example </p>
+<p><strong>0110</strong> 0001 1011 may mean <strong>add</strong> 0001 into whatever is in memory location 1011 and save it into that same memory location</p>
+<p>Where you can also use binary code to represent numbers in the same type of encoding used in decimal:</p>
+<p>123 = 1*100 + 2*10 + 3*1</p>
+<p>In binary:</p>
+<p>0101 = 0*8 + 1*4 + 0*2 + 1*1 </p>
+<p>Which is just “5 counts” just encoded differently</p>
+<p>You may thing “that’s a lot of work for 5” but the point is you can count by saying <em>yes</em> or <em>no</em>. You can get even more concise large numbers with hexadecimal (base 16) but that’s beside the point.</p>
+<p>After you have this formalism of what the memory arrangement means, all it takes is to skip from one memory location to the next to run a program.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/weirdbuttholetinge" target="_blank">weirdbuttholetinge</a>
+			<div class="markdown"><p>Thank you:D</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

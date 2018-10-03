@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: How do computers turn a million yes and nos into a basic program?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="9k4q7r">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/9k4q7r/eli5_how_do_computers_turn_a_million_yes_and_nos/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/9k4q7r" onclick="return false">How do computers turn a million yes and nos into a basic program?</a>
+		</h2>
+		<!--<span class="date">2018-10-03</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>At it's most basic level, I don't understand how you turn that input into complex programs. </p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="e6wexil">
+		<a class="author" href="https://www.reddit.com/user/Zomunieo" target="_blank">Zomunieo</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The order of the yes's and no's matters. Let's call yes (1) and no (0). A container that hold a 1 or 0 is a <em>bit</em>.</p>
+<p>Now let's make a rule that 4 bits in a row is a <em>nibble</em>. We could choose any number, but 4 is a good number.</p>
+<p>Now I'll make another rule. There's a way to turn a nibble into an integer. The value of a nibble <em>abcd</em>: a <em> 8 + b </em> 4 + c <em> 2 + d. So If want to write &quot;1&quot; as a nibble I write &quot;0001&quot;, and 7 is &quot;0111&quot;. (This is the </em>binary number system*.)</p>
+<p><strong>Key idea 1: we can turn a list of &quot;yes&quot; and &quot;no&quot; into numbers (integers).</strong></p>
+<p>Now I'm going to make another rule. There are triplets of nibbles. The first nibble we'll call the <em>opcode</em>. The next two nibbles we'll call <em>operands</em>. They are all still nibbles.</p>
+<p>Here's a triplet. The operand is in bold.</p>
+<p><strong>0001</strong> 0001 0001</p>
+<p>I know I'm making up a lot of rules, but I want another. If the operand is <strong>0001</strong> (1) that means <em>addition</em> and if it's <strong>0010</strong> (2) that means <em>subtraction</em>. Now you know that when I write</p>
+<p><strong>0001</strong> 0001 0010</p>
+<p>it means</p>
+<p>&quot;+&quot; 1 2</p>
+<p>or, rearranging to the order we're familiar with, &quot;1+2&quot;. We just wrote one line of a program for a computer that tells it to add two numbers together.</p>
+<p><strong>Key idea 2: we can make a program out of a list of numbers.</strong></p>
+<p>That doesn't tell us how to get an answer. In a computer, the opcode selects an operator, meaning it switches on a circuit that add two numbers, and then feeds the next two numbers into the circuit.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="e6wig2a">
+		<a class="author" href="https://www.reddit.com/user/LazyStateWorker3" target="_blank">LazyStateWorker3</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The most basic of basic programs is a light switch; it’s a simple on and off. If you add another light switch, depending on how you wire it, you can have the light react to 4 different scenarios</p>
+<p>Both switches off
+Both switches on
+One off one on
+The other off, the other on</p>
+<p>If you add a third switch, the number of options doubles again to 8 options. </p>
+<p>That’s binary, for every new switch, you double the options. 2-4-8-16-32-64-128...</p>
+<p>What can you do with all those options? Let’s say you now have 4 switches with their 16 possible outcomes...(all on one wall for reasons later) </p>
+<p>Add more lights? You don’t need 16 lighting options for one light, so you keep the first one as an on off. The other is positioned inside your deadbolt lock so that if you forget to turn the light off, locking your door turns it off too. </p>
+<p>But wait, what if your in the house and want to lock the door AND have the light on? Well, one switch could enable or disable the door switch. </p>
+<p>You can have it wired so that when the door is locked and the bypass switch is on, that switch turns the light on while also unlocking the safe to your gun. This is just wiring, nothing fancy.</p>
+<p>If you want some other safety measure in place, you could have a the last switch that only allows that to happen if you have it on. </p>
+<p>This way, the safe will only open if the safe switch is on, the door is locked, AND the light is on. </p>
+<p>You could have a different safe open with milkshake in it if the door is unlocked.</p>
+<p>Then another switch on the lock that turns on when it’s unlocked to push the door open, </p>
+<p>Then another on the door that pulls the tray out when that’s complete</p>
+<p>Then another that drops a straw in then shake</p>
+<p>This can go on and on given the space and mechanical skill to cook food, wash dishes etc. but there are certain things you have to initiate like flip the milkshake switch, or the laundry switch. </p>
+<p>Once you have everything on a set schedule, you can set everything up on
+Timer. </p>
+<p>If you have one day of the week where you do everything different, that can be another separate set of timers. Then one more timer switch that switches which set is used for one day after every 6. </p>
+<p>Now you have a fully automated house. That does everything you need for whichever day it is. </p>
+<p>That’s a computer running one program, or it can be thought of as 2 programs for the two different operations. Or you could say that each operation (dishes, milkshake) is a program. Not all that important. </p>
+<p>Remember, the timers are just on/off switches that are cycled through at a certain rate. Because a program will often execute extremely quickly, it’s not Doing anything out of order or simultaneous, it’s just fast forwarding the house of switches to super speed so that the dishes laundry and cooking seem to happen all at once. There are things that have to happen in order(milkshake making) and things that have to happen relative to one another(the timing between making a milkshake and doing laundry) and since it’s all been meticulously done in slow motion by you, speeding it up has the same effect. </p>
+<p>Computers can running each program as its own as long as it follows certain rules( the milkshakes program can run during laundry, but not before) </p>
+<p>Something that comes to mind is the computers ability to be programmed for all sorts of things when the hardware “wiring” stays the same. </p>
+<p>The connections aren’t physically changing inside the computer, only the allowable pathways. If you need a set of switches wired the way our house is, you COULD just wire it yourself with lines going everywhere and looping back, OR have a chip specially made that has all that wiring built in with only the external connections required. OR get a general chip and have it “programmed” </p>
+<p>Programming can takes all the physical connections in the chip and tells it which ones to use and which ones to not use by <em>possibly</em> having an on/off switch for each small function of the chip. Like a flash drive, the data is stored physically, so before the signal goes down a pathway, it has to go through the physical portion that we’ve turned on/off It turns on and off some pathways to match what our specialty chip would look like(or at least perform in the same way on all the inputs and outputs) </p>
+<p>I’m getting a bit out of my depth so I’ll stop there, please feel free to correct things. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e6wfezn">
+		<a class="author" href="https://www.reddit.com/user/K05M0NAUT" target="_blank">K05M0NAUT</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Computers are very fast at thinking about things, but they can't think about abstract things like we do. They essentially understand two things, a yes and a no. The yes and no isn't like when you ask twenty questions and eventually it guesses right, but the yes and nos turn into a language. A certain combination of 0 and 1 will turn into a color or a shape. Humans can understand their language but it's very difficult, so we hire translators (software that converts programming languages to binary) to make the process faster. We write code for the computer in a programming language much closer to our own and we package that code up though a translator to make it legible to the computer. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e6x1z0l">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e6x56kt">
+		<a class="author" href="https://www.reddit.com/user/IamfromSpace" target="_blank">IamfromSpace</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>So here’s something to remember: it’s Humans that give things meaning.  Ink on paper is just that ink on paper.  But when you look at it, all that shared meaning/understanding that you have with other humans makes the ink into words or sayings or images—but it’s just ink!</p>
+<p>Semiconductors and electricity are the same way.  In if themselves they are meaningless—but you, the programmers, and the hardware designers all agreed upon shared meanings of things and that’s what made it seem magic.</p>
+<p>Your monitor has no idea what it’s projecting to you.  None.  It’s a meaningless array of lights lit up.  And the lights are lit up based on otherwise meaningless changes in voltage.  And those came from random bits of silicone holding charges.  But because everyone assigned a meaning to every step and value, you see an image when you look at the screen!</p>
+<p>It’s very complex to get from the silicon to the screen, but it’s not magic—it’s just our ability to find meaning in things that have none.  Why does this text convey any thought at all?  Because we’ve all come to a shared understanding of language and text and ideas—and computers are the same way.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/9k4q7r" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
