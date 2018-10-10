@@ -1,0 +1,43 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/The_Venerable_Swede" target="_blank">The_Venerable_Swede</a>
+			<div class="markdown"><p>So we create a vector space where the basis vectors are different states, and a particle's state can 'rotate' to be a combination of these states? Do I understand correctly? If so, how do complex numbers come into it? Is the particle defined as a single vector in this space or several?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/woodbetween" target="_blank">woodbetween</a>
+			<div class="markdown"><p>Basis vectors are different states.  A particle's state &quot;rotates&quot; in the vector space as it evolves in time.  Like a 3D vector, the particle state can be projected onto different axes.  In QM, the projection can be complex.  Any physical measurement will involve the projection times its complex conjugate, so the complex character never manifests physically.  The particle state is a single vector in this space.  </p>
+<p>Importantly, QM is a Hilbert space over C and not R, so a vector in this Hilbert space takes on complex values.</p>
+<p>This might be easier to explain if I could use Dirac notation.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/The_Venerable_Swede" target="_blank">The_Venerable_Swede</a>
+			<div class="markdown"><p>In what way would a projection become complex? How do complex numbers appear? I understand that if it's over C complex numbers are possible, but I don't get where they come from.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/localhorst" target="_blank">localhorst</a>
+			<div class="markdown"><blockquote>
+<p>If so, how do complex numbers come into it?</p>
+</blockquote>
+<p>In a euclidean vector space isn’t “enough space” for encoding
+dynamics.  The square of the wave function is interpreted as a
+probability density of the particles position.  Now the dynamics must
+preserve the norm of a state |U(t)ψ| = |ψ| = 1.  Thus the time
+evolution operator U(t) must be unitary/orthogonal.</p>
+<p>To get a differential equation for the time evolution you need
+<a href="https://en.wikipedia.org/wiki/Stone%27s_theorem_on_one-parameter_unitary_groups" target="_blank">Stone’s
+theorem</a>
+which requires a complex Hilbert space.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/woodbetween" target="_blank">woodbetween</a>
+			<div class="markdown"><p>In Dirac notation, a vector in Hilbert space is usually represented by by the notation |f&gt;, which would be called a &quot;ket&quot;.  The inner product (or &quot;bracket&quot;) is usually represented as &lt;g|f&gt;, which suggests the inner product is the ket |f&gt; with the object &lt;g|, which Dirac called a &quot;bra&quot;.  Bra+ket=bracket.</p>
+<p>The ket |f&gt; corresponds to a generic vector in the Hilbert space.  Physically, it represents some general particle state before measurement.</p>
+<p>Suppose, for simplicity, that there are four possible outcomes
+of a physical measurement.  Suppose we're measuring the observable quantity X, and X can take the values a,b,c,d.  Then there exist kets |a&gt;, |b&gt;, |c&gt;, |d&gt; which are vectors in Hilbert space that correspond to particles that give measurements X=a, etc.   These form a basis.  You can't actually measure X=a AND X=b at the same time, so the bases have to be orthgonal.</p>
+<p>For a general ket |f&gt;, we can project it onto this basis with the dot product to get its components &lt;a|f&gt;, &lt;b|f&gt;, &lt;c|f&gt;, &lt;d|f&gt;, which for simplicity I'll call fa, fb, fc, fd.  Then we can also write the general state |f&gt;= fa|a&gt; + fb|b&gt; + fc|c&gt; + fd|d&gt;.</p>
+<p>The components fa, fb, fc, fd are in general complex, and they might be time-dependent, which means the vector might &quot;rotate&quot; in the Hilbert space over time.</p>
+<p>To find the probability that the general state |f&gt; will give the measurement X=a, it is</p>
+<p>Pr(X=a) = &lt;f|a&gt;&lt;a|f&gt; = (fa*) fa</p>
+<p>where fa* is the complex conjugate of fa, which ensure rhe probability will be positive and real.</p></div>		</li>
+					</ul>
+		</ul>
+	
