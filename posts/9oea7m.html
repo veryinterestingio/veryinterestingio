@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5:Cubesort</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="9oea7m">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/9oea7m/eli5cubesort/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/9oea7m" onclick="return false">Cubesort</a>
+		</h2>
+		<!--<span class="date">2018-10-18</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>How does cubesort work? I was reading about other sorting algorithms when I came across Cubesort, and I can't wrap my head around it. I know how other sorting algorithms such as Quicksort, Radix sort and Mergesort work.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="e7ul26b">
+		<a class="author" href="https://www.reddit.com/user/Haksalah" target="_blank">Haksalah</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A standard balanced binary search tree (let’s say of numbers) has a root node (avalue at the very top of the tree that should be directly in the middle of our sorted data) with two branches. You compare your key to the root and go from there if it’s higher or lower. You keep comparing until you find your exact key or nothing. Each comparison cuts your search space in half. (O(log(n)) average time for non-ELI5)</p>
+<p>Cubesort is a two-dimensional array of arrays, so like a grid where each square is a hole you can put your numbers in. Say we use a 4x4 grid, or 16 holes. Your key is used on the x-axis to determine which column we can find it in. Then it is used on the y-axis to find the specific square. Within that slot (remember, grid of holes) is where we will find what we are looking for, if the value exists. In here is also approximately 4 sorted values to look at. Overall, 6 lookups for 64 spots (or O(log(n)))</p>
+<p>Why is this better than our binary search tree? We don’t need to keep pointers to the various branches all over the place. Some operations are also quicker (O(log(cube-root(n))) instead of O(log(n)) for a less ELI5).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="e7uui8t">
+		<a class="author" href="https://www.reddit.com/user/graebot" target="_blank">graebot</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>When you have a bunch of alphabet blocks and want to sort them, you could sort them by placing one block, then either placing the next block before or after the first block, so that the order is always in one direction. But if you need to place the block before any others, you need to move each block, one at a time, to make room for the one you're trying to insert. It's not a problem for a small number of blocks, but would be really tedious if you had to move 20 blocks, one at a time, just to insert a single block to your ordered alphabet. What you can do, is check if your line of blocks gets a bit too long, then split it equally in two. Now, you compare your block to the start of each line of blocks to figure out which line the block is in, then you compare your block to each of the blocks in that line to figure out where to insert your block. That way you can avoid comparing all but the first block of each line, and when you insert your block, you only have to move the blocks after your block in the same line, not any other line, so that makes things much quicker. So that is taking a long line of blocks and splitting it up to make it more like a square. A cubesort takes things into another dimension. So instead of selecting line, then block indexes, you select plane, then line, then block index for determining where you insert your block correctly. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e7u0fby">
+		<a class="author" href="https://www.reddit.com/user/surfmaths" target="_blank">surfmaths</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>After a quick look (I might be completely off), it looks like a binary tree but where the first level has a square root number of children. Or, looked alternatively, two level of hash map where the first level split the data in square root number of square root sized hash maps.</p>
+<p>The main idea is to create a lot of parallelism at the top level, so as to help writing coarse grain parallel implementation.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e7ujli5">
+		<a class="author" href="https://www.reddit.com/user/Fenryl-Saylem" target="_blank">Fenryl-Saylem</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Did you already look over this <a href="https://sites.google.com/site/binarysearchcube/" target="_blank">google site</a> regarding the topic? It seems well thought out and explained. Don't really have the time to really look into it just now. Even if i had i wouldn't be sure if i could make it ELI5 :/</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">3 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/9oea7m" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
