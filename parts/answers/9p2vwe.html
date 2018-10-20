@@ -1,0 +1,54 @@
+<div class="answers">
+	<div class="answer" data-handle="e7yor5e">
+		<a class="author" href="https://www.reddit.com/user/bencbartlett" target="_blank">bencbartlett</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The <a href="https://www.nist.gov/news-events/news/1999/12/nist-f1-cesium-fountain-clock" target="_blank">NIST-F1 caesium clock</a> is accurate to 1.5e-15 (1 second in 20 million years). Recently, a German group built a clock based on Ytterbium transitions which <a href="https://journals-aps-org.stanford.idm.oclc.org/prl/abstract/10.1103/PhysRevLett.116.063001" target="_blank">is accurate to 3.2e-18</a>, or about 1 second in 10 billion years! </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="e7zmqzc">
+		<a class="author" href="https://www.reddit.com/user/Dasoccerguy" target="_blank">Dasoccerguy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I don't have a fancy tag next to my name, but I work at a company that builds frequency-stabilized laser systems for applications like atomic clocks. As is the case with a lot of AskScience questions, I have to tear apart your question and rebuild it to really answer it. Sorry.</p>
+<p>&quot;Margin of error&quot; in the world of frequency and time standards (more on frequency standard vs time standard later) is most quickly summarized with the kinds of numbers that /u/bencbartlett gave you. Numbers like 1.5e-15 and 3.2e-18 are called Fractional Stability or (in a more nuanced way) Allan Deviations. It defines the amount of change you expect over a certain window of time. The most common windows of time you see for these measurements when they concern atomic clocks or frequency-stabilized lasers are at 1 second and at 1 day (~100,000 seconds, or 10^5).</p>
+<p>For some quick math, the SI second is defined as <a href="https://physics.nist.gov/cuu/Units/second.html" target="_blank">&quot;9 192 631 770 periods of the radiation corresponding to the transition...&quot; blah blah</a>. This basically means that a laser is tuned so that it resonates with the cesium atoms, so that the laser has a frequency that is tied to a predictable, repeatable, physical phenomenon (a &quot;narrow-linewidth atomic transition,&quot; or &quot;hyperfine transition&quot;). To be more precise, 9 GHz is well in the microwave regime, so these clocks actually use &quot;microwave lasers&quot; or &quot;masers,&quot; which in fact predate the laser by many years, making the term &quot;microwave laser&quot; basically nonsensical.</p>
+<p>But I digress. A maser with a frequency of 10 GHz (rounded for quick math purposes) and a 1 second fractional deviation of 1.5e-15 would move by 0.000015 Hz/s, or 15 microHertz per second. This number would be the result of many long averages, and is a good measure of how well such a system performs. As an example, the quartz oscillators inside your phone or computer <a href="http://www.quartzpro.com/tcxofacts.html" target="_blank">have a 1 second fractional stability of somewhere in the 1e-5 to 1e-9 range</a> (terrible source, but the point still stands). Atomic clocks are several orders of magnitude better than that.</p>
+<p>However, the 1 second Allan deviation for a cesium clock is not 1.5e-15, and using just one number really does not give you a full picture of what the system is doing. When using an atomic transition for a frequency reference, the benefit is over much larger time windows and much longer averaging times, because the underlying physical property that gives you that frequency does not change at all with time. The Allan deviation of an atomic reference will resemble an Allan deviation plot for a fiber laser, <a href="https://www.researchgate.net/figure/Probe-laser-frequency-measured-with-the-erbium-doped-fiber-laser-frequency-comb_fig3_224169593" target="_blank">which look generally like this image.</a></p>
+<p>This is to say that an atomic clock is actually not much better than a high quality temperature-controlled quartz oscillator over a 1-second window with regards to fractional stability. However, the true meaning of an Allan deviation plot is in the shape. For the plot I provided (again, it's for a fiber laser rather than an atomic reference, but the general shape is similar), the stability at 1000 seconds is nearly 100x better than the stability at 1 second. To summarize that, the frequency of the fiber laser is wandering all over the place at a 1-second time window, but as you look at longer and longer windows of time, you see that it's wandering around some central value (in the case of an atomic transition, that is the center of the hyperfine transition linewidth). Different types of frequency reference have different properties. The company I work for generally makes Fabry-Perot cavity stabilized laser systems, <a href="https://www.researchgate.net/figure/Modified-Allan-deviation-of-the-silicon-cavity-laser-system-derived-from-a-three-cornered_fig1_230633490" target="_blank">which have a much lower 1 second Allan deviation than the 1000 or 10000 second deviations.</a> The actual frequency reference point can be much more precise than an atomic transition, but it drifts over time because it is tied to something (the length of a piece of glass (or silicon crystal in that example) with mirrors on each end) that isn't an inherent physical property of the universe like an atomic transition.</p>
+<p>Depending on your application, you may need a very low Allan deviation at short times and are okay with the fact that the system does not perform well on the order of days (in broad terms, a &quot;frequency reference&quot;), or a very low Allan deviation at the day to week level given that you're okay with its frequency wandering around more on the sub-second timescale (in broad terms, &quot;a clock&quot;). Frequency references may only need to run for 5 minutes at a time, say for Doppler cooling atoms, but a clock is expected to run forever if possible.</p>
+<p>So, to answer your question in the briefest way I can:</p>
+<ul>
+<li>
+<p>Atomic clocks aim to minimize the fractional deviation over long time windows (and aim to constantly be running as well) so that they may provide timekeeping at the 1e-15 fractional stability level.</p>
+</li>
+<li>
+<p>Modern efforts using different atoms from cesium, for example strontium, <a href="https://jila.colorado.edu/yelabs/sites/default/files/uploads/nicholson_thesis_5.pdf" target="_blank">have already demonstrated better Allan deviations both at 1 second at at longer windows (see page 91 of this thesis for graphs).</a> The aim of many in the field is to eventually replace the cesium time standard, and therefore redefine the second with more precision, but there are a number of hoops that these scientists have to jump through.</p>
+</li>
+<li>I've always found the sentences like &quot;loses 1 second in 10 billion years&quot; to be the atomic physics equivalent of &quot;and you won't believe what she said next!&quot; The oldest atomic clocks are only several decades old, but over those decades (3 decades is roughly 1 billion seconds), they might have only gained or lost 1 microsecond total. But if I explained Allan deviation well at all, hopefully it makes sense that they may shift around much more than that on shorter timescales and that is perfectly acceptable.</li>
+</ul>
+<p>Please let me know if you would like any of this clarified. Obviously I can talk about this for hours, so I'd be happy to try to answer any questions. Just skimming over that thesis I linked, there are some sections that look like they provide a thorough introduction to the world of atomic clocks, so it may be worth reading some of if you have time.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e7z7arl">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e7zm4ii">
+		<a class="author" href="https://www.reddit.com/user/manugutito" target="_blank">manugutito</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There is a thorium isotope (229 I think, off the top of my head) that has a very low-lying excited nuclear state, in the UV regime or so (instead of the usual X or gamma rays). Some people are pursuing this to obtain a &quot;nuclear clock&quot;, that should beat the atomic clocks' precision by a fair amount. Just Google &quot;nuclear clock&quot; and you should find some interesting stuff.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e7zf8pp">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
