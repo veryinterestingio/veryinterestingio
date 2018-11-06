@@ -1,0 +1,94 @@
+<li class="post" data-handle="9trn5f">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/9trn5f/eli5_by_what_method_does_raw_computer_code_get/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/9trn5f" onclick="return false">By what method does raw computer code get &quot;translated&quot; to the stuff we see on-screen?</a>
+		</h2>
+		<!--<span class="date">2018-11-06</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I'm not sure how to Google this question, which is the only reason I'm asking. Basically, I want to know what happens between code being written and code being rendered into its final product. Does it get 'plugged in' to a program? How does it transition from code to graphics/functionality?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="e8ym7f6">
+		<a class="author" href="https://www.reddit.com/user/Dodgeballrocks" target="_blank">Dodgeballrocks</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The code that programmers write is considered &quot;high level&quot;. It's written in a computer language that makes sense to humans. Then it goes through an optimizer that checks through it to see if it can be reduced down to a less commands for faster performance. At the point it gets changed to a format that humans can't really understand. Then it gets converted into machine code, literally the ones and zeros of binary. At this point, only the processor understands it.</p>
+<p>&#x200B;</p>
+<p>That code runs the while the computer is on. It mostly waits for things to happen like for the user to click the mouse or for data to arrive from the internet. When something happens, part of the code called  &quot;handler&quot; gets executed. It looks at what happened and decides what to do about it. </p>
+<p>&#x200B;</p>
+<p>For example if you click the mouse, then a &quot;mouse click handler&quot; code is executed. It checks which part of the screen you clicked on, then it checks to see what application is using that part of the screen, then it gives that information to the application and it figures out which part of the application the mouse was over and what it should do. If that application happens to be Microsoft Word, then it will figure out if the mouse was over the document part, or over one of the menu parts. If it was over the document then it will figure out where the place the cursor based on where you clicked.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="e8yo8tc">
+		<a class="author" href="https://www.reddit.com/user/Whooplaah" target="_blank">Whooplaah</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><strong>TLDR</strong>: Essentially, a binary string gets turned into a longer binary string with each pixel in the monitor receiving three values, one for each of it's Red-Green-Blue lights </p>
+<p>[ON-ON-OFF]  =&gt; [(on-off-off)-(on-off-off)-(off-off-off)] =&gt; two red pixels, then one black pixel</p>
+<p>The exact method and rules of converting this data depends upon the OS, program and GPU.</p>
+<p>=====</p>
+<p><strong>Text</strong>:</p>
+<p>Each language has a way of converting binary into a pixel-pattern, and this is called encoding. English has 3 that are commonly used, and ASCII is one of the more popular schemes.</p>
+<p>Essentially, you start with a string in binary...</p>
+<p>01101000 01101001</p>
+<p>...then this is processed with one of the OS's encoding schemes (ASCII, for instance) which is part of the OS software. This breaks the string into a code point that references a shape, and we get...</p>
+<p>72 73</p>
+<p>...which is then passed to the graphics processor and turned into a pixel pattern for that code point...</p>
+<p>x - - - x      xx x xx</p>
+<p>x - - - x      - - x - -</p>
+<p>xx x xx      - - x - -</p>
+<p>x - - - x      - - x - -</p>
+<p>x - - - x      xx x xx     = HI</p>
+<p>...and that information is sent to the monitor, so that all the &quot;-&quot; are shown as white and the &quot;x&quot; as black, and this example contains 25 pixels per letter.</p>
+<p>&#x200B;</p>
+<p><strong>Graphics</strong>:</p>
+<p>Software does a bunch of math to calculate geometry and position and texture, but clipped to the view of a camera or what is being &quot;rendered&quot; in the scene/level. The binary string that contains all this is sent to the GPU, which does a bit more geometry to see which parts of the scene can be ignored (because a person standing behind a wall is part of the scene, but is not seen).</p>
+<p>Sometimes software does this occlusion culling before the GPU sees the data the first time (this is where API's come in, like DirectX and OpenGL). This shifts some of the processing from the GPU to the CPU.</p>
+<p>The GPU then converts the remaining binary into patterns that the monitor can understand, and we get another HI pattern like above, but including details about color (so each pixel in the monitor gets three bits of info). The monitor receives this information and each pixel (which contains 3 lights) will turn on the corresponding colors to make that part of the image.</p>
+<p>It's probably worth mentioning that the GPU has a built-in software that helps it do all this conversion, and that software is proprietary to the manufacturer and specific to the card model.</p>
+<p>=====</p>
+<p>So the crazy thing here is that a resolution of 1024x1024 gives you  1,048,576 pixels in the monitor, each has three lights so thats  3,145,728 bits, and a typical monitor does this 60 times per second. That means the GPU is sending out  188,743,680 bits of data per second, on top of the 60 sets of geometry calculations it does to get that data.</p>
+<p>&#x200B;</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e8yrkiv">
+		<a class="author" href="https://www.reddit.com/user/rye_212" target="_blank">rye_212</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I think your question has 2 parts.  </p>
+<ol>
+<li>How is human-typed code executed in a computer.</li>
+</ol>
+<p>2  how is the results of computer execution displayed on the screen</p>
+<p>Both have been answered though.   </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e8yvklv">
+		<a class="author" href="https://www.reddit.com/user/vikirosen" target="_blank">vikirosen</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The other answers, while correct, don't seem ELI5, so I'll give it shot.</p>
+<p>Computer code is made up of instructions. As a human, I might instruct my computer to show me a red cube on a white background. This is called <em>high-level instructions</em>.</p>
+<p>The computer breaks that down into something it can work with. For example, it will create an image of the cube in its brain, calculate the position of its corners, choose the colours from a palette like a painter, and whatever else it needs to do. Then, it will figure out how to show this 3D image on a 2D screen (i.e. what the cube will look like if you flatten it). Strictly speaking, this is still <em>high-level instructions</em>; back in the day humans would write these instructions instead of the simpler one from above, but we have since made shortcuts for often used commands.</p>
+<p>The part of the computer that's responsible for showing the image is the screen, so the computer will translate the instructions for the screen to understand (i.e. which pixels to turn red and which ones to turn white). These are <em>low-level instructions</em>.</p>
+<p>It's not done yet. The screen will then interpret these instructions and execute them through even more basic operations (i.e. turn on the electricity for this diode, turn it off for that one).</p>
+<p>That's mostly how it happens. What's interesting is to note that some operations are executed by the computer brain, others by the screen (or different components I haven't mentioned). That's why <em>compatibility</em> is so important in computing.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e8yqr6x">
+		<a class="author" href="https://www.reddit.com/user/Acornelectron" target="_blank">Acornelectron</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Maybe start with Ben Eater’s excellent ‘8 bit microcomputer’ YouTube series. It is truly amazing how he explains thing from the ground up. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/9trn5f" onclick="return false"><span>show</span></a>
+</li>
