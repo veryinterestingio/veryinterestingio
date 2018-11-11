@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: How do Mesh Wifi sustain speeds when a Repeater drops a speed to half?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="9v9fir">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/9v9fir/eli5_how_do_mesh_wifi_sustain_speeds_when_a/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/9v9fir" onclick="return false">How do Mesh Wifi sustain speeds when a Repeater drops a speed to half?</a>
+		</h2>
+		<!--<span class="date">2018-11-11</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I understand that, using a Repeater results in our internet speed being cut in half as it has to re-encode the packets before broadcasting. But, isn't mesh wifi basically a primary router coupled with a number of repeaters? </p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="e9aeiyw">
+		<a class="author" href="https://www.reddit.com/user/dangil" target="_blank">dangil</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>mesh wifi has 2x2 or 3x3 antennas</p>
+<p>that means they can communicate with each other on a separate channel leaving a channel free for clients</p>
+<p>old repeaters didn't have multiple antennas (MIMO), so speed was cut in half or worst</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="e9arx2y">
+		<a class="author" href="https://www.reddit.com/user/wiredsim" target="_blank">wiredsim</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The answers given contain part of the truth, but miss one of the biggest which is different frequencies. “Repeater” mode is where the AP in relay mode is a client of the base stations wireless network and then also serves clients that connect to it (because they are receiving a higher power signal from the Relay AP).  Because Wi-Fi is half duplex this doubles the traffic within that wireless network (all in one channel). See:</p>
+<p><a href="https://en.m.wikipedia.org/wiki/Wireless_distribution_system" target="_blank">https://en.m.wikipedia.org/wiki/Wireless_distribution_system</a></p>
+<p>Mesh mode is where the APs will typically utilize a separate radio and channel to establish a backhaul connection to the other APs and eventually reach an AP that has uplink to the wired network. The earliest method was utilizing dual band APs, serve clients on the 2.4Ghz radio and then utilize the 5.8Ghz radio for backhaul or vice versa. </p>
+<p>Modern mesh will sometimes utilize multiple special streams for simultaneous traffic forwarding (though this is more difficult as RF environment are changing constantly and it is still technically is within the same collision space). Sometimes they may have a dedicated backhaul radio on 5.8 and then service clients on both 2.4 and 5.8 but use different channels for the two 5.8 radios. </p>
+<p><em>edit</em> </p>
+<p>See my actual ELI5 version in reply to another comment: </p>
+<p><a href="https://www.reddit.com/r/explainlikeimfive/comments/9v9fir/comment/e9fhuj0" target="_blank">https://www.reddit.com/r/explainlikeimfive/comments/9v9fir/comment/e9fhuj0</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e9ae1vc">
+		<a class="author" href="https://www.reddit.com/user/netadmindave" target="_blank">netadmindave</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Using a repeater does not necessarily need to cut the speed in half. Many repeaters and mesh routers use different channels and sometimes frequencies to communicate with each other. So you could have full speed on client side and between the APs.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e9akf20">
+		<a class="author" href="https://www.reddit.com/user/mindsunwound" target="_blank">mindsunwound</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Also, a good mesh system will natively support ethernet backhaul, allowing you even more utilisation of the wifi if you are able to run cable.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e9aqqjc">
+		<a class="author" href="https://www.reddit.com/user/CatVsDog" target="_blank">CatVsDog</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For older style antennas they required a transmit and receive for a given period of time. With multiple antennas you can recieve and transmit at the same time.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/9v9fir" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
