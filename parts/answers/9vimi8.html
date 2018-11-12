@@ -1,0 +1,45 @@
+<div class="answers">
+	<div class="answer" data-handle="e9ck4bp">
+		<a class="author" href="https://www.reddit.com/user/arpitduel" target="_blank">arpitduel</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Yes modern day phone touchscreens work on the fact that human skin conducts electricity and can act as small capacitor. That's why you can also touch with your earphone wire. </p>
+<p>Early touchscreens(not too long ago though) used to be pressure based when you needed to press hard. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="e9ckfj4">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e9ctn3k">
+		<a class="author" href="https://www.reddit.com/user/no33limit" target="_blank">no33limit</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Modern screens are capacitive, not pressure based. The screen has to be designed to work on all fingers, big or small. Even the same finger will change capacitance throughout the day based on salt content and stuff on your finger like sweat.
+So if you have, big high capacity fingers you will probably trigger above the screen most of the time, you just don't notice because you don't stop before hitting it.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e9ddkrn">
+		<a class="author" href="https://www.reddit.com/user/garrettj100" target="_blank">garrettj100</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Phone touchscreens detect finger presses via capacitive touch sensing.  That is to say, the screen of the phone has a capacitance, much like a regular electrolytic (can-type) capacitor you'd find on a motherboard or inside a transistor radio.</p>
+<p>Capacitive touch sensing is easiest to understand if you model the entire screen of the phone as a single button.  The screen of the phone is grounded, (through a resistor of known resistance) to the ground on the phone, and the microprocessor in the phone will <strong>drive</strong> the voltage on that capacitor up through another resistor to, say, 5V.  Because it's got a finite capacitance, it will take a non-zero amount of time to fill up the capacitor.  Then the microprocessor will switch to no-voltage, high impedance, (which essentially means the connection to the microprocessor can be modeled as an open circuit.)  It will take another finite amount of time to discharge the capacitor down through ground.</p>
+<p>Now, imagine there's a second connection to that capacitor, measuring the voltage on that plate the whole time.  It'll watch the voltage go up and down, up and down.  If you take your finger and touch the screen, that will impact the capacitance, which in turn will impact the amount of time it takes for the voltage to rise and fall.</p>
+<p>Detecting changes in that rise/fall time?  That's how a microcontroller detects when you touch the screen.</p>
+<p>Now we get more complicated, though not by too much: The screen isn't a single, monolithic conductive plate.  It's actually got nonzero resistance going across it.  This is actually a good thing, because that means if you put an <strong>array</strong> of detection connections, measuring the voltage from a series of point along the edges of the screen, on all four sides?  You get <strong>different</strong> results from each one!  By comparing the capacitance measurements of the twenty values along the right side, twenty values along the left, and then ten values each along the top &amp; bottom, you can figure out <strong>where</strong> someone pressed their finger down!</p>
+<p>Now, let's back up a second.  Normal capacitors consist of a pair of plates.  Normally one plate is charged and one is grounded, and there's an electric field between the two.  If you were to insert, say, a finger between those plates, you would change the capacitance by introducing a new dielectric material into the electric field between them.  There is in fact no need to make <em>contact</em> with the plate to change the capacitance.  Indeed, making contact never actually happens, even when you touch your phone!  The glass is non-conductive so your finger is always above the capactive plate by the thickness of the glass.</p>
+<p>By the same token, a single-plate capacitor also has an electric field between it and ground, only <strong>it's ground</strong> is out at infinity.  It's electric field rapidly dwindles to zero as you get further from the plate, but when you're close to the plate (&quot;close&quot; being roughly on the order of the characteristic length of the plate, so an 4 cm x 4 cm square plate would have a characteristic length of roughly 4 cm,) your finger starts to perturb the electric field.  So even though the sensors are intended to detect a finger touching them, a finger hovering over the plate has much the same effect.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e9cv06l">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
