@@ -1,0 +1,80 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shinglee" target="_blank">shinglee</a>
+			<div class="markdown"><p>This is correct. And I think it's useful to understand that most compilers are compiled iteratively, called bootstrapping: <a href="https://en.wikipedia.org/wiki/Bootstrapping_(compilers" target="_blank">https://en.wikipedia.org/wiki/Bootstrapping_(compilers</a>)</p>
+<p>As an example: Rust is written in Rust and compiled with the Rust compiler. They did this by first writing a bare-bones Rust compiler in OCaml, used that compiler to compile a Rust compiler written in Rust, and then began compiling each new version of Rust with the previous version's compiler. OCaml does the same thing: it's written in OCaml that was bootstrapped with a compiler written in C. C itself is written in C, and was bootstrapped with an assembler. The assembler itself translates assembly language to machine code which is what actually runs on the processor.</p>
+<p>So once we got the first steps down (e.g. C to assembly to machine code) everything was built up from there.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rchase" target="_blank">rchase</a>
+			<div class="markdown"><p><em>Rust is written in Rust and compiled with the Rust compiler. They did this by first writing a bare-bones Rust compiler in OCaml, used that compiler to compile a Rust compiler written in Rust, and then began compiling each new version of Rust with the previous version's compiler.</em></p>
+<p>I love that sentence so much.</p>
+<p>&quot;To understand recursion, you must first understand recursion.&quot;</p>
+<p>Also, perhaps irrelevantly..</p>
+<p><em>&quot;If you wish to make an apple pie from scratch, you must first invent the universe.&quot;</em> -Carl Sagan</p>
+<p>(edit: just checked the video, and corrected the Sagan quote... for reference, de-bugging is also important.)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/freerider" target="_blank">freerider</a>
+			<div class="markdown"><p>That's how I found out that the maximum line number for errors in a C program is 65536. (Years ago). You get a warning that the C compiler cannot show the line number if there is a error. </p>
+<p>It was a compiler that generated C code.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/morderkaine" target="_blank">morderkaine</a>
+			<div class="markdown"><p>I have a love/ hate relationship with recursion. It’s rather cool, but occasionally mind bending to work with. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Yithar" target="_blank">Yithar</a>
+			<div class="markdown"><blockquote>
+<p>Rust is written in Rust and compiled with the Rust compiler. They did this by first writing a bare-bones Rust compiler in OCaml, used that compiler to compile a Rust compiler written in Rust, and then began compiling each new version of Rust with the previous version's compiler.  </p>
+</blockquote>
+<p>I should have paid more attention in Automata Theory (it's the theory counterpart to Compilers, and to be fair, <a href="https://www.reddit.com/r/UMD/comments/72e8r7/be_honest_how_hard_are_the_cmsc_classes/dnl4lpz/" target="_blank">I didn't have a great teacher</a>), but I remember my teacher talking about a Turing Machine that takes in other Turing Machines as input and how it relates to languages being compiled using the language's compiler because the language creators think their language is the best language so they would use it to compile their language.  </p>
+<p><a href="https://www.quora.com/Can-I-input-a-Turing-machine-into-another-Turing-machine-If-yes-how-And-if-no-why" target="_blank">https://www.quora.com/Can-I-input-a-Turing-machine-into-another-Turing-machine-If-yes-how-And-if-no-why</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Coloneljesus" target="_blank">Coloneljesus</a>
+			<div class="markdown"><p>For modern languages like Rust, is this multi-iteration-bootstrapping done for any reasons that aren't esoteric? How bare-bones was the OCaml compiler for Rust really? How many iterations until the language spec was first completely implemented?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wishthane" target="_blank">wishthane</a>
+			<div class="markdown"><p>The Rust spec wasn't really done in any sense by the time that the OCaml compiler was first created. Usually compiler projects are eager to get themselves self-hosting in part because it creates a large project in the language itself that's going to need a lot of libraries and such to be created within it, thus serving as the genesis for an ecosystem. But it also has the benefit of lessening external dependencies and allowing those who later want to contribute to Rust to do so with their knowledge of Rust specifically, not needing to know OCaml. </p>
+<p>If I remember correctly for a while rustc wasn't really written in completely natural rust, it was written in a subset that the bootstrapping compiler could understand. Even after the bootstrapping compiler was eliminated, previous versions of rustc had to be able to compile newer versions so of course there was and is some tolerance for compatibility there.</p>
+<p>But yeah, it's not esoteric at all, I think it's an effort that can make a language much more sustainable on its own.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/perspectiveiskey" target="_blank">perspectiveiskey</a>
+			<div class="markdown"><p>The OCaml compiler for Rust isn't barebones, it's the Rust compiler that came out of it that is.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dddbbb" target="_blank">dddbbb</a>
+			<div class="markdown"><p>I think you misunderstand. Bootstrapping is very practical, but it's applied as a whole. If you want to build the rust compiler from source you either need an OCaml or rust compiler binary.</p>
+<p>You'd only need all iterations (C, assembly, machine code) if you refused to use any existing binaries (an appropriate stance on new hardware that lacks existing binaries).</p>
+<p>New languages are likely to follow the same bootstrapping pattern.</p>
+<p>It's esoteric in that it only applies to compiler authors and porters, but of course it is.</p>
+<blockquote>
+<p>How bare-bones was the OCaml compiler for Rust really?</p>
+</blockquote>
+<p>How bare bones do you think it would need to be? What do you think would be necessary before you could start compiling rust code and writing the compiler in that?</p>
+<p>If you're interested in seeing this in action, check out Jonathan Blow's Jai compiler streams. He has a YouTube playlist. He's writing the first version of the compiler entirely in C++ until the syntax is stabilized.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rabidferret" target="_blank">rabidferret</a>
+			<div class="markdown"><p>As a side effect of this, fun bits of information are literally lost to the source code. For example, the actual numeric byte for a newline is never stated in the source code. The erlang rust compiler knew how to compile <code>"\n"</code>, so the rust rust compiler didn't need anything else in it's source code (I don't think the erlang compiler had the numeric byte either, this was lost from the source many languages ago.)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/geniice" target="_blank">geniice</a>
+			<div class="markdown"><blockquote>
+<p>So that's when early forms of what we would call assembly language came on. It abstracted all the little switches away into a smaller set of instructions like move data, add data, subtract data etc.</p>
+</blockquote>
+<p>First assembly language was written for the Automatic Relay Computer which had fewer valves than its predecessors. </p></div>		</li>
+					</ul>
+	

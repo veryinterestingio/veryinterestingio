@@ -1,0 +1,115 @@
+<li class="post" data-handle="9wex4k">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/9wex4k/didnt_the_person_who_wrote_worlds_first_compiler/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/9wex4k" onclick="return false">Didn't the person who wrote world's first compiler have to, well, compile it somehow?Did he compile it at all, and if he did, how did he do that?</a>
+		</h2>
+		<!--<span class="date">2018-11-15</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Didn't the person who wrote world's first compiler have to, well, compile it somehow?Did he compile it at all, and if he did, how did he do that?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="e9kaesx">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="e9khin1">
+		<a class="author" href="https://www.reddit.com/user/shared_makes_it_real" target="_blank">shared_makes_it_real</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This confusion comes from a misunderstanding about what compiling is.</p>
+<p>These days we commonly say we don't work in bits or machine code. That isn't exactly true. People who work in hardware do work in bits when they're developing a new kind of circuit.</p>
+<p>When microprocessors were first created everybody worked with bits. Flip this to on and then that causes this and you can flip these to represent a number and flip this switch to move it into a special register and picked up by the clock.</p>
+<p>At first that worked fine. Kind of the way you don't need labels for the 20 or so light switches in your house. But after a while they wanted a) more complicated systems and b) people with less experience to be able to contribute.</p>
+<p>So that's when early forms of what we would call assembly language came on. It abstracted all the little switches away into a smaller set of instructions like move data, add data, subtract data etc.</p>
+<p>Pretty soon after that things got too complicated again so some people who found themselves writing the same combinations and order of these instructions sought to abstract these hundreds of lines of simple instructions into a single line instruction. So they wrote a program that would take a program of five lines in this new langauge and convert it into the hundreds of lines of assembly language.</p>
+<p>This has happened multiple times over and each time the compiler/interpreter etc is written by people who <em>can</em> write in the lower level language the compiler produces but would rather save themselves the keystrokes.</p>
+<p>EDIT: My source is 22 years of programming, 18 years of software engineering. These days I leverage some of the lessons and motivations for developing compilers into developing custom tooling for other software engineers in mid to large scale organizations.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e9k3wvr">
+		<a class="author" href="https://www.reddit.com/user/hypnogoge" target="_blank">hypnogoge</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Early on in the history of computing, programs would be written as a sequence of operations in assembly language, which basically means they would be written in terms of actual physical operations for the computer architecture to perform, e.g. copy this numeric value to that memory location.</p>
+<p>That's obviously very time consuming and difficult, and it means that programs have to be rewritten for each new type of processor that you run them on. So to make it easier, higher level languages that are more human readable were created, with commands that basically work as shortcuts for all the repetitive number-juggling required in assembly language. So you have to write a compiler in assembly language, which doesn't require compiling. </p>
+<p>It's interesting that you ask &quot;did <strong>he</strong> compile it at all&quot;, since the first person to write a compiler was actually a woman, Grace Hopper :)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e9k42tt">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="e9kjl0f">
+		<a class="author" href="https://www.reddit.com/user/Yes_I_Fuck_Foxes" target="_blank">Yes_I_Fuck_Foxes</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Please bear with the first bit of this as I establish a framework understanding.</p>
+<p>Machines execute machine code. Compilers do <em>not</em> compile directly to machine code. They compile the code into to <em>assembly</em> which is then <em>assembled</em> into machine code.</p>
+<p>Machine code has two parts, <del>zero and one</del> operands (what to do and where (registers) to do it*) and data. Depending on the number of 'bits' the machine is, these can all have varying lengths of bits.</p>
+<p>Now that we understand what machine code is and how it's structured, let's look at what assembly code is.</p>
+<p>Assembly code is <em>human readable machine code</em>.</p>
+<p>We (humans) give the operands <em>mnemonics</em> (names) and logically divide this into three parts to make things easier to remember for us. No matter what, the same operand mnemonic will <em>always</em> turn into the same sequence of binary. </p>
+<p>So assembly let's us turn a 'line' of binary from</p>
+<pre><code>010011110101000001010010 010100100100010101000111 01000100010000010101010001000001</code></pre>
+<p>Into</p>
+<pre><code>OPR REG, DATA</code></pre>
+<p>So now we know what assembly is, and how it's written. How does a machine turn assembly into machine code?</p>
+<p>Why with an assembler of course! Usually assemblers are 'programmed' on paper, by hand writing the assembly you would normally type to later be run through an assembler. The next step is. . . Translating the assembly of your assembler to binary yourself! Hooray how exciting!</p>
+<p>Even still we keep it a bit more human readable than direct binary we use a system called hexadecimal to represent binary. A symbol of hex is four bits, and is as follows.</p>
+<pre><code>0 0000
+1 0001
+2 0010
+3 0011
+ ...
+F 1111</code></pre>
+<p>Once you have your program translated from assembly to hex, you queue the program in a hex editor. A hex editor is a peripheral attached to the machine which stores the binary of your program which you enter using hex, and sends it to be executed once you are finished.</p>
+<p>So, now we understand how we get machines to do anything. Let's see how we can reach the ability to compile a compiler.</p>
+<p>1) Hand write an assembler in assembly/hex.</p>
+<p>2) Enter your assembler into a machine with a hex editor</p>
+<p>3) Write your compiler in assembly and assemble it.</p>
+<p>4) Write your compiler in the language your compiler compiles.</p>
+<p>5) Assemble the compiler.</p>
+<p>6) GOTO 4</p>
+<p>That's how you get a basic compiler. </p>
+<p>Fun fact: A compiler written in the language it compiles is called a <em>self-hosting compiler</em>.</p>
+<hr />
+<p>Things you may want to dig into for further reading.</p>
+<p>Linkers (part of modern compilers, much the same way an assembler is one part of a modern compiler)</p>
+<p>Assemblers</p>
+<p>Intel Syntax vs AT&amp;T Syntax</p>
+<p>Machine Organization (You can't write working assembly unless you know what is where and how it works)</p>
+<p>Endianess (relevant to the structure of machine code)</p>
+<p>Bitwise Operations (extremely low level data manipulation functions)</p>
+<p>CISC and RISC (machine architecture paradigms)</p>
+<p>Forth (A super early language that blurs the line high and low level software)</p>
+<p>gcc (GNU Compiler Suite)</p>
+<p>Source: Hobbyist embedded developer.</p>
+<p>I hope this adequately answers the question OP!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/9wex4k" onclick="return false"><span>show</span></a>
+</li>
