@@ -1,0 +1,58 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JimmyWu21" target="_blank">JimmyWu21</a>
+			<div class="markdown"><p>I never thought about it but how do files get zip lol</p>
+<p>Edit: compressed, not zip lol</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jaredjeya" target="_blank">jaredjeya</a>
+			<div class="markdown"><p>In the simplest case it’s usually an idea of having a lookup dictionary.</p>
+<p>Say you want to save the lyrics to a song. If the chorus is the same each time, you can just record the chorus in a dictionary, then refer back to it instead of writing out the chorus each time. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kreth" target="_blank">Kreth</a>
+			<div class="markdown"><p>So like a math formula shortening</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jhonneydoom" target="_blank">jhonneydoom</a>
+			<div class="markdown"><p>Why is this so interesting, please tell me more</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GaBeRockKing" target="_blank">GaBeRockKing</a>
+			<div class="markdown"><p>It's all about recognizing that while technically a byte can be any one of 256 values, in practice, at any given point in a file, you're only likely to see a small subset of those values used. So, for example, you can take a string of ASCII encoded characters that would span over &quot;n&quot; bytes, and encode them to spread out over &quot;n-k&quot; bytes, for some k.</p>
+<p>For example, there are only 26 letters. If you know you're only going to see uppercase, lowercade, period, comma, exclamation mark, question mark, and apostrophes, you know that you only need to have 57 different different symbols. So you assign each symbol a value from 0 to 63 (some values will be empty), like a=0, b=2, etc. It takes 6 bits to represent 64 different values (2^6 ), so you can store a character in the first six bits of a byte, another in the last two bits and first four bits of the next byte, another in the last four bits of that byte and in the first two bits of your final byte, and another character in the last six bits of the final byte.</p>
+<p>So in three bytes, you can store four characters using your &quot;compressed&quot; encoding, from a file that took four bytes to store four characters.</p>
+<p>Another common compression trick is to take characters that are commonly duplicated, and create a new code to represent the duplication of the characters. For example, in programming, you see a lot of whitespace. So by representing a sequence of spaces as <N >. Where N is a number, you can turn</p>
+<pre><code> Foo.                    bar</code></pre>
+<p>Into</p>
+<pre><code> Foo.&lt;20 &gt;bar</code></pre>
+<p>Which takes up less space to store.</p>
+<p>Now, modern compression algorithms are a lot smarter than what I've used as an example, but they go by the same principle of taking data that falls into a predictable pattern, and telling a computer to extrapolate from that pattern, instead of directly storing the data.</p>
+<p>Incidentally, this means it's impossible to compress truly random data.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DerWaechter_" target="_blank">DerWaechter_</a>
+			<div class="markdown"><blockquote>
+<p>Incidentally, this means it's impossible to compress truly random data.</p>
+</blockquote>
+<p>Not really. Truly random data could still contain parts that can be categorized as a pattern.</p>
+<p>Say you have a random sequence of numbers. You could end up with something like 744444489303833333749, in which case you can absolutely compress it to 7(6x4)893038(5x3)749.</p>
+<p>It wouldn't be much, but it would still be compressable by a tiny portion.</p>
+<p>If you wanted something truly incompressable, you'd have to generate it in way that makes sure that there are no patterns, meaning it wouldn't be truly random.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sigma476" target="_blank">Sigma476</a>
+			<div class="markdown"><p>There are a lot of different methods, which you use depends on the data type.  For example a common type used in word docs is Huffman Encoding. This sorts all the characters in a document by frequency, the number of times it shows up.  These characters are represented by binary strings, ones and zeros, with the most frequent characters getting shorter strings.  This means a character like E might take up 5 bits of data normally, but could be compressed down to two.  </p>
+<p>These sequences are all stored on a Huffman tree.  When your computer reads the file it looks at the raw binary data and follows the branch with the correct bit.  Once it reaches a letter it prints it to the document and goes back to the top of the tree to start over.  </p>
+<p><a href="https://youtu.be/JsTptu56GM8" target="_blank">https://youtu.be/JsTptu56GM8</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chudthirtyseven" target="_blank">chudthirtyseven</a>
+			<div class="markdown"><p>I'm not sure a five year old would know the word never negentropy</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GODDAMNFOOL" target="_blank">GODDAMNFOOL</a>
+			<div class="markdown"><blockquote>
+<p>eli5</p>
+<p>negentropy</p>
+</blockquote></div>		</li>
+					</ul>
+	
