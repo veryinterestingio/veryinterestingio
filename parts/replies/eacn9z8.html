@@ -1,0 +1,113 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Zemedelphos" target="_blank">Zemedelphos</a>
+			<div class="markdown"><p>Hypothetical question. Would one be able to engineer &quot;very fair&quot; dice by drilling out holes to different depths such that the amount of material drilled out of each pip was a fraction determined by the number of pips on that face?</p>
+<p>For instance, let's just use a constant called P. On the 1 face, the depth of the drill is P, and on the opposite side, it's P/6. The 2 is P/2, and the opposite side is P/5. Then P/3 against P/4.</p>
+<p>I've always thought that would work, and you wouldn't even need to fill it with material or paint (though you certainly could) to offset the loss of material.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kent1146" target="_blank">kent1146</a>
+			<div class="markdown"><p>If you're talking micro-tolerance levels, the answer is no.  The weight distribution of the resulting 6-sided cube would be uneven because you have all of these depths drilled to different depths across the cube.  </p>
+<p>For example, look at the facet for the number 2.  The two corners <em>without</em> pips would weigh more than the two corners with pips drilled.</p>
+<p>Your idea works if you want to remove the same mass of material from each facet.  But it would not work for balancing dice, because of the weight distribution of the drilled pips (<em>where</em> the mass was removed from, and not just how much mass was removed).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Zemedelphos" target="_blank">Zemedelphos</a>
+			<div class="markdown"><p>What if one instead used a pip with a number of concentric rings around it for each side (number of rings indicating the side's value), so that the removed material stays centered to the face? While still keeping to equal amounts of removed mass, of course.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/UrKungFuNoGood" target="_blank">UrKungFuNoGood</a>
+			<div class="markdown"><p>drill six holes in each face but only color in the needed holes?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mw9676" target="_blank">mw9676</a>
+			<div class="markdown"><p>You could use Arabic numbers and ensure they are the same &quot;length&quot; so that they take up the same amount of material removed from each side. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/henrikose" target="_blank">henrikose</a>
+			<div class="markdown"><p>I guess you could, since all the patterns are symmetrical, and having their (negative) center of gravity at the center of each side.</p>
+<p>But it is perhaps a more complex problem than I realize. Or. Well I realize some things, that possibly can be a problem, but that I can not really grasp fully in my head. But I think your idea is worth investigating, saving filling material. :)</p>
+<p>My simple way of thinking is that we can calculate forces that the masses being removed would have contributed to, and the positions of the holes, rather than calculate on the whole cube, and that these forces should be balanced out, looking on it as a lever from the center of the cube.</p>
+<p>Then the torques around the cube center for two sides at the time is:</p>
+<pre><code>F = (D/2 - A/2) * A * N
+G = (D/2 - B/2) * B * M</code></pre>
+<p>where </p>
+<pre><code>D is the width of the cube
+A is the depth of pips on side A
+B is the depth of pips on side B
+N is the number of pips on side A
+M is the number of pips on side B</code></pre>
+<p>Radius and density should be irrelevant.</p>
+<p>In order to be balanced the torques must be equal.</p>
+<pre><code>F = G</code></pre>
+<p>This gives</p>
+<pre><code>(D/2 - A/2) * N * A = (D/2 - B/2) * M * B</code></pre>
+<p>Which after some headache turns out, i  hope, to be</p>
+<pre><code>B = (M * D + sqrt(M * (M * D^2 - 4 * N * A * D + 4 * N * A^2))) / (2 * M)
+B = (M * D - sqrt(M * (M * D^2 - 4 * N * A * D + 4 * N * A^2))) / (2 * M)</code></pre>
+<p>My gut feeling from the beginning was that the difference between the extremes, the one and the six, would be huge, so I figure we should try drilling the hole on the one side all the way in to the cube center, and then hopefully get at least some noticeable holes at the six side.</p>
+<p>By putting in some numbers and trying this</p>
+<pre><code>D = 20 (mm)
+N = 1
+M = 6
+A = 10 (mm)</code></pre>
+<p>I get that </p>
+<pre><code>B = (6 * 20 + sqrt(6 * (6 * 20^2 - 4 * 1 * 10 * 20 + 4 * 1 * 10^2) / (2 * 6)
+B = (6 * 20 - sqrt(6 * (6 * 20^2 - 4 * 1 * 10 * 20 + 4 * 1 * 10^2) / (2 * 6)</code></pre>
+<p>which is</p>
+<pre><code>B ≈ 19.129 (mm)
+B ≈ 0.871 (mm)</code></pre>
+<p>Wow. We can either drill the holes on the six side very carefully, or almost all the way through. I did not expect that, but I guess it makes sense, except we don't want all the holes from all the other sides to collide creating a whole new level of complexity. So I recommend drilling only 0.871 on the six side of a 20 mm dice.</p>
+<p>Looking roughly at the collision risk, I figure we could just try 1 mm holes on side five, and find out how deep the holes get on the two side.</p>
+<pre><code>(2 * 20 - sqrt(2 * (2 * 20^2 - 4 * 5 * 1 * 20 + 4 * 5 * 1^2))) / (2 * 2)</code></pre>
+<p>That is merely 2.754, so it should not collide with the deepest one hole, using a reasonable hole radius.</p>
+<p>Then obviously the pips can't be to close to the edges either. But I think at this point a parametrized CAD system would be needed to go further.</p>
+<p>I don't see any major obstacles at this point. But this is Internet. Somebody will, whether it is valid or not. :)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/henrikose" target="_blank">henrikose</a>
+			<div class="markdown"><p>I figured out that WolframAlpha could plot all possible hole depth ratios.</p>
+<p>One-six ratios, for a 20 mm dice:
+<a href="https://www.wolframalpha.com/input/?i=(20%2F2+-+A%2F2)+*+1+*+A+%3D+(20%2F2+-+B%2F2)+*+6+*+B" target="_blank">https://www.wolframalpha.com/input/?i=(20%2F2+-+A%2F2)+*+1+*+A+%3D+(20%2F2+-+B%2F2)+*+6+*+B</a></p>
+<p>Two-five ratios:
+<a href="https://www.wolframalpha.com/input/?i=(20%2F2+-+A%2F2)+*+2+*+A+%3D+(20%2F2+-+B%2F2)+*+5+*+B" target="_blank">https://www.wolframalpha.com/input/?i=(20%2F2+-+A%2F2)+*+2+*+A+%3D+(20%2F2+-+B%2F2)+*+5+*+B</a></p>
+<p>Three-four ratios:
+<a href="https://www.wolframalpha.com/input/?i=(20%2F2+-+A%2F2)+*+3+*+A+%3D+(20%2F2+-+B%2F2)+*+4+*+B" target="_blank">https://www.wolframalpha.com/input/?i=(20%2F2+-+A%2F2)+*+3+*+A+%3D+(20%2F2+-+B%2F2)+*+4+*+B</a></p>
+<p>(Obviously, only what is shown inside 0,0 to 20,20 is applicable, when using a drill.)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Pseudoboss11" target="_blank">Pseudoboss11</a>
+			<div class="markdown"><p>Not very well. Consider the 1/2 side pairing, on one side, you'll drill in twice as deep as the holes on the other side. Since the 1 face drills deeper, the mass contribution of the deep part of the hole will be less than when its far from the center of mass, so you'll actually need to drill slightly deeper to adjust the mass of the face. And no hole can drill through more than half the die, or else you'd be removing mass from the other face. It's not impossible, but it would require nonlinear adjustments. These nonlinear adjustments means that each pair of faces would need to remove different amounts of material, which brings us to our bigger problem.</p>
+<p>You would have an unusual <a href="https://en.m.wikipedia.org/wiki/Moment_of_inertia" target="_blank">inertia tensor</a>. This would result in the die spinning preferentially along one axis than on the other, this would also mean that the die would suffer from the effects of the <a href="https://en.m.wikipedia.org/wiki/Tennis_racket_theorem" target="_blank">intermediate axis theorem</a>, and precess in very strange ways while in the air. These complex motions would make it harder to identify cheaters by how the dice rolled, and skilled cheaters would be able to abuse these concepts to weight the rolls in their favor. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/samrutur" target="_blank">samrutur</a>
+			<div class="markdown"><p>Your comment took me through the dice manufacturing scene in Ocean's Thirteen all over again</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BenJuan26" target="_blank">BenJuan26</a>
+			<div class="markdown"><p><em>Peligroso</em> es mi nombre medio</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bacon_strip_grundle" target="_blank">bacon_strip_grundle</a>
+			<div class="markdown"><p>Macgyver did this shit first!  Did it like Ice Cube, 7-11, 7-11 even though he loaded them for just 7</p>
+<p>&#x200B;</p>
+<p>&#x200B;</p>
+<p><a href="https://www.youtube.com/watch?v=9EglsgMCGNI" target="_blank"><a href="https://www.youtube.com/watch?v=9EglsgMCGNI" target="_blank">https://www.youtube.com/watch?v=9EglsgMCGNI</a></a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Arcane_Pozhar" target="_blank">Arcane_Pozhar</a>
+			<div class="markdown"><p>Except sometimes a die isn't made perfectly, to an amount that you can notice it.  I had a D20 that rolls 20s a lot.  I assume it's a manufacturing issue that makes it lucky, not some random die karma. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kankunation" target="_blank">Kankunation</a>
+			<div class="markdown"><p>More sides on a dice can make this effect more obvious, since having more sides allows it to roll more. You will absolutely want a more balanced d20 than a d6 or d4.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/machambo7" target="_blank">machambo7</a>
+			<div class="markdown"><p>Maybe try [this] (<a href="https://youtu.be/VI3N4Qg-JZM" target="_blank">https://youtu.be/VI3N4Qg-JZM</a>) to check the balance. </p>
+<p>I've never done it personally, though, so I have no idea if this actually works</p>
+<p>Edit: After reading the comments, I'd say take this with a grain of salt (no pun intended). It can/will show you balance imperfections in the die, but from what people are saying it doesn't make <em>much</em> of a real world difference when rolled</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/foshka" target="_blank">foshka</a>
+			<div class="markdown"><p>I've played roleplaying games most of my life, and I highly doubt that.  I have found every noticeable odd shift was because they rolled dice in a way that would never, ever, be allowed in any gaming venue.   Even one guy who said he rounded the corners of his d6's slightly couldn't get consistent results when we forced him to roll properly.</p>
+<p>The die has to move.  Shaking it in a fist does not count, either bounce it around in a cup or bounce it off the table surface.  It has to roll more than a few inches, at least a foot.   There is a reason casino's make you bounce it off of the far wall, dice would have to be massively weighted (extremely noticeable) to counter that.</p></div>		</li>
+					</ul>
+		</ul>
+	
