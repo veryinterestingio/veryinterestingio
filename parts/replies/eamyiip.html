@@ -1,0 +1,77 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/abcteryx" target="_blank">abcteryx</a>
+			<div class="markdown"><p>Do these systems have closed-loop control? In other words, are they equipped with sensors that somehow measure the error in focal point position (focal point distance from tumor, etc.) and adjust accordingly?</p>
+<p>I ask because I imagine it's just as difficult to measure where your focal point is as it is to generate the focal point in the first place.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Flayahata" target="_blank">Flayahata</a>
+			<div class="markdown"><p>Yes, these systems are often integrated into MRI imagers which can do real-time thermometry to measure the actual focus to make adjustments as necessary.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/soodesu" target="_blank">soodesu</a>
+			<div class="markdown"><p>I'm an electronics engineer who worked on ultrasound for diagnostics. It uses beam steering too just at very low powers. </p>
+<p>Ultrasound beam steering is not a closed loop control, because you can't get feedback directly. It's calibrated and and during use monitored with other means like observation with second ultrasound </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HolisticReductionist" target="_blank">HolisticReductionist</a>
+			<div class="markdown"><p>Wouldn’t the second US used for monitoring create sound waves that collide with those of the therapeutic US outside the targeted area? Or is it different frequencies or non-interactive for some other reason? Would this matter?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Laikitu" target="_blank">Laikitu</a>
+			<div class="markdown"><p>Just making a guess, but there would likely be a calibration phase to using this equipment which would make it much easier to work out where the focal point should be.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Deto" target="_blank">Deto</a>
+			<div class="markdown"><p>It's probably different with each person though - the density and distribution of various tissue in their head will affect things.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OhAces" target="_blank">OhAces</a>
+			<div class="markdown"><p>I do industrial phased array ultrasonics, which is very similar in frequency and transducer design to medical UT. We use reflectors of known depths in a calibbration block that is of similar material and acoustic velocity to whatever we are testing so we can adjust the focal depth and velocity on each angle of sound beam from each element. Im assuming they use a normal beam (0degree) longitudinal wave for this procedure and have a calibration standard that has similar acoustic velocity to a human body so they can ensure the focal depth is accurate. You can have multiple points on a time corrected curve so you can adjust the gain at different depths independantly. So if they calibrate to say 1/2/3 inches or something far more accurate they can boost the signal at the depth they want.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Deto" target="_blank">Deto</a>
+			<div class="markdown"><p>So it's basically a phased antenna array?  This must get complicated, though, as the sound waves start to travel through the patient - I imagine there are reflections and density changes that are difficulty to predict exactly.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/interbeing" target="_blank">interbeing</a>
+			<div class="markdown"><p>Yes, these are just phased arrays of ultrasonic transducers.  The math is almost exactly the same as it is for phased antenna arrays.  And you are correct that the ultrasound waves can be affected by differences in tissue density and type.  </p>
+<p>In ultrasound the tissues are often modeled using a concept called acoustic impedance which accounts for the different speed of sound and loss through different tissues.  Acoustic impedance is similar to the concept of wave impedance for EM waves.  </p>
+<p>For imaging purposes we rely on the different impedance and the reflections created to show images of tissues inside of the body.  </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/_the_yellow_peril_" target="_blank">_the_yellow_peril_</a>
+			<div class="markdown"><p>Absolutely, many (most? All the ones i know who did design anyway) ultrasound engineers are EE and my understanding is that you can use similar approaches for simulation/design.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/toabear" target="_blank">toabear</a>
+			<div class="markdown"><p>That is really odd. Each element in the array would be huge at these frequencies. It must either be a small array or they manage the antennas really differently then RF.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wordsnerd" target="_blank">wordsnerd</a>
+			<div class="markdown"><p>They are different in that sound waves are longitudinal while RF waves are transverse, and sound is much slower than light so the wavelength is much shorter for a given frequency. An ultrasound &quot;antenna&quot; (transducer/speaker) is typically a crystal that's around one-half wavelength thick (based on the speed of sound in the crystal), probably a small fraction of a millimeter in this case.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DarthAblator" target="_blank">DarthAblator</a>
+			<div class="markdown"><p>My PhD work was in ultrasonic medical imaging. This is a good, simple explanation. The mathematics break down such that, from the point of an observer (i.e. a tumor), you can use an array of small transducers to simulate a physically focused (i.e. shaped) transducer and the observer cannot distinguish the two. There are limits on this, such as needing small array elements relative to the focal length. And, of course, the focus isn't a point, but has a 3D shape with intensity variations in it, but the technology is fairly robust. </p>
+<p>There are variations in acoustic properties between tissue types (e.g. speed of sounds is ~1540 m/s in muscle, but more like ~1400 m/s in fat). This can cause interference, reflections, etc, but you can account for that somewhat and mitigate the effects, as was said.</p>
+<p>Additionally, the wavelength of 0.5 MHz ultrasonic wave in &quot;average&quot; tissue is about 3 mm, so small spatial (&lt;1 mm) variations in acoustic properties tend not to have big impacts, so you can often approximate a particular tissue type as a homogenous structure, even though there are capillaries, etc. Ultrasonic thermal ablation has a lot of potential for tumor treatment, and more. There are studies using ultrasonic ablation catheters for treating things like cardiac arrhythmia, for example.</p>
+<p>For anyone interested, there is a pretty good comprehensive medical ultrasound textbook that is free to download that will go into considerable detail on all these matters, I believe it's Medical Ultrasound by T. Szabo. Good tool for those interested. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sexy_Underpants" target="_blank">Sexy_Underpants</a>
+			<div class="markdown"><p>Variation in tissue properties for brain treatments is a much larger problem because of the skull. It has a speed of sound of ~2900 m/s and a density of 1900 kg/m3 (compared to ~1000 for soft tissue). Treating tissue as homogenous doesn't work very well there</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DarthAblator" target="_blank">DarthAblator</a>
+			<div class="markdown"><p>Yes, you have considerable reflection at the skull/soft tissue interface. This is why we don't use ultrasound to visualize fractures/broken bones. I was speaking in generalized terms. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mwell2015" target="_blank">mwell2015</a>
+			<div class="markdown"><p>My little NDT understanding actually understood this.  Yay, for industrial/medical fusion.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/syds" target="_blank">syds</a>
+			<div class="markdown"><p>we are basically the same stuff, what works for nice 4200 m/s concrete or 8000+ m/s steel, also works for flesh and bone, we are all just made up of jiggly stuff.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
