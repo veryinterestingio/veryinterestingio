@@ -1,0 +1,71 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/agate_" target="_blank">agate_</a>
+			<div class="markdown"><p>Great answer, but to add an important quibble: while earth’s orbital period has been about the same amount of time for billions of years, the number of <em>days</em> per year has been decreasing because the length of a day gets longer as the earth transfers angular momentum to the moon.   A billion years ago there were about 500 days per year, each 25% shorter.  We can actually sometimes measure this in fossils that have both daily and annual growth cycles.</p>
+<p><a href="https://spacemath.gsfc.nasa.gov/earth/6Page58.pdf" target="_blank">https://spacemath.gsfc.nasa.gov/earth/6Page58.pdf</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bencbartlett" target="_blank">bencbartlett</a>
+			<div class="markdown"><p>You are correct, the day length does increase over time, although 1Gyr ago, the day length was likely closer to 87% as long as it is now, as I describe <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/2016GL068912" target="_blank">in this paper</a>.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/daisybelle36" target="_blank">daisybelle36</a>
+			<div class="markdown"><p>How long is 1Gyr? I thought it might be one thousand years, but that seems unlikely.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AstralElement" target="_blank">AstralElement</a>
+			<div class="markdown"><p>Hasn’t this been a logarithmic change? I read that the (hypothetical) collision with Theia sped the earths’ rotation to be something like 10 hours per day. You’re saying about 1b years ago, it was still 87% of what it currently is?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ARAR1" target="_blank">ARAR1</a>
+			<div class="markdown"><p>Could some angular momentum be lost to friction of ocean waves?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dukesdj" target="_blank">dukesdj</a>
+			<div class="markdown"><p>Yes this is where tidal dissipation happens as the transfer of momentum between the Earth-Moon and Earth-Sun is not perfect. Any orbital energy transferred to Earth is dissipated (almost all of it) in the bottom of the ocean (tidal heating).</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OgChocolateNinja" target="_blank">OgChocolateNinja</a>
+			<div class="markdown"><p>I could be totally wrong. But I would assume that since the ocean and its waves move somewhat relatively with the earth that they would not. I would imagine that the net force from the ocean is negligible.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rabbotz" target="_blank">rabbotz</a>
+			<div class="markdown"><p>This is something I never thought of until now: when we talk about a billion years ago do we mean 1 billion rotations around the sun or 1 billion current lengths of the year? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DaddyCatALSO" target="_blank">DaddyCatALSO</a>
+			<div class="markdown"><p>Current lengths, but any measurements like that can not be narrowed down to a single year's events.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Semyonov" target="_blank">Semyonov</a>
+			<div class="markdown"><p>Thanks for the in-depth answer!</p>
+<blockquote>
+<p>orbital stability</p>
+</blockquote>
+<p>This is something that I've been wondering about! Specifically, I play a game called Universe Sandbox, and I noticed that when you accelerate over extreme lengths of time orbits of things tend to drastically decay!</p>
+<p>Even a game like Kerbal Space Program, though it uses simplified newtonian physics, locks all orbital bodies precisely to their orbits to counteract this. There are still mathmatical errors that occur though in the system for reasons not entirely known.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bencbartlett" target="_blank">bencbartlett</a>
+			<div class="markdown"><blockquote>
+<p>There are still mathmatical errors that occur though in the system for reasons not entirely known.</p>
+</blockquote>
+<p>This is not entirely true -- the study of error propagation in numerical algorithms is a very developed field called <a href="https://en.wikipedia.org/wiki/Numerical_analysis" target="_blank">numerical analysis</a>, and the accumulation of error in simulating orbital dynamics is an especially well-understood problem. The N-body problem (for N&gt;2) is not an analytically solvable problem, so you do need to use numerical techniques to predict orbital evolutions of complex systems, but there are a huge range of numerical integration techniques you can use to do this with minimal error. (Possibly the most famous of these is the <a href="https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods#The_Runge%E2%80%93Kutta_method" target="_blank">Runge-Kutta</a> method.)</p>
+<p>&#x200B;</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BraveOthello" target="_blank">BraveOthello</a>
+			<div class="markdown"><p>And Universe Sandbox in high-speed mode uses Euler integration instead of RK4 for solving the N-body problem, which exacerbates the error.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JoshuaPearce" target="_blank">JoshuaPearce</a>
+			<div class="markdown"><p>There's also the technical limitation of floating point precision. 1.001 + 1.001 won't always equal 2.002 in software, it could be 2.00199997; Combine that with error propagation like you said, and it's an inevitable catastrophe.</p>
+<p>(The above numbers are pulled out of my cache, they are only demonstrations. Some numbers <em>can</em> be represented perfectly as floats. Just a lot less than 100%.)</p>
+<p>It's basically the same issue as trying to represent 1/3 in base 10. No matter how many digits you add, it's still never going to be exactly the correct number.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ergzay" target="_blank">ergzay</a>
+			<div class="markdown"><p>Here I fixed your links for you:</p>
+<p><a href="https://www.wolframalpha.com/input/?i=2pi+*+sqrt((149.6*10%5E6+km+%2B+1+micrometer+*+10%5E9\)%5E3+%2F+(G+*+solar+mass\)\" target="_blank">0.3 nanoseconds per year</a>+-+2pi+<em>+sqrt((149.6</em>10%5E6+km+)%5E3+%2F+(G+*+solar+mass)))</p>
+<p><a href="https://www.wolframalpha.com/input/?i=2pi+*+sqrt((149.6*10%5E6+km+%2B+1.5cm+\)%5E3+%2F+(G+*+solar+mass\)\" target="_blank">4.7 microseconds per year</a>+-+2pi+<em>+sqrt((149.6</em>10%5E6+km+)%5E3+%2F+(G+*+solar+mass)))</p></div>		</li>
+					</ul>
+	
