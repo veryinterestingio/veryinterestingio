@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>Will we ever run out of music? Is there a finite number of notes and ways to put the notes together such that eventually it will be hard or impossible to create a unique sound?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="a3oil9">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/a3oil9/will_we_ever_run_out_of_music_is_there_a_finite/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/a3oil9" onclick="return false">Will we ever run out of music? Is there a finite number of notes and ways to put the notes together such that eventually it will be hard or impossible to create a unique sound?</a>
+		</h2>
+		<!--<span class="date">2018-12-09</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Will we ever run out of music? Is there a finite number of notes and ways to put the notes together such that eventually it will be hard or impossible to create a unique sound?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="eb7v91s">
+		<a class="author" href="https://www.reddit.com/user/ericGraves" target="_blank">ericGraves</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For a fixed time length, yes. Before I begin with an explanation, let me mention that vsauce has a youtube video on this topic. I mention this purely in an attempt to stymie the flood of comments referring to it and do not endorse it as being valid. </p>
+<p>But yes, as long as we assume a fixed interval of time, the existence of some environmental <a href="https://en.wikipedia.org/wiki/Noise_(electronics\)" target="_blank">noise</a>, and finite signal power in producing the music. Note, environmental noise is actually ever present, and is what stops us from being able to communicate an <strong>infinite</strong> amount of information at any given time. I say this in hopes that you will accept the existence of noise in the system as a valid assumption, as the assumption is critical to the argument. The other two assumptions are obvious, in an infinite amount of time there can be an infinite number of distinct songs and given infinite amplitudes there can of course be an infinite number of unique songs.</p>
+<p>Anyway, given these assumptions the number of songs which can be reliably distinguished, mathematically, is in fact finite. This is essentially due to the <a href="https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem" target="_blank">Shannon-Nyquist sampling theorem</a> and all noisy channels having a finite <a href="https://en.wikipedia.org/wiki/Channel_capacity" target="_blank">channel capacity</a>.</p>
+<p>In more detail, the nyquist-shannon sampling theorem states that each bandlimited continuous function (audible noise being bandlimited 20Hz-20kHz) can be exactly reconstructed from a discrete version of the signal which was sampled at a rate of twice the bandwidth of the original signal. The sampling theorem is <a href="https://files.mtstatic.com/site_7337/1649/0?Expires=1544113294&amp;Signature=db4KmaJ-Bmr1~DPR0v6IaxkVPYxj2Xe8ZX1hDECyBGT-DW5trWijm1gD7QiT8~Fs3k6ZYRw9hPLzxC9CVn2kUF7E6jDS1pKeYVqK8xR~6Bm-qQttP0LeoXR~zXEgz5lSI38942xtSBOEOv-AXboeRpJs41MQeEpzC0CIwf3Mqj0_&amp;Key-Pair-Id=APKAJ5Y6AV4GI7A555NA" target="_blank">pretty easy</a> to understand, if you are familiar with <a href="https://en.wikipedia.org/wiki/Fourier_transform" target="_blank">fourier transforms</a>. Basically the sampling function can be thought of as a infinite summation of impulse function that are multiplied with the original function. In the frequency domain multiplication becomes convolution, yet this infinite summation of impulse functions remains an infinite summation of impulse functions. Thus the frequency domain representation of the signal is shifted up to the new sampling frequencies. If you sample at twice the bandwidth then there is no overlap and you can exactly recover the original signal. This result can also be extended to consider signals, whose energy is mostly contained in the bandwidth of the signal, by a series of papers by <a href="https://en.wikipedia.org/wiki/Prolate_spheroidal_wave_function" target="_blank">Landau, Pollak, and Slepian</a>.</p>
+<p>Thus we have reduced a continuous signal to a signal which is discrete in time (but not yet amplitude). The channel capacity theorem does the second part. For any signal with finite power being transmitted in the presence of noise there is a finite number of discrete states that can be differentiated between by various channel capacity theorems. The most well known version is the <a href="https://en.wikipedia.org/wiki/Shannon%E2%80%93Hartley_theorem" target="_blank">Shannon-Hartley Theorem</a> which considers additive white gaussian noise channels. The most general case was treated by <a href="https://dl.acm.org/citation.cfm?id=2274227" target="_blank">Han and Verdu (I can not immediately find an open access version of the paper)</a>. Regardless, the channel capacity theorems are essentially like sphere packing, where the sphere is due to the noise. In a continuous but finite space there are a finite number of spheres that can be packed in. For this case the overlapping of spheres would mean that the two songs would be equally likely given what was heard and thus not able to be reliably distinguished.</p>
+<p>Therefore under these realistic assumptions, we can essentially represent all of the infinite possible signals that could occur, with a finite number of such songs. This theoretical maximum is quite large though. For instance, if we assume an AWGN channel, with 90 dB SNR then we get 2^(54 million) possible 5 minute songs.</p>
+<p>edit- Added &quot;5 minute&quot; to the final sentence.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="eb88k1q">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="eb881p2">
+		<a class="author" href="https://www.reddit.com/user/ApplesauceHorse" target="_blank">ApplesauceHorse</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>No.</p>
+<p>Say there were only two notes, and they could only be played at a constant beat, and there were no gaps allowed, and all songs were exactly 300 notes long, there would be 2x10^90 combinations of those notes.</p>
+<p>Say we collectively produced 1 trillion unique songs per second, every second, it would take 2x10^78 seconds to exhaust all combinations of that very limited range of notes.</p>
+<p>That is 1.5x10^72 years.</p>
+<p>For some perspective on how long that is - in approx 10^14 years from now it is expected that no new stars will be able to form in the universe, by 10^72 years most of the protons and neutrons in the universe will have decayed into em radiation and leptons, and the universe will mostly be black holes in a startless sky.</p>
+<p>And that’s the timeframe for a exhausting a mere 300 beat sequence consisting of only two notes played at a constant beat on one instrument.</p>
+<p>To exhaust every possible song at every possible rhythm at every possible beat at every on every possible combination of instruments set to all present and future languages would be on a timeframe that makes the heat death of the universe look like a blink of the eye.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="eb8f04c">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="eb8hazs">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/a3oil9" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
