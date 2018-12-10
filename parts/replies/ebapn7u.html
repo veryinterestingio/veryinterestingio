@@ -1,0 +1,51 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/theterribletigger" target="_blank">theterribletigger</a>
+			<div class="markdown"><p>Sorry this may be dumb, but is that why sometimes an ampersand gets messed up on some sites? Or quotation marks?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/themightychris" target="_blank">themightychris</a>
+			<div class="markdown"><p>Ampersands have special meanings in both URLs and in the HTML that marks-up the text from a website into the structure of boxes/lists/tables/links/forms you see in your web browser. Quotation marks have special meaning <em>sometimes</em> in HTML, usually when they're outside the plain text of the page and inside links or forms.</p>
+<p>When you're programming things like websites you often need to take data from one system and essentially turn that into part of the code for another system. That can get really messy though when that data could <em>look</em> just like the code you're mixing it into. What makes things especially difficult with websites is that early web browsers tried to be really forgiving about minor mistakes in your HTML code, basically you could write whatever and they'd try their very best to do what you probably meant. 20 years later and we're building things like Reddit and Google Docs in our web browsers yet trying not to break all the stuff people built 20 years ago and snippets/practices people have carried around since.</p>
+<p>For example, you might write a post for a website with the title <code>Paste &amp;copy your way to coding success!!1</code>. The website saves what you wrote, special characters and all, into a database that it can pull it up from later when people search by author/date/category etc.</p>
+<p>Now you make a page where someone can see a list of all the posts, and you want to make the title bold so it stands out, so you write some code like this that sets apart the date with a <code>:</code> and uses the HTML tag for making some text bold on the title:</p>
+<pre><code>print("$date: &lt;strong&gt;$title&lt;/strong&gt;")</code></pre>
+<p>You're looking at <em>two layers</em> of code here. There's the programming language on the outside—which you're using to glue the database and web browser together (the <code>print</code> command, the parenthesis+quotes used to contain what it is you want to print, and the placeholders starting with <code>$</code> signs to let you drop in bits from your database). Then, what you're trying to print out with it is HTML code to make the text fancy when it hits the web browser. But what if you wanted to put <code>"</code> marks around the title on the page? What if you actually want to write <code>micro$oft</code> in there too without the programming language trying to treat <code>$oft</code> like another placeholder?</p>
+<p>Sounds pretty confusing and annoying, right? Wait, it gets better. The text the user typed in for a title can potentially contain HTML code too, so that's a <em>third layer</em> you need to worry about.</p>
+<p>Here's the HTML code that could print out: <code>2018-12-06: &lt;strong&gt;Paste &amp;copy your way to coding success!!1&lt;/strong&gt;</code></p>
+<p>Here's what you'd then see on the web page: 2018-12-06: <strong>Paste © your way to coding success!!1</strong></p>
+<p>Ahhh WTH. Turns out <code>&amp;copy;</code> is a code to make a copyright symbol in HTML. But we wanted HTML to be easy to use in the 90s so <code>&amp;copy</code> works too, most of the time.</p>
+<p>Ok, easy fix, let's just replace every <code>&amp;</code> in someone's title now with <code>&amp;amp</code> before we save the post title to our database—that's the cutoff-but-still-working form of the HTML code for a literal <code>&amp;</code> .</p>
+<p>But wait, we already have a bunch of post titles saved without that, so when we generate the HTML from the database lets check for any <code>&amp;</code> symbols that aren't already part of <code>&amp;amp;</code> and then turn those into <code>&amp;amp;</code> on the fly. Did you spot the bug? Now the the existing post comes out in HTML as <code>2018-12-06: &lt;strong&gt;Paste &amp;amp;copy your way to coding success!!1&lt;/strong&gt;</code> and renders right but the same title posted again comes out <code>2018-12-06: &lt;strong&gt;Paste &amp;amp;ampcopy your way to coding success!!1&lt;/strong&gt;</code></p>
+<p>This is a kind of contrived/dramatized example, but it's pretty much what web developers do all day and you can see how the wires end up getting crossed a lot</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jingster123" target="_blank">Jingster123</a>
+			<div class="markdown"><p>Man, you know your stuff. Upvoted.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/edgeofenlightenment" target="_blank">edgeofenlightenment</a>
+			<div class="markdown"><p>themightychris has it right. &quot;reserved characters/sequences&quot; are symbols/patterns in a notation that carry special meaning about the structure of the data, in addition to the raw content. ampersands, quotes, and angle brackets are reserved characters in html and several other markup languages.</p>
+<p>When there's (inevitably) overlap in the reserved characters and characters that might belong in the actual content, &quot;escape characters/sequences&quot; are essentially reserved patterns to include another reserved pattern in the regular content.</p>
+<p>&amp;quot; is the html escape for &quot;</p>
+<p>&amp;lt; is &lt;</p>
+<p>&amp;gt; is &gt;</p>
+<p>&amp;amp; is the ampersand character</p>
+<p>So if you wanted to write that last line in a text editor and displayed it in an html renderer like the browser, it would show:</p>
+<p>&amp; is the ampersand character</p>
+<p>It even works in reddit markdown. Try replying with this exact line:</p>
+<p>&amp;amp;how</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pedroff_1" target="_blank">pedroff_1</a>
+			<div class="markdown"><p>&amp;how</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Pinetrapple" target="_blank">Pinetrapple</a>
+			<div class="markdown"><p>Take my upvote. For sure the most complete answer. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/allthatwastedtime" target="_blank">allthatwastedtime</a>
+			<div class="markdown"><p>Finally some that knows what they’re talking about...</p></div>		</li>
+					</ul>
+	

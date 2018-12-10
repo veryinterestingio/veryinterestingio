@@ -1,0 +1,58 @@
+<div class="answers">
+	<div class="answer" data-handle="eba8qrj">
+		<a class="author" href="https://www.reddit.com/user/GavinGT" target="_blank">GavinGT</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In programming, certain characters are reserved as special characters. These characters vary by programming language, so it's easiest to just prohibit all of them. </p>
+<p>Why is this a problem? A lazy programmer might take the provided username and simply drop it right into their code. This means that a malicious user could create a username that intentionally makes the code do something it's not meant to do. This is called an &quot;injection attack&quot;. </p>
+<p>And there are plenty of good non-malicious reasons too. For instance, the $ symbol looks like a capital S, so that presents issues with readability and username forgery. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ebapn7u">
+		<a class="author" href="https://www.reddit.com/user/themightychris" target="_blank">themightychris</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>We give people usernames because it provides us a recognizable identifier we can use <em>everywhere</em> to refer to one specific person</p>
+<p><em>Everywhere</em> can potentially include the front of email addresses, URLs, filenames, links, etc as well as places we haven't even thought of yet. All those different places have different rules about what characters you can use, and what they do when you try to use the ones you can't.</p>
+<p>For example, if I wanted my reddit username to be <code>the?mighty?chris</code>, my reddit URL would have to show up like <code>reddit.com/u/the%3Fmighty%3Fchris</code> because <code>?</code> has special meaning in URLs and the rule for using those characters without their special meaning is to replace them with those <code>%XX</code> stand-ins. If you're used to knowing me as <code>the?mighty?chris</code> you might not recognize me in that URL at a glance because those stand-ins can be distracting</p>
+<p>Many other answers have focused on how programmers forgetting to change special characters into their stand-ins can cause problems and saying it's safer to just forbid them. That's not really why they're always forbidden in usernames though, websites already deal with lots of other places where you can type any characters you want.</p>
+<p>The real reason is that even when you succeed in handling the special characters correctly in every place, you'd still be defeating the whole point of having a username by making it ugly and less recognizable</p>
+<p>So, the traditional constraints for usernames are really about adhering to a lowest-common-denominator of characters you can use <em>everywhere</em> present and future <strong>without needing to make them unrecognizable</strong>.</p>
+<p>This particular set of characters probably came to be the lowest-common-denominator because they're ones programmers would commonly use while naming files. Dots became common with the convention of file extensions (e.g. <code>.doc</code>) to indicate the type of a file, and hyphens/underscores became common alternatives to spaces because spaces look like breaks when you have columns of data on your screen. Programmers always want to be able to recognize their filenames easily so it's always been a priority to keep those characters usable without any stand-ins by choosing different characters when they need to find ones to give special meanings to</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ebaiyrs">
+		<a class="author" href="https://www.reddit.com/user/thelionofgodzilla" target="_blank">thelionofgodzilla</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A lot of these characters don’t work in URLs, or at least not across all browsers, so only safe ones are accepted so you can have urls like Instagram.com/user/your.username</p>
+<p>There are some security concerns also with some characters as they can be used for “injection-style” attacks on databases but most modern platforms are protected against that these days.</p>
+<p>I’d also suspect most platforms keep the allowed characters to the strict minimum to prevent you from coming up with something you’ll never remember yourself.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ebamhhk">
+		<a class="author" href="https://www.reddit.com/user/BadBoy6767" target="_blank">BadBoy6767</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In addition to what everybody said, there's also a Unicode problem where a sequence of codepoints could look like another sequence.</p>
+<p>For example:</p>
+<ul>
+<li>; and ; are different codepoints.</li>
+<li>Code point U+200F makes text go right-to-left but would be technically invisible in a username.</li>
+<li>There are more so-called invisible codepoints which would be unnoticable.</li>
+</ul>
+<p>You could remove any of these fancy things, but then suddenly you're back at square one, and also people suddenly occupy multiple usernames, one with the invisible codepoint and one without (GMail works like this, where <code>FearfulGoose</code> and <code>Fearful......Goose</code> point to the same account).<br />
+The easiest solution would be to just disallow such characters.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ebau2kw">
+		<a class="author" href="https://www.reddit.com/user/zloganrox08" target="_blank">zloganrox08</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For a real ELI5, maybe even ELI3: have you ever seen those memes where people are playing a game, and there's a dialog option where an NPC says &quot;good job [username]!&quot; And then someone makes their username &quot;killing all those people&quot; and it makes the NPC say &quot;good job killing all those people!&quot;</p>
+<p>Well in the same way, using special characters would make the program DO bad stuff, like run mean virus programs, instead of harmlessly making an NPC say something naughty. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>

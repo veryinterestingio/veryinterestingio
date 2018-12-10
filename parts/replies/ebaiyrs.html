@@ -1,0 +1,68 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Carmenn14" target="_blank">Carmenn14</a>
+			<div class="markdown"><p>But why are there unsafe characters? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Beetin" target="_blank">Beetin</a>
+			<div class="markdown"><p>Let's imagine the username is john22/friends.</p>
+<p>Another is john22</p>
+<p>The url for john22 profile is badpage.com/john22.</p>
+<p>The url for seeing his friends is badpage.com/john22/friends</p>
+<p>The url for john22/friends profile is badpage.com/john22/friends</p>
+<p>When you type in badpage.com/john22/friends, what should it show you.</p>
+<p>There are similar reasons why spaces, colons etc aren't allowed in urls except for their reserved uses. We build urls and understand them with special characters. So a ? or = or / means a special thing for a url, so you can't use it as a literal character. abc=123 isn't OK as a variable name because the browser has no idea how to know that abc=123=123 means &quot;abc=123&quot;=123.</p>
+<p>As an example, you wouldn't want a company to create ingredient names that have commas in them. Because if your ingredients read &quot;flour, sugar, terrein, cashews, white pepper&quot; you would rightly have trouble knowing that actually there is an ingredient called &quot;terrein, cashews&quot; that is nut free. We would call a comma a &quot;reserved character&quot; in this context.</p>
+<p>Back on usernames, you can escape the / into special code to make it url safe, so it isnt a huge deal to allow it. But it's mostly a &quot;don't give programmers a headache&quot; situation where we restrict the initial input so we don't have to have special rules all over the place. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MitchTJones" target="_blank">MitchTJones</a>
+			<div class="markdown"><p>I like the cookbook example; very ELI5.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/__edge" target="_blank">__edge</a>
+			<div class="markdown"><p>This is the right answer and nicely illustrated. </p>
+<p>We choose to restrict ourselves to identifiers that can be used anywhere in a url or string literal in code and practically any language because it's convenient.</p>
+<p>Now programmer worth their salt *should* make the mistake you explains (but it has happened again and again). However, <a href="https://goodpage.com/user/Beetin" target="_blank">goodpage.com/user/Beetin</a> is just so much nicer to read and work with than <a href="https://goodpage.com/user/B%u20ACet%20in" target="_blank">goodpage.com/user/B%u20ACet%20in</a></p>
+<p>&#x200B;</p>
+<p>Also, I'd like to add that the choice of a safe character set for names is a preference from older, Western guys. An Asian website is much more like to allow the full unicode character set including Chinese, Korean, Japanese characters. Younger developer may be used to frameworks that escape strings transparently.</p>
+<p>This is not technically necessary. It's a choice that we got used to.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Iceman_259" target="_blank">Iceman_259</a>
+			<div class="markdown"><p>Those characters can be URL encoded for this purpose though. The forward slash in this case is converted to %2F before it goes into the URL parameters and get converted back on the other side.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/k_x90" target="_blank">k_x90</a>
+			<div class="markdown"><p>Tiny example:</p>
+<p>Code has something like</p>
+<pre><code>SELECT * FROM users WHERE name = "$username";</code></pre>
+<p>Person enters the phrase</p>
+<pre><code>"; DROP TABLE users;--</code></pre>
+<p><code>--</code> begins a <em>comment</em>, which will mark itself and everything on the same line after it as being not part of the code to execute. It's important because it stops a syntax error from occuring due to the dangling quote at the end of the code statement. The statement that will be executed is now</p>
+<pre><code>SELECT * FROM users WHERE name = ""; DROP TABLE users:--"</code></pre>
+<p>It's rare to see this form of injection in the wild, but some shittily made sites are still occasionally vulnerable to it. In a scenario like this, <code>"</code> is an unsafe character.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pseudopsud" target="_blank">pseudopsud</a>
+			<div class="markdown"><p>But people who make such mistakes are not going to follow a standard that tells them to only use safe characters</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KebabSaget" target="_blank">KebabSaget</a>
+			<div class="markdown"><p>an example: if you run a database as the backend of a website and they don't protect their input fields, you could put a semicolon (;), which ends the command and starts the next command. then anything you type after that would be a new command, and you could dump all the info in the database, if not change information.</p>
+<p>It's a little more complicated, but that's basically it. you could sanitize the input, but that's a lot of work, and if you mess up, the vulnerability is still there. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TGotAReddit" target="_blank">TGotAReddit</a>
+			<div class="markdown"><p>Cookbook example like the other person who explained the unsafe characters issue with /:
+It would be like if the format for cookbooks began with a “By: John Smith” but you could set the name to be something that somehow retroactively deleted the entire cookbook, or replaced the recipe to something else, etc.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FLskate" target="_blank">FLskate</a>
+			<div class="markdown"><p>Most new platforms want nearly all resources to be exposed as a REST api, whether thats internal or external. </p>
+<p>Even more or so now with microservice architecture where different parts of the backend like to communicate with each other via api calls. </p>
+<p>Keeping the names in this format keeps them url safe and able to be in a url as the user above me mentioned.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/caprizoom" target="_blank">caprizoom</a>
+			<div class="markdown"><p>This is the best answer.</p></div>		</li>
+					</ul>
+	
