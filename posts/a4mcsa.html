@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>Are there alternative notations for hyper-large numbers such as TREE(3)?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="a4mcsa">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/a4mcsa/are_there_alternative_notations_for_hyperlarge/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Mathematics">Mathematics</span>
+			<a href="/posts/a4mcsa" onclick="return false">Are there alternative notations for hyper-large numbers such as TREE(3)?</a>
+		</h2>
+		<!--<span class="date">2018-12-12</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I've recently heard of Grahm's number. A finite number that towers over the number of particles in the observable universe. When doing some research, Grahm's number was notated well enough to where I could grasp its magnitude. Then I found out about TREE (3) and SCG(13) which are even larger. But there were no notations of these numbers in reference to Grahm's number. So while I know they're bigger, I can't imagine how big they are. How many Grahm's numbers go into either TREE (3) or SCG (13) ? </p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ebg6vdb">
+		<a class="author" href="https://www.reddit.com/user/PersonUsingAComputer" target="_blank">PersonUsingAComputer</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Warning: long post with big numbers. I'm assuming you've seen how Graham's number is defined, in terms of up-arrow notation.</p>
+<p>In general, it's much easier to talk about how fast a function grows than how large a specific one of its outputs is. It's mathematically nicer, too, since a choice of input like 3 for TREE(n) or 13 for SCG(n) is rather arbitrary - these are just chosen because they're the smallest input where the function starts to get big.</p>
+<p>The fast-growing hierarchy is a cool measuring stick to talk about how fast functions grow. This is an infinite hierarchy of increasingly fast-growing functions, using two basic ideas to build faster-growing functions out of slower ones. We start with f_0, the lowermost function in the hierarchy, defined to be f_0(n) = n+1. To go from any function in the FGH to the next, we define f_(x+1) = f_x(f_x(...f_x(n)...)), where there are n copies of f_x. This is <em>recursion</em>, and it gives you some relatively fast-growing functions pretty quickly. For example, we can show f_1(n) = f_0(f_0(...f_0(n)...)) = n+1+1...+1. Since we're adding 1 exactly n times, this is the same as adding n just once, and we have f_1(n) = n+n = 2n. Then f_2(n) = f_1(f_1(...f_1(n)...)) = 2*2*...2*n. Since we multiply by 2 exactly n times, this is the same thing as f_2(n) = n2^(n).</p>
+<p>You can see how we started with addition at f_0, and progressed to multiplication at f_1, and then went to exponentiation at f_2 (at least approximately; it's true that n2^n grows slightly faster than plain old 2^(n)). This is because multiplication is repeated addition, and exponentiation is repeated multiplication. If you remember up-arrow notation from the definition of Graham's number, that's exactly where this goes next. Since f_2(n) &gt; 2\^n for n &gt; 1, we have f_3(n) &gt; 2\^(2\^(...2\^n...)) = 2\^\^n, and f_4(n) &gt; 2\^\^\^n, and so on. In general, f_k(n) is in between 2\^\^...\^n with k-1 arrows and 2\^\^...\^n with k arrows. We give functions a rank in the hierarchy by naming the smallest rank that surpasses them. So we might say that, for example, 2\^\^\^\^n is &quot;at rank 5 in the FGH&quot; since you have to go all the way to f_5(n) to get something faster-growing than 2\^\^\^\^n, while n^2 is only &quot;at rank 2 in the FGH&quot; since n^2 is much slower-growing than f_2(n) = n2^(n).</p>
+<p>The second tool to build faster-growing functions is <em>diagonalization</em>. We've seen that f_x(n) is closely related to up-arrow notation for natural number values of x, but diagonalization lets us go beyond natural number ranks. We define f_𝜔(n) to be f_n(n). The key part is that the input n is sent to be both the input <em>and</em> the FGH rank of a function we've defined previously. This eventually grows faster than all the functions we've defined previously, even though there are infinitely many of them. It just takes longer for f_𝜔 to catch up to the later functions on the list. For example, f_𝜔 catches up to f_4 at f_𝜔(4) = f_4(4) and then blazes past it at f_𝜔(5) = f_5(5) = f_4(f_4(f_4(f_4(f_4(5))))) &gt; f_4(5); the same logic applies to show that f_𝜔 catches up to f_k at the input k. It's not really important to give a precise definition of what 𝜔 means here; just use it as a placeholder for &quot;something that comes after all the natural numbers&quot;. Just as f_0 is slower-growing than f_1 and f_1 is slower-growing than f_2, f_k is slower-growing than f_𝜔 for any natural number k you choose. The function <a href="https://en.wikipedia.org/wiki/Ackermann_function" target="_blank">A(n,n)</a> is one example of a function which is at rank 𝜔 in the FGH.</p>
+<p>Now we have f_𝜔(n) &gt; 2\^\^...\^n with n-1 up-arrows, but it doesn't stop there. If we treat 𝜔 just like any ordinary number, we have no problem defining the function f_(𝜔+1) using the same definition as before: f_(𝜔+1)(n) = f_𝜔(f_𝜔(...f_𝜔(n)...)) with n copies of f_𝜔. This is closely related to the recursive sequence used to generate Graham's number, where we start with g_0 = 3\^\^\^\^3, use that number of up-arrows in g_1 = 3\^\^...\^3, use that number of up-arrows in g_2 = 3\^\^...\^3, etc. Similarly, in f_𝜔(f_𝜔(...f_𝜔(n)...)), each f_𝜔(...) determines the number of up-arrows to use in the next. Playing around with this, we can get an upper bound of g_n &lt; f_(𝜔+1)(n), so that &quot;Graham's function&quot; that takes in n and returns g_n is at rank 𝜔+1 in the FGH. In particular Graham's number g_64 &lt; f_(𝜔+1)(64).</p>
+<p>From here we can go on to f_(𝜔+2)(n) = f_(𝜔+1)(f_(𝜔+1)(...f_(𝜔+1)(n)...)) &gt; g_g_...g_n with n copies of Graham's g, and to f_(𝜔+3) and f_(𝜔+4) and f(𝜔+k) for any natural number k. Once again there are infinitely many functions we can construct, each far faster-growing than the last. But it doesn't stop there either, since we can diagonalize again. If 𝜔 is handwaved as something larger than any natural number k, then it isn't too much of a stretch to think of 𝜔+𝜔 as something larger than 𝜔+k for any natural number k. We can also write this as 𝜔*2. Then we define f_(𝜔*2)(n) = f_(𝜔+n)(n), a function growing faster than f_(𝜔+k) for any natural number k.</p>
+<p>Then we have another infinite sequence of increasingly fast-growing functions: f_(𝜔*2), f_(𝜔*2+1), f_(𝜔*2+2), f(𝜔*2+3), and so on. Then we can diagonalize again to get f_(𝜔*3) = f(𝜔*2+n)(n). You might be able to guess where this is going: we have an infinite sequence <em>of infinite sequences</em> of functions: the sequence starting off with f_0, the sequence starting off with f_𝜔, the sequence starting off with f_(𝜔*2), the sequence starting off with f_(𝜔*3), and so on. What might come after all this? Well, if 𝜔 &gt; k for all natural numbers k, it would make sense to say that 𝜔*k is always smaller than 𝜔*𝜔 = 𝜔^(2). How would we define a function at rank 𝜔^2 in the FGH? With diagonalization, so that f_(𝜔^(2)) = f_(𝜔*n)(n). Recall that Graham's function was just the second entry of the second sequence of functions: f_(𝜔^(2))(n) for any nontrivial choice of n is already <em>far</em> beyond anything expressible using Graham's number as a unit of comparison.</p>
+<p>But of course the FGH keeps chugging as usual, past f_(𝜔^(2)+1)(n) and f_(𝜔^(2)+2)(n) and so on to give us f_(𝜔^(2)+𝜔)(n) = f_(𝜔^(2)+n)(n) using diagonalization. Once again we have an infinite sequence of infinite sequences, with 𝜔^(2), 𝜔^(2)+1, 𝜔^(2)+2, ..., 𝜔^(2)+𝜔, 𝜔^(2)+𝜔+1, 𝜔^(2)+𝜔+2, ..., 𝜔^(2)+𝜔*2, 𝜔^(2)+𝜔*2+1, 𝜔^(2)+𝜔*2+2, ..., and so on. This sequence of sequences is capped off by 𝜔^(2)+𝜔^2 = 𝜔^(2)*2, which corresponds to the function f_(𝜔^(2)*2)(n) = f_(𝜔^(2)+𝜔*n)(n). Beyond 0, 𝜔^(2), 𝜔^(2)*2, ..., we have 𝜔^3 and the function f_(𝜔^(3))(n) = f_(𝜔^(2)*n)(n). At this point we're getting functions so fast-growing that some (extremely simple) versions of arithmetic can't even prove they're well-defined. But you know the pattern by now: after 𝜔^0 = 1, 𝜔^1 = 𝜔, 𝜔^(2), 𝜔^(3), ..., what else is there but 𝜔^(𝜔), with f_(𝜔^(𝜔)) = f_(𝜔^(n))(n)? At this point quite a few of the simpler arithmetical systems will fail to prove that the functions are finite, but we can press on. Beyond 𝜔^𝜔 and 𝜔^(𝜔)+𝜔^(7)*8+𝜔^(2)*3+5 and 𝜔^(𝜔)*2 and 𝜔^(𝜔+1) and 𝜔^(𝜔<em>2) we have 𝜔^(𝜔^2). We have 𝜔^(𝜔^3) and 𝜔^𝜔^(3)+𝜔^(2)*3+𝜔\</em>4+6 and 𝜔^(𝜔^4), and eventually 𝜔^(𝜔^𝜔). After infinite sequences upon infinite sequences we get to the point where we want to ask what comes after all of the values 0, 1, 𝜔, 𝜔^(𝜔), 𝜔^(𝜔^𝜔), 𝜔^(𝜔^𝜔^𝜔), ..., and since there's no convenient notation for what comes after this we come up with a new name for it: 𝜀_0. The standard full-strength axioms of arithmetic, the Peano axioms, are incapable of proving that f_(𝜀_0)(n) is well-defined for all inputs. You have to borrow tools from set theory just to show that this function is actually meaningful to talk about. The function G(n) = &quot;the length of the <a href="https://en.wikipedia.org/wiki/Goodstein%27s_theorem" target="_blank">Goodstein sequence</a> starting from n&quot; is one example of a naturally occurring function at rank 𝜀_0 in the FGH. The function H(n) = &quot;the maximum length of any <a href="http://math.andrej.com/2008/02/02/the-hydra-game/" target="_blank">Kirby-Paris hydra game</a> starting from a hydra with n heads&quot; is another.</p>
+<p>So where are TREE and SCG? Where in all these compounded infinities are they? We're not even close to these functions. They're so far beyond the bounds of any FGH rank I've named so far that I could say trying to talk about them with the tools I've constructed here is like trying to write out Graham's number with tally marks - only that's such a ridiculous understatement that it would be misleading. They exist, up in the higher reaches of the hierarchy, and with some more sophisticated mathematical tools we could even pin down a rank (if you want to do more research on your own, TREE is somewhat beyond the &quot;small Veblen ordinal&quot; in rank), but they're so far beyond anything we can easily construct that there simply is no intuitive comparison to make. That's why you're unlikely to see any notation comparing TREE(3) or SCG(13) to small, easy-to-work-with numbers like 2 or 5 or Graham's number.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ebfzth6">
+		<a class="author" href="https://www.reddit.com/user/dsf900" target="_blank">dsf900</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I can't answer your question about TREE(3) or SCG(13), but a long-standing notation for talking about big numbers was developed by Donald Knuth. It relies on repeated exponentiation to express large numbers compactly.</p>
+<p><a href="https://en.wikipedia.org/wiki/Knuth%27s_up-arrow_notation" target="_blank">https://en.wikipedia.org/wiki/Knuth%27s_up-arrow_notation</a></p>
+<p>You might also be interested in the Busy Beaver turing machines, which can be thought of as a game trying to compute the largest possible finite numbers when you restrict yourself to only a small, simple set of rules. </p>
+<p><a href="https://en.wikipedia.org/wiki/Busy_beaver" target="_blank">https://en.wikipedia.org/wiki/Busy_beaver</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ebgw7qh">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">2 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/a4mcsa" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
