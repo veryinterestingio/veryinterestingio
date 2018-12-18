@@ -1,0 +1,83 @@
+<li class="post" data-handle="a6a5pd">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/a6a5pd/eli5_why_do_urls_have_20_in_them_to_represent_a/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/a6a5pd" onclick="return false">Why do URLs have %20 in them to represent a space?</a>
+		</h2>
+		<!--<span class="date">2018-12-18</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Why do URLs have %20 in them to represent a space?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ebt81kt">
+		<a class="author" href="https://www.reddit.com/user/omnilynx" target="_blank">omnilynx</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Computers don't understand letters, they only understand numbers. So back in the early days of computers, someone sat down and associated each letter and punctuation mark they wanted to represent with a number (actually, many people did this, but we're only going to talk about one). This was called <a href="https://en.wikipedia.org/wiki/ASCII#Printable_characters" target="_blank">ASCII representation</a>. In ASCII, the number associated with the space was 32, which in hexadecimal is 20 (numbers in computers are usually in hexadecimal).</p>
+<p>So that explains where the 20 comes from, but why is in the URL? It's because in the early days of the internet, they decided that URLs should only have a certain set of letters and punctuation allowed in them. Spaces weren't one of those. But people still wanted to communicate things like spaces in URLs, even though they couldn't actually put a space. So they decided that you could use a percent sign (%) plus the ASCII number of the thing you actually wanted. So wherever in a URL that you want to communicate a space, you can put &quot;%20&quot; and whatever program is looking at the URL will know that a space should go there.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ebtqkoj">
+		<a class="author" href="https://www.reddit.com/user/thephantom1492" target="_blank">thephantom1492</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There is some partial answer already bellow...</p>
+<p>Computers work with bits, not letters. Back in the old days of early computers, they made a table that associate each character with a number. The ASCII table was created. Space got assigned the number 32, which correspond to 20 in hexadecimal. We use the hexadecimal representation because it is easy to translate to bits. 0-9 then A-F for 0-15, this is what 4 bits can represent (16 values). Since computers use 8 bits per byte, you just split the 8 into 2x 4 bits, which can now be represented with 2 hex digits. For the HTML, you tell the computer that the next two characters are hex value by adding % before. (So %20 = 00100000).</p>
+<p>Now you know why space is %20, but why replace the space by %20? Because the http protocol do not allow a space in the address! When you request <a href="http://www.reddit.com/r/explainlikeimfive/" target="_blank">http://www.reddit.com/r/explainlikeimfive/</a> your browser actually send this (and a bit more:</p>
+<pre><code>GET /r/explainlikeimfive/ HTTP/1.0
+Host: www.reddit.com</code></pre>
+<p>Notice that there is a space between the address and the http version command. This is why the space is not allowed, because it is a command separator... And yes, there is 2 empty line sent after the host.</p>
+<p>So, since the space is a separator, and you want to have a space in the url, the only way to handle it is to send it as it's hex value.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ebtp8k4">
+		<a class="author" href="https://www.reddit.com/user/greevous00" target="_blank">greevous00</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In the spirit of ELI5, here goes...</p>
+<p>You've been taught that you can count your fingers and toes and get to twenty.  What you <em>haven't</em> been taught is that you can actually treat each finger and toe like it's &quot;on&quot; (pointing up) or &quot;off&quot; (pointing down), and each finger to the left is worth double the previous one.  Using this method you can actually count to 1,048,575!  So right hand pinky is worth 1, next finger to the left: 2, next finger to the left 4, next finger to the left, 8, and so on.  If you keep going through all your fingers and toes, if you added up every one of them (they're all &quot;up&quot;) you get 1,048,575.  </p>
+<p>Okay, next step... now, imagine that there are more than ten counting numbers... so once we go past 9, instead of writing 10, we write A.  11=B, 12=C, 13=D, 14=E, 15=F, and then we write 10 for 16 (so we wrap around after F).  We could keep counting this way (11=17,12=18,13=19,14=20 ... 1E=30, 1F=31, 20=32, etc.)... Now we can group our fingers and toes into groups of 4 and each set of four maps to a number or letter (four fingers &quot;up&quot; would be an F for example because Up-Up-Up-Up (or 1111) = 1+2+4+8 = 15 or F).  This is called hexadecimal.  Since we have twenty fingers and toes, there are five groups of four fingers/toes, so the largest hexadecimal number we could represent would be FFFFF (which equals 1,048,575).</p>
+<p>Okay... last part... computers are stupid.  When you boil it all down, practically all they can do is add numbers, retrieve numbers from memory, and store them back into memory.  (Subtraction is a special case of addition, multiplication is adding over and over again, division is subtracting over and over again, powers are multiplying over and over again, comparing two numbers is a special case of subtraction, and so <em>basically</em> everything boils down to addition and pulling numbers from memory and putting them in memory somewhere else).  </p>
+<p>Since computers can apparently only do addition (^(as explained below, this is sort of a little white lie, but it's close enough)), they really don't know anything about text.  So how do they represent text?  Well, every text character has to be represented by a number stored to a particular place in memory.  If I put a &quot;42&quot; in a particular place in memory, an asterisk will display on the screen.  There's a chart called an &quot;<a href="http://www.plcdev.com/ascii_chart" target="_blank">ASCII chart</a>&quot; that maps every text character to a number.  33=!, 34=&quot;, 35=#, 36=$, and so on.  What number represents a space?  32.  Okay, so how would we represent 32 in our fingers and toes system (binary/hexadecimal)?  Well, since each shift to the left doubles the value, 32 = 00100000.  Now we split our fingers into two groups of four.  We'd get 0010 and 0000.  0010 means 2, and 0000 means 0, so we would say that 32 converted to hexadecimal is 20.  So when a URL wants to represent something like a space, it uses %20.  It does this so that internet clients like browsers don't have to deal with special characters like spaces, tabs, and carriage returns.  </p>
+<p>So that's why it works that way... %20 doesn't just represent a space, it represents a <em>way</em> to store <em>any</em> character in a URL... space just happens to map to %20 in hexadecimal.  </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ebt75cl">
+		<a class="author" href="https://www.reddit.com/user/simmelianben" target="_blank">simmelianben</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It is the hex code for the space symbol. Since a space is not acceptable in a url, it gets converted to hex and then back to text in the process of sending and getting the url request. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ebttsr1">
+		<a class="author" href="https://www.reddit.com/user/ubeogesh" target="_blank">ubeogesh</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This is more ELI15, but because you know such term as URL I think it's more fitting.</p>
+<p>Specifically for space - because when some user interface (like a web page) interprets a link, they need to understand where it starts and where it ends. And they figure that out by spaces. If you put a space in the middle of a link, then it separates the tail of the link. %20 is a &quot;code&quot; of the space character, which does not split it (again, user interface looks for space to see where the URL ends to make it a hyperlink)</p>
+<p>This operation of transforming some characters to %SomeNumber is called URL Encoding. It is necessary because other characters are also what is called &quot;URL Unsafe&quot;, meaning they control how the URL behaves and cannot be used to identify an actual resource the URL (universal RESOURCE locator) points to.</p>
+<p>Let's have another example. Look at this URL: <a href="https://en.wikipedia.org/wiki/Reddit#Users" target="_blank">https://en.wikipedia.org/wiki/Reddit#Users</a></p>
+<p>Here you can see that it is opening page &quot;Reddit&quot; on wikipedia and navigates to the section &quot;User&quot;. That is because the # is a &quot;control&quot; character, meaning your browser will interpret it as &quot;go to that place on the page&quot;</p>
+<p>But let's say you want to search google for &quot;#eli5&quot;. As you can observe, google puts your search terms in the address bar. What you will see in the address bar though is this:</p>
+<p><a href="https://www.google.com/search?q=%23eli5" target="_blank">https://www.google.com/search?q=%23eli5</a></p>
+<p>As you can see, # is replaced by %23. That is necessary so that your browser would not attempt to interpret it as &quot;navigate to eli5 section of this page&quot; instruction. However the receiving end of this request (google.com) will understand that %23 is a # character and present you search results accordingly </p>
+<p>You can use this online tool to play with URL Encoding yourself: <a href="https://www.urlencoder.org/" target="_blank">https://www.urlencoder.org/</a> - and see what characters are substituted for what codes.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/a6a5pd" onclick="return false"><span>show</span></a>
+</li>

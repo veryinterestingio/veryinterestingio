@@ -1,0 +1,82 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Lubaf" target="_blank">Lubaf</a>
+			<div class="markdown"><p>It should be added that the &quot;no spaces in URL&quot; rule has a cause in turn: URLs were (and are) frequently put into various command lines (originally Unix, but also Windows), where an unescaped[1] space <em>always</em> denotes a new parameter. So the &quot;no spaces in a URL&quot; rule had, and still has, a good deal of logic behind it.</p>
+<p>[1] Further LI5 explanation: <a href="https://en.wikipedia.org/wiki/Escape_character" target="_blank">Escape characters</a> are ways of getting around reserved characters, such as spaces, in an interface.</p>
+<p>EDIT: For some reason my browser inserted a link in another tab to this that has nothing to do with my answer. (For the curious: <a href="https://t.co/B7TtlIuGYp" target="_blank">https://t.co/B7TtlIuGYp</a> was the link.) And people below have the point that the HTTP protocol reserves spaces, rather then command lines. Read them.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marcan42" target="_blank">marcan42</a>
+			<div class="markdown"><p>It's not about command lines; spaces as a delimiter are built into the HTTP protocol itself. When you browse to <a href="http://example.com/url%20with%20spaces" target="_blank">http://example.com/url%20with%20spaces</a>, your browser opens a connection to <code>example.com</code> on port 80 and then sends this request:</p>
+<p><code>GET /url%20with%20spaces HTTP/1.1</code></p>
+<p>There are spaces between the method (<code>GET</code>), the path (<code>/url%20with%20spaces</code>), and the protocol version (<code>HTTP/1.1</code>). As you can imagine, if the path contained real spaces, things would get terribly confusing, so they aren't allowed.</p>
+<p>Edit: ELI5 version: to browse a web page, your browser makes an internet phone call to a server and sends three words separated by spaces: what it wants to do (GET a web page), the name of the page it wants to get, and the language it wants the server to agree to use (just in case newer updates change things a little). If the name of the page had spaces, it would wind up making four or more words, and the server would get very confused. Therefore, spaces aren't allowed.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DamnThatsLaser" target="_blank">DamnThatsLaser</a>
+			<div class="markdown"><blockquote>
+<p>HTTP protocol</p>
+</blockquote>
+<p>hehe</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/vidoardes" target="_blank">vidoardes</a>
+			<div class="markdown"><p>This is the real answer</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sc0neman" target="_blank">sc0neman</a>
+			<div class="markdown"><p>I wish you could upvote a comment so hard it superceded the comment it's commenting on.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mschweini" target="_blank">mschweini</a>
+			<div class="markdown"><p>True, but sadly '&amp;' (argument seperation in URLs, go-to-background in most shells)  is also not usable on the command line.</p>
+<p>Gets me every time.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/christian-mann" target="_blank">christian-mann</a>
+			<div class="markdown"><p>Yeah, nowadays I have gotten used to surrounding URLs with single quotes. This works unless there's an exclamation point in them.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/itslenny" target="_blank">itslenny</a>
+			<div class="markdown"><p>Unsanitized http input being piped directly to command line. Sounds like a great idea.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mrbachand" target="_blank">mrbachand</a>
+			<div class="markdown"><p>This guy commands....</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ScandInBei" target="_blank">ScandInBei</a>
+			<div class="markdown"><p>Another reason (to keep it today) is that it would make it more difficult in apps that allow clicking on links, for example sms apps, email etc. The app can't know what is part of the message and part of the link. I think this is why browsers still show the url with %20. They could easily just show it u escaped with a space. </p>
+<p>Technically, It would also http, as the first line in http reads :</p>
+<p>ACTION URI HTTPVERSION
+separated by space. </p>
+<p>For example, </p>
+<p>GET /index.html HTTP/1.1</p>
+<p>Which means that changing it to allow space could break existing browsers and web servers. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wnavarre" target="_blank">wnavarre</a>
+			<div class="markdown"><p>I feel like the biggest reason you want to forbid spaces is so people can read them off paper and so forth.</p>
+<p>I think usually people put angle brackets around links in emails anyway. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/amalgam_reynolds" target="_blank">amalgam_reynolds</a>
+			<div class="markdown"><p>Could you then use the %hex form to actually get to Reddit? As in putting %18%18%18%23%10%5%4%4 etc etc in the bar and getting www.reddit etc etc?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wjandrea" target="_blank">wjandrea</a>
+			<div class="markdown"><p>Yes. Copy-paste this into the address bar: <a href="https://%72%65%64%64%69%74%2E%63%6F%6D" target="_blank">https://%72%65%64%64%69%74%2E%63%6F%6D</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rednax1206" target="_blank">rednax1206</a>
+			<div class="markdown"><p>Chrome actually autocompleted my URL even though I've never typed it this way before: <a href="https://i.imgur.com/STfk5DC.png" target="_blank">https://i.imgur.com/STfk5DC.png</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/amalgam_reynolds" target="_blank">amalgam_reynolds</a>
+			<div class="markdown"><p>It worked! This is neat.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/b0nk3r00" target="_blank">b0nk3r00</a>
+			<div class="markdown"><p>WIZARD!</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nish_fish" target="_blank">nish_fish</a>
+			<div class="markdown"><p>Thank you so much  :)</p></div>		</li>
+					</ul>
+	
