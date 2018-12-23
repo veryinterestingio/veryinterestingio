@@ -1,0 +1,56 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Davecasa" target="_blank">Davecasa</a>
+			<div class="markdown"><p>Note that this also wastes a significant amount of power, as there's a voltage drop over the diodes. Even if you use ideal diodes (circuits that approximate the behavior of a diode with no voltage drop), it still consumes something.</p>
+<p>Edit: The term &quot;ideal diode&quot; seems to make a lot of people upset. It has two definitions:</p>
+<ul>
+<li>
+<p>A theoretical circuit element that allows current to pass in one direction but not in the other, with no voltage drop, and no reverse breakdown at any voltage.</p>
+</li>
+<li>A real-life circuit which approximates this behavior. Because it's in the real world, it has some loss associated with it.</li>
+</ul>
+<p>EEs tend to talk about the second definition because they're a thing that we use, you can buy them on Digikey. I guess physicists talk about the first?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/graebot" target="_blank">graebot</a>
+			<div class="markdown"><p>By definition, if there is no voltage drop, there is no energy consumption. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Davecasa" target="_blank">Davecasa</a>
+			<div class="markdown"><p>Ideal diodes are generally implemented as a FET with a controller. When the controller senses a positive voltage (or sometimes even zero voltage), it turns the FET on. When it senses negative voltage, it shuts off. As FETs have no voltage drop, this looks a lot like a diode with no voltage drop. That's the ideal. In the real world:</p>
+<ul>
+<li>FETs don't have a voltage drop, but they do have a resistance. The more current you pass through them the more power they consume, and it gets bad quickly as the consumption is I^2 x R rather than I x Vdrop of a diode. In some cases it can even be worse than the diode.</li>
+<li>This circuit is very fast, under a microsecond normally, but not as fast as a diode (nanoseconds). Sometimes that matters.</li>
+<li>Self-powered ideal diode controllers need to get their energy from somewhere - this is often done by turning the fet off for some portion of the duty cycle (~1%), letting the fet's body diode conduct current, and charging a cap from the difference. This decreases efficiency because you have the voltage drop of the diode some of the time, and introduces a bit of ripple in output voltage.</li>
+<li>Etc.</li>
+</ul></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/martinborgen" target="_blank">martinborgen</a>
+			<div class="markdown"><p>EDIT: I read the above as a question.</p>
+<p>Kinda, yes. It depends though.
+(For DC circuits) </p>
+<p>Basically Ohm's law U=R*I where U is voltage, R is resistance and I is current. The voltage drop is because of the resistance of each component, or at least that'show tou learn to calculate it. As per the equation, they are all affecting each other, but usually the voltage is set by the battery, and the current is from the resistance of the whole corcuit, calculated differently depending if it's serial or parralell (a mix is paralell, where each paralell is a serial).</p>
+<p>What is the hen and the egg, I dont know. As the voltage drop is related to the resistance, or is it vice versa?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dude_who_could" target="_blank">dude_who_could</a>
+			<div class="markdown"><p>Wiggy what mate? Germanium diodes have .3 volt drops and silicon have .7. This exact mumber has shifted downward over time since their inception but you definitely dont get zero drop on a diode.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/frugalerthingsinlife" target="_blank">frugalerthingsinlife</a>
+			<div class="markdown"><p>Power and space and mass. Got some extra parts which might mean you have to redesign the main PCB. And make the whole thing bigger. This costs more to make and more to ship. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ShadyBearEvadesTaxes" target="_blank">ShadyBearEvadesTaxes</a>
+			<div class="markdown"><blockquote>
+<p>Even if you use ideal diodes (circuits that approximate the behavior of a diode with no voltage drop), it still consumes something.</p>
+</blockquote>
+<p>Ideal diodes don’t have voltage drop and thus they don’t consume anything. Don’t use term “ideal” when it’s not ideal. It’s misleading.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MyOtherAcctsAPorsche" target="_blank">MyOtherAcctsAPorsche</a>
+			<div class="markdown"><p>To add a little to this, batteries have a bump on one side and a flat surface on the other, if batteries where inserted the other way around there is the possibility they would not make contact (some battery slots are even designed to prevent contact if inserted wrong, by receding the positive contact a millimeter or so, so the flat part would never touch the plate).</p>
+<p>If everyone made polarity-agnostic batteries and devices it would be a different thing, obviously.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FlibbleGroBabba" target="_blank">FlibbleGroBabba</a>
+			<div class="markdown"><p>Even simpler than this, you could just use a bridge rectifier diode that will rectify either polarity into one specific polarity. But as people have said, this isnt done as batteries are already low voltage, and introducing an extra 1.2v drop on a 1.5v battery would leave you with barely anything to do any real work with.</p></div>		</li>
+					</ul>
+	

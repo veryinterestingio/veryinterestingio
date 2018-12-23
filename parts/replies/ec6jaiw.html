@@ -1,0 +1,36 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ralath0n" target="_blank">Ralath0n</a>
+			<div class="markdown"><p>You could still make that work. You'd just need a full bridge rectifier (preferably with a low forward voltage to minimize the drop) for every single battery. You can then just hook up the output of all of those rectifiers in series to get the desired voltage.</p>
+<p>It's a huge hassle and needlessly expensive though. Hence why nobody does it.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Thomas9002" target="_blank">Thomas9002</a>
+			<div class="markdown"><p>And extremely inefficient.<br />
+Even using schottky diodes with a forward voltage of 0.3V would give you a voltage drop of 0.6V for every battery. Not that great when using a 1.5V battery</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ralath0n" target="_blank">Ralath0n</a>
+			<div class="markdown"><p>You wouldn't want zener diodes for that. Zener diodes are the ones that break down when the reverse voltage is some specific value. So you can use them to clamp a voltage to some maximum value.</p>
+<p>Schottky diodes are the ones you are probably thinking off. Those are designed to switch really fast and have a very low forward voltage drop (I've seen as low as 0.2V). So they would be a lot more efficient than the zeners, though it'd still be pretty bad for the overall efficiency, especially when you use low voltage battery cells.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/flatcoke" target="_blank">flatcoke</a>
+			<div class="markdown"><p>What if we invent something purely mechanical? Like two sets of contacts at each end of battery receptor connected parallelly, and different shaped battery terminals that'll only come in contact with the right contacts.  Low tech low cost and zero lost energy.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EEPS" target="_blank">EEPS</a>
+			<div class="markdown"><p>You could use something that already exists also, like latching relays to make a full rectifier for each battery with no voltage drop.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mourronic" target="_blank">mourronic</a>
+			<div class="markdown"><p>Just use fets. Use the body diode in a full rectifier configuration. Then a comparator on each cell to determine which two fets to turn on to remove the diode drop, and a small micropower boost converter on the output of the cell stack to power it all. </p>
+<p>It's a lot of excess circuitry for minimal gain, but it works.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/defaultex" target="_blank">defaultex</a>
+			<div class="markdown"><p>This is actually a really good solution when you think about it. The fact that one side as a raised nipple that is smaller than the entire contact area of each side works. Battery compartment molded to fit the batteries snugly to avoid movement. Negative contact a &quot;U&quot; shape sized so that it can not make contact with the nipple of the positive side. The positive contact appropriately spaced to have an air gap against the negative side. Might actually be feasible purely with geometry of the battery compartment.</p></div>		</li>
+					</ul>
+		</ul>
+	
