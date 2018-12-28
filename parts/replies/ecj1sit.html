@@ -1,0 +1,68 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shmeerk" target="_blank">shmeerk</a>
+			<div class="markdown"><p>Cool! If we were able to prove that there are infinitely many twin primes, would it still be possible for there still only a finite number of quadruplets? Is there even a way for us to think about that situation without knowledge of the infinite-ness of the twin primes?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/functor7" target="_blank">functor7</a>
+			<div class="markdown"><p>Yes, it would be possible for there to be infinitely many twin primes, but finitely many quadruplets.</p>
+<p>But everything about this kind of stuff is summarized in a very general conjecture known as the <a href="http://mathworld.wolfram.com/k-TupleConjecture.html" target="_blank">k-Tuple Conjecture</a>. The idea is that you can find any fixed, finite pattern in numbers and ask if there are infinitely many sets of primes that fit into this pattern. So the twin prime conjecture is the question of whether or not infinitely many primes fit in the pattern (p,p+2). Your question is, essentially, if there are infinitely many primes that fit into the pattern (p, p+2, p+6, p+8).</p>
+<p>These patterns are called <a href="http://mathworld.wolfram.com/PrimeConstellation.html" target="_blank">Prime Constellations</a>, and some are admissible, which means that you don't automatically exclude there from being infinitely many of them, and others are not. For instance, the constellation (p,p+1) is <em>not</em> admissible because we immediately know that (2,3) is the only one. What /u/GSV_SenseAmidMadness essentially proved was that (p,p+2,p+6,p+8) is the only admissible prime-quadruplet constellation (that doesn't go a distance larger than 10). </p>
+<p>But for every admissible prime constellation, the k-tuple conjecture gives us a pretty explicit formula for how often we should expect to find primes that fit the constellation. It predicts that there should be a 1.32x/(lnx)^(2) twin prime pairs less than a given number x. For yours, it predicts that there should be about 4.15x/(lnx)^(4) prime quadruplets less than a given number x. So, for instance, there should be something like 113 prime quadruplets less than 1,000,000. None of this is proved, as it is still a conjecture, but it does tell us what to expect if it is true.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shmeerk" target="_blank">shmeerk</a>
+			<div class="markdown"><p>Thanks! This is exactly the answer I was looking for, I have some reading to do!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gliese946" target="_blank">gliese946</a>
+			<div class="markdown"><p>I wrote a very quick program to test the prediction of 113 prime quadruplets of that particular form less than a million, and it found 168 such quadruplets. The output starts:</p>
+<pre><code>1 3 7 9
+11 13 17 19
+41 43 47 49
+101 103 107 109
+191 193 197 199
+821 823 827 829
+1481 1483 1487 1489
+1871 1873 1877 1879</code></pre>
+<p>and ends</p>
+<pre><code>954971 954973 954977 954979
+958541 958543 958547 958549
+959471 959473 959477 959479
+976301 976303 976307 976309
+978071 978073 978077 978079
+983441 983443 983447 983449</code></pre>
+<p>It's surprisingly high given the prediction. Here is the code (it's in C, and it's not optimised, it was literally done in 3 mins):</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+main()
+{
+        int i;
+
+        for (i=0; i&lt;1000000; i=i+10)
+                {
+                if (isprime(i+1) &amp;&amp; isprime(i+3)
+                    &amp;&amp; isprime(i+7) &amp;&amp; isprime(i+9))
+                        printf("%d %d %d %d\n",i+1,i+3,i+7,i+9);
+                }
+}
+
+int isprime(int n)
+{
+        int i;
+        int r = (int)sqrt((double)n);
+
+        if (n%2 == 0)
+                return 0;
+        for (i=3; i&lt;r; i=i+2)
+                if (n%i == 0)
+                        return 0;
+        return 1;
+}</code></pre></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/onlyconscripted" target="_blank">onlyconscripted</a>
+			<div class="markdown"><p>I love the idea of a general systems vehicle passing it’s time toying with infinite number theory....</p></div>		</li>
+					</ul>
+	
