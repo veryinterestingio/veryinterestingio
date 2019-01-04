@@ -1,0 +1,71 @@
+<li class="post" data-handle="abmkf8">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/abmkf8/i_am_amazed_that_new_horizons_is_able_to_send/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Planetary-Sci.">Planetary Sci.</span>
+			<a href="/posts/abmkf8" onclick="return false">I am amazed that New Horizons is able to send information 4 billion miles using a 15w transmitter. When receiving data from New Horizons, are there times when the information is missed?</a>
+		</h2>
+		<!--<span class="date">2019-01-04</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>If so, can it be resent by the probe, or reconstructed here on Earth by inferring what the data might have been based on what was received?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ed1jihm">
+		<a class="author" href="https://www.reddit.com/user/cantab314" target="_blank">cantab314</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>To cope with small amounts of missed or corrupted data, the signal transmitted by New Horizons includes error correction. Specifically it uses a code known as &quot;CCSDS Rate 1/6 Turbo Coding&quot;. That means the raw bit rate is six times the decoded data rate, but enables even a marginally-weak signal to be 'reconstructed' as it were.</p>
+<p>If the transmission isn't received for a longer time period - perhaps a Deep Space Network dish stops working or something - then New Horizons has 8 gigabytes of solid state storage. The storage is there so it could take lots of observations during the short Pluto flyby even though the data takes many months to transmit back to Earth, but it also means that missed data from transmissions can be resent if needed.</p>
+<p><a href="http://www.boulder.swri.edu/pkb/ssr/ssr-fountain.pdf" target="_blank">http://www.boulder.swri.edu/pkb/ssr/ssr-fountain.pdf</a></p>
+<p><a href="http://webapp1.dlib.indiana.edu/virtual_disk_library/index.cgi/4278621/FID2960/CCSDS/101x0b4.pdf" target="_blank">http://webapp1.dlib.indiana.edu/virtual_disk_library/index.cgi/4278621/FID2960/CCSDS/101x0b4.pdf</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ed1j3au">
+		<a class="author" href="https://www.reddit.com/user/okbanlon" target="_blank">okbanlon</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I can't speak to New Horizons specifically, but I work with people who take data from other spacecraft. Data collection is not simply listening for a signal and hoping you copy it all - it's more of a conversation between the ground station(s) and the spacecraft. Errors and weird circumstances happen now and then, and retransmissions are not uncommon. Spacecraft typically have some amount of onboard buffer storage, as well - they don't normally just stream out data as soon as it's collected and hope for the best.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ed2pko3">
+		<a class="author" href="https://www.reddit.com/user/Zombiac3" target="_blank">Zombiac3</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Woo finally something I can talk about, I'm a Satellite Systems Engineer and am currently at work right now operating R&amp;D satellites in GEO and LEO orbit.</p>
+<p>Some information will always be missed.  There are numerous factors that others have talked about to determine what was missed, different types of coding, signal frequency and all kinds of technical data that can happen.  Each satellite has different requirements based on their mission.  Some will have Cyclic Redundancy Checks, check bit error rates, some just passively dump data and what's lost is lost and some keep it stored onboard until you command it to delete the data.</p>
+<p>I've never operated a satellite (going on 15 years now across LEO/MEO/GEO that didn't take telemetry hits while receiving data or some form of packet loss.  Each mission will be affected differently.  If it is telemetry data for onboard stored state of health, then you may miss a frame or two, but normally you are getting critical frames numerous times a second, major frames once  every second or two, and minor frames about every 4 seconds.  These &quot;frames&quot; are things like battery temps, catbed temps, voltages and other important factors for critical frames, down to things like random bus states or gps locks for a minor frame.  You also have mission data that if its a communication satellite and you take a hit, then you get a staticy transmission for a second or it may cut out for a second during that packet.  For images you may miss one out of 64 frame for that picture, so software can stitch it together and determine what should be there or simply redownload that same image from the spacecraft before deleting it.  </p>
+<p>So for things like the New Horizons, they may send a package twice in a row just so if it takes a hit, then you save 38 hours from having to command and redownload that bit.  It will take longer overall to get images, but still faster than trying to redownload bits of information that you missed.  There is some crazy processing that ground software can do and generate missing frames so that you wouldn't really be able to tell the difference.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ed2pmj1">
+		<a class="author" href="https://www.reddit.com/user/baseball_mickey" target="_blank">baseball_mickey</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you look at the <a href="https://en.wikipedia.org/wiki/Friis_transmission_equation#Friis'_original_formula" target="_blank">Friis transmission equation</a>, you get about 300 dB of path loss.  The TX antenna has a gain of around 40 dB, and you're transmitting about 45 dBm.  That gives -215 dBm receive power.  To get above the noise floor, you would need a receive antenna with gain and/or processing gain.  Processing gain is 10log10(transmit-bandwidth/signal-bandwidth).  Say they use 6 MHz to transmit 600 Hz, that gives an extra 40 dB, almost at the noise floor.  They would have a receive antenna on earth with gain as well, possibly more gain than the TX antenna.</p>
+<p>While looking for the TX antenna gain, I found this paper which has a lot of information on the communications system:</p>
+<p><strong>The RF Telecommunications System for the New Horizons Mission to Pluto</strong></p>
+<p><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.472.8206&rep=rep1&type=pdf" target="_blank">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.472.8206&rep=rep1&type=pdf</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ed2l8r6">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/abmkf8" onclick="return false"><span>show</span></a>
+</li>
