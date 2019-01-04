@@ -1,0 +1,51 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zuppenhuppen" target="_blank">zuppenhuppen</a>
+			<div class="markdown"><p>MySQL has the Y2k38 problem with timestamp columns. It's neither old software, nor running on 32 bit. I recently faced this problem when creating URLs for sharing a file with a pre-defined end date a few thousand days in the future (it's now less than 7000 days btw).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wgc123" target="_blank">wgc123</a>
+			<div class="markdown"><p>There’s a bug that’s been open a “little while”:   <a href="https://bugs.mysql.com/bug.php?id=12654" target="_blank">https://bugs.mysql.com/bug.php?id=12654</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SuperQue" target="_blank">SuperQue</a>
+			<div class="markdown"><p>Thankfully most software uses <code>DATETIME</code> columns. It's reasonably easy to convert <code>TIMESTAMP</code> to <code>DATETIME</code>.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/riesenarethebest" target="_blank">riesenarethebest</a>
+			<div class="markdown"><p>They've already changed the internal rep for timestamps once. It's intentionally int32. Sometimes you need to save the disk space </p>
+<p>The biggest issue is that the time zone conversions for the various time zones aren't applied consistently, leading to really odd problems that are damn near impossible to track down without enormous datasets</p>
+<p>The next biggest issue is that using the system timezone causes a kernel side mutex that will show down requests for anything timestamp related and these slowdowns will not be visible though MySQL itself because it's kernal side. </p>
+<p>It's still right 99.99% of the time for any configuration, which is hard to do for time</p>
+<p>Current industry best practices is to just avoid the timestamp datatype entirely. Store your own ints. Manage your own timezones by not: +00:00 everywhere.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/falco_iii" target="_blank">falco_iii</a>
+			<div class="markdown"><p>Almost all newer hardware, OSes and newer software use 64 bit timestamps, which will greatly help.  The problem is with older data in databases that is 32 bit based.  You need to update the software, update the database structure and update the existing data.  Sometimes 2 of those upgrades have to be done at the same time.  In addition, it may require the system to be offline for a time, which is fine for most apps, but the critical software that cannot be offline at all is usually the most important and the hardest to  upgrade.<br />
+Just like for Y2K, there will be an industry that pops up around 2035 for Y2038 certification and remediation.  </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					</ul>
+		</ul>
+	

@@ -1,0 +1,12 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/YaztromoX" target="_blank">YaztromoX</a>
+			<div class="markdown"><p>It's an issue with how many computers (but not <em>all</em>) represent dates internally, and what happens when we overflow the storage assigned to those representations.</p>
+<p>Thanks to UNIX, a very common way of storing dates in computers is as a signed 32-bit number of seconds since the <a href="https://en.wikipedia.org/wiki/Unix_time" target="_blank">UNIX Epoch</a> (which is 1 January 1970 00:00:00 UTC).  </p>
+<p>The <em>signed</em> portion is important, as one bit is reserved for a numeric value sign; the other 31 bits are the magnitude of the value.  This gives us the ability to store values between +/- 2.1 billion seconds, or +/- roughly 68 years.  Applying this to the epoch, we can describe dates between the years 1901 and 2038^0.</p>
+<p>The problem is that after the signed 32-bit counter for seconds since the epoch fills up in 2038, time in affected software will wrap back around to 1901, which will be incorrect.</p>
+<p>Note that the 2038 problem isn't the only upcoming problem with computer dates.  There is also a 2032 problem -- some older systems (particularly those that followed old Mac OS System conventions) store the year as a single signed byte as an offset against 1904.  This provides a range of years between +/- 127 years from 1904, going from 1776 to 2031.  Fortunately all systems that used such a date encoding are (so far as I'm aware) quite old; the most recent system that I'm aware of to use this sort of date storage format was the old PalmOS 5 for Palm handhelds.</p>
+<hr />
+<p>^0 -- the actual range is Fri 13 Dec 1901 20:45:52 UTC to Tue 19 Jan 2038 03:14:07 UTC  </p></div>		</li>
+					</ul>
+	

@@ -1,0 +1,42 @@
+<div class="answers">
+	<div class="answer" data-handle="ed0e95m">
+		<a class="author" href="https://www.reddit.com/user/YaztromoX" target="_blank">YaztromoX</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The move towards 64-bit operating systems over the last ten years or so had the beneficial side effect in most operating systems of introducing a signed 64-bit time_t type, which can keep accurate time for the next 292 billion years.  Applications compiled for the vast majority of common 64-bit operating systems will use a 64-bit time value, avoiding the problem altogether.</p>
+<p>Older software is still a concern, and here it's quite possible/probable that not enough is being done to remedy the problem.  While some 32-bit operating systems have used a 64-bit time_t for some time now (the BSD's, Windows, and macOS, for example), others still rely on a 32-bit time_t when run in 32-bit mode (Linux).  Software that was designed and compiled for 32-bit runtime environments thus may continue to exhibit the 2038 problem.</p>
+<p>Possibly worst still are issues surrounding protocols that transmit time values, such as NTP.  As these are generally designed to be compatible with as many systems as possible, the binary format for transmitted dates may still be 32 bit, even on 64-bit systems.  Work in this area appears to be ongoing.</p>
+<p>FWIW, the 2038 bug isn't just theoretical.  In May 2006, <a href="https://www.mail-archive.com/aolserver@listserv.aol.com/msg09844.html" target="_blank">the bug hit AOLServer software</a>, when a configurable database timeout was set to 1 billion seconds.  This was converted to a date by adding the 1 billion second configuration value to the current UNIX time, overflowing the 32-bit time_t counter and causing a crash as dates wrapped-around to the past.</p>
+<p>I suspect much like with Y2K, which was known in advance for many years, there will be certain software developers and deployers who will leave mitigating this problem to the near-literal last second.  There is no doubt software today that has the problem, but which won't be fixed because it will be considered obsolete in 2038 -- and that somebody somewhere will still be running it regardless.  Unfortunately, fixing time_t can't also fix certain aspects of human nature.</p>
+<p>EDIT: Someone had the concern that macOS doesn't have a 64-bit time_t value, and that my answer is incorrect.  To keep my explanation short, I used &quot;time_t&quot; as shorthand to refer to multiple concrete typedefs actually used by the various OSs.  In the case of macOS, BSD gettimeofday() returns a timeval struct, which uses the types defined in _timeval64.h (on modern Macs), which are indeed defined as __int64_t.  In addition, if we get away from POSIX calls and look at Cocoa/Swift classes, NSDate/Date use structs that can handle dates past the year 10 000.  Sometimes in an answer it's better to focus on the general truths, rather than delve down a rabbit hole of which typedef is being used for what.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ed0r3nj">
+		<a class="author" href="https://www.reddit.com/user/FastSwimBoy" target="_blank">FastSwimBoy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>ELI5: What is the 2038 problem?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ed0xdjk">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ed15t4c">
+		<a class="author" href="https://www.reddit.com/user/Drogheim" target="_blank">Drogheim</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>what actually is the year 2038 problem? I've read references to y2k but I'm not entirely sure what that was either</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ed0wuue">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
