@@ -1,0 +1,73 @@
+<li class="post" data-handle="abycz5">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/abycz5/sometimes_websites_deny_a_password_change_because/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/abycz5" onclick="return false">Sometimes websites deny a password change because the new password is &quot;similar&quot; to the old one, How do they know that, if all they got is a hash that should be completely different if even 1 character was changed?</a>
+		</h2>
+		<!--<span class="date">2019-01-05</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Sometimes websites deny a password change because the new password is &quot;similar&quot; to the old one, How do they know that, if all they got is a hash that should be completely different if even 1 character was changed?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ed3x19e">
+		<a class="author" href="https://www.reddit.com/user/fileinster" target="_blank">fileinster</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It depends on how the new password is entered. If the form asks for the existing password then that's how they know. If not, then that's a big red flag to passwords stored with reversible encryption, or perish the thought, in plain text!!! </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ed41ix9">
+		<a class="author" href="https://www.reddit.com/user/YaztromoX" target="_blank">YaztromoX</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Two important properties of a high-quality hashing algorithm are the Avalanche Effect (whereby a small change to the input should have a massive change to the output) and Collision Resistance (whereby it should be computationally difficult to find two inputs that generate the same hash code).  Based on hashing alone, use of a proper and secure hashing algorithm should ideally make detecting whether or not two passwords are similar impossible.</p>
+<p>Sadly, the truth of the matter is that in all too many cases, the best practice of storing and comparing password hashes is often not implemented.  <a href="https://motherboard.vice.com/en_us/article/7xdeby/t-mobile-stores-part-of-customers-passwords-in-plaintext-says-it-has-amazingly-good-security" target="_blank">Some big companies still store passwords as plaintext</a>, while others <a href="https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_71/rzahy/rzahypwdencrypt.htm" target="_blank">still use password encryption</a>^0.  Chances are very high that if you're encountering a site that can determine whether or not a new password is similar to an old password, they're either storing your password as plaintext (or partial plaintext), or are encrypting/decrypting your password.</p>
+<p>That said, there are methods even with hashing that could be used to detect when two passwords are too close together.  While researching this response, I came across an interesting paper^1 that details a method of monitoring keystroke dynamics when entering a password.  By measuring <em>how</em> a person types their password, you could generate a bunch of subsets of the keystrokes in the password and compare that to a stored set of dynamics to determine if some subset of those dynamics appears to be for the same set of keystrokes.</p>
+<p>You could also conceivably store a password as a series of hashes for various password character subsets.  Unsalted, this would be almost as wildly insecure as storing a password in plaintext (as there are only roughly 24 million hashes for all sets of four characters^2, making it easy to pre-generate them all and rebuild the password by just looking them up in a database).  Adding a decent length salt would help, and would provide a way to test for n-lists of identical characters in a row using only hashing.^3</p>
+<p>However, as noted above, any site that provides such a &quot;feature&quot; probably isn't storing your password using a cryptographic hash (or at least not <em>solely</em> as a cryptographic hash).  The Avalanche Effect should make determining password &quot;closeness&quot; from a secure hash alone impossible, without resorting to tricks like keystroke dynamics.</p>
+<hr />
+<p>^0 -- it's important to note that whereas <em>hashing</em> is a one-way function (put password in, get a hash out) that can't be reversed, <em>encryption</em> is defined as a pair of functions, one of which can <em>encrypt</em> a password, and another which can take the encrypted form and <em>decrypt</em> it back to the password again.<br />
+^1 -- Jenkins, J. L., Grimes, M., Proudfoot, J. G., and Lowry, P. B. (2014). Improving password cybersecurity through inexpensive and minimally invasive means: Detecting and deterring password reuse through keystroke-dynamics monitoring and just-in-time fear appeals.  Information Technology for Development,41920(2):196–213.<br />
+^2 -- I'm assuming here a fairly standard sets of acceptable password characters [A-Z][a-z][0-9] and some punctuation to get a rough estimate only.<br />
+^3 -- note that I haven't done a full security analysis of using such a mechanism, so even salted, please don't use this system in something that requires good security.  However, this might make an interesting avenue of research for an advanced Honours student or a new Masters student to look into, even if only to determine that it's a terrible idea that should never be implemented in practice!  </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ed40bdy">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ed518jc">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ed4szq6">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/abycz5" onclick="return false"><span>show</span></a>
+</li>

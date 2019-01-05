@@ -1,0 +1,60 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Random-Noise" target="_blank">Random-Noise</a>
+			<div class="markdown"><p>In this case if I entered my existing password  shouldn't they get a particular hash, and then when I enter the new password, albeit similar, shouldn't they get a completely different hash?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ChickensInTheAttic" target="_blank">ChickensInTheAttic</a>
+			<div class="markdown"><p>They get the existing/new password in 'plain text' (I'm assuming HTTPS is involved here....) from the web form data before they hash it. They can compare it then, before hashing.</p>
+<p>Whatever you send in a web form (unless they're doing client side encryption/encoding) comes out the other end in the clear. HTTPS is so you can't just read it in transit. It's then up to the server to encrypt it for storage.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/in0pinatus" target="_blank">in0pinatus</a>
+			<div class="markdown"><p>This doesn't have to be the case. The <a href="https://en.wikipedia.org/wiki/Secure_Remote_Password_protocol" target="_blank">Secure Remote Password</a> protocol neither sends the password in the clear nor requires the server store it in a clear or reversible form. </p>
+<p>It's not the simplest protocol and is more chatty that most browser programmers would like, but it works and it is strong and standardised by both IETF and ISO.  The limiting factor for strong authentication in web applications is the grossly underpowered standard library that comes with browser JavaScript, which forces decision makers down mediocrity alley with cleartext over TLS.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hitemlow" target="_blank">hitemlow</a>
+			<div class="markdown"><p>So if some sort of check is done at the browser level to compare the old and new, couldn't you force the check to say they're different enough and submit the new password regardless?</p>
+<p>Possibly do the same thing with password requirements?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/d3vrandom" target="_blank">d3vrandom</a>
+			<div class="markdown"><blockquote>
+<p>if I entered my existing password  shouldn't they get a particular hash</p>
+</blockquote>
+<p>The password is submitted to them in its original form so they know what it is at this point in time. Hashing is done before storing the password in the db not before.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DoubleFuckingRainbow" target="_blank">DoubleFuckingRainbow</a>
+			<div class="markdown"><p>Could i get away with it with just changing the pass to something random and then changing again to something similar as the first one? As they shouldn’t have my first password saved anywhere anymore?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RogerManner" target="_blank">RogerManner</a>
+			<div class="markdown"><p>I used to work for a big web app that managed data for big globalized companies.<br />
+There was a hashed_password column on the db..... but there also was the plain text field.   </p>
+<p>This lasted several versions since it was &quot;convenient&quot;. I cringed everytime I saw it.   </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fileinster" target="_blank">fileinster</a>
+			<div class="markdown"><p>I know of a large company who emailed me my password in plain text. When I wrote to tell them that this was extremely bad practice they wrote back, me paraphrasing, 'nah, everything's fine, no need to worry' .  I then changed my password 30 times using 20 digit random character strings in the hope that they would forget my original password. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/commentator9876" target="_blank">commentator9876</a>
+			<div class="markdown"><p>It could also be that they are just enumerating common substitutions on your new password.</p>
+<p>If your old password was <Password12> (and was stored correctly as using a strong salted hash) and your new one is <Password13> it's not difficult for a script to take your new password, hash the common enumerations using your old salt (e.g. enumerating on the last character, which would generate <Password10-19> or run through the common l33t substitutions. The <Password12> hash will match the hash of your old password which tells them the new password is too similar because the passwords are obviously related.</p>
+<p>That wouldn't require them to know the old password (although they would effectively have brute-forced it) or to store plaintext passwords - the results of the enumeration would be in memory and dropped as soon as it's got a result.</p>
+<p>Easier than that of course is simply to ask for the old password both as a security measure and a point of comparison.</p></div>		</li>
+					</ul>
+	
