@@ -1,0 +1,96 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Darth_050" target="_blank">Darth_050</a>
+			<div class="markdown"><blockquote>
+<p>edit2, geostationary satellites get a pass on Doppler effect from the perspective of ground stations (once in orbit).</p>
+</blockquote>
+<p>Well, that's not entirely the case. Even geostationary satellites are not completely stationary. From the earth station's perspective, they move in a three dimensional '8'-shaped pattern. Depending on the age, amount of fuel to correct this and the location of the earth stations it communicates with (the closer they earth station is to either one of the poles, the more effect the movement of the satellite has) this pattern can be a couple of dozens of miles to sometimes even in the hundreds. </p>
+<p>Anyway, long story short, due to this movement the signal has to be corrected for Doppler effect, but obviously not nearly as much as when communicating with spacecrafts moving away from earth or in low or high orbit.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/millijuna" target="_blank">millijuna</a>
+			<div class="markdown"><p>Well, when dealing with geostationary satellites, the Doppler effect is minuscule compared to the cumulative inaccuracies of the oscillators on either side (transmit and receive). Transmit oscillators are usually accurate to within 1kHz or better, once multiplied up to the satellite frequencies. The receivers, on the other hand, are highly variable. A typical DRO LNB (such as what’s used for tv reception) will be +/- 500kHz. High Stability Oscillator LNBs will, at best, be +/- 10kHz.</p>
+<p>The trick here is that the demodulators are fairly loosygoosy when it comes to the frequency. The higher the data rate, the further out the frequency can be. I would normally set my low data rate modems (about 3Mbps total) to have a red range of +/- 25kHz. DVB receivers only need to have their frequency set to within 1/2 of the symbol rate, so if you have a 30Megasymbol signal (full transponder), your frequency can be set to within 15 MHz and it will lock on.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bayesian_acolyte" target="_blank">bayesian_acolyte</a>
+			<div class="markdown"><p>For comparison, assuming that <a href="https://www.omnicalculator.com/physics/doppler-effect" target="_blank">this calculator</a> is accurate, a 10GHz carrier wave would have ~15 kHz of frequency shift with a 1000 mph relative speed difference. This shift increases/decreases linearly with carrier frequency and relative speed. </p>
+<p>I have a feeling that people are overstating how often this needs to be compensated for in these comments.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Davecasa" target="_blank">Davecasa</a>
+			<div class="markdown"><p>Technically correct (which is of course the best <em>kind</em> of correct), but these shifts are on the order of cm/s or mm/s, not km/s.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/steveob42" target="_blank">steveob42</a>
+			<div class="markdown"><p>yah I imagine doppler compensation is infinitely cheaper than station keeping, so the tolerances aren't as tight as I implied.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/millijuna" target="_blank">millijuna</a>
+			<div class="markdown"><p>During their normal operational life, geostationary satellites are kept within a 30x30x30km box (or so). This is because the majority of dishes on earth that are pointed at them are mechanically locked down, and non-moving. At Ku-Band you can go up to about a 3.8m antenna before you need to worry about the satellite motion. Even then, though, when I deployed a 3.8 I would call up the satellite operators and get them to tell me when the satellite was going to be in the center of the box. I would then peak up the dish at that time to ensure I got the best possible signal </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/StridAst" target="_blank">StridAst</a>
+			<div class="markdown"><p>So does that mean that if SETI ever detects a signal, given that it will be shifted from it's own source's unknown rotational diameter, and own rotational period etc, it's going to look like a mess and be hard to compensate for?</p>
+<p>Especially if say it originated from a geostationary satellite, giving it a much larger orbital diameter around the same orbital period as their planet?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dudely3" target="_blank">Dudely3</a>
+			<div class="markdown"><p>This is a common misconception of what SETI is trying to do. </p>
+<p>SETI isn't looking to deduce the information content of the signal, they're simply looking for ANY signal that doesn't look like background noise. Even if the signal is messed up REALLY BAD, that's fine. It could go through hell and get so warped that it would be unreadable even to the originators, but it would still be absolutely 100% obvious that it was produced artificially. </p>
+<p>The reason is because of something called a Fourier transformation, which is how information is physically encoded into waves. There is no way an alien race could get around the fact that they HAVE to make the signal distinct from the background or there is no way to receive it on the other end. </p>
+<p>Therein lies the beauty of what SETI is trying to do- we are using the physical limitations of how the universe it self works to detect if anyone else is out there (but not what it means).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cogscitony" target="_blank">cogscitony</a>
+			<div class="markdown"><p>Are there not modulation or encryption techniques that make the information appear as noise? I feel like I read once that was likely. Pick a random time sequence and modulate based on that (or something more complex), send it analog, then if you don't have the public key wouldn't that look like noise? You could even use a naturally occurring &quot;band&quot; ass the carrier freq, for further obfuscation. </p>
+<p>It's not EM like you mentioned, but neutrino-based communication is one of my sci-fi favorites. Especially during that brief time we thought maybe they could travel faster than c, except we just screwed up the experiment. Haha. Good times.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ISeeTheFnords" target="_blank">ISeeTheFnords</a>
+			<div class="markdown"><p>I find myself wondering if a spread-spectrum based technology would evade that.  Any idea off the top of your head?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/StridAst" target="_blank">StridAst</a>
+			<div class="markdown"><p>Well explained.  Thank you.  I guess my lack of knowledge on signal encoding left me assuming a badly shifted signal might be hard to distinguish from background noise.   It's actually both encouraging and discouraging at the same time to read otherwise.  Encouraging because it raises my hopes that such a signal will eventually be found, and discouraging that we haven't yet found one.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/steveob42" target="_blank">steveob42</a>
+			<div class="markdown"><p>it is basically a signal to noise question, and I assume (qualifying statement there) that SETI has a range of tolerance and can account for numerous harmonics in identifying if a signal might actually be a signal.  But without a rosetta stone, it may be tough to figure out what that signal might be saying, let alone if it is representative of whatever population it was sent from.  Can you imagine intercepting an alien version of CNN or Fox news? (or game of thrones? or whatever?), that might be a good askreddit question, what is the worst broadcast an alien civilization could intercept from earth.  OB Single Female Lawyer reference.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LonelyGnomes" target="_blank">LonelyGnomes</a>
+			<div class="markdown"><p>Considering the distances we think we be looking at we wouldn’t be able to resolve a tv show. We can’t even actually see an equivalent radio bubble to earths around planets past alpha Centauri so at the moment we’re really looking for a civilization to be sending a signal.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/redoctoberz" target="_blank">redoctoberz</a>
+			<div class="markdown"><blockquote>
+<p>i.e. contacting iss on AM, the ground station needs to compensate for Doppler frequently.</p>
+</blockquote>
+<p>Don't forget you can get them with FM voice and packet radio as well, in the amateur bands. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/flyboy3B2" target="_blank">flyboy3B2</a>
+			<div class="markdown"><p>Really? So can anyone just call up there to say hi?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tblazertn" target="_blank">tblazertn</a>
+			<div class="markdown"><p>Pretty much, if one of them happens to be monitoring their amateur transceiver at the moment. It’s usually during break time, whenever that may be for them. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wildjokers" target="_blank">wildjokers</a>
+			<div class="markdown"><p><a href="http://www.ariss.org/contact-the-iss.html" target="_blank">http://www.ariss.org/contact-the-iss.html</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shleppenwolf" target="_blank">shleppenwolf</a>
+			<div class="markdown"><p>Anyone with a ham license. There's an Amateur Radio station on board that operates in the 2-meter band, and holds scheduled comm sessions with hams and school groups. Google ARISS.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dathnight97" target="_blank">Dathnight97</a>
+			<div class="markdown"><p>does it even matter for AM, since the information is in the amplitude?
+it is important to correct the frequency of the received signal for signal processing i.e. filter range and correct demodulation though I suppose?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/redoctoberz" target="_blank">redoctoberz</a>
+			<div class="markdown"><p>The carrier and both sidebands would just dopler shift a bit, it would be easier to read the information though as AM works better when not spot on the carrier.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

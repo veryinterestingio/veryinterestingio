@@ -1,0 +1,59 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Davecasa" target="_blank">Davecasa</a>
+			<div class="markdown"><p>In underwater acoustics we so something similar called a channel interrogation. Doppler shift is a component but there's also frequency-dependent multipath, the signal can arrive out of order, multiple times, with different amounts of loss per frequency, etc., and this all changes on timescales of seconds.</p>
+<p>The solution is to send a known signal, normally a frequency sweep, record what it sounds like on the other end, and deconvolve the known original signal to get the channel response. You can then apply this to the real signal received just afterwards to back out what was <em>actually</em> sent.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PE1NUT" target="_blank">PE1NUT</a>
+			<div class="markdown"><p>This is also used in high-speed optical communication. The speed of light is different for the different wavelengths that make up a modulated signal, an effect called dispersion. This means that the different components of a signal arrive spread out in time. By measuring this effect, it can be compensated for before transmission, or afterwards in the receiver.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thrww3534" target="_blank">thrww3534</a>
+			<div class="markdown"><blockquote>
+<p>The speed of light is different for the different wavelengths that make up a modulated signal, an effect called dispersion. </p>
+</blockquote>
+<p>In fiber optics, as I understand it, dispersion is not because the speed of light is different for each but rather is caused by each entering the fiber at a different angle.  That makes each light mode travel a slightly different length path through the fiber, which affects the time the packets in each arrive.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OtterBoxer" target="_blank">OtterBoxer</a>
+			<div class="markdown"><p>Telecom engineer at JPL here! JPL maintains and operates the DSN for all of the deep space missions and we absolutely take Doppler effects of radio signals into account during missions.</p>
+<p>In fact, we even use the effect to our advantage for doing science things during significant events such as Mars landings. For example, we record the incoming signal during these landings to analyze in real time the frequency, amplitude, and phase information and correlate the frequency shift to see how fast the lander is actually traveling to make sure it's slowing down as it's supposed to when it's heading into the atmosphere and getting ready to touch down. There's a surprising amount of information (acceleration /deceleration, velocity, roll)  that you can get from looking at amplitude and frequency shifts of the signal from the spacecraft!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tomrlutong" target="_blank">tomrlutong</a>
+			<div class="markdown"><p>Hey there, since I'm kind of a fanboy, gotta give you props. Read about what you do back when the Pioneer anomoly was a thing. Found out that you actually count cycles to measure a spacecrafts velocity to accuracy wavelength/transmission duration. Like, mm/HR. That's so hardcore.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OtterBoxer" target="_blank">OtterBoxer</a>
+			<div class="markdown"><p>Awe thanks for the support! It's really awesome to be able to say I work where I do. Some days you forget where you are and have to take a step back and say &quot;whoa, this is going to space!&quot;</p>
+<p>There are a ton of cool things you can do with radio waves and signals, distance variations being just a tiny sliver of science available. We have an entire department of people that focus on radio science and they're super smart folks who can tell you exactly which way the spacecraft is pointing, how it is accelerating, and how it might be rolling/yawing down to centimeters or millimeters (kind of frequency band specific) all with the recording of a plain carrier signal. It's fascinating stuff! </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/binghorse" target="_blank">binghorse</a>
+			<div class="markdown"><p>Does the lander transmit a carrier frequency as part of its signal? And what kind of security measures do you take?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sunburn_on_the_brain" target="_blank">sunburn_on_the_brain</a>
+			<div class="markdown"><p>Didn’t JPL use Doppler shifts to rescue data from the Huygens probe when one of the channels didn’t work during landing, or am I misremembering?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OtterBoxer" target="_blank">OtterBoxer</a>
+			<div class="markdown"><p>Admittedly I'm not really sure since the Huygens probe was a few years before I started here. I will have to ask around and see if anyone at work can confirm. </p>
+<p>Edit: I took to Wikipedia and it looks like it was a few engineers at ESA that discovered the probe might not relay data properly given the Doppler shifts it was expected to see. They eventually confirmed it and changed the plan for operations so that the probe would travel in a different manner to reduce relative Doppler shifts, saving the data path. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/giritrobbins" target="_blank">giritrobbins</a>
+			<div class="markdown"><p>That seems odd. Who cares what the frequency is as long as you can reproduce it. Wouldnt any PLL or even digital demodulation work better?</p>
+<p>And I don't think it's so much ranging (at least in the sense I understand it) but rather channel characterization. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/piense" target="_blank">piense</a>
+			<div class="markdown"><p>Here’s the method I’m referring to:</p>
+<p><a href="https://descanso.jpl.nasa.gov/monograph/series1/Descanso1_C03.pdf" target="_blank">https://descanso.jpl.nasa.gov/monograph/series1/Descanso1_C03.pdf</a></p>
+<p>The general gist of using the echo strategy vs having a probe synthesize the signal is that the ground station clock is a few orders of magnitude more accurate than the probe’s. NASA is working on a more accurate one way method with DSAC. Looks like it’s testing smaller versions of highly accurate atomic clocks for future probes. Then somehow compares that to a beacon from earth to calculate its trajectory internally, instead of the back and forth of calculating it on Earth.</p>
+<p>DSAC: <a href="https://www.nasa.gov/sites/default/files/atoms/files/dsac_fact_sheet_2018.pdf" target="_blank">https://www.nasa.gov/sites/default/files/atoms/files/dsac_fact_sheet_2018.pdf</a></p></div>		</li>
+					</ul>
+		</ul>
+	
