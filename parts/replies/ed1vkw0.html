@@ -1,0 +1,38 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eaglejarl" target="_blank">eaglejarl</a>
+			<div class="markdown"><p>In many cases it's not that developers don't want to parallelize their code or are just being lazy and not bothering, it's that a lot of code cannot be parallelized.  There is a very limited degree to which you can parallelize anything that, e.g., involves working with filesystems, databases, user interaction, or atoms (USB drives, sensors, etc).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rxyro" target="_blank">Rxyro</a>
+			<div class="markdown"><p>we can only encourage them with our dollars then, so much untapped hardware. Eg to vectorize everywhere you can and GPU accelerate w/ cuda </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/The_Frostweaver" target="_blank">The_Frostweaver</a>
+			<div class="markdown"><p>I think one way of improving performance seems to be by storing a bunch of the data you'd likely  need in RAM to minimize filesystem and database issues but not every user has ample ram available.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Arianity" target="_blank">Arianity</a>
+			<div class="markdown"><p>A lot of modern OS's already do this, to an extent. It's one of the reasons Windows10 is infamous for requiring ~4GB just idling. On top of that, CPUs actually have their own miniRAM on the chip itself that is super quick, but because it has to be on the chip, it can't hold very much.</p>
+<p>The issue is when you're on instruction level(Ghz) speeds, even RAM is &quot;slow&quot;. Not only does RAM (even good RAM) operate on Mhz timecycles, the time it takes you to send that info down the wire is actually considerable.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NuftiMcDuffin" target="_blank">NuftiMcDuffin</a>
+			<div class="markdown"><blockquote>
+<p>involves working with filesystems, databases, user interaction,</p>
+</blockquote>
+<p>There are a lot of tools that let you do that though. For example, sql databases allow &quot;transactions&quot; which block certain lines from being written or read until one process is finished, which allows asynchronous workers to access the same tables. Two workers only have to wait for one another if they have to access the same data, which can usually be avoided through clever selections.</p>
+<p>It might be harder for some applications, and there will always be bottlenecks through data conflicts, but in real world applications it's never impossible to paralellize at least a little bit. Be it just a single asynchronous method here or there.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/colohan" target="_blank">colohan</a>
+			<div class="markdown"><p>You describe this as the bleeding edge, but...  Researchers and industry has been trying to solve this problem since at least the 1980s.  I got my PhD developing a technique to make threading easier. So did many many others.  It is really really hard to make parallelism easy.  I'd personally love to hear about someone coming up with a solution that just works (but I'd initially approach it with a lot of questions...)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gumenski" target="_blank">gumenski</a>
+			<div class="markdown"><p>I didn't say cutting edge, or leading edge.  The term &quot;bleeding edge&quot; in technology means something that investors are afraid to adopt.  It's not supposed to be a positive thing.  People are reluctant either out of fear - that it won't be worthwhile to develop for, or that it will fall apart later, that they aren't skilled enough to use it, etc.  That is literally what is still happening.  Since 1980, if you want.</p>
+<p>There is no doubt, though, that that is the biggest untapped vein for improvement.  At face value it makes no sense when a user is waiting for something to happen and inspects the individual parts to reveal that each one could be doing something but simply is not doing much of anything.  Something is clearly not working.</p>
+<p>I don't have a solution other than the suggestion that it would take a complete re-evaluation of the entire computing platform before it will be what it could.  It doesn't make sense economically for the developers to figure out how to use it, and it doesn't make logical sense for the hardware manufacturer to predict what software is trying to do.  So complete re-evaluation from every perspective.</p>
+<p>I can do the ELI5 on what is happening but no, I do not have the solution at all other than saying what is happening isn't working well and is probably a sign it needs to be done from scratch.</p></div>		</li>
+					</ul>
+		</ul>
+	

@@ -1,0 +1,66 @@
+<div class="answers">
+	<div class="answer" data-handle="ed1ms0h">
+		<a class="author" href="https://www.reddit.com/user/aragorn18" target="_blank">aragorn18</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>We're starting to run into some hard limitations of CPU manufacturing. The faster the clock speed, the more heat the chip will generate. If we push the clock speeds much higher than what they are today then people will need some exotic cooling solutions.</p>
+<p>The normal way to increase clock speed without creating more heat is to make the wires thinner which lets the chips use less voltage. But, we're getting very close to fundamental limitations about how small the wires can be. They use to be able to pack twice as many transistors in the same space every 24 months or so. That pace has significantly slowed in recent years.</p>
+<p>Finally, when you're talking about things happening in a billionth of a second, you start having problems keeping the entirety of the chip in sync. Electricity flows fast through the wires, but if we go much faster than the time it takes for the electrons to get from one side of the chip to the other will be slower than one clock cycle. This creates all sorts of new problems.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ed1mebt">
+		<a class="author" href="https://www.reddit.com/user/Arianity" target="_blank">Arianity</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><blockquote>
+<p>What makes 3.0Ghz so perfect?</p>
+</blockquote>
+<p>It's not perfect, it's just hard to go past that. At those clockspeeds, you're getting to the point where fundamental limitations (like how long it takes light, which travels at 3 * 10^(8) m/s can travel across a cm wide chip) matter. When you were going slow, Mhz speed, it didn't really matter, it was easy to just go faster</p>
+<p>You also start running into other issues like cooling- the faster you go, the more heat you generate in a small area, that needs to be carried away.</p>
+<p>You also have to worry about keeping everything synchronized, and any potential lags/build up etc.</p>
+<p>Ideally, we would like to keep increasing clockspeeds, it's just difficult. In order to keep progressing, we've found clever ways around it (for now) like using multiple cores, or making pieces(transistors, particularly) smaller. But you can only make things so small.</p>
+<p>Here's some threads that go into more detail:</p>
+<p><a href="https://www.reddit.com/r/explainlikeimfive/search?q=clockspeed&restrict_sr=on" target="_blank">https://www.reddit.com/r/explainlikeimfive/search?q=clockspeed&restrict_sr=on</a></p>
+<p><a href="https://www.reddit.com/r/explainlikeimfive/search?q=clock+speed&restrict_sr=on&sort=relevance&t=all" target="_blank">https://www.reddit.com/r/explainlikeimfive/search?q=clock+speed&restrict_sr=on&sort=relevance&t=all</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ed1vkw0">
+		<a class="author" href="https://www.reddit.com/user/gumenski" target="_blank">gumenski</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They could push past 3.0 GHz and in effect, do, with unlocked chips that somewhat easily can hit 5.0 GHz or higher with moderate cooling.  The problem is that it's kind of a relatively brute-force way of getting horsepower out of a CPU at this point because the power/cooling requirements are getting exponential and costly.  There simply is not a economical, physical way to make it run faster besides just throwing more electricity/cooling at it.</p>
+<p>There are other ways to get more out of a processor and we haven't progressed as much there.  The principle one is making a chip more robust and able to do more in one core cycle (Intel has been a pioneer in this scheme) but the biggest untapped gold-mine for speed gains is in physical multi-core processing and virtual multi-threading.  Rather than make a core run faster it is cheaper now to just put another core in and make them work together, or to virtualize two cores so that a single core can accomplish more things at once in one cycle.</p>
+<p>Even though multi-core and hyperthreading have been around for a long time it is still kind of in infancy and has not progressed very well despite having large headroom to do so.  The biggest reason for non-gains is probably the lack of motivation from software developers in taking advantage of it, because it is difficult to change or adapt their code.  It takes so much effort and work that they will often just assume only 1 or 2 cores if they want to quickly turn a profitable product.  This is evident pretty much everywhere outside large-scale data processing software.  You would expect a game not being bottlenecked by anything else that is running 2 physical GPU's in SLI to gain potentially up to 100% performance but in reality often see maybe only 25%.  Sometimes none, or even objectively worse performance.  You see a lot of non-graphics software seemingly CPU-bottlenecked from the user perspective but then peer inside at the core usage only to find each one at a low % and not doing much.  </p>
+<p>So the bleeding edge of progress as of late is the chip manufacturers and compiler authors figuring out how to abstract this burden away from the software developers and make it work internally/intrinsically.   It has some of the most potential for speed gains while being an incredibly complex technology to advance because it takes fundamental re-thinking of how a system operates from the ground up, while software developers expect a cause-effect-cause-effect environment as they always have.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ed2j5h4">
+		<a class="author" href="https://www.reddit.com/user/Aevum1" target="_blank">Aevum1</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>i see this thread has gone a bit too complex, Lets try to simplify this. </p>
+<p>A CPU is like a factory, Imagine it like a assembly line for cars but in reverse, there a command is taken apart to be executed in different parts of the CPU as if they were different stations of the factory dedicated to different tasks.</p>
+<p>Now through the entire factory there is a conveyor belt called a pipeline, This pipeline has 2 functions, its a linear distribution system which allows the analysis of each command and its disassembly so it can be distributed to the correct part of the factory for its execution. </p>
+<p>Now the frequency is not the actual speed of the processor but the pace in which that central conveyor belt moves, Frequency is usually 1/time.</p>
+<p>The other thing you have to understand is that the processor is made out of little switches, they are called logic gates which do simple math functions like addition, subtraction, division and multiplication using small electrical switches called gates using a type of math called Boolean, Boolean math is basically math applied to Binary code. </p>
+<p>Now depending on the instruction set you use for your CPU, Cisc, Risc, X86, Alpha... etc etc (Arm is a branch of Risc i believe) the CPU and the pipeline have a different method of taking apart instructions, and the CPU itself is designed to take big complex instructions and divide them in to smaller simpler tasks through the pipeline so they can be executed simply and efficiently.  </p>
+<p>The pipeline can be longer which makes the instructions easier to take apart and analyze which is great with more complex tasks but slows down with simpler tasks the CPU due to handling less instructions per cycle  or a shorter pipeline which will handle more instructions per cycle but might choke on more complex tasks due to not simplifying them sufficiently. </p>
+<p>Plus there is the issue of the logic gate density, they are little metal gates which are laser etched on a silicon waffle, Now the smaller the gates, the less power required to open and close them but when you pack too many gates together you can get electric migration which is a VERY simplified way means that the power used to move one gate can cause the gates around it to move as well, so every time you shrink the component size (usually defined by die size, in nM or uM, which is the wavelength of the laser used to etch the silicon waffle) you have to redesign the power delivery to the gates as well as improve the design structure as well as the etching system to better isolate the gates.</p>
+<p>Now going back to the assembly line metaphor, Frequency only tells you how fast the conveyor belt runs, it dosnt tell you how many assembly stations, how many workers or the complexity of the work done in each station, So judging the performance of a CPU using its frequency alone is like trying to guess how many cars a factory makes just by knowing how fast the conveyor belt in the factory moves, a CPU is much more complex and a CPU that runs at 4Ghz from one architecture can be slower then a CPU that runs at 1Ghz.</p>
+<p>A good example is graphics cards. </p>
+<p>A Nvidia 1080 TI in raw performance is faster then a top of the line i7 processor while running between one third and one half the frequency,  but since they are designed for different tasks, one is making SUV´s and the other sports cars. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ed1n4tx">
+		<a class="author" href="https://www.reddit.com/user/mmmmmmBacon12345" target="_blank">mmmmmmBacon12345</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Generally power is the issue.  Every watt consumed by the CPU becomes a watt of heat that you need to get rid of.</p>
+<p>Power consumption of a CPU scales linearly with the frequency so taking a 3 GHz 90 Watt chip and running it at 4 GHz will result in it using 120 W if you can keep the voltage the same</p>
+<p>Unfortunately higher clocks generally require higher voltages to get the transistors to switch fast enough and power consumption scales with the <em>square</em> of the voltage.  If you have a chip that consumes 90 Watts when running at 3 GHz and 1.2V and then OC it to 4 GHz but have to step up the voltage to 1.35V then it'll actually consume 152 Watts not just the 120 Watts from above</p>
+<p>The voltage starts increasing quickly as you move to harder to achieve overclocks which causes the power consumption to rocket as well.  Overclocking an i7-7700k to 7 GHz required over 2V, basically double the voltage, which would quadruple the power consumption</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
