@@ -1,0 +1,107 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zeekar" target="_blank">zeekar</a>
+			<div class="markdown"><p>Western music originally only had 7 notes per octave, not 12. (8 notes counting the repeated starter note; that's where the name &quot;octave&quot; comes from.) Importantly, these notes were not evenly spaced; they were chosen based on small-integer frequency ratios, like 3:2 and 5:4, that sounded pleasant to the ear when played together. The resulting set of notes was roughly the same ones we call the natural notes today: the white keys on the piano, with the pairs B/C and E/F closer together than other adjacent pairs of notes. Because of the uneven spacing, playing all of the notes in sequence sounds different depending on which note you start on. The seven-note (or eight with the octave) sequence you get starting from each note is called a &quot;scale&quot;, and each of those seven scales represents one of the seven different &quot;modes&quot; of classical Greek music. Most notably for a modern audience, if you start on C, you get the Ionian mode, which we call a major scale; if you start on A, you get the Aeolian mode, which we call a natural minor scale. Anyway, seven scales, seven modes, seven notes - which eventually came to be denoted by the letters A-G.</p>
+<p>Now, what happens if you try to play a mode starting on the wrong note? For instance, if you start on G and just play the regular notes, you get the Mixolydian mode. But what if you start on G, but you go up by the sequence of frequency intervals for the Ionian mode instead? Well, you will find that most of the same notes work, but for the 7th note of your scale the F is wrong; you instead need a higher note, but not as high as G. It's a new note, that falls <em>between</em> F and G. Similarly, if you start on D (which is normally your starting point for the Dorian mode) and go up by the frequency intervals for the Aeolian mode instead, you will find that B doesn't work for the sixth note; you instead need a lower note, but still one higher than A - a note between A and B. And if you start on E, normally the root of the Phrygian mode, and try our friend the major-scale Ionian, you will find that you need no less than <em>four</em> of these &quot;in-between&quot; notes in your scale!</p>
+<p>That's where sharps and flats come from. They give you the ability to play any mode starting on any note. And they're named according to whichever note they replace; in the G major or E minor scale, you have an F sharp (written F♯ in Unicode, but I usually stick to plain ASCII F#) instead of an F, while in the F major or D minor scale, you have a B flat (B♭ or Bb) instead of a B. In general, pairs of notes like A# and Bb, which are &quot;the same note&quot; to modern musicians, show up in different places. More interestingly, if you're using the traditional frequency ratios (which is called &quot;just intonation&quot;) they have <em>different frequencies</em> - Bb is just a little bit higher than A#.</p>
+<p>So how did we get to modern music, where Bb and A# really are exactly the same note? Well, remember I said that the notes were based on simple frequency ratios.  The most basic is the 1:2 ratio of the octave - going up an octave is the same as doubling the frequency, and the human brain interprets those two pitches as versions of “the same note”.  But beyond the octave, the most important frequency ratio is the &quot;perfect fifth&quot;, which is the ratio between the first and fifth notes of all but one of the seven mode scales. Specifically, it’s a ratio of 2:3: the fifth note has a frequency that's 1.5 times the frequency of the starting note. What happens if you start on some note, and just keep going up by fifths? It turns out that you eventually get back to the note you started on - though 7 octaves higher. Because you wind up where you started, this path is called the &quot;circle of fifths&quot;. Here it is starting on A:</p>
+<p>A -&gt; E -&gt; B -&gt; F# -&gt; C# -&gt; G# -&gt; D# -&gt; A# -&gt; F -&gt; C -&gt; G -&gt; D -&gt; A</p>
+<p>Going up you hit all the sharps; going down you hit all the flats; either way you hit exactly 12 notes, and each one exactly once. If you halve the higher frequencies repeatedly until all 12 notes are in the same octave, you get all the notes of the modern chromatic scale; that's why it has 12 notes. But if you actually tune by fifths like that, you won't get the proper ratios for the other intervals like thirds and fourths.</p>
+<p>And there's a larger problem with those frequencies. We started with A at some frequency and then multiplied that frequency by 1.5 twelve times. That means that the final, 7-octaves-higher A has a frequency that's (1.5)^(12) = 129.746337890625 times higher. But an octave is by definition a doubling of the frequency; that's the basis of all the rest of the musical frequency math. So going up 7 octaves <em>should</em> get you a final frequency of exactly 2^7 = <em>128</em> times the starting frequency, not 129.7something. There's a mismatch - perfect fifths sound lovely as chords, but the 3:2 ratio is incommensurate with the doubling you need for whole octaves; no matter how many fifths you stack you will never get a whole number of octaves out of them.</p>
+<p>If you actually tune by fifths, incidentally, you basically have the system called Pythagorean tuning. The difference from the above scheme is that in Pythagorean tuning you pick a particular key (tonic note) and then instead of going up 12 times, you go out in both directions - 5 fifths up and 5 fifths down. That keeps all the frequencies centered on the tonic and minimizes the distortion of the intervals. You also leave out the note that is six fifths away. For example, centered on on A, you would get the notes  Bb -&gt; F -&gt; C -&gt; G -&gt; D -&gt; A -&gt; E -&gt; B -&gt; F# -&gt; C# -&gt; G#, which sort into A -&gt; Bb -&gt; B -&gt; C -&gt; C# -&gt; D -&gt; E -&gt; F -&gt; F# -&gt; G -&gt; G# -&gt; A. The D# or Eb is missing; that's because it sounds terrible in this scheme. No matter which side of A you added it on, whether going down from Bb to Eb or up from G# to D#, the interval - allegedly a sixth - is so flat that it sounds like a sharp fifth, called a &quot;wolf fifth&quot; because it's so badly out of tune. </p>
+<p>These problems - the fact that you can't get good sixths or octaves out of fifths - are why we have the modern system of &quot;equal temperament&quot;. Out of all those simple ratios we started with, the only one it preserves exactly is the octave: going up an octave still doubles the frequency. But for the rest of the notes, since we have 12 of them, we divide the octave up into 12 evenly-spaced intervals called &quot;semitones&quot; or &quot;half-steps&quot;, each one representing a frequency ratio of 2^(1/12) (the twelfth root of two). Then every pair of adjacent notes in any scale are exactly one or two semitones apart, with the modes being seven different ways of putting together two half steps and five whole steps to build an octave. </p>
+<p>If you compare the frequencies of notes in the equal-tempered scale, the intervals are almost but not quite the simple ratios we started with; for instance, the fifth note of the major scale, at seven semitones up from the first note of the scale (the root), has a frequency of 2^(7/12) = 1.4983... times that of the root instead of exactly 1.5. So playing those two notes together doesn't sound quite as nice to our ears. But it's so close we can hardly tell the difference, and there are no &quot;wolf&quot; intervals; they all sound pretty good. And if you stack 12 of those imperfect fifths together, you'll get exactly 7 octaves; the circle of fifths really is a circle. </p>
+<p>Equal temperament is what merges flats and sharps; labels like A# and Bb are now just different names for the same note (called &quot;enharmonic pairs&quot;). But the major advantage that led to its invention is that if you have a &quot;chromatic&quot; instrument (one that can play all 12 notes in an octave, like a piano or guitar), you can tune it once and play in any key, instead of having to retune it every time you change keys. This was a big win for keyboard instruments that were very hard to retune. It's a compromise that simplifies music at a slight aesthetic cost: we don't <em>quite</em> get the simple frequency ratios that are so pleasing to our ear.</p>
+<p>Other tunings are still used in practice; octaves on a piano are slightly wider than 2:1, and string instruments in the violin family are often tuned perfect fifths apart since the player can always move their fingers less than a semitone up or down to play in tune with the instruments around them. But almost all music is still written with the assumption of equal temperament.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jamooser" target="_blank">Jamooser</a>
+			<div class="markdown"><p>Definitely not an ELI5 answer, but without a doubt the most complete and thorough answer on the subject. Thank you very much!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/oldcoldbellybadness" target="_blank">oldcoldbellybadness</a>
+			<div class="markdown"><p>Agreed, it seems like most of the other answers dumbed it down enough to not actually seem to make sense</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kristkind" target="_blank">Kristkind</a>
+			<div class="markdown"><p>Pah, Mozart could have come up with that when he <em>was</em> five ;)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/seeafish" target="_blank">seeafish</a>
+			<div class="markdown"><p>ELI50</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xopranaut" target="_blank">xopranaut</a>
+			<div class="markdown"><p>This should be much higher. It gives good historical context and a clear explanation of all the key points. Thank you.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Cky_vick" target="_blank">Cky_vick</a>
+			<div class="markdown"><p>Fun fact! Pythagoras figured out musical ratios by mathematically studying at what rate a string vibrates when you make a string shorter or longer. This is where perfect 4th and 5th came from. Then something about the modes being named after Greek islands, because musical temperament was different then. Now we have &quot;well tempered&quot; tuning, which isn't perfect but allows for playing in every key. I wonder what Pythagorian temperment sounded like?</p>
+<p><a href="https://en.m.wikipedia.org/wiki/Pythagorean_tuning" target="_blank">https://en.m.wikipedia.org/wiki/Pythagorean_tuning</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mezzovoce" target="_blank">mezzovoce</a>
+			<div class="markdown"><p>Bernstein doing a demo of this <a href="https://youtu.be/Gt2zubHcER4" target="_blank">https://youtu.be/Gt2zubHcER4</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lumpkin2013" target="_blank">lumpkin2013</a>
+			<div class="markdown"><p>Holy crap that was intense. What a  genius!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shouldbebabysitting" target="_blank">shouldbebabysitting</a>
+			<div class="markdown"><p>Interesting but it might he might as well been speaking Greek.  Tonic, dominant, chromatic.    I can understand frequencies and multiples of frequencies.  But I've never learned the technical language.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/delight1982" target="_blank">delight1982</a>
+			<div class="markdown"><p>This was amazing. Two geniuses at work.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/n12xn" target="_blank">n12xn</a>
+			<div class="markdown"><p>This is the first time I’ve needed another ELI5 to understand the question, never mind the answer. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Anonymous____D" target="_blank">Anonymous____D</a>
+			<div class="markdown"><p>Music theory is so confusing and difficult to grasp that the most simple way to explain it is horribly confusing.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JaiBlade" target="_blank">JaiBlade</a>
+			<div class="markdown"><p>Really?  I think music theory is actually very logical.  Maybe people just get bored, to be honest.  You gotta be really into it and actually play an instrument.  Understanding the theory without an instrument is just weird.  </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AlexrooXell" target="_blank">AlexrooXell</a>
+			<div class="markdown"><p>Really cannot help you here because, as some people pointed out, you really need a basic understanding of music theory to understand anything we're talking about. Try looking of an ELI5 on music theory, maybe that would help.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SeemsImmaculate" target="_blank">SeemsImmaculate</a>
+			<div class="markdown"><p>Ah of course. Great explanation. Thanks!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheEpicSock" target="_blank">TheEpicSock</a>
+			<div class="markdown"><p>It’s worth noting that for the analysis of atonal and 12-tone music, you often see pitches labeled 0 1 2 3 4 5 6 7 8 9 t(en) e(leven) rather than A B C D E F G, because the music is no longer based on a seven-note scale system.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/YRNMikey" target="_blank">YRNMikey</a>
+			<div class="markdown"><p>Pitches be trippin'! </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/napswithdogs" target="_blank">napswithdogs</a>
+			<div class="markdown"><p>20th century theory class was the first and only time in my life that I felt I had a secure grasp on algebra, because I could play it. I also had a blast making 12 tone matrices. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Cleankoala" target="_blank">Cleankoala</a>
+			<div class="markdown"><p>What great explanation?? This is eli5 not elilikeiunderstandmusic😂😂 </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OriginalAzn" target="_blank">OriginalAzn</a>
+			<div class="markdown"><p>You have to understand some basic music theory to understand anything further. It's like someone asking for an ELI5 on voltage gated potassium channels but they dont know what atoms are never mind all matter is made of them (that's a totally exaggerated example but still)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mouse13" target="_blank">Mouse13</a>
+			<div class="markdown"><p>Think of it this way.  We are retrofitting the alphabet to explain musical intervals. </p>
+<p>If we wrote it according to OP, we'd be retrofitting musical intervals to the alphabet.  </p>
+<p>Turns out prioritizing music theory over our alphabet is much more intuitive and useful. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kdax52" target="_blank">kdax52</a>
+			<div class="markdown"><p>ELI1: This is the simplest way to roughly organize music.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/conalfisher" target="_blank">conalfisher</a>
+			<div class="markdown"><p>An easy way to remember it is that there are 7 music letters, each scale has to use a form of each of those 7 letters. So a sacked can't go from F# to Ab, it's have to go from F# to G# (G# and Ab are the same). This is what can lead to things like double flat notes (eg. Abb is the same as G, you flatten it twice), because no matter what, you have to include every single letter in the scale once (excluding the octave, though that's not really part of the scale, it's the start of the next scale).</p></div>		</li>
+					</ul>
+		</ul>
+	
