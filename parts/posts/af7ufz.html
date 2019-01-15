@@ -1,0 +1,72 @@
+<li class="post" data-handle="af7ufz">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/af7ufz/eli5_how_can_smartphones_manipulate_every_single/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/af7ufz" onclick="return false">how can smartphones manipulate every single pixel on the screen through a thin ribbon cable with a few electricaö connections?</a>
+		</h2>
+		<!--<span class="date">2019-01-15</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: how can smartphones manipulate every single pixel on the screen through a thin ribbon cable with a few electricaö connections?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="edw76q5">
+		<a class="author" href="https://www.reddit.com/user/aragorn18" target="_blank">aragorn18</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There isn't a single wire for every pixel on the screen. The graphics system will send information about what is on screen in small batches and the display processor takes this and controls what's actually on screen.</p>
+<p>To greatly simplify the process, the graphics system may only send a single pixel at a time but it sends one million of these per frame that needs to be drawn. The information is sent left to right, top to bottom. If you have a really fast camera you can actually watch the screen change, pixel by pixel.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="edwjgx1">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[gelöscht]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="edwqedp">
+		<a class="author" href="https://www.reddit.com/user/D_Legare" target="_blank">D_Legare</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>ELI5: The ribbon cable does not directly control the pixels on the screen. </p>
+<p>ELI5+:The ribbon cable transmits data frame by frame, one bit/byte of data at a time depending on whether it is parallel or serial, which are stored in memory on a display driver chip. This chip does nothing but read frames of data from the memory, and uses some fancy electronics to display it to the screen.</p>
+<p>Beyond the ELI5, here is an incredibly simple version of a display driver chip that displays data to an 8x8 screen:</p>
+<p><a href="https://www.maximintegrated.com/en/products/power/display-power-control/MAX7219.html" target="_blank">https://www.maximintegrated.com/en/products/power/display-power-control/MAX7219.html</a></p>
+<p>And an image showing it hooked up:
+<a href="https://howtomechatronics.com/wp-content/uploads/2017/04/MAX7219-8x8-LED-Matrix-Driver.png" target="_blank">https://howtomechatronics.com/wp-content/uploads/2017/04/MAX7219-8x8-LED-Matrix-Driver.png</a></p>
+<p>The port labeled MOSI in the white box is where the data comes from the processor. The display driver chip (labeled MAX7219) then displays it to the screen, so the processor doesn't have to do all the work.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="edwtn8c">
+		<a class="author" href="https://www.reddit.com/user/mrbillybobable" target="_blank">mrbillybobable</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I haven't seen a good accurate reply on here. </p>
+<p>Screens don't update every pixel all at once, they will scan through each line of pixels from top to bottom like an old tube television. They do this through a process called multiplexing.</p>
+<p>Since you need 2 wires to complete an electric circuit, a voltage and a ground, you are able to disconnect either one to turn off the pixel. Multiplexing is the process of manipulating the ground connections to select a row of pixels to be updated.  </p>
+<p>To give an example of the multiplexing process let's use a 5x5 grid of pixels, each pixel can either be on or off.  First you will need to split this grid into rows and columns.  You will make have five horizontal rows, each one having 5 pixels.  And  5 vertical columns, each one also containing 5 pixels.  </p>
+<p>Next you connect all of the pixels in a row to a ground line, and each of the pixels in a column to a voltage line, so that the voltage and ground lines run perpendicular to eachother.  What you will end up with is 5 voltage lines and 5 ground lines, a total of 10 wires. </p>
+<p>Lets say that you wanted to only light up the pixels around the edge of the screen. Great, so you see that the first row of pixels needs to be lit, so you connect all of the voltage lines and only the first ground line.  The first line lights up just how you want, perfect. So you move on to the second row. Great, you see that the first and last pixels need to be lit on this row. You see that the voltage lines for the first and last pixel are already connected, so you connect the second ground line. But here's the problem, every pixel in this row is now lit up, not just the end pixels.  So you try disconnecting the middle 3 voltage lines, only to find out that those pixels also turn off on the first row, so that won't work. You will need to find a different  solution.</p>
+<p>This solution is multiplexing. As it turns out, you don't need to keep the pixels turned on all of the time, Human eyes can only detect a change so quickly.  So you will 'scan' through the image you are trying to create.  To do this you start with the first row.  Just like before you connect all 5 voltage lines and the first ground line, the correct pixels now light up.  Perfect, now you move onto the second row.  This time you disconnect the first ground line, turning off the previous line.  Now you can disconnect the middle three voltage wires and connect the second ground line. Only the outer two pixels light up, and you can move onto the third row.  You disconnect the second ground line, update the voltage lines to what they need to be, and connect the third ground line. Keep doing this process of cycling through the ground lines until you reach the end, and voila you've slowly updated the pixels to what the need to be.  The only issue is that a human cant do this fast enough by hand, but if you swap out the human for a dedicated chip, it becomes possible.</p>
+<p>On the little flat flex cable that connects the display, there will be one or more of these little chips that does this multiplexing process.  This chip will accept binary inputs from just a couple of connections, interpret which line to update, and output the correct signals extremely quickly. On modern displays with color and brightness, it's the same theory but more wires.  Instead of 1 voltage per pixel you will have 3, one for red green and blue.  And by varying the voltage, you can adjust the brightness of the pixel.  </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="edwvrlt">
+		<a class="author" href="https://www.reddit.com/user/LeSmokie" target="_blank">LeSmokie</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The thin ribbon cable is a serial bus (you may know this from USB -&gt; Universal Serial Bus) which means a lot of infos very fast through only a few connections. This leads to a small processor which translates these infos into signals for the display. This processor is connected to the display through a lot more connections.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/af7ufz" onclick="return false"><span>show</span></a>
+</li>

@@ -1,0 +1,51 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Snaper_" target="_blank">Snaper_</a>
+			<div class="markdown"><p>So, if i understand correctly, and im only talking about the connection from the monitor control board to the display itself, there is maybe a 11 bit wide connection to send the binary number of the place of one of the 1920 horizontal pixels, as well as another one for the 1080 vertical ones, and an 24 bit wide connection for rgb, and every pixel can get Updated with that in a row? So that over the ribbon cable 1920x1080x60 signals a second get sent, and the display is wired so that it knows which pixel to change? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Runiat" target="_blank">Runiat</a>
+			<div class="markdown"><p>You don't need to send the number of the pixel as that can be inferred from how many pixels have been sent since the last &quot;end of frame&quot; character. </p>
+<p>There's a tiny chip in the display for keeping track of this. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/obamarulesit" target="_blank">obamarulesit</a>
+			<div class="markdown"><p>As I understand it, OLED screens don’t paint pixel by pixel, they do global display so every frame changes at the same time.   There is a memory segment attached to the screen behind each pixel as a thin wafer and you push the next screen to the display controller which swaps the buffer on the dispaly.  The controller has at least two memory buffers to flip back and forth to.   </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/_valabar_" target="_blank">_valabar_</a>
+			<div class="markdown"><p><a href="https://youtu.be/3BJU2drrtCM" target="_blank">Slo mo guys have a video that shows this</a></p>
+<p>Phones briefly shown at the 5 min mark</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/flic_my_bic" target="_blank">flic_my_bic</a>
+			<div class="markdown"><p>appreciate it. that's enough internets for me for the night.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kmmeerts" target="_blank">kmmeerts</a>
+			<div class="markdown"><p>It could be even less. Some small LCDs (for example, the original Gameboy one) use just 3 wires for the data, plus one wire for every bit of color depth. There are a few other connections for stuff like power, ground, brightness etc... The idea is that the LCD internally keeps track of a pointer to a certain pixel location, and with the connections you can then update the pixel at that pointer, writing lines of pixels one by one.</p>
+<p>In this example, one wire is a pixel clock, and with every pulse you send one pixel over the color lines, writing a pixel to the location of the LCD pixel pointer, and making it go one pixel to the right. One wire is HSync, meaning a new line is starting and the pixel pointer should go back to the left of the display. One wire is VSync, telling the LCD a complete frame has been written, and to go back to the top of the display</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Snaper_" target="_blank">Snaper_</a>
+			<div class="markdown"><p>So how does it work that every pixel remembers its state until it gets updated? Is there some kind of memory cell in each pixel that stores every bit of Information for itself? </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Duspende" target="_blank">Duspende</a>
+			<div class="markdown"><p>Is this why, if I'm scrolling reddit, I see a picture with a true black element and scroll, I can see the drag &quot;bleed&quot; and smear up or down because my screen has to update from one end to the next?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aragorn18" target="_blank">aragorn18</a>
+			<div class="markdown"><p>No, that's because your screen doesn't respond instantly to the input. So, if a pixel was completely off and then asked to turn back on, it takes a brief period for the pixel to respond.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Wzup" target="_blank">Wzup</a>
+			<div class="markdown"><p>Does it go sequentially left/right top/bottom, or does it use something similar to a Hilbert Curve? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aragorn18" target="_blank">aragorn18</a>
+			<div class="markdown"><p>sequentially </p></div>		</li>
+					</ul>
+		</ul>
+	
