@@ -1,0 +1,84 @@
+<li class="post" data-handle="agjhc0">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/agjhc0/eli5_can_you_use_a_gpu_as_a_cpu_whywhy_not_if_not/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/agjhc0" onclick="return false">Can you use a GPU as a CPU? Why/why not? If not, what's the difference between them that makes it impossible?</a>
+		</h2>
+		<!--<span class="date">2019-01-19</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Can you use a GPU as a CPU? Why/why not? If not, what's the difference between them that makes it impossible?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ee6nxji">
+		<a class="author" href="https://www.reddit.com/user/CptCap" target="_blank">CptCap</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>While a GPU can do all the operations a CPU can (which mean that you could, <em>in theory</em> use it like a CPU), the architecture isn't optimized for it would make it very inefficient.</p>
+<p>While CPUs and GPUs are basically the same thing (processors), both have different goals: the CPU is optimized for latency, and the GPU is optimized for throughput. (The goal of the CPU is to do any sequence of operations in the smallest possible amount for time, while the goal of the GPU is to do the maximum amount of work per amount of time).</p>
+<p>To do this they both use different architectures/layouts: the CPU has a few, very big, fast cores and the GPU has hundreds/thousands of tiny, slow &quot;cores&quot;.</p>
+<p>So to make an analogy:</p>
+<ul>
+<li>The CPU is a supercar: two seats, 200mph top speed.</li>
+<li>The GPU is an articulated bus: 400 seats, 30mph top speed.</li>
+</ul>
+<p>If you wanna do <em>one</em> (or two) things really fast, the CPU wins. If you want to do the same thing over and over and over again a billion time (and don't care how long it takes to do it just once), the GPU wins.</p>
+<hr />
+<p>How does this look like on the chip then?</p>
+<p>To really understand this, you need to know that in a CPU, the circuit that does the actual computation (let's call it the ALU) is incredibly fast and the most important thing for CPU speed isn't to make it faster, but to keep it fed with work to do and data to work on. </p>
+<p>For this reason CPUs have a ton of extra circuits whose job is to keep the ALU busy (caches, predictors, schedulers, buffers, ...). GPUs don't do that as much.
+GPUs are designed to process pixels or triangles, and there are millions of them on a screen.</p>
+<p>The repetitive nature of the work done on a GPU means that most cores will work on the same kind of thing at the same time, and the circuit that feed them with instructions and data can be shared across cores. And since you don't care how long it takes for a single pixel to be computed, but rather how long it takes for the whole screen, each GPU core can afford to compute several pixels in parallel to amortize wait times (if the computation for a pixel has to wait for data from memory, the core can just switch to some other pixel).</p>
+<p>The resulting architecture is very different: instead of having big cores with their own ALU and a huge control circuit to make the ALU happy, The GPU has groups of cores that share the same control circuit. This means that they can have a lot more ALU (because they don't need as much control stuff), but that cores aren't all independent. Cores withing a group have to work on the same thing, which is fine when doing graphics but can lead to atrocious performance when trying to do one single thing.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ee6wzua">
+		<a class="author" href="https://www.reddit.com/user/PenisShapedSilencer" target="_blank">PenisShapedSilencer</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A CPU is a single superman doing superman work.
+A GPU is a collection of small tiny elves doing a large quantity of small tasks.</p>
+<p>In short, you cannot expect superman to assemble a million toys per second, and you cannot expect a million tiny elves to do superman's work.</p>
+<p>edit: typo expect/except</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ee6v2dn">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ee6xlx9">
+		<a class="author" href="https://www.reddit.com/user/Nukkil" target="_blank">Nukkil</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>CPU is better at tasks that require decisions and branch, GPU is better at repetitive tasks that take input since it's built to handle millions of pixels having their lighting shaded for example (based on the angle of the light and surface and other material properties). Because the formulas (or series of) are more of a todo list and all the same, they can be executed in parallel, which makes the GPU so fast. You can kind of see why decision based code (if, else) would interrupt this.</p>
+<p>If you've ever written a shader this is why using conditionals (if, else) isn't advised, though modern gpus are getting better at this.</p>
+<p>Both can do eachothers job, but they are slower. Old school Runescape is a good example of a game that does its graphics on the CPU (aka a software engine).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ee6zczc">
+		<a class="author" href="https://www.reddit.com/user/suvlub" target="_blank">suvlub</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are two main differences between CPU and GPU design.</p>
+<p>First is the one many others have mentioned - GPUs are crazy parallel, doing millions of computations at once, while CPUs can only really do small amount of tasks at once (but get individual tasks done faster). GPUs are designed this way because graphical rendering is a textbook example of a problem that can be very nicely solved by parallel computing.</p>
+<p>The second difference is speculative execution. Executing an instruction on a modern computer is a surprisingly complicated, multi-step process. Because each step is done by a different part of the processor, multiple instructions, each at different stage of execution, are being executed simultaneously. This is called the &quot;instruction pipeline&quot;. You can think of it as an assembly line, where many products are being created simultaneously. Modern CPUs and GPUs both have long pipelines. For good performance, we want to keep the pipeline full, which is an easy task if the instructions are just a list we can sequentially execute, however, unfortunately, that is not the case, because most programs contain a LOT of branching. When we hit a branching instruction, we have to wait until it is fully executed before we can load the next instruction (because that's how branching instructions work - they tell us which instruction is next). Modern CPUs (but not GPUs!) try to make educated guesses based on past results and start executing instructions that are likely to be needed (this is speculative execution). If it turns out the guess was right, hurray! If it was wrong, it needs to do an undo, but if the predictions are good enough, it's a performance gain in the long run. Branch predictors are huge chunks of hardware, and by choosing to install one, you are leaving less space for the rest of the processor, sacrificing raw performance. For CPUs, this is worth it. For GPUs, it's not, because the computations they need to do usually consist of simple number-crunching without much conditional logic.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/agjhc0" onclick="return false"><span>show</span></a>
+</li>

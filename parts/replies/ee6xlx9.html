@@ -1,0 +1,24 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drillbit7" target="_blank">drillbit7</a>
+			<div class="markdown"><p>This!  To put it in ELI5 terms, the CPU is specialized at the IF-&gt;THEN-&gt;ELSE tasks.  CPUs can even accurately guess whether the IF task or the ELSE task will execute and attempt to read ahead and pre-execute the most likely path (this prediction and pre-execution however has led to some security flaws).</p>
+<p>Edit: or just look at what /u/suvlub just posted</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pak9rabid" target="_blank">pak9rabid</a>
+			<div class="markdown"><p>Nice description of how speculative execution &amp; branch prediction works! </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fachomuchacho" target="_blank">fachomuchacho</a>
+			<div class="markdown"><p>So how do you design around using conditionals? </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jarfil" target="_blank">jarfil</a>
+			<div class="markdown"><p>You can run some &quot;conditionals&quot; as math operations, like if you have a series of numbers [1,2,3,4] and you multiply it by another series of numbers [0,1,1,0] to get [0,2,3,0] so it's like &quot;return from the first list if the second is 1, otherwise return 0&quot;.</p>
+<p>But more often you run your conditionals on the CPU, and once you've made the decisions about which operations to run on which data, you send the data in bulk with a list of fixed operations to run on it to the GPU.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Nukkil" target="_blank">Nukkil</a>
+			<div class="markdown"><p>It's not so much designing but the tasks it is set up to carry out more efficiently. For example a todo list of heavy formulas with changing variables. It can execute them in parallel because the math is all the same. Trying to do the same thing a million times on a CPU will bog it down.</p></div>		</li>
+					</ul>
+		</ul>
+	
