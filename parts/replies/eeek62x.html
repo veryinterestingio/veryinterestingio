@@ -1,0 +1,66 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/derFsivaD" target="_blank">derFsivaD</a>
+			<div class="markdown"><blockquote>
+<p>For lower frequency sounds, you can tell from the delay of arrival between your two ears. High pitches deprive you of this capability, which is why it's sometimes hard to locate sharp chirping sounds.</p>
+</blockquote>
+<p>It should be the other way around, because the low frequency waves are so large that the peaks of the wave would reach the eardrum at almost exactly the same time. At 20hz, (the typical lower limit of human hearing) a sound wave has a peak to peak distance of roughly 57 feet. The difference in any part of a 57 ft wave between your left and right ears would be so small that location/direction will be much more difficult to ascertain.</p>
+<p>High frequencies, on the other hand (above about 2000-3000 hz) will have a peak to peak wave of less than 6 inches. As such, a single wave can be sensed by one ear one cycle before the other ear. This difference in reception tells us which direction that frequency is coming from. The upper limit of human hearing (20,000 hz) has a peak to peak distance of roughly one-half inch. </p>
+<p>Now, on the other hand, high frequencies can sometimes be harder to locate due to phasing issues. If one ear senses the wave a half cycle different from the other, you will either notice an attenuation of the sound, or an incorrect localization. (depending upon frequency, volume, spatial location, reflective surfaces, etc.)</p>
+<p>Additionally, high frequencies have much less power, and can be attenuated easily by softer surfaces, such as carpet, clothing, or other similar soft materials. Hard surfaces reflect high frequencies much better, as they don't absorb or diffuse the sound. Reflectivity (or the lack thereof) can sometimes make high frequencies harder to localize, but because the ear is much more sensitive in the midrange and upper midrange (voice range, or roughly 500-5000 hz), these frequencies are <em>usually</em> much easier to discern and locate in a given auditory space. But because of certain conditions, situations, surfaces and sound sources, sometimes high frequencies could be more difficult to localize. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hypothesis_Null" target="_blank">Hypothesis_Null</a>
+			<div class="markdown"><p>You're conceptualization of low and high frequencies is all correct; but you're not aware of a particular trick used with angle-of-arrival calculations.  Though you touched on it without knowing.</p>
+<p>When you're trying to perform any sort of <em>time-delay</em> calculations, you'd certainly want your aperture (distance between receiver points) to be as large as possible, and large relative to the wavelength of the radio or sound wave you're receiving.</p>
+<p>However, finding out the time-delay between a signal measured at two points is actually somewhat difficult.  Imagine if you were hearing a <em>pure tonal sound</em>.  That would just be a constant sinusoidal wave.</p>
+<p>How would your brain tell how much of a time delay there is between the signal arriving at your two ears?  If your ears are hearing in-sync... is the source equidistant from your ears (directly in front or behind you)?  Or is one ear actually a wavelength delayed? Or two wavelengths delayed? Or seven? or fifty?  You know the peaks and troughs should align, but you don't know <em>which ones</em> to align. The result is ambiguous and indeterminate.</p>
+<p>Now, that's with a perfectly pure signal.  A less pure signal will have character to it; there will be some kind of envelope modulating the signal.  But that's still often acting at a relatively lower frequency. Which means that the envelope won't change much over the span of a few wavelengths, and you're still stuck with this ambiguity that can easily become double-digit degree errors in angle-of-arrival.</p>
+<p>So how do we get around this issue?</p>
+<blockquote>
+<p>Now, on the other hand, high frequencies can sometimes be harder to locate due to phasing issues. </p>
+</blockquote>
+<p>It's quite the opposite.  Finding the phase difference between two common signals is actually a pretty easy thing to determine. And thus you can actually get pretty high alignment accuracy.  The problem is that while you can align the peaks and troughs, you're still not certain <em>which</em> peaks and troughs correspond to each other. You know you're an eight of a wavelength out of phase, but you don't know if that indicates a propagation delay of an eighth of a wavelength, or one and an eight, or three and an eight, or negative five and an eighth... For higher frequencies, the phase part is easy. It's the time part that is difficult.</p>
+<p>So instead of a <em>time-delay</em> array, we make something called a <em>phased-array</em>.  The principle is actually quite simple.  You place your receivers so that they are closer than <em>half</em> the wavelength of the frequencies you are trying to capture.  As a result, no matter what direction the signal comes from, the two signals will always be less than half a wavelength out of alignment.  So the spatial ambiguity is removed.  The <em>phase</em> error and the <em>time</em> error become one and the same.</p>
+<p>There are a lot of fun things you can do with building phased-arrays with multiple nodes.  You can specifically transmit or listen in particular directions and reduced the power emitted or received in all others.  But that's the topic of... well... much more than can be covered in a reddit thread.</p>
+<blockquote>
+<p>High frequencies, on the other hand (above about 2000-3000 hz) will have a peak to peak wave of less than 6 inches. As such, a single wave can be sensed by one ear one cycle before the other ear. This difference in reception tells us which direction that frequency is coming from. The upper limit of human hearing (20,000 hz) has a peak to peak distance of roughly one-half inch.</p>
+</blockquote>
+<p>So you see your math here is perfectly correct, but you concept of the application is backwards.  This range of frequencies having wavelengths <em>slightly smaller</em> than the distance between our two receivers is <em>detrimental</em>.  Wavelengths longer than around 16 inches or so would start to become very easy to localize.  And wavelengths of half an inch or smaller would start to gain a lot of advantage with time-delay resolution due to the relative aperture size being over ~10x as big.  But this range of frequencies sitting in the sweet spot of 'roughly the same size' as the aperture actually get the <em>worst</em> of both worlds. Poor time resolution, and time-delay ambiguity.</p>
+<p>Our brain uses other methods to detect moderate to higher frequencies, with varying attenuation and such, as you suggested.  But the process for localizing lower frequencies is unique to lower frequencies specifically because of this spatially-determined cutoff.</p>
+<p>If this kind of stuff interests you, this is largely telecommunications stuff you'd find in EE graduate courses. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DScorpX" target="_blank">DScorpX</a>
+			<div class="markdown"><blockquote>
+<p>You can specifically transmit or listen in particular directions and reduced the power emitted or received in all others. </p>
+</blockquote>
+<p>My ears do not transmit. This guy radars.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/derFsivaD" target="_blank">derFsivaD</a>
+			<div class="markdown"><blockquote>
+<p>How would your brain tell how much of a time delay there is between the signal arriving at your two ears? If your ears are hearing in-sync... is the source equidistant from your ears (directly in front or behind you)? Or is one ear actually a wavelength delayed? Or two wavelengths delayed? Or seven? or fifty? You know the peaks and troughs should align, but you don't know which ones to align. The result is ambiguous and indeterminate.</p>
+</blockquote>
+<p>This is of course based on a single point source, sinusoidal wave, in an open environment without reflective surfaces to either clarify or muddle the true sound source. The brain is quite adept at analyzing, calculating, and ultimately determining localization of a sound source, even in a 'busy' sound environment.</p>
+<p>As we humans have evolved, as our societies have advanced, and our need for hunting/gathering has been placed by shopping in grocery or specialty stored for our wares and our other needs, we don't rely on the auditory cues <em>as much</em> as we used to when trying to survive and avoid predators.</p>
+<p>Our ears are not pure, true, single point receivers. I mean, as far as the actual ear drum is concerned, it is a single point, and the other ear as a si gle point work together in order to localize a sound source. But even in an open environment, with no obvious reflective surfaces anywhere nearby to cloud the direction of a sound, we still have the structure of our body, the shoulders (as mentioned in another post) our earlobes, and even our face that will reflect certain frequencies in various ways. I have a blind friend who had to wear one of those basic face masks while he was sick, and he said that the mask disrupted the sound reflections off his face. This made his spatial awareness a bit muted or muddied, and he had to be a little more careful when navigating his apartment. Walls still reflect sound back to him, but some auditory cues can be extremely small, but we usually just ignore them anymore, simply because these cues aren't critical in avoiding predators, as they once were.</p>
+<p>I appreciate your input, your response. I'm sure that I don't have all the facts when it comes to audio, but I'm a music lover, and audio nut, and it is a passion of mine. Having someone of a like mind to talk with in these respects is refreshing. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/iftttAcct2" target="_blank">iftttAcct2</a>
+			<div class="markdown"><p>You're right, that's how we tell source location for higher pitched sounds. For lower pitched sounds we use the fact that it's louder in one ear than the other. </p>
+<p>Always reminded me of AM vs FM reception :D</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/derFsivaD" target="_blank">derFsivaD</a>
+			<div class="markdown"><p>I guess that's one way to look at it. I'm not sure if that is an apt analogy though.</p>
+<p>Let's see... AM radio uses larger/lower frequencies, and can bounce off the atmosphere and 'follow the curve' of the earth and be received at much greater distances.</p>
+<p>FM radio uses smaller/higher frequencies that pass through the 'holes' in the atmosphere, and therefore are limited to 'line of sight' reception.</p>
+<p>Maybe in that respect. But when you consider that you are typically using only a single receiver, so in <em>that</em> respect, you aren't figuring out the direction. That's where Radio Triangulation comes in. Which is also how GPS works, but sort of in a reverse fashion.</p>
+<p>Radio triangulation requires three receivers of a single source to pinpoint the location of the source of the transmission. This was done a lot during wartime or for spy/espionage surveillance, where transmissions were monitored, and suspect transmissions were triangulated in order to pinpoint where the 'spy' was hiding out. Because of the nature of radio waves and the receiving antennae, they will show as stronger or weaker signals when they are aligned parallel or perpendicular to the source signal. This gives a general direction of the transmitting source. This can then be plotted on a map to give a general 'cone of uncertainty' (think like a hurricane forecast) and using three receivers and three general directional cues, the location of the transmission can be narrowed and a source determined.</p>
+<p>GPS works in a sort of reverse fashion. You have multiple transmitters, but a single receiver. The receiver is your GPS device, or smart phone. The transmitters are a network of geosynchronous satellites. The receiver picks up the transmission from numerous satellites (minimum three for surface location, and a fourth for altitude) and calculates the difference in direction, signal strength, timing, etc., and uses this to pinpoint your location on the ground.</p>
+<p>OK, I've drifted way off topic. Sorry if that bothers anyone.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
