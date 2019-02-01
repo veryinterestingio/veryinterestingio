@@ -1,0 +1,122 @@
+<li class="post" data-handle="al2ry1">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/al2ry1/eli5_why_can_torrent_downloads_resume_themselves/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/al2ry1" onclick="return false">Why can torrent downloads resume themselves from their last (download) status even if the (net) connection is lost but browser downloads just get corrupted/lost if the connection is lost halfway through?</a>
+		</h2>
+		<!--<span class="date">2019-02-01</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p><strong>EDIT:</strong> Please explain like I am <strong><em>five</em></strong>. Thank you! :)</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="efaz3g4">
+		<a class="author" href="https://www.reddit.com/user/egypturnash" target="_blank">egypturnash</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Let's use a physical analogy. Let's say you are trying to copy a book over the phone.</p>
+<h1>Torrent:</h1>
+<ul>
+<li>Friend: &quot;Okay this book is six hundred pages, which one do you want first?&quot;</li>
+<li>You: &quot;Uh, hold on, lemme make a checklist here, hang on... done. Gimme, oh, page sixteen.&quot;</li>
+<li>Friend: &quot;Right. [reads page sixteen]&quot;</li>
+<li>You: &quot;Got it.&quot; <em>puts page in a box, makes check on list</em> &quot;Let's have nineteen now.&quot;</li>
+<li>[... this goes on for some time...]</li>
+<li>Your mom: &quot;Hang up the phone, I need to make an important call!&quot;</li>
+<li>[... later, you call your friend again...]</li>
+<li>You: &quot;Hey, I'm back. I lost the page I was copying, let's start with... oh... forty-seven.&quot;</li>
+<li>Friend: &quot;No worries. [reads page 47]&quot;</li>
+<li>[...more pages...]</li>
+<li>&quot;That's all the pages, thanks!&quot; <em>hangs up the phone and shuffles the pages into order</em></li>
+</ul>
+<h1>Browser:</h1>
+<ul>
+<li>You: &quot;Hey can you just start reading this book?&quot;</li>
+<li>Friend: &quot;Sure! [starts reading]&quot;</li>
+<li>You: <em>starts rapidly copying down the words without keeping track of page numbers or anything</em></li>
+<li>[...]</li>
+<li>Mom: &quot;I gotta use the phone!&quot;</li>
+<li>[...later...]</li>
+<li>You: &quot;Hey I'm back, I have no idea where I stopped transcribing, let's just start from scratch.&quot;</li>
+<li>Friend: &quot;Awrite, here we go... [starts reading]&quot;</li>
+</ul>
+<hr />
+<p>It is also worth noting that some browsers <em>can</em> resume transfers. The set of rules they use to talk to the server is <em>perfectly</em> capable of saying &quot;hey I have everything up to page 46, can we just start from there?&quot;. Not all browsers support this natively, and they're not necessarily going to do it automatically even if they do. And not all servers support this; in the book analogy, it would be as if either you or your friend <em>had no idea of the concept of a page number</em>.</p>
+<p>Ask your favorite search engine something like &quot;resume download safari&quot; to see what you need to do to make it resume a download; it may be a button you've never noticed, or you may need to install a plugin that will add this capability.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="efahmmr">
+		<a class="author" href="https://www.reddit.com/user/M1573R_W0LF" target="_blank">M1573R_W0LF</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Let’s say your download is a Lego set you want to build. In one case you have the instructions and decide to get the pieces from different places, it can sometimes take longer but if you get interrupted you still have the instructions and can continue building from where you left off. In the other case you have just one person giving you all the pieces but keeping the instructions for himself telling you how to build your Lego, if you get interrupted and you wanna start again you get a someone else that doesn’t know how much you have already built therefore starts from scratch.</p>
+<p>Edit: thank you very much for my first silver and platinum, what an amazing way to start the day :)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="efa5410">
+		<a class="author" href="https://www.reddit.com/user/iAmRysk" target="_blank">iAmRysk</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Because a torrent is downloading tiny chunks of a file that get reconstructed at the end.  When it resumes it simply fills in the gaps.  A normal download is a single big chunk that has to start over.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="efa5zuu">
+		<a class="author" href="https://www.reddit.com/user/theelectricmayor" target="_blank">theelectricmayor</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Browser downloads can, in theory, resume from the last point. It depends on the server supporting the <code>Range</code> parameter for HTTP requests. It's how &quot;download accelerators&quot; work, by requesting different parts of the same file at the same time in the hopes that the server is capping bandwidth on a per connection basis.</p>
+<p>However support for range can be spotty. For example if a server is mainly based on scripts or other dynamic execution it can be tricky to support the range parameter since two requests for the same URL might not result in the same data. This is unlike a static web server where URLs just map directly to files.</p>
+<p>Bittorrent supports resuming naturally because the protocol is specifically based around downloading files in pieces in an arbitrary order from a potentially unreliable swarm (not all pieces of a file may be available at all times).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="efb2fc4">
+		<a class="author" href="https://www.reddit.com/user/jivow" target="_blank">jivow</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Lots of incorrect answers here.</p>
+<p>TL/DR <strong>Bad programmers and greedy server owners that push ads are the reason, there is no technical reason for it.</strong></p>
+<p>The simplest answer is that most modern browsers could resume download but the servers break it on purpose/due to a poor design.</p>
+<p>How downloading torrent works:</p>
+<ul>
+<li>your client program get a list of small file fragments (chunks) with information necessary to check if they're good (checksums)</li>
+<li>your client program get a list of peers (essentially serving for you as servers) you can download those chunks from</li>
+<li>your client starts downloading e.g. 10 of those fragments at once from multiple peers</li>
+<li>if one fragment finishes next one is started</li>
+<li>if downloading of fragment fails (broken connection, incorrect data) it is retried, often from a different peer</li>
+</ul>
+<p>How downloading files from browser should work:</p>
+<ul>
+<li>you have an URL (link) to a file - it contains server address and path to that file on the server</li>
+<li>browser asks for a file, server responds with a size and starts sending data</li>
+<li>the way data is sent makes sure it doesn't get damaged in transit, but connection may get broken</li>
+<li>if the connection gets broken the browser will (sometimes you need to click &quot;resume&quot;) ask the server for that file starting from the position the transfer was cut - so if 20MB was saved and file was 50MB only the remaining 30MB needs to be downloaded</li>
+</ul>
+<p>What can go wrong:</p>
+<ul>
+<li>the server can skip sending the size of the file and instead tell the browser - here you will get the data in small chunks - it was designed so it would be possible to send a file that is generated and you don;'t know the size. E.g. when the server compresses some data and sends it to you. Some bad coders use this method to send also normal files for which size is know, and if the connection gets broken the browser has no way of knowing if it got everything</li>
+<li>the server may ignore that the browser requested the file starting from 20MB and start from the beginning</li>
+<li>the server may have crashed and while it will restart itself soon it will first break the connection and when browser retries it will say that it doesn't have more data, or that it doesn;t have the file at all, or that the access to the file was denied - so the browser won't be able to resume</li>
+<li>the server owner serves ads and don't want people to be just able to access the file directly. So when you click on link you get to download page with ads and click &quot;download&quot; button - then you get redirected to a temporary link that is valid for e.g. 5 minutes. When connection gets broken and your browser tries to retry it is expired and server says that the file no longer exists. Technically all the programmer would need to do was ensure that the link remains valid for the next 5 minutes if the file is being downloaded in case of broken connection. But they're lazy, don't care or want to serve more ads.</li>
+</ul></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/al2ry1" onclick="return false"><span>show</span></a>
+</li>
