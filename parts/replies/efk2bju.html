@@ -1,0 +1,130 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jherico" target="_blank">jherico</a>
+			<div class="markdown"><p>To be fair, x86 systems are not so much standard as ubiquitous, having gained traction more through inertia and market share than through superior architecture or some sort of global standards body.</p>
+<p>It just becomes increasingly hard to justify building a system with any other architecture, since there are so many things you have to roll your own version of in order to make a complete system, compared to just using x86-64.  The only place where it hasn't completely taken over is mobile, where ARM dominates instead.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/scoffjaw" target="_blank">scoffjaw</a>
+			<div class="markdown"><blockquote>
+<p>x86 systems are not so much standard as ubiquitous</p>
+</blockquote>
+<p>It is a <em>de facto</em> standard rather than a <em>de jure</em> standard.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Thedirtyjersey" target="_blank">Thedirtyjersey</a>
+			<div class="markdown"><p>I prefer Di Jon </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/guto8797" target="_blank">guto8797</a>
+			<div class="markdown"><p>Eh, give it 100 years and it'll drift into the <em>de jure</em> territory.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Thatsnicemyman" target="_blank">Thatsnicemyman</a>
+			<div class="markdown"><p>This dude plays CK2!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IICVX" target="_blank">IICVX</a>
+			<div class="markdown"><blockquote>
+<p>To be fair, x86 systems are not so much standard as ubiquitous, having gained traction more through inertia and market share than through superior architecture or some sort of global standards body.</p>
+</blockquote>
+<p>fun fact: these days, pretty much no x86 system actually runs on x86. All of those x86 instructions that compilers work so hard to create get digested into <a href="https://en.wikipedia.org/wiki/Microcode" target="_blank">microcode</a> by the CPU, which is what actually gets executed. </p>
+<p>It's particularly funny because back in the day, there was this massive ideological fight between the RISC paradigm (reduced instruction set computer) and the CISC paradigm (complex instruction set computer). </p>
+<p>The RISC argument was &quot;all you need is a small set of simple, well-defined assembly instructions. It'll make your silicon really easy to design and super fast, and if you need more complicated features you can rely on the compiler!&quot; RISC architectures tend to have a relatively small set of instructions, with MIPS implementations <a href="https://en.wikibooks.org/wiki/MIPS_Assembly/Instruction_Formats#Opcodes" target="_blank">often having less than a hundred distinct instructions</a> (which is why they use it for teaching assembly). </p>
+<p>The CISC argument, on the other hand, was that anything you can do in silicon is definitely going to be faster than anything a compiler can come up with, so let's hardwire some crazy opcodes into our CPU. That's how you get monstrosities like <a href="https://www.felixcloutier.com/x86/" target="_blank">this list of modern x86 opcodes</a>.</p>
+<p>Turns out, the RISC people were right. You can get a <em>lot</em> more speed out of heavily optimizing a small set of simple instructions, than you can get out of having a &quot;throw everything including the kitchen sink into the chip&quot;. </p>
+<p>But we had this massive codebase all written in CISC, what were we going to do? </p>
+<p>Well, we've already got compilers that go from C / C++ to a CISC instruction set; would it be <em>that</em> hard to etch in a &quot;compiler&quot; that goes from the x86 CISC instruction set to the RISC microcode that we can make super fast? </p>
+<p>Turns out it's not. And so, despite losing the battle for the heart of the PC, RISC still won the war for the soul of every computer. And suddenly it turns out that those nerds who get into fights about getting &quot;close to the metal&quot; with hand-written assembly have yet another turtle to defeat beneath them. </p>
+<p>(RISC also won the war for &quot;total number of CPUs in the world&quot; - your cell phone, for instance, but also the CPU in your monitor, the CPU in your microwave, and probably you've got a CPU in your mouse and your keyboard - those are all ARM, and ARM is a RISC architecture)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ravinghumanist" target="_blank">ravinghumanist</a>
+			<div class="markdown"><p>It's worth adding that many x86 instructions map to a single microcode instruction. In fact, sometimes multiple x86 instructions are converted to a single instruction in a process called &quot;fusion&quot;. And hand tuning can still give benefits, in the rare case.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zacker150" target="_blank">zacker150</a>
+			<div class="markdown"><p>The problem with this post is that virtually all of it is wrong. </p>
+<p>First of all, the instructions on CPUs were always implemented in microcode. It is only recently that manufacturers started directly implementing them in hardware. Computer architects developed CISC architectures because early programmers didn't have these fancy languages like C and C++, so more high level instructions meant more productive programmers. Moreover, more complicated instructions meant fetching less instructions from the slow RAM.  </p>
+<p>From the Wikipedia article you linked on microcode. </p>
+<blockquote>
+<p>From the 1940s to the late 1970s, a large portion of programming was done in assembly language; higher-level instructions mean greater programmer productivity, so an important advantage of microcode was the relative ease by which powerful machine instructions can be defined. The ultimate extension of this are &quot;Directly Executable High Level Language&quot; designs, in which each statement of a high-level language such as PL/I is entirely and directly executed by microcode, without compilation. The IBM Future Systems project and Data General Fountainhead Processor are examples of this. During the 1970s, CPU speeds grew more quickly than memory speeds and numerous techniques such as memory block transfer, memory pre-fetch and multi-level caches were used to alleviate this. High-level machine instructions, made possible by microcode, helped further, as fewer more complex machine instructions require less memory bandwidth. For example, an operation on a character string can be done as a single machine instruction, thus avoiding multiple instruction fetches.   </p>
+<p>Architectures with instruction sets implemented by complex microprograms included the IBM System/360 and Digital Equipment Corporation VAX. <strong>The approach of increasingly complex microcode-implemented instruction sets was later called</strong> <strong>CISC**</strong>.** An alternate approach, used in many microprocessors, is to use PLAs or ROMs (instead of combinational logic) mainly for instruction decoding, and let a simple state machine (without much, or any, microcode) do most of the sequencing. The MOS Technology 6502 is an example of a microprocessor using a PLA for instruction decode and sequencing. The PLA is visible in photomicrographs of the chip,[6] and its operation can be seen in the transistor-level simulation. </p>
+</blockquote>
+<p>Secondly, the RISC verses CISC debate didn't die down because the RISC people won it. On the contrary, it died down because both sides realized that they both made valid points and started working on hybrid designs. As the textbook my Computer Architecture class used, Computer Organization and Architecture Designing for Performance, 10e (Stallings 2016), puts it: </p>
+<blockquote>
+<p>In more recent years, the RISC versus CISC controversy has died down to a great extent. This is because there has been a gradual convergence of the technologies. As chip densities and raw hardware speeds increase, RISC systems have become more complex. At the same time, in an effort to squeeze out maximum performance, CISC designs have focused on issues traditionally associated with RISC, such as an increased number of general-purpose registers and increased emphasis on instruction pipeline design.</p>
+</blockquote>
+<p>&#x200B;</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/newfunorbplayer" target="_blank">newfunorbplayer</a>
+			<div class="markdown"><p>Super interesting read. Thank you.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shake1155" target="_blank">shake1155</a>
+			<div class="markdown"><p>You should be higher than the actual top comment.   Fun fact the original Xbox did have an x86 32 bit cpu .. then the 360 had a PowerPC like everyone else then back to x86 with a 64 bit cpu in the Xbox one.    I expect this plays havoc on their backwards compatibility team but I definitely think playing on hardware is a better experience than what PSnow is doing.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AVALANCHE_CHUTES" target="_blank">AVALANCHE_CHUTES</a>
+			<div class="markdown"><p>The Xbox team has done a stupendous job with backwards compatibility. Especially in light of the different systems having vastly different architectures. </p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AlmightyStarfire" target="_blank">AlmightyStarfire</a>
+			<div class="markdown"><blockquote>
+<p>PS5 will have backward compatibility</p>
+</blockquote>
+<p>Probably but that's still speculation. Probably don't state it as fact tbh.</p>
+<blockquote>
+<p>...just as PS4 Pro does with PS4</p>
+</blockquote>
+<p>PS4 pro does not offer backwards compatibility. PS4 pro is designed to run the same software as base PS4s (PS4 games).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ScottyWired" target="_blank">ScottyWired</a>
+			<div class="markdown"><blockquote>
+<p>Probably but that's still speculation. Probably don't state it as fact tbh.</p>
+</blockquote>
+<p>Absolutely. Just because the hardware will be compatible doesn't mean Sony is actually gonna let that happen.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tr3v1n" target="_blank">tr3v1n</a>
+			<div class="markdown"><p>The hardware won't necessarily be compatible. There is a lot more to it than just CPU instruction set.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Saganhawking" target="_blank">Saganhawking</a>
+			<div class="markdown"><p>Yeah I was wondering about his comment also. I’m like: UH, dude, Pro shit works for PS4 and is basically the same system with upgraded hardware. Not even worth upgrading to a Pro at this point since the 5 will be here by 2021</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Conpen" target="_blank">Conpen</a>
+			<div class="markdown"><blockquote>
+<p>[PS4 pro] is basically the same system with upgraded hardware</p>
+</blockquote>
+<p>I think what /u/x84733 here was trying to say is that the PS5 is <em>also</em> going to be upgraded in a similar fashion. What more can they really do besides include a faster x86-64 CPU, GPU, and call it a day? They're not changing architectures between gens anymore. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ravinghumanist" target="_blank">ravinghumanist</a>
+			<div class="markdown"><p>I would probably bet against PS5 being fully backwards compatible</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/---Blix---" target="_blank">---Blix---</a>
+			<div class="markdown"><p>But why can’t it just be emulated in a software application?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cw8smith" target="_blank">cw8smith</a>
+			<div class="markdown"><p>Emulating stuff requires more time and processing power. You could emulate an old console at full speed, because you have way more processing power than the old console did. A current-gen console emulator would run somewhere between pretty slow and not at all depending on some various circumstances that I don't know enough about to get into.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PlayMp1" target="_blank">PlayMp1</a>
+			<div class="markdown"><p>Software emulation is really hard, it requires significantly better hardware than the original system. For example, the most accurate SNES emulator that exists is <a href="https://en.wikipedia.org/wiki/Higan_(emulator\)" target="_blank">higan</a>, which requires a 3GHz dual core processor or better <em>at minimum</em>. For an idea of the difference in scale here, the original SNES had a 3.58MHz CPU. You need about a thousand times more power than the original SNES to do highly accurate emulation of it.</p>
+<p>For a more recent comparison, there is currently a PS3 emulator in development called RPCS3, and to play anything in it you're gonna need a top-of-the-line gaming computer that's probably about 10 times stronger than a PS3 at minimum.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IzarkKiaTarj" target="_blank">IzarkKiaTarj</a>
+			<div class="markdown"><p>Thank you. I was just sitting and thinking &quot;But we <em>have</em> way more processing power these days, it shouldn't be that hard.&quot;</p>
+<p>It wasn't until you provided that comparison that I was able to understand that I was <em>severely</em> underestimating how much &quot;way more&quot; actually means. That makes a lot more sense now.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blazingarpeggio" target="_blank">blazingarpeggio</a>
+			<div class="markdown"><p>Emulation is basically having a copy of the hardware but in software form. This requires computing power multiple times faster than the console itself. It is easier for older systems like 8-bit and 16-bit consoles, and getting there for some newer ones like the GameCube and Wii, but tough on others with weird architectures like the Saturn and PS2.</p>
+<p>Plus console manufacturers don't always like people hacking into their hardware (because that <em>may</em> involve piracy), so that adds another level of complexity into the mix. You gotta know how the hardware works even before thinking about having an emulator.</p>
+<p>And finally, these projects are usually free homebrew projects, taken up by people just because they want to. Some projects get dropped because the developers can't do it anymore, due to a myriad of reasons. An example of this is nullDC, a Dreamcast emulator for the PC. They left the project to work on ReiCast, another Dreamcast emulator but for Android.</p></div>		</li>
+					</ul>
+		</ul>
+	
