@@ -1,0 +1,35 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/settlehere" target="_blank">settlehere</a>
+			<div class="markdown"><p>This is a great illustration. The big point to be clarified in this thread is that the p value does not tell you the probability due to chance, as what is chance mathematically When you don't know the probabilities, but the probability of your result given your null hypothesis. In the example op gave, the null is 80% free throw success. This illustration also shows that the null doesn't always have to test for the presence/ absence of a difference from 0. The null hypothesis can be flexible, and this is so important in statistical testing because your p value reflects the probability of whatever the  given null is</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Riles_McGiles" target="_blank">Riles_McGiles</a>
+			<div class="markdown"><p>Exactly. P-values are indicators, they can point you in the right direction (that your friend is full of himself and likes to exaggerate his skills) but won't give you a definite answer (how good he actually is). However those indicators need a starting point, which is sometimes more important than the test itself.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mofupi" target="_blank">Mofupi</a>
+			<div class="markdown"><p>Where did the 0.32 and 0.000004 come from? How did you calculate them?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Riles_McGiles" target="_blank">Riles_McGiles</a>
+			<div class="markdown"><p>If an event is independent and has the same odds of success every time (like a free throw), you can frame it in something called a &quot;binomial distribution&quot;. The calculation comes in three parts:</p>
+<p>Part 1: Number is successes and odds of each success. In this example the odds of success are 80%, so making 10 free throws in a row would look like .8 <em> .8 </em> .8 <em> ... </em> .8 (ten times) or .8^10. The odds of making 2 successes would be .8 * .8 or .8^2.</p>
+<p>Part 2: Number of failures and odds of each failure. Just like successes but looks at failures instead. Odds of 5 failures would look like .2^5 in this example since a failure has a 20% rate.</p>
+<p>Part 3 (the complicated bit): Number of Permutations (or how many ways this could happen). Basically, there's only one way you can make all 10 baskets. That's to make every basket (obviously). However, there are 10 ways to make 9 baskets out of 10. You can miss the first shot then make 9 in a row, or make 1 then miss 1 then make 8 in a row, or make 2 then miss then make 7 in a row, etc. The way to phrase this in probability speak is &quot;10 choose 9&quot;. Calculation for this permutation uses factorials and is</p>
+<p>(Number of tries)! / ( (Number of successes)! * (Number of failures)! )</p>
+<p>So making 9 out of 10 has the permutation 10! / (9! * 1!) = 10</p>
+<p>ELI5 for permutations: because there are more ways to make 9 baskets than 10, it is more likely to make 9 out of 10 than 10 out of 10 (in this basketball example, results will vary depending on your success rate).</p>
+<p>Now to put it all together, you can calculate the odds of making exactly X baskets out of N attempts with success probability P:</p>
+<p>(Odds of success)^(Number of successes) <em> (odds of failure)^(number of failures) </em> (number of Permutations)</p>
+<p>Or</p>
+<p>P^X <em> (1-P)^(N-X) </em> (N choose X)</p>
+<p>Or</p>
+<p>P^X <em> (1-P)^(N-X) </em> (N!/(X!*(N-X)!)</p>
+<p>Last step, to calculate the P-value of making 7 baskets out of 10, you calculate the above formula for 0 successes plus 1 success plus 2 successes plus … plus 7 successes (with x=0, x=1, x=2, … , x=7), and you get 0.32. In other words you calculate the odds that your friend would make that many baskets or worse given that he's telling the truth about his 80% shot rate.</p>
+<p>Doing the same for 0 successes plus 1 success gets you 0.000004.</p>
+<p>P-value of 5 successes is something around .03 and 6 successes is .12, so if you use the standard 0.05 mark as your “reject the null” value (meaning when you call your friend a liar), you would call your friend a liar if he misses at least 5 shots out of 10.</p>
+<p>This got pretty mathy so let me know if I'm making sense or if I need to elaborate on a piece a little more.</p></div>		</li>
+					</ul>
+		</ul>
+	
