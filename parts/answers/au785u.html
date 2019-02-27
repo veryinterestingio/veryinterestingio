@@ -1,0 +1,77 @@
+<div class="answers">
+	<div class="answer" data-handle="eh6kxvs">
+		<a class="author" href="https://www.reddit.com/user/_sadme_" target="_blank">_sadme_</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Imagine you're solving a crossword and you don't know an answer for a certain question about some wild herb that grows in South America. You call your friend who is great at biology, but he only speaks Chinese. So you <em>translate the question</em> to Chinese, he thinks a little and gives you the answer in Chinese. Then you <em>translate the answer back</em> to English and put it into your crossword.</p>
+<p>Edit: spelling.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="eh68use">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="eh6lrm0">
+		<a class="author" href="https://www.reddit.com/user/PrinnyThePenguin" target="_blank">PrinnyThePenguin</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Let's think of Fourier's transformation for a bit. What it does is basically let you look at a function from a different angle. Initially, you look it from the angle of time. You see what value the function &quot;gives&quot; at certain points in time. When you use the Fourier transformation, you switch your view and now you see the function from a different perspective, that of frequency. So instead of saying &quot;at these points in time the function has these values&quot; you say &quot;at these specific frequencies the function has that specific amount of energy&quot;. Now, thing is, the Fourier transformation is a more specific case of the Laplace one. In Fourier's case, the frequencies have value only on the imaginary axis, meaning their real part is always zero. In Laplace's transformation, the real value can be different than zero, so you can use Laplace's transformation for function's you can't use Fourier's one.</p>
+<p>So in the end, what you want to do is take yourself from the perspective of time, to the perspective of frequency, where things are easier to calculate. For that you use Fourier's transformation. But since this &quot;tool&quot; has its limits as to the cases it can be applied, you use its &quot;buffed up&quot; version that can apply to these cases, that tool being Laplace's transformation.  </p>
+<p><em>edit: looking at your follow up questions in the comments section, I get the sense that I misunderstood your initial question. In that case disregard my answer.</em></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="eh79aba">
+		<a class="author" href="https://www.reddit.com/user/BioSNN" target="_blank">BioSNN</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I think an understanding of linear algebra is really useful for understanding the Laplace transform. If you're learning about Laplace transforms, presumably you already know linear algebra, so I'll just proceed with that assumed knowledge.</p>
+<p>The operator d/dx is a linear operator and the linear combination of a bunch of linear operators is also a linear operator. Therefore, linear differential equations can be thought of as applying one giant linear operator to the function y(x) we're trying to solve for and hoping it equals some output. In fact if we note that linear ODEs have a 0th derivative term (a_0 * y), then we can rearrange the equation to: (giant linear operator) * y = -a_0 * y, or more simply, (giant linear operator) * y = y. The solutions for y then are simply the eigenvectors of (giant linear operator), which look like exponential functions.</p>
+<p>Now, we could just find the eigenvectors directly, but a more natural way to represent solutions to this problem is to convert to the &quot;eigendomain&quot;. This is what the Laplace transform does. The way it does this is no different from how you were taught to find the eigen-decomposition of a vector - basically just take the dot product of the vector with each eigenvector. In the case where our eigenvectors are functions instead of discrete vectors, we simply take an inner product (which is a point-wise multiplication integral). In our case, where solutions look like exponentials, we take an integral of f(x) * exp(-s * x) dx.</p>
+<p>This explanation sweeps a lot under the rug, but I think it gets to the essence of why Laplace transforms work.</p>
+<p>&#x200B;</p>
+<p>The ELI5 explanation then looks something like this:</p>
+<p>The Laplace transform allows you to shift your perspective on a problem so that the solutions to the problem are &quot;axis-aligned&quot; rather than a complicated combination of things you were initially considering. For example, instead of telling someone how to get to the point (4,4) by first going 4 units in the x direction and 4 units in the y direction, you can rotate the plane 45 degrees CW and just move 4*sqrt(2) units in the x direction. ELI18 add-on: the Laplace transform does this rotation, but to a coordinate system where the axes are exponential functions.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="eh6rxcd">
+		<a class="author" href="https://www.reddit.com/user/functor7" target="_blank">functor7</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You can intuitively think of the Laplace Transform as a &quot;continuous Taylor Series&quot; of &quot;continuous generating function&quot;. This is more ELI-in-differential-equations, rather than ELI5. ELI5 explanations are not very tenable to a useful understanding of these things.</p>
+<p>If you have the sequence of numbers 1, 1, 1/2!, 1/3!, 1/4!,... then you can combine them by multiplying them with the sequence of polynomials 1, x, x^(2), x^(3), x^(4),... to get the function </p>
+<ul>
+<li>e^(x) = 1*1 + 1*x + x^(2)/2! + x^(3)/3! +...</li>
+</ul>
+<p>Given any sequence of number A(0), A(1), A(2), A(3), ... then, as long as things converge, you can make the function</p>
+<ul>
+<li>A^(~)(x) = A(0)*1 +A(1)*x + A(2)*x^(2) + A(3)*x^(3) + ...</li>
+</ul>
+<p>This function A^(~)(x) encodes information about the sequence A(n) in its properties. Most obviously, the nth derivative of A^(~)(x) at x=0 is n!A(n). But we can do more. Sequences often satisfy <a href="https://en.wikipedia.org/wiki/Recurrence_relation" target="_blank">recurrence relations</a>, which can manifest as properties of these functions. For instance, the Fibonacci Sequence F(n) is totally defined by</p>
+<ul>
+<li>F(0) = 1</li>
+<li>F(1) = 1</li>
+<li>F(n+2) = F(n+1) + F(n) for all n&gt;1</li>
+</ul>
+<p>We can then consider the function F^(~)(x) = 1 + x + 2x^(2) + 3x^(3) + 5x^(4) + 8x^(5) + ... Using this, we can write the term F(n+2)x^(n+2) as F(n+1)x^(n+2)+F(n)x^(n+2). Playing with these terms a little bit, we can move stuff around and obtain the corresponding relationship with functions:</p>
+<ul>
+<li>(1-x-x^(2))F^(~)(x) = 1</li>
+</ul>
+<p>Which means that we can write the corresponding function for the Fibonacci Sequence as</p>
+<ul>
+<li>F^(~)(x) = 1/(1-x-x^(2))</li>
+</ul>
+<p>From this, you can take derivatives to extract the actual sequence itself or use the geometric series and some slightly more advanced techniques to extract the <a href="https://en.wikipedia.org/wiki/Fibonacci_number#Closed-form_expression" target="_blank">closed form formula for the Fibonacci sequence</a> using the Golden ratio. (<a href="http://ulcar.uml.edu/~iag/CS/Fibonacci.html" target="_blank">See here for more details.</a>)</p>
+<p>It should be noted that the &quot;shifting&quot; operation, going from F(n) to F(n+1) or F(n+2) or whatever, manifests in the function F^(~)(x) as multiplication by x. That is, if G(n)=F(n+1), then F^(~)(x)=xG^(~)(x)+F^(~)(0). This is key to the manipulations above. The operation ^(~) turns this shifting into a concrete algebraic thing.</p>
+<p>What does x represent for the sequence F(n) and function F^(~)(x)? Who knows. But it kinda acts like a cipher to transcribe information from on thing, F(n), to another thing, F^(~)(x), where different information is more accessible.</p>
+<p>Laplace transforms are the continuous version of this. Instead of a discrete sequence A(0), A(1), A(2), we have a nice continuous function A(t), where you can plug in any t. Instead of summing over terms like A(n)x^(n) over the variable n, we integrate over terms like A(t)x^(t) over the variable t. This results in a different function in the variable x. </p>
+<p>Since we're integrating over A(t)x^(t) with respect to t, Integration-by-Parts says that there should be some kind of really nice relationship between A(t)x^(t) and A'(t)x^(t). The only issue is that doing integration by parts kinda messes up the form of this, as the integrand changes from A'(t)x^(t) to A(t)ln(x)x^(t), which is a little awkward. In order to make this more streamlined, we can replace x with x=e^(s). If we integrate with respect to A(t)e^(st) over the variable t, then integration by parts turns A'(t)e^(st) to sA(t)e^(st), which is really nice. </p>
+<p>So if we denote L[A](s) as the integral of A(t)e^(st)dt, then this manifests as L[A'](s)=sL[A](s) (up to a constant). </p>
+<p>But the same way that F^(~)(x) encodes information about the sequence F(n) into a function in the variable x, so does L[A](s) re-encodes information about A(t) into the variable s. Particularly, in the same way that F^(~)(x) turns recurrence relations about F(n) into <em>algebraic</em> equations in F^(~)(x), so does L[A](s) turn <em>differential equations</em> about A(t) into <em>algebraic</em> equations in L[A](s). </p>
+<p>What does &quot;s&quot; mean? It doesn't really matter. And, really, any way to put some visual/physical meaning to it is overly contrived and you lose anything important about Laplace transforms. The important, fundamental things about s and Laplace transforms are that they are a really simple operation, analogous to Taylor series or generating functions, that work with derivatives very nicely through the use of Integration-by-Parts.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
