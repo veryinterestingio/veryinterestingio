@@ -1,0 +1,59 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BCProgramming" target="_blank">BCProgramming</a>
+			<div class="markdown"><blockquote>
+<p>One of the things that has pushed us to 16, 32, then 64 bits is memory. You can only represent numbers up to ~64K (65536, 2 to the 16th power) with 16 bits. This means the processor cannot address more than 64 kilobytes of RAM - that's not much by today's standards, is it? So they increased the bits to 32 bits, to handle more RAM. Many years later, people wanted more than 4 gigabytes of ram (2 to the 32nd power, 32 bits), so they increased to 64 bits. Now we're at 64 bits, which can go up to 16,000,000 TERABYTES which should last a while. So no need to increase it here.</p>
+</blockquote>
+<p>This isn't correct. The processor bus width has no bearing on the amount of accessible memory. It is the Address Bus that matters.</p>
+<p>The original IBM 5150 used a 8088 Processor. this had a 16-bit processor bus and 8-bit data bus. The system could accept 256K of Memory, which was a motherboard limitation- The Processor itself could address 1MB, as seen when the same processors were used in XT-class computers. This is because the CPU Bus width and Data bus width were unrelated to it's 20-bit address bus.</p>
+<p>The 80286 was also 16-bit processor- But it could use up to 16MB of memory. This is because it had a 24-bit address bus.</p>
+<p>With the 386, 486, and Pentium, the CPU bus and the Address bus were both 32 bits, so they were limited to 4GB of addressable Memory. The Pentium Pro (and Pentium II) in 1995 had a 36-bit address bus, allowing 64GB of addressable memory space. This was later expanded to 48-bits.</p>
+<p>The misconception is because of Licensing limitations imposed on consumer releases of Windows. 32-bit Windows can only use 4GB of memory so people come up with this explanation in their head. But really it's an artificial limitation; Aside from very few systems with a 8-bit or 16-bit CPU bus having maximum limitations of 256 bytes and 64K respectively, disproving a relationship between CPU bus width and address bus width, Server and Workstation releases of Windows often have much higher memory limitations, even back when they were 32-bit Operating Systems. </p>
+<p>This goes in the other direction as well- modern 64-bit CPUs still have a 48-bit address bus, so are &quot;limited&quot; to 256TB of Memory.</p>
+<blockquote>
+<p>Another motivating factor is integer size, which is limited by bits the same way as memory. If I write a program that processes all 7 billion people in the world, you can't assign every person a number in 16 bit (only 64K possible values) or even 32 bit (4 billion possible values). So as data sizes get bigger, we need to be able to handle bigger numbers. </p>
+</blockquote>
+<p>The CPU Bus Width dictates how much data can (typically) be processed in a single clock cycle, but does not prevent larger data types from being used. You mention this for &quot;current processors&quot; but it's the case for all of them. Processing of wider data merely means taking more &quot;bites&quot;. (arguably the origin of &quot;byte&quot;). </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dtaylor84" target="_blank">dtaylor84</a>
+			<div class="markdown"><p>Yes, but...</p>
+<p>Addresses are stored as data, so having addresses larger than the data bus is problematic, although there are workarounds as you point out.</p>
+<p>While current 64-bit processors have a 48-bit physical address bus, they still operate on 64-bit addresses.  (And after previous experiences, they are required to be in canonical form to stop programmers trying to store extra data in the currently unused bits -- as that would stop the address bus being expanded in the future.)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hoover889" target="_blank">Hoover889</a>
+			<div class="markdown"><blockquote>
+<p>And after previous experiences, they are required to be in canonical form to stop programmers trying to store extra data in the currently unused bits</p>
+</blockquote>
+<p>Can you tell me more about how modern 64 bit architecture prevents programmers from storing extra data in pointers? I haven't had the need to use tagged pointers in years but I just built a simple test program in C++ to test this claim and was able to modify the 8 least significant bits in pointers and successfully pass them to other functions. I did use a union type consisting of a void * and a uint8_t rather than 'directly' manipulating the pointer.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Al3xR3ads" target="_blank">Al3xR3ads</a>
+			<div class="markdown"><blockquote>
+<p>This is not an issue for 64 bit numbers which go all the way up to about 18,000,000,000,000,000,000. For numbers bigger than that, which we can handle, we can stick with floating point, which has less precision; there's no current mainstream need to go up to 128 and have bigger numbers.  We can also treat integers bigger than that with 128, 256, or any number of bits on our current processors, it's just slower. </p>
+</blockquote>
+<p>There is occasionally need for larger integers than that but such things are handled in software rather than hardware. There is no universal standard, though.</p>
+<p>[edit]: added a missing sentence</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/turbo_speedwagon" target="_blank">turbo_speedwagon</a>
+			<div class="markdown"><blockquote>
+<p>This is not an issue for 64 bit numbers which go all the way up to about 18,000,000,000,000,000,000. For numbers bigger than that, which we can handle, we can stick with floating point, which has less precision; there's no current mainstream need to go up to 128 and have bigger numbers. <em>We can also treat integers bigger than that with 128, 256, or any number of bits on our current processors, it's just slower.</em></p>
+</blockquote>
+<p>I completely agree.  Just one little bit of nitpicking - you omitted the sentence following and paraphrased it more succinctly and with slightly more detail, it would have been better to include that part to avoid confusion.  </p>
+<p>&#x200B;</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Al3xR3ads" target="_blank">Al3xR3ads</a>
+			<div class="markdown"><p>Oh I totally missed that. Sorry.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bort4all" target="_blank">bort4all</a>
+			<div class="markdown"><p>There are ways to fake it though. You could make an object of linked integers. Want that 512 bit number? Just link 8 x 64 bit numbers together. You'd need to make your own libraries etc, to allow you to do functions on this number and operations with number would be a whole lot slower, but you could do it. These functions have probably already been written somewhere.</p>
+<p>8 bit computers didn't just stop counting at 256. They had functions written for up to 32 bit numbers... they just stretched across several 8 bit registers. </p>
+<p>But it's totally not worth changing the entire architecture of a computer to 128 bit for the occasional desire for high precision calculations. </p></div>		</li>
+					</ul>
+	

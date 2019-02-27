@@ -1,0 +1,19 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bradn" target="_blank">bradn</a>
+			<div class="markdown"><p>And when you get into the technicalities - there's very little penalty for making registers wider when looking at logic operations like AND/OR/XOR - these have no interdependencies between the bits so it can all be processed at once.</p>
+<p>When you start looking at addition, it gets slower as you process larger numbers because the carry must be propagated (there are carry look-ahead circuits which improve it but larger numbers still get a bit slower).</p>
+<p>Subtraction is best summed up as two additions.  One to transform a number to its negative - computationally it is a logical NOT operation followed by adding one, and the adding one is accomplished by just having a carry-in bit at the low end.  So basically it is just adding the NOT operation, and that delay isn't really increased by adding more bits.  Most ALUs use the same circuitry to add and subtract, just with the controllable inverter at the &quot;B&quot; input and utilizing a carry-in.</p>
+<p>Then comes multiplication.  Multiplication gets much slower as you go to larger sizes.  When you do them on paper you face basically the same challenges a computer does, until you get to much larger sizes where there are some speed-up algorithms.  But CPUs don't work on numbers large enough to warrant them, they are really only useful to software that works on huge numbers for crypto or numeric research.  The large number algorithms aren't magic either, but they offer some improvement over the number of steps you would expect if the computer were doing things the same way a human probably would on paper.</p>
+<p>Division is much worse.  Compared to the addition/subtraction relationship, the trick to do a division as a multiplication only works if you already know what number you're dividing by and can prepare its inverse ahead of time.  While the negation operation is cheap to use addition to subtract (the adding one doesn't complicate the circuitry much), the inversion operation to do division as a multiplication itself requires a division, which defeats the whole point unless you're dividing by the same number repeatedly.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/beard-second" target="_blank">beard-second</a>
+			<div class="markdown"><p>There's plenty of correct answers in this thread but yours is my favorite because it answers the question (and the underlying assumptions) simply and clearly.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MistaSmiles" target="_blank">MistaSmiles</a>
+			<div class="markdown"><blockquote>
+<p>16-bit processor doesn’t do operations faster than 8-bit</p>
+</blockquote>
+<p>for individual operations its slower. An step layer of addressing means an extra step of computation</p></div>		</li>
+					</ul>
+	
