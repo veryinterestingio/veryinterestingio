@@ -1,0 +1,122 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mrsix" target="_blank">mrsix</a>
+			<div class="markdown"><blockquote>
+<p>The data on the ROMs is not scrambled (as far as I am aware).</p>
+</blockquote>
+<p>While true for all the home consoles I know of, there's a bunch of arcade cabinets that used encrypted ROMs - for example most famously the <a href="https://en.m.wikipedia.org/wiki/CP_System_II" target="_blank">CPS2</a> which the encryption itself was never broken until 2007, instead they used the actual decryption hardware on the board, and read the clear data directly off the hardware lines by interfacing with the encryption chip.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dev_false" target="_blank">dev_false</a>
+			<div class="markdown"><p>Some (most? all?) modern consoles have encrypted roms as well.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aaaaaaaarrrrrgh" target="_blank">aaaaaaaarrrrrgh</a>
+			<div class="markdown"><blockquote>
+<p>first used in 1993</p>
+</blockquote>
+<p>Damn. That looks like some seriously solid crypto for being proprietary crypto for a DRM scheme from 1993.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marcan42" target="_blank">marcan42</a>
+			<div class="markdown"><p>The N64 ROMs are not standard ROM chips. You, in fact, cannot download the datasheet for the part you searched for at the link you posted. That's a list of <em>other</em> Macronix partial part number hits for unrelated chips that are actually standard. Alldatasheet is useless like that, it'll give you a bunch of unrelated hits for whatever you search for.</p>
+<p>The N64 ROM interface is proprietary and had to be reverse engineered with a logic analyzer, without the luxury of a datasheet.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tont_Voles" target="_blank">Tont_Voles</a>
+			<div class="markdown"><p>Did Dev hardware not help? I was in gamedev during the SNES/Megadrive era and all the coders were dumping carts through devkits. They were even swapping EPROMs with coders in other studios.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marcan42" target="_blank">marcan42</a>
+			<div class="markdown"><p>Dev hardware helps where it's available, but it isn't always and it isn't always capable of dumping retail games, nor is it necessarily helpful for working out details like custom mappers and acceleration chips in some cartridges, or any security features. It depends a lot on the system, really.</p>
+<p>Even when dev hardware is available, you don't want to depend on it. Say you can dump carts with dev hardware, you'd still want to be able to make your own dumper so other people can build it (or buy it), and past a certain generation dev hardware and documentation didn't actually explain details like how the cartridge interface works, so you still had to figure that out on your own.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hatefiend" target="_blank">Hatefiend</a>
+			<div class="markdown"><blockquote>
+<p>The data on the ROMs is not scrambled (as far as I am aware). There is a lock chip that is used to validate the game is approved by Nintendo, but the data is freely readable.</p>
+</blockquote>
+<p>What I mean is, say you opened a AVI file in a memory viewer and were looking at the raw bytes of it. If I didn't specifically tell you that you were looking at an AVI file, you would have absolutely no idea what the file does or where to even begin on understanding it. It could be a program, it could be a picture, it could be a text document, you'd have no idea. Would it not be the same exact thing with the cartridge?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marcan42" target="_blank">marcan42</a>
+			<div class="markdown"><p>I've done exactly that in the past - opened up an unknown, proprietary file in a memory viewer and worked out what everything means, without any documentation.</p>
+<p>This is one form of reverse engineering. These formats are designed by humans, and so, as humans, we can take educated guesses as to how they work. While there are infinitely many ways to design a file format, only some make sense, and often us engineers use the same techniques over and over again. It's like putting together a puzzle: initially you have no idea what to do, but as little bits and pieces fall into place, they help you work out the rest. Sometimes you will guess wrong, and in that case the mistake makes something not work out later, and then you retrace your steps and fix it.</p>
+<p>For a file format, for example, you may have no idea how it was designed, but you probably know at least what it's <em>intended</em> to do. You probably will also have at least a couple samples of different files, and an idea of what they're supposed to look like (e.g. if you open them in the original application). From this, you can start to unravel how it works. Comparing both files and looking at the differences lets you correlate that with the expected differences in how the output looks.</p>
+<p>Let me give you an example: A couple years ago I reverse engineered a proprietary karaoke file format used by a certain Android app, without looking at the code, just by looking at the files. I knew the file needed to contain song info, lyrics, timing and positioning information, and other miscellaneous things. I had no idea how it worked but I knew what the end result was supposed to look like (from just using the app).</p>
+<p>If you open up a song file in a hex editor, the beginning looks like this:</p>
+<pre><code>00000000  4a 4f 59 2d 30 32 16 00  00 00 a3 00 00 00 13 12  |JOY-02..........|
+00000010  00 00 b5 06 00 00 01 00  1c 00 2f 00 38 00 41 00  |........../.8.A.|
+00000020  4a 00 63 00 72 00 73 00  f1 00 08 00 00 00 01 00  |J.c.r.s.........|
+00000030  00 00 8e 63 8d 93 82 c8  93 56 8e 67 82 cc 83 65  |...c.....V.g...e|
+00000040  81 5b 83 5b 00 8d 82 8b  b4 97 6d 8e 71 00 8b 79  |.[.[......m.q..y|
+00000050  90 ec 96 b0 8e 71 00 8d  b2 93 a1 89 70 95 71 00  |.....q......p.q.|
+00000060  83 55 83 93 83 52 83 4e  83 69 83 65 83 93 83 56  |.U...R.N.i.e...V|
+00000070  83 6d 83 65 81 5b 83 5b  00 83 5e 83 4a 83 6e 83  |.m.e.[.[..^.J.n.|
+00000080  56 83 88 83 45 83 52 00  00 8e 63 8d 93 82 c8 93  |V...E.R...c.....|
+00000090  56 8e 67 82 cc 82 e6 82  a4 82 c9 20 8f ad 94 4e  |V.g........ ...N|
+000000a0  82 e6 00 e7 1c ff 7f e0  7c df 03 bf 7c c0 03 00  |........|...|...|
+000000b0  7e e1 7f 93 72 bf 66 00  00 00 00 00 00 00 00 00  |~...r.f.........|
+000000c0  00 53 00 00 00 2c 00 21  01 01 04 00 00 09 00 00  |.S...,.!........|
+000000d0  63 8e 30 00 00 93 8d 30  00 00 c8 82 2e 00 00 56  |c.0....0.......V|
+000000e0  93 30 00 00 67 8e 30 00  00 cc 82 2c 00 00 e6 82  |.0..g.0....,....|
+000000f0  28 00 00 a4 82 28 00 00  c9 82 28 00 02 00 04 00  |(....(....(.....|
+00000100  00 00 b4 82 f1 82 b1 82  ad 82 03 00 9a 00 c4 82  |................|</code></pre>
+<p>The very first thing is the text <code>JOY-02</code>, which is clearly just a marker for what kind of file this is (a &quot;magic number&quot;). Then there are a few bytes that have a lot of zeroes mixed in; these look like they could be offsets or lengths. File formats often have &quot;pointers&quot; to parts of them, or lengths, in order to delimit where each section of the file is. We'll get back to those later. Then we have a bunch of data that has a lot of <code>8x</code> and <code>9x</code> bytes, ending at around address 0xa2. This is a Japanese file format, and I happen to know that SHIFT-JIS encoding is popular for Japanese text, so could this be the title? It looks like the first chunk starts at address 0x32 (<code>8e</code>) and there is a <code>00</code> byte at 0x44, which is probably a NUL terminator if this is text (text strings are often delimited by having a <code>00</code> byte at the end). Let's take that chunk and convert it from SHIFT-JIS to UTF-8:</p>
+<pre><code>$ echo 8e 63 8d 93 82 c8 93 56 8e 67 82 cc 83 65 81 5b 83 5b | dehex | iconv -f shift-jis
+残酷な天使のテーゼ</code></pre>
+<p>That's the song title! Note that it is 19 bytes long (with the 00 terminator). Next we have:</p>
+<pre><code>$ echo 8d 82 8b b4 97 6d 8e 71 | dehex | iconv -f shift-jis
+高橋洋子</code></pre>
+<p>Which is the artist. This is 9 bytes long (again with the terminator). At this point we have two options: either all of these strings are just concatenated and separated by 00 bytes, or (more likely), there is some kind of table that tells you their lengths or offsets, so you can find them directly. If we look immediately before the first string, we see this at address 0x16:</p>
+<pre><code>01 00 1c 00 2f 00 38 00 41 00 4a 00 63 00 72 00 73 00 f1 00 08 00 00 00 01 00</code></pre>
+<p>This is a list of increasing numbers (probably in 16-bit little endian format, which means pairs of bytes are swapped):</p>
+<ul>
+<li>0x0001</li>
+<li>0x001c</li>
+<li>0x002f</li>
+<li>0x0038</li>
+<li>0x0041
+...</li>
+</ul>
+<p>Remember how we said the song title was 19 bytes long? Well, 0x2f - 0x1c is 19! This means that the 0x2f is probably pointing to the artist name (what comes after the song title), and the 0x1c is probably pointing at the song title. Similarly, 0x38 - 0x2f is 9, the length of the artist, so 0x38 must be pointing at the next bit of text. In fact, if we go back 0x1c bytes from the start of the song title at 0x32, we end up at 0x16 which is exactly where that table starts. So logically offset 0x16 is significant as the &quot;start of the part of the file that has the song information text&quot;. At that point there is an unknown number (0x0001, or maybe just the two bytes <code>01 00</code>) and then a list of 16-bit integers that tell you the offset where each string of text starts, in some order (you can just dump them all out and figure out what each one means by what they contain; turns out they are the title, artist, writer, composer in that order, followed by the title and artist written in kana, and then some other stuff).</p>
+<p>Now look back at the very beginning of the file. What comes right after <code>JOY-02</code>? That's right, 0x16! So the very beginning of the file is probably a table of offsets to interesting parts of the file (in 32-bit little-endian format, that is, reversing groups of 4 bytes):</p>
+<ul>
+<li>0x00000016 - offset to song metadata</li>
+<li>0x000000a3 - offset to the next part?</li>
+</ul>
+<p>And this is confirmed by the fact that the metadata ends at exactly 0xa2 (with the <code>00</code> terminator), so logically the next part would start after that at 0xa3.</p>
+<p>Keep doing this, and eventually, you can figure out how most of the file format works, and write out a <a href="https://github.com/marcan/blitzloop-tools/blob/master/joy02_format.py" target="_blank">structure</a> that describes it and can parse it in a programming language (<a href="https://construct.readthedocs.io/" target="_blank">Construct</a> is awesome for doing this in Python). Then you could write a <a href="https://github.com/marcan/blitzloop-tools/blob/master/import_joy02.py" target="_blank">program</a> that converts the file format into something else more useful to you.</p>
+<p>It is true that sometimes you stumble upon documented file formats, and there are different ways of approaching this kind of problem, but unlike what most others are saying in this thread, no, you don't always have the luxury of documentation, or of someone having made a device for you beforehand. The very first people working out game consoles had to do this kind of thing at the hardware level, using tools like logic analyzers to figure out how e.g. the N64 cartridge interface works (which is not just a standard ROM). But, like this file format example, it all starts making sense if you stare at it long enough.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dragonnyxx" target="_blank">dragonnyxx</a>
+			<div class="markdown"><p>Just to add to this, it's also possible to figure things out simply by tinkering with the file and seeing what changes as a result.</p>
+<p>When I was a kid with no real programming experience, I managed to work out things like the Wing Commander data file formats simply by editing the files and seeing if anything obvious changed. I eventually worked out where the important parameters were and gave myself incredible acceleration, turning rates, and top speed, and replaced all of my weapons with mass drivers. Why mass drivers? Well, mainly because the Kilrathi didn't use them - and, critically, I had located the bytes that controlled the weapons' damage. So I bumped the mass drivers' damage so high that I could kill a capital ship in a single hit, and I fired a volley of like twelve of them every time I shot.</p>
+<p>Obviously approaching things with knowledge of file formats and common programming techniques, as you describe (and as I would now), is a better approach, but I just wanted to point out that it's entirely possible even for a twelve year old kid with no real programming experience and armed with nothing but a hex editor and patience to figure this stuff out as well.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hatefiend" target="_blank">Hatefiend</a>
+			<div class="markdown"><p>This was such a cool read. Thanks for posting dude. I live for this stuff.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/teak_and_velvet" target="_blank">teak_and_velvet</a>
+			<div class="markdown"><p>That was fascinating. Thanks for explaining! </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mollydyer" target="_blank">mollydyer</a>
+			<div class="markdown"><p>Actually, if you knew what to look for, you could reasonably tell what type of file it was just by looking at the - as you say - raw bytes - of it. In your AVI example, the file format is known-  and the header (which IIRC is the first 56 bytes of data) contains information about how to play that file. By examining that content, you can determine not only what type of file it is, but how to execute it (play it). </p>
+<p>You could also infer what type of file it <em>isn't</em> by looking at it. For example, you would know that the AVI file wasn't executable because it didn't have the PE/COFF headers. </p>
+<p>For ROMs, you already KNOW what you're looking at - so even if it had no header, you knew that you were looking at a type X EEPROM chip with instructions for a type Y cpu. </p>
+<p>So- it's not easy, but it's not impossible. Is it magic? Might seem so, but for people smarter than I it's 100% doable. </p>
+<p>(Obviously, as it's been done)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hatefiend" target="_blank">Hatefiend</a>
+			<div class="markdown"><p>That implies though that AVI would be an industry standard thing, that can be easily looked up by anyone, right? The format that the cartridges were layed out with was likely an industry secret, no? If not, I wonder how those were found out.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aRedditUser1178" target="_blank">aRedditUser1178</a>
+			<div class="markdown"><p>No, that's what they're saying about the datasheets and stuff being available. </p>
+<p>In your analogy, the fact that you know it's a ROM file is equivalent to knowing that it's an AVI file. Once  you know that, you can look up the formatting of an AVI file and figure out how to make sense of the data ,or display the video, etc.</p></div>		</li>
+					</ul>
+		</ul>
+	

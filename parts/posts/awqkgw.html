@@ -1,0 +1,88 @@
+<li class="post" data-handle="awqkgw">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/awqkgw/eli5_how_did_rom_files_originally_get_extracted/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/awqkgw" onclick="return false">How did ROM files originally get extracted from cartridges like n64 games? How did emulator developers even begin to understand how to make sense of the raw data from those cartridges?</a>
+		</h2>
+		<!--<span class="date">2019-03-06</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I don't understand the very birth of video game emulation. Cartridges can't be plugged into a typical computer in any way. There are no such devices that can read them. The cartridges are proprietary hardware, so only the manufacturers know how to make sense of the data that's scrambled on them... so how did we get to today where almost every cartridge-based video game is a ROM/ISO file online and a corresponding program can run it?</p>
+<p><strong>Where you would even begin if it was the year 2000 and you had Super Mario 64 in your hands, and wanted to start playing it on your computer?</strong></p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ehojre4">
+		<a class="author" href="https://www.reddit.com/user/willbill642" target="_blank">willbill642</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This is going to be a lot so hang on.</p>
+<p>Computers work by reading a set of instructions and doing exactly that. This is true of anything, from your PC to your phone to your game consoles.</p>
+<p>Game cartridges are usually just small chips that contains this list of instructions, like an SD card. Especially on older ones, the connector directly or nearly directly exposes that chip. In many cases these chips aren't super unique so public data sheets exist that say how to read and write to them so companies and engineers can use these parts in their own stuff. Nintendo uses the part, likely for cost and performance reasons, and then when hobbyists disassemble the cartridge they find out what is in there and how to talk to it. Sometimes though, like for the game boy, the cartridge is more than just a few chips with the stored data, and the method of communication is logged while the game boy is running and then the cart dumped once they figure out how to read it. </p>
+<p>Most of the time the actual reading is done with a microcontroller, Arduinos have proven particularly popular due to low cost and ease of coding. The person dumping it simulates a request for the data across the whole contents of the cartridge, and what's on there is read and then written to a file.</p>
+<p>Emulators are a bit more difficult. Typically, emulators start by investigating as much as they can about the system they're emulating. What cpu is used, what instruction set it runs on, what is connected where to the CPU and how it's accessed. A lot of this is borderline trial and error using some of the games dumped from game carts to figure out what commands do what based off of what they might expect them to be doing. Think of it as reading a cake cooking instructions in a foreign language. You have an idea of how to cook a cake, so you can guess what ach instruction is actually telling you to do. Compare your guess with guesses from a dozen more instructions and you can start to figure out what each word means. Use that knowledge and you can write a program that will read the instructions and do what they say to do on your own computer. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ehoneik">
+		<a class="author" href="https://www.reddit.com/user/keepcrazy" target="_blank">keepcrazy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>So I’m not sure the tone frame we’re talking about here, but I did this in the 80’s &amp; early 90’s. I hacked games, cartridges, etc.   </p>
+<p>To figure out a cartridge, you first took it apart. Chips were way bigger then than they are today and the brand and type was printed on it. Some would have the brand sanded off and we’d have to use trial and error to figure out what chip it was, but in most of those cases we already knew from disassembling similar ones. </p>
+<p>Once you know the chip, you get the specs from the manufacturer and hook up your own circuit and read the chip.  </p>
+<p>I actually don’t know the hardware - my buddy did that. But I would program the drivers to read the data off the cartridge using his hardware.  It was often serial or parallel interfaces back then. Crazy simple stuff. </p>
+<p>My buddy and I bought games just to pirate them. We didn’t even play them. The pirating was the fun part.</p>
+<p>My proudest moment was when a colleague at my work gave me a pirated copy of a game that I had pirated. 😁  Many, many, years later, I was involved in a project with the author of that same game and the subject of piracy came up and he told me about how shocked he was that this game got pirated.  </p>
+<p>I never admitted it to either of them that it was me. Just reveled in my relevance.  But removing copy protection from that game (basically, removing the checks that it uses to ensure it’s on proper hardware) was as simple as changing five bytes of machine code to NOP (no-op... basically commenting out five bytes of code.). Jesus, was the machine code for NOP 0x90?!  </p>
+<p>Those were simpler times....</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="eholn2p">
+		<a class="author" href="https://www.reddit.com/user/ArthurKOT" target="_blank">ArthurKOT</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I was around during the early days of emulation and was affiliated with a group called Vertigo2099. </p>
+<p>Basically, back then rom dumping evolved out of console piracy. We used to have devices called cart readers that plugged directly into the cart slots of consoles. You attached them to your console and inserted your cart. These devices also had a standard floppy drive built into them. From there, the devices could literally just pull the raw ROM data from the carts and write them to a 1.44 MB floppy disc. Once you had the ROM data on a floppy, it was trivial to just copy the file to a PC. Before emulation, if you wanted to download and play a game, you could run it directly from the cart readers. As the data in these ROM files were indistinguishable from the actual hardware ROM chip data, emulators were &quot;fooled&quot; into seeing ROM files as actual carts.</p>
+<p>Later devices utilized a serial port connection to PC, as games began to become too large to copy and/or play from a standard sized floppy disk. They worked in the same way, but these devices either read ROM data from PC storage, or some of the more sophisticated ones had IDE support for an actual hard drive.</p>
+<p>The ELI5 version is that once the ROMs were dumped, emulator authors just &quot;hooked&quot; in the ROM files when they were loaded, and the emulators saw them bit for bit as the physical carts.</p>
+<p>Arcade ROMS were the tricky stuff, as boards started getting encrypted, and dumpers pretty much had to reverse engineer the hardware in order to get a full, usable ROM. But once the unencrypted ROM was dumped, the principle is more or less the same.</p>
+<p>I can't really say much past that, as my involvement was pretty much limited to NES and Genesis stuff, but I saw a lot of pretty cool stuff happen in real time. Regarding the NES era, the biggest accomplishment was successfully dumping a playable ROM of Dragon Warrior 4. The ROM data was split across four separate chips, and the cart readers just didn't know how to handle that.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ehojl7n">
+		<a class="author" href="https://www.reddit.com/user/plokijuhygtf2" target="_blank">plokijuhygtf2</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>People took apart the consoles and learned what hardware it was using.  Then they could add extra wires to dump debugging information.  Then lots of trial and error and knowledge of how computers work</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ehojgns">
+		<a class="author" href="https://www.reddit.com/user/FigBug" target="_blank">FigBug</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The data on the ROMs is not scrambled (as far as I am aware). There is a lock chip that is used to validate the game is approved by Nintendo, but the data is freely readable. </p>
+<p>Otherwise they are standard ROM chips, you can download the datasheet here: <a href="https://www.alldatasheet.com/view_datasheet.jsp?Searchword=MX23L9602" target="_blank">https://www.alldatasheet.com/view_datasheet.jsp?Searchword=MX23L9602</a></p>
+<p>If you are an electric engineer, you can build a circuit pretty easy to read the data off.</p>
+<p>The processor is based on a standard MIPS processor, so you could get the datasheets for that as well. The hard parts would be the GPU which I don't think was a standard part. So probably some game company would have had to leak the specs. And reverse engineering the lock chip for the cartridges.</p>
+<p>Earlier consoles like NES and SNES would have been a lot easier since their hardware was quite simple. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/awqkgw" onclick="return false"><span>show</span></a>
+</li>

@@ -1,0 +1,61 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/purleyboy" target="_blank">purleyboy</a>
+			<div class="markdown"><p>Not for emulation, but I used to hack 8 bit home computer games in the early 80's. I'd write some code to load the game into high RAM and then scan the memory addresses to get a list of locations containing the number 3 (typical number of lives). Then I'd scan the memory addresses looking for DEC instructions (subtract 1) from those locations. Games were small back then and there would likely be few hits. I'd replace those DEC statements with NOPs and save the image back to tape. Infinite lives!!!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dwlsalmeida" target="_blank">dwlsalmeida</a>
+			<div class="markdown"><p>I usually hear this term high ram, has this actually survived x86-64?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/purleyboy" target="_blank">purleyboy</a>
+			<div class="markdown"><p>This for old school 8 bit home computers. Loading a game would load the program into a standard part of RAM and then cause the OS to immediately begin execution of the instructions.
+Alternatively you specify the memory address to load the program into; by using a higher memory location it would load the game and leave you with command prompt. You could then use the built in OS basic interpreter to write the code to scan the higher level addresses.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/keepcrazy" target="_blank">keepcrazy</a>
+			<div class="markdown"><p>No. Not really. The paging used for “high ram” has survived however and is now the ram that is exclusive used for loading programs. </p>
+<p>Basically the old 8 bit computers only had 16 bits of address space. So that limited the machine to 65k of memory. </p>
+<p>Only 48k of that was available to programs though. Above that was where the operating system ran. But it didn’t use all that space. </p>
+<p>So if you wanted more memory, you took a “page of memory” and mapped it into an address space in that 64k. So, for example, the memory from 0xC000 through 0xCFFF would be switched to map to a different actual block of memory. </p>
+<p>This was done in hardware and basically instant. The processor wouldn’t even know this happened. Make another call and that address space turned into something else.  </p>
+<p>This same method is used today to provide a “sandbox” that prevents programs from seeing one another and prevents programs from editing the operating system or one another.  But today this capability is built into the processor and managed by the operating system. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/guantamanera" target="_blank">guantamanera</a>
+			<div class="markdown"><blockquote>
+<p>Yes still survives.<br />
+This has to do with bank switching. 1 Bank being 1 chip of memory. Banking is what EE people call it. Software people call it Paging.<br />
+If you ever looked at a RAM module, you will notice it has many chips. Each chip can hold so much data until it gets full. So EEs have to add glue logic so it looks seamless to the CPU as if you just have one continuous block of memory.  The NES CPU has a 16-bit address bus, and this means it can only address 2\^16=65536 memory location. Each memory containing 1byte(8bits).  The addresses are not just used to read and write to data, but also to read peripherals. This is called memory mapped IO. So somewhere in the middle of the memory address you might read the status of the joystick.<br />
+In SNES thats where the hirom lorom name comes from but is just a banking technique at address 15 you get lo rom contents and at address 22 you get hi rom. both having same address. Or it could be the otherway around. </p>
+</blockquote></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Richy_T" target="_blank">Richy_T</a>
+			<div class="markdown"><p>Z80 games would often use DJNZ. I didn't really hack but occasionally, if I could get a game with lives into basic, I'd do a quick search for the byte for that opcode and try poking it to an unconditional jump. It would often have weird side-effects if it wasn't the correct instruction.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/D1rtyH1ppy" target="_blank">D1rtyH1ppy</a>
+			<div class="markdown"><p>Back in the early days of pirated games, the hackers would put their own logo on the start screen. Did you guys ever do that?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cactusknees" target="_blank">cactusknees</a>
+			<div class="markdown"><p>Hah -- I'm pretty sure NOP is still 0x90 on a lot of Intel architectures and you'll still see sleds of 0x9090...9090 in the wild. Lot of respect for you OG guys!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pseudocoder1" target="_blank">pseudocoder1</a>
+			<div class="markdown"><p>I worked with a guy that would poke machine language into running servers in telecom switching systems.  We would find a bug in the C code, fix it, recompile i t, and this guy would take the result and figure out how to modify what was running on  a live system and modify the ML code in real time.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dajigo" target="_blank">dajigo</a>
+			<div class="markdown"><p>That's wicked cool.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/WholesomeDevil" target="_blank">WholesomeDevil</a>
+			<div class="markdown"><p>This is basically what computer viruses do nowadays.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/keepcrazy" target="_blank">keepcrazy</a>
+			<div class="markdown"><p>Any chance his name was Charlie?  I can’t remember his last name...  in New Jersey?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pseudocoder1" target="_blank">pseudocoder1</a>
+			<div class="markdown"><p>I was in Naperville Il when we worked together.  I thought he was there, but he may have been in NJ.   Charlie does sound familiar.   He used to look at the code we wanted to change and then he could give a time estimate for how long it would take for him to come up with the patch.   Usually it was 2-3 hours. </p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
