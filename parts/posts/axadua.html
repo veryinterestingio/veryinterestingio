@@ -1,0 +1,92 @@
+<li class="post" data-handle="axadua">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/axadua/eli5_how_are_our_phones_so_resistant_to_bugs/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/axadua" onclick="return false">How are our Phones so resistant to bugs, viruses, and crashing, when compared to a Computer?</a>
+		</h2>
+		<!--<span class="date">2019-03-07</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: How are our Phones so resistant to bugs, viruses, and crashing, when compared to a Computer?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ehs7e48">
+		<a class="author" href="https://www.reddit.com/user/Thedirtyjersey" target="_blank">Thedirtyjersey</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Bugs because the hardware combinations are more limited <del>then</del> than PCs</p>
+<p>Viruses? They're still vulnerable, less so because the O/S is very locked down always. The user <em>almost</em> never has &quot;root&quot; control of anything, unlike a windows system where if you have the password you can force through risky things to install if you have no idea what you're doing.</p>
+<p>*Also phone app stores are the only official way to install onto your phone, those apps are screened by Apple and Google. Sideloaded apps are far more rare and you have to work at getting that done knowingly</p>
+<p>Android and iPhone are both based off of Unix Like systems→Linux (droid)/BSD(apple) - There's no normal admin account that just gets to do whatever, everything is compartmentalized and locked down making only very rare exploits the likely vulnerabilities.</p>
+<p>Crashing? Same as bugs, limited combinations mean a manufacturer can ensure no weird hardware will cause problems and the OS doesn't have to be change much, minor driver differences at best.</p>
+<p>Most phones use the same family of chipsets for radios/wifi; screens. Samsung makes tons of shit for apple phones, they need each other. Until recently everyone uses qualcomm</p>
+<p>Sidenotes:</p>
+<ol>
+<li>YES I know this isn't quite eli5</li>
+<li>For all those grammar enthusiasts, yes I know the difference between then and than, I'm glad someone found a way to backhandedly comment my &quot;seeming&quot; intelligence yet complete feeble-mindedness due to a minor lazy grammatical error. Marvelous!</li>
+</ol></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ehs7hec">
+		<a class="author" href="https://www.reddit.com/user/JudgeHoltman" target="_blank">JudgeHoltman</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Extremely controlled environment.  </p>
+<p>The Google/Apple/Amazon store only allows apps that are guaranteed* to work on the hardware their customers have.  Those that have incompatible hardware cannot download the apps through the store.  </p>
+<p>With great effort, you still can install the program manually and your phone will start crashing and bugging out. </p>
+<p>Computers can have any mix of parts that may or may not work as intended by the developers, and be running drivers that may or may not be updated.  </p>
+<p>Since there's no universal store to buy all your apps from (and probably shouldn't be) developers have to just take a guess at what their user will be installing software on, and hope that they actually read what was and wasn't compatible.  </p>
+<p>Nobody does, and the list isn't complete, so you run into bugs. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ehscbfq">
+		<a class="author" href="https://www.reddit.com/user/Tolmos" target="_blank">Tolmos</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I used to be a mobile developer, doing mostly Android but also some iOS development.</p>
+<p>Apps on a phone are a lot more sandboxed than what you would get on your PC. An android app, for instance, does not have direct access to the storage spaces of any other app on your phone; as far as that app is concerned, using only its own power, you have nothing else on your phone except this app. No matter how hard it tries, it can't escape the little bubble that it's in.</p>
+<p>In order to allow the apps to talk to other parts of the phone, they use &quot;private methods&quot; or internal APIs, commands supplied by the OS to let apps access stuff. So, for instance, if your app wanted to access the camera on your Android phone, it would need to go through an API called Camera/Camera2. This is part of the Android OS, and written by Google. There are libraries that wrap this functionality up and make life easier for developers, but in the end all calls must go through that API. </p>
+<p>What this does is mean that the Android OS can essentially control everything the app does. This is why apps have to ask &quot;permission&quot; to access things like the camera; there is only 1 way in/out to the camera (that Camera2 API call), and it can be closed/opened using the little permission toggle. All other permissions work the same way.</p>
+<p>This is very different than Windows, where access to hardware is open to any application that can talk to the hardware drivers, and where any storage on the machine is accessible, as long as it isn't write protected or encrypted by the OS or some other means. </p>
+<p>Windows is the wild west, while your phones are highly controlled themeparks. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ehsicst">
+		<a class="author" href="https://www.reddit.com/user/RiPont" target="_blank">RiPont</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>While others have done a good job explaining why this is true, I'm going to point out that it's not as true as you think it is.</p>
+<p><strong>First of all, phones have plenty of bugs.</strong>  Apps have plenty of bugs.  Phones crash occasionally.  Users just don't notice as much!</p>
+<p>Mobile OSes started with power usage as a major concern and extremely limited multi-tasking.  As such, their app development SDK insisted that 3rd party apps allow the OS to kill them at any time (to save battery) and provided a design pattern to allow &quot;tombstoning&quot;.  The app gets a brief notification that it's about to be killed and can write a little bit of state, then it's shut down.  Well-designed apps write this tombstone data ahead of time in case they're killed without warning.  When you &quot;switch back&quot; to the app, it may actually be started from scratch.  It just pretends that it just picks up where it left off.</p>
+<p>When an app crashes or freezes on a desktop OS, the OS tries to give it a chance to resume working.  This make it very noticeable when an app freezes, you get a spinning wheel, then the app UI disappears (and Windows gives you a crash notice).  On a mobile OS, the app just crashes, restarts, and picks up where it left off.  Sometimes, mobile apps get stuck in a crash-resume-crash loop, but are generally designed to count the number of start attempts and delete the &quot;resume&quot; data and start fresh.</p>
+<p>When a mobile OS crashes, it can do the same thing.  Just reboot while the user isn't looking and pick up where it left off because the user isn't watching the individual app windows disappear.</p>
+<p><strong>Secondly, the virus game has changed since the days of Big Internet Worms.</strong>  There didn't used to be profit in malware, and so the goal was notoriety.  Now, there's a shit ton of profit to be made in stolen user data, cryptocurrency mining, etc.  The goal of modern day malware is to be unobtrusive and stay unnoticed, while the goal of famous Windows viruses was to do as much damage as possible.  There is plenty of malware on phones, and the most insidious of all are apps that use 100% approved APIs and get the users to grant them permission to their hardware.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ehst784">
+		<a class="author" href="https://www.reddit.com/user/Jeremy_Thursday" target="_blank">Jeremy_Thursday</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Who wants to write malware when you could just build an app where a user pays you for the privledge of giving you all their personal data.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/axadua" onclick="return false"><span>show</span></a>
+</li>

@@ -1,0 +1,88 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/crowbahr" target="_blank">crowbahr</a>
+			<div class="markdown"><p>Android developer here as well: </p>
+<p>I've wondered how Termux manages to get access to various folders on your system before. It's kinda odd. </p>
+<p>Here's a snippet from my most recent blog post about automating some of my Audiobook file management:</p>
+<blockquote>
+<p>Here is where we encountered the first snag: Termux has a weird way of accessing the Android file system. Android tends to lock apps into their own subsystems to prevent apps from arbitrarily reading and modifying other folders. Termux has the ability to access stored data, but it does so by adding a sym link into your home dir called storage.</p>
+<p>When you go into storage though, the folders are limited:</p>
+<p><code>$ls ~/storage</code></p>
+<p><code>dcim movies pictures</code></p>
+<p><code>downloads music shared</code></p>
+<p>Unfortunately none of those are really what I'm looking for. So I tried a hack:</p>
+<p><code>$ls ~/storage/downloads/..</code></p>
+<p>And suddenly I was gifted with what I was expecting: the contents of my storage folder including, crucially, the Audiobooks folder.</p>
+<p>So I tried ls ~/storage/Audiobooks and got:</p>
+<p><code>ls: storage/Audiobooks: No such file or directory</code></p>
+<p>Rats.</p>
+<p>However I knew I could get there by following the file structure back up from downloads so I ended up with a relative path of:</p>
+<p><code>~/storage/downloads/../Audiobooks</code></p>
+</blockquote>
+<p>It's really odd being able to go into downloads then back up again and have it turn out correct. I think the Storage link is probably not actually linked to your home but rather directly links to a few folders, which once you burrow into them then pop you back out into your expected file structure.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/darthjoey91" target="_blank">darthjoey91</a>
+			<div class="markdown"><p>Hmm, sounds like a bug in their security. Makes me wonder what you get if you go to </p>
+<pre><code>~/.. </code></pre>
+<p>or </p>
+<pre><code>~/../..</code></pre></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JoJoModding" target="_blank">JoJoModding</a>
+			<div class="markdown"><p>Yeah what's `ls -la \~/storage` ?<br />
+Also does your app have file access permissions? because the terminal emulator generally has? Try building one yourself without it and see it not work.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/crowbahr" target="_blank">crowbahr</a>
+			<div class="markdown"><p>Ah I'm talking specifically about Termux. I was just writing shell scripts to handle my files. It's really odd how Termux was working.</p>
+<p>I should go ahead and try this out and build an app... Add it to the heap of to-do haha</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PM_ME_NBSP" target="_blank">PM_ME_NBSP</a>
+			<div class="markdown"><p>Termux requests permission to access it. Any app can request that permission, it's just not granted by default (at least, not since Marshmallow). Also, something useful: you don't need to do <code>~/storage/download/..</code>, you can just do <code>~/storage/shared</code> ;) </p>
+<p>All the <code>~/storage</code> folders are is links to some commonly used folders, and <code>~/storage/shared</code> is a link to the root of the internal SD. You can even use the OS path <code>/sdcard</code>. So you'd just do either <code>~/storage/shared/Audiobooks</code> or <code>/sdcard/Audiobooks</code>. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/crowbahr" target="_blank">crowbahr</a>
+			<div class="markdown"><p>Great! I can un-hack that part of my scripts. Kinda bothers me that ~/storage doesn't go to the root of the internal storage but oh well. The links to the common folders were actually what threw me off and made me think I had access problems.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sergster1" target="_blank">Sergster1</a>
+			<div class="markdown"><p>You might be better suited to answer this question I've had for a bit. </p>
+<p>On iOS/Android there's an app called Fate/Grand Order that is notorious for being difficult to get running on a rooted or jailbroken phone, even more so than financial apps whose jailbreak detection is easily mitigated. </p>
+<p>From what I gather at least on the iOS side all apps are sandboxed meaning as you said they cannot access any other portion of the iOS filesystem outside of what is laid out by Apple made APIs. How is this app able to detect a jailbroken phone circumventing even measures that are designed to make sure that its completely isolated from the rest of the system? </p>
+<p>A commonly thrown around suggestion as to how it does this is checking to see if it has r/w capabilities in certain folders on launch that it wouldn't have on a non-compromised phone but I figured that the mitigations are supposed to prevent this and I don't see why Apple during the app review phase would allow an app to poke its nose in directories it should be. Also this jailbreak detection behavior seems to persist even after the jailbreak is removed but certain files and directories are left hanging in the filesystem. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/notjfd" target="_blank">notjfd</a>
+			<div class="markdown"><p>Jailbroken/rooted systems behave subtly differently from non-rooted systems. But most new devices also have eFuses, which are physical fuses on the processor, which can be burnt through by the bootrom (the lowest-level firmware). Since you can establish authenticated communications with the bootrom/secure enclave/other secure processor-level facilities, an app can get a genuine reply to the question &quot;is this device rooted&quot;. The philosophy for most OEMs these days is to allow rooting very easily from the device settings, and ensuring that the eFuse gets burnt through during the OEM unlock.</p>
+<p>But in the absence of eFuses, there's many subtle ways to detect root. Root frameworks might hook certain API calls for example, which makes them execute slower. So by timing a bunch of API calls and comparing their timings an app might make an educated guess whether or not the system's rooted. </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GodOfPlutonium" target="_blank">GodOfPlutonium</a>
+			<div class="markdown"><p>AFAIK Sasmung Knox is the only phone security system that uses a physical fuse</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drfsupercenter" target="_blank">drfsupercenter</a>
+			<div class="markdown"><p>Uh... take Samsung, for example, there was a root method that didn't trip Knox, it used some engineering bootloader that was leaked.  I tried it out on my S7, but it was really buggy for me as I have a CDMA carrier and not a GSM one (the kernel used VoLTE which my carrier doesn't use)</p>
+<p>But, it would still fail SafetyNet, which is what most modern apps use.</p>
+<p>I have no idea how iOS jailbreak detection works, but a lot of Android ones are now just outsourcing the checks to Google...</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sergster1" target="_blank">Sergster1</a>
+			<div class="markdown"><p>Whats odd is that even if you remove the jailbreak through updating which keeps your filesystem intact but removes the entry points for the exploit it still detects that the phone has been jailbroken in the past and won't let you play until you do a fresh restore of the phone. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/redatheist" target="_blank">redatheist</a>
+			<div class="markdown"><p>Jailbroken iPhones are basically iPhones with the security controls like sand boxing turned off. Those controls are turned off so that code that Apple hasn’t approved can run on the device. </p>
+<p>A common way for apps to detect if they are running on a jailbroken is that they try to run something Apple hasn’t approved, or the try to read a file that isn’t in their sandbox. This would just fail normally, the app would handle that and know it was running on a regular phone. But on a jailbroken phone, that works because it has to work for jailbreaking to work, and then the app knows.</p>
+<p>It’s all a bit more complex than this obviously. Apple aren’t “approving” in some general sense, these a very particular process called code-signing which involves a bunch of cryptography to validate that what’s running is exactly what apple reviewed and what the developer uploaded (hence no viruses). Jailbreaking is just disabling this code signing check, via bugs in iOS.</p>
+<p>Source: am software dev, used to be in computer security, did some iOS pen-testing.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eduard93" target="_blank">eduard93</a>
+			<div class="markdown"><p><a href="https://www.xda-developers.com/procfs-leak-lg-oneplus-huawei-xiaomi-asus/" target="_blank">https://www.xda-developers.com/procfs-leak-lg-oneplus-huawei-xiaomi-asus/</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ninjaicefish" target="_blank">Ninjaicefish</a>
+			<div class="markdown"><p>This is the best answer! </p></div>		</li>
+					</ul>
+	
