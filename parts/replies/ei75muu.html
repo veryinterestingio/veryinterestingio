@@ -1,0 +1,69 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tomudding" target="_blank">tomudding</a>
+			<div class="markdown"><p>BGPmon (part of OpenDNS) have something called <a href="https://bgpstream.com/" target="_blank">BGPStream</a>. This is a website/service which automatically generates alerts about hijacks, leaks, and outages in the Border Gateway Protocol based on 'real-time' activity. It is interesting to see how often something happens, maliciously or not.</p>
+<p>There are known instances where large portions of the internet were affected due to anomalies in BGP. A rather large and recent example of this is Google. They lost control over their IPs for about an hour in November 2018 when an ISP suddenly started routing their traffic through mainland China instead of the usual route. See <a href="https://arstechnica.com/information-technology/2018/11/major-bgp-mishap-takes-down-google-as-traffic-improperly-travels-to-china/" target="_blank">this Ars Technica article</a> for more information.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JustPraxItOut" target="_blank">JustPraxItOut</a>
+			<div class="markdown"><p>Same thing happened with Facebook traffic getting routed via China back in 2011:  <a href="https://bgpmon.net/facebooks-detour-through-china-and-korea/" target="_blank">https://bgpmon.net/facebooks-detour-through-china-and-korea/</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/irongi8nt" target="_blank">irongi8nt</a>
+			<div class="markdown"><p>It's very hard to prevent a BGP hijack, often [in bgp hijacking] a sophisticated  attacker will change a route of traffic to go thru there hosts temporary,  then send the traffic to the intended destination. When the data passes thru the malicious route the attacker can capture or manipulate the data. Hence why encryption is mandatory.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EleventeenCandles" target="_blank">EleventeenCandles</a>
+			<div class="markdown"><p>It's pretty hard to prevent the hijack, but not super hard to detect.  Monitoring route changes and prefix announcements is common practice.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LemonsPZ" target="_blank">LemonsPZ</a>
+			<div class="markdown"><p>A global EMP from a solar flare, though that would bring down more than just the internet</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/amkaro35" target="_blank">amkaro35</a>
+			<div class="markdown"><p>When you have control over the routes you can set a proxy inbetween whos partaking in the SSL handshake now so u would be able to decrypt it wouldnt you?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/anon_gz" target="_blank">anon_gz</a>
+			<div class="markdown"><p>Crazy how today 3 possible hijacks happened and most people don't even know it, just imagine how much of the data about a population of a country is on the hands of companies or other countries.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/spblue" target="_blank">spblue</a>
+			<div class="markdown"><p>While a well planned BGP attack could definitely bring down most of the internet, I feel that it would not last very long. People managing the BGP tables at the large ISPs are pretty much on the ball when something like this happens and it would get filtered out in a matter of hours, possibly  a day or two at the most.</p>
+<p>It's a weak point, but it's a well-known weak point and there already are established policies for when such events occur. I feel like targeting even half of the DNS servers in the root zone would deal a lot more damage for much longer.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/failsatreddit" target="_blank">failsatreddit</a>
+			<div class="markdown"><p>What if the objective was a more targeted attack? Maybe to cut communication between a few regions so they miss something happening until it is too late?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/spblue" target="_blank">spblue</a>
+			<div class="markdown"><p>I would work very well for a short-timed attack, but unless you're a major power and about to start a 3rd world war, it's a very bad idea. Basically, this is the kind of stunt you can pull off just once.</p>
+<p>After you've done that, nobody will ever want to peer with you again without draconian BGP filtering. This means you probably would never again be trusted as a potential transit path. Any country pulling this stunt would have its internet infrastructure crippled for decades after the fact. Even if this was done by a large organization such as the USA, there'd be political hell to pay for a long time.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AvatarQAZ" target="_blank">AvatarQAZ</a>
+			<div class="markdown"><p>Reading all these replies... I thought the exact same thing.  Attack BGP and watch hell break lose.  It is mostly 'policy' based routing (can call it trust based, but prefer policy based as you can change it on a whim dependent on how you feel about any node on a given day).  And most policies for BGP in non-heavily restricted areas is to allow/trust especially from high level routed systems.  An entity who controls a fair number of entry/exit points for forward facing BGP (read: heavily trust or relied upon) can devastate the world-wide data flow in a matter of an hour.  </p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AvatarQAZ" target="_blank">AvatarQAZ</a>
+			<div class="markdown"><p>It really depends where it comes from.  When China had all that traffic going their way, it was a substantial mess.  If your local hometown provider messes up an advertisement you might not even see it.  A border router to a country that is heavily regulated and has a substantial amount of traffic (China) would certainly mess things up.  It would be discovered fast, as you mention, and remedied.  And as we saw in the past.  </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/upBustlenOut" target="_blank">upBustlenOut</a>
+			<div class="markdown"><blockquote>
+<p>The thing is as a network admin running this I can simply ignore and write my own rules to stop it affecting my network.</p>
+</blockquote>
+<p>This isn't my area at all, but wouldn't this be disruptive for a very short time?  It's impossible for me to imagine that contingencies aren't in place everywhere big enough to care.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TryingToBeHere" target="_blank">TryingToBeHere</a>
+			<div class="markdown"><p>Shouldn't this weakness be addressed?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/queenmyrcella" target="_blank">queenmyrcella</a>
+			<div class="markdown"><p>The NSA already does lots of shennanigans with BGP like routing most European traffic through Virginia even for traffic between 2 european endpoints.</p></div>		</li>
+					</ul>
+		</ul>
+	
