@@ -1,0 +1,43 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/The__Odor" target="_blank">The__Odor</a>
+			<div class="markdown"><p>So hey could you tell me, if it's not too much of a bother,</p>
+<ul>
+<li>whay hyper computation is</li>
+<li>why you specify <em>physical</em> process</li>
+<li>what NP-hard problems and P time are</li>
+<li>what you mean by undecideable
+?</li>
+</ul></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gigazwiebel" target="_blank">Gigazwiebel</a>
+			<div class="markdown"><p>Hyper computation: Solving problems reliably that are undecidable with a Turing machine. Like the halting problem. It could also cover finding the answer to some mathematical questions that were shown to be undecidable. </p>
+<p>If you would be able to do an experiment whose result depends on the answer to a general hypercomputation, that might be proof that there exists something much stronger than a Turing machine. Imagine you build an optical device and feed it a string of polarized electrons with spin up or spin down, each encoding a bit. The electrons represent a Turing machine. The device takes the electrons and tells you after some time reliably if the Turing machine will halt or not. As far as we know, we cannot build such a machine withing known physics.</p>
+<p>NP hard problems are a class of problems like for example travelling salesman, for which no algorithm is known to give a solution in polynomial time. Any NP hard problem can be transformed into any other NP hard problem in polynomial time, though. That's why you'd only need one algorithm to catch them all.</p>
+<p>P means polynomial time.</p>
+<p>An undecideable problem is one for which no algorithm exists that gives the right result for any input. The halting problem is the most famous example.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Not_Theorist" target="_blank">Not_Theorist</a>
+			<div class="markdown"><p>I don't think you're being precise enough about what &quot;NP Hard&quot; means.</p>
+<p>To fix what we mean when we say <em>problem</em>, assume &quot;decision problem&quot;, in other words deciding whether or not a given (string, number, whatever) belongs to a particular fixed set. For this reason, when we say &quot;Problem A&quot;, we will mean that the decision problem of determining whether a given input belongs to the set A.</p>
+<p>A problem is NP if there exists a non-deterministic Turing machine that answers that problem in polynomial time. (Whereas it is P if there exists a deterministic Turing machine that answers the problem in polynomial time.) </p>
+<p>Now we must speak about 'reducing' one problem to another. Problem A is <em>polynomially reducible</em> to Problem B if there exists a function f sending inputs to inputs such that f(a) is in B exactly when a is in A. </p>
+<p>Why is this useful? Suppose we have an algorithm which tests for membership in B. Using the function f, we may start with an input a, map it to f(a) (which takes polynomial time), then run our algorithm to test if f(a) is in B. If it is, our condition on f ensures that a was an element of A if and only if f(a) was an element of B. In other words, we just took the algorithm for the decision problem of B and turned it into (with an added polynomial overhead to account for the reduction f) an algorithm for the decision problem of A.</p>
+<p>Finally, a problem A is <em>NP-Hard</em> if for every <em>NP</em> problem B is polynomially-reducible to A. In other words, from a solution of problem A we get a solution to every NP problem. </p>
+<p>Note that there is no requirement that A be in NP (if it were, it would be called <em>NP-complete</em>). Two NP-Hard problems do not need to be reducible to each other. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sauwa" target="_blank">Sauwa</a>
+			<div class="markdown"><p>Just so you know too, NP doesn't mean &quot;Non-Polynomial&quot; like some might think. It actually stands for &quot;Non-deterministics Polynomial&quot;, so only a non-deterministic turing machine could solve it</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HelioSeven" target="_blank">HelioSeven</a>
+			<div class="markdown"><p>Is the same also true for semi-decidable problems? Id est, in all cases that a TM can't successfully return a QTM can't either, and vice versa for successful returns?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Spudd86" target="_blank">Spudd86</a>
+			<div class="markdown"><p>Ehhh, we're pretty sure that if a classical computer can't then a quantum computer cant on the NP-hard problem front.</p>
+<p>BQP is not known to contain any NP-complete problems, though it is known to contain some problems that are thought not to be in P, but are in NP, they <em>might</em> be in P even if P != NP, it's just not known.</p></div>		</li>
+					</ul>
+	
