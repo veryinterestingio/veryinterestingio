@@ -1,0 +1,70 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marcan42" target="_blank">marcan42</a>
+			<div class="markdown"><p>This isn't exclusive to FM, though; you can't send a radio signal on precisely a single frequency and still carry information. AM uses a single frequency as a carrier wave, but the act of modulating the audio signal on top of it spreads it out into the neighboring frequencies too.</p>
+<p>The closest thing to transmitting on a &quot;single frequency&quot; would be a CW transmission, which is basically a single carrier wave that that you turn on and off for transmitting things like morse code. But even this has a nonzero bandwidth: the points where you turn it on and off will spread the carrier around. It depends on how &quot;sharply&quot; you do it - doing it in a perfect instant actually requires infinite bandwidth, and as you slow down the transition by e.g. fading in and out the signal over a period of time instead, you reduce the required bandwidth.</p>
+<p>Basically, a single frequency would have zero bandwidth, and you can't send any data (digital, analog audio, morse code, doesn't matter) in zero bandwidth. The only thing you can do with a constant carrier using truly zero bandwidth is make a fixed beacon that can be picked up by a scanner.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/krista_" target="_blank">krista_</a>
+			<div class="markdown"><p>you explain this very well!</p>
+<p>sometimes it's difficult for people to realize there's no free bandwidth, and that the em spectrum is a <em>spectrum</em>, it's all one big thing, and that anything you do to it causes it to jiggle in ways that aren't obvious to those who don't normally deal with it.</p>
+<p>heh! i remember very young me getting my mind blown when discovering that if you have a very stable 100khz carrier wave and you have both your transmitter and received very accurately synchronized, modulating it at 1mhz doesn't leave you transmitting at 100khz anymore. luckily i had an uncle studying ee who explained this to me, and we wrote some applesoft basic code to simulate the combined waveform and show me conclusively. </p>
+<p>even today i still get frissons of joy looking at the beauty of how the spectrum works and the pure artistry of science and engineering that goes into painting on its canvas. every time i think i understand this black magic voodoo, something new comes along and i am reminded of how bloody cool and amazing reality is.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marcan42" target="_blank">marcan42</a>
+			<div class="markdown"><p>Thanks! The neat thing is that these days you don't even need any fancy hardware or software. You can run whole simulations inside something like GNUradio, but even easier, you can play around with audio and get a feeling for some of the concepts. Audio works just like radio in many ways.</p>
+<p>For example, to see how even CW morse code has a wider bandwidth when the signal turns on and off, all you need to do is search for a random Morse code generator like <a href="https://morsecode.scphillips.com/translator.html" target="_blank">this</a>, and record a message into something like Audacity. Turn on the spectrum view and you'll see something like <a href="https://mrcn.st/t/morse-spectrum.png" target="_blank">this</a>. The tones have a very sharp spectrum at around 600 Hz (with a bit of harmonic/aliasing gunk higher up), but when the morse keys on and off there's a big wide spike with much wider bandwidth.</p>
+<p>You can even play with the spectrogram settings, and get a feeling for how the wider the FFT window (= the longer time interval you analyze the signal for), the sharper the peak in the spectrum gets (you can tell the frequency more precisely), but the more smeared the time axis gets (it's harder to tell when the tones start and stop). Like <a href="https://mrcn.st/t/morse-spectrum-512.png" target="_blank">this</a> (512 samples = 10.3ms window) vs <a href="https://mrcn.st/t/morse-spectrum-16384.png" target="_blank">this</a> (16384 samples = 341ms window).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Prealia" target="_blank">Prealia</a>
+			<div class="markdown"><p>Really cool stuff. I'm a little confused regarding the single frequency being zero bandwidth, though. I thought true single frequency would require infinite bandwidth? Excuse my ignorance, radio has always kind of been hard to wrap my head around.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marcan42" target="_blank">marcan42</a>
+			<div class="markdown"><p>If you transmit a constant carrier wave on a single frequency, and never stop and never start, then you basically do have &quot;zero bandwidth&quot;; a single peak in the frequency spectrum that has has zero power at any other frequency. You could cram two such carriers as close together as you want, and as long as you have enough time and signal to noise ratio, you could always tell them apart. The closer you make them, the more time you need to spend capturing and analyzing the signal to discern between them, but it's possible.</p>
+<p>Of course, in real life no oscillator will be perfectly stable, and things don't transmit for an infinitely long time, so there is no such thing as true zero bandwidth. But mathematically, if you have a sine wave at a constant frequency that repeats forever and never starts nor stops, then it only has one exact frequency, and since the bandwidth is the difference between the lowest and the highest frequency, then that is zero.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aladhd" target="_blank">aladhd</a>
+			<div class="markdown"><p>Along with what marcan said.. Bandwidth literally means width of the band.</p>
+<p>0 width = 0 bandwidth.</p>
+<p>There's literally no encoding there possible. You can't even turn the wave off, because doing so would affect other frequencies, requiring more than 0 bandwidth to do.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CJH_Politics" target="_blank">CJH_Politics</a>
+			<div class="markdown"><p>AM is amplitude modulation... why would changing the amplitude also change the frequency? It shouldn't... unless for an unavoidable imperfection in the transmitter.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marcan42" target="_blank">marcan42</a>
+			<div class="markdown"><p>It's counterintuitive, but it does. In the steady state it does not: you can set the amplitude to whatever fixed value you want, and you end up with the original frequency (at some power level). However, <em>changing</em> the amplitude distorts the waveform: it's not a perfect sine wave any more when the amplitude is varying. That introduces other frequencies besides the original. It's the <em>changing</em> amplitude that makes the difference.</p>
+<p>You can see this if you look at an AM transmission in a spectrum analyzer. In particular, the frequency of the carrier will be spread around a region that is twice as wide as the modulating waveform's baseband bandwidth. So if you have a 1kHz signal modulating a 100kHz carrier, the resulting signal will have frequencies between 99kHz and 101kHz (in fact for a 1kHz tone the result will be equivalent to two new carriers at 99kHz and 101kHz, and whether the original at 100kHz remains or not depends on the modulation depth).</p>
+<p>You can try this yourself by e.g. generating a 1kHz tone in something like Audacity, using the envelope function to fade it in and out (make sure you do it at a short-ish time scale, since it's hard to see otherwise), rendering to a new track and looking at it in the spectrum view. It won't be a perfect narrow 1kHz peak any more, like the pure tone was.</p>
+<p>You can also try the reverse: generate a 1001Hz tone, a 999Hz tone, and mix them together and render. The result will look (and sound) exactly like a 1000Hz tone modulated at 1Hz!</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VirtualMoneyLover" target="_blank">VirtualMoneyLover</a>
+			<div class="markdown"><p>Still doesn't answer the original question. You can modulate around 100, 102, 106 too.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Avenage" target="_blank">Avenage</a>
+			<div class="markdown"><p>You can but that means at the lower end and upper end you'd be leaking into other sections of bandwidth. e.g. 100.0 would really be 99.9-100.1, and while you could start at 100.2, you lose an entire stations worth of space. </p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/annomandaris" target="_blank">annomandaris</a>
+			<div class="markdown"><p>Because they are the actual frequencies that the station are broadcasting at. 100,300,000 Hz =  100.3 MHz, 100,500,000 Hz, , 100.5 MHz, etc.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VirtualMoneyLover" target="_blank">VirtualMoneyLover</a>
+			<div class="markdown"><p>Still no reason that could not be 100 MHz</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/alex2003super" target="_blank">alex2003super</a>
+			<div class="markdown"><p>To avoid creating preferable integer frequencies</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/_newtesla" target="_blank">_newtesla</a>
+			<div class="markdown"><p>Exactly: amplitude of the sound will determine frequency deviation, ie - how will frequency swing, and how much.</p></div>		</li>
+					</ul>
+	
