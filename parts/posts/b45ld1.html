@@ -1,0 +1,81 @@
+<li class="post" data-handle="b45ld1">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/b45ld1/eli5_how_is_data_sent_to_one_cell_phone_not_all/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/b45ld1" onclick="return false">How is data sent to one cell phone, not all cell phones connected to the same tower</a>
+		</h2>
+		<!--<span class="date">2019-03-25</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>When I receive a text message / data request, how does the cell tower send it directly to my phone!</p>
+<p>Does the tower just broadcast the message over its range with a specific ID tag (and other devices read but ignore the message)?</p>
+<p>My interest in this stems from privacy concerns, would it be possible for a user to see the data I am sending to a cell tower?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ej4b4q0">
+		<a class="author" href="https://www.reddit.com/user/edman007" target="_blank">edman007</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><blockquote>
+<p>Does the tower just broadcast the message over its range with a specific ID tag</p>
+</blockquote>
+<p>Basically, yes, that's exactly what they do, that tag id is your SIM card ID</p>
+<blockquote>
+<p>My interest in this stems from privacy concerns, would it be possible for a user to see the data I am sending to a cell tower?</p>
+</blockquote>
+<p>Every SIM card has some encryption features. The tower is capable of encrypting the data so only the person with that SIM can decrypt it. I don't think most carriers actually have that feature enabled unfortunately, but it's a capability all the phones support.</p>
+<p>Also, on CDMA networks (Verizon/Sprint 2/3G) the way the tech works, you can't actually read the data without first knowing the ID you're looking for. Basically it transmits to all phones at the same time on top of each other. Your phone uses its ID to generate a pseudorandom stream which is required to figure out who has what data. This psudorandom stream is basically encryption, but it's not secure, that is for a normal user, it looks like it's encrypted and it's very difficult to read, but the math says it's not secure, and someone can probably break it if they tried hard enough. GSM networks transmit to one phone at a time, so it's a lot easier to pull the data out.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ej4c1oi">
+		<a class="author" href="https://www.reddit.com/user/agate_" target="_blank">agate_</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's more complicated than that, but you've got the right idea.  It's not enough to just prefix each message with an ID tag and politely ask every other phone to ignore messages not meant for it: you've got to <em>stop</em> phones from eavesdropping on each other.  And there's the problem of crosstalk: what if two phones try to talk at the same time?</p>
+<p>So yes, each phone has an ID tag, and that id tag is used to divide up conversation.  This can be done by having the tower assign each phone a time slot in which it's allowed to transmit and receive (Bob talks with the tower for the first 10 microseconds, Jane gets the next 10 microseconds, etc), or by giving each phone a slightly different frequency on which to talk (Bob and the tower communicate at 2100 Mhz, Jane and the tower chat at 2110 Mhz, etc), or other more complicated schemes.  And usually the phone and the tower will change this scheme unpredictably, varying the frequency or timeslot or whatever according to a pattern that looks random if you don't know the phone's secret ID number.</p>
+<p>The two schemes I mentioned are called TDMA (Time Domain Multiple Access) and frequency hopping.  Modern LTE networks use more complicated variations on this idea that unfortunately I don't know much about.</p>
+<p><a href="https://en.wikipedia.org/wiki/Time-division_multiple_access" target="_blank">https://en.wikipedia.org/wiki/Time-division_multiple_access</a>
+<a href="https://en.wikipedia.org/wiki/Frequency-hopping_spread_spectrum" target="_blank">https://en.wikipedia.org/wiki/Frequency-hopping_spread_spectrum</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ej4i3il">
+		<a class="author" href="https://www.reddit.com/user/vahntitrio" target="_blank">vahntitrio</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'll try to make this as simple as possible.</p>
+<p>Your phone has a code waveform. This is unique to your phone. Signals are broadcast as another waveform. To recover the data, your phone multiplies the signals with the code waveform. The signal intended for you is the only waveform that isn't orthogonal to your code. The result is every other waveform multiplies to 0, whereas your waveform multiplies to a data signal.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ej4iih2">
+		<a class="author" href="https://www.reddit.com/user/MistaSmiles" target="_blank">MistaSmiles</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>>  My interest in this stems from privacy concerns, would it be possible for a user to see the data I am sending to a cell tower?   </p>
+<p>Yes, cell towers snoop your data. We can talk about encryption &amp; hypothetical workarounds; but this is what is actually happening today.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ej4m12i">
+		<a class="author" href="https://www.reddit.com/user/blackdynomitesnewbag" target="_blank">blackdynomitesnewbag</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Long story short, as others have said, while cell communication could be encrypted, if frequently isn’t. When a signal is broadcast, it’s sent in all directions. There are antenna designs that only broadcast in one direction that are mostly used my costal cities. </p>
+<p>There are directional microwave dishes like those used for satellite TV, but those are most effective when the points are fixed. TV satellites are in geo-synchronous orbit so that they’ll always hover over the same spot on the planet. We also have dishes that rotate to pick up moving signals, but this isn’t scalable. Every tower would need a dish for every mobile transmitting device to have them entirely isolated, and the devices would have to point at the tower.</p>
+<p>If you’re really concerned, get a google voice number and a VPN. Other than that, you are at the whim of the telecom gods. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/b45ld1" onclick="return false"><span>show</span></a>
+</li>
