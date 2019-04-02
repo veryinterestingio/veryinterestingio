@@ -1,0 +1,112 @@
+<div class="answers">
+	<div class="answer" data-handle="ejqs6dc">
+		<a class="author" href="https://www.reddit.com/user/rogert2" target="_blank">rogert2</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For a long time, the people who built forms online spent a lot of time trying to create rules that would keep out bad data. Anecdotally, this was often driven by the presumption that human users were likely to fill out forms incorrectly, more than it was about preventing naughty people from exploiting weaknesses in the application for malicious purposes. That's not to say that those vulnerabilities didn't exist, it's that (for better or worse) people weren't concerned about them. Speaking from experience, a lot of people didn't even know about them -- including among &quot;hackers.&quot; Today, everybody in the business knows what a SQL injection attack is; that was not true in 1993.</p>
+<p>&#x200B;</p>
+<p>For example, you're building a form so that people can register to attend a seminar. Someone probably says &quot;make sure the FirstName field doesn't allow spaces, otherwise some idiot will just type their whole name into that box.&quot; That rule bakes in all kinds of assumptions about names, assumptions which are false even in the Western culture in which this rule is common. But, if you didn't know that, you'd go ahead and write that rule. Now everybody who uses the form has to live by stupid rules designed by ignorant people. Also, one way to implement that rule is to say &quot;a name can only be letters.&quot; Boom: suddenly, in addition to preventing spaces (which was the goal), you've also just forbidden dashes, apostrophes, periods, and probably accented characters. Also, programmers make mistakes, so sometimes the effective rule ends up being different (and more restrictive) than was even intended.</p>
+<p>&#x200B;</p>
+<p>Some other common validation rules that are foolishly inflexible and unimaginative:</p>
+<p>- ZIP codes must be exactly 5 digits</p>
+<p>- phone numbers must be exactly 10 digits, formatted like &quot;(xxx) xxx-xxxx&quot;</p>
+<p>- state must be a two-letter abbreviation</p>
+<p>&#x200B;</p>
+<p>These things mattered, because the consumption of data was typically crude and unforgiving of errors. Very often in the '90s, data collected by web forms was stored in a database so that it could be used to do things like printing addresses on envelopes for mailers or produce telephone directories. Sometimes, badly-entered data might just produce an awkward result, such as when &quot;<LastName>, <FirstName>&quot; yields &quot;, Bob Ross&quot;. But often, the consuming system would choke on the bad data, because it was not built to be forgiving, and the linkage between the two systems was not fault-tolerant.</p>
+<p>&#x200B;</p>
+<p>Consider a web form that students use to register for classes, which is used to (1) send registration information to the state's central database as well as (2) printing out a class list for instructors. And imagine that one student from Canada has a six-character ZIP code that includes letters. That might not be a problem for the printed class list, but if the state database chokes on that 6-character ZIP code, the entire process would stop immediately: records after this one aren't sent to the state, and <em>no class lists get printed at all</em>. When this happens, you've got everybody from the college president on down, yelling at you for creating an administrative catastrophe on <em>day 0</em> of the semester.</p>
+<p>&#x200B;</p>
+<p>Finally, storage space and processing speed was a much bigger concern back then, and one result is that databases were designed to fit the data like a skin-tight wetsuit. These days, when I can buy an SD card the size of a thumbnail that holds 32 gigabytes, it seems absurd -- we often make every text field unlimited length: a first name can be 2000 letters long and we don't care because it's free and easy. But back then, you'd have serious debates with someone about whether you could literally afford to set aside 20 or 30 letters for first names. I've been doing this for 20 years, and I cannot count the number of times somebody said this in a meeting: &quot;okay, but what is the <em>longest</em> first name you've ever seen?&quot; Yes, we had the technology for unlimited-length database fields, but using them often came with a performance cost. A lot of web applications back in the day were just web pages that showed the content of a database as a giant HTML table. It took a long time for the computer to scan the entire database, then loop through every row and produce the HTML, and then to send that whole thing to someone's computer over a 14.4 modem. Imagine a webpage that takes 35 seconds to load. I am not kidding you, this was the reality back then. A lot of these applications were running on a single physical computer that one guy built from parts he got at the local store, and now it's sitting under a desk in the office.</p>
+<p>&#x200B;</p>
+<p>TL;DR: crude technology and brittle software patterns created really strong incentives to design very rigid rules for data entry. Those rules were designed by flawed humans who often failed to recognize their own ethnocentrism, especially in a culture that was less diverse and inclusive than today.</p>
+<p>&#x200B;</p>
+<p>EDIT: Thanks for the gold, kind stranger!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ejrauch">
+		<a class="author" href="https://www.reddit.com/user/About100Ninjas" target="_blank">About100Ninjas</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Is it just lazy programming? The vast majority of the time the answer is yes. It can also be fixed very easily in 99% of situations.  Why don’t they just fix it then? Glad you asked, even if you didn’t.  </p>
+<p>They don’t fix it because companies tend have huge backlogs of work that need to be addressed. That form that doesn’t accept apostrophes is working and delivering data as intended so there’s no cause to prioritize fixing what isn’t technically broken from a business needs standpoint when they need to fix things that actually don’t function or build new things to meet new needs.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ejqn44s">
+		<a class="author" href="https://www.reddit.com/user/TrustMeIKnowThisOne" target="_blank">TrustMeIKnowThisOne</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>When data is stored, different databases use characters such as Apostrophe, Hyphens, Pipes &quot; | &quot; , to separate fields.</p>
+<p>Think of it as Microsoft Excel. Instead of having the grid line to separate fields of data, the system uses a special character.</p>
+<hr />
+<p>If you type in the following:</p>
+<ul>
+<li>
+<p>First: <em>Johnny</em></p>
+</li>
+<li>
+<p>Middle: <em>Doe</em></p>
+</li>
+<li>Last: <em>Smith</em></li>
+</ul>
+<p>The system will store it as something like:</p>
+<ul>
+<li><em>Johnny, Doe, Smith</em></li>
+</ul>
+<hr />
+<p>Now if you filled the form out like this:</p>
+<ul>
+<li>
+<p>First: <em>John,ny</em></p>
+</li>
+<li>
+<p>Middle: <em>Doe</em></p>
+</li>
+<li>Last: <em>Smith</em></li>
+</ul>
+<p>The system will store it as:</p>
+<ul>
+<li><em>John, ny, Doe, Smith</em></li>
+</ul>
+<p>You now have 4 names coming through when the system anticipates 3. This confuses or breaks the system.</p>
+<hr />
+<p>This can cause errors such as:</p>
+<ul>
+<li>
+<p>Your name would come back as &quot;John ny Doe&quot;</p>
+</li>
+<li>
+<p>Next person's first name returning as your last name &quot;Smith&quot;. Due to overlapping.</p>
+</li>
+<li>System Crashing or Breaking.</li>
+</ul></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ejqzy0s">
+		<a class="author" href="https://www.reddit.com/user/cyberporygon" target="_blank">cyberporygon</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A form that asks for a name would limit your input to normal alphabetic characters just so you don't send anything invalid, missing the edge case where a name has a hypen or apostrophe. I wouldn't call it lazy so much as they didn't consider this specific situation.</p>
+<p>If something was programmed particularly badly, apostrophes in input could cause an error if submitted, but this is almost never the case.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ejr7ojg">
+		<a class="author" href="https://www.reddit.com/user/topinfrassi01" target="_blank">topinfrassi01</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>When you input your name, the program will often try to check if it makes sense.</p>
+<p>If, for example, you're supposed to input your name, but what you entered is 12345, it doesn't make much sense. In this way, programmers will try to define what composes a name. For example, it should have letters, maybe capitalized, etc. Well the thing is it's hard to know all different characters that can enter a name and some might be excluded from the realm of valid inputs because people didn't think about it.</p>
+<p>Know, this is a general explanation, but regarding apostrophes there is a very solid (although outdated) reason why this happens.</p>
+<p>When you query a database (which contains the application's information), the query looks like this <code>select UserId from UserTable where UserName ='[what you entered]'</code></p>
+<p>Notice that there are apostrophes that are at the start and end of your input. Imagine you entered an apostrophe by yourself, it would look like <code>where UserName = 'Connor O'Connor'</code></p>
+<p>Now wtf happens. The database system doesn't know how to handle this information and, to keep it simple, the part after O' is treated as a separate command. So imagine you entered something like this in the name field &quot;Connor O' [Destroy everything please command]&quot;.</p>
+<p>This is known as SQL Injection and is a very real problem in software engineering. There are now new methods to deal with this problem, but one that worked before was to simply forbid apostrophes.</p>
+<p>The hyphen is also a risk regarding SQL injection, but we're kind of quitting the realm of ELI5</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

@@ -1,0 +1,50 @@
+<div class="answers">
+	<div class="answer" data-handle="ejqqken">
+		<a class="author" href="https://www.reddit.com/user/MyNameIsGriffon" target="_blank">MyNameIsGriffon</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The copper cables themselves haven't really changed much, but the insulation between them and shielding around them reduce interference and noise. The data doesn't get from one end of the cable to the other any faster, but you can squeeze it tighter without electrical interference mucking it up by the other end. Think about listening to someone talking really fast in a quiet room versus in a noisy public space or over a crappy phone, the clearer the connection, the faster they can talk and still be understandable.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ejqyy2t">
+		<a class="author" href="https://www.reddit.com/user/ledow" target="_blank">ledow</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Different cable types have different electrical properties, more isolation from outside noise and other wires in the same cable, etc.  </p>
+<p>However, in terms of their use for Ethernet, the Ethernet wire protocols are radically different.  That's why there's a negotiation when you first plug them in, to decide on 10/100/1G/10G, etc. and why the newer protocols are cutting backward compatibility in some respects (no half-duplex, no hubs, etc. in the new versions).  That negotiation isn't just &quot;I'll talk at this speed&quot;, it's an entirely different modulation, and newer speeds use all kinds of techniques rather than just what the lay person would consider ordinary bit-banging.  </p>
+<p>Twisted pair was originally used so that the white-pair-partner for each coloured cable inside (green, blue, brown, orange) would receive the exact same interference as the wire it was twisted with.  That lets you &quot;remove&quot; noise by subtracting the signal of the respective white wire from the signal of the colour it's twisted with.  </p>
+<p>But things have got real messy since and most of the protocols now use a lot more clever tricks, a lot more wires in tandem, entirely different modulation on the line (not just &quot;on-off&quot; but phase modulation of the signal, quadrature modulation, higher frequencies, entirely different error correction, more levels of modulation (so not just, say, 2 different voltages, but 16 or more different levels that it can detect and use to send/get more data at the same speed).  Basically each one of 10/100/1000/10000 uses almost a whole new wire protocol from scratch.  Don't forget, these are &quot;modems&quot; still - they are modulating and demodulating a digital signal onto an analogue carrier, so depending on the accuracy of the equipment, they can measure and control much smaller changes in phase, voltage, frequency, etc. and thus send more data.  </p>
+<p>No different to the way that your telephone line only ever supported audio at one point, which meant that you had to use the audio frequencies to send data only, which meant that traditional &quot;voice&quot; modems were limited to 9600bps for years, then 33.6K (or 56k in one direction if there was special hardware at the telephone exchange) but now that same cable uses more way frequencies than just the audio, over shorter distances (e.g. 10G needs Cat6a for 100m, but you can use Cat6 if you only want 40m, etc. while you home cable only has to go to the street to get onto a fibre connection to Internet, not all the way back to the exchange and then physically cabled to your destination phone line) , with entirely different modulations and protocols, much more signal processing capability both at home and at the telephone exchange, and now stays OUT of the audio range... so you can do DSL over the same two-pair copper cable you've had for 50 years while being on the phone (or even dialling up a modem, in theory!).  </p>
+<p>The biggest change is really being able to put a 500MHz or so processor at one end, and extreme amounts of accurate signal measuring at both ends, for the cost of an DSL router from the local electronics store.  Or, in this case, processors in network cards/chipsets/switches/routers routinely capable of handling 10Gb/s on every single port they have without even needing the main CPU. </p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ejrvdeb">
+		<a class="author" href="https://www.reddit.com/user/BringMeToYourLager" target="_blank">BringMeToYourLager</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Twist rate and modulation scheme... To name a few things. Also, wire gauge.</p>
+<p>As electrical frequency increases the electrons want to stay on the <em>surface</em> of a conductor. That is, you can have a very massive copper wire and at DC, the electrons will travel all through the wire from edge to center. But increase the frequency and those electrons won't be found in the center anymore. They want to be near the outside of the copper. We call this the <strong>skin effect</strong>. Even though you might have a 26 AWG wire, the effective size of that wire at 1 GHz, for example, is much smaller so resistance is higher. Think of it like a water hose with a partial plug in it... You won't get as much water through like you will have more cable losses as frequency increases. So IEEE and other organizations will periodically increase the wire thickness to compensate for the skin effect as we use higher frequency signals.</p>
+<p>Modulation schemes change too. For 1000Base-T I believe they are using a PAM3 or PAM4 encoding scheme. Basically what this means is that you can fit 3 or 4 bits into 1 bit-time. We think of bits as 1s or 0s, but what if you could send a +0.75V for a 00, a +0.25V for a 01, a -0.25V for a 10, and a -0.75V for 11 for example? You still only need to send 1 voltage level at a time but you get 2 data bits out of it. The problem is that now there is only 0.5V difference between one symbol and a different symbol where before maybe you had 1V for instance. Voltages and currents can be affected by outside <strong>noise</strong>, which Engineers sometimes call <strong>crosstalk</strong>. Another downside is that the silicone chips making and receiving these signals need more layers of complexity to work because they have to decipher many more symbols than a simple chip that either detects a voltage or no voltage - this increases cost of the components.</p>
+<p>We don't like crosstalk because it can make one symbol look like another. One way to combat crosstalk is by adding more twists in the cable. This is yet another way that CAT cables are different with higher category cables generally having more twists per length. Im not sure how to explain <em>why</em> in ELI5 style but just know that if noise is emitted from one conductor in a pair, the neighbor conductor will cancel the noise because of the twist. The closer and more uniform the twists, the better the cancellation. But again, increasing twists can make it harder to produce cable and increase costs so you can't just have cable with tons of twists in it and expect perfect results.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ejr8z5g">
+		<a class="author" href="https://www.reddit.com/user/Prima13" target="_blank">Prima13</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>How far away are we from having to run fiber everywhere in our LAN rather than twisted pairs?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ejs6fl4">
+		<a class="author" href="https://www.reddit.com/user/chenjamin88" target="_blank">chenjamin88</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The main factor in increasing the data transfer rate is the bandwidth (you can do other things like increase the number of conductors but we want the new cables to be compatible with all machines so the conductor number and plugs remain the same) to increase the bandwidth they will increase the frequency they transmit information over these 4 pairs of cables. </p>
+<p>But the higher you push the frequency over the conductors the more they interfere with each other (each pair basically becomes an antenna sending out the transmitted signals as radio waves that are received by adjacent twisted pairs causing interference). </p>
+<p>Each newer generation of cable will have a more advanced method of construction that minimises this interference allowing higher data transfer rates. Sometimes its shielding the pairs other times its just spacing them further apart. </p>
+<p>We have basically hit a limit though with copper cabling at Cat 6A being able to do 10Gb/s over 90m. If you want to achieve higher speeds such as 40-100Gb/s over any reasonable distance you will see fibre used most of the time. </p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>

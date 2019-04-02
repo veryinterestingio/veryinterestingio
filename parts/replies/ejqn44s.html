@@ -1,0 +1,47 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BassoonHero" target="_blank">BassoonHero</a>
+			<div class="markdown"><p>It's worth noting that, while this is a correct answer, it is stupid and reckless to design a system this way, and almost certainly indicative of serious security holes.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/smashsenpai" target="_blank">smashsenpai</a>
+			<div class="markdown"><p>Tell that to the people who made it 30 years ago.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BassoonHero" target="_blank">BassoonHero</a>
+			<div class="markdown"><p>I don't blame the people who created systems like this thirty years ago. I blame the people who created them twenty years ago, when they should have known better, and the people who still create them today.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PeaceBear0" target="_blank">PeaceBear0</a>
+			<div class="markdown"><p>Not necessarily. Since these errors are so common, people often ban special characters even if they're pretty sure they'd be fine, just on the off chance that there is some weird code path that would make them an issue.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BassoonHero" target="_blank">BassoonHero</a>
+			<div class="markdown"><p>If you know, for sure, that the are no “weird code paths” that could lead to code injection vulnerabilities, then there's no need to ban special characters. If you <em>don't</em> know for sure, then you have a critical security flaw requiring an emergency fix.</p>
+<p>If you understand the behavior of the system well enough to know what inputs will trigger security holes, then you can fix the system to handle them properly. If you don't understand the system well enough to fix it the right way, then you have no way of knowing that banning special characters will patch the security holes.</p>
+<p>On the other hand, banning special characters often means that application is seriously broken in other ways — for instance, the “name” field does not accept names anymore. Names can contain hyphens and apostrophes. If your system won't accept correct data, then it will be full of incorrect data and exhibit incorrect behavior.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/About100Ninjas" target="_blank">About100Ninjas</a>
+			<div class="markdown"><p>And is completely lazy and pisses of those of us who actually try to do a good job and have to fix it when we’re adding new functionality and run across because it’s such a bush league move that we can’t just ignore it</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/topinfrassi01" target="_blank">topinfrassi01</a>
+			<div class="markdown"><p>I'm pretty damn sure this is wrong. Databases don't use commas or pipes to separate fields. Alright, CSV does, but that's pretty much all and it's easy to fix this problem.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CharacterUse" target="_blank">CharacterUse</a>
+			<div class="markdown"><p>The database itself won't but the input parser might. Yes, it's easy, but someone has to think to do it. A lot of code is written by people who have been given poor specifications or didn't think of alternative option. </p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/brasticstack" target="_blank">brasticstack</a>
+			<div class="markdown"><p>While this is a good explanation of the problem the programmers are trying to avoid, it's both lazy programming and easily fixed.</p>
+<p>All good programming languages (or the frameworks used on top of them to make i.e. website creation easier) have built-in functions you can call with your data to &quot;escape&quot; any special characters, which flags those characters as belonging to the data instead of part of the code. Likewise all good data storage formats allow escaping their special characters so that delimiters (like a ',' in a .csv file) are read in as data instead of as part of the structure of the document.</p>
+<p>The solutions to the problem of having special characters in your data have been around and well-understood for ages. They don't require a programmer to write any more code, just use existing functionality <em>already built in</em> to technologies being used. <strong>It is malpractice for a programmer to not understand and use established methods for escaping data.</strong></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BroForceOne" target="_blank">BroForceOne</a>
+			<div class="markdown"><p>Restricting input doesn't necessarily mean the programmer doesn't understand the established methods of escaping data, just that they don't trust their life with them (maybe they have their own edge cases or vulnerabilities) or they simply don't have full control over the entire downstream pipeline where the data is used.</p></div>		</li>
+					</ul>
+		</ul>
+	
