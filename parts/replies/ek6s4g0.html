@@ -1,0 +1,82 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/showponies" target="_blank">showponies</a>
+			<div class="markdown"><p>That's amazing. There must be an incredible number of things to consider that have to be constantly monitored (or I guess calculated or simulated? I'm guessing sensors are at a premium) and corrected for. If solar radiation pressure is the dominant force does this mean that the craft needs to make adjustments as it moves in and out of the shadow of the asteroid? Is the orbit selected to minimize these transitions? How is the effect mitigated, do you rotate the spacecraft so a different cross-section is facing the sun, or does it use a propellant to counter the force? How precious is the propellant supply on a mission like that, I'd imagine you'd only be able to budget for bringing a relatively small supply? And when propellant is used, does this mean that all the calculations need to be updated because the mass (and distribution) of the craft has changed?</p>
+<p>&#x200B;</p>
+<p>Sorry for so many questions, but I find what you are studying fascinating!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ChrisGnam" target="_blank">ChrisGnam</a>
+			<div class="markdown"><blockquote>
+<p>There must be an incredible number of things to consider that have to be constantly monitored (or I guess calculated or simulated? I'm guessing sensors are at a premium) and corrected for.
+So one thing a lot of people never tend to think about for spacecraft is the navigation.  Most people tend to think of operating spacecraft's as coming up with ridiculously complicated or hard trajectories and serious mission planning, and propulsions, etc.  But navigation is a much less &quot;glamorous&quot; concept many people forget about, but is what I'm absolutely in love with.  Before you control a spacecraft, or execute a maneuver or even communicate with it... you need to know where it is and how it's oriented!  And it turns out it is REALLY hard to figure out.</p>
+</blockquote>
+<p>Typically, no one sensor gets you all the info.  A wide range of sensors are used on the spacecraft (gyroscopes to measure angular rate, star trackers to identify stars and solve for attitude, the deep space network will measure range, Doppler and DDOR, cameras will image surface features which are identified and compared with known &quot;maps&quot; to figure out relative positions, etc.). All of this is then run through mathematical algorithms typically referred to as estimation filters.  </p>
+<p>This process is done continuously, because no matter how accurately we model all the forces, there will be drift over time.  So no simulation can model you perfectly.  We use these filters though, to update our simulation and even to improve it!  Just like how we can use our measurements to estimate the state of the spacecraft, we can use them to estimate aspects of our dynamics that we may be unsure of to improve our future predictions!  </p>
+<blockquote>
+<p>If solar radiation pressure is the dominant force does this mean that the craft needs to make adjustments as it moves in and out of the shadow of the asteroid?  Is the orbit selected to minimize these transitions?</p>
+</blockquote>
+<p>I can't speak for Hayabusa, but OSIRIS-REx is in a terminator orbit.  It turns out that for this kind of environment, only terminator orbits are stable.  (A terminator orbit is an orbit where the orbit is perpendicular to the incoming sunlight, so you're always over the &quot;terminator&quot;, or the sunset/sunrise region, of the body you're orbiting).  So your intuition is somewhat correct!</p>
+<blockquote>
+<p>How is the effect mitigated, do you rotate the spacecraft so a different cross-section is facing the sun, or does it use a propellant to counter the force? </p>
+</blockquote>
+<p>I somewhat answered this previously by mentioning the orbit selection...  But yes maneuvers are somewhat regular and are budgeted by the mission design team.  The other big thing are what's known as &quot;desaturation maneuvers&quot;.  Sunlight and other forces are producing torques on the spacecraft as well.  This introduces angular momentum to the spacecraft over time.  This can be immediately regulated by the use of reaction wheels, however over time the reaction wheels will become &quot;saturated&quot; as they spin faster and faster in an attempt to handle the increased angular momentum.  We can desaturate the wheels by dumping momentum, and we do this with reaction control thrusters.  BUT because nothing is perfect, these desaturation burns will also push the spacecraft very very slightly off course.  So it can be yet another source of perturbation to take into account!</p>
+<blockquote>
+<p>How precious is the propellant supply on a mission like that, I'd imagine you'd only be able to budget for bringing a relatively small supply? </p>
+</blockquote>
+<p>I have no idea about this.  Again, my focus is in optical navigation... so image processing/computer vision, and orbit determination.  But I can say that missions like this have all of that kind of thing planned out, by the thousands of engineers who plan and operate these missions.</p>
+<blockquote>
+<p>And when propellant is used, does this mean that all the calculations need to be updated because the mass (and distribution) of the craft has changed?</p>
+</blockquote>
+<p>Yes!  The usage of propellant or even the collection of samples will change the inertia tensor of the spacecraft (it's mass distribution). This can be estimated (through the use of some complicated filters like I brought up before).  This isn't really a concern for the work I do, that's more on the GNC/ADC folks.  But I did have to do some similar work when I was the GNC lead for some CubeSats back in undergrad.</p>
+<blockquote>
+<p>Sorry for so many questions, but I find what you are studying fascinating!</p>
+</blockquote>
+<p>No worries!  I'm in love with this stuff too, so I'm always happy to talk about it!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Wrobot_rock" target="_blank">Wrobot_rock</a>
+			<div class="markdown"><p>Really interesting stuff, thanks for writing it out. You mentioned that even after your modeling and simulation the satellite still drifts. Do you think it's because of small things you know about but didn't account for (like smaller moons), can't account for (like random neutrinos or gamma rays), or is it possible there is some unknown force?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LedLeppelin" target="_blank">LedLeppelin</a>
+			<div class="markdown"><p>Thermal radiation can act as thrust? I had no idea. I love this sub.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ChrisGnam" target="_blank">ChrisGnam</a>
+			<div class="markdown"><p>It's very small... But it's actually one of the biggest sources of uncertainty for asteroid trajectories.</p>
+<p>If you think about it, it's not as ridiculous as it first sounds...</p>
+<p>Anything about absolute zero emits radiation.  The hotter you are, the more radiation you emit.  So if one side of you is warmer than the other, you're emitting more thermal radiation in one direction than in the other.  Thermal radiation is just a fancy word for photons, and photons carry momentum.  By Newton's third law, this imparts a small (but non-zero!) net force on you.</p>
+<p>To make things even more complicated, this occurs in asteroids primarily due to sunlight!  And can cause asteroids or other bodies to spin over time.  And spinning introduces even weirder behaviour to this phenomenon, sometimes leading to a behaviour known as &quot;thermal drag&quot;.   Obviously objecrs will heat up on the side that is illuminated by the sun and cool off on the side that isn't.  But if they're rotating, you get a kind of &quot;lag&quot; to this effect.  The hot side is consistently rotating away from sunlight while the cold side is consistently rotating towards it.  If the rotation direction is opposite the orbital direction, then you'll have the hot side spinning towards your &quot;prograde&quot; direction, and so the net thrust will be operating in your retrograde direction.  This has the effect of slowing you down similar to drag, but it's entirely because of thermal gradients.  (This might seem super specific, but there are reasons why this particular scenario occurs I won't get into)</p>
+<p>Anyways sorry for the long comment again... I just absolutely love this stuff and hopefully you'll find it as interesting as I do!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chabochabochabochabo" target="_blank">chabochabochabochabo</a>
+			<div class="markdown"><blockquote>
+<p>(This might seem super specific, but there are reasons why this particular scenario occurs I won't get into)</p>
+</blockquote>
+<p>... you can get into them, that would be great actually.</p>
+<p>In all seriousness though, I just want you to know that your output here is appreciated. I'm deeply fascinated by everything you're typing ITT and sometimes when you get on a roll like that, people are super interested but dont reply, and you're left wondering whether anyone even read or cared. So I'm commenting to help ensure that doesnt happen. </p>
+<p>(I actually am interested in the scenarios that presumably lead to us discovering these specifics. I'm thinking Spinning Orbital BeyBlade Fireball Oops)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wraithlet" target="_blank">wraithlet</a>
+			<div class="markdown"><p>Is this essentially what allows the concept of a solar sail to work?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/planetworthofbugs" target="_blank">planetworthofbugs</a>
+			<div class="markdown"><blockquote>
+<p>Even turning on the antenna to transmit back to earth causes a measurable perturbation to the trajectory!</p>
+</blockquote>
+<p>Wow! How on earth are the models accurate enough to be helpful when that kind of precision is required?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ChrisGnam" target="_blank">ChrisGnam</a>
+			<div class="markdown"><p>The simple answer is that there are a LOT of people working on this, and there have been a LOT of people throughout history who have been working on it.  Mathematicians and physicists for thousands of years have been laying the ground work for a lot of these tools.  </p>
+<p>You have some groups that catalog stars for star tracking, some groups that catalog quasars for Delta-Differential One-way Ranging.  Some who study the moons and planets and create extremely accurate ephemeris data for modeling n-body gravitational effects.  Other groups who carefully monitor the rotation period of the Earth and its nutations so that ground station coordinates can be properly handled.  Still others who very carefully keep track of time to coordinate it all.</p>
+<p>Not to mention all of the incredible engineers who have built all the computers and all the radios.  All the chemists, physicists and mathematicians... </p>
+<p>And I think that's the beautiful thing about it.  These types of things are truly too big for any single individual to perfectly understand all of it.  But it really is a team effort, stretching back to the very first human.  Our collective knowledge, built upon by every generation, is the only thing that makes modern science possible.  </p></div>		</li>
+					</ul>
+		</ul>
+	
