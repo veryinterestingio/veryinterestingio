@@ -1,0 +1,64 @@
+<div class="answers">
+	<div class="answer" data-handle="el64o0w">
+		<a class="author" href="https://www.reddit.com/user/A_Dozen_Aardvarks" target="_blank">A_Dozen_Aardvarks</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Hey TheLordZee!!!</p>
+<p>So the image of the black hole is not a simple optical image like you would take with your camera, or see through your telescope. It’s looking at radio frequency light. </p>
+<p>Now one cool thing we can do in radio astronomy is called interferometery. The tldr of it is that we can use multiple radio dishes far away from each other to act as a single REALLY big radio dish. </p>
+<p>But using multiple dishes causes many issues. Each dish will have different seeing conditions, gain differences, etc. but most importantly, the phase of the radio wave will be different at each dish, which needs to be calibrated to get information out of the measurement.</p>
+<p>So the algorithm focuses on fixing the phases, considering the different seeing conditions, making sure that everything looks good in what’s called UV space in radio astronomy. Additionally, they had to do some really neat additional stuff to tease more information out of the measurements, as their longest baseline ( or furthest telescope distance) provides less angular resolution than what is seen in the image.</p>
+<p>If you have any questions let me know, I’d be glad to help! I’m a Astrophysics PhD student that does a good deal of radio data reduction.</p>
+<p>EDIT: As many people have pointed out, digital cameras do use algorithms. I did not mean to imply they didn’t, but rather that in the case of a Charged coupled device (CCD), it is more straight forward. More on this here...</p>
+<p>An optical image in astronomy is taken using a CCD camera. This is a chip which utilizes the photoelectric effect to obtain an image. Incident photons strike the CCD and ‘knockloose’ an electron. The camera then counts how many electrons are knocked loose at that point and correlates that with an intensity. </p>
+<p>But how does it correlate position on the CCD to position on the sky? The CCD is organized into a pixel grid, say 1024x1024. Each pixel has its own bin which can collect electrons from incident photons. Additionally, every column (some ccds use row separation, but the concept is the same) is isolated with p-doped(?i May have mixed this up, this area isn’t my forte) material to help prevent spill over from pixels side by side to each other. But this does not happen for the row separation. This is why when we see very bright sources in astronomical images, they streak up and down across the image much more than side by side.</p>
+<p>To actually read the pixel counts, the ccd will move each row down one at a time, and the bottom row will be read out by each column entry. Am algorithm can then be used at this point to improve the observation for which ever mean you are trying to use it for. </p>
+<p>To be totally honest, my knowledge of how a phone camera works is minimal and I’m sorry. The joke in astronomy is that people get so specialized that you can walk in a departmental talk about some complicated topic, but only a few people could tell you the order of the planets. :)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="el69hf5">
+		<a class="author" href="https://www.reddit.com/user/yehar" target="_blank">yehar</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The data the black hole image was made of is noisy with different types of errors coming from different sources, and also ambiguous in the sense that more/bigger telescopes would be needed to unambiguously image the black hole. Much work on the algorithm development side must have been to incorporate handling of the noise terms.</p>
+<p>By ambiguous, I mean that even without noise, there would be multiple images that match the data. To overcome this, they tried to find the simplest explaining image (my words) to match the data. They used a number of different algorithms. With the CLEAN algorithm that simplest image is a small set of point sources of radiation, and with their Bayesian approach also more complex natural and synthetic explaining images were considered. The danger with such prior assumed probabilties of what the image is like is that they will see a black hole if they bias the algorithms that way. Much work went into ensuring and testing that the introduced biases would not significantly affect the resulting image. For example, they showed that when they created synthetic telescope data from an image without a central shadow, they did not see a central shadow in what came out from the imaging pipeline. They also found that the algorithms operating on different principles produced essentially the same image.</p>
+<p>Probably that's not all on the algorithm side, considering the amount of data collected and the difficulties associated with handling such a dataset.</p>
+<p>The above is my understanding from viewing Katie Bouman's “<a href="https://www.youtube.com/watch?v=UGL_OL3OrCE" target="_blank">Imaging a Black Hole with the Event Horizon Telescope</a>” Caltech talk published Apr 12, 2019.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="el7ki03">
+		<a class="author" href="https://www.reddit.com/user/phosphenes" target="_blank">phosphenes</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I see a lot of great answers here, but nobody has explained in a straight-forward way what interferometry really is or why you would need an algorithm to make it work. Maybe this will help.</p>
+<p>In the simplest version, let's say you see a pinprick of light out in space. Its source is so far away, and your telescope has such low resolution, that you can't tell if it's one star or two stars- it just looks like a single bright pixel. If you had a bigger telescope, you could see it, but big telescopes are expensive. Instead, you can use two distant small telescopes and light <em>interferometry</em> to simulate a single giant telescope. How? Well...</p>
+<p>Interferometry literally just means measuring interference. Light interferometry is measuring how light waves interfere with other light waves. Light waves have a <a href="http://cmb.physics.wisc.edu/pub/tutorial/ElecSpec_Images/wavelengthL.gif" target="_blank">wavelength, amplitude, peak, and trough</a>, just like ocean waves. If you have two light waves interacting, and their peaks and troughs are <em>in phase</em> (or aligned), the waves have <a href="http://www.phys.uconn.edu/~gibson/Notes/Section5_2/365x367xImage157.gif.pagespeed.ic.2Yh5cpR-Pw.png" target="_blank"><em>constructive interference</em></a> and look like one big wave. If they are out of phase, they have <a href="http://www.phys.uconn.edu/~gibson/Notes/Section5_2/365x285xImage158.gif.pagespeed.ic.PKP76vFjmG.png" target="_blank"><em>destructive interference</em></a> and look like nothing at all. </p>
+<p>Back to our telescope. If the pinprick of light is actually two stars, a single telescope might see something <a href="https://i.imgur.com/bh24JaW.jpg" target="_blank">like this</a> (bad drawing alert) where those wavy lines are the light signals from the stars, and the dotted lines are the single-pixel telescope field of view. In this case, the light from the two stars is in phase, so it has constructive interference, making the telescope see a single brighter signal. It turns out that this signal is indistinguishable from the telescope seeing only only one brighter star <a href="https://i.imgur.com/PZREOyl.jpg" target="_blank">like this</a>. You <em>cannot</em> use this telescope alone to tell if there are one or two stars. But, what if you had another telescope, at a distance from the first one? If you're looking at light from only one star, it would look the same at both telescopes. However, if you're looking at light from two stars, light in phase at one telescope might be out of phase at the other telescope, <a href="https://i.imgur.com/OS29huR.jpg" target="_blank">like this</a>. (This is due to the difference in the distance to the two stars. In my example, the first telescope is the same distance away from both stars, but the second telescope is sliiiightly closer to the star on the right.) The important thing is that there is a <em>difference</em> between what one telescope sees and what the other one sees, and you can use that difference to see things that are otherwise too small to see. Then you use the algorithms to translate that difference back into an image.</p>
+<p>Of course, in real life and the actual EHT black hole image, there are more than two point light sources, there are many telescopes involved, the Earth is moving, and a hundred other factors, so the algorithms get much more complicated. Also, their light wave measurements are not in the visible spectrum, but in the radio spectrum. (Radio waves can actually image the black hole shadow, and are easier to process using interferometry because of their long wavelengths.) However, this process, precisely measuring the phase differences between telescopes and then using that difference to infer an image, is still the process used.</p>
+<p>/u/A_Dozen_Aardvarks, I'm still trying to understand interferometry in the wake of the EHT image. Does this seem about right to you?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="el6sklu">
+		<a class="author" href="https://www.reddit.com/user/crusoe" target="_blank">crusoe</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The object is so far away to resolve it would require a radio telescope the size of the Earth...</p>
+<p>&#x200B;</p>
+<p>Now, of course, this is impossible to build. At least one giant dish anyways...</p>
+<p>&#x200B;</p>
+<p>But you can use many smaller telescopes around the earth to act as one large one, but you need to use interferrometry. You basically can simulate one LARGE lens use much smaller ones far apart. But to do this you need the distance to each lens, the phase of the radio waves when it reaches them, and very accurate timing information. Once you have this, then you can use math to emulate what one GIANT lens would see.  </p>
+<p>On top of this you also have to deal with noise, and a whole bunch of other issues.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="el6yic0">
+		<a class="author" href="https://www.reddit.com/user/chumswithcum" target="_blank">chumswithcum</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>So, the radio telescopes used to take the image are spread all over the earth, and the radio waves from the black hole will arrive at each one at a slightly different time. There is also a lot of noise on the same bandwidths flying around too.</p>
+<p>The algorithm basically tossed out all the noise, and synced the radio telescopes, so the astronomers could focus the image, turning all of the individual telescopes into one very large telescope with a dish diameter the size of the earth. Very fancy piece of kit indeed.</p>
+<p>The reason there was petabytes of data to sort through, is that there is a <em>lot</em> of noise. Imagine trying to focus a camera on a star outside our solar system during the middle of the day when the light from the sun makes it nigh impossible to see any other stars in the sky. The light from the stars is still there, but you have to throw away all the light from the sun before you can see it.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
