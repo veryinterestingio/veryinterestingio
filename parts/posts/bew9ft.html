@@ -1,0 +1,81 @@
+<li class="post" data-handle="bew9ft">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/bew9ft/cpus_have_billions_of_transistors_in_them_can_a/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/bew9ft" onclick="return false">CPUs have billions of transistors in them. Can a single transistor fail and kill the CPU? Or does one dead transistor not affect the CPU?</a>
+		</h2>
+		<!--<span class="date">2019-04-22</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>CPUs ang GPUs have billions of transistors. Can a dead transistor kill the CPU?</p>
+<p>Edit: spelling, also thanks for the platinum! :D</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="elb1daz">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="el9ngzl">
+		<a class="author" href="https://www.reddit.com/user/ZachofArc" target="_blank">ZachofArc</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I actually work for AMD and work on the test team, so I might be able to provide some insight!! As a lot of people said before, there are different bins, or SKUs you see, like the i7, i5, i3, they are in fact the same exact silicon, just with things disabled because they may not have worked. For example, if one of the cores doesn’t work, they can just disable another one, and instead of having an 8-core processor, they can sell it as a 6-core. Aside from disabling cores, another common place you see faulty transistors, are within fast internal memory called cache. Processors usually have a few Mb of cache, it’s common for some of the cache cells to be dead upon manufacturing, so manufacturers build some backup cache cells. And when running tests, we can find those dead cells, and reroute those dead cells to the new ones. So when a processor tries to write to a cache address that is dead, there is some microcode internally that reroutes it to the newly assigned back up cache cell. It is possible too that there is enough cache cells that are dead that they end up having to drop the bin from an i7 to an i5 for example.</p>
+<p>Also, there are a lot of transistors, and full circuits that are used simply for testing, and will never ever be used once the processor is on the shelf ready for someone to buy. These are called Design For Test features, or DFT.  An example of one of these are some structures called ring oscillators, which are basically really fast operating clocks, and their frequency can be affected by a lot of things, like heat and the health of the silicon. These are scattered all around the silicon at different points, and the frequency can be measured as another metric to heat at various parts of the silicon, as well as the health of the silicon at various parts, and they can also be averaged as another metric to gauge the overall health and possible operating frequency of the entire processor. However, they will never have any use once the processor is ready to be sold, and it’ll actually be impossible to access them.</p>
+<p>So really to answer your question, a lot a lot a lot of testing goes in to making sure your processor is ready to go for all of your gaming or workstation needs. It would be rare for a transistor to die, it probably wouldn’t affect you much though unless it was a very very critical part, and it could take a long time for that dead transistor to mess up your computer.</p>
+<p>EDIT: Thanks for my first silver!!</p>
+<p>EDIT 2: 2x Gold??? Thank you!!!</p>
+<p>EDIT 3: Amazed at how interested people are about this. I have been trying to answer as many questions as possible, but im currently at work! Happy to see people are genuinely interested in very low level details of processors. I am happy to share my knowledge because I dont really talk about any of this with my friends or family!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="el9fmn8">
+		<a class="author" href="https://www.reddit.com/user/Xajel" target="_blank">Xajel</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are multiple factors there.</p>
+<p>First, chips are made out of a single large wafer. Usually, each wafer (currently most famous ones are 300mm in diameter) will make tens to hundreds of chips depending on the die size. The smaller the die, the more chips you can make.</p>
+<p>So a large die like a big GPU will need a lot of space on the wafer, the whole wafer which cost can be anything between $3K to $12K depending on quality and the target process required will have much fewer chips than a small die chip like a mobile SoC. for GPU's you might get something like 150\~170 320mm² high-end GPU's out of a single wafer, but smaller low-end GPUs are designed to be small, so you can get hundreds of them on a single wafer. A typical low-end GPU might be 77mm² which will give you roughly 810 dies. So this is one reason why a high-end product which tends to be large as it much more expensive to make, here you can see almost 5 folds the number of chips per the same wafer for just different die size.</p>
+<p>Then you have things called yields and defects. But let's start with defects as it's just a sad part, while they always make these chips in very clean rooms, small defects particle will still find it's way into those wafer while in the making. So let's assume that 30-40 small dust particles stuck on the wafer, on the large dies, the high-end ones, this will basically make at most 40 dies not working properly, so out of those 150 dies, you can get only 100\~110 working chips. While on the smaller dies, you already have 810 chips, so you might get away with 760 chip already.</p>
+<p>&#x200B;</p>
+<p>That's why, while making chips, especially large ones, the designers will make the design flexible, they can completely disable parts of it and still make use of the chip, this can work like magic for things that contain a lot of similarly designed blocks, like GPU's, or Multi core CPU's, as when a defect is affecting a part of the GPU cores/shaders, or the CPU cores you can just disable that part and things will work. But if the defect happens to a crucial part that the GPU/CPU can't just work without it (like the scheduler) then that chip will be dead.</p>
+<p>&#x200B;</p>
+<p>Some times, the chip designer will intentionally make extra logic just to increase the working chip yields, or they will just assume having less than the actual hardware logics so they can increase the yields of qualified chips. For example the PS3 Cell processor actually have 8 logics called SPE, but the requirement for the PS3 is just 7 SPE's, so and chip with at least 7 SPE's working is qualified to to be tested (other factors includes clocks, power, temps, etc..). This made chips that have either 7 or 8 working SPE's are qualified which will be much better yields than only 8 working SPE's.</p>
+<p>&#x200B;</p>
+<p>For other consumer grade products, partially defective chips can also be sold under other product segments. for example GeForce 1080, 1070 &amp; some 1060 are all based on the same die called GP104, while the larger die called GP102 is used to make the 1080Ti, Titan X, and Xp. The GP104 is the same chip here, just the 1070 is using a partially defective chip, so NV just disabled some shaders and other logics and re-used the chip as 1070. If the chip contains more defect, it can be disabled also and used as 1060 as well.</p>
+<p>&#x200B;</p>
+<p>The same can be applied to CPU's, now CPU's have many cores, and we have many segments also, so if a CPU die have one or two Cores not working properly then it can be used for a lower segmented CPU. Both Intel and AMD do this actually, some i5's are using a partially defective i7 die actually.</p>
+<p>&#x200B;</p>
+<p>But some times the die might not be defective, it might be working, but it's of a low quality one, this is called binning, usually on the wafer, the dies closer to the center have better quality or to say characteristics than the ones which are on the edge, these qualities are like ability to work faster using lower voltage/power/temps, better overclockability. etc.. This what make it different for products like an i7 8700K and a regular i7 8700, or like Ryzen 7 1800X and Ryzen 7 1700X or Core i5 9600K and Core i5 9400, Both are the exact same chips but the former can be clocked higher on stock while maintaining the required voltages, temps and power consumption, or it can also overclock better too, some differences can be small like Ryzen case but some differences can be big like the i5 case where the product is marketed with a different name.</p>
+<p>Edit: small corrections (including the main typo: the wafer diameters 300mm not 300m), and the Ryzen example.  </p>
+<p>Hell thanks alot for those Silver, Gold &amp; Platinum !! all are my first ever !.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="el97d4k">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="el93jpv">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/bew9ft" onclick="return false"><span>show</span></a>
+</li>
