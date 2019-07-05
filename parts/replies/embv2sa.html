@@ -1,0 +1,122 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MuaddibMcFly" target="_blank">MuaddibMcFly</a>
+			<div class="markdown"><blockquote>
+<p>They are storing a hash of your password, which is (ELI5) basically like an encrypted version of your password that can't be decrypted</p>
+</blockquote>
+<p>an ELI5 version of them storing hashes would be that they don't store the key, they store the lock.  Then, when you offer a new password, they try it against the last 5 locks they have, and if opens one of them, they tell you to try again.</p>
+<p>They can't see what key <em>will</em> work by looking at the lock, only whether a particular key opens it or not.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Revelt" target="_blank">Revelt</a>
+			<div class="markdown"><p>This is good.</p>
+<p>But I have a qn. If most people just keep adding digits to the end, doesn't that compromise the encryption key?</p>
+<p>Like I could go through the last 5 passwords of increasing lengths and check if it's 1, 12, 123, 1234, 12345?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ianepperson" target="_blank">ianepperson</a>
+			<div class="markdown"><p>Yes and no. </p>
+<p>Yes, because if I figured out your password once, I could figure out out again. </p>
+<p>But really no. The way these hashes work, even a small change will give in an entirely different result completely unrelated to the previous password result.   They are as different as if you changed every letter.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SteelRevanchist" target="_blank">SteelRevanchist</a>
+			<div class="markdown"><p>Hashing is essentially a function. You have an input, and it gives you an output of a fixed length. Potentially, there's an unlimited amount of inputs, but a finite number of outputs. </p>
+<p>&#x200B;</p>
+<p>Whenever you're making a hash (using a comprimation function, which is common nowadays), you're taking the input, splitting it to evenly sized chunks and you run them through the function, and you do some operations so that they influence each other. In short - the size of the key, input, or whatever you want to hash does not matter, the output is always a fixed length.</p>
+<p>&#x200B;</p>
+<p>Theoretically there are multiple inputs (also given the inputs can have an infinite length) that share the same length, so you could log in using a completely different password, but given how many possible hashes there are, it's almost impossible to do so, and that's enough for security.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Delioth" target="_blank">Delioth</a>
+			<div class="markdown"><p>Hashing outputs a fixed length. No matter what you put in, your hashed password will be (e.g.) 30 characters long. There shouldn't be any information exposed based on length.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bossfoundmyacct" target="_blank">bossfoundmyacct</a>
+			<div class="markdown"><p>I wish I was this good at analogies.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SummerPop" target="_blank">SummerPop</a>
+			<div class="markdown"><p>Heisenberg's key and locks.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Pausbrak" target="_blank">Pausbrak</a>
+			<div class="markdown"><p>One would hope, but as Adobe showed us six years ago, <a href="https://nakedsecurity.sophos.com/2013/11/04/anatomy-of-a-password-disaster-adobes-giant-sized-cryptographic-blunder/" target="_blank">even massive corporations that are household names can get it wrong</a>.  Turns out modern encryption algorithms are weak against the kind of attacks generally used against password databases (especially if you misconfigure them like Adobe did).  Remember kids, always use a dedicated password hashing algorithm like Bcrypt, Scrypt, or Argon2.  They're industry standards for a reason.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ender505" target="_blank">Ender505</a>
+			<div class="markdown"><p>And no matter how well your passwords are hashed, if your password is even remotely common, it is probably no good. Check out haveibeenpwned.com to verify your password integrity against databases of cracked passwords and emails.</p>
+<p>Edit for the dozens asking: </p>
+<p>The makers of haveibeenpwned are the public figures. If you don't trust the site, good, but do some research to find out why it can be trusted.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RealMcGonzo" target="_blank">RealMcGonzo</a>
+			<div class="markdown"><p>Somebody change the combination on my luggage!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tyler1128" target="_blank">tyler1128</a>
+			<div class="markdown"><p>Salts can make that not quite true, as long as it is above \~8-10 characters</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MightyPirate1" target="_blank">MightyPirate1</a>
+			<div class="markdown"><p>So if I find my e-mail is &quot;Pwned on 6 breached sites and found no pastes&quot;, what does that tell me, and what should I do?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/keboh" target="_blank">keboh</a>
+			<div class="markdown"><p>And a lot of reputable companies still do store plain text passwords in their DBs. </p>
+<p>Source: work experience.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sterob" target="_blank">sterob</a>
+			<div class="markdown"><blockquote>
+<p>reputable companies </p>
+</blockquote>
+<p>Try multinational organizations and governments</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/alanwashere2" target="_blank">alanwashere2</a>
+			<div class="markdown"><p>Yup. </p>
+<p>Source: You hear about it all too often in the news.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Grantagonist" target="_blank">Grantagonist</a>
+			<div class="markdown"><blockquote>
+<p>but as Adobe showed us</p>
+</blockquote>
+<p>No no, he said <em>reputable</em> company.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/beamer145" target="_blank">beamer145</a>
+			<div class="markdown"><p>Yeah, till you get messages like &quot;your new password is too similar to your old password&quot; .... (unless they automatically run hash checks on some simple variations of your password there is no way they can know that unless they store the old passwords)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/awoeoc" target="_blank">awoeoc</a>
+			<div class="markdown"><p>I've seen hashes of slight variations being used, for example: replacing the last number with the one before so</p>
+<p>Hunter2 -&gt; check for Hunter1 to see if that matches an old hash.</p>
+<p>It's something I'd implement in any system that forces users to change passwords after time so they don't just try incrementing a value. But also... I'm against forced password changes as it just leads to lazy passwords being used.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Strange_Bedfellow" target="_blank">Strange_Bedfellow</a>
+			<div class="markdown"><p>Me too. We have to change ours every 3 months. I usually set mine to a line from a song that I like. It's 30+ characters and easy to remember, but please let me just stick to one password</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MeoMao555" target="_blank">MeoMao555</a>
+			<div class="markdown"><p>Wouldn't that be remarkably computationally intensive? </p>
+<p>Password hashes are meant to be expensive to compute, and you need a few hundred variations only to cover the basics (e.g. 1 character being different).</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Xytak" target="_blank">Xytak</a>
+			<div class="markdown"><blockquote>
+<p>It's something I'd implement in any system that forces users to change passwords after time so they don't just try incrementing a value</p>
+</blockquote>
+<p>Sir you leave me no choice but to write my password on a sticky note taped to my monitor.   I have a hard enough time remembering passwords as it is!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tbellthrowaway" target="_blank">tbellthrowaway</a>
+			<div class="markdown"><p>Almost every password change form I've used required me to enter my old password. That wouldn't require any storage of raw passwords to compute similarity.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RedSpikeyThing" target="_blank">RedSpikeyThing</a>
+			<div class="markdown"><p>For the last version sure, but I've seen some that store all of your previous passwords.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/alexmbrennan" target="_blank">alexmbrennan</a>
+			<div class="markdown"><blockquote>
+<p>there is no way they can know that </p>
+</blockquote>
+<p>Users typically have to enter their old password before they are able to choose a new password so there is no need to store the old one password - just compare the new password to the old password you just entered.</p></div>		</li>
+					</ul>
+		</ul>
+	
