@@ -1,0 +1,36 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Cerus-" target="_blank">Cerus-</a>
+			<div class="markdown"><p>Then wouldn't you be able to use the old password to log in?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jayrocksd" target="_blank">jayrocksd</a>
+			<div class="markdown"><p>If an administrator changes their password for no reason then yes for a limited time. Usually administrators change passwords because the account password is expired or is locked out due to several bad login attempts. When a user changes their own password it gets changed against their own directory server and the authoritative server. </p>
+<p>Now if someone has hacked an account and you change the password, the old password will continue to work for a short time. Passwords are just inherently not very secure and where sensitive data is in play additional factor authentication is much better.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MapleBlood" target="_blank">MapleBlood</a>
+			<div class="markdown"><p>What are you actually talking about? What backwards system does <em>that</em>, effectively allowing timing attacks, instead of simply ensuring all directory replicas are in sync?</p>
+<p>Care to explain better?</p>
+<p>(you have me in awe and I configure authentication and authorisation systems on a daily basis)</p>
+<p>PS How does your answer even relates to the actual question?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rabid_briefcase" target="_blank">rabid_briefcase</a>
+			<div class="markdown"><blockquote>
+<p>What are you actually talking about? What backwards system does that, ... instead of simply ensuring all directory replicas are in sync?</p>
+</blockquote>
+<p>Lots of systems do that, actually, including what you probably have running on your desktop, laptop, or tablet.</p>
+<p>For example, if your computer is currently offline when you sign in, but your computer is part of a domain, that will happen as the grandparent described.</p>
+<p>The laptop, tablet, or other device may be offline and therefore cannot immediately authenticate against the authoritative servers. So instead it uses the cached, hashed passwords from the previous versions.  It is possible you have changed your password on the authoritative server but the offline machine doesn't know that.  There isn't a timing attack because it only allows on successful passwords, failed passwords follow the model of delays and lockouts.</p>
+<p>There are software policies on all the major operating systems that <em>can</em> disallow logins for anything but a local administrator in that scenario, but even then, that is subject to the exploit of stale passwords until reconnecting.  The security policy upon reconnecting can also vary.  Based on policy you can allow the sessions with the stale credentials to update themselves, or the machine can invalidate the credentials and lock the user out until they use the new passwords, or many options in between.</p>
+<p>It would be nice if you could always authenticate back to authoritative servers, but real world constraints mean the local client can cache the password hash, allowing you to log in immediately (and log in when offline) without waiting for everything across the network to also be updated, as the grandparent post described.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/notFREEfood" target="_blank">notFREEfood</a>
+			<div class="markdown"><p>How does this allow for timing attacks?  If you want to prevent a timing attack you need to have a consistent response time in case of an incorrect password or username.  In these systems a failed login is treated as a cache miss locally, which means that you won't be able to tell the difference between incorrect credentials and them not being stored on whatever local system you are authenticating against.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jayrocksd" target="_blank">jayrocksd</a>
+			<div class="markdown"><p>How can you have a globally distributed directory service where all changes are immediately synchronized across all directory servers? Realistically you can’t. Usually there will be some attributes that don’t need to replicate urgently, some that do, and some like password hashes that need to be globally available immediately. I know for Azure AD the way this works is that if a directory server fails a password authentication attempt it rechecks the hash against the PDC emulator which is the server where all password changes are made. AD has always worked that way and still does in Azure. I don’t know how AWS works but instantaneous replication of password changes across geographically dispersed data centers isn’t practical.</p></div>		</li>
+					</ul>
+		</ul>
+	
