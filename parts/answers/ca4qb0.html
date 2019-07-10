@@ -1,0 +1,90 @@
+<div class="answers">
+	<div class="answer" data-handle="et5ynfm">
+		<a class="author" href="https://www.reddit.com/user/MutantGodChicken" target="_blank">MutantGodChicken</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Ok, so:</p>
+<p>There are certain memorable dates in every year that land on the same day of the week they are:</p>
+<p>4/4, 6/6, 8/8, 10/10, 12/12, 9/5, 5/9, 7/11, 11/7, and the last day of February (even if it's a leap year)</p>
+<p>For example: in 1994 they were all Mondays, in 2003 they all landed on a Friday, and this year they land on a Thursday </p>
+<p>The day of the week that these dates land on for any given year is called that year's &quot;doomsday&quot; (i.e. Monday was 1994's doomsday)</p>
+<p>Now that you have memorized lots of days throughout the year that all land on the same day as each other, you can count the number of days between the closest date and the date you want to find and take the remainder after dividing the difference by 7. Then add that number to the doomsday and you have the day of the week </p>
+<p>For example: Let's say you wanted to find the day of the week for July 15th 1994. Knowing that June 6th 1994 is a Monday, you can find the difference between July 15th and June 6th (39 days.)</p>
+<p>Now divide by seven (for seven days of the week) and take the remainder. 39/7=5 remainder=4. </p>
+<p>Now it helps to think of days of the week as numbers (Sunday=0, Monday=1, Tuesday=2, etc.) </p>
+<p>If you add the remainder to the value of the doomsday (in this case Monday=1 and 1+4=5) then the sum will be the value of the day of the week on July 15th 1994 (in this case it was a Friday)</p>
+<hr />
+<p>Now we know how to find the day of the week given the doomsday of a year, but what if we don't know the doomsday.</p>
+<p>To find out we first start off with anchor days, which are like doomsdays, but for centuries instead of years. (In the algorithm centuries are defined by '00-'99) </p>
+<p>1800-1899's anchor is Friday, 1900-1999's is Wednesday, 2000-2099's is Tuesday, and 2100-2199's will be Sunday. </p>
+<p><strong>EDIT:</strong> according to u/LimjukiI finding the doomsday is much easier. </p>
+<p>If the last two digits of a year =y (so 1937 would be 37=y) then you do as follows </p>
+<p>y + (y/4) </p>
+<blockquote>
+<p>So 37/4 = 9 (you always round down)</p>
+<p>9+37=46</p>
+</blockquote>
+<p>then take the remainder when dividing by 7</p>
+<blockquote>
+<p>46/7=6 remainder: 4</p>
+</blockquote>
+<p>And add the remainder to the value of the anchor day</p>
+<blockquote>
+<p>4 + 3 = 7</p>
+</blockquote>
+<p>Then divide by 7 and take the remainder again</p>
+<blockquote>
+<p>7/7=1 remainder: 0</p>
+</blockquote>
+<p>And the remainder is the value of the doomsday (in this case Sunday)</p>
+<hr />
+<p>Now you can use that to calculate the day of the week for any day in 1937 just like we did with 1994 earlier.</p>
+<p>Hope this makes sense!!! and remember that any date before Thurs. September 14th, 1752 needs a modifier due to the Julian --&gt; Gregorian switch</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="et6ekn6">
+		<a class="author" href="https://www.reddit.com/user/PeterfromNY" target="_blank">PeterfromNY</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Can someone explain what is the meaning of &quot;doom&quot; in doomsday?  It doesn't seem to be related to &quot;the last day of the world's existence&quot;.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="et6aekl">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="et68pse">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="et6asym">
+		<a class="author" href="https://www.reddit.com/user/xelainc" target="_blank">xelainc</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Okay, I feel like every answer so far has been confusing (this is sub is intended for 5 year olds, theoretically). I spent the last hour trying to learn the algorithm and I’ll try to explain it as simply as I can.</p>
+<p>Let's begin.</p>
+<p>1) Memorize that Sunday is 0, Monday is 1, Tuesday is 2, Wednesday is 3, Thursday is 4, Friday is a 5, and Saturday is 6. Pretty basic stuff.</p>
+<p>2) Know that each century has an anchor date (sort of like a reference point) that goes through a 4-century cycle. Memorize that the anchor date for the time period 1800-1899 is Friday, 1900-1999 is Wednesday, 2000-2099 is Tuesday, and 2100-2199 is Sunday.  Like I said, it repeats every four centuries. So 2200-2299 is Friday, 2300-2399 is Wednesday and so on. </p>
+<p>3) Here is the actual algorithm. Let’s use the date 5/19/1930 as our example. </p>
+<p>i) <strong>How many time does 12 fit into the last two digits of our number</strong>, 1930? Well, 12 <em> 2 is 24 and 12 </em> 3 is 36, so the answer to that question is 2.</p>
+<p>ii) <strong>What is the remainder of the last two digits of the year when we divide by 12?</strong>? We have 30 - 12 * 2  which gives us 6. </p>
+<p>iii) <strong>How many times does the number four fit in the answer from (iii)</strong>? Well, 4 fits into 6 one time because 4 <em> 1 is 4 and 4 </em> 2 is 8.</p>
+<p>iv) Remember how in step 2 I said you had to memorize <strong>the anchor date</strong>? Since we’re looking at the year 1930, which is in 1900-1999, we say that the anchor date is a Wednesday. Now remember how in step 1 I said we had to memorize the number version for each day of the week? Well, Wednesday is 3.</p>
+<p>v) <strong>Add all yours answers from (i), (ii), (iii), and (iv)</strong>. In our example, we get 2 + 6 + 1 + 3 which is 12.</p>
+<p>vi) Almost done! <strong>What is the remainder when you divide the number in (v) by 7</strong>? Well, 12 / 7 is certainly not a whole number. To find the remainder, just find how many times 7 goes in 12, which is 1, and subtract 1 * 7 from 12. So, 12 - 7 gives us 5, the remainder. Turn 5 into a day of the week which we use step 1 to do. 5 gives us Friday. We have just found the doomsday for the year 1930. It is Friday.</p>
+<p>4) Wee! Last step! Now how do we go from the doomsday to the date in question? Well, we first have to memorize that the following dates are <strong>doomsdays: 2/28 or 2/29 (if date in question is during leap year),  3/7, 4/4, 6/6, 8/8, 10/10, 12/12, 7/11, 11/7, 5/9, and 9/5</strong>. Now, apparently there are some other, more specific dates, that are doomsdays, like July 4th and Halloween. </p>
+<p>Well, what you want to do now, is find the nearest doomsday for your date in question. Our example was 5/19/1930. We already found the doomsday for 1930, Friday. Now we think to ourselves, <strong>“what’s the nearest doomsday to our date?</strong> Well, we had to memorize that 5/9 was a doomsday, and it seems like it’s the closest one to 5/19. So we say that 5/9 is Friday, our doomsday for 1930. Then we use basic calendar skills to say that 5/16 is Friday, so 5/17 is Saturday, 5/18 is Sunday, and finally, 5/19 is Monday!</p>
+<p>We are done! 5/19/1930 was a Monday! That’s how you use the Doomsday Algorithm to find any day of the week for a date in mind! Neat stuff!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
