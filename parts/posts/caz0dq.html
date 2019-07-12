@@ -1,0 +1,81 @@
+<li class="post" data-handle="caz0dq">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/caz0dq/how_does_your_phone_gauge_the_wifi_strength/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/caz0dq" onclick="return false">How does your phone gauge the WiFi strength?</a>
+		</h2>
+		<!--<span class="date">2019-07-12</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>What's the reference against which it compares the WiFi signal? And what does it actually measure?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="etc6hnv">
+		<a class="author" href="https://www.reddit.com/user/BazzahChuckle" target="_blank">BazzahChuckle</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>/u/baseball_mickey said how the phone’s hardware actually converts the raw data (I think), I’ll tell you what your phone is trying to actually measure.</p>
+<p>Measuring WiFi strength is the same as measuring phone signal. It’s done by measuring the actual wattage the phone is picking up. </p>
+<p>In the case of wireless signal and phone signal for that matter, it is measured in dbm (decibel milliwatt). Your phone will pick up how strong the wattage is and put it through the formula ‘10 x log10(P(w)) + 30’. Due to how logs work, wireless and phone signal strengths actually come out as negatives as the wattage is so small. (think of the log10 graph and sorta picture a really small x value. It’s going to be negative)</p>
+<p>Using this formula and a standard wireless signal strength (0.00000001w - this is how weak signal generally is lol) we can see that a signal strength with that wattage would be -50dbm. </p>
+<p>Because the conversion uses a log of base 10, just add an extra 0 for each ten dbm you go down (negative). And vice versa.</p>
+<p>For wireless anything more than -65dbm is going to give full bars (Definately for iPhone, I’m not sure about other models, should be about the same though). In the range of -65–&gt;-80 is going to be 2 bars or middle. Then after -80dbm it’s looking bleak. </p>
+<p>Ultimately, it all varies on how sensitive your phone is I.e. how much power it can pick up. Some phones will have a stronger signal than others, while being in the same position. That’s just because they can pick up that wattage better. </p>
+<p>So yeah don’t have any knowledge on how the actual hardware in the phone measures watts, but my boy mickey gotchu on that part.</p>
+<p>P.s. on phone so sorry for shit grammar</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="etc2nb3">
+		<a class="author" href="https://www.reddit.com/user/baseball_mickey" target="_blank">baseball_mickey</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There is a whole class of circuits to measure signal strength. Likely they are using an <a href="https://www.edn.com/electronics-products/electronic-product-reviews/other/4442820/RMS-detector-computes-real-power-of-an-RF-signal" target="_blank">rms (root-mean square) detector</a> of some type. You can also use a peak detector, but that tends to be inaccurate for high peak-to-average signals. There are other level detection circuits as well.</p>
+<p>What do those measure against? There is another whole class of circuits that are built to utilize a physical property of silicon, the <a href="https://en.m.wikipedia.org/wiki/Bandgap_voltage_reference" target="_blank">bandgap voltage</a>. Most electronic components are built to 5-10% tolerance because they are really small, but bandgap circuits can be much more accurate.  Often designers will use the bandgap and then a ratio of inaccurate components to maintain an accurate measurement - assuming the inaccuracies track, which is sometimes a safe assumption. Bandgaps are an old class of circuits and are incredibly useful for all types of measurements or just having reasonable values in your circuit.</p>
+<p>Another point: there is a lot of variable gain in an RF receiver, so the signal detector either measures before the gain is adjusted, or it accounts for the gain adjustment.</p>
+<p>I might have gone beyond what you were asking, but the circuits measure voltage levels inside the WiFi receiver integrated circuit.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="etc5ehy">
+		<a class="author" href="https://www.reddit.com/user/robbak" target="_blank">robbak</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>As you are probably aware, WiFi strength is listed in dBm, and the decibel is a comparison of two values.</p>
+<p>In the case of WiFi, that 'm' in 'dBm' stands for 'milliwatt' - the reference value is 1 milliwatt. A transmitter outputting 1mw of power would list that as 0dBm. A 100 milliwatt wifi transmitter (typical) would show as 20dBm. A typical -40dBm measurement at a phone would mean the antenna is capturing 0.0001 milliwatt, or 0.1 microwatts.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="etc91ux">
+		<a class="author" href="https://www.reddit.com/user/kunstlinger" target="_blank">kunstlinger</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It depends solely on the software implementation but there are three major components of the quality of a wireless connection.</p>
+<p>&#x200B;</p>
+<p>1)RSSI - received signal strength indicator </p>
+<p>2) SNR - signal to noise ratio</p>
+<p>3) Data rate.  </p>
+<p>&#x200B;</p>
+<p>A higher data rate is directly proportional to SNR, which is directly proportional to RSSI given a fixed background noise of -90dB,.  The tricky part is when the floor noise (background noise) is higher than -90 meaning there is a source of interference, which will lower your signal to noise ratio which will cause most wireless protocols to negotiate at a lower data rate.  </p>
+<p>&#x200B;</p>
+<p>From there, the software on the phone decides how to display the signal strength as a ratio of those three values.  Some bias towards RSSI directly, some gauge it as SNR, and some are a  mixture of RSSI/SNR, and some combine all three metrics of RSSI. SNR, and negotiated data rate to deliver a more robust wireless score.</p>
+<p>&#x200B;</p>
+<p>But when you're analyzing a signal you have to measure those three components.  A good SNR and a good RSI are somewhat meaningless if your device negotiates to a low data rate- but that's an entirely different conversation.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="etc8m1u">
+		<a class="author" href="https://www.reddit.com/user/humorous_" target="_blank">humorous_</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Your phone is looking at a combination of something called RSSI (received signal strength indication) and SNR (signal to noise ratio) to determine the integrity of your WiFi connection. RSSI is simply a measure of wideband power (i.e. the RF energy of the wifi signal you want as well as any noise or interference) and SNR is a measure of how much noise/interference is present versus legitimate wifi signal.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/caz0dq" onclick="return false"><span>show</span></a>
+</li>
