@@ -1,0 +1,42 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/-Infinite92-" target="_blank">-Infinite92-</a>
+			<div class="markdown"><p>Also on digital music players like itunes, youtube, foobar 2000, etc, the volume slider works by changing the amounts of bits being sent out to the amplifier. I dont know the exact formulas used, but basically it removes loudness data similar to what compression can do to increase percieved volume in music. This means if you always listen to those players with the volume sliders turned down, you are actually missing some minor bits of data from the sound itself. This is why most audiophiles, who have setups that could notice this, suggest always keeping those sliders at max volume and instead using an analog volume adjustment instead, like on an amplifier. Since those work as everyone has already said here by just controlling the flow of voltage, so no data loss at low volume.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/THENATHE" target="_blank">THENATHE</a>
+			<div class="markdown"><p>I have noticed this with one of those FM bluetooth car radio things that the audio quality is considerably lower if I put my phone at half volume and crack the stereo up versus really high quality if I keep the phone at full volume and the stereo lower.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VCAmaster" target="_blank">VCAmaster</a>
+			<div class="markdown"><p>Gain-staging of that sort (going out of a device to be amplified again by another device) is important in all sorts of connections (aux, tape adapter, etc)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dmilin" target="_blank">dmilin</a>
+			<div class="markdown"><p>That’s actually a little bit different. When you turn down your phone, the phone is sending out an analog electrical signal with decreased amplitude. When the converter converts this to a radio signal, the resulting radio signal also has decreased amplitude. Because those FM adapters sent a pretty weak signal in the first place, losing even more signal strength is pretty significant. So the reason it sounds bad when you turn it down is because of a crappy signal, not lost bits of data.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LeoRidesHisBike" target="_blank">LeoRidesHisBike</a>
+			<div class="markdown"><p>That's not true. The way digital volume works is by running a scale transform on the digital waveform. It's not that fewer bits are sent, it's that different bits are sent that represent quieter sounds.</p>
+<p>Volume scaling happens very late in the audio pipeline, so it doesn't &quot;cut off&quot; anything unless the levels clip.</p>
+<p>The reason that audiophiles who claim they can hear this (as a side note it would be interesting to see a proper double-blind experiment that shows they actually can) <em>might</em> be able to is because any transform at all is necessarily lossy. I.e. if you scale down, you have to sample (like shrinking a digital image), and if you scale up, you have to multiply (like blowing up a digital image).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ImprovedPersonality" target="_blank">ImprovedPersonality</a>
+			<div class="markdown"><p>Is there another way for an individual program to change its volume except by multiplying its audio data? If you multiply with &lt;1 and convert back to an integer you'll lose data. Overall volume can be adjusted via digital or analog gains.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/space_fly" target="_blank">space_fly</a>
+			<div class="markdown"><p>Technically, it's quite simple. Audio is typically encoded in PCM, which is a series of numbers indicating the position of the speaker cone at a each moment in time (these numbers are called &quot;samples&quot;). A commonly used sample rate is 44.1khz, which means that there is one of these numbers for each 1/44100th of a second.</p>
+<p>The numbers themselves can be encoded in various ways, the most common being 16-bit integers (a number between 0 and 65535), 24-bit integers (a number between 0 and ~16 million) and 32-bit integers (a number between 0 and ~4 billion).</p>
+<p>The simplest way to change volume is to multiply all these numbers by a constant between 0 and 1, for example 0.5 for 50% volume. This will result in finer movements of the speaker cone, which will result in less volume.</p>
+<p>Theoretically, there is a small loss of information when you reduce the volume from software, because of how the numbers are encoded. Unless you are using floating point samples (rarely used outside professional audio/music production), you lose some bits when reducing volume. For example, for 16-bit samples at 50% volume, it means that you are reducing the range from 0..65535 to 0..32767, so you basically lose 1 bit. At 25% volume, you reduce the range from 0..65535 to 0..16383, so you lose 2 bits. At 12.5% volume, you lose another bit for a total of 3, and so on.</p>
+<p>If your music is encoded with 16-bit integers, you might notice a very small quality drop when significantly reducing volume (i.e. below 10% of original audio). At 24-bit and above, you probably won't notice anything.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/-Infinite92-" target="_blank">-Infinite92-</a>
+			<div class="markdown"><p>Well said, I'm familiar with the audio world as a hobby (drummer and audiophile), but thanks for breaking it down further and with more technicality. Ultimately of course nobody can really hear this bit loss, if they did it wouldnt such a commonly used part of software. I remember I first read about this years ago when looking into using foobar and people explaining why you shouldnt use the built in volume slider below 50%. Of course those people were hardcore audiophiles lol, so to them even one bit lost is like the end of the world despite not being audible. As far as I can tell it seems like you gotta go below 12 bit to really be upset with the quality no matter who you are. I mean most of my music is all ripped from my CDs in 16/44, with only a few albums in 24/48 or above. </p>
+<p>Still technically the volume slider does affect the amount of bit data, no matter how small, and that was ultimately the point I wanted to make in the first place since nobody else in the thread really explained that part of how software volume sliders work.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
