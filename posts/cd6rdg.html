@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>How do computers simulate randomness?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="cd6rdg">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/cd6rdg/how_do_computers_simulate_randomness/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/cd6rdg" onclick="return false">How do computers simulate randomness?</a>
+		</h2>
+		<!--<span class="date">2019-07-17</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>How do computers simulate randomness?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="etryoxl">
+		<a class="author" href="https://www.reddit.com/user/zapatoada" target="_blank">zapatoada</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For the most part, we use pseudo random number generators, which work by doing a math formula on a seed number. Most commonly, the seed is all or part of the system clock time, but in most implementations you can also provide a seed if you want. </p>
+<p>An interesting side effect of this is if you provide the same seed, you'll get the same results. There are times that's desirable, but usually you just let the system use its default method of obtaining a seed.</p>
+<p>True random number generators are hardware solutions that use a physical phenomenon like thermal noise, photoelectric noise, etc to generate randomness. Generally this is considered unnecessary except in high end cryptography.</p>
+<p>Edit: as pointed out several times below, a &quot;true random number generator&quot; is still not truly random, but it's more difficult to figure out what the seed would be.</p>
+<p>Edit 2: Holy crap, gold! I didn't think my response was all that special. Thank you, whoever you are!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="etsz1zj">
+		<a class="author" href="https://www.reddit.com/user/pigeon768" target="_blank">pigeon768</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>All PRNGs (pseudo random number generators) have the following three characteristics:</p>
+<ol>
+<li>An internal state.</li>
+<li>An update function to update the internal state.</li>
+<li>An output function to convert the internal state into a useful value.</li>
+</ol>
+<p>And step 0, which is a way to seed the internal state when it's instantiated.</p>
+<p>Consider the linear congruential generator, (LCG) which is one of the simplest random number generators:</p>
+<ol>
+<li>The internal state is an unsigned integer x. The seed is just a number to assign to x.</li>
+<li>The update function is <code>x = (A*x + B) % M</code> for some fixed integers A, B, and M. M is commonly a power of two because that makes the modulo operation really easy.</li>
+<li>The output function is the identity function; if x is 12, the output function returns 12.</li>
+</ol>
+<p>For A=17, B=11 and M=31, seed=0, an LCG will return the following list of numbers: 0 11 12 29 8 23 30 25 2 14 1 28 22 13 15 18 7 6 20 10 26 19 24 16 4 17 21 27 5 3. (which then repeats) Which looks pretty random, and in many cases will work just fine.</p>
+<p>For a PRNG (pseudo random number generator) to also be a CSPRNG (cryptographically secure PRNG) you also need the following things to be true:</p>
+<ol>
+<li>The seed and internal state must be large enough that they can't be brute forced. In a LCG, the internal state is just 32 or 64 bits; I can, on my laptop, generate all possible states and compare them to the random effects I can observe. Because the state is so small, the LCG cannot be cryptographically secure.</li>
+<li>The output function must be a one-way function. That is, if I see outputs from the RNG, I can't use those to derive what the internal state must be. For instance, the LCG gives away the keys to the kingdom in its output function, so it can't be cryptographically secure.</li>
+<li>It must be seeded securely. It's common practice in, for instance, video games to seed an RNG to whatever the system time is. As a simple example, if right now is 2019-07-14 at 7:12pm, you might seed the RNG to 20190714712. (computers typically store date/times as seconds since some certain defined date, but you get the idea) This won't be secure, because everybody knows what time it is. And even if you have a clock that measures in microseconds, you can guess the server time to the nearest minute and then brute force the remaining ~26 bits of the seed. More on this in a bit.</li>
+<li>Ideally, the update function ought to be a one-way function as well. But this isn't strictly necessary.</li>
+</ol>
+<p>Getting a secure seed can be surprisingly difficult. In general, you need to make measurements where the precision of the measurement is in excess of the accuracy of the measurement. If the precision of your measurement is 4 bits in excess of the accuracy of the measurement, you basically gain 4 bits of entropy. You need to repeat this process until you have enough entropy, then you need to &quot;squish&quot; the raw data down to the size of the seed in a way that preserves entropy.</p>
+<p>A common source of such measurements is I/O devices. For instance, if your monitor resolution is 1920x1080, you have about 11 bits x 10 bits of precision, but the fleshbag connected to your mouse only has about 8x7 bits of accuracy. So moving the mouse around and capturing the mouse position of each frame will generate ~6 bits of entropy per frame. Timing is another common source. You can query the CPU for what clock cycle it's on, which is precise to about 250 picoseconds. I/O devices will periodically send interrupts, and you can store the clock cycle as a measurement- the most precise 2-3 bits are basically pure noise. Data collection devices are great as well. Take a picture of a white piece of paper with your cell phone's camera. Zoom in on it. See how the paper is covered with slightly off colored pixels? That's pure entropy-filled gold. Even though a camera will generate 24 bits of information per pixel, you can safely assume that the least significant digits is random noise. So a picture from a 10 megapixel camera will have roughly 10,000,000 random bits, even if an attacker is able to capture a similar frame. (note: if the image is saturated, you get 0 random bits. So test for that first.)</p>
+<p>So now you have all these measurements, where each measurement contributes 1-3 bits of &quot;real&quot; randomness, but 97% of the bits of each measurement will be known to a sophisticated attacker. Now what? Well, you take the whole pile of those measurements and apply a cryptographic hash to them. Say SHA-512. This way, if your measurements totaled to ~400 bits of &quot;real&quot; randomness, your SHA-512 hash will also have ~400 bits of randomness, even if an attacker is able to accurately predict the other 99,600 bits in your measurements.</p>
+<p>If your update function is one way, it's even easier. You start with an initial state of all zeroes, xor a measurement into your state, apply the update function, repeat for each measurement. If your update function is up to snuff, you won't &quot;lose&quot; any randomness along the way. This is also super helpful for an OS level CSPRNG, because you can continuously improve your state as time progresses.</p>
+<p>Some classes of devices genuinely don't have good sources of randomness, particularly embedded devices. Insufficient randomness is a common vulnerability among IoT (internet of things) devices.</p>
+<p>There's also hardware random number generators. That's another topic for another time though, because this isn't simulating randomness, this <em>is</em> randomness.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="etry67w">
+		<a class="author" href="https://www.reddit.com/user/yoshemitzu" target="_blank">yoshemitzu</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><a href="https://en.wikipedia.org/wiki/Mersenne_Twister#Algorithmic_detail" target="_blank">It's really complicated</a>, even for people with a decent understanding of math. To simplify, but hopefully not corrupt the message, the idea is that algorithmic randomness depends on so-called <a href="https://en.wikipedia.org/wiki/Pseudorandom_number_generator" target="_blank"><em>pseudo</em>random number generation</a>; numbers are selected from a deterministic sequence designed to emulate true randomness. Different invocations of the algorithm return different numbers by selecting a different seed, i.e., a different initial value.</p>
+<p><em>Edit</em>:</p>
+<blockquote>
+<p>a deterministic sequence designed to emulate true randomness</p>
+</blockquote>
+<p>To expand on this slightly, I suppose, imagine you had a sequence like:</p>
+<blockquote>
+<p>1, 1, 1, 1...</p>
+</blockquote>
+<p>This is &quot;obviously&quot; not random. Also obviously not random would be a sequence like the natural numbers:</p>
+<blockquote>
+<p>1, 2, 3, 4, 5...</p>
+</blockquote>
+<p>If you tried to generate a random sequence <em>ad hoc</em>, you might just pick some numbers, say:</p>
+<blockquote>
+<p>1, 423523, 1123, 340, 142, 120483...</p>
+</blockquote>
+<p>But even this selection isn't guaranteed to be &quot;as random&quot; as a truly random sequence. Algorithmically-generated pseudorandom sequences are sequences designed to have <a href="https://en.wikipedia.org/wiki/Probability_distribution" target="_blank">probability distributions</a> (i.e., the likelihood of each value in the sequence appearing) that more closely resemble &quot;true&quot; random sequences.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ets5l0l">
+		<a class="author" href="https://www.reddit.com/user/Jewronski" target="_blank">Jewronski</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Yeah for most purposes, using your computers clock to generate a random number is good enough. It's always ticking forward, measured from 1/1/1970, so it works pretty well. </p>
+<p>I just wanted to add in how some companies get around a computers inability to create a truly random number/sequence. They get a wall of something like lava lamps, and then a camera is trained on it. They will have written some kind of program that will generate a character or whatever output they need, depending on what the lava lamp looks like from the cameras view, and can generate truly random sequences. </p>
+<p>It's a really cool low tech/high tech solution.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="etsazzz">
+		<a class="author" href="https://www.reddit.com/user/Amanoo" target="_blank">Amanoo</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are many different techniques, depending on the software used. But almost all boil down to one idea: you provide a so-called seed, which is some piece of data that has some sort of randomness to it. This can vary a lot, depending on your hardware platform, operating system, or even the programming language that is used. There is then some sort of algorithm, basically a mathematical formula, which uses this seed as its inputs and produces a seemingly random number as the output. Basically, you have some formule like f(x)=<em><some formula here></em>, with x being your seed, and the formula being some bit of math that can have widely variable outputs, even if x changes only a little. The exact form of this formula can also vary a lot, depending on hardware used, operating system, and programming language.</p>
+<p>There are various tactics for obtaining such a seed. Some user software may use random input factors. For example, user input like keystrokes (or the timing thereof) or mouse movements. Data from this is then fed into the randomiser algorithm. Your phone may use data from the accelerometer or other sensors to do this. There are also companies that provide their own cryptography services and have built their own randomisers. <a href="https://www.youtube.com/watch?v=1cUUfMeOijg" target="_blank">Cloudfare continuously films lava lamps</a>, and produces random numbers based on those. Other software purely depends on whatever randomness is present in the computer's hardware. I believe the real time clock is often used, which is then put in the randomiser algorithm, but this is not a very good method and should only be used for software that doesn't need a high level of security.</p>
+<p>Basically, there are all sorts of tactics. It really depends on the hardware of the specific computer, the algorithm used , the operating system, the programming language, and even then there may be a special piece of engineering for systems that need some extra security.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/cd6rdg" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

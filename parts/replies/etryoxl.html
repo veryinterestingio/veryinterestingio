@@ -1,0 +1,82 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xisonc" target="_blank">xisonc</a>
+			<div class="markdown"><p>In some situations you can use the noise from an unused audio input (microphone port) as an in-between solution, or as a seed to the RNG.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/F0sh" target="_blank">F0sh</a>
+			<div class="markdown"><p>The operating system random number generator will take entropy from multiple sources, including audio but also keyboard and mouse input.</p>
+<p>This can be a source of problems if used in cryptography and an attacker has access to the physical environment of the computer because they might be able to significantly reduce the real entropy going into a random key. For example they could overload the microphone so it produces all 1s or all 0s.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ptase_cpoy" target="_blank">ptase_cpoy</a>
+			<div class="markdown"><p>What would that be doing? Forcing its transistors into saturation and cutoff? Or am I completely off the ball park?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ThePowerOfStories" target="_blank">ThePowerOfStories</a>
+			<div class="markdown"><p>If you have a stream of binary noise and want to use it for random numbers, read two bits at a time. If they’re both 11 or 00, discard them. If they’re 01 or 10, use the first. Now you have a uniform fair source of binary random numbers.  (No matter how biased the source is, the number of 01 and 10 pairs must be equal to each other.)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xisonc" target="_blank">xisonc</a>
+			<div class="markdown"><p>Yes many operating systems utilize this technique. I was just speaking in general this is an option instead of buying an dedicated hardware RNG.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/def_cats" target="_blank">def_cats</a>
+			<div class="markdown"><p>A program I use has you move your mouse for about 5 seconds in order to generate randomness before generating a key. I always thought that was pretty neat.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CanadianAstronaut" target="_blank">CanadianAstronaut</a>
+			<div class="markdown"><p>so can you manipulate that randomness by changing the sounds in that case?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xisonc" target="_blank">xisonc</a>
+			<div class="markdown"><p>Sort of. As pointed out above, modern operating systems that use this method as a source of entrophy combine it with many other sources and variables.</p>
+<p>Also, it's not the sound, per se, that the port is listening to. It's listening to the static of an unplugged audio input/microphone port. These ports still pick up on frequencies in the environment as static (like tuning your FM radio to an unused frequency).</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lhamil64" target="_blank">lhamil64</a>
+			<div class="markdown"><p>I also vaguely remember some application (I want to say TrueCrypt?) having the user simulate randomness by moving the mouse wildly. I suspect that just recorded the movements and generated a seed.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SconiGrower" target="_blank">SconiGrower</a>
+			<div class="markdown"><p>I remember fiddling with VeraCrypt and it asking me to move my mouse randomly.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheOneHyer" target="_blank">TheOneHyer</a>
+			<div class="markdown"><p>I've use VeraCrypt and can confirm this. If I remember correctly, but I could be very wrong, the human moving the mouse isn't particularly random. However, the jitter as a human moves the mouse is much more random and you can compare the deviations from a smoothed curve of your movement. If not VeraCrypt, then I believe Google reCaptcha uses something similar. There's some debate on this in this StackOverflow: <a href="https://stackoverflow.com/questions/27286232/how-does-google-recaptcha-v2-work-behind-the-scenes" target="_blank">https://stackoverflow.com/questions/27286232/how-does-google-recaptcha-v2-work-behind-the-scenes</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Reeves3007" target="_blank">Reeves3007</a>
+			<div class="markdown"><p>I've also seen like every picture has a code. Like a line of 0 or 1 for every pixel. And the random number generator was a livestream of a wall of lava lamps. Every time you'd need a number, it'd take a picture and give you the number.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/randomVC" target="_blank">randomVC</a>
+			<div class="markdown"><p>Yeah this is at cloudflares HQ, they have a Webcam pointed at a wall of lava lamps in their lobby as <em>part</em> of the input to their RNG.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ObscureCulturalMeme" target="_blank">ObscureCulturalMeme</a>
+			<div class="markdown"><p>FWIW, there have been a lot of applications that have used that exact approach, since long before TrueCrypt.  It started with &quot;flail at the keyboard for a while&quot; before eventually including mouse input, since the presence of a mouse couldn't be assumed at the time.</p>
+<p>First time for me personally encountering it was in the early 90's, and it wasn't considered new by the gurus teaching me.  Dunno about before that.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[gelöscht]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pbmonster" target="_blank">pbmonster</a>
+			<div class="markdown"><blockquote>
+<p>don't draw your seed from a small set</p>
+</blockquote>
+<p>There was an old poker side that shuffled cards by using a pseudo random function seeded with the system time. The time of the day. In seconds.</p>
+<p>So there where only 86400 different possible card orderings of the deck (instead of the 52! = 8e63 at a real poker table).</p>
+<p>Knowing your own two cards, your position at the table and the three flop cards was enough to determine the seed, so you knew what cards each player at the table got dealt - and what the Turn and the River cards would be.</p>
+<p>That website allowed people to play for money.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lampishthing" target="_blank">lampishthing</a>
+			<div class="markdown"><p>Lol, site name?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ScottyC33" target="_blank">ScottyC33</a>
+			<div class="markdown"><p>Was that flaw intended, though? There have been a few stories of programmers inserting intentional flaws into RNG code to manipulate it and then either profit off it directly or have an accomplice profit off it.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
