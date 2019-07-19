@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: What is Kernel?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="cdv53j">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/cdv53j/eli5_what_is_kernel/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/cdv53j" onclick="return false">What is Kernel?</a>
+		</h2>
+		<!--<span class="date">2019-07-19</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: What is Kernel?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="etwiyvo">
+		<a class="author" href="https://www.reddit.com/user/branmuffin91" target="_blank">branmuffin91</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The kernel is a section of code within a computer's operating system that has the most amount of privilege and has direct access to the hardware. When a user has a program that needs to access the hardware, say to read from or write to a hard drive, the program must request permission to have access from the kernel. A system call is the process by which a program requests these accesses to the hardware, and the kernel grants or denies access based on permissions.</p>
+<p>In windows the kernel is made of two layers. The upper layer is called the executive and this contains functions for object management/retention, permission verification, memory management, etc. The lower layer is the actual kernel, which is responsible for low-level processor synchronization, interrupts and exceptions handling, thread scheduling, and recovery from power failure (power loss, hard shutdowns, etc). These layers work together to provide everything that a user may need to access the hardware and make changes to the system as they need to and are allowed to.</p>
+<p>Forgive me, but I don't have as much knowledge about Linux to this level, but the kernel performs basically the same in Linux (I'm a windows instructor). Instead of being built with layers, it instead has kernel loadable modules (KLMs) which can provide additional functionality to the kernel.</p>
+<p>Hope this helps.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="etx6k5f">
+		<a class="author" href="https://www.reddit.com/user/szirith" target="_blank">szirith</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The Kernel is the computer's Mom. It tells the computer who it can play with and who can see it.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="etwjkxi">
+		<a class="author" href="https://www.reddit.com/user/Xalteox" target="_blank">Xalteox</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I feel like this needs to be explained more in the context of operating systems and history.</p>
+<p>Originally computers took up rooms and could only run a single program at a time. There was a circuit by which a program was loaded using punchcards or what not and then the computer would run that program to completion or until someone halted it for some reason, maybe if the program took up too much time. </p>
+<p>A program is just a list of instructions the CPU knows how to read. Each instruction can do something from jump to another instruction if a condition is met or manipulate numbers stored in computer memory.</p>
+<p>The main thing an operating system allows us to do is run multiple programs at the same time. So how does it do this? Firstly each program exists ultimately to manipulate memory so the operating system has to give it memory to do so, but it must keep the memory of different programs separate since issues arise if they use the same memory. Additionally the programs need something to execute their instructions, so we have to give them some processing power to do their thing with, so the kernel additionally manages the CPU and gives each program some time with the CPU to do its thing (this part of the kernel is known as the scheduler). Normally the way this works is that the kernel code gives control of the CPU to the program being run but computers have an additional circuit known as the timer interrupt circuit which &quot;interrupts&quot; the CPU's current program execution after a time specified by the kernel and jumps to code specified to be run when a timer interrupt occurs (this is normally loaded during boot of course, and this code is of course kernel code). In this way the kernel can both grant control of the CPU to a program and then take it away as it pleases. </p>
+<p>Nowadays we also have files and devices and stuff, and we want to allow programs access to those but only the right ones. So we make it such that to read or write a file, the operating system has to give it permission to do so, so we have programs ask the operating system to read these files for it. </p>
+<p>All of these are basic kernel functions but there are also a lot more. Its essentially the core of an operating system, an OS needs to be able to handle multiple processes working with hardware given and its the job of the kernel to do this.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="etxtzza">
+		<a class="author" href="https://www.reddit.com/user/NowWithMarshmallows" target="_blank">NowWithMarshmallows</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You walk into a restaurant and sit down.  You order food, and a little while later the food comes out and you get to eat.  You are not allowed in the kitchen, and you are not a chef and you don't know how to use all the stuff in the kitchen, or where things go, or how food is rotated in the fridge, or who's job back there it is to cook what.  And guess what? The staff back there doesn't care what you do either or what you talk about, they only care about what you order, bringing you food, and cleaning up after you.</p>
+<p>&#x200B;</p>
+<p>You are a program running on the computer.</p>
+<p>&#x200B;</p>
+<p>The kernel is all the restaurant workers; waiters, bussers, chefs, supervisors, dish washers, line cooks, etc.</p>
+<p>&#x200B;</p>
+<p>The computer hardware is the stuff in the kitchen; the stoves, sinks, refrigerator, stuff in the fridge, food on the stove, etc.  You are not allowed in the kitchen.  If you need something from the kitchen, you ask the wait staff to get it for you.  They are allowed into the kitchen.</p>
+<p>&#x200B;</p>
+<p>The &quot;Front of the house&quot;, the tables, chairs, decor, menu, and even the wait staff and hostess, are what the Kernel allows you see.  You don't see and can't get to the hardware in the kitchen - nor should you really care about it.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="etxdjfn">
+		<a class="author" href="https://www.reddit.com/user/Nyuubi_" target="_blank">Nyuubi_</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Question: Are you interested in the programming one, the mathematical one or the yummy one?</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/cdv53j" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
