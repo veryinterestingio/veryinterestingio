@@ -1,0 +1,37 @@
+<div class="answers">
+	<div class="answer" data-handle="eu80roq">
+		<a class="author" href="https://www.reddit.com/user/bigweight93" target="_blank">bigweight93</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Honestly, I know it's probably against the rules of ELI5, but I would recommend Corridor's Crew video on their Keanu Reeves deepfake to fully understand everything that's behind this.</p>
+<p>In short, you basically have to get an actor to play the body of the subject of deepfake, and train an algorithm to match the face of that celebrity you want in the scene to the body of the duble, you need to track the face of the celebrity trough interviews and movies though</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="eu8clmc">
+		<a class="author" href="https://www.reddit.com/user/Blacksun388" target="_blank">Blacksun388</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>How Deep Fakes are generated is a system of machine learning called &quot;Generative Adversarial Networking&quot;. It's a system which involves two networks that play a sort of &quot;information game&quot; against each other with a &quot;generator&quot; network and a &quot;discriminator&quot; network. The Generator Network is the one that maps out data patterns drawing from an information source (like drawing from a bunch of pictures of human faces and mapping the data to assemble a realistic human face of a person who does not exist) while the Discriminator network looks at the newly assembled data and attempts to figure out what it does right and wrong against the information source. It grades the Generator's attempt against the source and sends it back with new recommendations for it to incorporate into its next generative attempt. The cycle continues until the discriminator network makes a certain percentage of error that it believes that the data is genuine and uniform (in other words, when the Generator &quot;fools&quot; the Discriminator enough to make it believe what it is seeing is a real image of a real person)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="eu86foq">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="eu8eqta">
+		<a class="author" href="https://www.reddit.com/user/KapteeniJ" target="_blank">KapteeniJ</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The algorithm takes an image of face(with added algorithm to identify face in question), and transforms it into some bit string basically(it's not quite that but it's close enough and I can't think of a way to explain the proper way easily. It's close enough anyway). The model is trained so that it builds this bit string representation and then undoes it. Like, you get face, turn it into bit string, and then try to build face from that bit string again.</p>
+<p>To give an idea of how this training works, you basically score this result, and then change the algorithm so that it scores a little bit better next time. Which in this case is simple, because you just check if the result looks the same as the original image of the face. You can for example count how many pixels are the same.</p>
+<p>So far so good. But now, we split this algorithm into three parts. First, the part A that takes face, and turns it into a bit string. This is called encoder. Next one that takes bit string and turns it back into face is called decoder. We use two separate decoders. Say you want to change face of Keanu into face of Nicholas Cage. You use one decoder, B, for Keanu, and decoder C for Nicholas. </p>
+<p>We train it by taking A + B and feed it images of Keanu. We score results and tweak both A and B. We also use A + C and feed it images of Nicholas and tweak both A and C. As a result, A becomes capable of taking either Nicholas or Keanu face, and turn it into a bit string. B then is able to take that bit string and turn the bit string into Keanu face, and C would take that bit string and turn it into Nicholas face.</p>
+<p>So now we take image of Keanu, and feed it to encoder A to get a bit string, and then use decoder C to turn that bit string into a face of Nicholas Cage.</p>
+<p>This alone doesn't quite work that well, but we can use some mathematical trickery during training to force A to ignore all traits of faces it can see, if it can trust B or C can fill in the blanks. This works by adding extra scoring term during training, which gets kinda complicated, but the gist of it is simple, we want to make A not give B or C details of the face it sees that they should know just because they know the face belongs to Keanu(or Nicholas in case of C). Like, A shouldn't tell B how big a nose the face has, B should already know how big a nose Keanu has. What is the eye color of Nicholas? That's not information bit string should contain, because C learns that just by knowing who Nicholas Cage is.</p>
+<p>With that, you get bit string that contains only things like, which way face is facing, what's the facial expression, where are they looking, etc, and B and C paint their own actors based on these details. So that makes it possible to get this algorithm take one face and replace it with another with pretty much the same position, orientation, expression etc.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="eu80h0d">
+		<a class="author" href="https://www.reddit.com/user/Lokiorin" target="_blank">Lokiorin</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Without going into the details of that actual technology - Computers have advanced to the point where we can create very realistic looking images using existing material.  That has extended to speech as well, so for someone who is particularly well covered (like a politician) it isn't particularly surprising that a computer can create an image of them saying basically anything.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
