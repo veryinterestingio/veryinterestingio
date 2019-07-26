@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>How was the NES Duck Hunt game able to work on a tube TV with no sensor bar?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="cgwdwg">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/cgwdwg/how_was_the_nes_duck_hunt_game_able_to_work_on_a/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/cgwdwg" onclick="return false">How was the NES Duck Hunt game able to work on a tube TV with no sensor bar?</a>
+		</h2>
+		<!--<span class="date">2019-07-26</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>How was the NES Duck Hunt game able to work on a tube TV with no sensor bar?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="eumfe0z">
+		<a class="author" href="https://www.reddit.com/user/YaztromoX" target="_blank">YaztromoX</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Television works in part because of something called the <a href="https://en.wikipedia.org/wiki/Flicker_fusion_threshold" target="_blank"><em>flicker fusion threshold</em></a>.  In simple terms, this implies (in part) that so long as still images flicker in front of our eyes at a minimal rate, we will see it as a single, continuous, smooth motion.  Standard Definition televisions run at either 50 or 60Hz^0, showing 50 or 60 fields per second.  Due to interlacing, it takes two <em>fields</em>^1 to make a single <em>frame</em> of video, giving us either 25 or 30 frames per second on a standard definition television of the NES era^2,3.  As such, a SDTV will flicker a series of static images, and your brain will combine them and treat them as a single smooth motion.</p>
+<p>Also worth knowing about is something known as the <a href="https://en.wikipedia.org/wiki/Vertical_blanking_interval" target="_blank">vertical blanking interval</a>.  After a full frame has been drawn to the display, the display is completely blanked prior to drawing in the next frame.  This happens extremely quickly, so we don't notice it.  Because of this, the general process of standard definition video works like this:</p>
+<ol>
+<li>Painting in from the top to the bottom of the display, paint in field 1 (odd numbered lines) of frame 1</li>
+<li>Resetting back to the top of the display, paint in field 2 (even numbered lines) of frame 1, completing the frame</li>
+<li>Vertical blanking interval</li>
+<li>Painting in from the top to the bottom of the display, paint in field 1 (odd numbered lines) of frame 2</li>
+<li>Resetting back to the top of the display, paint in field 2 (even numbered lines) of frame 2, completing the frame</li>
+<li>Vertical blanking interval</li>
+<li>...</li>
+</ol>
+<p>Duck Hunt &quot;hacks&quot; this behaviour to function in a rather ingenious way.  When you pull the trigger of the light gun, instead of the NES displaying the next frame of the on screen &quot;duck hunt&quot; scene, it displays a single blank frame, followed by a frame with a black background and a white square where the duck was in the previous frame.  It then checks the light sensor (in sync with the target frame) built into the gun, to see if it's pointing at mostly-white or mostly-black on the screen^4.  If the former, the game registers a 'hit', and if the latter, it registers a 'miss'.  This &quot;blank frame/target frame&quot; sequence is so quick (being just one frame in the 30^3 displayed per second), most people don't consciously see it^5.</p>
+<p>&quot;But u/YaztromoX&quot;, you may now find yourself saying, &quot;how does the system handle having <em>two ducks on screen at once</em>, and differentiate between them&quot;?</p>
+<p>A good question!  The system works in much the same way, except instead of having a single &quot;target frame&quot; (with two target squares on it), the NES will now output two target frames when the trigger is pulled, one for each duck^6.  The light gun is then sampled twice (in sync, once for each targeting frame), which results in either white in the first target frame, white in the second target frame, or black in both.  The first results in hitting duck 1, the second in hitting duck 2, and the third in a miss.</p>
+<p>And that's all there is to it.  There is no need for any sort of sensor bar, because in the end the <em>real</em> game is about having the gun &quot;see&quot; a white square in the fraction of a second after you press the trigger.  </p>
+<p>As an aside, while this worked great on CRT TVs of the era, it doesn't tend to work so well on modern HDTVs due to the way they process video.  Modern LCD/OLED TVs can only draw an entire frame at once, and thus when an interlaced signal is encountered they need a small amount of processing time to read both fields, recombine them into a frame, and then display the frame.  What used to be a continuous process of drawing lines on the screen is now done all at once.  This processing time and all-at-once display strategy messes up the precise timing needed for the light gun to work, making games using the NES Zapper gun impossible to play on modern LED/OLED displays (without some fancy hacking, at least).</p>
+<p>I hope this answers your question!</p>
+<hr />
+<p>^0 -- 60Hz in countries that follow the NTSC broadcast standard (primarily North America and Japan), and 50Hz virtually everywhere else.<br />
+^1 -- to keep the discussion simple, we'll ignore the fact that NES period TV video was interlaced, and will stick to talking about <em>frames</em>.<br />
+^2 -- modern displays typically go well above 50/60Hz, even when the input is only 50/60Hz.  They also deinterlace the video so only frame are displayed (and not <em>fields</em>), but we'll keep the discussion to period-correct hardware to keep things simple.<br />
+^3 -- or 25 outside NTSC countries.<br />
+^4 -- the initial black frame is actually used to verify that you're pointing at the TV, and not at another light source such as a lightbulb.  So it's not just looking for white, but a quick change between black and white.<br />
+^5 -- you might, however, notice a white square as a very quick &quot;flash&quot; around the duck.  This varies from person to person, but if you see the &quot;flash&quot; it's not a video effect; it's the target square from the target frame.<br />
+^6 -- with a blank frame preceding the initial frame, so as to avoid the issue of registering a hit when the gun is pointed at any light source.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="euonf73">
+		<a class="author" href="https://www.reddit.com/user/corrado33" target="_blank">corrado33</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Much much more simple explanation.</p>
+<p>It's based on timing, hence why it doesn't work on modern (laggy) TVs. </p>
+<p>When you pull the trigger everything on the screen goes black, except for a duck. If the light sensor in the gun detects light (meaning you're pointing at the duck), then the duck dies. </p>
+<p>But what if there are 2 ducks? Easy, duck 1 flashes first and the gun looks for duck 1 on frame 1, then duck 2 flashes on frame 2 and the gun looks for duck 2 on frame 2. </p>
+<p>Simple. Again, all based on timing. That's why the light trick (aka holding it up to the light bulb) doesn't actually work, because I'm pretty sure the programming of the game makes sure the sensor isn't flooded with light before checking for light from the duck. (Meaning it actually looks for dark-&gt;light-&gt;dark rather than just looking for light.)</p>
+<p>A fun way to check this is to just record the screen with your phone on high speed mode then pull the trigger. You'll see exactly what I just described to you.</p>
+<p>The amazing thing to me is just how freaking ACCURATE the zapper is. If you play it on a proper CRT tv that thing is just freaking DEAD ON. I have a few of the other really good zapper games as well and honestly I prefer them over any wii shooting game any day.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="euqkg8l">
+		<a class="author" href="https://www.reddit.com/user/darkgauss" target="_blank">darkgauss</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The Wii &quot;sensor bar&quot; in actuality is just two IR LEDs on ether end.</p>
+<p>They allowed the camera in the Wiimotes to track where the TV is supposed to be.</p>
+<p>The Xbox Kinect sensor has an IR light (light be a laser) that projects a known pattern of dots and the IR camera sees how the pattern is distorted by the environment (and you) to track what you are doing.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">2 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/cgwdwg" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
