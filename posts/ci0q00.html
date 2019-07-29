@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: The Sensitivity Conjecture has been solved. What is it about?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="ci0q00">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/ci0q00/eli5_the_sensitivity_conjecture_has_been_solved/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Mathematics">Mathematics</span>
+			<a href="/posts/ci0q00" onclick="return false">The Sensitivity Conjecture has been solved. What is it about?</a>
+		</h2>
+		<!--<span class="date">2019-07-29</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>In the paper below, Hao Huang, apparently provides a solution to the sensitivity conjecture, a mathematical problem which has been open for quite a while. Could someone provide an explanation what the problem and solution are about and why this is significant? </p>
+<p><a href="http://www.mathcs.emory.edu/~hhuan30/papers/sensitivity_1.pdf" target="_blank"><a href="http://www.mathcs.emory.edu/\~hhuan30/papers/sensitivity\_1.pdf" target="_blank">http://www.mathcs.emory.edu/\~hhuan30/papers/sensitivity\_1.pdf</a></a></p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ev0azy2">
+		<a class="author" href="https://www.reddit.com/user/Portarossa" target="_blank">Portarossa</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Think of it like a Buzzfeed quiz. You answer a bunch of multiple-choice input questions about seemingly random topics ('What's your favourite breakfast cereal?', 'What's your favourite classic movie?', 'What did you want to be when you grew up?', and so on), and you get a response back at the end: usually which Hogwarts house you belong in.</p>
+<p>But shock, horror: after answering twenty questions honestly, Buzzfeed informs you that you are a Hufflepuff, when you <em>know</em> that you're actually (obviously) a Ravenclaw. So you take the test again. You change one answer, and boom! Now Buzzfeed tells you that you're the Ravenclaw you always knew you were meant to be.</p>
+<p>But you start to wonder: just how many of the input questions could you change in order to change the output? Some of them won't make a difference to the result; it doesn't matter whether you prefer Coco Pops or Rice Krispies, because the Sorting Hat only uses that to determine between Gryffindors and Slytherins, and based on your other answers you are <em>obviously</em> neither. On the other hand, some of them will. No self-respecting Hufflepuff would ever answer that their favourite classic movie is <em>Inherit the Wind</em>, so flipping that answer will immediately flip the output and put you in a different house, without you changing the answer to any other question.</p>
+<p><em>That's</em> the sensitivity of a system. If there are three individual answers you could switch that would each change the output, we say the system has a sensitivity of -- you guessed it -- three. (In computer science terms, this is usually considered as a sort of true-or-false, 1-or-0 example, but the basic idea is the same: how many true-or-false inputs can you flip to change the true-or-false output?) This is a way of measuring just how complex the system is. There are other measures of complexity, but over time they were mathematically proven to be polynomial in nature. (That contrasts with it being <em>exponential</em> in nature, which would have set it apart from other complexity measures. You don't need to worry <em>too</em> much about what that means to get a surface understanding of what's going on; just understand that people suspected it might be polynomial like all the others, but hadn't yet proved it.) </p>
+<p>The conjecture, and I'm really ELI5ing it here, is about whether or not the rules for sensitivity follow the same rules as other measures of complexity, or whether it's a weird outlier. The short version is yes, it follows the same rules. (If you want to get particular about it, what was proved was that 'every 2^n-1 + 1-vertex induced subgraph of the n-dimensional cube graph has maximum degree at least √n', which is comfortably above my paygrade and well out of the remit of ELI5.)</p>
+<p>The reason why it's so significant is because this was one of those problems that anyone who's anyone in the field had tried to make even incremental progress towards in the past thirty years, but had generally failed. Along comes Huang, and produces a proof that's two pages long -- that is to say, extremely elegant. It's the computer science version of a team of cryptozoologists spending decades searching for Bigfoot, and then the new guy on the team says, 'Wait, you mean Harry? Hairy guy, kind of blurry, lives in the woods? Yeah, he's on my bowling team. He's cool.' (In actual fact, the solution goes above and beyond what would be needed for a proof, so it's opened up several new interesting questions; it's closer to the new guy saying, 'Yeah, Harry's on my bowling team. Last week he brought the Loch Ness Monster and the Chupacabra. We went out for tacos. Nice guys. Want me to give you their Snapchat?')</p>
+<p>That's why people are talking about it. It's not a <em>colossal</em> leap forward in terms of changing the field, but it's impressive that it was solved and that the solution was so neat.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ev10jgd">
+		<a class="author" href="https://www.reddit.com/user/GamingNomad" target="_blank">GamingNomad</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Piggyback question, does Huang get anything out of this solution?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ev2ecp6">
+		<a class="author" href="https://www.reddit.com/user/pilgrim202" target="_blank">pilgrim202</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Does this have any practical applications? Engineering, science, etc?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ev19h9w">
+		<a class="author" href="https://www.reddit.com/user/radabdivin" target="_blank">radabdivin</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I guess ELI5 isn't the same as a nutshell. Anyone, please?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ev2e07k">
+		<a class="author" href="https://www.reddit.com/user/wordserious" target="_blank">wordserious</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Some explanation for someone who has never read or seen Harry Potter, please? There are dozens of us!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/ci0q00" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

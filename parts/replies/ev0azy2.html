@@ -1,0 +1,122 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lygerzero0zero" target="_blank">lygerzero0zero</a>
+			<div class="markdown"><p>Assuming you know what you’re talking about (and it sure sounds like you do) this is one of the best ELI5s I’ve read here.</p>
+<p>(I’m not doubting you, it’s just that some people can write really beautiful explanations despite being completely wrong, especially on this sub...)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Portarossa" target="_blank">Portarossa</a>
+			<div class="markdown"><p>I had a <em>vague</em> idea before I started looking into it specifically to answer this, but I'll be the first to admit that it's not exactly my field. If anyone wants to pick me up on factual errors (not how basic it is, but on the actual facts; I did try and make it as simple as possible on purpose, because it's a pretty esoteric topic as it is), I'll happily edit to fix any mistakes I might have made.</p>
+<p>There's a longer and more in-depth explanation <a href="https://www.quantamagazine.org/mathematician-solves-computer-science-conjecture-in-two-pages-20190725/" target="_blank">here</a> that makes for pretty good reading.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Whatsthemattermark" target="_blank">Whatsthemattermark</a>
+			<div class="markdown"><p>You sir are the true spirit of ELI5. I was 5 when I started reading that and now I’m definitely 6 at least.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ticket2LogFlumeRide" target="_blank">Ticket2LogFlumeRide</a>
+			<div class="markdown"><p>Holy shit you’re smart. Thanks for ELI5ing this so well for the rest of us. I mean, this is still over my head, but I feel like you did a pretty phenomenal job of making it even slightly possible for me to begin to understand... “<em>understand</em>” might be too strong of a word but still—this was pretty cool!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/k_princess" target="_blank">k_princess</a>
+			<div class="markdown"><p>I loved the Sorting Hat analogy!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/C2-H5-OH" target="_blank">C2-H5-OH</a>
+			<div class="markdown"><p>My favorite eli5 has to be the one where a guy explains how a computer knows how long a second is</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/whynuttzy" target="_blank">whynuttzy</a>
+			<div class="markdown"><p>Is it all right to share the link if you have it? Sounds interesting!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EldestPort" target="_blank">EldestPort</a>
+			<div class="markdown"><blockquote>
+<p>how a computer knows how long a second is</p>
+</blockquote>
+<p>I misread that (somehow) as 'how a computer knows how long a crocodile is' and was immediately intrigued, then confused by the explanation involving quartz computer clocks.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/theludo33" target="_blank">theludo33</a>
+			<div class="markdown"><p>Link?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Necks" target="_blank">Necks</a>
+			<div class="markdown"><p>This was everything I hoped and dreamed for in an ELI5. My body is oscillating.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DarthEru" target="_blank">DarthEru</a>
+			<div class="markdown"><blockquote>
+<p>every 2^n-1 + 1-vertex induced subgraph of the n-dimensional cube graph has maximum degree at least √n</p>
+</blockquote>
+<p>Just for fun I'm going to try my hand at breaking this down and ELI5ing it. (I know you (/u/portarossa) probably understand it, or could understand it with a bit of googling, so this is more addressed to readers of your comment. Hopefully someone will get something out of it.)</p>
+<p>First, what is a graph? A graph is a list of points (aka vertices) and edges that connect two vertices. Depending on how you want to use them, vertices and edges may have labels, and edges may have a direction (e.g. a directional edge from vertex A to vertex B is not the same as a edge from vertex B to vertex A). Graphs can be used to model all sorts of things, from relationships between people in social networks to Sudoku puzzles. In short, a graph is just a formal mathematical way to represent relationships among a group of something.</p>
+<p>Next, now that we know what a graph in general is, what is an ”n-dimensional cube graph&quot;? In a cube graph every vertex is labeled with a binary &quot;word&quot;. The n-dimensional part refers to the length of the word, e.g. a 3-dimensional cube graph is for words that are three characters long. A binary word is just a string of 0s and 1s, e.g. <code>010</code> is one of those 3-dimensional words. An n-dimensional cube graph has one vertex for every unique n-length binary word. So a 1-dimensional cube graph has two vertices: <code>0</code> and <code>1</code>, while a 2-dimensional cube graph has <code>00</code>, <code>01</code>, <code>10</code>, and <code>11</code>. The other thing that makes a graph is the edges, so what are those? In an n-dimensional cube graph there are (non-directional) edges between every pair of vertices whose labels differ by exactly one character. For example, when n=3, <code>010</code> and <code>011</code> will have an edge between them, while <code>010</code> and <code>111</code> will not, because they differ at two places (the first and last character). You may find it helpful to see a visualization of this, so <a href="http://mathonline.wikidot.com/cube-graphs" target="_blank">this article</a> has pictures showing the 1, 2 and 3-dimensional cube graphs in full.</p>
+<p>Now, one thing to mention is the number of vertices and edges in a cube graph. The number of vertices is exactly equal to the number of unique binary words of length n. This just so happens to be 2^n, because there are n characters and each one has two possibilities, so when counting up all the possibilities you get <code>2 * 2 * 2 * ... * 2</code> n times, which is 2^n. (I know this may not be entirely convincing to non-mathematicians, but to explain it more clearly in a simple way would take too much typing for what is a fairly minor point). As for the number of edges, each vertex has exactly n edges, because the words are n characters long and an edge exists with every word that differs by exactly one character, so for each word there are n places that can be changed to make a new edge.</p>
+<p>Now let's talk about the word &quot;degree&quot;. With graphs, the degree of a vertex is simply the number of edges connected to that vertex. So in a cube graph, each vertex is connected to n edges, meaning every vertex has degree n. The maximum degree of a graph is the maximum of all of the individual vertices in the graph. So in a cube graph the maximum degree is n, because every degree is n.</p>
+<p>Next, it's subgraph time. A subgraph is a graph that can be seen as a &quot;part&quot; of a larger graph. There are a few ways to create subgraphs out of graphs, but for this we only have to talk about one: the &quot;vertex induced&quot; subgraph. A vertex induced subgraph is when you pick any number of vertices from the starting graph, then add all the edges from the starting graph where the vertices for the edge are both part of the subgraph. So, if I were to make a vertex induced subgraph of the 2-dimensional cube graph and I chose vertices <code>01</code> and <code>11</code>, then I would also include the edge between those two vertices because it existed in the parent graph, but I would not include the edge between <code>01</code> and <code>00</code>, because <code>00</code> was not chosen to be part of the subgraph. The total subgraph in this example would just be two vertices (labeled <code>01</code> and <code>11</code>) and an edge between them.</p>
+<p>Edit: I should note that it's possible for a subgraph formed in this way to be disconnected, which means that there may be two or more segments that have no vertices connecting them. This is fine, it doesn't matter if the subgraph is connected or disconnected within this particular problem.</p>
+<p>So a &quot;2^n-1 + 1 vertex induced subgraph of the n-dimensional cube graph&quot; is a subgraph where you choose 1 more than half of the vertices (remember, there are 2^n vertices in the cube graph, so half is 2^n / 2 = 2^n-1), and then include all the edges from the original graph that still have vertices in the subgraph.</p>
+<p>And then what was proved was that for every such subgraph, no matter which vertices you choose, the maximum degree is at least √n. In other words, you cannot choose any set of 2^n-1 + 1 vertices to make it so that every vertex is connected to less than √n other vertices. There will always be at least one vertex with at least that many edges. In other other words, if you choose more than half of the binary words of length n, there will always be at least one word that differs by exactly one character with at least √n other words in your chosen set.</p>
+<p>Hopefully I've now explained the literal meaning of that statement in a way that most adults could understand, though I'm sure an actual 5 year old would lose interest halfway through the first paragraph. What I haven't touched on is how exactly the truth of that statement ties into the idea of sensitivity that /u/portarossa explained so very well. The reason for that is that I don't actually know, so while I have a vague idea I'd need to do more research to be sure I get it, and I also suspect that explaining it would be an even longer trek than this one was.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Portarossa" target="_blank">Portarossa</a>
+			<div class="markdown"><p>Figuring the specifics of it out is a bit beyond my capacity, so I'm happy to let you take the lead on explaining this one. Someone else might have to check your work, though :p</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sb452" target="_blank">sb452</a>
+			<div class="markdown"><p>ELI5ing this somewhat (please check!):</p>
+<p>Suppose you have a standard 3-dimensional cube with lights on all the corners, and you want to wire it to make a single circuit so that at least half of the lights are switched on. Wires can only go along the edges of the cube - no diagonal tricks, and any two adjacent lights that are both switched on are always connected by a wire. Then at least one light will have at least 2 wires going into it. (Aside: If you think, the largest single circuit you could make for which all lights only have 1 wire going in has only 2 lights. Can you make a circuit of 4 lights where the maximum number of wires for a single light is 2?)</p>
+<p>Now suppose instead of a 3-dimensional cube, it's an n-dimensional cube, but you still want to wire it so that at least half of the lights are switched on. Again, wires can only go along the edges of the cube and any two adjacent lights that are both switched on are connected by a wire. Now at least one light will have at least √n wires going into it.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DarthEru" target="_blank">DarthEru</a>
+			<div class="markdown"><p>Not quite. One problem with your metaphor is that the subgraph does not have to be connected. That is, your supposition of a &quot;single circuit&quot; is incorrect. Another minor point is that you must choose <em>more</em> than half of the vertices (the actual proof is for exactly 1 more than half, but it will hold true for any amount more than half).</p>
+<p>As a counterexample that highlights why both those points are important, if you take the 3d cube, you can choose two pairs of vertices that aren't connected to each other (think opposite edges across the diagonal). e.g. vertices <code>000</code>, <code>001</code>, <code>111</code> and <code>110</code>. Then the max degree of that graph is 1, which is less than √3, but that doesn't contradict the proof because the number of vertices is only half. If you added one more vertex then it must connect with at least one of those existing 4, bringing the max degree up to 2 &gt; √3, which matches the theorem.</p>
+<p>To be fair I didn't explicitly say that the subgraph might not be connected, so it's understandable that you didn't realize that. Disconnected graphs are not very intuitive, so I really should have called it out.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BurritoSupreeeme" target="_blank">BurritoSupreeeme</a>
+			<div class="markdown"><p>Very good explanation, thank you! Might be hard to understand for a five year old though :)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/no-i" target="_blank">no-i</a>
+			<div class="markdown"><blockquote>
+<p>The Sensitivity Conjecture</p>
+</blockquote>
+<p>I found this visual aid helpful (along with your description): <a href="https://d2r55xnwy6nx47.cloudfront.net/uploads/2019/07/Boolean-Sensitivity_2880x1620_Lede.gif" target="_blank"><a href="https://d2r55xnwy6nx47.cloudfront.net/uploads/2019/07/Boolean-Sensitivity\_2880x1620\_Lede.gif" target="_blank">https://d2r55xnwy6nx47.cloudfront.net/uploads/2019/07/Boolean-Sensitivity\_2880x1620\_Lede.gif</a></a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Portarossa" target="_blank">Portarossa</a>
+			<div class="markdown"><p>That's the computer-sciencey version, yeah. If you want to see how it would apply to logic gates, that's where to go.</p>
+<p>Also, kudos on throwing out literally the biggest gif I think I've ever seen.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VexingRaven" target="_blank">VexingRaven</a>
+			<div class="markdown"><p>Thanks for the warning. Anyone got a gifv version?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ask_Who_Owes_Me_Gold" target="_blank">Ask_Who_Owes_Me_Gold</a>
+			<div class="markdown"><p>I think the still image from <a href="https://www.quantamagazine.org/mathematician-solves-computer-science-conjecture-in-two-pages-20190725/" target="_blank">that same article</a> does a better job of quickly explaining what sensitivity actually is.</p>
+<p><a href="https://d2r55xnwy6nx47.cloudfront.net/uploads/2019/07/Boolean_Sensitivity_FINAL560-1068x1720.jpg" target="_blank">https://d2r55xnwy6nx47.cloudfront.net/uploads/2019/07/Boolean_Sensitivity_FINAL560-1068x1720.jpg</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fullforce098" target="_blank">fullforce098</a>
+			<div class="markdown"><p>So essentially what I'm getting here is that solving this conjecture wasn't <em>necessary</em> for much of anything, as these systems are used all the time, it was just a simple matter of clarifying a grey area in categorization?</p>
+<p>In other words, it doesn't change much of anything going forward. We didn't just unlock a entire new branch on the Mathmatics/Computer Science talent tree. Is that about it?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/terminbee" target="_blank">terminbee</a>
+			<div class="markdown"><p>I kinda get it and I kinda don't. So a sensitive bit is any time you go from blue to red? Why are there only 2 sensitive bits?</p>
+<p>Edit: Never mind, I get it more after reading the article. The arrow's pointing threw me off.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/samort7" target="_blank">samort7</a>
+			<div class="markdown"><p>So in that .gif, what would the sensitivity of the system be?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/no-i" target="_blank">no-i</a>
+			<div class="markdown"><p>The &quot;middle&quot; gate I'm guessing.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/silverdevilboy" target="_blank">silverdevilboy</a>
+			<div class="markdown"><p>The sensitivity of a system is the highest sensitivity of any possible input.</p>
+<p>If you have the middle gate on and the others off, switching either of them will flip the output, so the sensitivity is 2.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
