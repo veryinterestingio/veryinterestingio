@@ -1,0 +1,61 @@
+<div class="answers">
+	<div class="answer" data-handle="ev8v3ty">
+		<a class="author" href="https://www.reddit.com/user/TheJeeronian" target="_blank">TheJeeronian</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>An even number of rotors makes it easy to prevent unwanted spinning. Each rotor spinning clockwise has a twin rotor spinning counterclockwise, which allows the drone body to sit still without rotating. Now, in order to tilt forward, backward, left, and right, the drone needs three or more blades. Four is the smallest even number greater than three, so it is usually chosen. There are, however, drones with more rotors. I've seen six and eight rotor drones, and there are probably even bigger ones. Usually, for small and simple systems, four works best. Edit, since you lot keep asking it: HELICOPTERS USE COMPLEX ANGLE-SWITCHING ROTOR BLADES AND VERTICAL TAIL ROTORS THAT AVOID THE ISSUE</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ev91vr8">
+		<a class="author" href="https://www.reddit.com/user/THEBAESGOD" target="_blank">THEBAESGOD</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Am I allowed to post a follow-up? Why don't modern manned helicopters use 4 rotors? Cost, design efficiency, don't fix what isn't broken? Do we know of any modern manned designs that take inspiration from UAVs or are there are plans for up-scaled and manned quadcopters?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ev9ekkt">
+		<a class="author" href="https://www.reddit.com/user/FlynnClubbaire" target="_blank">FlynnClubbaire</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Ooh, ooh! I know a really good answer to this one!</p>
+<p>First of all, when people tell you &quot;an even number of rotors is good for preventing unwanted spinning&quot; etc, etc, this is, frankly, only a half truth.</p>
+<p>The bottom line of the matter is that the mathematics involved in keeping a multicopter in flight is hella complicated, and the problem of handling an odd number of propellers is trivial by comparison to the problem of reacting successfully to random fluctuations, slight differences in rotor behavior, and discrepancies between control and response. In fact, even the act of a quad-copter turning involves all the math necessary to overcome an odd number of rotors.</p>
+<p>Want proof? Here you go:</p>
+<p><a href="https://www.instructables.com/id/DragonflyPentacopter-Project/" target="_blank">Pentacopter</a></p>
+<p>It's uncommon, but it is possible and has been done.</p>
+<p><strong><em>That being stated,</em></strong> it is very much true that the <strong><em>amount</em></strong> of correction needed is significantly reduced if you have an even number of rotors.</p>
+<h1>The real reason you want at least four rotors is actually straight out of linear algebra!</h1>
+<p>There is a concept called <strong><em>Degrees of Freedom.</em></strong> In a single sentence, it basically says that if you want to be able to control N aspects of your kinematic state, you need N independently controllable force/torque appliers.</p>
+<p>The reason this comes from linear algebra is that you can think of the total torque and force at any given moment on your multicopter as a vector in 6D space. To be able to achieve any torque/force combination, you need to have force appliers that, when combined in different ratios, let you access the entire 6d space.</p>
+<p>If you only have three rotors, you are restricted to a 3D slice of the 6D space.</p>
+<p>To make this less math, and more practical, think of it this way: Each additional rotor gives you, essentially, control over one additional aspect of your multicopter's kinematic state.</p>
+<p>A quadcopter has four rotors, and hence (with typical configurations) has control over the following aspects:
+Acceleration Forward/Back, Acceleration Left/Right, Acceleration Up/Down, and Yaw.</p>
+<p>That's four. With four rotors, once you pick those four, you have no control over the remaining two torques: Pitch and Roll. That is why quadcopters <strong><em>always</em></strong> tilt the at the same rate for any given side-to-side acceleration. They don't have a choice in the matter.</p>
+<p>Now, you can see the problem with only three rotors. You can control your position in 3D space, but to do so you must sacrifice control over your yaw torque. The exact math works out that to maintain stable position, a tricopter would have to sit there spinning violently. (<strong><em>This is where the notion that an even number is required for torque balancing comes from -- but in reality, you just need a number greater than 3</em></strong> That makes them &quot;unusable&quot; for most purposes.</p>
+<p>Now, this seems odd, because there do exist a few tricopters out there. But, if you <a href="https://hackaday.com/tag/tricopter/" target="_blank">look closer</a> these copters have a hidden servo which achieves a fourth Degree Of Freedom by tilting one of the rotors.</p>
+<h1>TL;DR It's not true that you need an even number of rotors. It is only true that you need at least 4, because you need 4 degrees of freedom to be able to move around and turn with stability.</h1></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ev93jkm">
+		<a class="author" href="https://www.reddit.com/user/TheWoodser" target="_blank">TheWoodser</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Lots of great answers here about &quot;fixed pitch&quot; blades vs a traditional helicopter rotor head design.</p>
+<p>With small electric motors you have instant access to 100% of the tourqe that electric motors supply.  Being that there is no spool up or spool down time, a fixed pitch blade is the lightest design for electric motors.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ev8umg0">
+		<a class="author" href="https://www.reddit.com/user/Concise_Pirate" target="_blank">Concise_Pirate</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's the smallest number that makes control really easy, because you can change direction forward, backward, left, and right, simply by changing the amount of power each rotor gets.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
