@@ -1,0 +1,86 @@
+<li class="post" data-handle="ck265w">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/ck265w/elif_what_are_neural_networks/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/ck265w" onclick="return false">ELIF: What are neural networks?</a>
+		</h2>
+		<!--<span class="date">2019-08-03</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELIF: What are neural networks?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="evj7goy">
+		<a class="author" href="https://www.reddit.com/user/FerricDonkey" target="_blank">FerricDonkey</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>At the most Eli5 level, it's a machine/program designed to be very good at playing hot and cold.</p>
+<p>A single neuron takes in several numbers that you tell it, multiplies them by weights (other numbers) built into (and changeable by) the neuron, slaps the result with a fancy equation to keep it from being too boring, and spits out the results.</p>
+<p>But when it starts out, it has no idea what it's doing. The built in weights are usually random to start. So what happens is you feed it some data that follow a pattern. You tell it &quot;when I give you the numbers 7, 2, and 5, you should tell me 8&quot;. It looks at that and says &quot;dang, I got 12, that's too high. Maybe I should count the first number, which was 7 this time, less, so I get a smaller number next time&quot;. Then you hand out another the numbers, tell it what it should get, and it adjusts again, and so forth. </p>
+<p>How much less? Use calculus - not terribly complex calculus, but still calculus.</p>
+<p>So that's a neuron. It's pretty cool, but it's also somewhat limited. What if, for example, you should count that first number less, but only in some circumstance. What you do is you start chaining neurons together. Do it right, and various (groups of) neurons will get better and better at detecting part of the pattern in your data, and others will figure out what it means when certain subpatterns are or are not found and so forth.</p>
+<p>If you're interested and either know are are willing to learn a bit of programming, you can make some yourself to play with.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="evjgeu3">
+		<a class="author" href="https://www.reddit.com/user/KapteeniJ" target="_blank">KapteeniJ</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'm not really liking the other explanations here, so here's a new one.</p>
+<p>Neuron is a thing that listens to many channels, and then does a rather simple choice of sending or not sending a signal. Or rather, it decides how much of a signal to send. Then multiple other neurons listen to that neuron.</p>
+<p>Artificial neural network is a mesh of neurons and their connections, simulated in very barebones way.</p>
+<p>What you basically get is, you send something in to the network, and that something is listened to by some neurons. These neurons then activate to varying degrees, and other neurons listen to those signals, and so on, until some signals you've designated as &quot;output&quot; where you are listening to them instead of more neurons.</p>
+<p>So it's a simple &quot;stuff goes in, neurons get wild, stuff comes out&quot;. Slightly more accurately, numbers go in, and numbers go out, as we use numbers to tell how strong each activation was.</p>
+<p>Now, what happens inbetween input and output could be many things. How each individual neuron reacts to the signals they receive can be tweaked. And the cool thing is, we can make this continuous, so that small tweaks result in small change in output. Like, if you make neuron X less sensitive to its input so that every time it gives out a weaker signal(ie. a smaller number) than before, this should only slightly change the output.</p>
+<p>This means we can train these networks by feeding them data, checking what comes out, and evaluating how good the result was. Then we want to make slight changes so it becomes a little bit better. Then you repeat the process.</p>
+<p>And the great revolution here was, this process can be automated. We have a mathematical formula that tells you how to tweak the neurons to make it slightly better at the task you specified. So all you need to do is get data and figure out how to evaluate the output. After that, neural network can be automatically adjusted to become better and better at that task you set for it. So in theory it means, you can have computer do things that you yourself don't know how to do, but you are able to give it data to train on, and you are able to give numerical evaluation of its output telling it how well it did.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="eviqyup">
+		<a class="author" href="https://www.reddit.com/user/warmforesee" target="_blank">warmforesee</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Think of neurons as groups of people in different rooms of a building. Each person is very good at one thing and only one thing.</p>
+<p>For example, people in the first room can only smell stuff. And each one can only tell you the probability of it being a certain thing. So one guy can smell and tell you that he’s 40% certain that it is coffee. Another can tell you that he’s 99% certain that it’s sugar.</p>
+<p>So you walk in with an unidentified object, and the people in the first room tells you what they think it probably is. </p>
+<p>Then you walk into the next room, where people can touch and tell you the probability of it being a certain material. </p>
+<p>In the next room, the folks can lick and tell you the probability of it being the thing they specialize in. </p>
+<p>But if the guy in the first room who specializes in poisons says this is 99% poison, the guy in the 3rd room (lickers) will pass on tasting it.</p>
+<p>So each room gives you information that the folks in the next room use along with their own skill to decide how likely the object is whatever they specialize in. </p>
+<p>As you make your way through more and more rooms, the accumulated probability information allows the people in the last room to make a fairly confident statement as to what the object is.</p>
+<p>For example:</p>
+<p>Room 1: “This is red in color (99% certain), orange (45%), green (4%)”</p>
+<p>Room 2: “This is the size of a finger (95%), the size of a fist (6%), size of a football (0.5%)”</p>
+<p>Room 3: “Smells edible (88%), smells like plastic (8%), smells like metal (1%)”</p>
+<p>Room 4: “Based on all the info above and its taste, this is hot pepper (97%), lipstick (2%), a pen (0.2%)”</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="evidblg">
+		<a class="author" href="https://www.reddit.com/user/ViskerRatio" target="_blank">ViskerRatio</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The term is used loosely to describe a variety of schemes by which large amounts of data are mathematically manipulated to perform classification.</p>
+<p>Imagine for a moment there's a large stretch of woods surrounded by various homes and businesses.</p>
+<p>Now, no one really wants to walk around the entire stretch of woods just to grab a Slushie. So they walk through the woods instead. When they do so, they trample the soil and bend the brush out of the way.</p>
+<p>As more and more people take their own route through the woods, you'll quickly see 'paths' develop along the most common routes.</p>
+<p>Those paths are actually a form of information. If you find a path in the woods, it's connecting one thing to another. The existence of that path tells you something about the relationship between its two endpoints (even if that something is nothing more than &quot;Bill likes Slushies&quot;).</p>
+<p>That's basically what happens in a neural network. You have complex mathematical structures that are trained in some fashion to have such 'paths' through them that allow you to feed a large amount of data in the front end and get a classification out the other.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="evin1zl">
+		<a class="author" href="https://www.reddit.com/user/NoTargets" target="_blank">NoTargets</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Once you set it up, pick it’s shape, you have to train it so show it pictures or let it listen to things until it gets the right “what is this?” learned. </p>
+<p>Once it is trained, you can show it new things and it will output what it has learned is closest or even output a synthesis or new idea.</p>
+<p>The technical thing you get is a set of neuron weights that express an insanely complex function that has to be processed against new inputs when used. The special CPU that Google built recently is for the post-training phase where they use the trained model via the weights. It was far cheaper per op / watt and better than using Nvidia GPUs, which I think they still use for training...</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/ck265w" onclick="return false"><span>show</span></a>
+</li>
