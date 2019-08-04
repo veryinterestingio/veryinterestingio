@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>Why does bitrate fluctuate? E.g when transfer files to a usb stick, the mb/s is not constant.</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="cknf01">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/cknf01/why_does_bitrate_fluctuate_eg_when_transfer_files/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/cknf01" onclick="return false">Why does bitrate fluctuate? E.g when transfer files to a usb stick, the mb/s is not constant.</a>
+		</h2>
+		<!--<span class="date">2019-08-04</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Why does bitrate fluctuate? E.g when transfer files to a usb stick, the mb/s is not constant.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="evp0fhk">
+		<a class="author" href="https://www.reddit.com/user/AY-VE-PEA" target="_blank">AY-VE-PEA</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Any data transfer in computers usually will run through a <a href="https://simple.wikipedia.org/wiki/Computer_bus" target="_blank">Bus</a> and these, in theory, have a constant throughput, in other words, you can run data through them at a constant rate. However, the destination of that data will usually be a storage device. You will find there will be a buffer that can keep up with the bus between the bus and destination, however it will be small, once it is full you are at the mercy of the storage devices speed, this is where things begin to fluctuate based on a range of thing from hard drive speed, fragmentation of data sectors and more.</p>
+<p>tl;dr: input -&gt; bus -&gt; buffer -&gt; storage. Once the buffer is full you rely on storage devices speed to allocate data.</p>
+<p>Edit: (to cover valid points from the below comments)</p>
+<p>Each individual file adds overhead to a transfer. This is because the filesystem (software) needs to:  find out the file size, open the file (load it), close the file. File IO happens in blocks, with small files you end up with many unfilled blocks whereas with one large file you should only have one unfilled block. Also, Individual files are more likely to be fragmented over the disk.</p>
+<p>Software reports average speeds most of the time, not real-time speeds.</p>
+<p>There are many more buffers everywhere, any of these filling up can cause bottlenecks.</p>
+<p>Computers are always doing many other things, this can cause slowdowns in file operations, or anything due to a battle for resources and the computer performing actions in &quot;parallel&quot;.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="evpd4jt">
+		<a class="author" href="https://www.reddit.com/user/reven80" target="_blank">reven80</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are many sources of this fluctuation but for USB sticks which is based on NAND flash memory, there is a phenomenon called garbage collection. The NAND flash has a restriction that writes must be followed by an erase before the next write. Furthermore writes are at minimal size of a page (8KB typically) while erases are in minimal size of a block (256 pages typically) This means if we need to write only one page of a block everything else has to be copied elsewhere. So the drive plays a juggling game where it writes the new data to an unused block and hopes that over time the old block is freed up. So essentially some extra space is kept aside to do this juggling. However if you keep writing for a long time it will run out of free blocks and needs to start forcibly cleaning up older half valid blocks. This process is called garbage collection. It can happen in the background but will slow down the device. It turns out that if you write large chucks of sequentially ordered data less garbage collection is needed in the long run. There are many ways to minimize this fluctuation but USB sticks are low cost devices so might not be worth the expense of implementing them.</p>
+<p>Source: Spent 10 years writing firmware for all kinds of SSD storage.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="evp88gb">
+		<a class="author" href="https://www.reddit.com/user/jedp" target="_blank">jedp</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In the specific case of a flash-based device, like a USB stick, besides all the other factors already mentioned by others, the time it takes to erase and write a particular block will vary with its degradation. Reads will be more consistent, though.</p>
+<p>Edit: you can find a good source for this <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.160.1995&amp;rep=rep1&amp;type=pdf" target="_blank">here</a>.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="evqzcxq">
+		<a class="author" href="https://www.reddit.com/user/non-stick-rob" target="_blank">non-stick-rob</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are Many, MANY factors, and permutations as outlined by numerous other wise commenters before me.  So here's my shot at answering as clearly as possible. it's a small list, and not nearly as complete, but these are the main (in my experience) causes for speed fluctuations during transfer.  hope it helps !</p>
+<p><strong>.file sizes</strong>. -  The overhead of any size files details is the same. name, size, type, date modified etc. Small files still have to copy the same minimum information as a big file.Transferring 1024 of 1kb files will take way longer than one 1mb file.</p>
+<p><strong>.disk cluster size</strong>.  - a single 1byte file will take up 4096 bytes of space in windows default ntfs. This means the heads travel further (slower), but disk wear is reduced compared to a 2048 byte cluster size. 2048 byte utilises the wasted disk space, but the heads and disk do more work. also, files are split into 2048 byte sectors. So can be addressed quickly. but this means Defragmentation routines (at disk read/write wear cost) need to be more frequent to keep files that are split as contiguous (next to each other) as possible.    </p>
+<p><strong>.on access anti virus</strong>. this is a <strong>big</strong> speed impairment. If file is even looked at in a list by the user, Anti-virus is taking it's share of resources to inspect the file against detection signatures. And if using hueristic analysis, can just add to the slow transfer. Again,  smaller files require the same minimums here as large files.</p>
+<p><strong>.hardware capability.</strong> spin speed (for hdd) is a BIG deciding factor. Many commercial server disks spin at a rate of around 10k or 15k (rpm)  and enable fast data access and error checking. Most domestic drives spin at around 7200. Storages drive such as WD red do not specify a speed, but rather focus on power usage and will ramp up or down the speed accordingly. however. such drives tend to spin at 5400 rpm to give them life better expectancy and reliability. </p>
+<p>In addition to that, <strong>different manufacturers</strong> of drives will also slow things. Because read/write/verify processes for all storage devices is often not consistent between drives, let alone manufacturers.</p>
+<p>The <strong>operating system</strong> is reporting what it is handling at that time, and will update frequently:</p>
+<ol>
+<li>
+<p>to show the user that something is going on and </p>
+</li>
+<li>to give a best guess estimate if the rest of the transfer process is the same continually (it never is, due to the reasons above) </li>
+</ol>
+<p>loads of other stuff i could say, but it's already too long. hopefully i've made it readable and understandable and answers OP question.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="evrx5f5">
+		<a class="author" href="https://www.reddit.com/user/BuddyGuy91" target="_blank">BuddyGuy91</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Also heat. When you start the transfer the memory transistors are cold but heat up very quickly, creating thermal noise and thus takes extra time for voltage levels to become stable. If the data clocks in without stable voltage levels then bits will be clocked in at the wrong levels. The error checking will see there's hash check errors and ask to resend the data. Or try to solve the issue by throttling speed down a bit until transfers are error free. There's studies done on M.2 NVMe ssd drive transfer speeds and the effect of heatsinks being used to cool them on Toms Hardware that are a good read.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/cknf01" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/exploderator" target="_blank">exploderator</a>
+			<div class="markdown"><p>Excellent stuff.  I have a solid appreciation for the wizardry that SSD's do, I'm deep enough in to understand most of it, and have been following the tech for years (yay Anandtech).  I have two questions:</p>
+<ol>
+<li>
+<p>Do SSD's have commands allowing direct low level read of raw data?  That is to say, not auto-magically re-mapped by the drive itself?  I ask because it strikes me that would allow sophisticated software to do forensic analysis, by reading the &quot;dead&quot; data still lingering outside the virtual valid-block structure maintained by the SSD.</p>
+</li>
+<li>Do USB sticks even bother to re-map the NAND blocks like SSD's?  It has been a lingering worry in my mind, because NAND has low total write cycles, that would be rapidly exceeded by any usage case like running a Windows OS from USB, where things like the registry get hit rapid fire.  I have lingering memories of old SD cards in small embedded computing applications, where vendors would demand using only premium cards (presumably single-level NAND) from Sandisk, because (I assume) they were treated like magnetic hard drives, with no block remapping.  If cheap USB sticks don't re-map, they are at best suited for low-grade backup.</li>
+</ol></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/reven80" target="_blank">reven80</a>
+			<div class="markdown"><p>1 Often there are manufacturing test modes to directly read and write the NAND flash. However its mostly to save trouble of desoldering the parts and reading them directly. The electrical signals to read NAND flash directly is pretty simple honestly.</p>
+<p>To protect against people reading your old data, some drives have hardware encryption. This can be designed so even the firmware engineer cannot see the encryption key.</p>
+<p>2 I guess there are many ways to do this but if you constantly have to do the juggling I mentioned above, there already needs to be an ability to map between logical and physical locations. So its just a matter of keeping a record of defective locations to avoid writing there. So when a block is marked defective, we just don't use it for future writes. Personally I've always implemented it even in the simplest products but I could imagine some manufacturers could do a crappy implementation.</p>
+<p>The real problem with the low end flash storage is that:</p>
+<p>a. The hardware is underpowered to make is cheap and low power. Cant do the more fancy error recovery techniques. In the higher end solutions I worked on we had an internal RAID like redundancy.</p>
+<p>b. The firmware is harder to get bug free due to the constrained development environment. Sometimes in the low end you have very little code space or memory to make everything work.</p>
+<p>c. Often times manufacturers use them as test bed for the latest generation memory. Newer generation memory has smaller transistor so they have more crosstalk and other problems.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/exploderator" target="_blank">exploderator</a>
+			<div class="markdown"><blockquote>
+<p><em>So its just a matter of keeping a record of defective locations to avoid writing there.</em></p>
+</blockquote>
+<p>OK, right, that makes sense.  Treat it like any old magnetic disk media with a fixed block map, and immediately flag bad blocks out of the block allocation table, the very first time there is a bit error (already implemented because the media is always littered with bad blocks right from manufacture).  The price you pay is lack of wear leveling, blocks simply get burned up by overuse and mapped bad, block by block, as high-use files occupy them and over-use them.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Endarkend" target="_blank">Endarkend</a>
+			<div class="markdown"><p>1 usually comes down to reading out the flash chips themselves at a cell level and then recomposing the data from all the data you dumped from the several chips on a flash media (most USB sticks only have 1 flash chip so it's not THAT difficult, but large SSD's can have dozens of flash chips, so you need to know the ins and outs of the controller chip to start putting that mess back together)</p>
+<p>The vast majority of dead USB sticks and SSD's I've come across had dead or erroring controllers, not dead flash chips. And when flash chips go bad, it's often bad cells rather than completely dying. (unless some over-power mishap happens and both burned out).</p>
+<p>To the data recovery approach is always to get rid of the controller and trying to read the flash chips themselves since, if the controller is or may be bad, you don't need it and if the flash chip is bad, there's nothing much the controller can give you to restore whats on the flash chip.</p>
+<p>2 depends on the quality of the USB stick, mostly the controller used, just like with SSD's.</p>
+<p>The first batch of consumer SSD's didn't have TRIM or any other of the many life and speed improving measures modern flash storage has, their speed advantage over USB flash media mostly came from multiple flash chips on the same package (while USB tended to have just 1) and the far faster link and IO speeds of SATA 1.5Gbit/3Gbit/6Gbit over USB 1.1 (48Mbit) 2 (480Mbit) and well, USB 3 wasn't even a thing yet back then but that is rated at 5Gbit and until very very recently, not a single USB device got even close to actually saturating a USB3 link.</p>
+<p>I have a bunch of 60GB SSD's here that barely put out 100MB/s writes (which was still fast at the time since HDD's had a hard time even managing that in  bursts during ideal situations) and until a relatively recent firmware update didn't have any sort of TRIM support. So after just a few weeks of decent use, that 100MB/s went completely down the shitter to sometimes single digit speeds.</p>
+<p>With TRIM support and other measures inplemented in more recent firmwares, these SSD's have sustained 540/100 for years now. I use them as read caches for my storage server.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Slythela" target="_blank">Slythela</a>
+			<div class="markdown"><p>How did you get into a position where you were able to develop firmware? I'm graduating in a couple years and I would love to specialize in that sort of development.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/reven80" target="_blank">reven80</a>
+			<div class="markdown"><p>Its actually not to hard these days since more people need to gravitate towards web development.</p>
+<p>If you want to do this, just do lot or C/C++ coding and play around with micro-controller boards enough to realize this is what you really want. Write your own C or assembly program on those boards. Make it blink lights, control motors. I used to hire junior engineers all the time based on general programming skills and the genuine desire to learn this stuff.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Slythela" target="_blank">Slythela</a>
+			<div class="markdown"><p>That's good to hear. I've written a couple kernels, including one for a cpu I designed so I've some experience but my dream job would be to do what you described. </p>
+<p>Would Intel or Nvidia be good companies to look into for this type of development in your opinion? Or, if you've had experience with both, would you consider it more rewarding to develop for smaller companies?</p>
+<p>Thank you for your time!</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
