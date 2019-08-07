@@ -1,0 +1,100 @@
+<li class="post" data-handle="clsjm0">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/clsjm0/are_there_any_currently_unsolved_equations_that/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Physics">Physics</span>
+			<a href="/posts/clsjm0" onclick="return false">Are there any (currently) unsolved equations that can change the world or how we look at the universe?</a>
+		</h2>
+		<!--<span class="date">2019-08-07</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>(I just put flair as physics although this question is general)</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="evyoly9">
+		<a class="author" href="https://www.reddit.com/user/FarKaleidoscope9" target="_blank">FarKaleidoscope9</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>We still don't know how big of a couch we can get around a corner.</p>
+<p><a href="https://en.wikipedia.org/wiki/Moving_sofa_problem" target="_blank"><a href="https://en.wikipedia.org/wiki/Moving\_sofa\_problem" target="_blank">https://en.wikipedia.org/wiki/Moving\_sofa\_problem</a></a> </p>
+<p>Think of the possibilities if we found the sofa constant. We could have bigger sofas. And they'll probably be weird shapes.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="evxv4l1">
+		<a class="author" href="https://www.reddit.com/user/Timebomb_42" target="_blank">Timebomb_42</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>What first comes to mind are the <a href="https://en.wikipedia.org/wiki/Millennium_Prize_Problems" target="_blank">millenium problems</a>: 7 problems formalized in 2000, each of which has very large consiquences and a 1 million dollar bounty for being solved. Only 1 has been solved.  </p>
+<p>Only one I'm remotely qualified to talk about is the Navier-Stokes equation. Basically it's a set of equations which describe how fluids (air, water, etc) move, that's it. The set of equations is incomplete. We currently have approximations for the equations and can brute force some good-enough solutions with computers, but fundamentally we don't have a complete model for how fluids move. It's part of why weather predictions can suck, and the field of aerodynamics is so complicated.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="evxq3nx">
+		<a class="author" href="https://www.reddit.com/user/YaztromoX" target="_blank">YaztromoX</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In Computer Science, we like to quantify algorithms based on how their running time is affected as the input size grows.  Some algorithms run at the exact same speed regardless of input size, while others become significantly more complicated much quicker as the input size increases.  By way of an example of an easy case is pulling a value out of an array -- it doesn't matter if we ask for array item 2 or array item 29 756, the speed of doing so is constant.  A more complicated case would be something like chess -- we can calculate all possible moves on a smaller chess board, but as the board gets bigger we get into a situation where calculating all possible games would require every computer mankind ever manufactured to date to run until the heat death of the universe...and it still wouldn't complete.</p>
+<p>So we have a notation for describing an algorithms runtime complexity (<a href="https://en.wikipedia.org/wiki/Big_O_notation" target="_blank">Big O notation</a>), and we can put problems with similar runtime constraints into a <em>complexity class</em>.  And there are two very important complexity classes called 'P'  and 'NP' that many algorithms fit into^0.  </p>
+<p>Algorithms that are part of 'P' have two important characteristics: the time they take to run can be described as a polynomial (that is, by an equation of the form &quot;an^k + bn^k-1 + cn^k-2 ... +xn^2 + yn +z&quot;^1 ), and the time required to verify the solution can also be described as a polynomial.</p>
+<p>Algorithms that are part of 'NP' also have a similar pair of characteristics.  Like problems in 'P', the solutions can be verified in polynomial time.  However, their runtime to calculate the solution in the first place only runs in polynomial time on a <em>non-deterministic</em> Turing machine, which may be worse than polynomial time when run on a <em>deterministic</em> Turing machine^2.  You don't have to worry about the details of what that means -- but generally it means that these are problems where we can verify the result in polynomial time (or &quot;poly time&quot; for short), but where the computation itself may not be computable in poly time.</p>
+<p>Using the above definitions, it's not hard to see that every problem in P is also in NP.  If you were to draw a Venn diagram, P would be a circle entirely inside NP.  All P problems can be verified in polynomial time, and all of their runtimes can be run in poly time on a non-deterministic Turing machine (as well as running in poly time in a completely deterministic Turing machine).</p>
+<p>So here is where the unsolved equation comes in:  we know that P is inside NP.  However, is P = NP?  That is, can <em>every</em> problem in NP be reformulated such that it would also be in P?  Or are there problems in NP that can't be reformulated to also be in P?</p>
+<p>This has been an open question in computer science for much of the past century, and currently there is no proof either way.  Many computer scientists <em>believe</em> that P ≠ NP, but there is no actual proof one way or another (on a side note, some feel that P = NP, however some in that camp feel that any conversion of a NP problem into P would be non-constructive^5).</p>
+<p>Okay -- so what is the point of all this über-nerd gobbledygook?  It reads like a whole bunch of mental masturbation for eggheads -- is this important in the real world?</p>
+<p>The answer to that decision problems is a big YES.  Some extremely important algorithms that people rely upon in their daily lives currently rely on the assumption that P ≠ NP.  One of the most important of these is <em>encryption</em>.  Decryption can be thought of as a decision problem -- given an input (the encrypted data), we can quickly verify if our &quot;solution&quot; is correct (that is, did the decryption work?  Did we get the right decrypted data back?).  But how useful would decryption be if we could also decrypt <em>any</em> data (without the decryption key) in polynomial time on any computer?  What would happen if it was also very easy to decrypt any encrypted information without a password or encryption key?  Right now the whole contract of encryption is that it is very easy to decrypt data if you have the proper encryption key, but that without the encryption key decrypting the data is more difficult, and gets more and more difficult as the key size increases.  Decrypting data with a 2048 bit key would require more time in the average case than the expected lifetime of our solar system.  Proving that P = NP, and then finding a constructive solution to convert an NP decryption algorithm such that it is also in P would likely break the way we encrypt data.  This could have serious repercussions to how virtually all commerce and personal privacy on Earth works.^6</p>
+<p>At the same time, it could make a lot of problems that are very difficult to solve computationally more efficient.  This could have all sorts of positive benefits (that outweigh the negatives of breaking encryption).  The Knapsack problem^7, for example, is in NP and is thus more and more difficult to solve as the number of items you could potentially put into the knapsack increases.  But if we had an efficient way to convert this problem such that it was also in P it would potentially have all sorts of positive benefits in the real world^9.  All of the world shipping logistics for example could be significantly improved -- the Knapsack Problem isn't any different than figuring out what sets of items to pack into a shipping container to maximize the weight and number of items being shipped -- companies that were able to efficiently compute this for each cargo container, and for each ship (as you can think of assigning containers to ships as an instance of the Knapsack Problem as well!).</p>
+<p>This problem is so important that is it one of the seven <a href="http://www.claymath.org/millennium-problems" target="_blank">Millennium Prize Problems</a>.  I'd also argue that it's the most important problem, as if you could solve it and prove that P = NP, <a href="http://www.claymath.org/sites/default/files/pvsnp.pdf" target="_blank">it may mean that a computer could generate proofs for all of the other Millennium Prize Problems</a>^10.  So if you can solve this one, you <em>might</em> also be able to efficiently solve all of the <em>other</em> major mathematical problems of our time.</p>
+<p>How cool would <em>that</em> be?  HTH!^11</p>
+<hr />
+<p>^0 -- 'P' and 'NP' problems are formulated as <em>decision problems</em>, that is problems where the result is YES or NO.  Conceivably, we can generally take problems and convert it into a decision problem -- a sort algorithm, for example, may be reformulated as a sorting algorithm where at the end we ask &quot;Is this list sorted?&quot;, and we get back a YES or NO response.  I'm trying to keep things somewhat simple to understand for laypeople, so I'm not going to deal with these specifics in this post.<br />
+^1 -- I would have preferred to use the same letter for the term multipliers with subscripts, but AFAIK Reddit doesn't permit subscripts, only superscripts.  So please don't take my use of a, b, c, x, y, and z to imply that there are only 26 terms in the polynomial form.  There could be just one, or there could be thousands.<br />
+^2 -- Ugh, I've been trying to reformulate a way to discuss this without getting into the differences between deterministic and non-deterministic machines, or what a Turing machine is^3.  The simplest explanation is that the computers we run are all like deterministic Turing machines^4; a non-deterministic Turing machine is one that you can think of is allowed to &quot;guess&quot; at answers.<br />
+^3 -- at its simplest, it's a simple mathematical model of a computer used to prove what computers can do, and what they can't do.<br />
+^4 -- You can think of &quot;deterministic&quot; to mean that given a series of instructions, the machine will run the instructions one at a time, and won't just decide to go and do its own thing once in a while.<br />
+^5 -- a <a href="https://en.wikipedia.org/wiki/Constructive_proof#Non-constructive_proofs" target="_blank"><em>non-constructive proof</em></a> is one that doesn't create or provide an actual object to demonstrate the proof.  So in this case, it would be a proof that doesn't actually show <em>how</em> to convert a problem from NP into P, and which doesn't provide an example of converting a problem in NP to also be in P.<br />
+^6 -- There are some conditions here.  I've been somewhat hand-wavy concerning some of the specifics of the runtime constraints for a poly time algorithm.  Most people wind up thinking that &quot;poly time&quot; means <em>fast</em>, and everything else means <em>slow</em>.  That isn't necessarily the case -- n^10 is polynomial, and <del>has</del> can have worse runtime characteristics than an algorithm that runs in exponential time of 2^n (for <em>some</em> values of n).  However, algorithms that have such massive poly time exponentials are pretty rare, so we don't run into cases like this very often.  So while not a universal truth, in most <em>known</em> cases problems in P run faster than problems in NP that are not also in P.<br />
+^7 -- the Knapsack Problem is pretty easy to visualize.  Say you have a knapsack, and a bunch of items of different weights^8.  The Knapsack Problem asks:  which items should you pack such that you get closest to some fixed maximum weight value?<br />
+^8 -- you can also think of items with different volumes if you prefer.  In fact, a multi-dimensional Knapsack problem could look at both the volume and mass of the items, as well as potentially other factors (such as their monetary value).<br />
+^9 -- other than being very useful for your next camping trip.<br />
+^10 -- On the positive aspects of proving that P = NP: &quot;For example, it would transform mathematics by allowing a computer to find a formal proof of any theorem that has a proof of reasonable length, since formal proofs can easily be recognized in polynomial time. Such theorems may well include all of the CMI prize problems.&quot; (<a href="http://www.claymath.org/sites/default/files/pvsnp.pdf" target="_blank">S. Cook, <em>The P vs. NP Problem</em>, Clay Mathematics PDF</a>.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="evy6y81">
+		<a class="author" href="https://www.reddit.com/user/Doldol123456" target="_blank">Doldol123456</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Not really just an equation but never the less really important in physics, the merger of general relativity and quantum field theory into one theory, a &quot;theory of everything&quot; <a href="https://en.wikipedia.org/wiki/Theory_of_everything#Modern_physics" target="_blank"><a href="https://en.wikipedia.org/wiki/Theory\_of\_everything#Modern\_physics" target="_blank">https://en.wikipedia.org/wiki/Theory\_of\_everything#Modern\_physics</a></a></p>
+<p>I'm sure there's someone who can actually explain it in detail, but I wanted to make sure it's mentioned</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="evy0hsw">
+		<a class="author" href="https://www.reddit.com/user/Lognu" target="_blank">Lognu</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Most people here point at the Millenium Problems, a set of seven problems proposed by the Clay Institute in 2000. So far, only the Poincaré Conjecture has been solved by mathematician Grigori Perelman. He refused the million dollar prize and the Fields Medal, arguably the greatest prize in Mathematics.</p>
+<p>The Millennium Problems were inspired by 1900 David Hilbert's Problems of the Century, a list of 23 problems he deemed important for the progress of Mathematics. Among Hilbert's Problems, one is considered particularly hard: the Riemann hypothesis. Proposed by Bernhard Riemann in 1859, it also appears as one of the Millennium Problems. I will now try to describe it, if you don't want to read any Mathematics, just skip the next paragraph. I still encourage you to try.</p>
+<p>The Riemann hypothesis deals with a particular function. Namely, for any number &quot;s&quot; consider the sum of all natural numbers to the power of &quot;s&quot;. E.g. for s=1 we obtain 1+2+3+4+5+... (which sums up to infinity), while for s=-2 we have 1+1/4+1/9+1/16+1/25+... which is known to add up to the square of π divided by 6. In general, we know that for all s smaller than -1 this sum is finite. Riemann used a technique called &quot;analytic continuation&quot; to
+assign a finite number to sums which add up to infinity. For instance, there is a sense in saying that 1+2+3+4+5+...=-1/12. Furthermore, it now made sense to also use &quot;complex numbers&quot; in place of &quot;s&quot;. Complex numbers are numbers which can be written as &quot;a+ib&quot;, where &quot;a&quot; and &quot;b&quot; are real numbers (just regular numbers). They follow their own set of rules, use Wikipedia if you want to read more. Now the big question is: when is this sum equal to zero? It is quite easy (for a specialized mathematician) to show that the sum is zero for all positive even numbers. Riemann hypothesis states that all other zeros must satisfy a=-1/2.</p>
+<p>Why should we care about Riemann hypothesis? Surprisingly enough, the distribution of zeros is linked to the distribution of prime numbers. Prime numbers are the fundamental blocks of multiplication and division, studied for millennia, there is still a huge number of questions about them. The solution to the Riemann hypothesis would provide great insight to this problems. An interesting real-world application concerns the encryption of transmitted data, such as credit card numbers and personal info. The security of the RSA, the most widely used encryption tool in online transactions, highly depends on our incomplete knowledge about prime numbers.</p>
+<p>During the last 150 years, many people claimed to have solved the Riemann hypothesis, but all their proofs failed under a diligent scrutiny. Some people even start to believe that the problem is undecidable i.e. it is not possible to prove whether the Riemann hypothesis is true or not within the realm of &quot;standard&quot; Mathematics.</p>
+<p>Edit: the critical line is Re(s)=-1/2 in my notation.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/clsjm0" onclick="return false"><span>show</span></a>
+</li>

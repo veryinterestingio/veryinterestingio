@@ -1,0 +1,85 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/YaztromoX" target="_blank">YaztromoX</a>
+			<div class="markdown"><p>And because I hit the maximum size for a Reddit post:</p>
+<p>^11 -- I suspect there will be some purists out there who may have issues with some of the details of my explanation, and that's fine.  Note that I've tried <em>really</em> hard to keep this as readable as possible for the layperson to understand, and because of this I may have left out some details that are technically important, or may have explained certain items in an overly-simplified manner.  So my apologies in advance if there were areas where I over simplified (or perhaps over-complexified) the problem.  If only there were an algorithm in P for explaining P vs. NP in a Reddit post!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tea_I_Am" target="_blank">Tea_I_Am</a>
+			<div class="markdown"><p>Great read! Thanks for posting.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mikeymooman" target="_blank">mikeymooman</a>
+			<div class="markdown"><p>As a CS student who very recently learned about it in class, I planned on making a reply talking about the NP-Complete problem. Never did I expect to see a VOLUME written about it as one of the top rated comments. </p>
+<p>Thanks for the post! You explained it a hundred times better than I ever could have!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/autodidactdyad" target="_blank">autodidactdyad</a>
+			<div class="markdown"><p>Thanks for the great write-up. There's one thing that has always eluded me here. Proving P=NP doesn't provide algorithms to any of those problems, does it? And it's not like anyone is throwing up their hands saying we're not going to try to crack asymmetrical encryption until we figure out P=NP. And it's not like a proof of P=NP is going to include a naive solution to AES.  So what would it really get us to answer the question? </p>
+<p>It's not like quantum mechanics where there's actual fundamental interactions and mathematics that lead directly to technological developments. This is all about describing the abstract computability of problem within theoretical computation models. I mean, I still don't  have a non-deterministic turing machine on my desktop as far as I know, do I? (Does it also matter whether that can actually exist?)</p>
+<p>Unless what we're really saying is that the solution to P=NP must describe a formal system of computation in which such problems become naively computable, then P=NP seems like nothing more than academics trying to present algorithmic computation as a hard science rather than an engineering discipline. Which says more about academic culture than science or math and is why I've always considered this problem a huge circle jerk. Can you help me understand what types of actual developments could result from this proof?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheNerdyBoy" target="_blank">TheNerdyBoy</a>
+			<div class="markdown"><p>Many proofs that a problem is in NP involve a polynomial-time transformation of that problem to an already known NP-complete problem.</p>
+<p>Therefore, once we have a polynomial-time solution to any NP-complete problem (call it <em>foo</em>), we can apply a polynomial-time transformation of any other problem in NP to that <em>foo</em>, and then solve it in polynomial time. (A polynomial times a polynomial is another polynomial.)</p>
+<p>That's why OP added the qualifier about a <em>constructive</em> proof of P=NP.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/orccrusher99" target="_blank">orccrusher99</a>
+			<div class="markdown"><p>Proving P=NP wouldn't provide algorithms initially, but it would let researchers know where to focus their efforts. Nobody tries to make something mathematically impossible, and 90% of CS researchers believe P != NP. If P = NP, it means those fast algs exist but nobody has been smart enough to find them, as opposed to not existing at all.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/YaztromoX" target="_blank">YaztromoX</a>
+			<div class="markdown"><blockquote>
+<p>Proving P=NP doesn't provide algorithms to any of those problems, does it?</p>
+</blockquote>
+<p>That depends.  As I alluded to briefly in one of my footnotes, proofs can be either <em>constructive</em> or <em>non-constructive</em>.  A <em>constructive</em> proof would by necessity provide a way to convert all (or some subset) of NP problems into P problems.  What you seem to be thinking about is a <em>non-constructive</em> proof, where you can reason about the problem without providing a concrete example or algorithm.  Likely, a proof that P ≠ NP would be non-constructive (for example).</p>
+<p>There is a subset of NP problems I didn't mention, which are the <a href="https://en.wikipedia.org/wiki/NP-completeness" target="_blank">NP Complete</a> problems.  These are problems in class NP where we already have proofs that any problem in the NP Complete problem set can be re-described in terms of any <em>other</em> NP Compete problem.  Many of these problems are fairly easy to conceptualize -- for example, <a href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem" target="_blank">Boolean Satisfiability</a>, and are very likely candidates is a <em>constructive</em> proof of P = NP is ever devised.  As any problem in NP Complete can be expressed in terms of any other problem in NP Complete, if you find a constructive solution for one, you find a constructive solution for <em>all</em> NP Complete problems.</p>
+<p>As a side note, the computer on your desk likely has non-deterministic aspects to it already.  While most problems run deterministically most of the time, there are non-deterministic aspects available that can impact computation.  For example, if your computer has a hardware Random Number Generator, this can introduce non-determinism.  As well, if you're running a multi-core machine, then timing between cores can also introduce a level of non-determinism.  User input can also induce non-determinism (depending on whether not not the machine makes <em>decisions</em> based on the input).</p>
+<p>HTH!</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xdert" target="_blank">xdert</a>
+			<div class="markdown"><p>I want to add two caveats to your post</p>
+<ol>
+<li>currently used encryption methods are based on prime factorization which is not known to be NP-complete, so there could be a polynomial algorithm without proving P=NP. </li>
+<li>the real world implications of proving P=NP are often a bit overblown. Finding a n^c algorithm for an NP-complete algorithm where c is in the millions would be a huge sensation in the world of science but would have zero effect on practical problems.</li>
+</ol></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fuckyourhomophobia" target="_blank">fuckyourhomophobia</a>
+			<div class="markdown"><blockquote>
+<p>Finding an algorithm for an NP-complete algorithm where c is in the millions would be a huge sensation in the world of science but would have zero effect on practical problems.</p>
+</blockquote>
+<p>I may be wrong, but I think of P=NP as &quot;the scaling dilemma&quot;. I can think of widespread applications with mixed data. Real-world scale issues that are similar to the Knapsack (similarly in analytics, the shopping cart) problem. Remember the plant-based chip bags controversy? That's related to one: non-renewable waste. On a macro level, if we think of the spread of non-renewables for one category, the knapsack would be a system of optimizations (max reduction, min change in efficiency), a practical problem resolving P=NP to n^(c) into the millions would be what industries and what specific uses within those industries can we stick in <em>this</em> knapsack?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Randvek" target="_blank">Randvek</a>
+			<div class="markdown"><blockquote>
+<p>I may be wrong, but I think of P=NP as “the scaling dilemma”.</p>
+</blockquote>
+<p>You’re not wrong. O(n log n) can be very slow as n gets large, but it’s still going to beat the pants off O(n^2 ). Even O(n) will be insurmountable using current computing for certain problems... but it sure makes that list of insurmountable problems shorter.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/UncleMeat11" target="_blank">UncleMeat11</a>
+			<div class="markdown"><blockquote>
+<p>currently used encryption methods are based on prime factorization</p>
+</blockquote>
+<p>This is less true now. RSA is out of style (for good reason, it is incredibly easy to screw up) and now more stuff is based on the hardness of discrete log.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jamred555" target="_blank">jamred555</a>
+			<div class="markdown"><p>I disagree on 2. Almost all problems in poly time have a low degree. It is quite likely that if anyone could break into poly time, you could then do refinements to get a lower degree. </p>
+<p>Not that it really matters anyways, since P is almost certainly not NP.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xdert" target="_blank">xdert</a>
+			<div class="markdown"><p>Even if you could push it to a lower degree the constants involved would still make it practically infeasible. Even certain polynomial problems are already too hard to solve for interesting applications (n in the millions).</p>
+<blockquote>
+<p>Not that it really matters anyways, since P is almost certainly not NP.</p>
+</blockquote>
+<p>Exactly ;)</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SirPounder" target="_blank">SirPounder</a>
+			<div class="markdown"><p>This  is an informed and well written post, thank you for sharing it.</p></div>		</li>
+					</ul>
+	
