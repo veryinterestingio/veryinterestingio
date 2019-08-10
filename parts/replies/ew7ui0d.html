@@ -1,0 +1,106 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/yankeeskypirate" target="_blank">yankeeskypirate</a>
+			<div class="markdown"><p>What process is happening when your phone has you move it in a figure 8 pattern to re-calibrate the compass? Is it just comparing the relative fields as it moves through all the axes?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/leyline" target="_blank">leyline</a>
+			<div class="markdown"><p>Yes, kind of like when you would calibrate your joystick in old games, it would try to find the min/max values at a certain location and then find the &quot;normal&quot; center given the data from the outlying min/max ranges.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/es330td" target="_blank">es330td</a>
+			<div class="markdown"><p>Wow. I totally forgot about having to calibrate joysticks.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Loggerdon" target="_blank">Loggerdon</a>
+			<div class="markdown"><p>Upvote for joystick figure 8 reference.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fiendishrabbit" target="_blank">fiendishrabbit</a>
+			<div class="markdown"><p>Yes. There will always be invidual differences for each sensor. By comparing the flow through each sensor as it moves through the different axis it can determine how each sensor reactors to a magnetic field relative to the others.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hypothesis_Null" target="_blank">Hypothesis_Null</a>
+			<div class="markdown"><p><em>Edit</em> - <strong>TL;DR</strong> at the bottom. Read first and see if you care enough to read the whole wall.</p>
+<p>Everything I'm about to say applies to 3D space, but lets stick with 2D so that it's easy to picture.</p>
+<p>You've got a 2D magnetometer.  It's made of two hall-effect sensors placed at a right-angle, that detect the strength of the magnetic field aligned with them. </p>
+<p>So if that sensor is in the presence of a 1miliGauss magnetic field that is directly aligned with our x-axis sensor, the x-axis sensor will read the full 1mG, and the y-axis sensor will read 0mG. (since the y-axis sensor is completely perpendicular to the magnetic field).  And thus our sensor will tell us the local magnetic field is &lt;1,0&gt;</p>
+<p>If we rotate the sensor 45 degrees, then the magnetic field will be detected, partially and equally, by both the x and y sensors.  sin(45) = sqrt(2)/2 or about 0.707.  So now our sensor will read out &lt;0.707,0.707&gt;.  As a quick check, we can make sure the magnitude of the vector is still 1mG.  sqrt(x^2 + y^2 ) = sqrt( .707^2 + .707^2 )  = sqrt(.5 + .5) = 1mG.  </p>
+<p>If we rotated the sensor another 45 degrees, so that it's 90 degrees from our original position, it'll be aligned with the y-axis sensor and perpendicular to the x-axis sensor, and it will read out &lt;0,1&gt;.</p>
+<p>If you continue to rotate the sensor around (and make sure it stays flat) then you will should read out every combination of &lt;x,y&gt; that has a magnitude of 1mG.  This is what you should read out if the sensor is <em>ideal</em>.</p>
+<p>If you looked at all of these vectors, you'll notice they form a circle with a radius of 1mG.  As such, you can always describe the <em>direction</em> of the magnetic field by looking at where the &lt;x,y&gt; pair is pointing (ie, magnetic north).</p>
+<p>Now, the above is all true <em>if your sensor is ideal.</em>  But sensors are <em>never</em> ideal.  There are three major things that will screw up your measurements, which the weird figure-8 thing gets rid of.</p>
+<p>1) 'Hard-iron' offset</p>
+<p>If there is a magnetic source attached to your sensor, so that it rotates with your sensor, then it will majorly screw up your measurements.  Consider if I went and attached a magnet to our magnetometer that produces a 5mG field aligned with our x-axis sensor.  Now every single measurement is going to be whatever the Earth's magnetic field is, <em>plus</em> 5mG on our x axis.  The above measurements of &lt;1,0&gt; , &lt;.707,.707&gt; and &lt;0,1&gt; become &lt;6,0&gt; , &lt;5.707,.707&gt;, and &lt;5,1&gt;.  </p>
+<p>If you think about this graphically, whereas before we had a circle of radius 1 centered on the origin, we now have a circle of radius 1 centered on the point (5,0). So what happens if we try to get a magnetic heading from these measurements?</p>
+<p>Well, just look at where all these &lt;x,y&gt; pairs are going to point from the origin (0,0).  They're all going to point up ! (point almost parallel to the x axis)  When our x-axis is aligned with magnetic north, it will point &lt;6,0&gt;  Which is still 0degrees and straight - no problem.  But what about when it's at +/-90 degrees?  We'll read &lt;5.707,+/-0.707&gt;  if you calculate that out (arctan(y/x)) you get a deflection of only <em>7 degrees!</em>.  In other words, because of this huge offset error, your compass will <em>always think it's pointing within 7 degrees of north.</em>  Even if you turn it sideways or even turn it around 180 degrees.</p>
+<p>But this is also pretty easy to correct.  If we just spin the magnetometer around and record several data points, we can clearly see the circle and where its center is.  We could take an average of a bunch of points, or fit a bunch of points to a circle, or do what most cheap magnetometer chips do, and just find the maximum and minimum x coordinates and maximum and minimum y coordinates collected, and look at the middle point between each of them and declare that the center.  However we calculate it, that center of the circle is our <em>Hard-iron Offset.</em>  So in this case, we'll calculate our center point somewhere close to &lt;5,0&gt; and whenever we want a magnetic heading, instead of finding the angle of &lt;x,y&gt;, we'll find the heading of &lt;x-5,y-0&gt; and use that instead.</p>
+<p>2) 'Soft-iron' distortions</p>
+<p>I'm not going to go into much detail here, because honestly a lot of commercial magnetometers only do hard-iron corrections, and that's the most important one anyway.  But soft-iron errors are basically sensitivity errors.  Imagine if your x and y sensor were not equally sensitive.  Taking an extreme case, if your x-axis sensor was <em>twice</em> as sensitive as your y-axis sensor, what would happen?</p>
+<p>When the 1mG magnetic field is aligned with your x-axis, your magnetometer will read out &lt;2,0&gt;.  And when the 1mG field is aligned with your y-axis, your magnetometer will read out &lt;0,1&gt;.  Note that if you calculate an angle for these (arctan(y/x) = angle) you'll still get 0 degrees and 90 degrees.  However, look what happens when the 1mG field is at 45 degrees, between both sensors.  instead of &lt;0.707,0.707&gt; you get a reading of &lt;1.414,0.707&gt;.  And an angle of <em>arctan(.707/1.414) = 26.5 degrees.</em></p>
+<p>Thinking about it visually, our nice beautifully, freshly-centered circle has become an <em>ellipse</em>.  When we go to perform angle calculations, that's going to weirdly distort our measurements.  Not as badly as our circle being of-center, but depending on how we're oriented, turning 90 degrees will look like turning 90 degrees, but turning 5 degrees might look like turning 10 degrees (and then later, turning 10 degrees may only look like turning 5 degrees).</p>
+<p>Spinning our magnetometer in a circle will give us a bunch of data points to map out the ellipse, figure out what the sensitivity of each axis is, and apply corrections by fixing the scaling of our x and y sensors.  Spinning it in a figure-8 lets us map out points on a sphere and do the same thing with our x,y,z sensors.</p>
+<p>3) Quadrature-error</p>
+<p>Last and least is a mixture of mechanical issues and soft-iron distortions.  Ie, what will happen if our x and y sensors are not actually placed at a perfect right-angle to each other?  This can happen with large coils soldered to a PCB.  On the kinds of tiny magnetometers in your phone, since it's so small and is made like a microchip, the physical angles are very accurate. However, hall-effect sensors can develop little magnetic biases in the metal reeds that make up the sensor, and the angle of sensitivity may not directly align with the mechanical orientation - so same result.</p>
+<p>If our two sensors are not perpendicular to eachother, then even when the magnetic field is aligned perfectly with one sensor, another sensor will pick up some signal.  I'll leave this as an exercise to the reader - imagine that your y-axis sensor is only placed 45 degrees from your x-axis sensor, instead of 90, and figure out what data points you should read from a 1mG signal as you spin the magnetometer around.</p>
+<p>The short version is it will produce an ellipse (even if the sensors are equally sensitive) <em>and</em> this ellipse will be rotated so the major and minor axes don't actually align with the x and y axis.</p>
+<p>Correcting this involves some math I won't go into, but the story is the same here.  An ideal sensor gives us a perfect circle centered at the origin.  So we spin the sensor in a circle (or sphere in 3D space), find out how it's distorted into an ellipse, and then mathematically crush the raw data read from the sensor back into a circle or sphere.  We then use that corrected data to give us our heading.</p>
+<p><strong>TL;DR:</strong><br />
+If you spin a magnetic sensor in a circle, all your data points should likewise map onto a circle.  If you have magnetic sources attached to your magnetometer, then that will provide a constant offset, and your circle will be off-center.  If your magnetometer's x and y sensors are not equally sensitive, your circle will become an ellipse.  And if your magnetometer's x and y sensors aren't arranged perfectly perpendicular to each other, your circle will become a rotated ellipse. All three of these things can happen at once.  And if you try to get any kind of heading from this distorted data, it's pretty much always going to be wrong.</p>
+<p>If you spin your magnetometer in a circle (or a figure-8 pattern in 3D space to get points on a sphere) then you can look at your ugly, raw, distorted data that forms some kind of off-center rotated ellipse.  Then you can figure out mathematically how to correct the data to crush all these points back into a perfect, centered circle (or sphere).  </p>
+<p>This is what your phone is doing when it asks you to spin it around.  It notices its calibration is bad and it wants data to calibrate itself.  And it has you spin it around to get the data it needs.  It knows it should get a sphere of data points, so when you give us something else, it calculates how to fix itself.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lol_admins_are_dumb" target="_blank">lol_admins_are_dumb</a>
+			<div class="markdown"><p>Hey man your post was way too long to read but I applaud you for posting it anyway</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ennis88" target="_blank">ennis88</a>
+			<div class="markdown"><p>Do you have a TL:DR for the TL:DR?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/King_Of_The_Cold" target="_blank">King_Of_The_Cold</a>
+			<div class="markdown"><p>Well shit cuz I just learned something</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fishymamba" target="_blank">fishymamba</a>
+			<div class="markdown"><p>Example of a magnetoresistive compass IC: <a href="https://cdn-shop.adafruit.com/datasheets/HMC5883L_3-Axis_Digital_Compass_IC.pdf" target="_blank">https://cdn-shop.adafruit.com/datasheets/HMC5883L_3-Axis_Digital_Compass_IC.pdf</a></p>
+<p>On a phone something like this would most likely be integrated into another chip with other functions.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bman12three4" target="_blank">bman12three4</a>
+			<div class="markdown"><p>Usually a chip would have a 3 axis accelerometer, gyroscope, and magnetometer. If you want to read more into it, look up MEMS. It’s basically mechanical sensors but built at the nanoscale.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fishymamba" target="_blank">fishymamba</a>
+			<div class="markdown"><p>I actually just got one of those chips to mess around with using an Arduino!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ihmes" target="_blank">Ihmes</a>
+			<div class="markdown"><p>MEMS stands for micro-electro mechanical system. Not nano, micro. Many components are made with silicon wafers but the scale is much bigger than most small electronics CPUs and such.</p>
+<p>Usually just regular microscopes do fine, going for SEM or similar is much more rare.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tumbleflop" target="_blank">Tumbleflop</a>
+			<div class="markdown"><blockquote>
+<p>look up mems</p>
+</blockquote>
+<p><a href="https://youtu.be/gnwnR6L7R70" target="_blank">I thought of a very different sort of mems.</a></p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rexxar-tc" target="_blank">rexxar-tc</a>
+			<div class="markdown"><p>Thanks for this, &quot;A magnetic sensor&quot; is not really the answer anyone wants here.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/leyline" target="_blank">leyline</a>
+			<div class="markdown"><p>Well he did say Eli5, so isn't the correct answer, Magnets, they are magic!  ;)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/throdon" target="_blank">throdon</a>
+			<div class="markdown"><p>But how do they work? lol!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/phosandlux" target="_blank">phosandlux</a>
+			<div class="markdown"><p>shade</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BrightenedGold" target="_blank">BrightenedGold</a>
+			<div class="markdown"><p>Except i do. I’m not here trying to get enough knowledge to explain it to someone else. I just want to go “huh, ok”.</p></div>		</li>
+					</ul>
+		</ul>
+	
