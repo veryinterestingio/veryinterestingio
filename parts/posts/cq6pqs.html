@@ -1,0 +1,76 @@
+<li class="post" data-handle="cq6pqs">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/cq6pqs/does_the_efficiency_or_power_consumption_of/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Physics">Physics</span>
+			<a href="/posts/cq6pqs" onclick="return false">Does the efficiency or power consumption of electronics change with temperature?</a>
+		</h2>
+		<!--<span class="date">2019-08-17</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I recently have decided to hella overclock a PC I built this year, and someone told me that the better the cooling is on the water cooling I'm going to be using the less potential power consumption there will be. He said the electrical resistance drops with temperature there by decreasing the necessary voltage, and quite possibly allowing for a higher overall overclock speed.</p>
+<p>Is that true and if so, what is the science behind that?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ewuav0r">
+		<a class="author" href="https://www.reddit.com/user/rlgl" target="_blank">rlgl</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There's a complicated interplay of temperature and conductivity.</p>
+<p>To start, metals are good conductors (mostly, at least). A big reason for this is the high mobility of elections in these metals, especially combined with the band structure. Basically, to oversimplify, atoms try to hold on to their electrons. By applying higher voltage, or adding more electrons, you can make it easier to move the electrons around.</p>
+<p>Now, higher temperatures do give more energy that makes electrons more mobile - but thermal energy makes them more randomly mobile, whereas applying electric potential will tend to move them in a specific direction. As things heat up though, the more random movement leads to more collisions between electrons and each other or atomic nuclei. The additional mobility of electrons due to heating is much lower than this negative event, so higher temperatures generally lead to higher resistance.</p>
+<p>Now, there's also a second component regarding transistors. They are basically switches, and ideally you want to use as little power as possible (ideally single electrons) to switch them. To be that precise though, you want the band gap of your semiconductor (basically the energy difference between the electrons that the atoms hold on to, and those which can move through the material) to be as low as possible, while staying high enough to avoid accidentally switching. So, heat makes electrons more mobile by increasing their energy level - this can raise the band gap minimum, meaning you need a less efficient transistor because higher efficiency would require lower operating temperatures.</p>
+<p>This second part is a hardware and materials science consideration, nothing end users can really do anything with. But, it's one more reason thermal management is so important for electronics.</p>
+<p>EDIT: see the comment from u/kyngston for more details around what happens to transistors at elevated temperatures. He did a nice job laying out some of the effects/processes.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ewue4to">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ewugecv">
+		<a class="author" href="https://www.reddit.com/user/symmetry81" target="_blank">symmetry81</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Yes, it'll be more efficient when it's cooler.  Others have mentioned that electrons become more mobile as the temperature goes down.  Equally important in semiconductors, at least with the complimentary logic your computer is using, is that the mobility of holes in the electron lattice also become more mobile as temperatures decrease.  These higher mobilities let you run at the same speed with a supply voltage closer to the threshold voltage.  Your power consumption will be proportional to your voltage so that reduces power.  </p>
+<p>More importantly for a modern chip, using a process smaller than say 90nm, is that lower temperatures will tend to decrease leakage.  Part of the power your chip uses is active current, filling up and discharging the capacitance of the transistors doing useful work.  But part of it is current flowing through transistors which are theoretically closed.  As transistors have gotten smaller this became a problem and is indirectly the main reason clock speeds stopped increasing rapidly after 90nm.  Cooler transistors tend to leak less and this is the main reason you tend to see lower power consumption in cooled processors.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ewuh2aw">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ewv631v">
+		<a class="author" href="https://www.reddit.com/user/capn_hector" target="_blank">capn_hector</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Yes.  Leakage current and internal resistance (as the MOSFETs switch) tends to be reduced at lower temperatures.  There is a small but noticeable reduction in power consumption between a chip running at, say, 85-100C and one that's running at 50-60C.  It also requires less voltage to be stable.</p>
+<p>To look at it the opposite way, there is a concept called <a href="https://en.wikipedia.org/wiki/Thermal_runaway#Power_MOSFETs" target="_blank">&quot;thermal runaway&quot;.</a>  If you get a MOSFET sufficiently hot, it gets into a positive feedback loop: it consumes more power, which makes it hotter, which consumes even more power, and eventually the MOSFET burns out.  This exists entirely because hotter MOSFETS need more power to switch than cooler ones (at a given frequency/voltage).</p>
+<p>Simple example but the AMD 295x2 was a version of the 290X graphics card that mounted a pair of the chips in a liquid cooled setup; <a href="https://tpucdn.com/review/amd-r9-295-x2/images/power_average.gif" target="_blank">this card actually pulls notably less than two individual cards,</a> because the cooler keeps it cool enough to keep leakage under control.  Overclocked aftermarket cards with axial coolers also sometimes pulled less power than the stock reference card with a (very hot) blower cooler.  The extremely poor reference cooler on this card makes it interesting for these sorts of comparisons - in fact, engaging the &quot;uber mode&quot; (increased fan speed) could actually <em>reduce</em> power consumption for the same reason.</p>
+<p><a href="https://tpucdn.com/review/sapphire-r9-290x-tri-x-oc/images/power_average.gif" target="_blank">https://tpucdn.com/review/sapphire-r9-290x-tri-x-oc/images/power_average.gif</a></p>
+<p><a href="https://tpucdn.com/review/asus-r9-290x-direct-cu-ii-oc/images/power_average.gif" target="_blank">https://tpucdn.com/review/asus-r9-290x-direct-cu-ii-oc/images/power_average.gif</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/cq6pqs" onclick="return false"><span>show</span></a>
+</li>
