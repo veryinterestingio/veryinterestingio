@@ -1,0 +1,80 @@
+<li class="post" data-handle="cy1xfa">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/cy1xfa/eli5_back_then_before_everything_like_c_and_even/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/cy1xfa" onclick="return false">Back then before everything like C++ and even HTML was around, how were video games for consoles like the NES developed?</a>
+		</h2>
+		<!--<span class="date">2019-09-04</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Back then before everything like C++ and even HTML was around, how were video games for consoles like the NES developed?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="eyp5iof">
+		<a class="author" href="https://www.reddit.com/user/Feathring" target="_blank">Feathring</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They were written in the 6502 assembly language. A few were written in C, but those apparently had a reputation for being slow due to the specs of the NES itself.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="eyphxlw">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[gelöscht]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="eypjvi6">
+		<a class="author" href="https://www.reddit.com/user/bandwidthcrisis" target="_blank">bandwidthcrisis</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The CPU in a console can read and perform very simple instructions stored as bytes in the program file, so one number might mean &quot;load up the number from a location in memory&quot;, another instruction-number might mean &quot;add two values together&quot;. </p>
+<p>In C, you'd type something like</p>
+<p>x=y+5;  // Get the number stored as 'y', add 5 to it and set the value named 'x' to the result</p>
+<p>The &quot;compiler&quot; is a program which is used to make the real program file from that human-written code. It takes that one line and writes out a whole bunch of the instruction-numbers that the computer understands.</p>
+<p>&#x200B;</p>
+<p>Before having languages like C, the programmer could still write understandable instructions, but they were more on a level with the machine language. So you'd write instructions like this for the above (not a real language). The bits after -- are just my comments and would not be part of the program (although programmers add stuff like that to explain what they're doing in real code too)., </p>
+<p><code>load ptr1,4002  -- meaning get ready to use memory address 4002 (where the value of y is) by storing it in a special CPU memory ptr1</code></p>
+<p><code>load value1, (ptr1)  -- get the number stored in the memory address that ptr1 is pointing at into a special CPU memory named value1</code></p>
+<p><code>load value2, 5  -- get the number we're going to add into the 'value2' CPU store.</code></p>
+<p><code>add value1, value2  -- do the addition - this computer can only add its special "value" stores together, we can't just add things directly.</code></p>
+<p><code>load ptr1, 4010 -- this number happens to be where we'll store the value named 'x' in the C code so set up ptr1 to point to that. We're done with the 4002 memory address that holds y.</code></p>
+<p><code>store value1, (ptr1)  -- store the result of the addition in ptr1, which is now pointing at where we want to store the value 'x'</code>  </p>
+<p>&#x200B;</p>
+<p>The computer still can't understand &quot;add value1, value2&quot; - it only understands some code-number that means that.</p>
+<p>So like with C, a program converts the written programs into computer code, except that you'd have to pretty much write the code as a 'human' version of each computer instruction. One line to one machine instruction, instead of one-to-many that you have with C compilers. </p>
+<p>So you could still write the program, but everything was more laborious. You had to spell out everything in simple form on the computer's level.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="eyqo7yr">
+		<a class="author" href="https://www.reddit.com/user/fizzlefist" target="_blank">fizzlefist</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Not exactly related, but for some more info on how developers worked within the limitations of such primitive hardware, <a href="https://youtu.be/ZWQ0591PAxM" target="_blank">check out this video</a>. It's by the developers of a recent NES game called Micro Mages and covers all the neat tricks you'd use to fit a game into such a small amount of storage.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="eyp9qox">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/cy1xfa" onclick="return false"><span>show</span></a>
+</li>
