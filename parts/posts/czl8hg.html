@@ -1,0 +1,80 @@
+<li class="post" data-handle="czl8hg">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/czl8hg/eli5_a_software_application_i_use_for_work_says/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/czl8hg" onclick="return false">a software application I use for work says it is Version 11.0.5.7.1378212. Why would the version # have such a high degree of precision?</a>
+		</h2>
+		<!--<span class="date">2019-09-07</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: a software application I use for work says it is Version 11.0.5.7.1378212. Why would the version # have such a high degree of precision?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="eyz0xjs">
+		<a class="author" href="https://www.reddit.com/user/nAssailant" target="_blank">nAssailant</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In software development, we like to keep track of <em>every</em> code change. We do this for the same reason scientists keep record of all their notes and observations, even if they're incorrect. It's important to be able to go back and see what's working and what is not. It's also important to keep everyone working and using the same version, especially if you have a lot of developers working on one project and a lot of customers using it.</p>
+<p>Software versioning tends to follow the same conventions (in my experience), something like this:</p>
+<p>[Major Version].[Minor Version].[Patch].[Revision (optional)]</p>
+<p>In your example, the version 11.0.5.7 could mean (totally extrapolating):</p>
+<ul>
+<li>Main version <strong>11</strong></li>
+<li>Minor version <strong>0</strong> (could be an alpha/beta or maybe they just start their minor versioning at 0)</li>
+<li>Patch <strong>5</strong></li>
+<li>Revision/Hotfix <strong>7</strong></li>
+</ul>
+<p>The last number, 1378212, could be many things. My first impression is that it is a <strong><em>build number</em></strong>. A build number is just a number that increments every time the source code changes and a new 'build' is made. A build is literally just a tangible instance of a program that has been compiled and can be used/tested.</p>
+<p>So, in this case this might be the 1378212 build of this particular piece of software since they started making builds. This number is important because it gives you an exact number (independent of the version) that you can reference if needed. If two programmers are working on the same code, and they both create builds, each of their build numbers will be different even if their versions are the same.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="eyz0096">
+		<a class="author" href="https://www.reddit.com/user/Target880" target="_blank">Target880</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The version is likely just  11 .0 .5 .7  and the  1378212 is likely the build number of the code.</p>
+<p>The 11 .0 .5 .7  is a version set by human so you can track changes in groups. The longer 1378212 is automatic It is a number that is generate when you commit the code to the code management system increased for each change or a build number that increased each time you compile part or the while software. So it is there to know exactly what code was used</p>
+<p>So if there is a bug in testing or when developed they can know exactly what code was used. When the developers write changes for 11 .0 .5 .8 or what is will be there is a lot of changes in small steps between when a human determine that a new version number is appropriate. The human part of the version number likely only changes when it is released to the users away from the developers.</p>
+<p>So the high number is there so you can know exactly what code was used and as it is automatic it is not reason to not include it because it might be relevant some times.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="eyyzg0u">
+		<a class="author" href="https://www.reddit.com/user/wille179" target="_blank">wille179</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Usually version numbers are based on the size/significance of the patch, so the first number is the major version, the second is a minor patch, the third is a maintenance version, fourth is a build, etc., where each section changes less overall than the one above.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="eyzavgl">
+		<a class="author" href="https://www.reddit.com/user/ExcessiveGravitas" target="_blank">ExcessiveGravitas</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>People who make software have a hell of a time working out what’s causing the problem when you say something isn’t working.</p>
+<p>Modern software has many, many changes made in a very short time (what I’m working on has had something like thirty changes today alone and we’re a small team). Most of these changes are kept private and are kept only as a “diary” of how things changed to get to where we are now. That “diary” might include things where one developer changed stuff, and another changed it back because they knew something the first one didn’t. </p>
+<p>Some changes are outright rejected; they’re ignored but remain in the “diary” as part of the history so things can be checked in the future when someone says “oh, I did that in July but it was rejected”. That way, we can go back and look at whether it <em>was</em> useful after all.</p>
+<p>At some point someone has to decide that something is ready to be made public. But we don’t all down tools and wait while that happens; instead, they look at the diary and decide how everything was yesterday morning is good enough. So they pick that entry in the diary; instead of being labelled with Tuesday April 26th, 9:04am, it’s got a number that (usually) doesn’t mean very much except that it’s different to every other label in the diary.</p>
+<p>That then eventually ends up being used by you, but in the meantime we make many, many more changes. Then you discover that sometimes when you press a certain button, it stops working. We can’t work out <em>why</em> that happens unless we try to make it happen on our system too. If we try it with the latest version, things may have changed so it doesn’t happen any more (we may even have taken that button out). So we kind of “look up” your version in the diary, get our computer to make that version, and try to recreate your issue. If we can, then we can check everything that’s changed since your version and see whether what we’ve done in the meantime has fixed it, or whether it still needs fixing.</p>
+<p>The long number helps us get the <em>exact</em> entry in the diary that matches what’s on your computer, rather than one of the thirty or more that we’re done that day, or the hundreds between 1.1.3 and 1.1.4...</p>
+<p>(To software developers out there, I know I’ve glossed over a lot and bug hunting isn’t really as smooth as that but hey, ELI5)</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="eyz6lw0">
+		<a class="author" href="https://www.reddit.com/user/Yancy_Farnesworth" target="_blank">Yancy_Farnesworth</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Just to add onto the other answers here, the version number is purely arbitrary. What has been described is purely convention, something people do because that's how it has been and makes sense to the most people. If I wanted to, I can make my version numbers count down or have 50 groups of numbers in them. Ubuntu for example uses the month and year the software was released on. Chrome uses only one number and counts up with every release. </p>
+<p>This version number looks like it holds other important information that is likely really only meaningful for the developers of the software. Which is useful for them but not really for anyone else. But it's perfectly valid for them because it serves their purposes.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/czl8hg" onclick="return false"><span>show</span></a>
+</li>
