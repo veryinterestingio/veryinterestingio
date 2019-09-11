@@ -1,0 +1,54 @@
+<div class="answers">
+	<div class="answer" data-handle="ezlownc">
+		<a class="author" href="https://www.reddit.com/user/Edgar_Brown" target="_blank">Edgar_Brown</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The hum is 60Hz (or 50Hz if you live in Europe), it’s either oscillations in the components of the rather massive power supply required to feed nearly 1.5kW to the magnetron. Or mechanical oscillations induced in the magnetron due to ripple in its power supply. </p>
+<p>Electronic components can produce mechanical vibrations. Power transformers have to deal with changing magnetic fields that will produce torques in a similar way to a motor. Ceramic capacitors tend to be piezoelectric and mechanically distort with changing voltages. To provide 1.5kW to anything large fields are involved, and it becomes rather hard to provide stable power.</p>
+<hr />
+<p>Edit: As it was pointed out by several people (and confirmed by measurements from others (isn't it nice how science works)). the actual fundamental frequency is twice the line frequency. So that's 120Hz for the US (and related areas) and 100Hz for Europe (and related areas). Those roughly correspond to a B3 and a G2 in the music scale.</p>
+<p>There are multiple reasons for this, the main one among them is that the movement of components (such as the microwave's metal case and transformer core and coils) are affected by the magnitude of the magnetic field not its direction, which leads to rectification of mechanical displacement at twice the cycle rate.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ezmtfyj">
+		<a class="author" href="https://www.reddit.com/user/kilotesla" target="_blank">kilotesla</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Most microwaves use large 50 or 60 Hz transformers to step up the line voltage to the several kV needed by the magnetron tube that actually produces the microwaves.  Any big line-frequency transformer will tend to hum from magnetostriction in the steel and from magnetic forces on the core and windings.  </p>
+<p>So why is the microwave oven sound distinctive?  One reason is that it's actually the only common example of a line-frequency transformer that big (~1 kW) in a home device^1.  The other is some special features of a microwave transformer and its application that make it especially noisy and perhaps make the sound a little different:</p>
+<ol>
+<li>
+<p>A magnetron has a nonlinear input voltage/current characteristic that makes it rapidly draw more current if the voltage is increased a little.  Some kind of current limiting or control is needed.  This feature is built into a microwave transformer in the form of <a href="https://www.qsl.net/kh6grt/page4/xfmr/pictures/transorig.jpg" target="_blank">magnetic shunts</a> between the primary and secondary winding.  Those boost the <a href="https://en.wikipedia.org/wiki/Leakage_inductance" target="_blank">leakage inductance</a> which effectively provides a series impedance that limits the current.  But that structure leads to opportunities for more mechanical vibration, both because of the magnetic forces arising and because the shunt isn't mechanically secured as well as the rest of the steel core.  Edit: also because it produces a larger field external to the transformer, which can make other stuff vibrate, such as steel panels of the chassis.</p>
+</li>
+<li>The output of the transformer is high-voltage ac, but the magnetron needs dc, so there's a rectifier.  One common type of rectifier used is a <a href="http://slot-tech.com/interesting_stuff/a%20collection%20of%20technical%20stuff%20from%20a%20technician%20in%20Libya/Microwave/doubler.html" target="_blank">voltage doubler rectifier</a> which chargers a capacitor during one half cycle of the 50/60 Hz line frequency, and then delivers energy from the capacitor and from the transformer into the magnetron during the other half cycle.  That means the magnetron is actually pulsed on once per cycle, rather than twice as it would be with a simple full-wave rectifier, or operated continuously, as it would if the rectifier output were filtered.  In any of those options, the current in the transformer isn't sinusoidal, but is more &quot;pulsy&quot;, and thus contains more harmonics that are more easily audible than a pure sine wave would produce.^2</li>
+</ol>
+<p>Microwave ovens without line-frequency transformers are finally becoming common.  They still use transformers to produce the high voltage, but the transformers operate at high frequency, above the audio range, which makes them silent, as well as smaller, cheaper, lighter, and more efficient.  Such a system is   often called an &quot;inverter microwave&quot; because of the &quot;inverter&quot; circuit that creates the high frequency that drives the smaller transformer.  This is the same switch mode power supply technology that has allowed power supplies and &quot;chargers&quot; for everything else to get smaller and lighter.  Inverter microwaves are lighter, more compact, and more efficient, but they are still noisy: the fan noise dominates.</p>
+<p>[1] Line-frequency transformers used to be more common, and so it used to be that similar sounds were made by more types of equipment, but that's not all that familiar because, for one thing, line-frequency-transformer-based dc power supplies have been replaced by switching power supplies in almost all applications.  And before that was true (decades ago), most household equipment that used a dc power supply was at lower power, often 100 W or less.</p>
+<p>[2] Many of the sound production mechanisms operate based on the magnitude or the square of the magnitude of a current, and so would produce 100 or 120 Hz, rather than 50/60 Hz, even if they were operated with a perfectly sinusoidal current.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ezm083g">
+		<a class="author" href="https://www.reddit.com/user/BraveSirRobin" target="_blank">BraveSirRobin</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You can hear the distinctive noise from magnetron operating more clearly if you lower the power level. Most (maybe all?) microwaves implement things like &quot;30% power&quot; by time-cycling the heating circuit, having it on for say 4 seconds then off for 12. Never seen one that seems capable of giving out anything other than an on/off granularity output. The special food programs are just variations of the timing.</p>
+<p>Anyway, in these modes you be able to clearly hear the difference between the fan and turntable noises as both of them run constantly throughout the cycle. It's only when the magnetron kicks in that you get that deep mains frequency hum.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ezmdw45">
+		<a class="author" href="https://www.reddit.com/user/niftydog" target="_blank">niftydog</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The synchronous motor that turns the turntable, the magnetron that generates the microwaves, the fan that stirs the air in the cavity and the transformer that powers everything all operate at line frequency. Depending on where you live that will be 50 or 60Hz, and the noise you hear corresponds with either the fundamental or the harmonics of that frequency. All microwaves use the same technology, so they all sound basically the same. They're also relatively powerful appliances, and the larger components tend to generate more noise than smaller ones.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ezn8jhj">
+		<a class="author" href="https://www.reddit.com/user/dataslinger" target="_blank">dataslinger</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It’s coming from the transformer. If you go to the King of Random (RIP) video where he makes a spot welder out of a discarded microwave, he uses the transformer to do so. I followed along using a blown out microwave and was surprised to hear the distinctive hum when I fired it up.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

@@ -1,0 +1,67 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/StarChaser_Tyger" target="_blank">StarChaser_Tyger</a>
+			<div class="markdown"><p>WoW has a single point of failure, too; the login servers. I don't know if the classic game uses the same login servers, but every time there's a big release the login servers puke from all the people trying to log in at the same time. This takes down other games that use <a href="https://battle.net" target="_blank">battle.net</a> too; when Diablo 3 was released, people playing WoW had a hard time getting in on the first couple of days.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nsfwkra" target="_blank">nsfwkra</a>
+			<div class="markdown"><p>I worked in operations for a competing MMO publisher.  This is a common point of failure across a great many number of games.  After a decade or so I moved to SaaS products company and still... Always the God damned login servers or load balancing front of them.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ThEcRoWK" target="_blank">ThEcRoWK</a>
+			<div class="markdown"><p>Would it be possible to use torrent protocol for logins?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EmilyU1F984" target="_blank">EmilyU1F984</a>
+			<div class="markdown"><p>The load balancing for the login server would be the common point of failure, because that one needs to be contacted by each and every client.</p>
+<p>The login servers are actually distributed, as in the login data gets transmitted to different IP servers depending on local etc.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/permalink_save" target="_blank">permalink_save</a>
+			<div class="markdown"><p>Not necessarily. Load balancers do very simple operations and can handle a lot of traffic. Login servers can be distributed but still overwhelmed. Say if they are making a a call that triggers an unoptimized call maybe that causes db performance issues, or make a call that causes a lot of processing. If load balancers were the bottleneck it would be raw throughput or clogging connections which for a company the size of blizzard shouldn't be a problem. At that point you could probably just saturate the network and be as effective.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gvargh" target="_blank">gvargh</a>
+			<div class="markdown"><blockquote>
+<p>playing WoW had a hard time getting in on the first couple of days.</p>
+</blockquote>
+<p>don't they have phones?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/StarChaser_Tyger" target="_blank">StarChaser_Tyger</a>
+			<div class="markdown"><p>Not exactly sure how that would help. Blizzard knows the login servers get roflstomped on every big release, because it happens on every big release. Unlike Walmart that has 500 registers in a store but only ever puts two cashiers on at a time except around xmas, Blizzard figures it's better to piss off much of their userbase who can't get online in any of their games at the releases for a while rather than provide sufficient server capacity for peak use.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thephantom1492" target="_blank">thephantom1492</a>
+			<div class="markdown"><p>Bell canada, where it is offered, offer a fiber to the home connection, 1.5Gbit down, 940Mbit up. Round it up to 1Gbps upload. This mean that a 10Gbps server only need to be attacked by 10 of those connections to be full.</p>
+<p>There was (and probably still is due to unpatched servers) a DNS amplification attack. Basically DNS, the &quot;what is the address of reddit.com? It is 151.101.129.140 (and more info)&quot;. The protocol was quite unsecure. It use UDP instead of TCP. What that mean is that unlike TCP, there is no handshake to establish the connection. And there is none that was 'manually' made. You blindly send the request and listen for a while for an answer. The server listen for a request, if it get one it throw out blindly the reply. This is super fast, but come with a cost: there is no way to know if the other end received the data. Now, let's jump on why this is an issue: attacker request some info on server. But in the &quot;return address&quot; field it put the victim address. The server get the request, think it is for the victim, and just blindly reply. Think of this exactly like normal mail. You have the source and destination address fields... And no mean for anyone to verify if the source address is valid. Well, for a simple request, it is stupid, but you can say instead of &quot;what is the address of reddit.com?&quot; say &quot;hey server, dump me all the info you have on reddit.com!&quot; A simple less than 100 bytes request can give many kB of data! is is like 40 to 100 times bigger and sometime more! This is the equivalent of asking sears to send out the catalog. Small initial packet, big result. If you have a simple 1Mbit upload, this can easilly become 40 to 100Mbit attack.</p>
+<p>For this attack, it is very hard to mitigate it, if not impossible. There was hundred of thousands of known server that had that vulnerability at the peak of this. Now there &quot;should&quot; be none left as it has been patched a few years ago by every active vendors. The attacker was taking the big list, and was simply asking each of those servers one by one. Each server was getting one request, but the victim received thousands of &quot;catalog&quot; all from different server.</p>
+<p>The problem with those kind of attack is that you can't block it locally. You have to ask your internet provider to block it before it get on your connection. Same as with normal mail, if it fill up your mailbox faster than you can empty it, you will miss important things, but if you ask the post office to discard all the catalogs before they send it to you then you are fine. But... not all provider will do it, and even if they do, they may be the one that can't handle all that data.</p>
+<p>For example, one provider could have only 100Gbit of download capability. With that attack, you need like 5Gbit of attack upload speed to saturate the whole provider ! Most provider will rely on some local cache/servers. For example, google have some dataserver directly connected to most big providers in many of the big city. Same with youtube and netflix. Also, cloudflare, which provide caching, also have servers in most providers. What those do? Instead of having to transfert the data across the world, it never leave your provider, thru it never use their bandwidth to the outside world ! This also mean that you can use a relativelly weak connection to the world while being able to provide extremelly fast content to your clients. Why go to australia when there is a local cache? It is about 250ms to go to australia and back... Or about 2ms locally !</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Always_Has_A_Boner" target="_blank">Always_Has_A_Boner</a>
+			<div class="markdown"><p>Tl;Dr it is way easier for an attacker to generate large amounts of noisy, voluminous traffic than it is for the defender to handle it.</p>
+<p>Your response however does leave out that this might be a reflection attack as well. Spoofing the source IP means the DNS server could be sending enormous DNS query responses to a machine that's not the sender, which causes its own barrel of problems.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FACdriftexy" target="_blank">FACdriftexy</a>
+			<div class="markdown"><p>LOIC used to be a popular weapon of choice</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gnomio1" target="_blank">Gnomio1</a>
+			<div class="markdown"><p>Low Orbit Ion Cannon for anyone wondering.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Spinnakerr" target="_blank">Spinnakerr</a>
+			<div class="markdown"><p>Isn't that available in an app now? </p>
+<p>&#x200B;</p>
+<p>edit: some words</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FoundersSociety" target="_blank">FoundersSociety</a>
+			<div class="markdown"><p>I was thinking that same thing because if you look at the newest versions you’re able to add in a command line that uses the connectivity strength of a joined IRC in the botnet settings. Grab the right one with a few zombie PCs and you can have a pretty heavy effect on full drown.</p></div>		</li>
+					</ul>
+		</ul>
+	
