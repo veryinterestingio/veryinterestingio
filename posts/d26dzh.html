@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: Why do streams and downloads seem to speed on up until they get to 99 percent done the. Slow right down?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="d26dzh">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/d26dzh/eli5_why_do_streams_and_downloads_seem_to_speed/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/d26dzh" onclick="return false">Why do streams and downloads seem to speed on up until they get to 99 percent done the. Slow right down?</a>
+		</h2>
+		<!--<span class="date">2019-09-13</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Why do streams and downloads seem to speed on up until they get to 99 percent done the. Slow right down?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ezszmhg">
+		<a class="author" href="https://www.reddit.com/user/robbak" target="_blank">robbak</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>When the download is finished, the computer has to copy the retrieved file, and often pass the file off to the anti-virus for scanning. All of this happens while the browser is displaying 99%.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ezt0l19">
+		<a class="author" href="https://www.reddit.com/user/chriswaco" target="_blank">chriswaco</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Portions of the download will often be cached in RAM by the file system and only flushed to disk when the file is closed. And, as robbak said, virus scanners are another source of slowdown. On some systems, searchable files like PDFs will be indexed once downloaded too, although that usually happens in the background after the download gets to 100%, but there's some other bookkeeping going on too, like assigning an icon to the file, writing the download date to the file's metadata, etc.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ezt53gb">
+		<a class="author" href="https://www.reddit.com/user/TheAgentD" target="_blank">TheAgentD</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In the case of torrents, the file(s) you're downloading are split up into pieces, and each piece can be downloaded individually from one of the available peers/seeds. Your computer then stitches together the file(s) form these pieces.</p>
+<p>Often there are peers that are only uploading at an extremely limited rate, so your computer ends up making a request for a piece which will take hours or even days to finish from that peer, even though the piece is only a megabyte or so. When everything else has finished, you're often stuck with the last few pieces being downloaded from those slow peers, which shows as a massive drop in download speed for the last 1% or so of the file(s).</p>
+<p>Most bittorrent clients nowadays have something called &quot;endgame mode&quot; specifically to counter this issue. When all pieces have either been downloaded or requested from some peer (meaning that we're most likely downloading the last few pieces from said slow peers), your client starts requesting all remaining pieces from multiple peers. This ensures the last few pieces actually finish in a few seconds or minutes instead of potentially hours, but this is still much less efficient than the previous download speed was.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ezt6msh">
+		<a class="author" href="https://www.reddit.com/user/abeltbuckle" target="_blank">abeltbuckle</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In the context of progress bars, the graphics generally have algorithms that smooth out and estimate progress(a 100% accurate real-time graphic would be difficult produce).  In these circumstances, especially if progress slows towards the end of a graphic, the time to complete can be misrepresented.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ezt9eao">
+		<a class="author" href="https://www.reddit.com/user/Downstream1" target="_blank">Downstream1</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Progress bars are a little bit of a farce. They are just there to make you feel better about waiting. Check out this recent 99% invisible podcast on this very topic: <a href="https://99percentinvisible.org/episode/wait-wait-tell-me/" target="_blank">https://99percentinvisible.org/episode/wait-wait-tell-me/</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/d26dzh" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
