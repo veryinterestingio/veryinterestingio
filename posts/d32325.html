@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: How does hacking through WiFi really works? We know that data can be stolen but what are the hackers actually seeing on their screen that have access to our information?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="d32325">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/d32325/eli5_how_does_hacking_through_wifi_really_works/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/d32325" onclick="return false">How does hacking through WiFi really works? We know that data can be stolen but what are the hackers actually seeing on their screen that have access to our information?</a>
+		</h2>
+		<!--<span class="date">2019-09-15</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: How does hacking through WiFi really works? We know that data can be stolen but what are the hackers actually seeing on their screen that have access to our information?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ezyfcqo">
+		<a class="author" href="https://www.reddit.com/user/AuroraAri" target="_blank">AuroraAri</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>When you go to a website, you send a request to a server for information. For example, when you go to <a href="https://Google.com" target="_blank">Google.com</a>, you send Google's server a request asking for their homepage. Their server sends that information back to you, and your web browser formats it correctly. </p>
+<blockquote>
+<p><a href="https://192.168.0.3" target="_blank">192.168.0.3</a> wants to access <a href="https://google.com" target="_blank">google.com</a>; please send the homepage code.</p>
+</blockquote>
+<p>When you log in to a website, like your bank, you have to send some extra information to the server so that it knows who you are. That's usually your username and password. When it's not encrypted, that information is sent in plain text, right alongside of the website that you're trying to get to.</p>
+<blockquote>
+<p><a href="https://192.168.0.3" target="_blank">192.168.0.3</a> wants to access <a href="https://bank.example.com" target="_blank">bank.example.com</a>, their username is <a href="mailto:john@example.com" target="_blank">john@example.com</a> and their password is hunter2; please send the transaction list.</p>
+</blockquote>
+<p>Once you've told the server who you are, they sometimes send back a session key; this is similar to a coat check. When you go to the website later, you don't have to give your username and password again - you just give your coat check, and they can identify you from that. That keeps you from having to send the password repeatedly, and saves the server from having to re-authenticate you every time. However, just like in real life, if that coat check gets stolen, anyone can pick up your coat (your data) with it.</p>
+<p>On a public wireless network, anyone else can scan the network for these requests, and they'll see <a href="https://jvns.ca/images/wireshark_screenshot.png" target="_blank">every &quot;packet&quot; of information being sent over the network</a>. From there, they can search the stream of data for patterns, such as looking for e-mail addresses. They can then see your password in the same request, and voila - they have your information.</p>
+<p>If you're interested in how encryption works, I'd highly suggest <a href="https://www.youtube.com/watch?v=3QnD2c4Xovk" target="_blank">this video</a> which explains the protocol really well and in an easy to understand way.</p>
+<p><strong>Edit:</strong> It looks like I removed the part about encryption while I was editing my comment last night. Encrypting these requests is incredibly easy nowadays, so most websites will encrypt the data that you send it and the data that it sends you. It’s explained better in that video I linked above, but you and the server basically agree on a shared secret phrase that people scanning the network can’t figure out. That way, only you can see the data that you’re being sent and only they can see the data that they’re being sent.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ezy7dr4">
+		<a class="author" href="https://www.reddit.com/user/DrCoolP" target="_blank">DrCoolP</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>When I was in college, we learned about hacking WiFi but were told that with current encrypted WiFi networks and https, purely getting packet traffic would not be helpful.</p>
+<p>Our campus shared space with a university, so my study group went over there and realized that their WiFi was unencryted.  What was worst was their site to manage your courses and enrollment was also not using http.</p>
+<p>We literally watched as a student logged in and could see his password and username (which happened to be his email).</p>
+<p>From that, we could unenroll him for his course in a matter of seconds.  The worst thing is with more digging we found he was using the same password for his Facebook.</p>
+<p>It was scary as hell to realize it could literally be that easy to hack someone</p>
+<p>This was 2008 so hopefully it has changed.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ezz9m6b">
+		<a class="author" href="https://www.reddit.com/user/Wace" target="_blank">Wace</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Many of the answers here answer the &quot;what they are seeing&quot; portion really well. However more or less all of these answers talk about public/unencrypted WiFi networks.</p>
+<p>There are two ways to &quot;hack WiFi&quot;:</p>
+<ul>
+<li>Eavesdropping the communication between your device and the WiFi network.</li>
+<li>Pretending to be the WiFi network and making your device communicate directly with the hacker.</li>
+</ul>
+<p>Eavesdropping works with unencrypted communication. Encrypted WiFi or encrypted communication (HTTPS) both defeat this to large extent (there are still things a hacker might learn on unencrypted WiFi, but if you are using HTTPS to read your e-mail, the hacker should not be able to read those).</p>
+<p>However if the hacker manages to trick your device into connecting to their WiFi network, they can now start messing with the communication in other ways as well. Not only can they achieve everything they could do previously by eavesdropping the communication, they can now also change it. They might try to change an encrypted connection in ways that makes it easier for them to break the encryption, they might completely alter the pages that you are seeing over unencrypted connection or they might even try to instruct your installed applications to do something the applications normally wouldn't do such as &quot;send all local files to us&quot; or &quot;install this totally-not-a-virus on the device&quot;.</p>
+<p>The scary thing is how easy it is to have your device connect to a hacker's WiFi network. If you have your phone set to connect automatically to your HomeWiFi, CoffeeShopWLAN and UniversityWireless, it will keep calling for those when you are walking down the street. Essentially it will keep yelling &quot;Is MyHomeWifi, CoffeeShopWLAN or UniversityWireless around?&quot; the whole time WiFi is on and it's not connected to a network. At this point the hacker can just listen for those calls and then start advertising their own WiFi network as &quot;MyHomeWifi&quot; for example. Your phone can't tell the difference and will happily connect to the hacker's network.</p>
+<p>(At least few years back the devices didn't even check if the original network had been encrypted and the new network is now unencrypted. Not sure if this has changed in the last few years.)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ezy702p">
+		<a class="author" href="https://www.reddit.com/user/MagnificentBastard0" target="_blank">MagnificentBastard0</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>First, all data on an unencrypted Wi-Fi network can be received by all parties, like people talking in a public room.</p>
+<p>Secondly, they don’t see your screen but what you are sending and receiving over the network. For example, if you use an unencrypted protocol (like HTTP) then they can capture the packets and see what your browser is asking for and what the server is sending back.  If this includes logging into a site then they can get your hashed password and run decryption attacks against it. The real danger there is that people tend to reuse passwords, so they can try your credentials against multiple popular sites. If they crack it, they can log in as you.  This is why HTTPS is important to use (and why all banks, etc use it.)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ezzaa56">
+		<a class="author" href="https://www.reddit.com/user/ThisIsTheOnly" target="_blank">ThisIsTheOnly</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Top comment right now doesn’t really answer the question and I’m curious as well. </p>
+<p>What does the screen of a hackers computer actually look like when they are doing this?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/d32325" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

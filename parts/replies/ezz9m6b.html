@@ -1,0 +1,68 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/-VoiZ-" target="_blank">-VoiZ-</a>
+			<div class="markdown"><p>So if let's say you connected to airport WiFi, which has no password. Your phone will always be able to automatically connect to that WiFi. All someone has to do is... name their WiFi what the airport WiFi is called, and no password and you're phone will connect to it? Or is their an underlying ID to a WiFi network that your phone searches for instead... which someone would probably know the ID of the airport too and still pretend to be it. I'm guessing this id is the ip. What I'm curious about is this would seem so easy and a miracle that no one has just pretended to be the airport WiFi around me, which would probably see a loooot of people connecting.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FinalRun" target="_blank">FinalRun</a>
+			<div class="markdown"><p>No, it really is that bad. It's only the name.</p>
+<p>Places like airports and schools usually have multiple routers stuck all over the place, with the same network name. Your phone switches automatically, but to you it looks like you stay on the same network. That is why you can't use anything more secure at the moment, as it was designed it needs to work this way.</p>
+<p>The other ID you're looking for is probably the MAC address, a (supposedly) unchanging and unique numer to the wifi chip or other network card.</p>
+<p>Your LAN IP (the one you get when connecting to a network, usually 192.168.x.x) in most cases changes regularly so that would not work as an ID. </p>
+<p>(It can be set to never change, but in most places it is negotiated with something called DHCP.  Which IP is associated with what MAC address is always stored in something called the ARP table) </p>
+<p>But like I said, the MAC also does not work because of the fundamental way WiFi was designed.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Madskillsguyy" target="_blank">Madskillsguyy</a>
+			<div class="markdown"><p>So theoretically: a hacker could get in close proximity to a person's house to see what their secured wifi network is called, then change the name of the wifi they are broadcasting to that and make it unsecured/no password needed, and then follow the person away from their house to somewhere else and their phone would automatically connect to it?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Legogris" target="_blank">Legogris</a>
+			<div class="markdown"><p>You can set your IP to be anything you want. This obviously goes for the operator as well. Identifiers for network interfaces are called MAC addresses, and these can easily be spoofed as well.</p>
+<p>What you are describing can and does happen.</p>
+<p>You can set up <a href="https://security.stackexchange.com/a/137606" target="_blank">certificate authentication</a> to make sure that both client and access point are who they claim to be, but this requires support on both client and server and even among businesses very few are arsed to do this properly.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Wace" target="_blank">Wace</a>
+			<div class="markdown"><p>Furthermore once you connect to that WiFi, your device will start broadcasting the name of that network every time it tries connecting over WiFi (which happens repeatedly if it isn't connected to an existing network).</p>
+<p>An attacker doesn't even need to have the precognition to name their own WiFi network using the name of the airport network. They can configure their device to listen to those broadcast and the moment they hear your device asking if &quot;AirportNetworkTwoTownsOver&quot; is present, the hacker's device will quickly answer &quot;Yup! Here I am&quot;.</p>
+<p>You can protect against this by ensuring your device isn't set to automatically connect to these unsecured networks - unfortunately that's not usually the default.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jerzeypipedreamz" target="_blank">jerzeypipedreamz</a>
+			<div class="markdown"><p>The other kind would be those who jack your Wi-Fi just to get onto your network for their own purposes. Back when I wasnt home enough to really make paying for Wi-Fi and cable worth it, id find a Wi-Fi router, preferably with no password, jump on, reset it, set my own password and do what I have to. After I'm done I would reset it with the wifis stock passwords so the owner wouldnt grow suspicious. This was before I got a long ass USB cable and a Wi-Fi dongle and hung that thing out the window to get the Wi-Fi from the library across the street.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Nasquid" target="_blank">Nasquid</a>
+			<div class="markdown"><p>There’s an outside port for u to plug into the library’s WiFi?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jerzeypipedreamz" target="_blank">jerzeypipedreamz</a>
+			<div class="markdown"><p>No. I had a super long USB extension cable that I plugged a Wi-Fi dongle into and hung it out my window to get signal from the library to my appartment building.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mortalwombat-" target="_blank">mortalwombat-</a>
+			<div class="markdown"><blockquote>
+<p>You’re phone can’t tell the difference and will happily connect to the hacker’s network.”</p>
+</blockquote>
+<p>Assuming the hacker has your WiFi password. Your phone will try to connect using it’s stored password. If the password is wrong, it won’t connect.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/algag" target="_blank">algag</a>
+			<div class="markdown"><p>More specifically, something called a <a href="https://en.m.wikipedia.org/wiki/IEEE_802.11i-2004" target="_blank">&quot;four way handshake&quot;</a> occurs. This proves that both the phone and the router had the password before the exchange happened.    </p>
+<p>If it was a &quot;normal&quot; password exchange, your phone would hand the password off to the rogue router and the router could accept it and would learn the password for the future.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Wace" target="_blank">Wace</a>
+			<div class="markdown"><p>Yeah, I probably should have been clearer about this. I tried to cover this with the last statement in the parenthesis. I haven't really tried this with newer phones. It was a problem with older devices that happily connected to an unsecured network despite the original network being secured with a password.</p>
+<p>Also it's enough that you have one unsecured network stored and set to connect automatically. Looking at the stored networks in my phone, at least transport companies seem to enjoy their passwordless networks (Norwegian and the local railway company).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mortalwombat-" target="_blank">mortalwombat-</a>
+			<div class="markdown"><blockquote>
+<p>at least transport companies seem to enjoy their passwordless networks</p>
+</blockquote>
+<p>Truth. This is why I recommend people don't use public WiFi, especially for sensitive things like banking. With modern cell services, it's getting less and less necessary in most developed parts of the world.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

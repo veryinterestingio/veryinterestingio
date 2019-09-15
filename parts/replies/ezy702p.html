@@ -1,0 +1,76 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DiscombobulatedDust7" target="_blank">DiscombobulatedDust7</a>
+			<div class="markdown"><p>Your password wouldn't be hashed in this case, since passwords are usually transmitted in plain text.
+tl;dr never log in to a site using HTTP, an attacker <em>will</em> see your password</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OffChasingMoonbeams" target="_blank">OffChasingMoonbeams</a>
+			<div class="markdown"><p>Spot on. WILL. Not <em>might</em>. WILL.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/_PM_ME_PANGOLINS_" target="_blank">_PM_ME_PANGOLINS_</a>
+			<div class="markdown"><p>Only if it’s Basic auth or form submission. If it’s Digest or NTLM or SCRAM etc they’ll only see a hash, which they may be able to crack in a few hours.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/algag" target="_blank">algag</a>
+			<div class="markdown"><p>More specifically, passwords <em>can't</em> be hashed by the client; they <em>must</em> be hashed by the server. Otherwise the password is just the hash.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kain_niaK" target="_blank">Kain_niaK</a>
+			<div class="markdown"><p>So you send a server a password. The server hashes the password and check it with the hash they have stored. By doing it this way they prevent the password from leaking when they get hacked, attackers only get the hashes ...not the password and going from a hash to a password requires a lot of computing power and time. </p>
+<p>But the password can be intercepted when send to the server, especially if it's not encrypted. </p>
+<p>But why can the password not be hashed by the client and send to the server? If the connection is not encrypted and can be intercepted the attacker can now log on to this website but they still don't have the password. </p>
+<p>So if a connection is insecure it's still better to hash a password locally and send the hash.  When the connection is encrypted it can be the password itself.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kocholuna" target="_blank">Kocholuna</a>
+			<div class="markdown"><p>Is it the same as signing in to an application like Reddit or Messenger instead of a browser?  Are these packets accessible at anytime where the hackers can still get your password at a much later date?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Areshian" target="_blank">Areshian</a>
+			<div class="markdown"><p>When using a browser, you have the ability to easily check whether it uses a secure protocol or not.</p>
+<p>When using an app, you don't have an easy way of knowing (they might not even use http/https at all). However, if the application is relatively known, it is almost guaranteed they will have proper encryption (not as easy as with the browser, nut it is still quite easy for someone with the knowledge to check if the application uses encryption)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MagnificentBastard0" target="_blank">MagnificentBastard0</a>
+			<div class="markdown"><p>Non-browser based apps can use any protocol and security they like and so may or may not expose credentials in the clear. </p>
+<p>The packets are fleeting (like the public conversation) but can be recorded for later analysis.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DiscombobulatedDust7" target="_blank">DiscombobulatedDust7</a>
+			<div class="markdown"><p>Don't quote me on this, but I think Android P forces apps to communicate over HTTPS by default</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/stewman241" target="_blank">stewman241</a>
+			<div class="markdown"><p>But in most cases, non browser based apps still use the same protocol as browser based apps.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/viperex" target="_blank">viperex</a>
+			<div class="markdown"><p>What's the easiest way to tell if your non-browser based app is using https without using Kali tools?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zombieregime" target="_blank">zombieregime</a>
+			<div class="markdown"><p>I apologize for the wall-o-text but its a complicated issue to understand...</p>
+<p>Packets are indeed only transmitted once. They only exist for the time it takes to transmit from one device to another. But if it can be heard, it can be recorded.</p>
+<p>The thing to keep in mind is ANY encryption can be broken with time.</p>
+<p>However, for only 12 characters, 64 character set(a-z, A-Z, 0-9, and a hand full of special characters like !@#% etc) it would take many times longer than the universe has existed to run through every possible permutation. Around 14 quadrillion years for the processor i calculated it against a few years ago(one processor in one computer in someones garage). One of Japans super computers (the fastest in the world at the time using many many thousands of processor cores and even more process threads) could run through it in about 6 hours.</p>
+<p>Packets can be recorded for later analysis. If it can be heard, it can be logged. Period.</p>
+<p>But when it comes to analysis....</p>
+<p>Does every permutation need to be generated? no, just the ones up to the 12 character key. </p>
+<p>Do you need to worry about Japan cracking your facebook password? also no, they have better things to do like physics and stats calculations. </p>
+<p>Do you need to worry about some douch with a few strung together rigs breaking your bank details? not really. Important information uses at least 2048 bit encryption and a VERY strong algorithm. The example before of 12 characters is around 96 bits. The number of possibilities represented by 2048 bits is <strong>FUCKING MASSIVE</strong>! The thing with binary is 97 bits isnt one more than 96 bits, 97 bits is <em>twice</em> as big as 96 bits. So yeah, 96 compared to 2048, <strong>FUCKING MASSIVE</strong>!</p>
+<p>BUT! <em>Can</em> some douch with a bunch of strung together computers break the encryption? <strong>IF</strong> time is not an issue(it is) and <strong>IF</strong> nothing changes in the encryption algorithm(it does, a lot. cycling keys is a thing for a reason) the answer is always yes.</p>
+<p>Do you need to worry about it? As long as you make sure youre using HTTPS (and preferably VPNs on public/untrusted networks) you have very little to worry about. ONLY use the cell network for sensitive logins while on the run as it uses its own encryption layers on top of the sites HTTPS and you should mostly be hardened against packet sniffing attacks.</p>
+<p>Of course, you should always keep a close eye on your bank/charge statements, just in case.</p>
+<p>TLDR - Yes, no, kind of, not really.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nukedkaltak" target="_blank">nukedkaltak</a>
+			<div class="markdown"><p>Correct me if I’m wrong, but when you’re talking about 2048 bits, you’re not talking about actual 2048 bit strength, are you? Some of the highest security you’ll ever encounter will cap at 256 bits. Some protocols (eg RSA) use longer keys but those provide an equivalent security that is much much lower, hence the longer keys. Same goes for hashing due to the birthday paradox.</p>
+<p>EDIT: RSA 2048 is about 112 bits of equivalent strength.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/krystar78" target="_blank">krystar78</a>
+			<div class="markdown"><p>I would add that weakly encrypted traffic is also vulnerable.  WAP takes seconds to break.   I think WPA now is minutes.</p></div>		</li>
+					</ul>
+	
