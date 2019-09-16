@@ -1,0 +1,45 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sam__izdat" target="_blank">sam__izdat</a>
+			<div class="markdown"><p>This is the right answer. To use only a little more jargon, aliasing is about patterns that appear in the process of sampling or reconstruction, but don't represent the &quot;real&quot; spacial or temporal patterns you want.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/skitzofrenzy" target="_blank">skitzofrenzy</a>
+			<div class="markdown"><p>I was going to type out some Nyquist shit, so thanks for hitting this thread with knowledge. </p>
+<p>The question is likely related to video/image &quot;aliasing&quot;, which I've seen references to multiple subjects. The most common one being poor image resolution causing round objects to appear choppy, thus image processing some basic line detection+amoothing filter to &quot;improve&quot; the image (more like mask low resolution).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Miyelsh" target="_blank">Miyelsh</a>
+			<div class="markdown"><p>Isn't anti-aliasing simply a 2D low pass filter?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/skitzofrenzy" target="_blank">skitzofrenzy</a>
+			<div class="markdown"><p>Some. Although it depends on what type of filter you use, how much computing power you want to consume, and how much smoothing effect you're looking for. You can run a series of filters to identify high frequency changes (lines/borders), then apply smoothing/averaging/gausian filters to get the desired effect.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gugagore" target="_blank">gugagore</a>
+			<div class="markdown"><p>Yes, but to be clear, you have to do the filtering before you sample (that is, before you have output pixels).</p>
+<p>For example if I want to resize a 200x200 image into a 100x100 image, I need to low-pass filter the 200x200 image, get a blurrier 200x200 image, and then throw away every other row and column. Clearly you can optimize this by not computing blurry pixels you'll end up discarding.</p>
+<p>If your original signal doesn't start as samples, like a camera taking a photo, or a phone recording audio, the low pass filter must happen in the analog domain.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shekurika" target="_blank">shekurika</a>
+			<div class="markdown"><p>I get the 44kHz audio, but what do you mean by 60Hz of monitors? monitors dont sample anything and our eyes dont &quot;sample&quot; the monitor with 30Hz, so could you elaborate in that?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GoldfishBowlHead" target="_blank">GoldfishBowlHead</a>
+			<div class="markdown"><p>Looks like I've oversimplified that, derp.</p>
+<p><a href="https://electronics.stackexchange.com/a/355583" target="_blank">https://electronics.stackexchange.com/a/355583</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/strutt3r" target="_blank">strutt3r</a>
+			<div class="markdown"><p>Hertz is a measure of frequency within a second. With digital audio this is how often the waveform is sampled, with video this is how often the screen refreshes. More samples in audio means more fidelity to the waveform, with video it is more fidelity to a moving image. A low sample rate with audio leads to a tinny or choppy sound, just as a low refresh rate will give video a choppy look. </p>
+<p>Our bodies sensory organs and brain activity vary from one person to the next, so one person might be able to still discern video choppiness at a 70hz rate where another can’t tell the difference between 60-65hz. The average person’s body frequency itself varies throughout the day, from around 60-70hz.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EmilyU1F984" target="_blank">EmilyU1F984</a>
+			<div class="markdown"><p>The same way that the audio frequency gets chopped into pieces by the sampling frequency happens directly with the visible video signal:</p>
+<p><a href="https://i.imgur.com/3SIFFg4.png" target="_blank">https://i.imgur.com/3SIFFg4.png</a></p>
+<p>(Audio for comparison: <a href="https://cdn.shopify.com/s/files/1/0970/0050/files/Sample_Rate.png?1870870584085320152" target="_blank">https://cdn.shopify.com/s/files/1/0970/0050/files/Sample_Rate.png?1870870584085320152</a>)</p>
+<p>Seeing this sampling frequency is actually much more straight forward in graphics.</p>
+<p>The fix is simple, if the source signal is chopped too coarsely you simply average the adjacent squares and get an approximation that looks better, but somewhat blurred.</p></div>		</li>
+					</ul>
+		</ul>
+	
