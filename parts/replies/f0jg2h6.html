@@ -1,0 +1,106 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BradleyUffner" target="_blank">BradleyUffner</a>
+			<div class="markdown"><p>Some engines will also add a bit of randomness to the score of each possible move too. That way it isn't always even the &quot;best&quot; move that gets played.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LeviAEthan512" target="_blank">LeviAEthan512</a>
+			<div class="markdown"><p>Oh that's a great explanation. I always thought the computer either</p>
+<ol>
+<li>Rates moves differently, so that immediate benefit outweighs long term loss (while still being aware of long term loss) or</li>
+<li>Assigns a number to each move, ranking them from best to worst. On the highest difficulty, it always chooses the best. On the lowest, it generates a random (or pseudorandom if you're a pedant) number that's increasingly more likely to be a shittier move as you lower the difficulty</li>
+</ol></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RogueCarpet" target="_blank">RogueCarpet</a>
+			<div class="markdown"><p>Option #2 is a natural idea for how to make a worse AI, but the problem is there are many situations where there's only one reasonable move and everything else is a disaster. Adding noise to the score prevents the AI from making obvious blunders since the noise won't be enough to make a blunder the best move, but the noise will cause it to regularly make suboptimal moves throughout the game.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Warphim" target="_blank">Warphim</a>
+			<div class="markdown"><blockquote>
+<p>or pseudorandom if you're a pedant </p>
+</blockquote>
+<p>You fucking know it!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ohaidar_9" target="_blank">ohaidar_9</a>
+			<div class="markdown"><p>You think crazy like I do but write better! Love it !</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Synthetica9" target="_blank">Synthetica9</a>
+			<div class="markdown"><p>Does this happen at each level of the tree search, or only at the final level? No need to ELI5, just wondering</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Alis451" target="_blank">Alis451</a>
+			<div class="markdown"><p>depends on how it is written, each person can design them differently for different reasons.</p>
+<p>A lot of times, fewer calculations are better, but with the massive amount of memory and processing power available, and chess not being a glutton for video processing, some code cutting measures are not needed and you can make some more expensive calculations to provide varying results.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/m8r-1975wk" target="_blank">m8r-1975wk</a>
+			<div class="markdown"><p>I found a nice article about Stockfish if you want more details on a particular engine <a href="http://rin.io/chess-engine/" target="_blank">http://rin.io/chess-engine/</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Synthetically" target="_blank">Synthetically</a>
+			<div class="markdown"><p>I don’t know much about chess engines but I would think that this would be applied at the very end because you want the Minimax to run accurately before you evaluate the position at whatever depth you got to right?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sausage_ditka_bulls" target="_blank">sausage_ditka_bulls</a>
+			<div class="markdown"><p>I noticed this in chess engines 15-20 yrs ago. Would play strong then all of sudden random moves that made no sense , or give up their queen lol. They are a bit more advanced now on the easy levels and actually play convincingly</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SteelTitsofFury" target="_blank">SteelTitsofFury</a>
+			<div class="markdown"><p>In college classmates and myself made a chess AI. This is exactly how we made the difficulty change. Easy was only looking ahead a few moves where expert was looking ahead 10.</p>
+<p>In addition where the pieces were on the board and each pieces value can also be calculated. The harder the difficulty the more the AI looks at these numbers with the look ahead. </p>
+<p>Hope this helps with the ELI5, don't want to get too technical.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bombznin" target="_blank">bombznin</a>
+			<div class="markdown"><p>Were you heavily pruning the search tree?  Chess has an average branching factor of about 35 - evaluating all moves ten deep involves checking 2,758,547,353,515,625 different game states on average, not exactly something you're going to do on a desktop, or even a supercomputer for that matter.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gonumen" target="_blank">Gonumen</a>
+			<div class="markdown"><p>Not OP but I'm sure they were pruning. Effective pruning combined with optimised search order makes all the difference in the world and, at least in my experience, can reduce the search tree by orders of magnitude.</p>
+<p>IIRC Stockfish can easily get to 20 moves ahead in a matter of seconds and reach 30+ if you give it a bit more time.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MisfitPotatoReborn" target="_blank">MisfitPotatoReborn</a>
+			<div class="markdown"><p>I'm pretty sure you answered that question yourself. If it's feasible to look ahead 10 steps with pruning but infeasible without pruning then they were probably pruning the search tree.  </p>
+<p>This comment reminds me of fake questions people ask teachers just to show off and prove they already know the course material.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Cannibichromedout" target="_blank">Cannibichromedout</a>
+			<div class="markdown"><p>Also not OP, but I’d be willing to bet they used minimax with alpha-beta pruning. With a good enough evaluation function, the branching factor is significantly reduced.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/4Sken" target="_blank">4Sken</a>
+			<div class="markdown"><p>Could you provide some way for me to play against your AI?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/-r-a-f-f-y-" target="_blank">-r-a-f-f-y-</a>
+			<div class="markdown"><p>Lichess has an awesome free app and site with no ads and you can play the AI.  I could only beat 3 of the 10 levels, lol.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SteelTitsofFury" target="_blank">SteelTitsofFury</a>
+			<div class="markdown"><p>Unfortunately I'm not exactly sure where that project went. It was for class back in 2012. If by some odd luck I can find the final build I'd gladly work out a way to let you vs it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sofiavisitor" target="_blank">sofiavisitor</a>
+			<div class="markdown"><p>Bit geeky to use but shoutout to <a href="http://freechess.org/" target="_blank">http://freechess.org/</a> which has been rocking it since the 90's</p>
+<p>You can play many hundreds of people &amp; computers</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/laygo3" target="_blank">laygo3</a>
+			<div class="markdown"><p>And clarify that looking 10 moves ahead is for each possible move and the subsequent changes from that move. I'm sure a +/- value is assigned to each move that generates a threat/pin, gains/loses a piece, or etc etc.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Master565" target="_blank">Master565</a>
+			<div class="markdown"><p>I feel like it's worth pointing out that when the computer looks a few moves ahead, it has some algorithm for ranking how positive each new board state is. It can score all these moves, and pick the highest score if it's on the highest difficulty, or some lower score move if it's not on the highest difficulty. It's not necessarily not looking as far, it's just purposefully not choosing the highest score it sees.</p>
+<p>This is important because modern chess engines often use reinforcement learning as a basis for their ranking algorithm. These engines are so good at evaluating board state that it's definitely possible to inadvertently make a move that's nearly optimal without looking very far ahead. Therefor, you can instead just pick a move that is within a certain percentile range of the of all moves scored, ensuring that you will never make a move more difficult than the difficulty rating intends.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ur_a_turkey" target="_blank">ur_a_turkey</a>
+			<div class="markdown"><p>This, although not all algorithms rely on comparing board states...
+Some (such as Monte Carlo tree search) play out random games to gauge the win rates of the moves. This is more common in games like go with a large number of moves to inspect</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cltlz3n" target="_blank">cltlz3n</a>
+			<div class="markdown"><p>But isn’t the score of each moves also calculated by looking ahead at the outcome after said move? And thus when calculating the score, not looking ahead so much would also give a less accurate score?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Master565" target="_blank">Master565</a>
+			<div class="markdown"><p>Yes it's less accurate, but when you are extremely accurate from the get go you can make really difficult to counter moves without looking far ahead</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
