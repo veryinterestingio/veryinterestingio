@@ -1,0 +1,124 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ispelguud" target="_blank">Ispelguud</a>
+			<div class="markdown"><p>Years ago I remember a similar question, with a similar answer. Then an Intel engineer chimed in and said that your answer is wrong. He explained that for years now there have been paths within CPUs that were too long to traverse in a single CPU cycle, and so the engineers account for that in their designs. </p>
+<p>His explanation makes sense. There is nothing about signal delay that would make computations impossible, it merely means that your result won't get delivered until a later cycle. Many instructions already take multiple cycles due to their complexity, so I don't find this to be preposterous. </p>
+<p>CPU architecture is above my pay grade though. Can anyone who is versed on the topic chime in here? I have heard this light speed theory many times, but I've come to suspect it's a common misconception.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ppp2211" target="_blank">ppp2211</a>
+			<div class="markdown"><p>What you're referring to is called pipelining, and it's the basic concept around which all modern CPUs are based. Every instruction takes several steps to be &quot;done&quot; - in it's most basic textbook form, a three stage pipeline, you have fetch, decode, execute. As a designer you can choose however many smaller steps you want to chop it up into.</p>
+<p>This is explained well here:  <a href="https://www.anandtech.com/show/1230/2" target="_blank"><a href="https://www.anandtech.com/show/1230/2" target="_blank">https://www.anandtech.com/show/1230/2</a></a> . The article is from 2004 because Pentium 4 was when people realised this was not the magical solution to all problems, and neither was aiming for the highest frequency possible.</p>
+<p>Long story short: the more stages you add, there is less to do in each stage. The physical path is shorter, your propagation delay is lower, so the data is available sooner. This means you can increase the frequency, because at the end of the day this is all it's about - data needs to be ready at its endpoint at each clock tick, regardless of whether it's the final step or an intermediate step. You can crank it up as long as you don't run into power/heat constraints (and you run into them very quickly).</p>
+<p>Pentium 4 (the one from the Anandtech article above) managed to reach 4 GHz over a decade ago taking this exact technique to the extreme - it had 31 stages (which you find out more about if you read on). This meant it was often <em>slower</em> than its predecessor if ran at the same clock speed - so you started off with a handicap, and you absolutely had to crank the GHz up to even keep up, let alone be faster.  For reference, a modern Core i-whatever will have about 15 stages. Similar story on the AMD side.</p>
+<p>This is also precisely the reason why comparing CPU A @ 4.0 GHz to CPU B @ 5.0 GHz based on frequency alone is absolutely useless, because it doesn't take into account how much it on average does it get done on every clock.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hwillis" target="_blank">hwillis</a>
+			<div class="markdown"><p>this is really, really stretching my memory but signal propagation is usually brought up in reference to clocking.  Clock signals need to go everywhere in the CPU so naturally that would seem to be a problem.</p>
+<p>There are also transmission line effects that cause clock signals to smear and have less sharp edges.</p>
+<p>IIRC there are a bunch of methods combined that are used to handle these problems, including multiple clock sources that are locked together, phased clocks, clocks that output weird signals etc</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ZzeroBeat" target="_blank">ZzeroBeat</a>
+			<div class="markdown"><p>So what measurements should we use for CPU comparisons?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dogmeat0042" target="_blank">dogmeat0042</a>
+			<div class="markdown"><p>Glanced through the article, bit didn't see a clear and obvious answer to my question.  Since raw clock speed isn't an effective measure of performance due to pipelines, what should a layperson use to compare processors?</p>
+<p>Edit: just got to the comment thread that pretty much answers this exact question.  Keep reading if you are looking for the same thing.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/raverbashing" target="_blank">raverbashing</a>
+			<div class="markdown"><blockquote>
+<p>and so the engineers account for that in their designs</p>
+</blockquote>
+<p>Yes they do, (one of the ways they handle this) is called pipelining (and the sibling comment explains this well). Other ways are organizing the internal blocks so that the signal arrives where it should when it should.</p>
+<p>But then, the problem with splitting it in multiple steps is that a lot of times the processor has to stop what it is doing and resume, so your 30 step calculation is thrown away.</p>
+<p>So cranking up the speed and splitting it in steps is not as helpful as it looks.</p>
+<p>Think of it as comparing a sports car with a pickup truck. The sports car can go faster, but if you load it and send it through roads that are not so great the pickup truck will be there faster.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BornUnderADownvote" target="_blank">BornUnderADownvote</a>
+			<div class="markdown"><p>Pipelining and instructions per clock (IPC) aren’t the same at all, right?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Night_Duck" target="_blank">Night_Duck</a>
+			<div class="markdown"><p>Computer Engineering PhD student here.  It's the power dissipation. Propagation time hasn't been an issue since the Pentium IV. If heat were magically removed from a chip, we could hit 8Ghz easily.</p>
+<p>Also, the propagation time in a processor has less to do with the speed of electromagnetic waves, and more to do with the capacitance of the transistor itself, which limits how quickly it can switch.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/madmes" target="_blank">madmes</a>
+			<div class="markdown"><p>My electronics professor (with PhD in RF/mixed signals) said that modern processors are limited by power. If i recall correctly (material included in the quiz next week, the capacitor's open loop normal current gain (i mean when Cgd becomes a short circuit, so Vgs = 0 and thus the current flows mostly from gate to source) is the true limit, and actually with FinFETs, the max attainable frequency (referred with fH in the textbook) is in several hundreds of GHz, but it quickly drops once transistors are staged one after another which could theoretically do what everyone is talking about in here. But it doesnt really matter anymore.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Night_Duck" target="_blank">Night_Duck</a>
+			<div class="markdown"><p>I read about FinFETS. Apparently they have this limitation where they can't be made smaller than 50nm, so they run into the power dissapation problem sooner.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SubliminalBits" target="_blank">SubliminalBits</a>
+			<div class="markdown"><p>Your limitation is still going to wind up being power. To get clock speeds that high, you have to use really high voltage, and part of the power equation includes a v^2 term.</p>
+<p>High voltage has other problems. It increases the power lost from leakage and increases the rate of electromigration leading to earlier failures.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/adiabaticfrog" target="_blank">adiabaticfrog</a>
+			<div class="markdown"><p>Suppose I could either make a processor with clock speed 2X, or have a dual core processor with each core having speed X. Why is heat dissipation less of a problem with the latter?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pasqu4le" target="_blank">pasqu4le</a>
+			<div class="markdown"><p>Because heat produced is not linear with clock speed. A processor with 2X speed will produce more than twice the heat of one with X speed.</p>
+<p>Beside that, IIRC there are other issues whose effects are reduced, like the existence of hot spots: a CPU does not produce heat uniformly, so there are small areas where heat is a lot higher then the average.
+By having twice the cores with lower clock you duplicate the number of hot spots.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/grep_dev_null" target="_blank">grep_dev_null</a>
+			<div class="markdown"><p>The heat is concentrated in a much smaller area with the single core high clock chip. Additionally, CPUs require exponentially more power to reach higher and higher clocks.</p>
+<p>Intel is dealing with that right now, as they've pushed their clock speeds up high, but the heat generated by the 9900k, for example, is wild.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xxfay6" target="_blank">xxfay6</a>
+			<div class="markdown"><p>Just wanted to add, the exponential rise in power requirements and similar elements was literally the question they answered when they killed the Pentium 4 and did a step-back to making a multi-core evolved Pentium 3 instead.</p>
+<p>It's only nowadays that we even see the clockspeeds that they wanted out of Pentium 4, <em>but</em> I'm sure that also has to do with their inability to make 10nm work, forcing them to practically re-release Skylake another 3 (no wait Comet Lake is 14nm... <strong>4</strong>) generations, allowing them the minor gains to push for 5 GHz which has been on the sights since 2nd gen (except for Broadwell, but nobody used it so meh) along with just pushing more cores because they magically found the space to do so after AMD made it a thing.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/APDSmith" target="_blank">APDSmith</a>
+			<div class="markdown"><p>There's also the issue of the <em>cost</em> of the plant necessary to make the traces that small. In short, by this point, such a reduction is tremendously expensive, does horrible things to your yield and even if you succeed, you've got an insanely hot processor that is perforce pipelines to buggery and will spend an even greater fraction of it's runtime waiting on I/O, either from other systems or from the meatbag in the chair.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jigendaisuke81" target="_blank">jigendaisuke81</a>
+			<div class="markdown"><p>Yield rates are mostly sorted out with chipset design. Make a few smaller pieces of a CPU die and assemble. Already well into consumer production. Latency might actually be a problem down the road with this design, but not yet.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

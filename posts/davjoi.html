@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>Why have CPU clock speeds stopped going up?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="davjoi">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/davjoi/why_have_cpu_clock_speeds_stopped_going_up/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/davjoi" onclick="return false">Why have CPU clock speeds stopped going up?</a>
+		</h2>
+		<!--<span class="date">2019-10-02</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>You'd think 5+GHz CPUs would be everywhere by now.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="f1vlwpq">
+		<a class="author" href="https://www.reddit.com/user/spokale" target="_blank">spokale</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>tl;dr increasing CPU frequency is kind of like increasing RPMs on a car engine - it's one unit of how much power a car's engine is producing, but it's not so good for comparing multiple types of cars in terms of how fast they can go or how much they can tow.  If one person is driving a Toyota Corolla at 2000 RPM and another is driving a Ford F150 at 2000 RPM, that tells you very little about which is carrying more weight (IPC*) or going faster (CPU benchmarks) or has more room (memory?*).  </p>
+<p>You can push a car's RPMs higher to go faster, but then you produce <strong>more heat</strong> and it's harder on the engine; generally, there'll be a range of RPMs where it's most efficient and is designed to run stably - <em>frequencies are largely the same sort of thing.</em></p>
+<p>You can think of CPUs as having basically five metrics that improve performance:</p>
+<ol>
+<li>Manufacturing tech - how small can pieces of the CPU be built?</li>
+<li>CPU Frequency - number of times the core clock 'ticks' per second.  3, 4 GHz, etc.</li>
+<li>CPU Instructions Per Clock (IPC*) - number of instructions the CPU can execute during a core clock cycle</li>
+<li>CPU memory* cache/cache speed - amount and speed of memory that the CPU can use to store instructions/results</li>
+<li>Design/layout of the chip itself</li>
+</ol>
+<p>The implication being:</p>
+<ol>
+<li>Make the manufacturing tech smaller and everything else constant = lower power requirements, less heat, faster on/off switching of transistors</li>
+<li>Make the CPU frequency faster = more power requirements, less stability</li>
+<li>Make the IPC higher = faster (more work done) at the same CPU frequency</li>
+<li>More memory/faster memory speed = real-world improvements irrespective of CPU frequency</li>
+<li>Design/layout = real-world improvements in cost, etc</li>
+</ol>
+<p>A 4 GHz CPU in 2019 is actually much faster than a 4 GHz CPU in 2009, because the IPC (roughly the amount of work that gets done per Hz) is higher.  The 2019 CPU would also use much less power per calculation than the 2009 CPU, because the manufacturing tech is much smaller.  And it would feel faster because more of the work can be loaded into very fast memory very close to the actual CPU cores (instead of running back-and-forth to RAM).</p>
+<p>Basically, they discovered about 10 years ago that they were hitting diminishing returns on increasing CPU core  clock speed.  So they looked to other areas where they could improve efficiency and/or speed: more cores, better cores (higher IPC), more on-chip memory, smaller tech = less power draw, etc.</p>
+<p>For a real example: In 2008, a Pentium 4 at 2.8GHz had a per-thread PassMark score of 633; in 2017, an i9-7960X at 2.8 GHz had a per-thread passMark score of 2337.  Same frequency, drastically different amount of work getting done.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="f1vnie6">
+		<a class="author" href="https://www.reddit.com/user/Commander_Amarao" target="_blank">Commander_Amarao</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I don't think it's the main explanation (power dissipation is probably the biggest factor as mentionned above), but you also have to consider that at this frequency the distance that an electric signal can travel in one clock cycle can be comparable or smaller than the physical size of the processor.<br />
+Let's consider a 5GHz processor, one clock cycle is 200ps. The velocity of light in silicon is v=c/sqrt(epsilon) where epsilon is the relative permittivity of silicon and c the speed of light in vacuum. taking epsilon=12, you get v=8.7e7m/s. In 200ps this means that the distance traveled by the signal in <strong>straight line</strong> is 17mm.  </p>
+<p>That being said, <a href="https://en.wikipedia.org/wiki/Superconducting_computing" target="_blank">superconducting processors</a> have been operated at frequencies above serveral dozens of GHz. But as far as I know, those processors have simpler architecture that makes it easier to manage. In the end it is a design constraint that has to be taken care of. </p>
+<p>EDIT : As a few of you already mentioned, it is not unfeasible to have a processor that is larger than the distance that the signal travel in a single clock cycle. But it is still a serious design consideration that has to be considered when you are looking for solutions to improve your processor. I never meant that it was a no-go, just that it makes the things harder and harder as you increase the clock frequency.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f1vi1q1">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f1vo6dm">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f1vu4nu">
+		<a class="author" href="https://www.reddit.com/user/nobodyspecial" target="_blank">nobodyspecial</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The short answer is speed went up as the transistors got smaller.  </p>
+<p>The state of the art right now is 7 nanometer feature size. 7 nanometers means you're working with 70 atoms of stuff to define a feature.  Intel, which used to set the feature size pace, is  currently stuck trying to reliably draw 10 nanometer features.  We're talking really, really, really tiny features so making them even smaller is a huge challenge.</p>
+<p>Moreover,  as the transistors got smaller, they started leaking more electrons which leads to accuracy problems. Also as they get smaller, you have more leaking transistors in a given area which means heat extraction becomes an issue. Speeding up the CPU makes the problems even worse.</p>
+<p>I've seen so many &quot;We've reached the end of the road...&quot; statements proven wrong  that I am skeptical that we've come to the end of the road. Engineers can be tremendously creative.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/davjoi" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
