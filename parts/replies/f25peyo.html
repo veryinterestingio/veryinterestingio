@@ -1,0 +1,153 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/YinnYang7" target="_blank">YinnYang7</a>
+			<div class="markdown"><p>Thanks for the presentation; so nothing is really &quot;calculated&quot; but arranged in a logical way.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AznSzmeCk" target="_blank">AznSzmeCk</a>
+			<div class="markdown"><p>Yep nothing is really calculated. It's our arrangement of the logic gates that enables the calculation.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Iivaitte" target="_blank">Iivaitte</a>
+			<div class="markdown"><p>If you need further explanation, you can see it plainly in Minecraft redstone.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tbfromny" target="_blank">tbfromny</a>
+			<div class="markdown"><p>There’s a great online game that leads you through how thisall builds up together - NandGame. You start by building a simple inverter, and work your way up through adders, memory, instruction decoders, up to a full-blown computer.</p>
+<p><a href="http://www.nandgame.com/" target="_blank">http://www.nandgame.com/</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/positive_root" target="_blank">positive_root</a>
+			<div class="markdown"><p>I think physical reality is made out of computations like these.
+All those on/off bonds in chemistry, the rules of quantum mechanics, these fields are like the computer science of molecules.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Trekky0623" target="_blank">Trekky0623</a>
+			<div class="markdown"><p>If you want to take this a step further, <a href="https://youtu.be/XETZoRYdtkw" target="_blank">Computerphile has a <em>great</em> video on how to get from logic gates to computer memory.</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/glodime" target="_blank">glodime</a>
+			<div class="markdown"><p><a href="https://youtu.be/5TFDG-y-EHs" target="_blank">I like this one better.</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/raugturi" target="_blank">raugturi</a>
+			<div class="markdown"><p>This guy is my favorite: <a href="https://www.youtube.com/playlist?list=PLowKtXNTBypGqImE405J2565dvjafglHU" target="_blank">https://www.youtube.com/playlist?list=PLowKtXNTBypGqImE405J2565dvjafglHU</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xSTSxZerglingOne" target="_blank">xSTSxZerglingOne</a>
+			<div class="markdown"><p>Flippity flops! Also cappy dake hay.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/reset_switch" target="_blank">reset_switch</a>
+			<div class="markdown"><p>And to give you a tiny bit of insight about how things are done IRL, there are two main types of transistors: ones that work as above, letting electricity through when given an input (called NMOS) and ones that let electricity through by default and stop doing so when given an input (PMOS).</p>
+<p>Traditional CMOS circuits have two parts to them: pull up and pull down. Pull up is the network of transistors that connects the &quot;power supply&quot; to the output and is composed of PMOS transistors. As I mentioned above, PMOS transistors work with inverted logic and so the output will be getting a &quot;1&quot; when the inputs are &quot;off&quot;. Pull down is the network of transistors that connects the output to the reference/ground and work with &quot;right&quot; logic, which means that when the inputs are right, the output is actually connected to the gnd (logic value &quot;0&quot;).</p>
+<p>Pull up and pull down are (not necessarily, trying to keep things simple) usually designed to be mirrored to each other. If the pull down has two transistors in series, the pull up will have two transistors in parallel, etc. This makes it so the output is either connected to the supply (logic &quot;1&quot;) or the ground (logic &quot;0&quot;) at all times except for a brief moment of transition. </p>
+<p>So let's build a scuffed ASCII CMOS circuit similar to what the comment above did. You usually use the pull down to determine the circuit's logic and then just mirror it for the pull up, so let's do the pull down first:</p>
+<p><code>--------output</code></p>
+<p><code>|</code></p>
+<p><code>T--A</code></p>
+<p><code>|</code></p>
+<p><code>T--B</code></p>
+<p><code>|</code></p>
+<p><code>ground</code></p>
+<p>When inputs A and B are &quot;1&quot;, electricity can flow through both transistors and a connection between the output and ground is made. This makes the output &quot;0&quot;. Now lets add the pull up to the upper half of the circuit.</p>
+<p><code>...power</code></p>
+<p><code>......|</code></p>
+<p><code>....-----</code></p>
+<p><code>....|...|</code></p>
+<p><code>B--oT---To--A</code></p>
+<p><code>......|</code></p>
+<p><code>--------output</code></p>
+<p><code>|</code></p>
+<p><code>T----A</code></p>
+<p><code>|</code></p>
+<p><code>T----B</code></p>
+<p><code>|</code></p>
+<p><code>ground</code></p>
+<p>God, that looks terrible. It's supposed to be the same as above, but with two transistors in parallel leading to the power supply. Dots are just spacing and 'oT' is a PMOS transistor instead of the 'T' which is an NMOS. As I finished &quot;drawing&quot; that thing, I just realized I could have grabbed an image so <a href="https://allthingsvlsi.files.wordpress.com/2013/04/nand-nor.jpg" target="_blank">I'll do just that</a>. On the left is the circuit we're making or trying to anyways. </p>
+<p>Now using the image as a reference and pretending this ASCII art never happened, let's look at the outputs we can get. The name of the gate probably spoiled it already, but we'll do it anyways. If both A and B are &quot;1&quot; the NMOS transistors in the pull down network will connect the output to the ground and give us a &quot;0&quot; output. On the other hand, in that same situation the PMOS transistors will both not be conducting and the connection with the power will be cut. If either of the inputs are &quot;0&quot; then the connection to ground won't happen, but one or both the paths to the power will, giving us a &quot;1&quot; output. Remember PMOS transistors have inverted behaviour. We just made a NAND gate, the simplest gate besides and inverter (<a href="https://qph.fs.quoracdn.net/main-qimg-fcc2a7e27fc4a7500e65208dd7c75a8f" target="_blank">which is just a single transistor on each side</a>). Similarly you can make a NOR gate just like in the reference image. </p>
+<p>This is why NAND/NOR gates are the building blocks of modern logic circuits instead of AND/OR gates as you'd expect. In CMOS technology, you just throw two transistors in series and bam! That's the reason why you see NAND being used all the time in the tech world as well. If you wanna move up from that, try playing <a href="http://nandgame.com/" target="_blank">NandGame</a> and you'll learn that literally every other logic gate can be built with NANDs and from there you can make all the computer stuff we have.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/porcelainvacation" target="_blank">porcelainvacation</a>
+			<div class="markdown"><p>You have it wrong about Nmos and Pmos, those just refer to whether the majority carrier is holes or electrons. Enhancement mode devices are off unless turned on by placing a charge on the gate, and depletion mode devices are on unless turned off by charging the gate.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/umopapsidn" target="_blank">umopapsidn</a>
+			<div class="markdown"><blockquote>
+<p>This is why NAND/NOR</p>
+</blockquote>
+<p>Well, that, and that you can build every other logic gate using only NAND, or NOR gates. When you have trillions of them in an SD card the size of your thumbnail, standardizing the layout of the transistors and only making one type of gate and the connections is better than making multiple types of gates.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/buddhabuck" target="_blank">buddhabuck</a>
+			<div class="markdown"><p>To expand on this, one of the most common method of doing this is to use two different types of transistors:</p>
+<pre><code>source          source
+  |               |
+  T&lt;----- A -----&lt;T  gate
+  |               |
+drain           drain</code></pre>
+<p>The transistor with <code>--&gt;T</code> (the gate &quot;pointing in&quot;) turns on when A is high and off when A is low, while the transistor with <code>--&lt;T</code> (the gate &quot;pointing out&quot;) does the opposite.</p>
+<p>Logic gates are made by using these in pairs. A basic &quot;inverter&quot; would look like this:</p>
+<pre><code>      high
+       |
+ A----&lt;T
+       |
+       +---- out
+       |
+ A----&gt;T
+       |
+      low</code></pre>
+<p>When A is high, the bottom transistor turns on and the top turns off, connecting out to low. When A is low, the top transistor turns on and the bottom turns off, connecting out to high.</p>
+<p>A NAND (not-and) gate looks like this:</p>
+<pre><code>      high high
+       |    |
+ A----&lt;T    T&gt;----B
+       |    |
+       +----+---- out
+       |
+ A----&gt;T
+       |
+ B----&gt;T
+       |
+      low</code></pre>
+<p>When either A or B is low, one of the top two transistors turns on, connecting high to out, and one of the bottom two transistors is off,  disconnecting low to out. When both A and B are high, both top transistors turn off and both bottom transistors turn on, connecting out to low.</p>
+<p>A NOR (not-or) gate can be made similarly, making the top two transistors in series and the bottom two in parallel.</p>
+<p>NAND and NOR gates are &quot;universal&quot;: Using many NAND gates, you can make any more complicated logical gate. You can do the same with just NOR gates. </p>
+<p>This particular type of logic is called &quot;CMOS&quot;, where &quot;MOS&quot; refers to a general type of transistor, and &quot;C&quot; stands for &quot;complementary&quot;, and refers to how the two types of transistor switches (those that turn on when the gate is high, and those that turn on when the gate is low) come in pairs -- both A inputs connect to complementary transistors, both B inputs connect to complementary transistors.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Preposterpus" target="_blank">Preposterpus</a>
+			<div class="markdown"><p>Passed all my exams on gates and transistors like half a decade ago.</p>
+<p>Didn't understand what was going on then and I don't now. If it wasn't 5am I'd probably put more effort in analysing your drawings and actually get some new information because it's genuinely interesting.</p>
+<p>Either way that just goes to show how ineffective it is to shame students for asking a question just because &quot;you've just said that&quot;.</p>
+<p>Eventually all I learned in high school was how to replicate drawn circuits with real life components without ever understanding what they do. The lack of actual practice probably affected this.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kilo4fun" target="_blank">kilo4fun</a>
+			<div class="markdown"><p>The trick for me was to think of electricity like pressurized water in pipes. It's very analogous especially for DC. The voltage source is your pump head, the drain is the drain. The gates are like valves you turn to let water pass or not pass.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/StoppedLurking_ZoeQ" target="_blank">StoppedLurking_ZoeQ</a>
+			<div class="markdown"><p>It finally clicked for me when I thought of it like a strong pulling force. You have a zone of high energy that pulls anything connected to it to a high energy. Then you have a zone of zero energy that pulls anything connected to it. Then you have switches, they break the connection so nothing &quot;pulling&quot; has an effect.</p>
+<p>To be fair while a lot of people invent little made believe scenarios to understand this stuff it only works down to certain level. The actual physics gets complicated and its best just to use compasulation. Take the logic, simplfy it then use that as a &quot;building block&quot; for the logic you're wanting. Even if its just remembering the patterns then that does the job.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LXIVCTA" target="_blank">LXIVCTA</a>
+			<div class="markdown"><p>This shows how NAND gates build up to a CPU
+<a href="http://nandgame.com/" target="_blank">http://nandgame.com/</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/azthal" target="_blank">azthal</a>
+			<div class="markdown"><p>So, I've just been watching the great <a href="https://www.youtube.com/watch?v=tpIctyqH29Q&amp;list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" target="_blank">Crash Course Computer Science</a> and thought &quot;Hey, I have a great idea! I should make an interactive game where you can use transistors to build gates, gates to build components and then go all the way up to a virtual computer!&quot;  </p>
+<p>Guess someone beat me to it.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shaege" target="_blank">shaege</a>
+			<div class="markdown"><pre><code>     power  
+     |  |  
+     |  |
+A----T  T----B
+     |  |  
+     \ /
+      |
+    output</code></pre>
+<p>OR gate ^</p></div>		</li>
+					</ul>
+	
