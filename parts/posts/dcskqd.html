@@ -1,0 +1,87 @@
+<li class="post" data-handle="dcskqd">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/dcskqd/eli5_how_hackable_are_public_transportation_cards/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/dcskqd" onclick="return false">How &quot;hackable&quot; are public transportation cards?</a>
+		</h2>
+		<!--<span class="date">2019-10-06</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I was on my daily transportation route and started thinking about this and since I've never seen anything about it, I figured the chances would be slim. The machines where you buy tickets/rides need to interact with the cards chips somehow to &quot;transfer&quot; whatever you purchase to the card so my question is, how hard would it be to &quot;fake&quot; a purchase as if it had been done in one of those machines?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="f2athjy">
+		<a class="author" href="https://www.reddit.com/user/Ansuz07" target="_blank">Ansuz07</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Assuming that the cards use some form of encryption (which they probably do) it would be somewhat tough, depending on the security of the machines themselves.</p>
+<p>The way these cards usually work is they send an identifier and an encrypted message - basically, they tell the reader, &quot;I'm card 12345 and here is a message that only card 12345 can produce:  aqfeonfqefeqeo&quot;.  Thanks to the &quot;magic&quot; of private/public key encryption, the card reader can take that code, apply the key it has on file for that card and decipher the message, thus validating the card is who it says it is.  This is almost impossible to fake - without the key on the card itself to generate the encrypted message, the reader won't get the correct response when it tries to decrypt and will see the card as a fake.</p>
+<p>The readers/ticket machines then make adjustments on the central server for that card - crediting or debiting rides depending on the transaction.  Since it is incredibly difficult to fake the card itself, the only way to get &quot;free&quot; rides would be to alter the transaction records on the server itself - adding rides to a legitimate card by altering the database on the server itself.  You could do this by either hacking the ticket purchase machine to add extra rides, or altering the central server to add extra rides.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="f2au627">
+		<a class="author" href="https://www.reddit.com/user/kouhoutek" target="_blank">kouhoutek</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You would have to hack the central system, not the card.</p>
+<p>All the card has on it is a number, when you purchase or use the card, it uses the number to find the account associated with the card and makes the update in the database, the card itself doesn't change.</p>
+<p>You could try to alter a card so you use someone else's account, but that is what the chip system is for.  Also, if the system is designed correctly, there are millions of times more possible account numbers than actual accounts, so guessing one correctly is like winning the lottery.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f2b3wx3">
+		<a class="author" href="https://www.reddit.com/user/LeoRidesHisBike" target="_blank">LeoRidesHisBike</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Depends on the card. Older systems use weak encryption and have been compromised. Never systems have not yet been revealed publicly to have been compromised.</p>
+<p>The ones that have been compromised have vulnerabilities that allow card cloning, which is generally used to clone a company- or government-issued card, since they are least likely to notice the extra riding. Another vulnerability has been the use of &quot;master&quot; cards to access control rooms (for trains), which are themselves clonable.</p>
+<p>Mag-stripe cards are easily cloned (like subway tickets).</p>
+<p>I don't think it's terribly responsible for me to go into much more detail.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f2b2xye">
+		<a class="author" href="https://www.reddit.com/user/_scorp_" target="_blank">_scorp_</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's really easy. However it all depends on how well the app and the system do Security.</p>
+<p>In theory they'd use encryption, so the card proves it's the right thing, and the system validates it, and little else is stored on the card.</p>
+<p>This is what is in quite a few other posts.</p>
+<p>However there are also apps that leave the keys to that encryption out.  </p>
+<p><a href="https://www.itpro.co.uk/hacking/34325/pirates-board-public-transport-with-app-hack" target="_blank"><a href="https://www.itpro.co.uk/hacking/34325/pirates-board-public-transport-with-app-hack" target="_blank">https://www.itpro.co.uk/hacking/34325/pirates-board-public-transport-with-app-hack</a></a>  </p>
+<p>so the best way to start is to look at how it's been done before and see if that mistake has been made elsewhere.</p>
+<p>When buffer overflow attacks were first discovered, people were wow, how simple a mistake to make, this will be so easy to fix..</p>
+<p>20 years later, people are still finding them.  </p>
+<p>So for the ELI5.<br />
+It depends on how well secured the app is, some are some are not, but if you wanted to, try with the method that's been used before, but on a diffent app/company.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f2bcnbu">
+		<a class="author" href="https://www.reddit.com/user/DoesntReadMessages" target="_blank">DoesntReadMessages</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>First, let's start with what are called signatures. Electronic signatures work by me giving you information that only I could know, and that you do not know, but can verify it's true. Every time we send each other signed messages, we give a new piece of information, and the signature is unique to the message itself, so you cannot use that signature to pretend to be me by copying my signature. Lastly, if I include the exact time I wrote the message in the message itself, you cannot repeat my message in the future without getting detected because either the signature will be wrong or the message will reveal the fact that it's old.</p>
+<p>The card effectively has two operations:</p>
+<ol>
+<li>What is your balance? It will tell you it's balance, signed by the machine that last updated it (including the card's unique name).</li>
+<li>Set your new balance. This updates what it will answer when asked.</li>
+</ol>
+<p>Whenever the machine adds or removes balance from the card, it:</p>
+<ol>
+<li>Asks for balance check.</li>
+<li>Verifies the identity of the card, and the machine that issued the balance.</li>
+<li>Tells it to set its new balance.</li>
+<li>Asks again to verify the update occurred correctly</li>
+</ol></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/dcskqd" onclick="return false"><span>show</span></a>
+</li>
