@@ -1,0 +1,81 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/robbak" target="_blank">robbak</a>
+			<div class="markdown"><p>They might think so, but in reality a user on channel 3 will experience congestion from all the users on channel 1 and all the users on channel 6, as well as adding to the congestion on both of them. They gain nothing and loose a lot.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NFLinPDX" target="_blank">NFLinPDX</a>
+			<div class="markdown"><p>You should look at a higher resolution WiFi analyzer.</p>
+<p>It's all about signal-to-noise ratio. Wifi doesnt create equal interference across 5 channels, centered on the number it is set to. It is mostly focused on the set channel, with acceptable noise leaking into adjacent channels. </p>
+<p>If you look at the frequency arc for wifi, it is a steep bell curve. You want to have you overlap as low as possible, so you do best to avoid the same channel as nearby networks. </p>
+<p>The reason <em>some</em> routers only do 1, 6, 11 is because they are lower quality (or aimed at a broader audience) and the higher level of granularity isn't an option.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FrabbaSA" target="_blank">FrabbaSA</a>
+			<div class="markdown"><p>This was true in 1999, it stopped being true when 802.11g came out. Only legacy data rates such as 1, 2, 5.5 and 11 will look like a bell curve. Anything more modern than that will look quite different. See: <a href="https://support.metageek.com/hc/en-us/articles/200628894-WiFi-and-non-WiFi-Interference-Examples" target="_blank">https://support.metageek.com/hc/en-us/articles/200628894-WiFi-and-non-WiFi-Interference-Examples</a></p>
+<p>e. It also was not true in 1999 if you were working in 5GHz 802.11a, but barely anyone used 802.11a in 1999 as it was not backwards compatible with the legacy 802.11 devices already deployed by most businesses.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Some1-Somewhere" target="_blank">Some1-Somewhere</a>
+			<div class="markdown"><p>You're thinking of 802.11b, which used a different modulation method. Newer versions are much flatter, which gives better use of the available spectrum.</p>
+<p>See <a href="https://en.wikipedia.org/wiki/List_of_WLAN_channels#/media/File:NonOverlappingChannels2.4GHzWLAN-en.svg" target="_blank">this image on Wikipedia</a>.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ergzay" target="_blank">ergzay</a>
+			<div class="markdown"><p>Except this isn't a bell function. There are bandwidth filters at the upper and lower frequency bounds so it's not a bell curve at all. 802.11 uses phase shift keying over many simultaneous frequencies. Plots look like rounded off square waves in the frequency domain.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Michael_Aut" target="_blank">Michael_Aut</a>
+			<div class="markdown"><p>Of course they gain something. It's all about the SNR (signal to noise ratio). As you get farther away from other channels, their noise on your signal gets weaker, your SNR improves and you can receive and send signals better and/or faster.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Malihope" target="_blank">Malihope</a>
+			<div class="markdown"><p>When people talk of interference what do they mean? Does it mean the waves make each other unreadable by the end devices before reaching then?</p>
+<p>Does it mean an end device gets data from multiple channels and multiple data from each channel, making the end device slower by having to check every package to see if it's for them rather than just receiving the packages meant for them?</p>
+<p>Or what?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hhuzar" target="_blank">hhuzar</a>
+			<div class="markdown"><p>Wifi uses OFDM modulation. It's not like a radio signal where one carrier is modulated. It has many subcarriers evenly spaced across the bandwidth that act like multiple single frequency flags. You may have like 250 of these flags. Their amplitude and phase is what is recorded by the receiver. Now, there is also a concept of symbols. Binary data is grouped and turned into symbols. Symbol is distinct combination of subcarriers, like a flag signalling. Depending on coding scheme used, one symbol may code two input binary states, but as we go up with packing data, it can hold for example 255 states. Think of this like for example a pattern 10100011 is A, 111001100 is B, 11000101 is K, 01101100 is Z, and so on. So on radio level both WiFi devices are talking to each other like this: GDSAJXBTARZVNUFMAS, with each letter taking a short time.</p>
+<p>These symbols are encoded into subcarriers so that for example symbol M has every 6th carrier at max power, every 8th at minimum and in counter phase, every 20th subcarrier is at half power and 1/4 phase off and so on. To visualize it simply it might look like this:</p>
+<p>-1, 0, 0, 1, 0.25, 1, 0, 0, -0.5, 0, 0.5, 0.5, 1, 1, -0.25, 1,- 1, -1, -0.5, -0.5, 0, 0, 0, 1, 1</p>
+<p>where minus sign means 180 degrees out of phase, and the value is a portion of maximum amplitude.</p>
+<p>To quickly sum up, take a few bits, map them to symbols and then make the radio translate them into a set of subcarrier states.</p>
+<p>The better the radio conditions, the more subtle the changes in subcarrier states are heard by the receiver, so you can use more symbols, which pack more bits, and this means more throughput. But when there is a lot of noise, some symbols may get interfered with (shouted over) by other devices and the receiver sees different state. It's like reading and making a mistake. B turns into P, I and J look the same. V and U are indistinguishable. There is a bit more to decoding, like error correction, checkums and so on that help to fix such typos, but at some point it's too much and the receiver stops hearing the transmitter. This is when both drop down to a lower packing state. Let's say previously one symbol could pack 256 states (8bits), but at lower encoding it can only hold 64 states (6bits). This means a 1/4 slower connection speed. To make a reading analogy, it's like increasing the font size of a text. It's clearer to read in dark conditions and from afar but one page now holds less text.</p>
+<p>It's not like receivers hear each other and have to filter through data to see what goes where. Other stations are just noise to them, that makes no sense. It's just that their subcarriers add up (or subtract) power from their signal but means of simple wave interference. The interference is stopped at radio receiver level, where at some point it determines that it can't make out the symbol used and sends a request to the transmitter to drop down to a more robust encoding and repeat.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shebazz42" target="_blank">shebazz42</a>
+			<div class="markdown"><p>There's two types of interference at a wave level - destructive and constructive. Think of constructive interference as a big ocean wave overtaking a smaller one and combining forces. Destructive is like two waves hitting head on and canceling each other out. With your WiFi, each wave is a tiny tiny bit of information - smaller than even a single number. Some of the waves get through fine, and some don't.</p>
+<p>Your WiFi expects the waves to come in at a certain frequency and height, so when the aforementioned interference cause the waves to look funny or have a weird count (&quot;actually, I was expecting 16 guests this evening, but I see 13&quot;), it can't do anything with that particular batch of information, which must be then rebroadcast. It's all rather busy on a hardware level, especially when you compare it to plugging in a cable.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/robbak" target="_blank">robbak</a>
+			<div class="markdown"><p>The device on channel 3 hears traffic on channels 1 and 6, and holds off so as not to interfere. Even worse, the device on channel 3 doesn't hear the traffic on 6 and transmits at the same time, so the transmissions from both are scrambled. The sending systems may not notice this, and wait a few seconds to get a reply before trying again - this causes serious slowdowns.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/burajin" target="_blank">burajin</a>
+			<div class="markdown"><p>So I set mine to 8 some time ago because I thought it would cause less interference but according to this thread I made things worse. Should I change it back to 1, 6, or 11 or is it pointless at this point since there are probably tons of other people on unusual channels too?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marktrichards" target="_blank">marktrichards</a>
+			<div class="markdown"><p>Yes- routers on the same channel can see each other’s transmissions and can send when clear. Routers on adjacent channels cannot see each other so they both end up transmitting at the same time and stepping on each other’s transmissions which causes interference and thus retries which reduces the overall throughput for everyone involved.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/burajin" target="_blank">burajin</a>
+			<div class="markdown"><p>It's set to 11 now. Thanks!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/WashingDishesIsFun" target="_blank">WashingDishesIsFun</a>
+			<div class="markdown"><p>Set it back to 1, 6 or 11.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VexingRaven" target="_blank">VexingRaven</a>
+			<div class="markdown"><p>That's not how it works though. The &quot;strength&quot; of the interference doesn't matter. Any signal at all (within the cutoff range, I think it's like -80dBm) will cause a back off and retransmit. Finding a low spot between 2 of the non-overlapping channels, such as channel 3, may look better but is in fact much, much worse. Similarly, increasing your transmit power doesn't actually give you any better performance unless the issue is that your signal is actually too weak. The relative signal strength between your and your neighbor's WiFi doesn't matter, if you can see it it's interfering no matter what the strength is.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pm7-" target="_blank">pm7-</a>
+			<div class="markdown"><blockquote>
+<p>what is the proper distance between same channel access points? I like  to use a general rule of thumb which is 20 dBm difference. Meaning, if  you are next to an AP that is heard at -40 dBm at your mobile device,  your next closest AP on channel 1 should be at -60 dBm or greater to  lessen interference. Why is this? That, my friend, is a LONG and complex  discussion on CCA, NAV, and radio driver secret sauce. I am going to  state this loosely so don't beat me up on specifics. <strong>Drivers in general  will not set their CCA to busy when frames are heard from adjacent cells  at -20 dBm or greater.</strong> [...]  </p>
+<p>When deploying access points that share the same channel you  should have -20 dBm or greater of separation to minimize same channel  interference. </p>
+</blockquote>
+<p><a href="https://blogs.arubanetworks.com/industries/real-world-examples-and-discussion-around-wifi-channels/" target="_blank"><a href="https://blogs.arubanetworks.com/industries/real-world-examples-and-discussion-around-wifi-channels/" target="_blank">https://blogs.arubanetworks.com/industries/real-world-examples-and-discussion-around-wifi-channels/</a></a></p></div>		</li>
+					</ul>
+		</ul>
+	
