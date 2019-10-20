@@ -1,0 +1,37 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cantab314" target="_blank">cantab314</a>
+			<div class="markdown"><p>In the extreme case, it's theoretically possible to have a <em>one instruction set computer</em>, where the CPU itself knows only a single operation and all algorithms can be built out of that. One possible operation is <em>subleq</em>. Taking three memory locations, subtract a from b, store the result in b, and if b is negative or zero then jump to c (otherwise run the next operation in sequence). You can build more complex operations like addition, swapping two values, and so on out of suitable sequences of subleq operations.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cucc_boi" target="_blank">cucc_boi</a>
+			<div class="markdown"><p><a href="https://github.com/xoreaxeaxeax/movfuscator" target="_blank">movfuscator is a good example of compiling a program with an instruction set of size one</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ameisen" target="_blank">Ameisen</a>
+			<div class="markdown"><p>Note that x86 doesn't quite have true 1 to 1 mapping... <code>mov</code> is an instruction that really can be a number of closely-related <code>mov</code> instructions. <code>mov</code> alone maps of 14 different opcodes.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ShadowOdysseus" target="_blank">ShadowOdysseus</a>
+			<div class="markdown"><p>I suppose the advantage is you could crank that one operation up as best you can? Do we have any idea how that would compare to the traditional setup?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/garrett_k" target="_blank">garrett_k</a>
+			<div class="markdown"><p>That's the idea behind RISC (reduced instruction set computer) systems. RISC systems were able to get to much higher frequencies earlier-on and looked like they might be The Future. However, CISC (complex instruction set computers) systems like x86 have managed to get up to the same clock speed while ultimately doing a lot more per instruction/cycle.</p>
+<p>So if you are able to provide more complex instructions which reflect operations that facilitate complex operations which programs are actually trying to do (the reason for the introduction of eg. SSE instructions) you can run software a lot faster.</p>
+<p>Making a computer out of nothing but <em>subleq</em> instructions is *technically* possible but ultimately useless unless you are in academia. On a theoretical level, the savings in the execution units would be dwarfed by the additional costs for all the extra memory throughput you'd need to support. On a practical level, it would be a pain and since you can buy/license/use really cheap microcontrollers which are programmable with real software tools, you'd be better off instead.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DaedalusRaistlin" target="_blank">DaedalusRaistlin</a>
+			<div class="markdown"><p>There are many approaches, and it's a fun mental exercise too.</p>
+<p>I <a href="https://github.com/andrakis/gleam/blob/master/cumulative/cumulative.html" target="_blank">implemented</a> a virtual machine that took an instruction in the form of: <em>(address to read)</em>, <em>(constant to add)</em>, <em>(destination address)</em>. With a few special memory locations, I was able to implement a stack machine, conditional branching (via flags registers), and arithmetic. The link has some more detail on my one but there are so many ways to design a one instruction computer. Many examples exist. </p>
+<p>Once you have the basics above, you can implement a more complex (high level) language to make writing code easier. Simple abstractions like if blocks, labels, and functions can make programming for your one instruction computer much easier. From there, any language or virtual machine is theoretically possible, given enough time. It will likely be many times slower than a machine with more instructions, but it's a fun exercise.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Nephyst" target="_blank">Nephyst</a>
+			<div class="markdown"><p>You can build an entire computer including memory, cpu, etc. all using just nand gates.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ArkGuardian" target="_blank">ArkGuardian</a>
+			<div class="markdown"><p>I like to think of Java. No computer has a physical architecture that is matching what Java assumes. Instead java just  simulates its own virtual processor using a stack instruction set</p></div>		</li>
+					</ul>
+	
