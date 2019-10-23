@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: How does 4k video transfer work</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="dkjbfn">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/dkjbfn/eli5_how_does_4k_video_transfer_work/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/dkjbfn" onclick="return false">How does 4k video transfer work</a>
+		</h2>
+		<!--<span class="date">2019-10-23</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>This kept me awake all morning. If 4k video is approximately 8 million pixels and each pixel is approx 3 bytes of data, them that is about 24MB of data. If most movies are 30fps, them that is about 720MB per second bandwidth needed to transfer just the video. But somehow a 4k movie is transferred over Netflix at less than 25 MBPS? Am I not getting full 4k?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="f4g2n14">
+		<a class="author" href="https://www.reddit.com/user/piousp" target="_blank">piousp</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you were transferring 30 unrelated images per second, that would be the case. But videos are not a bunch of unrelated pictures. Videos are s sequence of lightly changed pictures.</p>
+<p>So, what we do is compare the first picture to the next one, and get the difference between them.</p>
+<p>That's what we send. Look up compression algorithms for video</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="f4g49tm">
+		<a class="author" href="https://www.reddit.com/user/tjeulink" target="_blank">tjeulink</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There is this mathemthical technique used on the video to compress it. if for example you have 1 second of exactly the same black picture you could just as easily say &quot;do this black picture 30 times&quot; which would cost way less bandwidth than in detail describing the same black picture over and over and over again 30 times. this is basically how they do it, you can do an lot more advanced stuff such as if an black square was moving over an white background you could mathematically describe &quot;move black frame 2 pixels to the left every frame&quot; instead of having to detail every pixel individually again.   </p>
+<p>All the above would be considered &quot;lossless&quot; compression, because you can recreate the exact origin from the compressed data. but an near perfect picture is good enough for almost everyone, so with a lot more of clever mathmathics we can make files even smaller at the loss of details. some mathmethical algorithms for example focus on detail in faces and hair because people watch that the most, while the background is a lot more blurry because its just not as important to the scene. this is also why bluray is visually superior to any streaming, it almost always has much more MB per second to work with and can thus use an compression that loses less of the original image.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f4g9uvg">
+		<a class="author" href="https://www.reddit.com/user/ctrlaltwalsh" target="_blank">ctrlaltwalsh</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Imagine you made a picture out of pieces of colored paper, every time something changes you only move the pieces of paper you have to, this means that most of the pieces of paper don't have to be downloaded 30 times a second.</p>
+<p>This is sorta how video compression works, another thing is where there isn't detail the pieces of paper can be bigger, because it's all the same color, so instead of cutting out 10 pieces of blue it sends &quot;blue x10&quot; instead of blue blue blue blue blue blue blue blue blue blue. This is similar to how image compression works.</p>
+<p>Hope this helps.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f4g33p7">
+		<a class="author" href="https://www.reddit.com/user/VirginSexPet" target="_blank">VirginSexPet</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'm no expert, but a lot has to do with compression. For one, a 24/30/60 fps video isn't sending a full image for every frame, more like a full image every few frames (an i frame) and several 'move these pixels around a bit and leave the rest alone' frames (p frames - note that I may have gotten those backward).</p>
+<p>That, and there's data compression to shrink the images from a straight up 8 million pixels with individual info down to a much more manageable file with less accurate data. Difference between a .RAW file and a .PNG.</p>
+<p>That's why blacks and dark grays look like shit on streaming shows and movies: Most compression handles those shades very, very poorly.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f4gdry2">
+		<a class="author" href="https://www.reddit.com/user/bensonNF" target="_blank">bensonNF</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>These answers are correct but I’d like to add that although the image is 4k in size (the amount of pixels), Netflix does deliver it compressed (jpeg or mpeg compression as explained by the other). So technically you are seeing a degraded version of the RAW uncompressed master but compression techniques are so good these days it’s hard to notice the image quality loss with the naked eye.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/dkjbfn" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
