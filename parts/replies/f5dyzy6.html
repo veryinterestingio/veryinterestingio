@@ -1,0 +1,103 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/migzdgreat" target="_blank">migzdgreat</a>
+			<div class="markdown"><p>Really grateful for all the other replies and it's great we can talk about security like this but this is the response I'm looking for.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Beetin" target="_blank">Beetin</a>
+			<div class="markdown"><p>For extra security, imagine you don't actually keep your key to the locked box on you.</p>
+<p>Instead, you build a special vault, and hire someone to stay in there 24/7. They create a key and box whenever you ask them to. You pass in some stuff, and they give you back a locked box and keep the key inside the vault. When you want to unlock the box, you have to pass it securely into the special vault, and the person unlocks it for you with the key, then gives you the contents.</p>
+<p>Since you don't have the key, it is impossible to steal it without breaking into the vault. But since you don't have the key, you can't make copies or take it to another place, so it lives there forever. If you lose whatever the mechanism is for the guy inside the box to trust you (maybe ANOTHER key and box, held by another guy, turtles all the way down), then you lose any ability to ever open those boxes again.</p>
+<p>Those are HSM/TEE/SE backed keys, kept on a special part of a computer, or a special device, that is much much harder to hack or tamper with.</p>
+<p>It is also part of why people can &quot;lose&quot; their bitcoin accounts when they reformat/brick their computer, or why resetting your phone's biometrics, which can be used by the man in the vault to access your keys, can permanently mean losing those keys.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/patoarvizu" target="_blank">patoarvizu</a>
+			<div class="markdown"><p>As someone that works on software infrastructure/security, I understand and appreciate the correct use of &quot;turtles all the way down&quot;.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KingdaToro" target="_blank">KingdaToro</a>
+			<div class="markdown"><p>If you want to see an example of the &quot;bottom turtle&quot; being accessed, look up root KSK signing ceremonies. It's where the root-level DNSSEC keys are signed, using a key stored in a HSM, secured by access cards, with everything kept in tamper-evident bags, in safes, in a secure room, in a secure building. The security of the whole DNS system depends on this key being kept secure, so it's a pretty involved process to access and use it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Guy_Code" target="_blank">Guy_Code</a>
+			<div class="markdown"><p>More of a ELI15 but still appreciated</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shouldbebabysitting" target="_blank">shouldbebabysitting</a>
+			<div class="markdown"><p>The problem with his answer is it sidestepped your question.  It is only the company's claim that they don't have access to all your passwords.   </p>
+<p>They can claim encryption that they can't read but that doesn't mean they are actually using it or leaving another back door in which gives them all your passwords.</p>
+<p>Even open source, while safer, could still have intentional backdoors.  This has happened before with other open source projects.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DepLefford" target="_blank">DepLefford</a>
+			<div class="markdown"><p>Exactly... OP asked &quot;how do we know the companies that run them can't just access our accounts&quot;.. the reply seemed to be &quot;the technology is solid and you can trust everybody&quot;.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/On2you" target="_blank">On2you</a>
+			<div class="markdown"><p>When the top commenter says “GOOD”, the term to look for is “zero knowledge”. The biggest ones are not zero knowledge and don’t actually work the way OP describes once you take attacks (“rob the bank”) into account.</p>
+<p>Something like Dashlane is zero knowledge but LastPass <del>and 1Password</del> are not.  The main players are not zero knowledge because while they might have everything locked in a box, and only you have the key, they still have a way to make a new key in case you forget your password.  For a true zero knowledge service, if you forget your password then everything is just gone forever.  This is a hard customer service story to sell for the mass market that doesn’t understand, so they make security compromises to provide better customer support.</p>
+<p>EDIT: I might have been wrong about 1Password. They claim that they can’t recover an account with a lost master password.  They do also have the term “zero knowledge” in one obscure portion of their security explanation, but it is phrased weirdly.  So it might be zero knowledge, and props to them if it really is.</p>
+<p>LastPass however is explicitly not, and has been hacked in the past possibly leaking user passwords.
+<a href="https://lifehacker.com/lastpass-hacked-time-to-change-your-master-password-1711463571" target="_blank">https://lifehacker.com/lastpass-hacked-time-to-change-your-master-password-1711463571</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hath0r" target="_blank">hath0r</a>
+			<div class="markdown"><p>people are always thy weakest link</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mamoulian" target="_blank">Mamoulian</a>
+			<div class="markdown"><p>Nope, 1password cannot recover your data if you forget your password. They recommend you make an emergency backup kit yourself for this, they don't make one themselves.</p>
+<p><a href="https://support.1password.com/forgot-master-password/" target="_blank">https://support.1password.com/forgot-master-password/</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zebediah49" target="_blank">zebediah49</a>
+			<div class="markdown"><p>Zero knowledge is something different.</p>
+<p>That would be that if you have the password to your bank account, you can prove that fact to your bank... without ever giving it to them.</p>
+<p>I don't think I've ever seen zero-knowledge proof logins -- there's no point as long as the password is unique, since <em>the password is for them anyway</em>.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VoyagerST" target="_blank">VoyagerST</a>
+			<div class="markdown"><p>It's better to say <strong>if they are set up properly</strong>, the companies don't know your passwords. It's very possible the company stores your password as plain text, unencrypted, unprotected, unmonitored.</p>
+<p>Google's G-Suite was storing passwords as plain text since 2005.</p>
+<p><a href="https://techcrunch.com/2019/05/21/google-g-suite-passwords-plaintext/" target="_blank">https://techcrunch.com/2019/05/21/google-g-suite-passwords-plaintext/</a></p>
+<p>Facebook had done similar</p>
+<p><a href="https://techcrunch.com/2019/03/21/facebook-plaintext-passwords/" target="_blank">https://techcrunch.com/2019/03/21/facebook-plaintext-passwords/</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PoliceOfficerDave" target="_blank">PoliceOfficerDave</a>
+			<div class="markdown"><p>As someone who’s account had a breach with the company storing plain text please use different passwords for every website.</p>
+<p>If you want to check if they store in plain text click forget password and if they send the password in the email it’s not good and stored in plain text, if it’s a reset link it’s most likely ok but still possible</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/krische" target="_blank">krische</a>
+			<div class="markdown"><blockquote>
+<p>If you want to check if they store in plain text click forget password and if they send the password in the email it’s not good and stored in plain text, if it’s a reset link it’s most likely ok but still possible</p>
+</blockquote>
+<p>That wouldn't have mattered in cases like the Facebook example above. Facebook &quot;stores&quot; your password as hashed and salted like most sites do. Facebook's problem was that passwords were being logged out to debug logs as they were passing through the authentication system. Then those debug logs were stored off somewhere so engineers could search through them for later debugging.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/praguepride" target="_blank">praguepride</a>
+			<div class="markdown"><p>Ooorrr make sure your important passwords are unique. I don’t give two shits if a Reddit hack discovers my 4chan password but your primary email and financial passwords should always be uniqie.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Baldish" target="_blank">Baldish</a>
+			<div class="markdown"><p>Good password managers will suggest random passwords for you when signing up for an account and <del>will alert you that it detects the same password on more than one site in your vault</del></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HamburgerEarmuff" target="_blank">HamburgerEarmuff</a>
+			<div class="markdown"><p>Password managers typically operate a bit differently. Most of them encrypt the password safe locally using a key generated by a secure password the user choses, so as long as you choose a strong password to generate the key, it doesn't matter if the account password is stored unencrypted, because the vault itself is still encrypted (of course, if the account password and the vault password use the same key, obviously it does matter if the account password is breached).</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[gelöscht]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VoyagerST" target="_blank">VoyagerST</a>
+			<div class="markdown"><p>sorry, I didn't know logging them didn't mean storing them insecurely /s</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rakosman" target="_blank">Rakosman</a>
+			<div class="markdown"><p>Cryptonite 👌🏻</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/71gnal3" target="_blank">71gnal3</a>
+			<div class="markdown"><p>Right, that is the best part of the post</p></div>		</li>
+					</ul>
+		</ul>
+	
