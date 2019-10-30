@@ -1,0 +1,89 @@
+<li class="post" data-handle="dnx06p">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/dnx06p/eli5_how_does_the_internet_exist_no_im_not/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/dnx06p" onclick="return false">ELI5 How does the internet exist? No I'm not talking about us using it but more so, what's actually causing it to run and who's in charge, who could possibly end it?</a>
+		</h2>
+		<!--<span class="date">2019-10-30</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5 How does the internet exist? No I'm not talking about us using it but more so, what's actually causing it to run and who's in charge, who could possibly end it?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="f5ijemr">
+		<a class="author" href="https://www.reddit.com/user/J_ent" target="_blank">J_ent</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The Internet is what we call a global data network consisting of many sub networks belonging to various companies and governments.</p>
+<p>It's kind of like asking who owns the road? What road? The world is connected with roads, some going from one country to another, and in many cases many countries. They connect places and people, and allow us to visit businesses and others. The way you know where to go is by looking up the address of a location (DNS, see [1]) and then checking a map to know how you get there (routing tables, see [2]).</p>
+<p>Addresses are also governed by an entity which hands them out, and once they've been handed out, have an easier time being subdivided to other companies and institutions, or even individuals.</p>
+<p>The important part left is then who creates the map (see [3]) because this changes constantly and determines the path we take to reach our destination.</p>
+<p>&#x200B;</p>
+<p>[1] For example when you type in an address in your browser, your computer sends a DNS request to the DNS server that it has stored in its settings, which responds to your computer with an IP address, and your computer then can send data directly to that IP address. The DNS network however does have some governance in the sense that there are root servers at the very top level, but there is no requirement for the requests to reach them as they can be manipulated by a DNS server at any point in the chain, although in most public cases isn't needed or done.</p>
+<p>[2] Mostly in this case we talk about globally routed addresses. For example, your computer needs to really only know where to, within its own network, send data if it's outside its own network, it doesn't need to know anything more than that. This local destination is called your gateway and in most residential setups is handled by your router. So your computer wants to reach an address on the Internet using a domain (something dot something), gets an IP from the DNS server, sees that the IP (say 216.58.211.142) is not within your own network (say 192.168.0.0/24) so it sends the data to its gateway (say 192.168.0.1, which in this example is your router). Your gateway has a routing table just like that (&quot;This is my local network, anything outside of it, send here [another IP address]&quot;, called a default route). As you go higher up the chain from your home, into your ISPs network, and then beyond, the routing table will increase until we find a routing table that describes where we can find the location of the IP address you are looking for, and then start to decrease as the packets hit those routers since we are getting closer to the target the devices hit need to know fewer and fewer routes.</p>
+<p>[3] Throughout the Internet are the above mentioned routers. They belong to companies, institutions, governments, and some individuals. The point is, these routers communicate with each other. They most often on the Internet use a protocol called BGP. In this protocol we determine with whom we'd like to talk, and what we'd like to say. The things the routers exchange during these talks between themselves are routes, so that each router knows what the router it is connected to is itself connected to. This is why the higher up we get, the routing table grows, so that we at the highest point know where to send data no matter what the address is (I am router A, and I want to send data to IP X, looking at my routing table the router that knows where that address is goes via router B, so I'll send my data there and then it is router B's problem).</p>
+<p>&#x200B;</p>
+<p>Put very simply and omitting quite a bit, this collection of roads, addresses, and maps is what we call the Internet. There isn't a single point one can attack bring it all down, and there isn't one entity controlling everything, but if someone was dedicated and had the resources, they could disrupt parts of the Internet for a finite time.</p>
+<p>&#x200B;</p>
+<p>I apologise if parts of the above seemed rushed, I'm finishing this with 2% battery left. I'll check comments later if I've left anything unclear.</p>
+<p>&#x200B;</p>
+<p>Edit: I tried to simplify the basic idea, but for the folks wondering what 5 year old would understand this, ELI5 isn't for actual 5-year-olds (rule #4).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="f5i2nrk">
+		<a class="author" href="https://www.reddit.com/user/fabledlamb" target="_blank">fabledlamb</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Imagine if there were only three computers in the US, located in San Francisco, Kansas City, and New York City. The SF computer is connected by cable to KC, and KC is connected by cable to NYC. So far, that means SF and NYC can talk to KC.</p>
+<p>What makes these computers special is that they advertise that they are willing to help you talk to other computers. Specifically, the KC computer knows it's connected to SF and NYC, and says that it's willing to ferry messages on their behalf. This means that SF can now talk to NYC, so any computer in this network can talk to any other one.</p>
+<p>Here's where it gets interesting. If Los Angeles buys a computer and wants to get on to the network, all it has to do is connect to SF, which is the nearest one. Because the SF computer (just like the KC computer previously) knows how to route messages for other computers, it means that the LA computer can talk to KC and NYC as well.</p>
+<p>Now, let's say Austin wants to join in the fun, and connects to KC. But now the LA-Austin connection has to go through SF and KC, which is slower than we'd like. At great expense, we can directly connect LA to Austin by cable for better performance. This is really cool, because any LA-KC traffic can now either go through SF or Austin, <em>depending on which one is faster</em>. In fact, SF can break down entirely, and the rest of the network can still route around the failure.</p>
+<p>(On the flip side, a country like China that wants to control information would do the opposite, by deliberately funneling all traffic through a specific set of computers that it controls, so that it can selectively censor certain messages by simply not ferrying them across.)</p>
+<p>So as you can see, there's nobody specifically in charge of the Internet. There are standards committees that decide how these computers can talk to each other, but as long as you connect to somebody who is already on the Internet, you're also on the Internet. You connect to an ISP, who in turn connects you to the rest of the Internet. Reddit also does the same on its end. Then numerous computers (now specialized computers called &quot;routers&quot; that do nothing but ferry messages for a fee) in between gets your request to Reddit and brings back a web page for your computer to draw.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f5h44j4">
+		<a class="author" href="https://www.reddit.com/user/Thaddeauz" target="_blank">Thaddeauz</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The internet isn't one thing that someone could just shut down or with someone in charge off. It's a network so basically it's just computers connected with each other. Some of those computer are just laptop or destop they are for user like any normal computer you ever used, while other computer are use as servers they are specialized to just have a bunch of website page on them with a directory to make it easier to find those webpages. So when you type an address that the addresse of the page on a servers, your computer send a signal through the network to that server to send you the webpage.</p>
+<p>Nobody is in charge, there is several communication companies that own cables through the world, some go underwater to connect different continents. So for example Google own 63 thousands miles of submarine cables which is 8.5% of the world total, so if Google wanted to shutdown their stuff it would take time to remove to disconnect all of their cables, and maybe some region would end up with bad connection, because now the information need to pass through longer or older cable, some region wouldn't have any internet anymore, think small Island with only a couple of cable to connect them, but most people wouldn't see any differences depending where you live. You would have to cut most of the cables submarine or onland to disconnect everboby from the internet.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f5ib2m5">
+		<a class="author" href="https://www.reddit.com/user/buddyto" target="_blank">buddyto</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>next question: how can i be an internet provider? i mean, i don't want to rent other company internet, i want to &quot;create&quot; my own internet (that is connected with the normal one)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f5itqgm">
+		<a class="author" href="https://www.reddit.com/user/rexxar-tc" target="_blank">rexxar-tc</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The internet is a network of networks connecting many computers together. Physically, it's a bunch of fiber optic cables running over most of the planet, including under the oceans, to connect the different continents. </p>
+<p>The company that owns the cable also owns the hardware on either end of the cable. That company lets other companies connect to their cable for a fee.</p>
+<p>The cables that run under the ocean, and across vast distances on land are called &quot;backbone&quot; cables, as they function sort of like your spine. It's a big bundle of cable that branches off in many places to connect remote locations to a central network.</p>
+<p>The backbone cables are owned by companies, and those companies allow other companies to connect. Some companies own a different section of backbone, and some are small internet service providers who act as an intermediary between you the consumer, and the company who owns the nearest backbone segment.</p>
+<p>All these different segments of the network are owned by different companies, but through mutual agreement they're all interconnected, which is what allows the internet to exist as it does.</p>
+<p>On a logical level, the internet is just your computer talking to another computer, or a series of them. When you navigate to Google.com, your computer asks a domain name server for Google's address. Then your computer connects to that address, and downloads whatever data the server wants to send you.</p>
+<p>Physically, your connection is routed through many switches and miles of cable, but the core point is that it's simply a direct connection between your computer and the server. And that's how the internet works.</p>
+<p>No one person is in charge, and that's a good thing. If one or two companies shut down their backbone service, we'd see large slowdowns, and some outages, but for the most part the internet would continue to exist. It's a very robust system, full of redundancies.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/dnx06p" onclick="return false"><span>show</span></a>
+</li>
