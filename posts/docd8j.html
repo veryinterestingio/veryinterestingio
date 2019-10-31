@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: Why is sending images on messaging platforms like discord considerably slower than video call, where you're sending each other over 30 images per second almost instantaneously?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="docd8j">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/docd8j/eli5_why_is_sending_images_on_messaging_platforms/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/docd8j" onclick="return false">Why is sending images on messaging platforms like discord considerably slower than video call, where you're sending each other over 30 images per second almost instantaneously?</a>
+		</h2>
+		<!--<span class="date">2019-10-31</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Why is sending images on messaging platforms like discord considerably slower than video call, where you're sending each other over 30 images per second almost instantaneously?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="f5m2h2l">
+		<a class="author" href="https://www.reddit.com/user/nAssailant" target="_blank">nAssailant</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p><strong>Sending an image</strong> is a kind of file transfer. It uses a TCP (Transmission Control Protocol), which is connection oriented. Essentially, all hosts (i.e. both you and your friend's computer, or each computer and a server in discord's case) care about what is being transferred and if it was done so correctly.</p>
+<p>It does this by sending both the image itself and a 'hash'. The hash is just the image data sent through a particular algorithm resulting in a string of what appears to be gibberish. However, the receiving computer can run the payload (the image you sent) through that same algorithm and compare the hashes. If they match, the image was sent completely without error. If not, the whole thing must be sent again.</p>
+<p><strong>Video Streaming</strong> typically uses some connection<em>less</em> protocol (like UDP). In this kind of interaction, both hosts don't care what is being sent or if anything is lost. If some packet doesn't make it or is damaged, it just moves on to the next like there isn't an issue. This is considerably faster but you will inevitably end up with packet loss (and stuttering/blurriness) unless the connection is perfect.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="f5ncadc">
+		<a class="author" href="https://www.reddit.com/user/JCDU" target="_blank">JCDU</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>So many incorrect answers here...</p>
+<p>So, assuming the same quality of picture (but live video calls are often sent at far lower resolution which makes for exponentially smaller sizes);</p>
+<p>If you send a picture, barring some still-image compression that gets the thing down from (say) 10Mb to 1Mb, you send the <em>complete picture in full detail</em>. If you send another picture, that is a completely different thing and that whole picture is also sent <em>in full detail</em>.</p>
+<p>With video, you send a key frame (full picture) and then video compression sends only the differences from one picture to the next, which reduces the amount of information hugely. A new key-frame may be sent every few seconds, or key fragments may be sent as a rolling-update sort of deal.</p>
+<p>There are other factors too, platform dependant, which may or may not apply;</p>
+<ul>
+<li>Live video/audio traffic may (very likely) be prioritised over text or static pictures because it doesn't matter if a picture or text arrives 5 seconds late, but even half a second late for a video or audio frame is useless.</li>
+<li>Video/audio may be captured at low resolution / bitrate compared to the full quality of a static picture.</li>
+<li>The frame rate may also be low, you assume 30fps but with a bit of cunning you can make 15fps look quite acceptable, that's half the data rate right there.</li>
+</ul>
+<p>You'd be amazed what even H.264 can do with 1080p30 video, it can get it down to 64k/sec (nominal bandwidth of a normal landline voice call) - so knock that video call down to 720p and 15 fps and you knock \~75% load off (or get 75% better video), with more modern encoders tuned for the task at hand (EG knowing it'll be a talking head and static background) you'd be amazed at how good that could look over a 64k link.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f5m2n69">
+		<a class="author" href="https://www.reddit.com/user/bal00" target="_blank">bal00</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>During a video call you can use compression very effectively because only a few pixels change from one frame to the next. Basically you're not sending 30 full images per second, but just the changes between frames. The quality requirements are also much lower compared to a photo that you're sending.</p>
+<p>Secondly, the connection has already been established, so it's just streaming data. If you send a  single photo, your browser has to establish a new connection to the server to upload the image, and when that has finished, the client needs to establish a new connection to download the image, and there are delays associated with that.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f5mqyo6">
+		<a class="author" href="https://www.reddit.com/user/DamnAlreadyTaken" target="_blank">DamnAlreadyTaken</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Imagine you want to copy a drawing, you put a paper on top, draw over it and spend quite some time in the details because you want it as detailed as possible. There is &quot;no room for mistake&quot; if you want it to look identical.</p>
+<p>However, you want to call your friend, you take two cups and a string. Each one gets a cup tense the string and talk while the other listen. It is not perfect but does the job. </p>
+<p>The video in your question is not as perfect, but because it's constantly <em>moving image</em> it allows for compression, lots of missing details and quite crappy quality if paused in a single frame. The still image on the other hand must be in and out &quot;the same&quot;.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f5mukhp">
+		<a class="author" href="https://www.reddit.com/user/BizzyM" target="_blank">BizzyM</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Video is just 1 image and a lot of instructions on the difference between that and the next image.  Every-so-often a full image is sent again followed by the slight differences between subsequent images.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/docd8j" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

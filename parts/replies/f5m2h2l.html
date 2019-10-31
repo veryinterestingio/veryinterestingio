@@ -1,0 +1,29 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ChrisFromIT" target="_blank">ChrisFromIT</a>
+			<div class="markdown"><p>Also with video streaming, the compression used sends just the pixel differences between a given frame and the frame that is next. It doesn't send all the pixels for the next frame. So if say only 1 corner of the frame changes, say 50 pixels, the data send will only contain the information of those 50 pixels for the next frame.</p>
+<p>On top of that, with streaming, the resolution of the frames can change based on the the speed of the connection. Which is the cause of the blurriness that you typically will see with videos. For example, one frame might be sent at 1080p, while the frame might be 720p.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PrintersStreet" target="_blank">PrintersStreet</a>
+			<div class="markdown"><p>Also, TCP goes like:<br />
+A: Here's a packet for you<br />
+B: OK, I've received your packet<br />
+A: And I've received your confirmation about receiving my packet.  </p>
+<p>The image is broken up into tens of thousands of those tiny data packets, and this conversation has to happen for the image to be transferred. The packets are numbered, and every time one of the parties - A (server) or B (client) isn't convinced the packet went through because they didn't hear the corresponding confirmation, the packet is retransmitted, either resent by the server or re-requested by the client. Durability is the entire reason for doing this - combined with some other techniques, you can be pretty damn sure you've received what you meant to receive, and all of it.  </p>
+<p>Of course, there are numerous improvements in place over this simple idea - packets can be transferred in parallel, ie. you don't need to wait for the entire conversation to go through for packet 31569 until you can send packet 31570. But still, all of this takes time.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/breadcreature" target="_blank">breadcreature</a>
+			<div class="markdown"><p>Obligatory: I'd tell you a UDP joke, but I'm not sure if you'd get it.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ciellon" target="_blank">Ciellon</a>
+			<div class="markdown"><p>Booo!</p>
+<p><em>Claps anyways.</em></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/breadcreature" target="_blank">breadcreature</a>
+			<div class="markdown"><p>Ahh, so you did get it! Now it's a TCP joke.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
