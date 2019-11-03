@@ -1,0 +1,87 @@
+<li class="post" data-handle="dpm5re">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/dpm5re/eli5_what_is_fuzzy_logic_and_how_is_it_that_its/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/dpm5re" onclick="return false">What is fuzzy logic and how is it that it's found in missiles and rice cookers?</a>
+		</h2>
+		<!--<span class="date">2019-11-03</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: What is fuzzy logic and how is it that it's found in missiles and rice cookers?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="f5wjjze">
+		<a class="author" href="https://www.reddit.com/user/surfmaths" target="_blank">surfmaths</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Fuzzy logic is a simple hack. It allow to answer imprecise questions with imprecise answers.</p>
+<p>For example: are you old? If you are 3 year old, most certainly not, if you are 97 year old, most certainly yes, but what if you are 50? Well, you could say yes and no.</p>
+<p>It is used when we improving cheap automation.</p>
+<p>Rice cooker are super simple and need to answer: is the rice cooked yet? Well, if you just started the answer is no; if you are at it for 25 min the answer is yes; but what about 20 min?</p>
+<p>Well, the rice cooker will say: no below 15 min, mostly no below 18 min, kinda below 20, mostly yes above 22 min, and yes above 25 min. From that fuzzy &quot;confidence&quot; it will decide how hot it should be so as to either cook, or simply keep warm.</p>
+<p>For missiles it is used in the flight control. When the missile is flying it has to keep on the path it is supposed to be, but if it ends up a few centimeters off, you don't want to do a 90° turn to correct, you want to do only a few degree correction. If you are a few kilometer off, you will want to do an almost 90° turn.</p>
+<p>Usually, the fuzzy logic is used when being precise does not matter too much (no need to make the question super precise) yet you don't want to be too abrupt in the answer (because changing the answer from all to nothing is expensive if we are just in the range of &quot;maybe&quot;).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="f5wla5z">
+		<a class="author" href="https://www.reddit.com/user/bal00" target="_blank">bal00</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Traditional logic only knows two states: True or False. Is the rice cooker hot enough? If yes, turn off the heating element, and if not, turn it on.</p>
+<p>Fuzzy logic can also express to what extent a statement is true on a sliding scale. Is the rice cooker hot enough? No, but it's close, so turn down the heating element a bit.</p>
+<p>In a lot of control systems that extra information can be beneficial because it allows the control logic to make better decisions. In the rice cooker for example the heating element has a certain amount of thermal mass, and even if you turn it off, it will remain hot for a few moments and continue to heat the rice even without power going to it.</p>
+<p>That means you will overshoot the desired temperature by a bit if you keep it powered at 100% until you reach the target temperature. And if you keep it at 0% until the temperature falls below the target, the heating element will need a few moments to heat up when you do turn it on, so there's going to be undershoot as well. So instead of maintaining a constant 60°C to keep the rice warm, the actual temperature may oscillate between 57°C and 63°C. If the controller is smart enough to reduce the output of the heating element when it approaches the target temperature, there's not going to be as much overshoot.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f5x07wd">
+		<a class="author" href="https://www.reddit.com/user/Fruity_Pineapple" target="_blank">Fruity_Pineapple</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Are you old ? (if I am 50 year old)</p>
+<p>Binary logic: YES if AGE &gt; 60, otherwise NO. So I'm not old.<br />
+Fuzzy logic: AGE/60 % old. So I'm 83% old.</p>
+<p>Fuzzy logic is more analogic than usual binary logic. Binary logic has threshold effects that can pose problem. Fuzzy logic is less deterministic, you know approximately what the machine will do, but not exactly since there are too much factors.</p>
+<p>With multiple variable you get equations like, 83% A * 10% B * 38% C... so the result can be... Turn 43% left. No one predicted it was 43%. And maybe it would be more effective to turn 45% left but whatever it's better than either continue straight or turn 100% left.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f5x6h1n">
+		<a class="author" href="https://www.reddit.com/user/amblers" target="_blank">amblers</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>To your question about machinery using it, I am not an engineer. I am going to assume that the rice cooker is using a boolean approximation of fuzzy logic.</p>
+<p>Fuzzy logic is a system of logic that shows &quot;how close&quot; a statement is to being true.</p>
+<p>Unlike boolean logic, the system can rely on more dynamic assumptions and produce more useful results.</p>
+<p>Suppose I gave you a reddish ball, and I said &quot;this ball is red.&quot; You may have no trouble agreeing with me if it is a pure red ball. But what if the ball had a little blue mixed into the pigment? Depending on how much blue is in the ball, we may start disagreeing that the ball is red.</p>
+<p>A fuzzy way to solve the problem would be to agree that the ball is somewhat red. This involves defining redness on a sliding scale (perhaps as a ratio of red to blue?) and then using that definition to come to a decision.</p>
+<p>Fuzzy logic is quite a common way of thinking about things. It lets us challenge definitions that are taken for granted without reaching a dead end in that challenge.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f5wh2p2">
+		<a class="author" href="https://www.reddit.com/user/voncheeseburger" target="_blank">voncheeseburger</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Fuzzy logic takes a bit of discrete maths and a bit of regular maths and mixes them together. </p>
+<p>More specifically, it says that things can not only be true or false, but also true-ish, or mostly false. In this sense its more like normal maths because the values can take any value between true and false (1 and 0) for example 'its going to rain today' might be a 0.312 ie mostly false but also might be a bit true. </p>
+<p>Its more like logic in the fact that it uses traditional logic operators instead of arithmetic operators. Its used more nowadays because it more closely resembles the real world. Inputs to a system are rarely entirely true or false, so rather than having to make a yes/no decision at the input stage, its better to have the 'fuzz' of the input propogate through the system and influence its internal states.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/dpm5re" onclick="return false"><span>show</span></a>
+</li>

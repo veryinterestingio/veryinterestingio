@@ -1,0 +1,75 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zamundan" target="_blank">zamundan</a>
+			<div class="markdown"><p>This just sounds like a standard control loop.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Maziack" target="_blank">Maziack</a>
+			<div class="markdown"><p>Yeah am I wrong in thinking that fuzzy logic = PID?</p>
+<p>Per the above descriptions anyway</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/that_jojo" target="_blank">that_jojo</a>
+			<div class="markdown"><p>Yes, but only because - no offense to the poster - that was kind of a really bad example scenario for fuzzy logic.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BigBobby2016" target="_blank">BigBobby2016</a>
+			<div class="markdown"><p>Fuzzy logic isn’t only used for control systems, and it’s not the same as PID.  The description wasn’t very clear</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mazamorac" target="_blank">mazamorac</a>
+			<div class="markdown"><p>Fuzzy Logic Control Versus Conventional PID Control for Controlling ... - ScienceDirect.com</p>
+<p><a href="https://www.sciencedirect.com/science/article/pii/S1474667017369008/pdf" target="_blank">https://www.sciencedirect.com/science/article/pii/S1474667017369008/pdf</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CharlesScallop" target="_blank">CharlesScallop</a>
+			<div class="markdown"><p>That's because the difference is really in the technicalities, not something you could explain to a 5 year-old.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/half3clipse" target="_blank">half3clipse</a>
+			<div class="markdown"><p>Because your using fuzzy logic to implement a control loop. Control loops work the same regardless of what controler you use. </p>
+<p>Fuzzy logic controllers don't have discrete states in the same way digital logic does. </p>
+<p>10 degrees is cold. 20 degrees is warm. 30 degrees is hot. 15 degrees is kinda cold and kinda warm. 25 degrees is kidna warm and kinda hot. this is opposed to binary logic where say 24.999999999999999999999999999... is warm and 25.00000000000000... is hot</p>
+<p>Fuzzy logic gets rid of the discontinuities seen in binary logic.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Bojangly7" target="_blank">Bojangly7</a>
+			<div class="markdown"><p>This is wrong. This is basic system dynamics not fuzzy logic.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/higgs8" target="_blank">higgs8</a>
+			<div class="markdown"><p>But isn't fuzzy logic also based on regular binary logic? For example, the hotter a CPU runs, the faster the fan will spin, or the more the sun goes down, the more certain color correction apps can turn the screen yellow, etc... At its roots, it's still binary logic, but more complex and with more steps?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JohnnyJordaan" target="_blank">JohnnyJordaan</a>
+			<div class="markdown"><p>Depends. You can digitally control fan speed by a mathematical formula, where the resulting speed is a direct function of the measured temperature. The analogue form of this is a NTC or some other temperature-affected resistor directly affecting the voltage to the fan, or even the PWM duty cycle in a more modern design. There there's no need for fuzzyness, because of the direct feedback loop the speed will follow the temperature nicely and prevent bouncing.</p>
+<p>However what you also see are preset speeds, like 0, 25, 50, 75 and 100% where the temperature falling in a certain range will cause it to pick one of those speeds. Without fuzzy logic you can get it to oscillate between say 25 and 50% because the temperature oscillates exactly between two values that fall in different segments, like 39 and 40 degrees C. There fuzzyness prevents this by maintaining state within a margin. It can of course still have an oscillation in a much longer period but that's far less problematic.</p>
+<p>The precondition to benefit from fuzzyness is not per se 'binary' but what you would call 'discrete' or 'gated' as there is a turning point between states, but as there could be more than two states it's not always binary.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/8Deer-JaguarClaw" target="_blank">8Deer-JaguarClaw</a>
+			<div class="markdown"><blockquote>
+<p>There fuzzyness prevents this by maintaining state within a margin. </p>
+</blockquote>
+<p>Isn't this another way to say &quot;hysteresis&quot;?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/miniTotent" target="_blank">miniTotent</a>
+			<div class="markdown"><p>Yes, but not for the examples you gave. Control systems could be following curves that are not always a positive or always a negative slope. </p>
+<p>The reason it is “kind of” binary is that pretty much every system implementing them these days is binary at the core. This isn’t necessarily the case, you can do complex calculations with analog components, it just almost always is due to the low cost and ubiquity of digital systems.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rabid_briefcase" target="_blank">rabid_briefcase</a>
+			<div class="markdown"><blockquote>
+<p>But isn't fuzzy logic also based on regular binary logic?</p>
+</blockquote>
+<p>Similar, but no.  Most of the fuzzy data that normal people work with are indeed represented by binary logic.  Something is either true or false. It may require a bit of processing but the result ultimately is yes or no.</p>
+<p>The math of fuzzy logic is many valued, and by definition is imprecise.  It is not &quot;yes&quot;, but &quot;yes-ish&quot;.  It isn't &quot;no&quot; but &quot;no-ish&quot;. </p>
+<p>It's a very weak fit, but the question about the feel of temperature isn't yes or no, and it isn't a discrete number you can compare to see if it is cold. Instead it is an indefinite answer like &quot;kinda cold&quot;, or &quot;a little cold&quot; or &quot;really cold&quot;, or &quot;feels about right&quot;.</p>
+<p>A better example is medical symptoms that are not measurements. The throat feels a little scratchy. There is a mild cough. There is difficulty swallowing. There is some pain in the arms or chest. Unlike measurements like blood pressure numbers, pulse, or thermometer measured temperature, they're imprecise, and taken together as a set will tend to match an overlapping but also imprecise set of conditions.  Thus the expert systems need to review them, and decide between them.  </p>
+<p>A strict logic system may say you have a perfect match for a lethal condition as well as the cold, and recommend sequencing the virus to be certain.  The expert-system doctor looks at the imprecise symptoms, knows it is cold season, so they recommend bed rest and chicken soup.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jimethn" target="_blank">jimethn</a>
+			<div class="markdown"><p>I think this is the best example I've seen in the thread. Everyone is taking a one-dimensional linear scale (like temperature, or when to activate a fan, or when to turn on a heater) and not understanding how fuzzy logic improves upon boolean logic. Because in those examples, it doesn't.</p>
+<p>Your example shows how a series of fuzzy calculations can be combined together to achieve different results. The key is the multidimensional scale.</p>
+<p>Another example application of fuzzy logic would be &quot;how should I dress today&quot;? A good <em>human</em> metric would consider not just temperature, but also how windy it is, how overcast it is, how humid it is, how acclimatized the individual is, where the person is going... 65 and sunny is tshirt weather, but 65 and overcast prompts a light jacket, but 85 and overcast and you're still going to be in a tshirt. Fuzzy logic gives a way of combining multiple sliding scales to reach a final decision.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
