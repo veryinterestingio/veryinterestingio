@@ -1,0 +1,67 @@
+<li class="post" data-handle="dseuao">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/dseuao/how_does_a_computer_determine_if_a_given_number/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/dseuao" onclick="return false">How does a computer determine if a given number is larger than another number?</a>
+		</h2>
+		<!--<span class="date">2019-11-09</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>How does a computer determine if a given number is larger than another number?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="f6oz49y">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="f6pc9da">
+		<a class="author" href="https://www.reddit.com/user/Arondeus" target="_blank">Arondeus</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><h3><strong>TL;DR: they subtract one number from the other and check if the result is positive or negative. If you want more math, keep reading.</strong></h3>
+<p>Typically, a computer will represent binary numbers in a slightly more complicated way than you may have been taught in school.</p>
+<p>Positive binary numbers are simple enough. They work like regular numbers, except you only use ones and zeros, i.e. counting up from zero is 0 -&gt; 1 -&gt; 10 -&gt; 11 -&gt; 100 -&gt; 101 etc.</p>
+<p>Negative numbers are represented a little differently though. Basically minus one is &quot;11111&quot;, with as many ones as the size of the register. That means that an 8 bit storage will represent negative one as 11111111 while a 4 bit storage will represent it as 1111. Negative two is 1110, three is 1101 and so on. It sort of &quot;counts down&quot; (this standard of binary negative numbers is called Two's Complement numbers, and is the most common because of their versatility).</p>
+<p>This means that you can also tell if a number is negative simply by looking at the first binary digit (bit). If the first bit is 1, it is negative.</p>
+<p>This is useful for many reasons. First of all, you can add negative numbers to other numbers correctly. If you add three to negative one with four bit registers, that is, 0011 + 1111, for example, you get 10010. As a computer does not add more bits if the number is bigger, you get something called an &quot;overflow&quot;, and the computer basically ignores the extra bit at the end, so the answer is still 4 bits. The answer the computer comes up with is, in other words, 0010, which is two. The computer added negative one to three correctly!</p>
+<p>You can also subtract easily. Simply by inverting the number you want to subtract and adding one you can add it and get your answer. Let's try to subtract positive 1 from 3. Three is 0011, and one is 0001.</p>
+<p>Inverting one means you switch all bits to the opposite, so 0001 becomes 1110. You then add 1 and get 1111 (which you may remember is -1, inverting a binary number and adding one is always the same as multiplying it by -1). You can then add this to 0011 and get 0010 once you get rid of the overflow. It worked!</p>
+<p>So what does this have to do with size comparison?</p>
+<p>Well, a computer can easily subtract one binary number from another, and that number will be either positive, zero, or negative. Positive binary numbers and zero always have their first digit as 0, and negative numbers always start with 1, as I've already explained. This means that the computer can subtract one number from the other and immediately look at one single bit (called the sign bit, always the first/most significant one in the memory register) and tell wether this number is zero or greater, or less than zero.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f6pxamp">
+		<a class="author" href="https://www.reddit.com/user/SSCharles" target="_blank">SSCharles</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Here is an example of how 2 numbers in binary can be added with the use of logic gates: <a href="https://cdn.instructables.com/FP1/ZI2I/GHX77248/FP1ZI2IGHX77248.LARGE.jpg" target="_blank"><a href="https://cdn.instructables.com/FP1/ZI2I/GHX77248/FP1ZI2IGHX77248.LARGE.jpg" target="_blank">https://cdn.instructables.com/FP1/ZI2I/GHX77248/FP1ZI2IGHX77248.LARGE.jpg</a></a></p>
+<p>there you have one number (A) that can be 1 or 0, and another number (B) that can be 1 or 0, and the sum can be 00=0, or 01=1, or 10=2.</p>
+<p>The 0 or 1 can represent low current/high current in the wire.</p>
+<p>And the logic gates work this way:  <a href="https://www.youtube.com/watch?v=7ukDKVHnac4" target="_blank"><a href="https://www.youtube.com/watch?v=7ukDKVHnac4" target="_blank">https://www.youtube.com/watch?v=7ukDKVHnac4</a></a></p>
+<p>You could also make a mecánica &quot;transistor&quot;/logic gate:  <a href="https://twitter.com/page_eco/status/1188749430020698112" target="_blank"><a href="https://twitter.com/page\_eco/status/1188749430020698112" target="_blank">https://twitter.com/page\_eco/status/1188749430020698112</a></a> </p>
+<p>From them you can have two numbers 00101001, 10010111, and subtract them or whatever to get another number, or find which number has the first non zero digit, etc. All with lógica gates (AND, OR, NOT).</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f6oyie9">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">3 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/dseuao" onclick="return false"><span>show</span></a>
+</li>
