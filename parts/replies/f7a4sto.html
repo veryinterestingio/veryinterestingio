@@ -1,0 +1,76 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ManWithKeyboard" target="_blank">ManWithKeyboard</a>
+			<div class="markdown"><p>Surprised nobody is mentioning this, but a lot of electronics nowadays are moving from straight voltage curve --&gt; battery percentage methods to what's commonly called a Coloumb counter - literally counting the charge going into the battery while charging, then counting the charge leaving the battery when discharging and using that info to measure percent charge left. I would go into more detail but I'm on my phone, but you can probably find out a good amount just by googling &quot;Coloumb counter&quot;!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sniper1rfa" target="_blank">sniper1rfa</a>
+			<div class="markdown"><p>Every battery in the last decade or more has used coulomb counting. I think the last device I owned with a voltage based charge indicator was an iPod mini or maybe a flip phone.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/yes_oui_si_ja" target="_blank">yes_oui_si_ja</a>
+			<div class="markdown"><p>How can you determine which kind you have? I'm intrigued and want to know more!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/reelznfeelz" target="_blank">reelznfeelz</a>
+			<div class="markdown"><p>Yeah.  I’ve been reading spec sheets for TI and Max ICs lately trying to see if there’s an easy to use I2C device for making a LiPo based battery pack to interface with and power an RPi.   I’d like to surface battery percent and time to fully charged to the user.   Still trying to figure out the best way.  The PiTop device has code for this in the newest Raspbian distro but I emailed them and they won’t say what battery IC they’re using.  Or sell me a board for it, which from tear downs appears to be a lot more than just the main IC.  Whatever it is requires a lot of support circuitry.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Monetdog" target="_blank">Monetdog</a>
+			<div class="markdown"><p>This is because lithium batteries have a pretty flat voltage curve, except when almost full or almost empty.  When you are anywhere in the middle, the best you can do is by counting how much charge has gone in or out - estimating based on voltage would be too noisy.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/s0v3r1gn" target="_blank">s0v3r1gn</a>
+			<div class="markdown"><p>I have an 18650 battery pack that has this. It’s actually kind of useful. Except I had to drain the batteries a few times before it became accurate.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rinkeroo04" target="_blank">rinkeroo04</a>
+			<div class="markdown"><p>Thank you for this!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sniper1rfa" target="_blank">sniper1rfa</a>
+			<div class="markdown"><p>Don't get too excited, he's totally wrong for any device in the last decade or two.</p>
+<p>The real reason is that there is a hard voltage floor, below which you cannot discharge a battery without damage. As you get closer to that floor, fluctuations in power consumption become more likely to drop the battery voltage below that floor. </p>
+<p>The lower voltage limit is a <em>hard</em> limit, and the battery management will unceremoniously cut power to save the battery. As the battery gets weaker with age, random power fluctuations will become more and more likely to sag the battery below that limit, and it will happen at higher and higher states of charge.</p>
+<p>Put another way, when the battery is fully charged, 1% is 1/100 of the remaining charge. When at 5% remaining charge, 1% is 20% if the remaining charge and all the effects of using that 1% become magnified.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/L0renzoVonMatterhorn" target="_blank">L0renzoVonMatterhorn</a>
+			<div class="markdown"><p>What the hell are you talking about?</p>
+<p>The other guy had it completely right. Just because lithium ion cells don’t have quite the same “memory” issues that NiCd or NiMH cells have doesn’t mean all devices suddenly don’t have this issue. You probably just don’t notice it since you get a new phone before 1000+ charge/discharge cycles. </p>
+<p>It has literally nothing to do with “power fluctuations.”</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KatalystPrime" target="_blank">KatalystPrime</a>
+			<div class="markdown"><p>ah yes, the infamous redditor attitude: confidently spreading stupidity.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Icemasta" target="_blank">Icemasta</a>
+			<div class="markdown"><p>Quite a few missing things;</p>
+<p>1) The estimation is gradually re-calibrated and you can hard calibrate it on most laptops in the bios, put simply, you boot into the bios, start battery calibration, plug it in until it is full, the software should tell you to unplug it and then you just leave it until it auto-shuts down, then you plug it again to charge back to max, then boot.</p>
+<p>Hard re-calibration exists on most phones as well.</p>
+<p>2) Serious battery degradation can also lead to sudden shutdowns even if the properly calibrated battery is at say, 40%. The reason being is that while the computer can still operate, it is often running undervolted. If you suddenly start many demanding operations and the <em>wattage</em> means the current to be pulled (due to low voltage) is to high, it will automatically shutdown to protect the circuitry. </p>
+<p>This happens very frequently on dying batteries, even calibrated it will show 80% but push it too hard and it will shut down.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OkIfYouWantToKnow" target="_blank">OkIfYouWantToKnow</a>
+			<div class="markdown"><p>all of this is true, but its not why OP's laptop shuts off at 6-8%. most is not all laptops are programmed to shutdown at a set % in the power settings.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Takeabyte" target="_blank">Takeabyte</a>
+			<div class="markdown"><p>Even when recalibrated, it’s still just an estimation.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ic33" target="_blank">ic33</a>
+			<div class="markdown"><p>A well-calibrated, well-designed BMS has a very good estimate.</p>
+<p>A BMS counts the charge that goes into and out of the battery, and uses this for the primary estimate.  It is very accurate over one charge cycle, but over many charge/discharge cycles, it can drift from true state.</p>
+<p>It also uses the voltage, but this is not very accurate except <strong>at the very end state</strong> for lithium batteries.</p>
+<p>So if you fully discharge the battery, it can notice when it is empty based on reference voltage, and then when charging know exactly how much charge has been put in.  Not all implementations are perfect, but this can be very accurate.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/626c6f775f6d65" target="_blank">626c6f775f6d65</a>
+			<div class="markdown"><p>On iPhones you can (and should periodically, like once a month or two) recalibrate by allowing the battery to discharge below 10%, then recharge to 100% in a single session.</p>
+<p>Typically, to get max usage you really don’t want to go below 20% or charge above 80%, but going from &lt;10% to 100% every so often will keep your battery indicator calibrated more accurately so you don’t end up with an 18%-to-dead scenario when you least expect it.</p></div>		</li>
+					</ul>
+		</ul>
+	
