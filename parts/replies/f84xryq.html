@@ -1,0 +1,40 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/algernop3" target="_blank">algernop3</a>
+			<div class="markdown"><p>Solving? Never going to happen. And never going to be needed either, because you'll never get the <em>exact</em> boundary conditions in the real world as you input into your solver. If your boundary condition is approximate, there's nothing wrong with your solution being approximate too.</p>
+<p>Approximately solving? Easy. It's an initial guess, a matrix inversion, and then iterate your guess to minimize the residual. The question is 'how approximate do you want?', and that's just a matter of more and more number crunching.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheProfessorO" target="_blank">TheProfessorO</a>
+			<div class="markdown"><p>Thank you for your answer. I should have been more precise in my question, sorry,  you are right in that I meant accurate approximations to the equation say for the purpose of predicting fluid motion.  </p>
+<p>I am wondering what progress has been made in building a computing system where the hardware and software are optimized just for the Navier Stokes Equations and conservation equations for mass and the other state variables.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/algernop3" target="_blank">algernop3</a>
+			<div class="markdown"><p>You would never build a digital computer to solve a differential equation though, because they inherently couldn't solve that sort of problem. You would build a digital computer to do the matrix inversion better/faster, but not the PDE.</p>
+<p>As for hardware to optimize matrix inversion, if you can substitute the inversion with a matrix decomposition, then it becomes a matrix multiplication problem. And for that you need a whole bunch of small cores running the same code in lock-step on adjacent elements in memory, which is exactly what a GPU does. So I think that'd be your answer. A GPU is hardware dedicated to solving small calculations on lots of adjacent data in lock-step, which is pretty close to what you need for approximately solving NS (note that if you can't do the decomposition and HAVE to do the matrix inversion the hard way - which is very rare - then a GPU is far from optimized and is basically the worst way to solve it)</p>
+<p>edit: you can build an analog computer that will directly solve differential equations, but you then have the problem that your computer isn't perfect (eg the capacitor value that you're using as an input variable isn't <em>exact</em>), so yes it'll solve your PDE directly but no it still won't 'solve' NS as you're running back into the same problem of having to introduce approximations.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/somefreecake" target="_blank">somefreecake</a>
+			<div class="markdown"><p>I'd like to expand on u/algernop3's reply a little bit.</p>
+<p>Firstly, approximately solving Maxwell's equations is &quot;easy&quot;, but NS equations are not. You may have heard of the <a href="https://en.wikipedia.org/wiki/Reynolds_number" target="_blank">Reynolds number</a>, which determines how turbulent a flow is for a given set of conditions. For a given condition, if this number is sufficiently low, then the solution is <em>relatively</em> easy to approximate to within arbitrary precision. For high values of this parameter, the story changes completely: the solution begins to display chaotic charateristics like enormous variations in length/time scales, <a href="https://en.wikipedia.org/wiki/Bifurcation_theory" target="_blank">bifurcations</a>, and broadband oscillations. Furthermore, the topic of <a href="https://en.wikipedia.org/wiki/Laminar%E2%80%93turbulent_transition" target="_blank">transition</a> to turbulence is still widely researched and there are many misconceptions of it, even as taught in graduate courses on the topic. Solutions to NS in these conditions cease to be unique, meaning that even the most robust numerical algorithms need some manual handling if you want to attain different solutions. <a href="https://www.encyclopediaofmath.org/index.php/Routes_to_chaos" target="_blank">Paths to chaos</a> is an intersting thing to read about for this. <a href="https://en.wikipedia.org/wiki/Turbulence_modeling" target="_blank">Turbulence modelling</a> is a way around this (somewhat). In short, the NS equations do not behave well.</p>
+<p>Numerical approximations for NS are indeed built upon fairly standard numerical methods from numerical linear algebra, which modern computers are indeed quite good at, although they can be very difficult to stabilize and some cases require a good initial guess. I won't re-create u/algernop3's discussion of computer GPU hardware, but I will mention that many modern supercomputer-scale codes are actually designed for CPU usage since GPU computations are typically very limited in terms of data transfer and file IO. There is research still being done on combining CPU's and GPU's. In response to u/Waterfell, TPU's are proprietary, so it is difficult to say whether or not these are good options for NS computations.  However, based upon their usage it sounds like they are optimized for <a href="http://web.mit.edu/18.06/www/Spring17/Dense-and-Sparse.pdf" target="_blank">dense matrix operations</a> at low precision, which is not suitable for solving PDE problems as higher precision is typically needed.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheProfessorO" target="_blank">TheProfessorO</a>
+			<div class="markdown"><p>Thanks for your input.   Data assimilation, used in ocean modeling and numerical weather prediction, is a practical way to try to keep the NS equations on track because of the behavior you mentioned.  Ensemble methods in data assimilation is one way to optimize available computer technology.  A good ultimate goal would be to find a turbulence closure scheme that is both realistic and can be optimized for numerical calculations.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/miniTotent" target="_blank">miniTotent</a>
+			<div class="markdown"><p>Not sure about hardware for NS but there were recent studies that built ASICs (custom hardware) for accelerating n-body gravitational simulations and performed a cost-benefit analysis for using custom hardware for n! scale problems.</p>
+<p>It took them a little under two years working with two universities computer engineering departments to go from ask to working product. The enhancements were great... if you cared about power savings or they delivered it immediately, but roughly matched (still slightly outperformed, just not for the cost) the performance of just buying a new CPU/GPU set two years after the start when they actually got their hands on the custom hardware.</p>
+<p>They ran this study over multiple iterations and generally the results held true over each, where the custom hardware took a while to make and just barely beat Moore’s law. Then they switched to FPGAs and started getting better results immediately.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheProfessorO" target="_blank">TheProfessorO</a>
+			<div class="markdown"><p>Thanks for pointing out this success story.</p></div>		</li>
+					</ul>
+		</ul>
+	
