@@ -1,0 +1,63 @@
+<div class="answers">
+	<div class="answer" data-handle="f854htz">
+		<a class="author" href="https://www.reddit.com/user/forte2718" target="_blank">forte2718</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><blockquote>
+<p>In thermodynamics entropy seems to be a measurement of stored enery per volume(or mass? or per system?) and in infromation theroy entropy is a measurement of information density. Both formulas seem to be very similar(an intergal/sum of all posible states) but ive never bee able to make the connection in meaning.</p>
+</blockquote>
+<p>Hmm ... so, I worry this might come off a little disrespectful and I do apologize if it comes off that way ... but I think perhaps you are struggling to make a connection in meaning because your understanding of both thermodynamic and information entropy seems to be very wrong to begin with. :p</p>
+<p>So, thermodynamic entropy is not a measure of energy density at all -- it is a measure of the &quot;degeneracy of a system's microstates.&quot;  I'll try to explain what this means via a simple example.</p>
+<p>A thermodynamic system can be assigned a set of &quot;microstates&quot; and &quot;macrostates&quot; -- microstates correspond to a set of assignments for every microscopic variable in a system, such as the position or momentum of every particle.  Naturally, when you have a large number of particles, there are a huge number of these variables.  Each possible assignment is a microstate, so the number of microstates available to a typical system is tremendous.</p>
+<p>But you don't need to know all of these variables to understand how a system will behave thermodynamically.  Instead you only need a few macroscopic variables that represent some sort of average or aggregate properties -- variables such as temperature and density.  The possible sets of assignments for these macroscopic variables are the system's &quot;macrostates,&quot; and they are far fewer in number than the system's microstates.</p>
+<p>Now, every microstate corresponds to some macrostate, but because there are so many more microstates than macrostates, by the pigeonhole principle at least some macrostates will have more than one microstate, making it &quot;degenerate&quot; (overloaded), and some macrostates will have more corresponding microstates than other macrostates.</p>
+<p>Entropy, then, is a measure of &quot;how many microstates correspond to a given macrostate.&quot;  Macrostates that have <em>more</em> corresponding microstates have a higher entropy.</p>
+<p>So here's the simple example:  consider a set of two dice being rolled as part of a game.  The microstates will be the individual face values rolled for each set of dice.  So two six-sided dice have 6^(2) = 36 possible microstates corresponding to the permutations of the possible dice values:  {(1, 1), (1, 2), (2, 1), (3, 1), (3, 2) ... (6, 6)}.</p>
+<p>But in a typical game, we don't care about the individual die values, we only care about the sum -- only the sum matters for deciding the future of the game.  So there are 11 possible sums of two dice:  {2, 3, 4 ... 12}.  These are our macrostates, that determine the game's &quot;thermodynamic time-evolution&quot; so-to-speak.</p>
+<p>We can then see how each microstate (pair of die values) corresponds to some macrostate.  (1, 1) =&gt; 2, and (2, 1) =&gt; 3, etc.</p>
+<p>But, because of how dice add up, the distribution of microstates to macrostates is not equal among all the macrostates.  For example, the sums 2 and 12 only have a single corresponsing microstate:  (1, 1) and (6, 6) respectively.  But the sum 7 has as many as six corresponding microstates: (1, 6), (2, 5), (3, 4), (4, 3), (5, 2), and (6, 1).</p>
+<p>So, we say that the macrostate 7 has a higher entropy than the macrostates 2 and 12.  If we were to roll the dice, we would expect our system to spend more of its time in the higher-entropy macrostates than the others.</p>
+<p>Now, there's a lot that this example doesn't cover properly, but that's the gist of the idea.  That's what entropy is really a measure of:  the degeneracy of microstates for a macrostate.  Because for real thermodynamic systems the number of microscopic variables is so tremendous, statistically a system in a lower-entropy state can almost always be expected to evolve into a higher-entropy state, and almost never vice-versa.  Since the second law of thermodynamics is a <em>statistical</em> law that only holds on average, there are counterexamples where it is possible for a system to spontaneously enter a low-entropy macrostate, but it will generally be fleeting and extremely rare.</p>
+<p>Now then, lets look at information entropy.  Just like how thermodynamic entropy is <em>not</em> a measure of energy density, information entropy is <em>not</em> a measure of information density.  It's a measure of &quot;missing information&quot; that is needed to reconstruct a microstate from a macrostate.</p>
+<p>Let's look again at our dice example.  If we roll a sum of 2, how much information is missing that we need to know what microstate (individual die values) we rolled?  Well ... none, right?  We know the only possible microstate was (1, 1), so we don't need any missing information.  This is basically the lowest possible information entropy (0 bits).  But if we rolled a 7 instead, there are six possible microstates, so how many bits would we need to identify which of the six microstates we rolled?  We could do a binary search of the set of microstates, where each bit tells us whether to look in the top half of the set or the bottom half.  If we kept repeating this for the next bit in the selected half, eventually we would need 3 bits in total to uniquely identify all 6 microstates.  </p>
+<p>For example, say we rolled a (5, 2).  Out of our full set of microstates, the first bit tells us whether the first die was between 1-3 or 4-6, so we'd need to know the first bit is a 1 and not a 0.  Then our next bit might tell us whether our microstate was in the sets {(4, 3)} or {(5, 2), (6, 1)}  so we'd need to know the second bit is a 1.  And then our last bit would tell us whether it was (5, 2) or (6, 1), so our last bit would be a 0, and all three bits together would be the bit string 110.</p>
+<p>In general, the number of bits of missing information that you'd need scales with the <em>logarithm</em> of the number of microstates corresponding to a macrostate.  In our simple example, we had 6 microstates for the macrostate 7, so we need log_2(6) ~= 2.58 bits (or in practice at least 3 bits).</p>
+<p>And that's where the logarithmic relationship between <del>thermodynamic entropy</del> the number of microstates and information entropy comes from! (Edited for correctness -- thanks to /u/un_om_de_cal for catching the mistake!)</p>
+<p>Hope that helps,</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="f84z5gv">
+		<a class="author" href="https://www.reddit.com/user/MiffedMouse" target="_blank">MiffedMouse</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Both forms of entropy measure the number of possible microstates of a system. Alternatively, it can be considered as a measure of the degree of uncertainty you have for a given system or incoming message.</p>
+<p>However, there is no second law of thermodynamics in information theory, because information theory simply deals with the sending and receiving of messages. Standard information theory does not need to reference a <a href="https://en.wikipedia.org/wiki/Canonical_ensemble" target="_blank">canonical ensemble</a>. Thus, there is no general equivalent to the second law of thermodynamics.</p>
+<p>However, communication protocols can create such an ensemble artificially. This is done in algorithms such as <a href="https://en.wikipedia.org/wiki/Exponential_backoff" target="_blank">exponential backoff</a>. This is a simple method to coordinate a shared channel without requiring any synchronization or message passing between the two channel users that still manages to minimize packet collisions as long as the number of packets is small compared to the maximum bandwidth. One simple way to see this is that the highest-entropy state is one where the two channel users are not aligned, and thus do not collide.</p>
+<p>There is a more fundamental connection between information entropy and thermodynamics entropy expressed in the <a href="https://en.wikipedia.org/wiki/Landauer%27s_principle" target="_blank">Landauer Principle</a>. However, the entropies predicted by this principle are much too small to measure using current technology, so this idea remains untested.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f85ao6u">
+		<a class="author" href="https://www.reddit.com/user/cygx" target="_blank">cygx</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Mathematically, Gibbs/Shannon entropy</p>
+<pre><code>S = - Σ p(i) log p(i)</code></pre>
+<p>is just a measure of spread of some distribution: The lower the entropy, the more spiked the distribution.</p>
+<p>The meaning of entropy will depend on what kind of distribution you're dealing with. For example, if <em>p</em> is a Bayesian probability, you would maximize entropy to avoid bias: In the absence of more detailed information, you should not favour any particular outcome.</p>
+<p>Personally, as far as thermodynamics is concerned, I find it more helpful to think of entropy as a measure of phase space available for microscopic system evolution: Explanations in terms of 'information' or 'knowledge' make things appear too magical for my taste...</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f86sdu5">
+		<a class="author" href="https://www.reddit.com/user/chairfairy" target="_blank">chairfairy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For a non-mathematical answer: the concept of entropy in information theory was <em>inspired by</em> thermodynamical entropy, but it's not in any way <em>derived from</em> it. In a sense both are a measure of complexity, but they are independent concepts. </p>
+<p>Information theory entropy was developed in the context of cryptography during/leading up to WWII, so it ties very directly to how many bits you need to transmit a signal with a given number of possible states and the amount of information that can be encoded in that signal.</p>
+<p>Since then the concept has been expanded into different definitions of entropy beyond the original Shannon entropy. A more generalized version is Komolgorov complexity, which is defined as the number of bits needed to store the shortest length program needed to generate a given signal (the upper bound of that being the length of the signal itself).</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f84yf2x">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[gelöscht]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
