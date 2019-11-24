@@ -1,0 +1,60 @@
+<div class="answers">
+	<div class="answer" data-handle="f89esqx">
+		<a class="author" href="https://www.reddit.com/user/theInfiniteHammer" target="_blank">theInfiniteHammer</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The way that a Turing machine works is that it has a long tape with information on it and a device that reads information off of the tape and can also write information onto it. The tape is divided into small blocks that each contain a piece of information. At some point in the tape there's a series of instructions, and the device reads the instructions one at a time and follows them.</p>
+<p>The instructions contain commands about what to do with other information on the tape, and can sometimes tell the device to skip over instructions or jump back to previous instructions. There are many different sets of instructions that a theoretical device could understand, but Turing was interested in finding out which set of instructions was the absolute smallest while still making it possible to write instructions for basically anything.</p>
+<p>The bare minimum set of instructions a device must understand to be able to follow basically any kind of procedure is called &quot;Turing complete.&quot; Turing complete sets of instructions have commands for doing basic math on numbers on the tape, moving information from one part of the tape to another, comparing two things on the tape, and jumping from one instruction to another based off of that comparison.</p>
+<p>Any Turing machine which has these instructions can, in theory, be given instructions on how to do literally anything. It can be given instructions on how to clean a room (obviously with the addition of some instructions that talk to other circuits the Turing machine is connected to), to come up with a theory for the most efficient way to clean a room, to simulate every atom inside of a messy room, or even simulate a human brain which will ponder the philosophy of cleaning rooms.</p>
+<p>Turing complete instruction sets can contain more instructions than that, but they must have those kinds of instructions. An example of an architecture which is not Turing complete would be one that can only do math calculations but offers no way of skipping over instructions. If there is no way to skip over instructions then it can't make decisions because it always has to do every instruction and can't skip over the ones that are irrelevant.</p>
+<p>In the modern world Turing machines are used universally for computing. Real world Turing machines do not have infinitely long tape like the theoretical version did, instead they have memory circuits. They store information as ones and zeros instead of just drawing it on the tape, and the device that deals with the instructions is the processor. Sometimes there will be more than one processor and they will cooperate to run multiple programs.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="f89aiik">
+		<a class="author" href="https://www.reddit.com/user/Isogash" target="_blank">Isogash</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The traditional concept won't make sense if you aren't familiar with a finite state machine.</p>
+<p>The finite state machine is effectively a map of states (cities you can visit) and transitions (the roads between them). In a normal finite state machine, you are working with a series of inputs, and each transition (road) will match your input. For example, if you start in city A and your first input is 1, you would look for road 1 from city A and follow it. That could take you to City B, and then your next input tells you which road to follow out of there (in this analogy all roads are one way).</p>
+<p>A turing machine adds two things. Rather than working from some arbitrary input sequence, you instead have a &quot;tape&quot; of memory cells. You start at some state/city and also some location on the tape. Each &quot;turn&quot; you look at the value under the tape head and then pick the corresponding transition/road and follow it. The second thing is that the transition/road has two extra instructions. One is a value to write back to the tape, replacing the value you just read, and the other is a &quot;left/right/nothing&quot; instruction to move the tape.</p>
+<p>Combined, you have a &quot;Turing-complete&quot; machine, and in his theory it can do anything any other Turing-complete computer can.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f89m5sl">
+		<a class="author" href="https://www.reddit.com/user/thoughtful_appletree" target="_blank">thoughtful_appletree</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The idea Alan Turing had when he invented that theoretical concept of the Turing Machine was to reduce the process of calculation to it's most basic abstraction. </p>
+<p>Think of a human trying to calculate something. What operations do you need to perform and what instruments do you need for that?</p>
+<ul>
+<li>you need a pencil to write -&gt; this corresponds to the head of the Turing Machine</li>
+<li>you need a piece of paper to write on, assume it's infinite so you could calculate for infinity -&gt; this is the infinite band of the Turing Machine</li>
+<li>you need to be able to go back and forth on your paper or also stay at the same place -&gt; this corresponds to the movements of the Turing machine's head</li>
+</ul>
+<p>With these tools and operations you can calculate anything, well, theoretically that is. </p>
+<p>Which for example leads to the curious case that “Computability” in Theoretical Informatics is defined as “everything that can be computed by a Turing Machine”. (Which sucks a bit because it's a tautology: Computable is everything that can be computed with a Turing Machine - A Turing Machine can compute everything that's computable)</p>
+<p>Computers with the von-Neumann architecture in their core principle also work like a Turing Machine by the way, except they don't have infinity memory, would be too good, right?</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f88o0kb">
+		<a class="author" href="https://www.reddit.com/user/swordgeek" target="_blank">swordgeek</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Have you read <a href="https://en.wikipedia.org/wiki/Turing_machine" target="_blank">the wikipedia article on Turing machines</a> yet? The first and fourth paragraphs describe <em>what</em> it is, without talking about the how.</p>
+<blockquote>
+<p>A Turing machine is a mathematical model of computation that defines an abstract machine, which manipulates symbols on a strip of tape according to a table of rules. Despite the model's simplicity, given any computer algorithm, a Turing machine capable of simulating that algorithm's logic can be constructed.</p>
+<p>Thus, Turing machines prove fundamental limitations on the power of mechanical computation. While they can express arbitrary computations, their minimalist design makes them unsuitable for computation in practice.</p>
+<p>Turing completeness is the ability for a system of instructions to simulate a Turing machine. A programming language that is Turing complete is theoretically capable of expressing all tasks accomplishable by computers; nearly all programming languages are Turing complete if the limitations of finite memory are ignored.</p>
+</blockquote>
+<p>Consider that all computing boils down to manipulating numbers. A Turing machine then, is an abstract model of a theoretical computer that can perform any single manipulation in a single cycle; <em>and thus</em> can ultimately be 'programmed' to perform any algorithmic solution possible in computing.</p>
+<p>It's a weird and difficult concept, but if something can be shown to be impossible to solve on a Turing complete machine, then it cannot be solved by computers.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f89jg74">
+		<a class="author" href="https://www.reddit.com/user/finarne" target="_blank">finarne</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you want a detailed breakdown of Turing’s seminal paper Charles Petzold’s book is great: </p>
+<p><a href="https://www.amazon.co.uk/Annotated-Turing-Through-Historic-Computability/dp/0470229055/ref=nodl_" target="_blank">https://www.amazon.co.uk/Annotated-Turing-Through-Historic-Computability/dp/0470229055/ref=nodl_</a></p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
