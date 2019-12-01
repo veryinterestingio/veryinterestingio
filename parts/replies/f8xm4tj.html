@@ -1,0 +1,82 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/foodfighter" target="_blank">foodfighter</a>
+			<div class="markdown"><blockquote>
+<p>The number e does not have anything to do with this problem. For instance, the maximum product of 100 numbers whose sum must be 100 is just (100/100)100 = 1. The maximum product of 3 numbers whose sum must be 2 is (2/3)3 = 8/27.</p>
+</blockquote>
+<p>I'm not questioning what you have written, but I'm not sure if this answers my question.  I'm not actually <strong>trying</strong> to get e into the equation, I just noticed that it seemed to work out this way.</p>
+<p>I'll outline the thought process that led me to my question.  It's very simplistic and uses integers because it started off with me doing math in my head:</p>
+<p>Take the number 12.  12=8+4=2+3+2+5=4+4+4=6+6 ... etc.</p>
+<p>The largest multiplicative value I could come up with (using integers) was 3^4 = 81.  2^6 was next at 64.  e, of course, lies between 2 and 3.</p>
+<p>Hmmm, I thought...</p>
+<p>What about 15?  15=5+4+6=3+8+2+2=... ad nauseum.  Again, the largest result I could think of was 3^5 =243.  3 <em> 2^6 =192.  3^3 </em> 2^3=208.</p>
+<p>But what about (2.5)^6 ?  244.14.   And 2.5 is slightly closer to e than 3.</p>
+<p>Hmmm, again.</p>
+<p>I did similar exercises for a few more integers, and I always seemed to come up with the same result - the closer the individual elements were to each other and to e, it seemed to maximize the resulting multiplication.</p>
+<p>I finished off using a calculator to try a similar process for the number 27 (not co-incidentally 2.7 * 10).  I could find no greater result than 2.7^10 = 20589.  3^9 = 19683.</p>
+<p>By this point, my brain was hurting and I left it at that, but I was just curious why I should be getting the result I was seeing.</p>
+<p>The value closest to e always seemed to yield the largest result, and it didn't seem to matter whether I was using integers or not.</p>
+<p>Edit:  I wonder if I am unconsciously adding some kind of mathematical constraint that I am unaware of when I phrase my questions that way?  Also formatting.  @#$%%@#!!!!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Midtek" target="_blank">Midtek</a>
+			<div class="markdown"><blockquote>
+<p>Edit: I wonder if I am unconsciously adding some kind of mathematical constraint that I am unaware of when I phrase my questions that way?</p>
+</blockquote>
+<p>Yes, you are. It sounded like the number of numbers was fixed. So the problem was &quot;find the maximum product of N numbers that have a given sum&quot;. </p>
+<p>But now it's clear what you want is &quot;find the maximum product of numbers that has a given sum&quot; (implied is that the number of numbers, previously called <em>N</em>, is not necessarily fixed).</p>
+<p>In that case, it's just a few lines more than what I have already written. If the number <em>a</em> is fixed, then the largest product of <em>N</em> numbers that sum to <em>a</em> is</p>
+<blockquote>
+<p>p(N) = (a/N)^(N)</p>
+</blockquote>
+<p>and this maximum is achieved when all of the numbers are equal to a/N.</p>
+<p>You are now asking what the largest of those products is, where the number of numbers, <em>N</em>, can vary. That's now just a first-year calculus problem. </p>
+<blockquote>
+<p>Find the maximum value of p(N) = (a/N)^(N) on the interval N &gt; 0.</p>
+</blockquote>
+<p>The only critical number of p(N) is N = a/e, and p''(a/e) &lt; 0. So the maximum of p(N) occurs when N = a/e. Then the maximum product is</p>
+<blockquote>
+<p>p(a/e) = e^(a/e)</p>
+</blockquote>
+<p>and this maximum product occurs when all of the numbers are equal to <em>e</em>.</p>
+<p>Of course, if <em>a</em>/<em>e</em> is not an integer, then it is not possible to write <em>a</em> as &quot;sum of a/e numbers&quot;. So just do the best you can. If <em>a</em>/<em>e</em> is not an integer, then it lies between two integers <em>m</em> and <em>m</em>+1. The maximum product occurs either when <em>a</em> is divided into <em>m</em> equal parts or <em>m</em>+1 equal parts. So just check those two possibilities.</p>
+<p>For instance, the maximum possible product of any number of numbers whose sum is 5<em>e</em> is e^(5), and this maximum product is achieved when all of the numbers equal to <em>e</em>.</p>
+<p>Now consider the maximum possible product of any number of numbers whose sum is <em>10</em>. Note that 10/e = 3.68, and so the maximum product is achieved either from a product of 3 equal numbers or 4 equal numbers. For 3 equal numbers the product is (10/3)^(3) = 37.037, and for 4 equal numbers the product is (10/4)^(4) = 39.0625. So the maximum product of numbers that sum to 10 is (10/4)^(4), achieved by choosing 4 numbers all equal to 10/4 = 2.5.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gravity_Beetle" target="_blank">Gravity_Beetle</a>
+			<div class="markdown"><blockquote>
+<blockquote>
+<p>Edit: I wonder if I am unconsciously adding some kind of mathematical constraint that I am unaware of when I phrase my questions that way?</p>
+<p>Yes, you are. It sounded like the number of numbers was fixed. So the problem was &quot;find the maximum product of N numbers that have a given sum&quot;.</p>
+</blockquote>
+</blockquote>
+<p>Did OP edit the post title? I didn’t notice any hint of a constraint</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Robbatog" target="_blank">Robbatog</a>
+			<div class="markdown"><blockquote>
+<p>Given a positive number, &quot;a&quot;, expressed as an arbitrary sum of smaller positive numbers: a = a(1) + a(2) + ... + a(n)</p>
+</blockquote>
+<p>&#x200B;</p>
+<blockquote>
+<p>It sounded like the number of numbers was fixed </p>
+</blockquote>
+<p>Did it? &quot;Arbitrary sum&quot; does not imply a fixed number of terms, does it? Good explanations, though!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[gelöscht]</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gurkenglas" target="_blank">Gurkenglas</a>
+			<div class="markdown"><blockquote>
+<p>But there could be other critical numbers.</p>
+</blockquote>
+<p>Then you aren't done until you've proven our extremum is larger than any of those, right?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Midtek" target="_blank">Midtek</a>
+			<div class="markdown"><p>Hm? The value of F is 0 on the boundary of the domain and we found only one critical point not on the boundary, the unique solution to the system of equations I wrote down. Since the domain is compact and f is continuous, the maximum does exist, and the non-boundary critical point clearly gives a positive value for F. So that's the maximum.</p></div>		</li>
+					</ul>
+		</ul>
+	
