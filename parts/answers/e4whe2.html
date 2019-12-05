@@ -1,0 +1,46 @@
+<div class="answers">
+	<div class="answer" data-handle="f9flsah">
+		<a class="author" href="https://www.reddit.com/user/dale_glass" target="_blank">dale_glass</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The task manager kills things instantly and forcefully. This means the program doesn't get to do anything in response, and doesn't even know it's being closed, so it can't clean up after itself, can't ask if you'd like to save your work, etc.</p>
+<p>Closing a program the normal way sends it a message: &quot;please close now&quot;.</p>
+<p>This means the program has to receive the message (which may not happen immediately). Then some of those will have internal parts of themselves that will go through the same sort of process: they'll get sent a message from the main program, have to receive it, and terminate. This can take time.</p>
+<p>Windows monitors the message queue, and if it's not being read then eventually it'll just offer to kill the program by force.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="f9fm5up">
+		<a class="author" href="https://www.reddit.com/user/NuftiMcDuffin" target="_blank">NuftiMcDuffin</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you hit the 'x' button in windows, it asks the program to shut down. This basically tells the program to run its shutdown routine, allowing it to do stuff such as save unsaved documents before hitting a piece of code which exits the program for good. Now if the program gets hung up, it might not ever get there and will never quit on its own.</p>
+<p>The task manager can give commands to the parts of windows that control all the programs running on the computer. At the core of that is the kernel, which allocates CPU power to programs (among other things). The task manager can tell the kernel to stop running the program, so it simply no longer runs on your computer and takes up no more memory space.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f9fnjml">
+		<a class="author" href="https://www.reddit.com/user/Digibollocks" target="_blank">Digibollocks</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>X button = would you be so kind as to run your shut down routine, take as long as you like, and close please?
+Task Manager = fuck off, right now.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f9g00md">
+		<a class="author" href="https://www.reddit.com/user/NuahsIP" target="_blank">NuahsIP</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Well you can ask your room-mate to leave, they'd need to clean up after themselves, pack up their stuff and everything. Or on the other hand you could just kill them and toss all their shit out the window.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f9fq8vc">
+		<a class="author" href="https://www.reddit.com/user/KapteeniJ" target="_blank">KapteeniJ</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Usually program is told &quot;close now&quot; when you press x. Program obeys and does whatever programmer set it to do in case of closing down, things like saving unsaved stuff, finishing operations it was in the middle of doing etc, before actually telling OS that &quot;I'm ready, you can do the cleanup&quot;</p>
+<p>Task manager does things more forcefully. It doesn't ask, it just takes program out of queue for cpu time, marks all the ram used by program as free, etc, all the cleanup. This works quite reliably, but hopefully it's obvious why this can be troublesome. Anything the program was doing is lost. No matter how critical. </p>
+<p>It's the difference of security guard at shop or something saying &quot;we're about to close for the day, you should leave now&quot; and the security guard just coming at you, grabbing you and throwing you out.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>

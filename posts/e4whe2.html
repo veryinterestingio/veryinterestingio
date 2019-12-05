@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5:Why do some programs take ages to close when task manager closes them instantly?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="e4whe2">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/e4whe2/eli5why_do_some_programs_take_ages_to_close_when/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/e4whe2" onclick="return false">Why do some programs take ages to close when task manager closes them instantly?</a>
+		</h2>
+		<!--<span class="date">2019-12-05</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5:Why do some programs take ages to close when task manager closes them instantly?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="f9flsah">
+		<a class="author" href="https://www.reddit.com/user/dale_glass" target="_blank">dale_glass</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The task manager kills things instantly and forcefully. This means the program doesn't get to do anything in response, and doesn't even know it's being closed, so it can't clean up after itself, can't ask if you'd like to save your work, etc.</p>
+<p>Closing a program the normal way sends it a message: &quot;please close now&quot;.</p>
+<p>This means the program has to receive the message (which may not happen immediately). Then some of those will have internal parts of themselves that will go through the same sort of process: they'll get sent a message from the main program, have to receive it, and terminate. This can take time.</p>
+<p>Windows monitors the message queue, and if it's not being read then eventually it'll just offer to kill the program by force.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="f9fm5up">
+		<a class="author" href="https://www.reddit.com/user/NuftiMcDuffin" target="_blank">NuftiMcDuffin</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you hit the 'x' button in windows, it asks the program to shut down. This basically tells the program to run its shutdown routine, allowing it to do stuff such as save unsaved documents before hitting a piece of code which exits the program for good. Now if the program gets hung up, it might not ever get there and will never quit on its own.</p>
+<p>The task manager can give commands to the parts of windows that control all the programs running on the computer. At the core of that is the kernel, which allocates CPU power to programs (among other things). The task manager can tell the kernel to stop running the program, so it simply no longer runs on your computer and takes up no more memory space.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f9fnjml">
+		<a class="author" href="https://www.reddit.com/user/Digibollocks" target="_blank">Digibollocks</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>X button = would you be so kind as to run your shut down routine, take as long as you like, and close please?
+Task Manager = fuck off, right now.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f9g00md">
+		<a class="author" href="https://www.reddit.com/user/NuahsIP" target="_blank">NuahsIP</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Well you can ask your room-mate to leave, they'd need to clean up after themselves, pack up their stuff and everything. Or on the other hand you could just kill them and toss all their shit out the window.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="f9fq8vc">
+		<a class="author" href="https://www.reddit.com/user/KapteeniJ" target="_blank">KapteeniJ</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Usually program is told &quot;close now&quot; when you press x. Program obeys and does whatever programmer set it to do in case of closing down, things like saving unsaved stuff, finishing operations it was in the middle of doing etc, before actually telling OS that &quot;I'm ready, you can do the cleanup&quot;</p>
+<p>Task manager does things more forcefully. It doesn't ask, it just takes program out of queue for cpu time, marks all the ram used by program as free, etc, all the cleanup. This works quite reliably, but hopefully it's obvious why this can be troublesome. Anything the program was doing is lost. No matter how critical. </p>
+<p>It's the difference of security guard at shop or something saying &quot;we're about to close for the day, you should leave now&quot; and the security guard just coming at you, grabbing you and throwing you out.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/e4whe2" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
