@@ -1,0 +1,124 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ExpiredLifetime" target="_blank">ExpiredLifetime</a>
+			<div class="markdown"><p>To elaborate on your example: it’s the same way that someone can listen to music and be able to distinguish between each instrument and the vocals, even though the music itself is a single waveform.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/morkani" target="_blank">morkani</a>
+			<div class="markdown"><p>Thank you for that example, completely understand now i think....except it would sounds like you were at the superbowl or something with thousands of people talking trying to single one person out on the other side of the stadium. There's just so many people on that same cable, seems impossible.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shitivseen" target="_blank">shitivseen</a>
+			<div class="markdown"><p>That's what math and computers are for!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ExpiredLifetime" target="_blank">ExpiredLifetime</a>
+			<div class="markdown"><p>Think about the way frequencies work for a minute here. </p>
+<p>Typical humans can hear sounds anywhere in the range of 20hz to 20khz. If you were to lay out a typical frequency EQ and play identical (let’s say a simple sine wave) sounds at 80hz and 8khz, those sounds would show up individually on the EQ and you could then apply isolation to each one in order to remove the other signal. A bunch of people talking over each other is a problem because it’s putting all of the information into a very narrow frequency band. </p>
+<p>Cable signals essentially work the same way radio stations do - the receiving unit can “tune in” to a specific frequency and receive the information clearly, even while there’s tons of radio signals playing at the same time.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BlueArmistice" target="_blank">BlueArmistice</a>
+			<div class="markdown"><p>It is more like channels on a walkie talkie or radio/tv. Telephone voice takes up about 4khz. This isn't very high quality as the human ear can hear up to about 20khz. We then use a technique called modulation to shift the channel an arbitrary number of frequencies up. So you have one person talking from 20-4k, one from 4k-8k another from 8k-16k etc. Then in the other end we filter out each channel and shift then back to the base band so everyone ends up taking in the 20-4k range again and sounds normal.</p>
+<p>Of course, today nearly everything has shifted over to tcp/ip and we just convert everything to use packets and interleave them. This way you can take 1ms of voice samples send them in a fraction of that time then reconstruct the signal at the destination. Since it takes so much less time to send the voice data, more voices can be sent during the same amount of time. This also allows for higher quality voice signals.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lawpoop" target="_blank">lawpoop</a>
+			<div class="markdown"><p>This isn't actually true --</p>
+<p>Distinguishing or pulling out soundwaves from one combined soundwave is an unsolved problem in mathematics. Not only do we not have a way to do it, <em>we don't even have any idea where to start</em>. </p>
+<p>Yes, the human/brain mind is capable of doing it, but how it does it is still a mystery, like many other thing the human brain (and animal brains as well).</p>
+<p>What we can do, mathematically, is break apart a sound wave (or any wave form) into its constituent sinewaves. However, what we are not capable of doing is <em>grouping those constituent waveforms into their sources</em>. </p>
+<p>Take an example of a rock song. You might hear drums, bass guitar, rhythm guitar, and vocals in the song. When the song is mixed down and put to tape, all of those separate sounds become a single waveform. That's what the human mind can do-- it can somehow distinguish between separate sources of sound in a single waveform.</p>
+<p>Mathematically, we can take that track and identify all the sine waves that compose it, but we are unable to say &quot;These sine waves come from the bass guitar, this group is from the singer, etc etc&quot;. Furthermore, we have no idea how the human mind is doing that.</p>
+<p>If we were able to do it, there would be software out there already that could isolate vocals from a song track. However, we don't have that software. </p>
+<p>(What we have currently is sort of a hack at best-- oftentimes for commercial tracks, the vocals are louder in one of the stereo channels. Invert that channel, mix it with the other, and voila! You have an extracted waveform. Also, in earlier years, like the 80s and 90s, Vinyl record singles sometimes had separate instrumental and vocal tracks on the B-side. This is what DJs used to use for remixed and mash-ups).</p>
+<hr />
+<p>What cable and telephone lines (and all of our computer circuitry) actually do is <em>digitize</em> the waveform. They take the form, and, by convention, consider one value to be 0, and another value to be 1. Then, all of the data is encoded at those values. More data can be added (more ones and zeroes) if the equipment is made more sensitive, and better able to reproduce and transmit the single. </p>
+<p>Information like video and voice is broken up into <em>packets</em>, which are small amounts of digital data. These are transmitted more or less serially over network cables, but the TCP/IP protocol specifies error correction, whereby packets can be re-sent if the data did not arrive safe and sound.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lazerlandb" target="_blank">lazerlandb</a>
+			<div class="markdown"><p><a href="https://melody.ml/" target="_blank">https://melody.ml/</a>  </p>
+<p>it can separate into vocals/drums/bass/other  </p>
+<p>works pretty damn well.  </p>
+<p>can also search &quot;deezer spleeter github&quot; on google to set it up so your machine can do the splitting, but it's way easier using the website and doesn't put any stress on your CPU and memory so you can multitask.  </p>
+<p>obviously they haven't figured out the formula, just training an algo, and of course it fails spectacularly on very dense tracks.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BenderRodriquez" target="_blank">BenderRodriquez</a>
+			<div class="markdown"><p>Vocal separation is easy since it is typically mono so you just have filter out the signals that are equal on both left and right. Most audio software can do it. Separating individual instruments can be done with pattern matching techniques, eg. <a href="https://towardsdatascience.com/audio-ai-isolating-instruments-from-stereo-music-using-convolutional-neural-networks-584ababf69de" target="_blank">https://towardsdatascience.com/audio-ai-isolating-instruments-from-stereo-music-using-convolutional-neural-networks-584ababf69de</a> But you are correct, there is no mathematical way to know exactly what is a guitar and what is a bass in a sound wave, so we have to teach the algorithm by exposing it to guitars and bass guitars, similarly to how humans are taught how different instruments sound like. There are software that does this, eg <a href="https://audionamix.com/about/#trax" target="_blank">https://audionamix.com/about/#trax</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RayereSs" target="_blank">RayereSs</a>
+			<div class="markdown"><blockquote>
+<p>Information like video and voice is broken up into <em>packets</em>, which are small amounts of digital data. These are transmitted more or less serially over network cables, but the TCP/IP protocol specifies error correction, whereby packets can be re-sent if the data did not arrive safe and sound.</p>
+</blockquote>
+<p>If we are talking about &quot;live&quot; interpretation of audio and video packets are <em>NEVER</em> retransmitted because TCP waits for packets sequentially. If it was that way if you were talking on Skype with grandma her voice would stop mid words and you'd have .3–.4 second delay between parts – stutter like crazy.</p>
+<p>I did ICT engineering and in one class we had an experiment to show how spectacularly VoIP using TCP fails (also HTTP over UDP ends up with half content on the website being broken or missing partially).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/spartasucks" target="_blank">spartasucks</a>
+			<div class="markdown"><p>Ok so what's baking my noodle right now is how much more complicated phone tapping is than I always assumed</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FutureOrBust" target="_blank">FutureOrBust</a>
+			<div class="markdown"><p>Multiplexing!
+&quot;In telecommunications and computer networks, multiplexing is a method by which multiple analog or digital signals are combined into one signal over a shared medium. The aim is to share a scarce resource. For example, in telecommunications, several telephone calls may be carried using one wire.&quot;</p>
+<p>From Wikipedia
+<a href="https://en.m.wikipedia.org/wiki/Multiplexing" target="_blank">https://en.m.wikipedia.org/wiki/Multiplexing</a></p>
+<p>To add: multiplexing is the reason waiting music over the phone line when your on hold sounds flat.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/h2opolopunk" target="_blank">h2opolopunk</a>
+			<div class="markdown"><p>The music sounds flat because traditionally phones only transmit 500-4kHz sound (a majority of the speech spectrum), so there's a sharp roll off in the mid frequencies that kill the high pitched part of music. Now, the reason for that limited bandwidth is to accommodate multiplexing on the lines.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rekoil" target="_blank">rekoil</a>
+			<div class="markdown"><p>More to the point, it's because the Bellcore standard for audio AD/DA conversion on phone lines was written in the 1960s, when 7 bits per 8K samples per second* was the best that the technology of the day could do (and, to be fair, didn't sound any worse than analog phone lines at the time). I'm happy that mobile carriers are moving to higher-quality VoLTE - which does get you CD-quality audio (16 bits at 44K samples per second), but so far no carriers in the US are supporting VoLTE calls to phones on outside their own networks. It's a bit unsettling when you call someone and get that better quality signal - I'm not used to it myself :/ </p>
+<p>*7 bits x 8K samples/second = 56Kbps. Those of you who remember modems will recognize this number - it's not a coincidence.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/allaroundfun" target="_blank">allaroundfun</a>
+			<div class="markdown"><p>That wouldn't make it&quot;flat&quot; in a musical sense, that would just change the timbre. Making it flat would involve shifting the frequencies down, rather than adjusting the amplitude of each freq. Band.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JuanPablo2016" target="_blank">JuanPablo2016</a>
+			<div class="markdown"><p>Now mobile phones do some serious stuff. They work in chunks of data and hop between channels to find the quickest route. It's like cars on a motorway weaving in and out of traffic but with a lot more lanes.</p>
+<p>Duplexing of channels frees bandwidth since the channel is only used in one direction at a time eg one person talks and the other listens, meanwhile another phone call can be using the channels in the opposite direction..</p>
+<p>So 10 lanes / channels gives you room for 20 cars. However, a car doesn't fill up a whole lane just like a car doesn't require the whole road lane from starting point to destination. Add in the fact that when someone stops talking (eg to grab a breath or in-between sentences) the call/car uses no space on any of the lines/lanes. This frees up space for more chunks of calls to use the lines.</p>
+<p>So, 10 lines can hold a lot more than 20 calls in reality.</p>
+<p>Interesting fact: when noone on a call is talking your call uses almost no data at this point and frees up the line. To trick your brain into not thinking your call has been detected, your phone plays a 'static' noise out of the earpiece to give you the sense that the call is still active. Once data is transmitted again the normal call is resumed as is the verbal noise.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IHaveAVaginaBeard" target="_blank">IHaveAVaginaBeard</a>
+			<div class="markdown"><blockquote>
+<p>To add: multiplexing is the reason waiting music over the phone line when your on hold sounds flat.</p>
+</blockquote>
+<p>What? No it isn't.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BoomBangBoi" target="_blank">BoomBangBoi</a>
+			<div class="markdown"><p>I think he meant filtered, not flat</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SVXfiles" target="_blank">SVXfiles</a>
+			<div class="markdown"><p>To go off this, if talking about cable tv lines those are mostly digital now and each device is told by the head end in the case of modems/MTA's what frequency to lock on to. In the case of set top boxes broadcast tv channels are all on the same frequencies, so if you tell your box to go to the history channel it tells the headband what you want and the headend tells it what frequency to tune to.</p>
+<p>Now in the case of interference, if there's big enough ingress or a big enough signal leak from bad or loose fittings or a bad box it can and definitely does interfere with other customers on the same tap/hardline because that noise goes all the way down to the node through line extenders and amplifiers.</p>
+<p>Source: was cable tech in a digital hfc area for a couple years</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/caliraider" target="_blank">caliraider</a>
+			<div class="markdown"><p>Cable tech for 15 years here . Cannot emphasize enough how important it is to have all your connectors tight. It will cause you and your neighbors issues with service if they are loose. Most of a network techs job co sists of tracking down noise(ingress) and filtering off customers drops until an inhouse tech can come out and repair/replace shitty fittings/cable in the house</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VexingRaven" target="_blank">VexingRaven</a>
+			<div class="markdown"><p>Tell that to the tech that did my install and left an uncapped wall jack connected to a splitter going out of the house. Had garbage internet for like 6 months before I figured out what he did.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LumbermanSVO" target="_blank">LumbermanSVO</a>
+			<div class="markdown"><p>I used to handle the TV's in the stands at a whole bunch of golf tournaments. We used an RF modulator as the base of our CCTV system and ran coax to every TV on course, sometimes over 150 TVs. My coax guy would run a LOT of cable for these events, sometimes over 35k feet. He never crimped the connections. After the event we'd just pull the cable right out of the TVs, splitters, and couplers. All of the connectors, splitters, and couplers would get reused at another tournament. The crazy part about all that? We never had an issued that was caused by the non-crimped connectors.</p>
+<p>He fully admits that this is the wrong way to do things, and that he'd never do it like that for a different customer. But our setup was unique, and super temporary, and it just worked out better this way.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SVXfiles" target="_blank">SVXfiles</a>
+			<div class="markdown"><p>I had a few CLI jobs back when I was doing it. Half the issue was loose connectors feeding to and from a splitter and an ISA. The other was a bad section of cable that needed to be replaced. Our limits were +12 dB to -10 dB with ingress limits between -30 and -50. This person had good downstream signals but their ingress from the loose connectors was hitting +3</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/isaacfalling" target="_blank">isaacfalling</a>
+			<div class="markdown"><p>Exactly, I was a tech for nearly a decade. Did multiple facets of the job. A majority of the time I spent as a line tech was chasing and mitigating interference.</p></div>		</li>
+					</ul>
+		</ul>
+	
