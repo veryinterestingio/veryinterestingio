@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>Why do we need IPv6?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="eb9ouv">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/eb9ouv/why_do_we_need_ipv6/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/eb9ouv" onclick="return false">Why do we need IPv6?</a>
+		</h2>
+		<!--<span class="date">2019-12-19</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>So i get why IPv4 will be obsolete soon, we need more then 2^32 address spacess, sure, but why do we need a whopping 2^128 addresses (basically billions of billions for every human). </p>
+<p>Wouldn't it be enough to have 2^64 possible addresses and therefore they are still relatively readable and it will still last for a few thousand years from now, or am I missing something out?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="fb3dxrx">
+		<a class="author" href="https://www.reddit.com/user/ChopBustin101" target="_blank">ChopBustin101</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They are attempting to future proof the protocol because we really don't want to change protocols again in the future. Since we have no idea what is going to be connected in the future we can't really say that we only need X amount per person (but I agree several octillion per person does seem a bit overkill), or how many people there are going to be. Why make a new protocol that has a chance of running out of addresses when it is just a couple more characters to ensure we won't have that issue? </p>
+<p>There are also some other nice benefits of IPV6, my biggest one is your ISP will give you a block of IPs and each device would get a public address, no more dealing with port forwarding settings in routers to get a game working or a VOIP phone working.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fb3xnvh">
+		<a class="author" href="https://www.reddit.com/user/TheThiefMaster" target="_blank">TheThiefMaster</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Other answers are going on about &quot;future proofing&quot; and so on but that's not the reason.</p>
+<p>Actually, only 64 bits of the ipv6 address are required to get to an &quot;edge router&quot; (the thing that would traditionally get the public ipv4 address) - so the public address in the ipv6 protocol is actually the size you suggest - 2^(64).</p>
+<p>The other 64 bits are for a &quot;device identifier&quot; <em>inside</em> the network. Effectively a local address.</p>
+<p>Think about it like this: in IPv4, you have a 32-bit external ip, and a 32-bit internal ip. In IPv6 that was effectively made 64-bits each, and then both were put into the IPv6 packet as a single 128-bit address to allow traffic to more easily traverse an edge router without NAT.</p>
+<p>In IPv4 you have to deal with NAT and port forwarding, which doesn't allow multiple devices to use the same port because you only have one public address. In IPv6 because the internal part of the address is in the packets you can &quot;pinhole&quot; the port in the router's firewall to every device that needs it with no problem.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fb3x4tn">
+		<a class="author" href="https://www.reddit.com/user/CamperStacker" target="_blank">CamperStacker</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The first 64bit is routing directions, like solar system, planet, continent, country, state, ..., down to your home. </p>
+<p>The other 64bit is unique per device at your home. You need 64bit you know, just in case you throw a lan party for the entire earth.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fb3t9l6">
+		<a class="author" href="https://www.reddit.com/user/Jaysloter" target="_blank">Jaysloter</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I mean 4 billion+ addresses likely sounded like overkill when IPv4 was introduced. It's future proofing and like others said IPv6 isn't just extra address allocation it's a update to a protocol devised ages ago. Additionally, IPv6 makes alot of old protocols irrelevant (see ARP/NAT) since all devices on a network can have public ip addresses, so home networks could actually become a bit simpler in design. The readability thing however is another story, maybe it will become easier as IPv6 becomes the norm.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fb3tazk">
+		<a class="author" href="https://www.reddit.com/user/CranialThunder" target="_blank">CranialThunder</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I've always equated IPv6 to plumbing.</p>
+<p>No one except plumbers (networkers / app devs) really care about it.</p>
+<p>You really shouldn't care about it.</p>
+<p>But you really don't want to have to rip it out and replace it with something new in case what you have isn't good enough.</p>
+<p>Right now, there are a TON of RFID things out there.  Think if each one of those could be put on the network.  At the moment we don't have the power systems to do that, but one day we might.  That's what they were thinking of at the time.</p>
+<p>These slides are pretty terrible, but I've been saying just about the same thing for a while:  <a href="https://www.cendi.gov/presentations/IPv6_Dec_2007_Thorson.pdf" target="_blank"><a href="https://www.cendi.gov/presentations/IPv6\_Dec\_2007\_Thorson.pdf" target="_blank">https://www.cendi.gov/presentations/IPv6\_Dec\_2007\_Thorson.pdf</a></a></p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/eb9ouv" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

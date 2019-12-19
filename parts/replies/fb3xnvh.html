@@ -1,0 +1,20 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marcan42" target="_blank">marcan42</a>
+			<div class="markdown"><p>This is the correct answer. To add: why do you need 64 bits for internal addresses on a single network? You don't, but when you have that many you can use existing unique information to have devices assign themselves addresses (SLAAC), without needing a central server (DHCP). You can even just pick a random address and be all but certain that no other device will be using it. So it's very convenient.</p>
+<p>Nit: IPv4 internal IPs effectively only have 24 bits (the largest private range, 10.0.0.0/8). Very good analogy, though.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OhLawdHeThicc" target="_blank">OhLawdHeThicc</a>
+			<div class="markdown"><p>What's the upside of not needing a DCHP server and instead just having devices assign their own IPs?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marcan42" target="_blank">marcan42</a>
+			<div class="markdown"><p>Well... it means you don't need a DHCP server. A DHCP server needs configuration, it needs persistent storage, it needs to communicate with devices periodically, you need more than one with redundancy if you want your network to still work if one dies, you need one if you want your IPv4 network to work *at all**, etc.</p>
+<p>IPv6 can be used with DHCP, but most commonly it's used just to provide fancier configuration information than SLAAC does (where required), without actually assigning IPs. That makes it stateless DHCP, which avoids the vast majority of the problems of IPv4 DHCP.</p>
+<p>Since devices self-assign addresses, they can do that even on an isolated network, and indeed they do (every IPv6 device has a link-local address that it can use to talk with devices on the same network only, which it assigns on its own). It means you can plug a bunch of IPv6 stuff into a switch, or even two devices directly to each other, and they will work just fine and be able to talk to each other, with zero configuration required. And then you can plug in a router to the same switch and all the devices get public IPv6 addresses while they keep working locally with the existing link-local addresses.</p>
+<p>* Yes, I know IPv4 has autoconfiguration (&quot;APIPA&quot;) when there is no DHCP server, but it's horrible and broken and needs conflict resolution and doesn't coexist with regular IPs and has a whole bunch of other problems and nobody should ever use it.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
