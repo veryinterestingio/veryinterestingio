@@ -1,0 +1,47 @@
+<div class="answers">
+	<div class="answer" data-handle="fbuij8p">
+		<a class="author" href="https://www.reddit.com/user/domiran" target="_blank">domiran</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Windows only redraws what it has to. Unlike a game, the entire screen is NOT refreshed every frame. This means portions are only redrawn when necessary, like when a window hides part of another application or when displaying video. Each window is responsible for drawing itself.</p>
+<p>The image of the window you’re dragging is drawn on top of whatever froze, as it should. But when Windows asks the frozen application to redraw, it’s frozen so it can’t respond to that request. Thus, it can’t redraw the part that was hidden and so the window you’re dragging is leaving a mess.</p>
+<p>[Edit]</p>
+<p>As /u/arcosapphire pointed out below, I'd like to add that Windows <del>7</del> Vista changed how drawing works from Windows XP. This doesn't happen anymore because Windows is constantly refreshing the last known image, even if an application is frozen and can't respond to redraw requests. Windows Vista and up does, in fact, redraw the whole screen every frame -- preventing the &quot;drag mess&quot; -- but only <em>updates</em> necessary parts as Windows XP did (which, from the perspective of an ordinary user, isn't much different from updating the whole thing at once).</p>
+<p>From a practical perspective, Windows XP did what it did the <em>way</em> it did for performance reasons. Windows Vista completely changed the underlying method of how it draws the screen. A super brief ELIALittleOlder since this post is already long: it went from DirectDraw &quot;bit block transfer&quot;s to Direct3D and textures.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fbus0mu">
+		<a class="author" href="https://www.reddit.com/user/Resonance__Cascade" target="_blank">Resonance__Cascade</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Also does this graphical effect have a name?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fbv6j5u">
+		<a class="author" href="https://www.reddit.com/user/kethinov" target="_blank">kethinov</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This is because Windows XP used a &quot;stack&quot; based window manager as opposed to a modern &quot;compositing&quot; based window manager now used in all major operating systems.</p>
+<p>When a window becomes unresponsive in a stack based window manager, it cannot draw new frames. So if you drag another window over it, ghosts of the top window will appear over the window below.</p>
+<p>In Windows XP it was common for the entire desktop to become unresponsive except for the error dialog that pops up telling you something is wrong. When you drag the dialog around and have ghost copies of it appear all over the screen, essentially what is happening is the window manager is supposed to redraw what was below the dialog now that you're moving it out of the way, but it can't, so ghosts of the last frame linger because the window manager has nothing else to draw.</p>
+<p>Modern compositing window managers avoid this problem by buffering the last paint of each window in memory. So if a window freezes, it will always display its last frame regardless of what you drag over it because it has a copy of its last frame in memory and can always redisplay it when you drag something out of the way. Compositing is also what makes it possible to have drop shadows, window scaling, and 3d window management effects.</p>
+<p>If you're feeling nostalgic for stack based window manager ghosting, play around with another web-based simulator here: <a href="http://demo.marcofolio.net/winxp_error/" target="_blank">http://demo.marcofolio.net/winxp_error/</a></p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fbw0bt4">
+		<a class="author" href="https://www.reddit.com/user/thatsnotmynamexxx" target="_blank">thatsnotmynamexxx</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The first time I took mushrooms I kept seeing this happen to people and moving things in real life. I could not for the life of me figure out how to explain what everything looked like to the people around me.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fbwcqyd">
+		<a class="author" href="https://www.reddit.com/user/Tron_Kitten" target="_blank">Tron_Kitten</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Unrelated but that website is Impressive. It tracked all 10 of my fingers on the screen and had a popup for each of them</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

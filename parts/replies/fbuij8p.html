@@ -1,0 +1,83 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pdpi" target="_blank">pdpi</a>
+			<div class="markdown"><blockquote>
+<p>ELIALittleOlder: It went from DirectDraw &quot;bit block transfer&quot;s to Direct3D and textures</p>
+</blockquote>
+<p>Let me take a stab at this one. Imagine we're all around a table working on drawing the screen onto a piece of paper.</p>
+<p>Older versions of windows worked sort of as if I owned the piece of paper, then asked every other person at the table to draw their stuff onto that paper, but I only allowed them to draw in specific parts of the page.</p>
+<p>Instead, in modern Windows I give everybody a separate piece of paper. Everybody draws their own stuff on that paper at their own pace, and I assemble the final screen as a collage of the last piece of paper everybody gave me.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lucidlobster" target="_blank">lucidlobster</a>
+			<div class="markdown"><p>This is a good explanation, thanks for taking the time to write it!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/domiran" target="_blank">domiran</a>
+			<div class="markdown"><p>Oh I'm intimately familiar with both. Thank you for the explanation, though. I changed the wording to indicate that sentence is just a super brief ELI5.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pdpi" target="_blank">pdpi</a>
+			<div class="markdown"><p>Oh yeah sure — That was &quot;let me take a stab at ELI5ing further&quot;, not implying you didn't know your stuff :)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/suckit1234567" target="_blank">suckit1234567</a>
+			<div class="markdown"><p>Member Vista Comptible™ PCs that couldn’t run in Aero mode?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RFEngineer" target="_blank">RFEngineer</a>
+			<div class="markdown"><p>r/elie Explain like I’m an engineer.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/naturalcauzes" target="_blank">naturalcauzes</a>
+			<div class="markdown"><p>How does the &quot;owner&quot; decide which part of each piece of paper to use in the collage, in the second scenario?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/myne" target="_blank">myne</a>
+			<div class="markdown"><p>They get a whole sheet.</p>
+<p>Which is then stacked by the 'editor'.</p>
+<p>The fundamental difference is that windows used to be 2D. </p>
+<p>Now it's 3D. Ever app gets its own &quot;polygon&quot; to draw on. Then it's just a matter of deciding the order of the polygons.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CrossVR" target="_blank">CrossVR</a>
+			<div class="markdown"><p>They each get a piece of paper that is the size of what they need to draw and the &quot;owner&quot; knows what the position is of everyone's piece of paper in the final collage.</p>
+<p>In technical terms the &quot;owner&quot; is the window manager which knows the size and location of all windows. Each application gets to draw the contents of its window and passes that on to the window manager who composites it all together.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pdpi" target="_blank">pdpi</a>
+			<div class="markdown"><p>The pieces of paper are window-sized to begin with, so, if your collage is built in the right order (bottom to top), the topmost pieces of paper hide the bottommost ones — You don’t have to worry about picking and choosing this way</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/arcosapphire" target="_blank">arcosapphire</a>
+			<div class="markdown"><p>Note that since Windows got a new compositor in 7, this is much less of an issue. Now, each window is just a render target, so the contents are still updated in the background (which formerly was not the case). This allows for a lot of new tricks: a live thumbnail in the task bar (as the texture is just displayed there as well, scaled down), 3D window effects (as the texture is just transformed), smoothly manipulating windows containing complex 3D games and stuff (as, again, the texture is just moved around after the fact), etc.</p>
+<p>This decouples the global window drawing that is part of the OS from the individual application content which is still handled by the application. The application itself can still have these issues internally, but they aren't affected by how you move around windows from other applications.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/domiran" target="_blank">domiran</a>
+			<div class="markdown"><p>Yeah, this hasn't happened since Windows XP pretty much so I'm assuming 7 and up just redraw the last known texture (since iirc it's done using Direct3D) unless the application can actually update itself.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MotherGrass" target="_blank">MotherGrass</a>
+			<div class="markdown"><p>It's since Vista. Vista introduced the 3D compositor. And yes each window is updated with a last known draw (2D or 3D), onto a texture.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kitsunes_Rest" target="_blank">Kitsunes_Rest</a>
+			<div class="markdown"><blockquote>
+<p>a live thumbnail in the task bar </p>
+</blockquote>
+<p>Holy shit, I was wondering how they did that!</p>
+<p>What wonderful tricks get played!<br />
+I wonder what other cool tricks are in play?...</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NetworkMachineBroke" target="_blank">NetworkMachineBroke</a>
+			<div class="markdown"><p>Huh, that actually makes a lot of sense. Thanks for the explanation!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/domiran" target="_blank">domiran</a>
+			<div class="markdown"><p>Sure thing. Be sure to check out the Edit I made!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[gelöscht]</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
