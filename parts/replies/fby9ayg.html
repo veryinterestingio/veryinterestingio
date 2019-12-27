@@ -1,0 +1,11 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JelloSquirrel" target="_blank">JelloSquirrel</a>
+			<div class="markdown"><p>To tie this all together to the hardware, here's an example:
+A CPU has physical address lines that correspond to a memory range, let's say 0x0000 to 0xffff. (16-bit address space) These address lines are directly connected to ram and ROM (including removable cartridges) which can be directly addressed by the CPU, ie a pointer in the C language.</p>
+<p>The processor begins execution at a pre defined address, let's say 0x8000. So this is where you'd out your rom. This code might setup a few things, and then jump to 0x0000, where it expects the ROM of a removable disk to be connected (like a cartridge or a hard drive). For a primitive system, the first or second step here is it for the boot process.</p>
+<p>Going further, more initialization code runs, and a hardware device gets mapped at a specific address, let's say disk0 is at 0x1000, and disk1 is at 0x1010. These are special devices where reads and writes don't just set memory at the location. Instead you issue hardware interrupts that can seek the disk to a new location, so reading and writing at that address reads and writes different locations on disk.</p>
+<p>Eventually you load even more software to build up your file system abstractions so you can use higher level apis, but under the hood the disk is mapped at a fixed address and uses hardware interrupts to seek it to different locations for reading and writing.</p>
+<p>There's also an MMU (memory management unit) in newer systems, at least Xbox onwards and probably even Dreamcast onwards, that allows for virtual memory mappings so addresses can be reused and hardware can be mapped to false addresses. The hardware / memory maintains a mapping of virtual addresses to physical and automatically translates them.</p></div>		</li>
+					</ul>
+	
