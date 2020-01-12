@@ -1,0 +1,98 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/revolving_ocelot" target="_blank">revolving_ocelot</a>
+			<div class="markdown"><p>If you find it... What happened to Malaysia Airlines Flight 370? if there was a transmission pilots could not turn off sending out coordinates, altitude, the basic stuff, would it not help locating it? Just minimal bandwidth usage, doesn't need to update more than every 30 seconds or so. Black box would still be required for storing the bulk of the data though.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ravensfreak0624" target="_blank">ravensfreak0624</a>
+			<div class="markdown"><p>This would be feasible from a bandwidth perspective, though satcom coverage would need to be improved. Most aircraft TM from test aircraft is UHF which requires line of sight, so you'd need a new system. Low orbit constellations being built by SpaceX and OneWeb are interesting for improving this though.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/grumbleboy" target="_blank">grumbleboy</a>
+			<div class="markdown"><p>If all you need is low-rate position information, 9600 bps L-band Iridium could be a good choice, and the omni antenna is trivial to mount and might not require a STC.  There's excellent world-wide coverage, although the poles are always a problem.  I've worked on military drones that used this as a BLOS (beyond line-of-sight) communications channel to get aircraft location and send waypoints.</p>
+<p>If you move to a higher frequency Ka/Ku satcom system, you'll end up with a much more complicated antenna, an inertial nav system to point the antenna, an antenna power supply / controller, and approval from the aircraft manufacturer and the FAA to fly the thing.  You'll get data rates pushing several hundred kbps (until the plane rolls or yaws faster than the antenna can cope with, or there's lots of precipitation in the air).  The poles are still a problem.  And you just lost a bunch of space in your avionics bays and added drag on the plane that will screw with your fuel economy.</p>
+<p>If you only fly over land, and over land that has cell phone infrastructure, you could go with that.</p>
+<p>And if you're old school, most over-water flights already have HF ARINC data links, but that's subject to the usual joys of HF - limited bandwidth, intermittent propagation.</p>
+<p>Edit to add: This might be silly, but there is excellent satellite reception of maritime AIS data.  If all you want is a plane to reliably send its lat/long/altitude/course/speed, you might be able to get by with that.  It's a 160 MHz signal, and doesn't require much power to reach a satellite.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Snoman0002" target="_blank">Snoman0002</a>
+			<div class="markdown"><p>Feasible, yes. But you are asking very expensive satellites to reserve a very significant portion of their overall bandwidth for this. It is technically feasible, it is not economically feasible.</p>
+<p>Fwiw it's around $10,000 per pound just to get something into space, that's not even counting the cost of the system itself. And you need a LOT of those systems. There are over 300,000 cell towers in the US alone and the US only covers 7% of the land area (not even counting water)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OrgyMcBloodyFace" target="_blank">OrgyMcBloodyFace</a>
+			<div class="markdown"><p>You should tweet it out to Elon. He would love to have a good reason to have starlink logged to every airliner on Earth. It would also give him some amazing publicity when he's able to recover something from a situation like the next mh370</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/oversized_hoodie" target="_blank">oversized_hoodie</a>
+			<div class="markdown"><p>That's basically what ADS-B is. It transmits location, heading, speed, altitude, etc. to allow aircraft and ATC to know where everyone is (and who everyone is) without requiring constant active interrogations from secondary surveillance radars on the ground, or TCAS on other aircraft.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dawnbandit" target="_blank">dawnbandit</a>
+			<div class="markdown"><p>Problem is that ADS-B has limited range, which you probably know, but OP might not.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jcheung9941" target="_blank">Jcheung9941</a>
+			<div class="markdown"><p>Altitude, heading, airspeed are all transmitted at a minimum when in range of ground radar, and in some airborne anticollision stuff.... it doesn't help if nobody listens to it though.</p>
+<p>Unfortunately, none of that on its own is useful. In determining why a plane crashed, you want voice records at a minimum</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheAviationDoctor" target="_blank">TheAviationDoctor</a>
+			<div class="markdown"><p>There are many more ADS-B receivers in the world than there are ground radars, and their land coverage is extraordinary large thanks to cheap <a href="https://flightaware.com/adsb/piaware/build" target="_blank">DYI kits</a> (a Raspberry Pi and a $50 antenna). All of this data gets fed into sites such as FlightAware and FlightRadar24.</p>
+<p>The problem is not that nobody listens -quite the contrary- but it’s that ADS-B transmits far fewer parameters than get recorded on a Flight Data Recorder (FDR), the second of so-called black boxes. Which is what prompted the OP’s question.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lizwritesred" target="_blank">lizwritesred</a>
+			<div class="markdown"><p>Maybe turn it into like a VCR? Just record and store. Listening would take more manpower. We just bounce the data from the plane to the servers. Not sure though how much storage that could be.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/themidnightcigarette" target="_blank">themidnightcigarette</a>
+			<div class="markdown"><p>Right, but if we know exactly where it impacted we can figure out what happened easier right?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/brackfriday_bunduru" target="_blank">brackfriday_bunduru</a>
+			<div class="markdown"><p>I work in broadcast transmission for television. We have units that are able to record internally while transmitting at a delay. Would it not be feasible to have a black box unit that still records internally while at the same time transmitting what it’s able to? Even if you haven’t got the full story prior to finding the black box, you should have a useable portion of it. Would that work?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/F0sh" target="_blank">F0sh</a>
+			<div class="markdown"><p>This is essentially what happens at the moment. The aircraft broadcasts ADS-B continuously which contains a small amount of telemetry, but the rest is recorded to the black boxes.</p>
+<p>What people are talking about is transmitting more information more reliably. There's no real hope or need to transmit <em>all</em> the information though - a system which broadcasts to satellites to help the black box be located in the event of a crash would be the next easy gain probably.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mikechi2501" target="_blank">mikechi2501</a>
+			<div class="markdown"><blockquote>
+<p>a system which broadcasts to satellites to help the black box be located in the event of a crash would be the next easy gain probably.</p>
+</blockquote>
+<p>This seems logical but I still find it strange that we are using advanced technologies to locate an indestructible, physical box .</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/agent-V" target="_blank">agent-V</a>
+			<div class="markdown"><p>What's more a lot of  planes have in flight wifi and internet connection. Why can't the airline compress and encrypt flight data and upload at intervals? Make it a requirement for allowing ISP to put the transceivers on the plane at all. This day and age no planes should just be able to &quot;disappear&quot; and we never find out what happened.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Aero-Space" target="_blank">Aero-Space</a>
+			<div class="markdown"><p>Hi! So my job 100% revolves around integrating internet capabilities into aircraft. Both civilian, military, and commercial. These systems are often very slow and massively unreliable, not the sort of thing you want life or death data to be reliant on. </p>
+<p>And the biggest reason these systems aren't used to live steam aircraft data is because.... they're expensive! The service plan alone for a single aircraft can be upwards of $30,000 PER MONTH based on how much satellite bandwidth they use. I doubt the airlines want to spend thousands of extra dollars a month sending data over their satcom internet that they may never even utilize.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dalgeek" target="_blank">dalgeek</a>
+			<div class="markdown"><blockquote>
+<p>What's more a lot of planes have in flight wifi and internet connection. Why can't the airline compress and encrypt flight data and upload at intervals? </p>
+</blockquote>
+<p>It's not very reliable and they can't guarantee coverage at this point. About 25% of the WiFi-equipped flights I've been on don't have working WiFi, and the others tend to cut out randomly.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/m8r-1975wk" target="_blank">m8r-1975wk</a>
+			<div class="markdown"><p>Going this way you'll have blackboxes in your car (yes it's coming but not mandatory) way before you have them in airplanes, cheaper, easier to service, way more chances to be useful.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/The_Binding_of_Zelda" target="_blank">The_Binding_of_Zelda</a>
+			<div class="markdown"><p>These units also heavily compress the data and usually rely on cellular bonding</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tempest-777" target="_blank">Tempest-777</a>
+			<div class="markdown"><p>It’s also the case that airliners rarely crash, so the cost of live-streaming multiple lines of data from hundreds of daily flights is simply not worth the cost. </p>
+<p>Further, the data recorders are usually found, with the data undamaged. It just occasionally takes some searching before they are found</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/penny_eater" target="_blank">penny_eater</a>
+			<div class="markdown"><p>Hundreds?  lmfao, there are about 100,000 commercial flights worldwide every day.  Even if you break that down to the major carriers (say the top 20 are responsible for almost all those) thats 5,000 flights a day for one business to work out how to gather in realtime, worldwide.  Maybe possible after SpaceX gets all 12,000 satellites in place for its global internet service product, but not today.</p></div>		</li>
+					</ul>
+		</ul>
+	
