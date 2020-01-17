@@ -1,0 +1,69 @@
+<li class="post" data-handle="eon6aj">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/eon6aj/eli5_why_do_downloads_need_to_accelerate/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/eon6aj" onclick="return false">Why do downloads need to accelerate?</a>
+		</h2>
+		<!--<span class="date">2020-01-17</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>When I start a download why does it slowly build up speed instead of starting the download at max speed?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="fedqyde">
+		<a class="author" href="https://www.reddit.com/user/lobsang_ludd" target="_blank">lobsang_ludd</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Your computer and the one you're downloading from <em>do not know</em> what the max speed is. The available capacity in the network in between them fluctuates. So they start slow and ramp up in the part of the Transmission Control Protocol called <a href="https://en.wikipedia.org/wiki/TCP_congestion_control#Slow_start" target="_blank">slow-start</a>. Doing it this way allows them to <em>find what the max speed is</em> without flooding the network with undeliverable packets.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="feeggdr">
+		<a class="author" href="https://www.reddit.com/user/white_nerdy" target="_blank">white_nerdy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Modern digital networks (including the Internet) divide data into <em>packets</em>.  Each packet's size is usually between 40 and 1500 bytes.</p>
+<p>A typical Internet download goes through many different routers (10 or more).</p>
+<p>A router can &quot;drop&quot; packets it's unable to send.</p>
+<p>Dropping can be due to hardware limits.  For example, a typical router might have 30 ports, each capable of sending 1000 MB of data per second.  If 100 MB worth of data come in on each of the first 29 ports, and all of it is supposed to be sent out on the 30th port, you're trying to put 3000 MB per second of data into a pipe that can only handle 1000 MB per second.  The router would drop 2000 MB per second worth of packets at random.</p>
+<p>Dropping can also be programmed for software-based reasons as well as hardware limits.  For example, if a customer's only paid their ISP for a plan that offers 100 MB per second, the ISP router might be programmed to drop packets above that limit, even though the port hardware the customer's connected to is physically capable of handling 1000 MB.</p>
+<p>Downloads tune their speed based on dropped packets.  When a download starts, a small number of packets (3 or so) are sent.  If they all arrive, packets are sent faster and faster, until packets start being dropped.  Then the packet send rate will be held steady, at just below the level that causes packets to be dropped, but every few seconds it will start to increase again (in case the maximum rate has changed over time).</p>
+<p>That's why connections start slowly.</p>
+<p>You may ask how the computer you're downloading <em>from</em> know which packets arrived?  The answer is that your computer actually sends that information back &quot;upstream&quot;.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="feeodsc">
+		<a class="author" href="https://www.reddit.com/user/Damagingmoth47" target="_blank">Damagingmoth47</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This is because of something called &quot;Window size&quot; and how &quot;Packets&quot; (pieces of file) use it.</p>
+<p>ELI5: You <em>(Your PC)</em> and your friend timmy <em>(Other PC)</em> are trying to share blocks <em>(Packets)</em> because you want to build a castle <em>(Full file)</em> with timmy's blocks (and you have none).</p>
+<p>You and timmy are new friends so he isn't sure how strong you are or how many blocks you can carry in one load <em>(Window size)</em>, so he starts out small, just a block or two as a safe guess <em>(Starting Window size)</em></p>
+<p>Every time you let timmy know you successfully carried the amount of blocks timmy handed you back to your house, he figures you are strong enough to carry 1 or 2 extra in the next load so you can get all the needed blocks in your house faster. <em>(Increasing window size)</em></p>
+<p>But oops, you drop some blocks <em>(Dropped packets)</em> on a later load and let timmy know. So timmy reduces the block amount to what your last safe trip was <em>(Safe Window size).</em></p>
+<p>This process continues until you have the full amount of blocks at your house.</p>
+<p>ELI15(?): This is how TCP (Transmission Control Protocol) Window size works, The source PC sends a burst of info (window) and waits to hear an &quot;Okay, got it&quot; back. Because this protocol values data integrity over speed, its starts with a small burst that is almost guaranteed to make it. With every &quot;Okay, got it&quot; the source pc hears, it increases the size of the next burst so data travels  faster. If no &quot;Okay, got it&quot; is heard, it decreases burst size (and thus speed) to what was the last safe amount.</p>
+<p>UDP (User Datagram Protocol) is the reverse, it'd be like if timmy just chucked blocks at your houses window. He doesnt know if blocks make it and he doesnt care, timmy wants speed.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="feem3oy">
+		<a class="author" href="https://www.reddit.com/user/macncheesee" target="_blank">macncheesee</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Part of the reason is that the download speed isnt an instaneous speed being displayed. It's averaged over a short amount of time, say a few seconds.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">3 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/eon6aj" onclick="return false"><span>show</span></a>
+</li>

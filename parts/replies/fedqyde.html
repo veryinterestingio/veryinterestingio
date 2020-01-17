@@ -1,0 +1,73 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fudgemeister" target="_blank">fudgemeister</a>
+			<div class="markdown"><p>Also, if you miss a packet or have a reset, the endpoints back off and start small again. The back off is very large while the incremental increase is small. If your connection isn't solid, your download will constantly ramp up and drop off a lot, then repeat.</p>
+<p>There are lots of factors in play here and many different protocols with different handling. Don't even start talking about UDP!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ZoroShavedMyAss" target="_blank">ZoroShavedMyAss</a>
+			<div class="markdown"><p>UDP.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/torbeindallas" target="_blank">torbeindallas</a>
+			<div class="markdown"><p>You monster</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/voucher420" target="_blank">voucher420</a>
+			<div class="markdown"><p>What's UPD?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/theBytemeister" target="_blank">theBytemeister</a>
+			<div class="markdown"><p>I missed what you said about UDP, but it's not important, keep going.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fudgemeister" target="_blank">fudgemeister</a>
+			<div class="markdown"><p>Oh I already did anyway. Hope you got it!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/phd_in_stuff" target="_blank">phd_in_stuff</a>
+			<div class="markdown"><p>I'll tell you about it, but you might not get it</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JetScootr" target="_blank">JetScootr</a>
+			<div class="markdown"><p>TCP does not guarantee the packets will arrive in any particular order. Higher level logic has to 'stitch' the packets together in the right order to recreate the data sent. TCP can re-request the transmission of any missed packets after they're delayed too long (again, higher level logic is also involved).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fudgemeister" target="_blank">fudgemeister</a>
+			<div class="markdown"><p>Yeah but I'm referring to a retry. I didn't wanna get too involved since it's an eli5</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/romeosierracharlie" target="_blank">romeosierracharlie</a>
+			<div class="markdown"><p>In Peer 2 Peer (P2P) file sharing there is another source of initial delay. You are given a list of other computers (peers) that have the file you want to download. You then have to go and check if they’re online and are able to send you that file. As more of them respond and begin sharing the file with you, your speed will begin to increase. You can request different sections/chunks of the file from different hosts simultaneously. The more computers you can request chunks of the file from simultaneously, the faster the speed will be.</p>
+<p>Eventually this will be limited by the amount of data your computer/home network can send receive at one time, so you will not see infinite gains as the number of peers approaches infinity.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ILoveToiletpaper" target="_blank">ILoveToiletpaper</a>
+			<div class="markdown"><p>I just want to add: this is how torrents work.</p>
+<p>Since it can be way faster than a regular download this is a preferred method to distribute large files like operating systems (Linux)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marcan42" target="_blank">marcan42</a>
+			<div class="markdown"><p>This is correct. Also, the process is faster <em>the closer both computers are</em>, i.e. the shorter the ping time.</p>
+<p>This is because what the computers are actually figuring out is not actually the max speed, but rather how much data can safely be &quot;on the way&quot; between them at any given time. For any given speed, the farther the computers are, the more data has to be physically on the way at any given time to maintain that speed.</p>
+<p>So if the computers are close together, one can send a little bit of data at a time, and it'll be quickly received and acknowledged, allowing it to send another bit of data in rapid succession, and quickly get to a high download speed. But if the computers are far away, initially they'll spend most of the time waiting for the data to arrive, until the sending computer eventually figures out that it can dump a bunch of data on the wire without waiting for a response.</p>
+<p>This is why downloading from a server in another continent isn't necessarily <em>slow</em> (though it can be), but the speed will definitely ramp up much more slowly than from a local server.</p>
+<p>As a rule of thumb, the initial speed is proportional to the inverse of the ping time, <em>and</em> it doubles every ping time. So a connection with 10ms ping will start out 10 times faster than a connection with 100ms ping, <em>and</em> it will double every 10ms instead of every 100ms. This is why the distance makes such a huge impact, and why e.g. you will basically never see this &quot;slow start&quot; stuff in a local network. It happens too fast to notice.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fudgemeister" target="_blank">fudgemeister</a>
+			<div class="markdown"><p>Edit: I misread this reply so ignore mine.</p>
+<p>This isn't really true... 1ms latency with dropped packets on a 10half link will never outpace 1000full on a link from Tokyo to New York. There are a million aspects to consider and physical distance is not one I would list in the top 10. Latency, yes, but it is much more relational to network design than distance.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Zamp_AW" target="_blank">Zamp_AW</a>
+			<div class="markdown"><p>Why do you compare apples to oranges? If the topology, processing power and bandwidth are equal, latency is the only defining factor how fast the best window size can be determined.
+This also goes for acknowledgement of packets and thus it affects throughput. </p>
+<p>10 half is dead, may it rest in peace.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marcan42" target="_blank">marcan42</a>
+			<div class="markdown"><p>I said the <em>process</em>, i.e. the ramp-up, is faster with lower latency. Please read my comment carefully, I mentioned how higher latency does not imply slower achievable speeds but does imply slower ramp-up. I'm using &quot;distance&quot; as a proxy for latency because this is ELI5 and it's roughly correlated.</p>
+<p>And yes, a 10half link with 1ms latency <em>will</em> outpace a 1000full line across the globe... at least initially. You're going to get something like 25KiB/RTT at first, so the 10half link will immediately saturate (~200Mbps achievable were it not for the link), while the 1000full link with (say) 200ms latency will barely get 1Mbps at first, until slow-start has a chance to kick it up, maybe 600ms later.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
