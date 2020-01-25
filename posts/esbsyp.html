@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: Why do some game need restarting after changing graphic/display settings and others dont?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="esbsyp">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/esbsyp/eli5_why_do_some_game_need_restarting_after/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/esbsyp" onclick="return false">Why do some game need restarting after changing graphic/display settings and others dont?</a>
+		</h2>
+		<!--<span class="date">2020-01-25</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Why do some game need restarting after changing graphic/display settings and others dont?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ff902to">
+		<a class="author" href="https://www.reddit.com/user/MoiMagnus" target="_blank">MoiMagnus</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Some games are like pizzas. If you want more or less stuff on it, that's simple, just take them out or add new stuff. But if at the middle of making the pizza the customer says &quot;to be honest, I would have preferred a pizza twice as big&quot;. That demand is very difficult to answer without restarting the pizza from the start.</p>
+<p>Some games are like soup. Want more soup? Just put the soup into a bigger cup and add more ingredients to it. No need to start from zero.</p>
+<p>In the end, it depends on how the program is build and how complex the program is. Moreover, debugging issued that come from allowing the user to change all the settings at any moment can be VERY lengthy, and time is very precious in game development, so maybe focussing on debugging the remaining of the game is more important, right?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ff8y4xk">
+		<a class="author" href="https://www.reddit.com/user/NerdyWeightLifter" target="_blank">NerdyWeightLifter</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Some games use different resolution models for all the objects in the scene for each different display resolution, so they need to swap out everything they loaded for the previous resolution. Easier to just restart.</p>
+<p>Other games have more variable resolution object models.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ff9enj1">
+		<a class="author" href="https://www.reddit.com/user/surfmaths" target="_blank">surfmaths</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Actually, almost no game need to restart to change the graphic settings, but most games are written without expecting it to change and have lasting visual side effects.</p>
+<p>Typically, text font, level of detail of geometries, texture resolution are choices made at initialization. Then you load the one you need, and go on with the rest of the game. If you change the graphic settings it will work, it's just that those decisions won't be remade until you restart, thus temporarily playing with sub optimal visuals.</p>
+<p>As a game developer you can put that initialization into a re-initialization routine... or you can simply restart the game. It's better to spend development time on improving the quality of the gameplay rather than optimizing resolution change, which does not happen often.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ff9use9">
+		<a class="author" href="https://www.reddit.com/user/mechkg" target="_blank">mechkg</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's sort of like tuning or replacing parts of a car engine while it's running vs when it's stopped. 99% of the time it's just not worth it trying to mess with a running engine if you can simply stop and restart it.</p>
+<p>The reason some games even do that is a side effect from how modern games manage the loading of models/textures/shaders/animations etc. If older games had a very simple approach where everything you might need in the current level would have been loaded into memory in advance at the start of the level, modern games use an on-demand or &quot;streaming&quot; approach, where the resources are loaded in the background just before they are needed depending on where you are in the game world and similarly unloaded if they are no longer needed.</p>
+<p>This is very difficult to get right so there are no obvious visual glitches, stutter or &quot;pop-ins&quot; but it became necessary because most games these days are some sort of open world (which is a fancy way of saying they have one huge level instead of multiple smaller ones) and it wouldn't fit into memory it you tried to use the old simple approach of loading everything at once.</p>
+<p>But once you have a mechanism for loading/unloading stuff on the fly, changing settings on the fly (which typically involves switching to a different set of textures/models/shaders) becomes (almost) a free bonus.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ff9u59t">
+		<a class="author" href="https://www.reddit.com/user/Areloch" target="_blank">Areloch</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Realistically, nothing that games do absolutely requires a restart. Even the code that sets up the window displaying the game can be thrown out and remade as needed.</p>
+<p>But all of that flexibility to change stuff quickly and easily on the end user's side comes with design and cost implications for the developer.</p>
+<p>Take a car, for example. They are incredibly complex machines with tens of thousands of individual components, require special tools to assemble and take apart, and if you ever need to change or replace something after it leaves the factory, you can expect it'll take some time, energy and tools to do said replacement.</p>
+<p>A car COULD be designed to be completely tooless, or have fewer individual pieces, so that it becomes very easy for the end user to go in and pop out parts and replace them whenever they want, quickly, easily and without specialized tools. However that requires a significantly higher amount of design time, and creation cost to the maker of the car, and often that extra work either goes underutilized, or is so high it makes them have to charge more.</p>
+<p>So the designers figure out what level of work they're willing to put in for those people that DO plan to swap parts of the car out compared to the people that will rarely if ever do it, and balance it against how many man-hours and how much money it'll take to do those user-friendly tooless designs. Some designers make it incredibly easy, and some just don't care and tell the end user to suck it up.</p>
+<p>Designing a similar level of flexibility/ease of use for the end user of a game or game engine is metaphorically the same.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/esbsyp" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
