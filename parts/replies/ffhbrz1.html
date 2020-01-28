@@ -1,0 +1,114 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Pinball-Gizzard" target="_blank">Pinball-Gizzard</a>
+			<div class="markdown"><p>So I found this very interesting and informative, but to extend OP's line of questioning, what makes a computer understand machine language? How do they accept inputs at all? Are they just humoring us? Why are we here???</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FourAM" target="_blank">FourAM</a>
+			<div class="markdown"><p>At the heart of the computer is a CPU, or Central Processing Unit. This is just a really large array of switches wired into patterns, except manufactured on a microscopic scale.</p>
+<p>The neat thing about these switches is that instead of a mechanical action, they take electricity as their &quot;input&quot;. So imagine you have three wires going into this &quot;switch&quot;, which is actually called a gate.</p>
+<p>In this gate, electricity can be flowing into the first wire, but it can't flow out of the second wire unless the third wire also has power. In this way, we can use electricity to turn the gate on or off. Imagine a light that turns on when you hold a button down via a relay; the mains power goes into one wire, and the button gives power to a second wire and only then can the third wire carry current through the relay to light up the light. (This is the reason the material used to build computer chips is called a semi-conductor; it only conducts electricity in some conditions. In this case, that's when current comes into both inputs).</p>
+<p>Now, this basic gate is called an AND gate (NOTE: it's actually not the most common type in computer chips these days, but as a basic introduction to these things it's a good example, so we'll go with it). The reason we call it an &quot;AND&quot; gate is because both input 1 and input 2 have to have current for it to output any current.</p>
+<p>Now, remember how &quot;zeros and ones&quot; seem to be a meme with computers? That's a shorthand for &quot;on&quot; or &quot;off&quot;. So using this AND gate, we can tell if our inputs are both 1s (we get a 1 on the output if this is true), or if one or both inputs are 0 (we get a 0 on the output). So already we have some very simple logic.</p>
+<p>So what happens next is where it starts to get complex, but really cool. You can use the output of one gate as one of the inputs on another gate, and another, and another and so on. By chaining these gates together, you can form a circuit that can provide a predictable output from a given input - very similar to our AND gate alone, but with far more possibilities.</p>
+<p>This is another spot where the ones and zeros come into play; the reason we use 1s and 0s is because we can notate the circuit statuses in numbers - and numbers are great because we can do math with them.</p>
+<p>The ones and zeros - called &quot;binary&quot; - are a mathematical <em>base</em> of two. In other words, it's a way of representing numbers with only two digits. We're used to Base 10 (we have 10 digits, 0 - 9, and once we need to go higher than 9 we carry over into the tens place and get 10 (one set of 10 and zero more). In binary, we carry after just one! While this is pretty impractical for daily use by people, it's perfect for out computer - again because of the need to represent on or off of the circuit. In binary, if i wanted to count from 0 to 4, it would go like this: 000 = 0, 001 = 1, 010 = 2, 011= 3, and 100 = 4. Since I'm representing my numbers using just two digits, I can use circuits that are either on or off to represent them!</p>
+<p>So back to our circuit - how can it &quot;understand&quot; machine code instructions? Well, machine codes are all just numbers represented by a pattern of on/off circuits. The CPU has electricity sent into its inputs in the pattern representing the binary number of the instruction it is to perform - and those inputs go into gates, that affect other gates, that affect other gates, and so on. <em>Based on the input pattern, a chain reaction of switches occurs in order to cause a predictable output at the end of the circuit chain.</em></p>
+<p>Machine code instructions contain more than just the operation code (or &quot;opcode&quot; for short). Perhaps only the first 8 &quot;bits&quot; (bits are binary digits, the ones and zeros) signal which instruction is to be performed, and perhaps the next 16 are two 8-bit numbers to be added together, or the memory location of some data to be moved to another location.</p>
+<p>At the most basic level, machine codes typically fall into two categories: Mathematical or logical. Examples of mathematical might be addition, subtraction, or even shift (take all the binary digits and move them one place to the left or right) - in binary, that's like multiplying or dividing by the power of two! Logical operations might do things like copy a value from one place in computer memory to another, or to jump to another spot in the list of machine code instructions if a condition is met.</p>
+<p>This last part is important, because it means that we can create lists of instructions  that play out differently depending on the data inputted to them. The additional layer of logic created by this branching ability is what makes software so incredibly versatile - we're no longer limited by the logic built into the physical chip (hardware); our list of instructions can contain it's own logic, specific to the type of task it's meant to perform!</p>
+<p>As you can imagine though, getting from this low level to what we have today involves a CPU with billions of gates, running at insane speeds (the gates cycle through up to 4-5 billion instructions per second!).</p>
+<p>The binary numbers in a computer can represent all kinds of things; one might be recording how long the computer has been running, one might contain the instruction number of the program we're running (used to keep track for the branching we talked about before), one might be the color of a pixel on the monitor. As the CPU screams through the program code at an incredible rate, all those gates are constantly &quot;doing&quot; what the machine code tells them to do.</p>
+<p>So many programs have been written, and it all happens so fast, that to us, pressing a key on the keyboard and seeing letters appear almost seems like instantaneous magic; however the computer will have done millions of things between when your finger presses the key and when the letter appears on screen:</p>
+<ol>
+<li>Read the keyboard</li>
+<li>Determine what program has focus</li>
+<li>Determine if the user is typing into a field</li>
+<li>Determine what the pressed letter looks like in the font being used</li>
+<li>Draw that letter on the screen as a series of dots in the correct color, with the curves smoothed out using colors blended between the letter and the background</li>
+<li>Move the cursor over the distance of that letter, in that font, at that size</li>
+</ol>
+<p>And those are all very high level. For each one of those steps, there are a bunch of smaller programs that do things like &quot;read from the keyboard&quot; or &quot;load a font from the hard drive&quot;, and those have even smaller programs assisting them, like &quot;read data from a disk&quot;, and even smaller &quot;move disk to a certain position&quot;, all the way down to basic machine code &quot;add these two numbers&quot; &quot;store the result in RAM&quot;.</p>
+<p>A literal 5 year old would never have the attention span for this, but I hope this both provided enough detail and simplified/omitted enough detail to give you a general idea (or inspire you to dig deeper!)</p>
+<p>TL/DR; Use on or off electric circuits to represent numbers. Design circuit that does math, can keep the result around for later, and can move over a list of instructions about what math to do and where to store the results, including jumping around to other parts of the instruction list when necessary, and <em>boom</em> it's a general-purpose computer.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dragoniel" target="_blank">Dragoniel</a>
+			<div class="markdown"><p>Reading through this thread, I think this is the only response that answers (or, rather, begins to answer) the question fully. Everyone else is talking about high level code for some reason, whereas the question is essentially about how a binary electric signal (on or off) is being turned in to a complex set of instructions.</p>
+<p>And yea, this topic is impossible to &quot;ELI5&quot;.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ISureDoLikeCats" target="_blank">ISureDoLikeCats</a>
+			<div class="markdown"><p>Guys can we get a quick round of applause for the human race for inventing this miracle?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hamburglin" target="_blank">hamburglin</a>
+			<div class="markdown"><p>Thanks, this is the real answer that I waited way too long to figure out myself. I think it was a minecraft video of making a simple cpu and ram years ago in-game before it really clicked.</p>
+<p>Yeah, 1's and 0's, but really it's yes/no's... or simple logic. It's amazing what yes/no or on/off can achieve.</p>
+<p>Programming language is simply turned into a very complex electrical diagram of lines and switches. I wish logic and algorithms in general were taught as a required course in school. It would help society in so many ways. </p>
+<p>I cant tell you how many people I watched flunk out of the beginners programming course in highschool and college not only because of the programming language, but because of their inability to grasp logic based flow.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/r448191" target="_blank">r448191</a>
+			<div class="markdown"><p>Machine code are sets of instructions that the machine (the CPU) &quot;understands&quot;.</p>
+<p>Ones and zeros are just carried by electrical on/of switching. Processors have their own &quot;programming&quot; that allow them to interpret these ones and zeros and tells them what ones and zeros to produce in communication with other components (eg the RAM), in response. This the way the CPU &quot;understands&quot; and handles the machine code.</p>
+<p>Edit: as is pointed out below, this &quot;programming&quot; exists in the form of physical properties. A better analogy would be that a CPU is like a system of water pipes, locks and reservoirs. Water is turned on and off in the input pipes, and after a complex set of interactions, water is turned on and off in specific output pipes.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CheapMonkey34" target="_blank">CheapMonkey34</a>
+			<div class="markdown"><p>Well actually a CPU doesn’t really understand microcode. Microcode are just mapped to logic gate instructions inside the CPU. </p>
+<p>E.g. the opcode ‘load a’ (put the information from the bus into register a’ ) is deep down just a ‘write enable’ getting switched on on the flip flops that make up the a register. Then when a clock cycle happens, the bits get latched in the a register and the execution is complete.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ricky_Rollin" target="_blank">Ricky_Rollin</a>
+			<div class="markdown"><p>Did we tell the machine what 1 and 0 are supposed to do?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/novamatrix" target="_blank">novamatrix</a>
+			<div class="markdown"><blockquote>
+<p>what makes a computer understand machine language</p>
+</blockquote>
+<p>pulled from a previous question asked somewhere sometime, so i didnt have to type it out.</p>
+<p>They  quite literally don’t understand them in the sense that a human being  understands something. Machine language is a set of instructions for a  computer to execute. At the lowest level, ignoring microcode, a machine  language instruction tells a processor to perform a particular  operation. For example, an add instruction tells the processor to add 2  values. There may be several variants to that instruction depending on  where the values are at the time the instruction is executed. However,  the processor has no idea of the meaning of the instruction in the sense  of what the result signifies mathematically. It is simply a  transformation of the current state of the machine into a next state  based on some rules. A register will hold the result afterwards. That  register is generally one of the registers that held an operand before  the operation. Possibly an overflow flag will indicate whether or not  the operation resulted in an arithmetic overflow. And the instruction  counter will point to the next instruction. The rules for each  instruction aren’t rules in the written sense. They are hardware that  behaves in known ways.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/quantumm313" target="_blank">quantumm313</a>
+			<div class="markdown"><p>to add onto this, eventually if you keep zooming in on a processor you just get to a bunch of transistors in logic gates. A 1 will make a gate go hi, and a 0 will make it go low. These gates get combined into more and more complex things until you have a full processor.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/InvalidUsername2404" target="_blank">InvalidUsername2404</a>
+			<div class="markdown"><p>Some links to a video series where this person made there own basic-ish computer. Go to all the videos that have CPU in the title. Link <a href="https://www.youtube.com/playlist?list=PLowKtXNTBypGqImE405J2565dvjafglHU" target="_blank">here</a></p>
+<p>Hope this helps people with the understanding</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheSinisterSex" target="_blank">TheSinisterSex</a>
+			<div class="markdown"><p>Something that might be worth looking into when discussing machine understanding is the &quot;Chinese room&quot; argument. It's more about AI, but the logic applies to this discussion as well.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/the_honest_liar" target="_blank">the_honest_liar</a>
+			<div class="markdown"><p>You must understand, young programmer, it takes a long time to say anything in machine language. And we never say anything unless it is worth taking a long time to say.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/flakeoff101" target="_blank">flakeoff101</a>
+			<div class="markdown"><p>As a massive Tolkien nerd, typing all that out was worth it just for this response.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ScrollButtons" target="_blank">ScrollButtons</a>
+			<div class="markdown"><p>This is good but I'd bring it down to something more like:</p>
+<p>Let's say you want to tell your friend across the street to remember to bring his toy tomorrow for show-and-tell but it's already almost bedtime and you can't go over there or call him. </p>
+<p>Instead, your friend has a special language where you can turn your lights on or off and the pattern you make spells words. But, it's really hard to remember the whole code!</p>
+<p>You're in luck, though! Your friend's sister is having a sleepover with your sister, she knows the special language!</p>
+<p>Oh no, but his sister doesn't speak English, she speaks French! But again, you know your sister speaks English and French!</p>
+<p>You ask your sister to ask her friend to control the lights and interpret what you're saying to your friend so finally, you can remind him.</p>
+<p>You say to your sister, &quot;Remember your toy for show and tell!&quot; Your sister says to her friend, &quot;Souviens-toi de ton jouet demain!&quot; As his sister flips the lights on and off, your friend watches the lights and understands the message. Tomorrow, he will remember his toy!</p>
+<p>Your friend is the computer. His sister is the assembler. Your sister is the compiler. You are the programmer.</p>
+<p>Programmers write code (say the message), the compiler translates that code so the assembler will understand  (English to French), and the assembler translates that to the computer (flipping the lights on and off).</p>
+<p>Computers only know &quot;on&quot; and &quot;off&quot;. A programmer could write a program entirely using on/off (binary) but a simple program can be millions of on/offs! Instead, there's an assembler which translates binary to a very rudimentary language. Again, programmers could write a program entirely in assembly but, wow, that can still be very long! So finally, programmers use a compiler which translates assembly into a coding language. Finally, the coding language is easy enough to remember for programmers and much shorter than assembly or binary.</p>
+<p>ETA: I just realized maybe you meant how does a computer go from understanding binary (on/off) to making a program start up on your screen.</p>
+<p>Continuing the analogy...</p>
+<p>The on/off code doesn't actually spell words, it describes lines your friend writes down, like when you're writing down words and 1 tall line and 1 arch that starts at the bottom and stops at the top is an &quot;r&quot;. Because he wrote it down, he can see the whole word at a time &quot;remember&quot;. His brain fires up and when he reads &quot;remember&quot; he's already thinking about what he needs to remember. By the time he reads &quot;toy&quot;, his brain is already building up to remembering his toy... But toy for what? He's already in motion trying to remember until he reads &quot;for show and tell&quot; and then bam! He goes right over to get the special toy and put it in his bookbag.</p>
+<p>Your computer knows binary because it's made of tiny little transistors whose only job is I'M OPEN, I HAVE ELECTRICITY and I'M CLOSED, NO ELECTRICITY HERE.</p>
+<p>Other transistors listen for them to scream about being open or closed and then react by opening and closing which triggers yet more to open and close. As each opens and closes in their turn, they're specially made to point at other transistors who open and close in different directions. If you keep going, you can build very complex sets of reactions which other pieces of hardware (like a screen) can use to display stuff. Imagine a really long game of telephone!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SantasDead" target="_blank">SantasDead</a>
+			<div class="markdown"><p>This was much easier to understand imo.</p></div>		</li>
+					</ul>
+		</ul>
+	

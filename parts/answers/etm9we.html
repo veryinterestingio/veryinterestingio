@@ -1,0 +1,129 @@
+<div class="answers">
+	<div class="answer" data-handle="ffhbrz1">
+		<a class="author" href="https://www.reddit.com/user/flakeoff101" target="_blank">flakeoff101</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Programs are usually written in a &quot;programming language&quot; that is easy for people to learn and use. Then there is &quot;machine language&quot;, basically a string of 1s and 0s arranged in complex patterns that a computer can understand.</p>
+<p>In-between the person and and the computer is a special program called the &quot;compiler&quot;. It takes your programming language and turns it into machine language. They're like an interpreter; if I need to talk to somebody who speaks Russian, but I only speak English, I have to find someone who speaks both to translate what I'm saying. </p>
+<p>Why don't programmers all just learn machine language? Well, it's really, really hard. And it takes a long time to say anything. So the smartest ones who can speak it come up with a programming language that the rest of us can understand. Then the first things they do are write a compiler and publish a dictionary and rules of their language.</p>
+<p>Source: am programmer.</p>
+<p>EDIT: If you're also curious about what the 1s and 0s mean to the computer, check out some of the excellent engineering comments.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ffhdgye">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ffhd04p">
+		<a class="author" href="https://www.reddit.com/user/white_nerdy" target="_blank">white_nerdy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The computer's built so that coded patterns of 1's and 0's physically open / close different paths for electricity, to make it do different things.  These coded patterns are called &quot;machine code.&quot;</p>
+<p>The details of exactly what patterns are available, and what they mean, can be different for different models, brands, or kinds of computers.  A CPU manufacturer typically publishes a manual with a complete specification of the patterns.</p>
+<p>Working directly with the coded patterns the computer actually uses is inconvenient for human programmers.  It would also be more efficient if the same program could be used on multiple models / brands / kinds of computers.</p>
+<p>So people created programs (compilers, interpreters, shells, JIT's) that allow the computer to &quot;understand&quot; English-like commands.  This involves a &quot;translation&quot; process, sort of like translating from German to Italian.  (Except the computer is, well, a computer, so it expects programmers to use perfect spelling and grammar, but will happily translate a buggy or completely nonsensical program as long as it's grammatically correct.)  It can be done in a few ways:</p>
+<ul>
+<li>A compiler works like translating a novel.  A long program's translated all at once, then the result's saved in a file that the computer can run.</li>
+<li>An interpreter analyzes one &quot;sentence&quot; (line of code) at a time, runs that one, then moves on to the next.  Sort of like translating a novel out loud as you read it.</li>
+<li>A shell lets you type a line of code, immediately runs it, then shows you the result.  Sort of like when a businessman or government official goes to a foreign country, they might bring a human translator who translates each sentence immediately when they say it.</li>
+</ul></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ffhk19c">
+		<a class="author" href="https://www.reddit.com/user/Hypothesis_Null" target="_blank">Hypothesis_Null</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A lot of people are giving you metaphors, or just repeatedly using the phrase 'the computer interprets' as though no matter how deep you drill down there is some sort of ineffable, intelligent gremlin that performs the magic of understanding.</p>
+<p>So, here is what's done.  It may be a bit harder to follow than ELI5 ought to be, but it should actually answer the question in as simple a form as I can make it.</p>
+<p>The most basic kind of process that would resemble a computer is an arithmetic processing unit.  But we'll focus on an even more basic kind of processor than that - something that just lets us store numbers in memory, and add them together.  We'll do this with 4-bit numbers.</p>
+<p>What you need to make this device is an adder circuit, and a bunch of memory circuits.  You can look up how to make these from logic gates - but all you need to understand is their basic input-output behavior.  </p>
+<p>For an 4-bit adder, you'll have 8 input lines which you can make high or low (first 4 represent first number, last 4 represent second number) and 4 output lines, which will represent their sum (with any carry-over truncated.)  This circuit acts more or less instantly - whatever you assert on the input lines, the output will automatically match.</p>
+<p>For an 4-bit memory circuit, you have 5 input lines.  You have 4 input lines which you assert as high or low to represent your number.  And then you typically have a one more input line which, when asserted, will 'store' each of these bits, so that the 4 output lines match the current value of each of the 4 input lines, and will continue to output them until they get another 'store' command.  Without that 'store' command the memory slot will just ignore the current inputs.</p>
+<p>To make our super-dumb calculator, you'll arrange these kinds of circuits together as shown in the following diagram, with 4-wire buses (4 wires in parallel that link outputs of circuits to inputs of others).  The horizontal and vertical lines represent these buses.  The sideways arrows -&gt; represent 'gates'.  A gate is just an electrically-controlled switch.  Not drawn are a bunch of single wires connected to these gates.  If that wire goes 'high' the gate is opened.  If the wire is 'low' the gate is closed. I'll mention what the ARB is for in a minute.  We'll attach the input to our gates at the memory-inputs to the memory's 'store' function as well, so when the gate is opened it'll store the value.</p>
+<blockquote>
+<p>|||| -&gt; memory 0---Adder......|||| &lt;- ARB 1<br />
+|||| ------------------Adder --&gt;|||| &lt;- ARB 2<br />
+||||.....................................|||| &lt;- ARB 3<br />
+||||.....................................|||| &lt;- ARB 4<br />
+|||| &lt;- memory 1 &lt;-----------||||<br />
+|||| &lt;- memory 2 &lt;-----------||||<br />
+|||| &lt;- memory 3 &lt;-----------||||<br />
+|||| &lt;- memory 4 &lt;-----------||||<br />
+|||| &lt;- memory 5 &lt;-----------||||   </p>
+</blockquote>
+<p>So how would we use this to do operations?</p>
+<p>Well, let's say we want to add the numbers 3 and 5 together.  For now let's just say that the value of 3 (0011) is stored in memory slot 1 and the value of 5 (0101) is stored in memory slot 2.  So how do we do that?</p>
+<p>Well, they have a single set of 4 wires along the left-hand side attached to the outputs of all the memory slots.  If we 'open the gate' at the memory 1 output, then the value of 3 (0011) will spread across the four wires.  It will run up against the input to the adder, and the input to the memory 0 slot.  We can't also open up the gate at the memory 2 output, because that would put both the values of 3 and 5 (0011 and 0101) on the bus at the same time, so you'd probably get a random result, or the superposition of the two (0111 = 7).  So we can't just open both gates and let them flow into the adder.  And two 4-wire buses would be inefficient, since we'd need two gates for each memory circuit, one to connect it to each of the two buses.</p>
+<p>That's why memory slot 0 is there.  We open the gate from mem1, which will deliver its value (0011=3) to the adder and the input of memory 0.  Then we open the gate on memory zero input (which is also tied to the 'store' line) so the value in mem1 gets delivered to and stored in mem0.  Now the value that was in memory slot 1 is continually being input to the adder via the memory 0 output.</p>
+<p>So, then we close the gate leading from memory 1 to the left bus, and we close the gate leading into memory 0 so it won't get overwritten with a new value.  Then we open the gate on the output of memory 2, so that the value there (0101=5) flows directly into the Adder's second input.  With this gate open connecting memory 2 to the adder, and memory 0 deliverying memory 1's value to the adder, the output of the adder will be the sum of the values in memory 1 and memory 2 (1000 = 8).  This value will be output constantly at the output of the adder.</p>
+<p>If we open the gate on the output of the adder, and open the gate to the input of memory slot 3, then the sum will get stored in memory slot 3.  Thus we will have added two values and stored the result.</p>
+<p>Going back to the ARB thingy - we need a way to place our desired values into memory in the first place.  How do we get the values of 3 and 5 into memory slots 1 and 2 to begin with?  We have to put them there.  So ARB_IN is actually just a source of high voltage connected to the 4-wire bus with 4 individual gates.  We open or close those gates to place a total value on the bus, and then open the input of a single memory slot to store the value.  So to store the value 3 in memory 1, we open the memory 1 input gate, and then open ARB_In gates 3 and 4 while leaving 1 and 2 closed (0011 = 3).  We do a similar thing to place the value 5 (0101) in memory 2.  Thus, we can input ARBitrary values into arbitrary memory by opening the right combination of gates.  This is also why we need a gate on the adder output - so we can block off the result constantly flowing out of it if we want to put an arbitrary value on the memory input line instead.</p>
+<p>So this really just breaks down into 4 steps.  Leaving all other gates closed:</p>
+<blockquote>
+<p>1) Open gate mem1_in, ARB gate 3, and ARB gate 4<br />
+2) Open gate mem2_in, ARB gate 2, and ARB gate 4<br />
+3) Open gate mem1_out and mem0_in<br />
+4) Open gate mem2_out, adder_out, and mem3_in  </p>
+</blockquote>
+<p>This will:</p>
+<blockquote>
+<p>1) store the value 3 (0011) into memory slot 1<br />
+2) store the value 5 (0101) into memory slot 2<br />
+3) store the value in mem1 into mem0<br />
+4) deliver the value in mem2 to the adder, adding it with mem0 and storing it in mem3  </p>
+</blockquote>
+<p>This is our program. <em>This</em> is what we need to tell the computer to do, at the most basic, fundamental level.  Build it so that we can make it do different, useful things by opening and closing gates, and then tell it what gates to open and close in what order to make something happen. So what does this <em>program</em> look like when written for the computer?  Well, we have 16 total gates. We'll label them 0-9 and the remaining six A-F.</p>
+<blockquote>
+<p>0) ARB 4<br />
+1) ARB 3<br />
+2) ARB 2<br />
+3) ARB 1  </p>
+<p>4) mem0_in<br />
+5) mem1_in<br />
+6) mem2_in<br />
+7) mem3_in<br />
+8) mem4_in<br />
+9) mem5_in  </p>
+<p>A) mem1_out<br />
+B) mem2_out<br />
+C) mem3_out<br />
+D) mem4_out<br />
+E) mem5_out  </p>
+<p>F) adder_out  </p>
+</blockquote>
+<p>So our 4 instructions above become:    </p>
+<blockquote>
+<p>1) open gates 5, 1, and 0<br />
+2) open gates 6, 2, and 0<br />
+3) open gates A and 4<br />
+4) open gates B, F, and 7   </p>
+</blockquote>
+<p>These gates are all blocking (no signal gets through) if they receive a low voltage (0) and are connecting if they receive a high voltage (1).  So that's exactly what our instruction looks like.  Our instruction is formatted as 16 high/low signals delivered to the gates in the format of:</p>
+<blockquote>
+<p>FEDC BA98 7654 3210</p>
+</blockquote>
+<p>(spaces added to make it easy to identify individual bits)</p>
+<p>So our 4 instructions, finally, in fundamental 'machine code' are:  </p>
+<blockquote>
+<p>1) 0000 0000 0010 0011<br />
+2) 0000 0000 0100 0101<br />
+3) 0000 0100 0001 0000<br />
+4) 1000 1000 1000 0000  </p>
+</blockquote>
+<p>That's it.  That's the machine code.  There's no interpretation going on.  There's no Gremlin. These are the physical instructions that make the machine go.  You could deliver these instructions, say, in the form of a punch-card.  Have a cardboard card with lines of 16 perforated holes that can be punched out. Place it between a piece of metal with high voltage, and a line of 16 spring-loaded contacts each attached to a gate. Any holes that are punched out will let the contacts connect to the plate, delivering voltage to their individual gate.  Perform each instruction by pushing the card through, to the next line so all 4 lines occur in-sequence (with all gates closed in between to prevent any instruction mixing).</p>
+<p>All computers are just [much] more complicated combinations of this fundamental mechanism.  No matter how many layers of abstraction there are, at some point the system just turns into 'telling which gates to be open and closed for each step to occur&quot;.  And the computer doesn't have to 'interpret' anything.  At the fundamental level, the instruction <em>is</em> the set of signals that electro-mechanically open and close the gates.</p>
+<p>If you read through all this, well done.  Let me know if it was helpful, or if any part was unclear.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ffhckxz">
+		<a class="author" href="https://www.reddit.com/user/knight_who_says_knee" target="_blank">knight_who_says_knee</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you want to dive deep in this topic, pick up Code: The Hidden Language of Computer Hardware and Software. It starts with basically wire and electricity and explains how to build a computer from scratch</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
