@@ -1,0 +1,48 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Thrawn89" target="_blank">Thrawn89</a>
+			<div class="markdown"><p>Yeah, to put it simply, GPUs best operate on tasks that need to do the same instruction on a lot of data, and CPUs best operate on tasks that need to do a lot of instructions on the same data.</p>
+<p>A bit of a pedantic clarification to the above is that GPUs are turing complete and can compute anything a CPU can compute. Modern GPUs implement compute languages which have full c-like capabilities including pointers. The instruction sets definitely implement branches and as such GPUs are capable of making run time decisions like the CPU. I assume most GPUs don't implement every single instruction x86 processors do, but compilers will emulate so the users are not out of luck. The biggest difference is just speed, you're correct that GPUs have issues with decision instructions.</p>
+<p>The reason GPUs are so bad at decisions is they execute a single instruction for like 32-64 units of data simultaneously. If only half of that data goes down the TRUE path, then the shader core will be effectively idle for the FALSE data while it processes the TRUE path and vice versa. If effectively kneecaps your throughput since branches almost always execute both paths where CPU only follows 1 path.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/foundafreeusername" target="_blank">foundafreeusername</a>
+			<div class="markdown"><blockquote>
+<p>Modern GPUs implement compute languages which have full c-like capabilities including pointers. </p>
+</blockquote>
+<p>Do they? I think their memory access is a whole lot more limited. Can a core randomly read and write memory beside its own little pool? It might be different now but I remember a few years ago that it was a lot more restricted. Specificially dynamic memory allocation was absolutely impossible</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/created4this" target="_blank">created4this</a>
+			<div class="markdown"><p>That doesn’t stop its ability to be Turing complete, it just stops the GPU from running the whole computer.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Thrawn89" target="_blank">Thrawn89</a>
+			<div class="markdown"><p>It can't dynamically allocate, but it can randomly read and write large buffers that are bound to it with pointers. They are called UAVs and are the cornerstone of all compute shaders (CUDA, OpenCL).</p>
+<p>Edit: Google is doing a fail on UAV, so just wanted to clarify I mean UnorderedAccessView not autonomous drones.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ikvasager" target="_blank">ikvasager</a>
+			<div class="markdown"><p>Sir, this is ELI5.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/apistoletov" target="_blank">apistoletov</a>
+			<div class="markdown"><blockquote>
+<p>turning complete</p>
+</blockquote>
+<p>Turing</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Thrawn89" target="_blank">Thrawn89</a>
+			<div class="markdown"><p>Haha, autocorrect betrays me, thanks</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/urinesamplefrommyass" target="_blank">urinesamplefrommyass</a>
+			<div class="markdown"><p>So, if I'm working on huge spreadsheets, a GPU would also help in this situation? This is new to me</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/plaid_rabbit" target="_blank">plaid_rabbit</a>
+			<div class="markdown"><p>Well, not really.  It’s based on how the program is designed to work.  Most programs are written to use the CPU, very few use the GPU.  Each cell in a spreadsheet could have different rules, and it wants to do the same thing for every cell, so the more general use CPU is likely used.</p>
+<p>But logically....  Computer images are like 1000x1000 cell spreadsheets, with each cell containing 4 numbers to represent a color.  To resize an image requires millions of multiplications.  And you want to have 60 times a second so it renders smoothly.</p></div>		</li>
+					</ul>
+		</ul>
+	

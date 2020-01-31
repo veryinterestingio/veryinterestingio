@@ -1,0 +1,65 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dod6666" target="_blank">dod6666</a>
+			<div class="markdown"><p>So my CPU (Pentium 4) from the early 2000's was clocked at 1.5GHz on a single core. My current day graphics card (1080Ti) is clocked at 1582MHz with 3584 Cores. Would I be more or less correct in saying my graphics card is roughly equivalent to 3584 of these Pentium 4s? Or are GPU cores limited in some way other than speed?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Erick999Silveira" target="_blank">Erick999Silveira</a>
+			<div class="markdown"><p>Architecture, cache and several other things I cannot say I understand make a huge difference. One simple example is when they change the architecture and the shaders count drops because of the more efficient design. Making each shader some percentage better than old ones, multiplying it to thousands and even with fewer shaders, you have more performance.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Archimedesinflight" target="_blank">Archimedesinflight</a>
+			<div class="markdown"><p>You'd be incorrect. The x86 architecture of the Pentium is a more general use processing system, while GPUs are slimmer down specialized cores capable of simpler instructions faster. It's like the towing capacity of a truck and a system of winches and pulleys. The Truck will pull and lift through brute force, but can used to drive to the store as well. The pulleys and winches would have significant mechanical advantage to say pull the truck out of the mud, but you're typically not using a winch to go to the store.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Exist50" target="_blank">Exist50</a>
+			<div class="markdown"><p>That does rather falsely assume, however, that the Pentium does all ops in a single cycle. Most of the big ones would be broken down into multiple cycles.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DrDoughnutDude" target="_blank">DrDoughnutDude</a>
+			<div class="markdown"><p>There is another rarely talked about metric which is IPC or Instructions per Clock(or Cycle). Basically what a CPU core can accomplish per Clock Cycle is far greater than what a GPU core can accomplish per Clock. ( This is related to why a CPU is a more jack-of-all-trades processor, but not the whole story. Computer Engineering is complicated)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cyber2024" target="_blank">cyber2024</a>
+			<div class="markdown"><p>Cant a single core only process one thread at a time though right? It's just efficiently arranging the computations of the two threads, but not actually simultaneously computing.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Obsidiate_" target="_blank">Obsidiate_</a>
+			<div class="markdown"><p>Kind of right. The secondary thread is nowhere near as powerful as the primary core thread. People commonly mistake this.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cyber2024" target="_blank">cyber2024</a>
+			<div class="markdown"><p>...wait, not all threads are equal? Or does it swap primary and secondary threads based on looking ahead at complexity?</p>
+<p>I assumed any thread of execution instructions would be basically the same... And in my limited threaded mpu programming experience (FreeRTOS on an ESP32), I put whatever in whichever thread and hope for the best.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kieranvs" target="_blank">kieranvs</a>
+			<div class="markdown"><p>There isn't a primary and a secondary, there are two equally capable copies of most of the hardware in the core, but they have to share some bits which aren't duplicated. So if one is doing integer maths while the other is waiting for memory, then everything's great. But if both want to do the same thing at the same time, you could run into trouble (slowdown). It's presented to the OS as two logical processors and the OS will be smart enough to schedule on different physical cores first before loading up both the logical cores.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blueg3" target="_blank">blueg3</a>
+			<div class="markdown"><blockquote>
+<p>Cant a single core only process one thread at a time though right? It's just efficiently arranging the computations of the two threads, but not actually simultaneously computing.</p>
+</blockquote>
+<p>Mostly, but it's complicated. A single core has a bunch of logic units that can all operate at once and a pretty deep pipeline. So at any point in time, it's doing parts of a lot of instructions. Hyperthreading makes the pipeline carry instructions from two independent threads of execution (two sets of registers), which means it's easier for the processor to fully load all of the logic units. If all of the threads on a computer are doing similar tasks, such that you're really bottlenecked by how many of a particular logic unit you have, hyperthreading will do you no good. In typical situations, it's fairly effective, but not 2x.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kieranvs" target="_blank">kieranvs</a>
+			<div class="markdown"><p>The two threads in one core can both simultaneously do work at the same time if they're not hitting the same resources. Some of the hardware is duplicated so both threads can run together if one is doing maths and the other is waiting for a memory read. If they both try to do the same kind of load, e.g. floating point multiply, then one may stall</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Uberzwerg" target="_blank">Uberzwerg</a>
+			<div class="markdown"><blockquote>
+<p>2304 stream processors</p>
+</blockquote>
+<p>Does anyone know why it's such a strange number?<br />
+It's obviously 2048 + 256, but i don't see any reason behind it.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/theWyzzerd" target="_blank">theWyzzerd</a>
+			<div class="markdown"><p>I believe it correlates to the number of TMUs (texture mapping units).  The AMD RX580 has 2304 stream processors and 144 TMUs.  2304 SPs divides very nicely by 144 TMUs, resulting in 16. That means each TMU has 16 stream processors.  You can look at this chart <a href="https://videocardz.com/amd/radeon-500" target="_blank">here</a> and see that all the way up and down the graph, the number of stream processors always correlates to 16 SPs per TMU.  I'm not a GPU engineer so I can't tell you what exactly that means but I'm guessing each TMU can only handle the output of \~16 stream processors at a time.</p>
+<p>There is another unit that comes into play in the pixel pipeline, and that is the render output unit.  That is the unit that takes data from various pixels and maps them (turns them into a rastered output) and sends them to the frame buffer.  Wikipedia has this interesting bit:</p>
+<p>&#x200B;</p>
+<blockquote>
+<p>Historically the number of ROPs, <a href="https://en.wikipedia.org/wiki/Texture_mapping_unit" target="_blank">TMUs</a>, and <a href="https://en.wikipedia.org/wiki/Shader" target="_blank">shader</a> processing units/<a href="https://en.wikipedia.org/wiki/Stream_processing" target="_blank">stream processors</a> have been equal. However, from 2004, several <a href="https://en.wikipedia.org/wiki/GPU" target="_blank">GPUs</a>  have decoupled these areas to allow optimum transistor allocation for  application workload and available memory performance. As the trend  continues, it is expected that graphics processors will continue to  decouple the various parts of their architectures to enhance their  adaptability to future graphics applications. This design also allows  chip makers to build a modular line-up, where the top-end GPUs are  essentially using the same logic as the low-end products.</p>
+</blockquote></div>		</li>
+					</ul>
+		</ul>
+	

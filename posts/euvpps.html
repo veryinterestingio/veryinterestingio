@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: How are CPUs and GPUs different in build? What tasks are handled by the GPU instead of CPU and what about the architecture makes it more suited to those tasks?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="euvpps">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/euvpps/eli5_how_are_cpus_and_gpus_different_in_build/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/euvpps" onclick="return false">How are CPUs and GPUs different in build? What tasks are handled by the GPU instead of CPU and what about the architecture makes it more suited to those tasks?</a>
+		</h2>
+		<!--<span class="date">2020-01-31</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: How are CPUs and GPUs different in build? What tasks are handled by the GPU instead of CPU and what about the architecture makes it more suited to those tasks?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ffste5q">
+		<a class="author" href="https://www.reddit.com/user/popejustice" target="_blank">popejustice</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>My favorite description was that a CPU is like having someone with a PhD per core.  A gpu is like having an army of millions of kindergarteners.  Want to do complex math on a lot of data?  Hand it to the 8 PhDs.  Want to fill in a bunch of tiny spots with a different color?  Pitch it to the kindergarteners.</p>
+<p>Edit: haha, glad you all enjoyed this description as much as I did.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ffrv93j">
+		<a class="author" href="https://www.reddit.com/user/LordFauntloroy" target="_blank">LordFauntloroy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>CPUs use a few fast cores and are much better at complex linear tasks and GPUs use many weak cores and are better at parallel tasks.  To use an analogy, the CPU does the hard math problems and the GPU does many, many easy problems all at once.  Together they can tackle any test quickly and efficiently.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ffrxuw4">
+		<a class="author" href="https://www.reddit.com/user/plaid_rabbit" target="_blank">plaid_rabbit</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>GPUs are good at solving a lot of simple problems at once.  A good example is graphics.... I need to take every pixel (and there's a million of them!), and multiply each of them by .5.  Anything you can convert into adding/multiplying large groups of numbers together, it can do really fast.... which is frequently needed to render graphics.  But they can't do all operations.  They are very specialized to working with big lists of numbers.  Working with a large list of numbers is all it can really do, and it can only do a handful of operations to them.  But if the operation isn't supported, you're basically totally out of luck.  Luckily the things it can do are common ones.  These operations share some commonality with artificial intelligence and physics simulation as well.   But it doesn't do well with directions with a bunch of decisions.  GPUs want to work on a whole list of things at once.</p>
+<p>CPUs are good at doing a bunch of different types of tasks quickly.  It's a jack of all trades.  It can work with big lists of numbers... but it's slower at it.  But it can do all sorts of things that the GPU can't.  CPUs are good at following directions that have a bunch of decisions.  Everything from making the keyboard work with the computer to talking to the internet requires a lot of decision making.  With this ability to make a bunch of decisions, you can come up with some kind of solution to any problem.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ffsr1ek">
+		<a class="author" href="https://www.reddit.com/user/GummyKibble" target="_blank">GummyKibble</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In addition to what others have said, CPUs are good at things like:</p>
+<ul>
+<li>Compare the coordinates of the bullet object and the opponent object.</li>
+<li>If they are the same, then:
+<ul>
+<li>Read the score stored at a certain location in memory.</li>
+<li>Add 10 to it.</li>
+<li>Write the number back to the memory location where the score is stored.</li>
+<li>Look up the memory location where the start of the “show opponent dying animation” routine is stored.</li>
+<li>Remember what part of the program we’re currently at.</li>
+<li>Temporarily go to the “dying animation” part of the program we found earlier.</li>
+</ul></li>
+</ul>
+<p>And so on, and so on, and so on. CPUs are really, <em>really</em> good at doing relatively complicated steps like each of the above. But because each step might have lots of nitty gritty details, they take a lot of work for the CPU to actually do them. (Read about <a href="https://en.wikipedia.org/wiki/Instruction_pipelining" target="_blank">instruction pipelining</a> if you want to go down the rabbit hole of how complicated a modern CPU actually is behind the scenes).</p>
+<p>GPUs can’t do anything nearly that complicated. Their “programs” are more like:</p>
+<ul>
+<li>Find the chunk of memory starting at a particular location.</li>
+<li>Add 3 to the first 1,000 numbers you find there.</li>
+</ul>
+<p>Or:</p>
+<ul>
+<li>Here’s a list of 10,000,000 decimal number, like 2.3 and 4.7. Add each pair of numbers and divide them by 2, and put the results in another list. Oh, and if it lets you go a little faster to pretend that 2.3 is really 2.9999999987, go for it: raw speed is more important than perfect math here.</li>
+</ul>
+<p>They can’t do things like make complicated decisions or jump around to just another part of their programming. They don’t have the circuitry to do that stuff. But those simple little instructions like I described? They’re smoking fast at those things, and at doing <em>a whole awful lot</em> of those simple little instructions at the same time. A CPU can do all the same things a GPU can, but it doesn’t have the circuitry for “do this one thing a gazillion times” kind of operations.</p>
+<p>Or TL;DR:</p>
+<ul>
+<li>A CPU is like having a mathematician sitting at her desk solving hard problems.</li>
+<li>A GPU is like having a thousand kindergartners counting to 10 on their fingers, but all at the same time.</li>
+</ul></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ffs68ln">
+		<a class="author" href="https://www.reddit.com/user/lunatickoala" target="_blank">lunatickoala</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A typical CPU these days will have something like 8 cores/16 threads meaning that it can do up to 16 things at once. Each core is very powerful and designed to be general-purpose so they can do a wide range of things. The things that are best done on CPU are tasks that are serial meaning that the previous step needs to be finished because the result of it is used in the next one.</p>
+<p>A typical GPU may have something like 2304 stream processors, meaning that it can do up to 2304 things at once, but what each stream processor can do is much more limited. What a GPU is most suited for is doing math on a big grid of numbers. With a CPU, it'd have to calculate those numbers 16 at a time (actually, less than that because the CPU has to do other things) but with a GPU, you can do math on those numbers 2304 at a time.</p>
+<p>But it turns out that graphics are pretty much nothing more than a big grid of numbers representing the pixels. And a lot of scientific calculation involves doing math on huge grids of numbers.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/euvpps" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
