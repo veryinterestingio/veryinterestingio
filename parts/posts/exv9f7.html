@@ -1,0 +1,104 @@
+<li class="post" data-handle="exv9f7">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/exv9f7/eli5_a_smallcase_4letter_password_has_456976/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/exv9f7" onclick="return false">A small-case 4-letter password has 456,976 possible combinations. Why is there a need for even stronger passwords?</a>
+		</h2>
+		<!--<span class="date">2020-02-05</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>With 26 letters in the English alphabet, a password of 4 letters would have 26^4 possible combinations. And that is for 1 given username. That's a lot.</p>
+<p>Login forms could also have a brute-force protection that disables password guessing after about 10 attempts from a given IP or username.</p>
+<p>Still, websites often ask for 8 letters, lower/upper case, numbers, symbols, etc...</p>
+<p>It seems a bit of an over-kill, but this is very common.</p>
+<p>Can anyone explain?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="fgdayuq">
+		<a class="author" href="https://www.reddit.com/user/CatpainTpyos" target="_blank">CatpainTpyos</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>While ~457,000 sounds like just an absolutely unfathomably large number to a human, that's actually child's play when it comes to computers. <a href="https://www.kaspersky.com/resource-center/definitions/brute-force-attack" target="_blank">Kasperky Labs</a> estimates that an average computer that's not even particularly specialized to password cracking can attempt roughly 7100 passwords every second. That means it could figure out a 4-letter single-case password in at most 65 seconds. I'm sure you can see why that's not very desirable.</p>
+<p>Even just stepping up to a six-character password where lower case, upper case, and numbers (but no symbols) are allowed slows down an average computer's brute force attack to 3.5 days. This can be sped up by using known tables of common passwords that people use over and over again, or even just using a dictionary attack since most people use a password that's a word or some variant thereof (e.g. they might use &quot;acc1d3nt&quot; instead of &quot;accident,&quot; but a good dictionary attack can account for these variants too).</p>
+<p>And that's all to say nothing of the fact that people who make their living by cracking people's passwords are going to have specialized hardware that can crack passwords even faster. In 2012, <a href="https://arstechnica.com/information-technology/2012/12/25-gpu-cluster-cracks-every-standard-windows-password-in-6-hours/" target="_blank">ArsTechnica</a> wrote an article about a then-new supercomputer that could guess up to 350 <em>billion</em> passwords every second (meaning the 6-character password from before could be cracked in a fraction of a second). And you can surely imagine that even more powerful hardware exists now, 8 years on.</p>
+<blockquote>
+<p>Most websites also have a brute-force protection that disables password guessing after about 10 attempts.</p>
+</blockquote>
+<p>This is true, but again people who make their living cracking passwords have ways of circumventing this. Explaining the exact specifics would probably make this explanation not ELI-5 anymore, but the basic gist is that they don't actually crack your password by going to the website and entering each potential password one at a time. Else, as you mentioned, they'd get locked out and that would make the process take a long long time.</p>
+<p>Rather, what they usually do is they get their hands on a master password list directly from the source. This can sometimes come from a leaker who works for a particular company, but most often it comes from hackers breaking into to the company's database and getting the master list file that way. Now thankfully, any company worth their salt encrypts said password list, but that turns out not to really be a problem for hackers.</p>
+<p>Most of the time hackers know what encryption algorithm a particular website uses to secure their passwords (e.g. the ArsTechnica article mentions that LinkedIn uses the SHA-1 algorithm. Obviously, this may no longer be the case today, but it was true as of 2012). Given this information, they can use their brute force password generator and run each one through the encryption algorithm until they find one that outputs the same string as one of the passwords in the list - they then know that user's password.</p>
+<p>In addition to all of that, sometimes companies utterly fail at security and don't follow the industry best practices for securely storing passwords. In late 2013, a password list containing over 153 million Adobe Creative Cloud passwords was leaked. Subsequently, hackers discovered that Adobe did a very bad job securing this file. They used an encryption algorithm that is easily reversible and stored users' hints in the same file as their password. Properly secured password files also use a process known as salting, whereby if two (or more) users have the same passwords, they end up being stored as completely different encrypted strings... but Adobe didn't make use of this, so if the list showed, say, five instances of the same string, hackers just got a 5-for-1 deal on that password.</p>
+<p>As a final note, on rare occasions hackers will actually try logging in through the website and brute forcing it that way, if there's an exploit that circumvents the lock out routines. It's believed that such a vulnerability played a role in allowing the leaks of celebrities' nudes from their iCloud accounts back in 2014. <a href="https://thenextweb.com/apple/2014/09/01/this-could-be-the-apple-icloud-flaw-that-led-to-celebrity-photos-being-leaked/" target="_blank">The Next Web</a> writes:</p>
+<blockquote>
+<p>The vulnerability allegedly discovered in the Find My iPhone service appears to have let attackers use this method to guess passwords repeatedly without any sort of lockout or alert to the target.</p>
+</blockquote></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fgd27y3">
+		<a class="author" href="https://www.reddit.com/user/RedditName6" target="_blank">RedditName6</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Its important to remember that people don't pick passwords uniformly randomly - people normally pick words, and there are a little over 5000 4 letter english words, with some (like &quot;open&quot;) far more likely to be picked as a password. Combine that with some basic tech that allows you to target more efficently (if I get 10 attempts per account then over a significant number of accounts I will probably score a hit) and you have a vunerability.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fgd65gf">
+		<a class="author" href="https://www.reddit.com/user/Xalteox" target="_blank">Xalteox</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It is not as simple as you think.</p>
+<p>Yes they could implement brute force protection but there is an additional factor at play here.</p>
+<p><strong>Any service worth its salt will not store your password.</strong></p>
+<p>Password authentication systems use something known as a cryptographic hash to not store your password. A hash is a piece of data a couple dozen bytes long that is produced by a hashing algorithm. A hashing algorithm takes in any data and spits out this hash. Cryptographic hashing algorithms are designed to not be reversible, that is given a hash, it should not be possible to figure out some kind of data that hashes to it.</p>
+<p>It’s like a fingerprint (in fact hashes are commonly referred to as fingerprints). Given a random fingerprint, you wouldn’t know what person it belongs to. But if you know the person with the fingerprint, you can confirm it is theirs.</p>
+<p>So how does logging in look like from the services point of view? You send the service your username and password, the service hashes your password, looks in its database for the entry under your username and checks that the hash there matches the hash of the password you provided. If so, it knows you put in the right password and you are let in.</p>
+<p>Why not store the password? Protecting the business from itself.</p>
+<p>Database leaks are unfortunately fairly common. Computers are complicated, there will always be some bug or something that may let hackers into a master database. Check out <a href="https://haveibeenpwned.com" target="_blank">https://haveibeenpwned.com</a> for some examples of these breaches in the news section.</p>
+<p>So the hackers will get a list of usernames and password hashes. </p>
+<p>They cannot use this to directly login to the account. They need to know the password, they only have the hash.</p>
+<p>Now this hash is a piece of data not a login prompt communicating with a server. The only limit on brute force speed at this point is how fast your computer is. </p>
+<p>Assuming some decent amount of complexity in your password, it will take decades to brute force it. We can try all combinations of 4 character passwords in less than a second if we have the hash. The longer and more complex the password is, the longer it takes to crack a hash.</p>
+<p>Complex password requirements are insurance against this, not against brute force logins. </p>
+<p>Additionally this scheme means that any service that sends you the password you set during any password recovery means that the service is not using proper security practices.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fgd3v6x">
+		<a class="author" href="https://www.reddit.com/user/Val-Dim" target="_blank">Val-Dim</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Imagine the database got hacked and leaked. Now, any company that takes security as anything less than a joke would've hashed the passwords, so you'd have to try all possible passwords to find one whose hash matches that of some account. A modern laptop processor can perform several BILLION operations per second (accounting for parallelism). So... that won't take very long. And also, now the hacker knows a password you might be using in other places, too.
+This isn't uncommon, happens about once a month with some large company getting breached.</p>
+<p>Alternatively, let's say the website was NOT hacked. How long would it take a clickfarm with a few hundred workers randomly guessing passwords for random accounts to find one that works? On average, that's, let's say, 60 tries per hour, per employee. So 8x60x100=48000 tries per day for your clickfarm. You'll have breached into some accounts in no time.</p>
+<p>Not to mention, in some cases (e. g. Wi-Fi) your password can be used to encrypt communication. So let's say I listen to your wifi, and get the key establishment handshake. So now if I just knew your password, I'd be able to decrypt the packets. Soooo... I capture one packet, and start trying passwords until the resulting key decrypts the packet successfully. That won't take very long, either.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fgd18cr">
+		<a class="author" href="https://www.reddit.com/user/Phage0070" target="_blank">Phage0070</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><blockquote>
+<p>That's a lot.</p>
+</blockquote>
+<p>For you maybe. Typing that many passwords in manually would take a long time.</p>
+<p>But not for a computer. It might be able to try hundreds per second, quickly breaking the password. It could even be much worse if some people are foolish enough to pick only real words of 4 letters in length.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/exv9f7" onclick="return false"><span>show</span></a>
+</li>
