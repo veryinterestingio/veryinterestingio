@@ -1,0 +1,84 @@
+<div class="answers">
+	<div class="answer" data-handle="fh7itbs">
+		<a class="author" href="https://www.reddit.com/user/CptCap" target="_blank">CptCap</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Games and offline renderers generate images in very different ways. This is mainly for performances reasons (offline renderers can take hours to render a single frame, while games have to spew them out in a fraction of a second).</p>
+<p>Games use rasterization, while offline renderers use ray-tracing. Ray tracing is a lot slower, but can give more accurate results than rasterization^[1]. Ray tracing can be very hard to do well on the GPU because of the more restricted architecture, so most offline renderer default to the CPU. </p>
+<p>GPUs usually have a better computing power/$ ratio than CPUs, so it can be advantageous to do computational expensive stuff on the GPU. Most modern renderers can be GPU accelerated for this reason. </p>
+<blockquote>
+<p>Why do some start rendering in the center and go outwards (e.g. Cinebench, Blender) and others first make a crappy image and then refine it (vRay Benchmark)?</p>
+</blockquote>
+<p>Cutting the image into square blocks and rendering them one after the other make it easier to schedule when each pixels should be rendered, while progressively refining an image allows the user to see what the final render will look like quickly. It's a tradeoff, some (most?) renderer offer the two options.</p>
+<hr />
+<p>[1] This is a massive oversimplification, but if you are trying to render photorealistic images it's mostly true.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fh7prky">
+		<a class="author" href="https://www.reddit.com/user/Fysco" target="_blank">Fysco</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Software engineer here. There's a lot of wrong information in here guys... I cannot delve into all of it. But these are the big ones: (also, this is going to be more like an ELI15)</p>
+<p>A lot of you are saying CPU render favors quality and GPU does quick but dirty output. This is wrong. Both a CPU and GPU are chips able to execute calculations at insane speeds. They are unaware of what they are calculating. They just calculate what the software asks them to.</p>
+<p><strong>Quality is determined by the software.</strong> A 3D image is built up by a 3D mesh, shaders and light. The mesh (shape) of which the quality is mostly expressed in amount of polygons, where high poly count adds lots of shape detail but makes the shape a lot more complex to handle. A low poly rock shape can be anywhere from 500 to 2000 poly, meaning amount of little facets. A high poly rock can be as stupid as 2 to 20 million polygons.</p>
+<p>You may know this mesh as wireframe.</p>
+<p>Games will use the lowest amount of polygons per object mesh as possible to still make it look good. Offline renderer projects will favor high poly for the detail, adding time to calculate as a cost. </p>
+<p>That 3D mesh is just a &quot;clay&quot; shape though. It needs to be colored and textures. Meet shaders. A shader is a set of instructions on how to display a 'surface'. The simplest shader is a color. Add to that, a behavior with light reflectance. Glossy? Matte? Transparant? Add those settings to calculate. We can fake a lot of things in a shader. A lot of things that seems geometry even. </p>
+<p>We tell the shader to fake bumpiness and height in a surface (eg a brick wall) by giving it a bump map which it used to add fake depth in a surface. That way the mesh needs to be way less detailed. I can make a 4 point square look like a detailed wall with grit, shadows and height texture all with a good shader. </p>
+<p>Example: <a href="http://www.xperialize.com/nidal/Polycount/Substance/Brickwall.jpg" target="_blank">http://www.xperialize.com/nidal/Polycount/Substance/Brickwall.jpg</a>
+This is purely a shader with all texture maps. Plug these maps in a shader in the right channels and your 4-point plane can look like a detailed mesh all by virtue of shader faking the geometry.</p>
+<p>Some shaders can even mimic light passing through like skin or candle wax. Subsurface scattering. Some shaders emit light like fire should. </p>
+<p>The more complex the shader, the more time to calculate. In a renderend frame, every mesh needs it's own shader(s) or materials (configured shaders, reusable for a consistent look). </p>
+<p>Let's just say games have a 60 fps target. Meaning 60 rendered images per second go to your screen. That means that every 60th of a second an image must be ready.</p>
+<p>For a game, we really need to watch our polygon count per frame and have a polygon budget. Never use high poly meshes and don't go crazy with shaders.</p>
+<p>The CPU calculates physics, networking, mesh points moving, shader data etc per frame. Why the CPU? Simple explanation is because we have been programming CPUs for a long time and we are good at it. The CPU has more on its plate but we know how to talk to it and our shaders are written in it's language.</p>
+<p>A GPU is just as dumb as a CPU but it is more available if that makes sense. It is also built to do major grunt work as an image rasterizer. In games, we let the GPU do just that. Process the bulk data after the CPU and raster it to pixels. It's more difficult to talk to though, so we tend not to instruct it directly. But more and more, we are giving it traditionally CPU roles to offload, because we can talk to it better and better due to genius people.</p>
+<p>Games use a technique called Direct Lighting. Where light is mostly faked and calculated as a flash. As a whole. Shadows and reflections can be baked into maps. It's a fast way for a game but looks less real. </p>
+<p>Enter the third (mesh, shader, now light) aspect of rendering time. Games have to fake it. Because this is what takes the highest render time. The most accurate way we can simulate light rays onto shaded meshes is Ray tracing. This is a calculation of a light Ray travelling across the scene and hitting everything it can, just like real light.</p>
+<p>Ray tracing is very intensive but it is vastly superior to DL. Offline rendering for realism is done with RT. In DirectX12, Microsoft has given games a way to use a basic form of Ray tracing. But it slams our current cpus and gpus because even this basic version is so heavy.</p>
+<p>Things like Nvidia RTX use hardware dedicated to process Ray tracing, but it's baby steps. Without RTX cores though, RT is too heavy to do real time. But technically, RTX was made to process the DirectX raytracing and it is not required. It's just too heavy to enable for the older GPU's and it won't make sense.</p>
+<p>And even offline renderers are benefiting from the RTX cores. Octane Renderer 2020 can render scenes up to 7X faster due to usage of the RTX cores. So that's really cool.</p>
+<p>--- edit</p>
+<p>Just to compare; here is a mesh model with Octane shader materials and offline raytracing rendering I did recently: <a href="https://i.redd.it/d1dulaucg4g41.png" target="_blank">https://i.redd.it/d1dulaucg4g41.png</a> (took just under an hour to render on my RTX 2080S)</p>
+<p>And here is the same mesh model with game engine shaders in realtime non-RT rendering: <a href="https://imgur.com/a/zhrWPdu" target="_blank">https://imgur.com/a/zhrWPdu</a> (took 1/140th of a second to render)</p>
+<p>Different techniques using the hardware differently for, well, a different purpose ;)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fh7stiw">
+		<a class="author" href="https://www.reddit.com/user/TheHapaHaole" target="_blank">TheHapaHaole</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Can you ask this question like I'm five?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fh7o12s">
+		<a class="author" href="https://www.reddit.com/user/FinnT730" target="_blank">FinnT730</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Blender can also use the GPU, most render farms for blender do use the GPU since it is faster and cheaper.
+Games and such use a different renderer.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fh7odxt">
+		<a class="author" href="https://www.reddit.com/user/CrazyBaron" target="_blank">CrazyBaron</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Most of Ray Tracing renders like vRay or  Cycles  had options for GPU rendering for long time. Problem is that heavy scenes need large pools of memory something that wasn't available for GPUs until recent. If GPU can't load a scene into it's memory it simply can't render it at all which means despite CPU being slower it's still better because it can complete task,  CPU can have terabyte of RAM... however with more modern CUDA GPU can also use RAM in addition to VRAM for rendering.</p>
+<p>Games heavily optimized to be used in real time renders with stable FPS and fit into GPU memory, while scenes in Blender or other 3d packages aren't and usually much more heavy.</p>
+<blockquote>
+<p>Why do some start rendering in the center and go outwards (e.g. Cinebench, Blender)</p>
+</blockquote>
+<p>No real reason as example Blender have options for this, centre is good because that usually focus of the picture, why would you want to spend time rendering corner that might not show potential errors...</p>
+<blockquote>
+<p>and others first make a crappy image and then refine it (vRay Benchmark)?</p>
+</blockquote>
+<p>More samples, more precision.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

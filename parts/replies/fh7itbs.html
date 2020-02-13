@@ -1,0 +1,100 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Darwand" target="_blank">Darwand</a>
+			<div class="markdown"><p>Note before someone asks why we use cpus if a gpu is more performance/$.</p>
+<p>A gpu is made to do as many things as possible within a timeframe while a cpu is made to do any single thing in the shortest gime possible</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ICC-u" target="_blank">ICC-u</a>
+			<div class="markdown"><p>Better example:</p>
+<p>GPU is an army of ants moving pixels from one place to another, they can do simple tasks in great quantities very quickly</p>
+<p>a CPU is a team of 4-8 expert mathematicians, they can do extremely complex calculations but they take their time over it, and they will fight over desk space and coffee if there isn't enough</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sy029" target="_blank">sy029</a>
+			<div class="markdown"><p>There was an eli5 recently that explained it like this. A CPU is a few mathematicians solving a complex problem, a GPU is a room full of a thousand kindergartners holding up answers on their fingers.</p>
+<p>Since this post became popular, I'd like to be sure to give credit to u/popejustice, since that's where I heard this analogy.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/intrafinesse" target="_blank">intrafinesse</a>
+			<div class="markdown"><blockquote>
+<blockquote>
+<p>and they will fight over desk space and coffee even if there <em>is</em> enough</p>
+</blockquote>
+</blockquote>
+<p>Fixed it for you</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KanyesThirdPerson" target="_blank">KanyesThirdPerson</a>
+			<div class="markdown"><p>The biggest difference between CPU and GPU is branching.</p>
+<p>The CPU is a UPS truck that delivers individual packages to individual houses. The GPU is a high-speed freight train it delivers way more data at much higher speeds but everything is going from point A to point B whether it likes it or not.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bigbaltic" target="_blank">bigbaltic</a>
+			<div class="markdown"><p>GPUs also can do batch processing way better. CPUs are much more serial, and that works because its so fast. A gpu has a much wider processing bus. Its like having one extremely fast assembly line vs 50 slower lines.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/heavydivekick" target="_blank">heavydivekick</a>
+			<div class="markdown"><p>Though GPUs are not good at performing complex tasks in parallel. The different tasks are not truly independent on the GPU; it's good at doing the same thing but for a bunch of pixels.</p>
+<p>If you have to actually run independent programs or if the tasks can take wildly different amounts of time/processing power, you'll have to go with multicore CPUs. </p>
+<p>Hence most computers have multiple CPUs too.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ATWindsor" target="_blank">ATWindsor</a>
+			<div class="markdown"><p>But raytracing seems to be a highly parallelizable task, why isn't a GPU well suited for that?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CptCap" target="_blank">CptCap</a>
+			<div class="markdown"><p>Yes, ray tracing is highly parallelizable, but it's not the only factor.</p>
+<p>One of the difficulties, especially on the performance side, is that RT has low coherency, especially on the memory side. What this mean is that each ray kinda does its own thing, and can end up doing something very different from the next ray. GPUs really don't like that because they process stuff in batches. Diverging rays force GPUs to break batches, or to look up at completely different part of memory, which destroys parallelism.</p>
+<p>The other big pain point is simply that GPUs are less flexible and harder to program than CPUs. For example you can't allocate memory on the GPU directly, which makes it very hard to build complex data structures. Also everything is always parallel which make some trivial operations a lot harder to do than on a CPU.</p>
+<blockquote>
+<p>why isn't a GPU well suited for that?</p>
+</blockquote>
+<p>GPUs are well suited for RT, it's just a lot more work (&lt;- massive understatement) to get a fully featured, production ready, ray tracer working on the GPU than on the CPU.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Chocolates1Fudge" target="_blank">Chocolates1Fudge</a>
+			<div class="markdown"><p>So the tensor and RT cores in the RTX cards are just plain beasts?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lowerMeIntoTheSteel" target="_blank">lowerMeIntoTheSteel</a>
+			<div class="markdown"><p>What's really crazy is that games and 3d packages can all RT now. But it's slower in Blender than it will be in a game engine.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fidodo" target="_blank">Fidodo</a>
+			<div class="markdown"><p>Doesn't each bounce complete with the same amount of computing power? You can't know how many bounces a ray will take, but why can't you batch the bounces together?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/joonazan" target="_blank">joonazan</a>
+			<div class="markdown"><p>They are used for ray tracing. Nowadays most renderers do the majority of the work on a GPU if available.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/annoyedapple921" target="_blank">annoyedapple921</a>
+			<div class="markdown"><p>Disclaimer, not a low-level software engineer, but I have some experience with this going wrong. I would recommend Sebastian Lague’s marching cube experiment series on youtube to explain this. </p>
+<p>Basically, the gpu can mess up handling memory in those situations, and trying to do a whole bunch of tasks that can terminate at different times (some rays hitting objects earlier than others) can cause inputs that are meant for one function that’s running to accidentally get passed to another. </p>
+<p>This can be fixed by passing in an entire container object containing all of the data needed for one function, but that requires CPU work to make them and lots of memory to store an object for every single pixel on screen each frame.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/0b_101010" target="_blank">0b_101010</a>
+			<div class="markdown"><p>Does Nvidia's new RTX cards with hardware-accelerated ray-tracing technology bring big benefits for offline renderers? If they can't use it yet, will they be able to do so in the future?</p>
+<p>edit: never mind, it's been answered below.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CptCap" target="_blank">CptCap</a>
+			<div class="markdown"><p>It does.
+The big problem with RTX is lack of support (you have to have one of a very few cards to get it to work).</p>
+<p>If hardware accelerated RT become mainstream, I expect many renderers to use it to speed up rendering. </p>
+<p>RTX also makes implementing GPU accelerated RT much simpler, which might help with porting (or developing new) GPU based renderers.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/weinerschnitzelboy" target="_blank">weinerschnitzelboy</a>
+			<div class="markdown"><p>Kind of. So one piece of software I use in my industry is called Keyshot. It is the industry standard software ray tracing render program for designers. Only recently did it get support for GPU based ray tracing for specifically Nvidia cards that run the Maxwell architecture or newer.  Though, I think they specified GTX 980 or newer</p>
+<p>Taking that into mind, while it may help, it is not necessary to have a RTX card. Honestly just having the graphics cards large quantity of cores (despite being less complex than CPU cores) helps getting the tasks done in parallel.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/i_admit_everything" target="_blank">i_admit_everything</a>
+			<div class="markdown"><p>Yes they can. Blender now supports rendering using OptiX, which takes advantage of RTX cards' ray tracing tech. Speeds up render time by anywhere from 20% to 40%.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/0b_101010" target="_blank">0b_101010</a>
+			<div class="markdown"><blockquote>
+<p>Speeds up render time by anywhere from 20% to 40%.</p>
+</blockquote>
+<p>Awesome!</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
