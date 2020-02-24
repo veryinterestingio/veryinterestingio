@@ -1,0 +1,25 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GamblingTheory" target="_blank">GamblingTheory</a>
+			<div class="markdown"><blockquote>
+<p>In addition to field strength, field uniformity is also very important for a consistent signal.</p>
+</blockquote>
+<p>To clarify this, as it might be misunderstood: Actually non-uniform (gradient) fields are used in MRI to select only one point in the patient to give a response upon excitation. In that sense it is also important for the magnetic field to be stable as well.</p>
+<p>The spatial selection happens via the so called larmor frequency defined via omega = gamma * B where gamma is the gyromagnetic factor and B the magnetic field. It is pretty much the frequency that carries precisely the energy difference between both spin states.</p>
+<p>Ensuring that B(x,y,z) != B(x',y',z') everywhere means that a specific frequency can only excite spin flips in (x,y,z) but the resonance frequency is off in (x', y', z'). Note that resonance curved are usually extremely sharply peaked functions, being only slightly off can have rather drastic results.</p>
+<p>If your main magnetic field was not stable enough, it would destroy the spatial resolution as the resonance frequency would fluctuate accordingly.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sciortapiecoro" target="_blank">sciortapiecoro</a>
+			<div class="markdown"><p>Mmh wasn't the MRI sampling the k-space at different spatial frequencies upon excitation? So actually each time you are looking at the patient <em>everywhere</em> but hopefully with a precise spatial weighting, i.e. a precise set of spatial frequencies (kx, ky, kz).
+In fact, the acquisition is often crudely modeled as a subampled Fourier transform</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KonstantinGr" target="_blank">KonstantinGr</a>
+			<div class="markdown"><p>It depends on what you mean “looked at.” Every horizontal line in the 2D k-space is actually just a measurement of the voltage readout. Each repetition of the pulse-sequence selects a new Phase-Encode Gradient, filling out the 2D k-space one line at a time. </p>
+<p>You take the fourier synthesis of the stacked Voltage readouts to get your image. The voltage is the Fourier transform of the image, line by line.</p>
+<p><a href="https://mriquestions.com/k-space-grid.html" target="_blank">https://mriquestions.com/k-space-grid.html</a></p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
