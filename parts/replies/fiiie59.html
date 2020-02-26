@@ -1,0 +1,26 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xQx1" target="_blank">xQx1</a>
+			<div class="markdown"><p>Distance from satellite to ground:  35,786,000 metersTotal distance the radio waves must travel (up&amp;back):  71,572,000 metersSpeed radio waves travel at: C =  299 792 458 meters per second</p>
+<p>Thus, the minimum satellite induced latency is 71,572,000/299,792,458 = 0.239 seconds. [EDIT: <em>times two</em>.]</p>
+<p>Once you add routing and computing delays, terrestrial links to your destination, and waiting for your satellite timeslot - <del>this ends up being closer to 300ms in practice.</del></p>
+<p>But if you have the satellite to yourself and are accessing a remote data-centre - 250ms round trip times are very possible.</p>
+<p><del>The reason you see 500ms or 750ms ping times is because you have a cheap satellite service and you're suffering from collisions with other users.</del></p>
+<p>[EDIT: Sorry. As /u/marcan42 correctly points out in reply - I'm very wrong. The latency (RTT) includes two round trips to the satellite, not one - the request goes to the satellite then back to earth (239ms) then the reply goes to the satellite and back to earth (239ms) - giving you an absolute minimum theoretical RTT of 478ms.  ... and that's where your 500ms to 750ms ping times come from.]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marcan42" target="_blank">marcan42</a>
+			<div class="markdown"><p>You're missing a factor of 2. The signal has to go from you, to the satellite, back to ground, to the server, back to the satellite, and finally to you. So RTT on a satellite connection is at least 0.478 seconds, unless you're connecting to a server on the satellite itself.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xQx1" target="_blank">xQx1</a>
+			<div class="markdown"><p>Damn.</p>
+<p>You're right. I'm wrong.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aliasdred" target="_blank">aliasdred</a>
+			<div class="markdown"><p>That could be the case cuz surely its not a 1 connection per user kinda situation. Usually its more like 1 team/10people = 1 connection. But again, I'm not the user here, my info comes from other people as sources... So yea I always take them with salt, pepper and other spices.</p>
+<p>Also, [speedtest.net data] (<a href="https://www.google.com/amp/s/www.speedtest.net/insights/blog/exploring-internet-antarctica-2017/amp/" target="_blank">https://www.google.com/amp/s/www.speedtest.net/insights/blog/exploring-internet-antarctica-2017/amp/</a>) from that region suggests pings of atleast 500ms.</p></div>		</li>
+					</ul>
+		</ul>
+	
