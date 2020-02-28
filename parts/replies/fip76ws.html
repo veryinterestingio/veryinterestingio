@@ -1,0 +1,25 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marcan42" target="_blank">marcan42</a>
+			<div class="markdown"><p>This is incorrect. Push notifications are called push notifications because the server <em>pushes</em> the data to you, it doesn't wait for you to ask it first.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/domlebo70" target="_blank">domlebo70</a>
+			<div class="markdown"><p>Sort of. The phone still long polls. It maintains a persistent TCP socket to the APNS servers on port 5223 waiting for messages</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marcan42" target="_blank">marcan42</a>
+			<div class="markdown"><p>&quot;Long polling&quot; is a technicality of how the protocols work. The point is that once the TCP connection is established, the phone is no longer actually polling for data; once there is a notification, it's the server that will send a packet without having received any from the phone recently.</p>
+<p>(Of course there are keepalives too, but those happen on a slow schedule and do not drive the actual message delivery)</p>
+<p>I'm other words, the point is that the phone does <em>not</em> have to keep asking for notifications every second, just to get notifications within a second. It just tells the server once that it'd like any notifications to be delivered in the future, perhaps reminding it every few minutes at most, and then it does nothing until a notification comes directly, in real time, without any further questions required.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drpinkcream" target="_blank">drpinkcream</a>
+			<div class="markdown"><blockquote>
+<p>The convo is cheap since it's just a yes/no question, doesn't use much data at all.</p>
+<p>If it does, it will send data/notifications to the phone. If it doesn't, it just says no and nothing else happens</p>
+</blockquote>
+<p>This is &quot;pull&quot; notification.  &quot;Push&quot; notification is the server sending a message to the phone &quot;You have new messages, here they are.&quot;  It doesn't take much power because the phone isn't checking constantly.  It's standing by waiting for the server to send it a message.</p></div>		</li>
+					</ul>
+	

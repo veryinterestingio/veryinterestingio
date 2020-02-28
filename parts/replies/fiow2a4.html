@@ -1,0 +1,36 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/webby_mc_webberson" target="_blank">webby_mc_webberson</a>
+			<div class="markdown"><blockquote>
+<p>Every minute you ask jimmy if there is a message for you, and he says no. That is your phone checking if you have received a message. </p>
+</blockquote>
+<p>What you're describing is polling which is inefficient and consumes battery. </p>
+<p>The real answer is that the app registers with the notification service associated with the platform, e.g. Apple Push Notification Service, or Firebase Cloud Messaging (for Android). There's a unique URL that the messaging service has for the app, and any time a notification arrives in the notification service, it's then sent to the URL for the app. When the notification arrives on the phone, the operating system then determines what to do with the notification.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EatMyBiscuits" target="_blank">EatMyBiscuits</a>
+			<div class="markdown"><p>In this case, the answer you contradicted was talking about SMS, which does use polling/paging from the tower, over a control channel</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chriswaco" target="_blank">chriswaco</a>
+			<div class="markdown"><p>There's a difference between the app polling and the phone polling. The phone is listening for connections 24/7 on either the cellular radio, WiFi, or both. It has to do this in order to receive phone calls and text messages immediately. The cellular network tells the phone there is an incoming call, SMS, or push notification via a control channel. The cellular side of the phone then wakes up the computer side to handle the request.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/higpil3" target="_blank">higpil3</a>
+			<div class="markdown"><p>Natural follow-up question then, how does Apple Push Notification Service or Firebase Cloud Messaging work? How do they achieve timely notifications without polling?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/webby_mc_webberson" target="_blank">webby_mc_webberson</a>
+			<div class="markdown"><p>The same way your computer sends messages (http requests) to a server; your the messaging service has a url that identifies your phone and sends data to it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jl91569" target="_blank">jl91569</a>
+			<div class="markdown"><p>Think about it this way: you're trying to see whether the post office has a parcel for you.</p>
+<p>Polling is like walking down and asking in-person. You'll always get an immediate response (assuming the post office isn't overloaded) but it needs a lot of time and effort.</p>
+<p>A push notification is like installing a telephone line so you can wait for them to call you instead; there's a background connection that's always open so you can stay at home or in the office.</p>
+<p>The thing is, you're not sure whether the telephone line works, so you have to pick up the line every 5-10 minutes to see if the dial tone's still there (pinging or a &quot;heartbeat&quot; service). Yes, it still takes a bit of effort, but it's a hell of a lot more efficient than walking down to the post office every time you want to check.</p>
+<p>Edit: <a href="https://stackoverflow.com/questions/11508613/how-does-push-notification-technology-work-on-android" target="_blank">https://stackoverflow.com/questions/11508613/how-does-push-notification-technology-work-on-android</a></p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/justapersonortwo" target="_blank">justapersonortwo</a>
+			<div class="markdown"><p>Nice response. I'd sum it up by saying. Status and texts in general use a very small amount of data. A picture uses a whole lot more, a video... well you get my point. And then theres also the determinism... if your &quot;status or message&quot; data arrives .5 seconds late you dont care, but if your video data decides to interrupt then we all get frustrated.</p></div>		</li>
+					</ul>
+	

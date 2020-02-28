@@ -1,0 +1,80 @@
+<li class="post" data-handle="f91nfi">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/f91nfi/eli5_how_do_phones_know_you_got_a_text_snapchat/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/f91nfi" onclick="return false">How do phones know you got a text, snapchat, etc... without soaking up a lot of data?</a>
+		</h2>
+		<!--<span class="date">2020-02-28</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>It seems like if they were constantly checking if you had a notification from any app it would use up a lot of data quickly.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="fip98gk">
+		<a class="author" href="https://www.reddit.com/user/edman007" target="_blank">edman007</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Since this is really about power consumption, the answer is the phone turns off the radio. Basically it tells the cell phone it's going to turn off for a second, and if any data for the phone comes, it must be announced at exactly that second and the phone will power up it's radio and download the data. If no data comes it will immediately turn the radio back off. </p>
+<p>As for apps, internet connections over TCP support connecting and then waiting for transmissions so apps can use this to allow the phone to power off while connected. On Android many apps use this directly, but both Apple and Google offer push services that optimize this and put all the app notifications on one connection to reduce unnecessary wake ups. Apple actually forces this on their developers.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fiow2a4">
+		<a class="author" href="https://www.reddit.com/user/mambomonster" target="_blank">mambomonster</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Imagine if whenever someone wanted to talk to you, they had to talk to jimmy first who is on the other side of the room. </p>
+<p>Every minute you ask jimmy if there is a message for you, and he says no. That is your phone checking if you have received a message. </p>
+<p>Every now and then he says yes. When he does, you then say “send it here please” and then he sends it to you. This is conversation was much longer and had more information transferred. This is your phone receiving the message. It costs much more data to receive the message compared to checking if there is one to receive.</p>
+<p>It doesn’t cost much in the big scheme of things tho because this data usage for both checking for a message and receiving a message is very very very small. SMS text messages use 7-bit characters and have a maximum length of 160 characters, making the maximum data size of each SMS 1120 bits, or 140 bytes.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fip76ws">
+		<a class="author" href="https://www.reddit.com/user/elitesense" target="_blank">elitesense</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It checks in with a central server. Called a &quot;push&quot; server.  (For Apple it's called APNS)</p>
+<p>The server will tell the phone if it has any notifications. </p>
+<p>The convo is cheap since it's just a yes/no question, doesn't use much data at all. </p>
+<p>If it does, it will send data/notifications to the phone. If it doesn't, it just says no and nothing else happens</p>
+<p>In either case your phone will continue to ask the server as long as you have push notifications turned on.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fiq0clv">
+		<a class="author" href="https://www.reddit.com/user/ObfuscatedAnswers" target="_blank">ObfuscatedAnswers</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You are at home waiting for the mail to arrive.</p>
+<p>You could go outside, walk to the mailbox, open it and check inside. This of course takes a lot of work (data) of you do it often.</p>
+<p>Instead, the mail man raises the little red flag on the box of he delivers something. Now you only have to look out the window to know if you have mail. Saving you a lot of work (data) each time.</p>
+<p>The heavy cost only come once the flag is raised and you want to fetch the mail.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fip6s3r">
+		<a class="author" href="https://www.reddit.com/user/NioPullus" target="_blank">NioPullus</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I don't have all the details but I do have a general idea how this works because app development is one of my hobbies and one of my apps uses notifications so feel free to leave follow ups. </p>
+<p>Your phone listens for incoming data constantly. Let's say Snapchat wants to let you know that you got a new message. At that point, the content data typically is not yet transfered to your phone but instead Snapchat's servers send a special message to your phone letting you know a description of what you received in the form of a notification. The notification includes an ID which lets your phone know what application that notification is for. The actual Snapchat application need not yet be running. It's not until you tap on the notification or otherwise open the app that Snapchat begins &quot;running&quot; on your phone and you can view the message.</p>
+<p>In summary, notifications are handled differently than normal activity that phone apps perform once you have the app open. So each individual app isn't listening separately but instead your phone is listening for general data, some of which comes in the form of notifications sent from various servers. Most of the time when you receive a notification for an app, that app is in a state of being stopped or suspended to preserve battery.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/f91nfi" onclick="return false"><span>show</span></a>
+</li>
