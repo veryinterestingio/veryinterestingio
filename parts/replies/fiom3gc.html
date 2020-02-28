@@ -1,0 +1,65 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OneAndOnlyJackSchitt" target="_blank">OneAndOnlyJackSchitt</a>
+			<div class="markdown"><blockquote>
+<p>undoing 91% of an install requires keeping track of exactly what has been done so far, and knowing how to undo it</p>
+</blockquote>
+<p>When you're writing a custom installer, this is really easy to do. Basically you write your own internal functions which handle file copies and registry updates. These functions will write every change to a log. If the install fails (a cancel is considered a failure here), the log is read in reverse order and each change reverted.</p>
+<p>Most installers, once complete, write this log to a file and use that as the uninstall script later on for the uninstaller.</p>
+<p>This is, of course applicable to windows. On Mac, most apps are stored in a single archive file which can simply be dragged to the trash to uninstall the app.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fookhar" target="_blank">fookhar</a>
+			<div class="markdown"><p>macOS almost always have a data folder stored outside of the .app bundle, which won't be automatically deleted by trashing the .app file.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IRL_BobbleHead" target="_blank">IRL_BobbleHead</a>
+			<div class="markdown"><p>Depends if they are sandboxed or not</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dale_glass" target="_blank">dale_glass</a>
+			<div class="markdown"><p>Unfortunately nobody likes doing installers, and so there's a huge amount of half-assing in that part of software development.</p>
+<p>And there's things like NSIS that are very lacking in this regard.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drakgremlin" target="_blank">drakgremlin</a>
+			<div class="markdown"><p>On OSX it's just a directory with some special metadata.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gorstag" target="_blank">Gorstag</a>
+			<div class="markdown"><p>This is pretty much the right answer.  Assuming the installer is working properly, and rollback conditions were properly taken into account, and there are no other variables causing unexpected behavior, a roll-back (such as a user initiated one) should result in mostly everything being removed from the system.</p>
+<p>Also, the results are heavily dependent on what you are installing.  If the program is effectively &quot;portable&quot; then just deleting its file directory removes all traces of it.  Some installs are just extracting content to a folder.  Most applications you run into today however result in hundreds or thousands of registry entries in addition to what is placed in the file system.  Most of those can be left in place without any real consequence when attempting to install in the future (Like if you had to manually remove content because the uninstall broke.. which happens sometimes due to unexpected behavior).</p>
+<p>So for the ELI5 portion:</p>
+<p>When an application installation is started it copies files and other data into specific pre-determined locations.  If the installation is aborted for any reason each of those previously copied to locations should be deleted because it just reverses what it previously had done.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drewstew33" target="_blank">drewstew33</a>
+			<div class="markdown"><p>This is accurate, I work in IT and a large majority of my day to day work involves repairing operating systems after users get frustrated in the middle of an update or cancel a program install incorrectly(forcibly shutting down the computer)... Some programs can cause huge issues/system instability, depending on the programs purpose....</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gorstag" target="_blank">Gorstag</a>
+			<div class="markdown"><blockquote>
+<p>(forcibly shutting down the computer)</p>
+</blockquote>
+<p>That is a &quot;you done broke it&quot; moment if it was in the middle of doing an install/uninstall.  </p>
+<blockquote>
+<p>Some programs can cause huge issues/system instability, depending on the programs purpose</p>
+</blockquote>
+<p>Thankfully, the OP was asking about games.  And games pretty much never fall in this category.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/po-handz" target="_blank">po-handz</a>
+			<div class="markdown"><p>whats the linux equivalent of the registry? like when I'm installing new apps they make system changes somewhere, is it the config folder? or etc....</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gorstag" target="_blank">Gorstag</a>
+			<div class="markdown"><p>I am not an expert with unix/linux.  To the best of my knowledge there is no registry equivalent.  There are a bunch of symbolic links that can occur that I suppose could be considered &quot;similar&quot;.  Most applications on linux are much closer to &quot;portable&quot; than in windows.  All of the their configs etc are self contained with the app.  As long as the underlying system resources are available they can function.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FishDawgX" target="_blank">FishDawgX</a>
+			<div class="markdown"><p>On Windows, there are a handful of standard ways to create an installer. All of them have rollback. If there is a critical error or the user cancels the install, everything is rolled back. Some minor things might be skipped in the rollback like some registry entry that was added.</p>
+<p>Also, Windows has restore points that the user can create and sometimes installers create. These allow you to automatically rollback all changes made to the system to a point in the past.</p>
+<p>Installing is pretty simple. You copy files, maybe update some settings, register some DLLs, etc. Rolling back is slightly more complicated. For example, you don't want to unregister a DLL if it was already registered on the system by another application. That would cause the other application to stop working. And if you are upgrading the version of something, you need to keep a copy of the old version in case you have to put it back. Undoing an install takes twice as long as doing it.</p>
+<p>If the computer battery dies or the installer crashes half way through, then you'll be left with a partial install. But installers typically have a &quot;repair&quot; function that will fix anything that is wrong and get everything back to how it should be after a fresh install.</p></div>		</li>
+					</ul>
+	

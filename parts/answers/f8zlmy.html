@@ -1,0 +1,46 @@
+<div class="answers">
+	<div class="answer" data-handle="fioomrk">
+		<a class="author" href="https://www.reddit.com/user/dstarfire" target="_blank">dstarfire</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>the downloaded files will usually be stored in a folder designated by the system as temporary storage*. Some installers will check for this already downloaded data and resume where you left off. Others (e.g. Origin client) simply start over from the beginning.</p>
+<p>The install itself (copying files from temp storage, creating registry entries, etc.) will almost always have to be restarted from scratch simply because it's easier (for the programmer) to just make the necessary changes than it is to check what changes have been made already. </p>
+<p>*temporary storage just means the operating system is allowed to delete those files if it needs the space (some will even clear this area of old files on a regular basis)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fiom3gc">
+		<a class="author" href="https://www.reddit.com/user/dale_glass" target="_blank">dale_glass</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Depends on how the installer is coded. On Windows, an installer is just a computer program, and can work in pretty much any way it wants to.</p>
+<p>Based on personal experience, I would say in quite a few cases you'll end up with a partial install. Because undoing 91% of an install requires keeping track of exactly what has been done so far, and knowing how to undo it, and not nearly all installers do that.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fiovspe">
+		<a class="author" href="https://www.reddit.com/user/domiran" target="_blank">domiran</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There's no one answer. The basics of it, however, is that an installer is just another program.  There are off the shelf varieties (&quot;InstallShield&quot;) but most games have their own in-house installer.</p>
+<p>In the old days (Windows 95), installers used to leave shit all over the computer (because, surprise! Windows required it to work like that!) and often did not clean themselves up either during a partial install or an uninstall. This meant files left in c:\windows\system32 and settings left in the Windows Registry.</p>
+<p>Since then, Microsoft has changed the rules a bit, telling software developers you don't need to put crap in the system32 and can leave it in your own folder, often whatever folder the application used under C:\Program Files.</p>
+<p>As for settings, well, the registry is still a mess, with programs still needing to add themselves to various parts for random functionality. An example of this is when you install a photo editor like Paint.NET, it registers itself as a program to open, say, gif files. When you right click on a gif, you can open it directly in that program right from that right click menu, which it did by adding a specific setting in the registry. If you know where to look, long-removed programs still probably leave their shit all over the registry.</p>
+<p>A well-made installer will keep track of what it did and when it is canceled mid-way or the program uninstalled, the installer will remove everything. That sometimes still isn't the case.</p>
+<p>Bonus paragraph! You might have heard of the Windows Store. Programs on there are a special variety. Microsoft calls the technology used to make them &quot;Universal Windows Platform&quot;. A UWP app is a self-contained program and are not <em>meant</em> to use the registry and can only access their own folder and a scant few other special-access folders on your computer. They are installed to C:\Program Files\WindowsApps and are intended to be mostly hidden from you. Uninstalling a UWP app should be just deleting its folder and maybe a few other things Windows should sort of automatically know about because the install points are all known locations, and not random shit all over the registry or your hard drive. This is because Windows itself is the installer, just like when you install an app on an iPhone or Android phone, and knows what it has to do.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fipfkcm">
+		<a class="author" href="https://www.reddit.com/user/B-Prue" target="_blank">B-Prue</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>5yrOldAnswer:  When the install runs, it starts putting files where they are supposed to go.  If you stop that, depending on how good the installer is at its job, it can:</p>
+<p>A:  Clean up everything it did like it never happened and wait for you to run it again.</p>
+<p>B:  Remember what the last thing done was before you stopped it and pick up from there if you try again.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fipqbod">
+		<a class="author" href="https://www.reddit.com/user/Arqideus" target="_blank">Arqideus</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Let's say you're setting up a pillow fort.  No one knows where it's located.  They can try searching for it room by room, but your house has 50 million rooms so that would take forever.  You told your friend Steve that he could tell anyone where the fort was once it was done, but you wouldn't tell him until you were done.  You start building the fort, but halfway, your mom calls you down for dinner and you never actually got to finish the fort.  Since you never finished the fort, Steve never learned of its location.  Half of it is still in some random room you picked, but no one will know where it's at unless they do the room by room search.</p>
+<p>Basically, data gets written to the hard drive and at the end of a completed write (&quot;install&quot;), there's an information &quot;table&quot; on the hard drive that gets updated with the location of that data so that when you double click PathOfExile.exe, the computer just goes to that &quot;table&quot; to get where the location is on the disk and then goes to that position on the disk.  If an install stops half way through, that &quot;table&quot; doesn't get updated with the location of the data.  The data still exist there, but it's not protected.  It can still be overwritten whereas the completed install of Path of Exile protects the location of wherever PathOfExile.exe points to so that nothing else can overwrite it.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
