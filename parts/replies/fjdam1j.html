@@ -1,0 +1,46 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xopowo123" target="_blank">xopowo123</a>
+			<div class="markdown"><p>Is that really right? Trillions? (Not doubting you. Just...amazed.)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FiveDozenWhales" target="_blank">FiveDozenWhales</a>
+			<div class="markdown"><p>Trillions seems about right but I didn't actually figure it out, I may be off by an order of magnitude or two.</p>
+<p>Consider this problem (greatly simplified): It's a video game.  We want to draw a 3D cube which is 1 meter on each side, tilted, viewed at a distance of 50 meters.  Each face of the cube is a picture of a whale which is stored as a 1000x1000 pixel image.  There is lighting on the cube from one direction.</p>
+<p>First we need to load up the picture of the whale.  That's 1000 x 1000 pixels, i.e. 1,000,000.  We need to calculate each pixel's location, which we do by multiplying the rotation of the cube by the length of the cube's edge by the distance from the camera; let's say we have a good algorithm which does this in only 10 &quot;tasks&quot; per pixel, so that's  10 million tasks.  Now, each pixel has three color values, red green and blue.  For each color we need to adjust it based on the light source; that's 3 colors <em> 1,000,000 pixels </em> 6 faces of a cube = 18,000,000 tasks.  We then need to remap the pixel based on distance from the camera, which is a trigonometric function requiring 6 operations, so another 36,000,000.  Then we need to tell the screen to draw these values, but first we need to decide which pixel on the flat monitor is going to be used for each 3D placed pixel; that's <em>another</em> 36,000,000 tasks.</p>
+<p>So in our extremely rough example here, we've used 100,000,000 &quot;tasks&quot; just to draw a stationary cube.  Of course, if our computer can do a billion tasks a second, that's 1/10th of a second; but drawing a cube is relatively simple compared to rendering a webpage.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Eudaimonium" target="_blank">Eudaimonium</a>
+			<div class="markdown"><p>Hi, apologies up front - I'm not trying to put down your effort, and I'm definitely not trying to belittle the absolute magic that is the computer display tech for reasons that will become clear: </p>
+<p>I am a programmer (video game developer, with a fondness for shaders and rendering pipelines). Your description is a litle bit misleading and that's not actually how rendering works. </p>
+<p>I would advise looking up <a href="https://shot511.github.io/2014-06-08-tutorial-04-what-is-programmable-rendering-pipeline/" target="_blank">programmable rendering pipelines</a> . The most important part is the Rasterization process. </p>
+<p>In short, all 3D objects are composed of triangles, three points in 3D space. Those points are first transformed from 3D world space, into your screen space, three at a time. </p>
+<p>Then, the rasterization step figures out which pixels on your screen are between those 3 points, so we can color them and get a triangle displayed. </p>
+<p>Transformation of vertex positions from world space into screen space is being done by a Vertex Shader program, you can write those. </p>
+<p>Rasterization is done internally on the hardware and cannot be modified. </p>
+<p>Finally, a Pixel Shader program (or more correctly, Fragment shader program) colors each pixel. You can write those to do whatever you want - a simple flat color, or a complex shading technique requiring multiple textures, light sources and depth buffers.  </p>
+<p>True magic of computer rendering was never the sheer amount of tasks a computer has to, or can do. It's the absolute genius that went into developing algorithms and methods that <em>reduce</em> the amount of tasks a computer has to do.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/grumd" target="_blank">grumd</a>
+			<div class="markdown"><p>So you're saying my PC can only display a stationary cube at 10fps? /s</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hirmuolio" target="_blank">hirmuolio</a>
+			<div class="markdown"><p>CPUs have the clock speed. It may be running at lets say 4 GHz.<br />
+So the CPU goes through 4 billion (4×10^(9)) cycles per second. </p>
+<p>The CPU can do multiple instructions per cycle. Wikipedia says that modern CPUs can do few tens of instructions per cycle.<br />
+You also have multiple cores on the CPU each doing its own thing.  </p>
+<p>And lets not forget the GPU. RTX 2070 can do 6 trillion floating point operations per second.</p>
+<p>Computers do mindbogging number of steps to perform tasks.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CannyVenial" target="_blank">CannyVenial</a>
+			<div class="markdown"><p>But it all crumbles when it runs Crysis 3</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/new_account-who-dis" target="_blank">new_account-who-dis</a>
+			<div class="markdown"><p>every 1 and 0 is a task, the numbers add up quick</p></div>		</li>
+					</ul>
+		</ul>
+	

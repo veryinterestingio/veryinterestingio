@@ -1,0 +1,116 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ghostued" target="_blank">ghostued</a>
+			<div class="markdown"><p>And a normal PC running windows has at least 30 processes running at the same time even while the user is not using it...</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sell200AprilAt142" target="_blank">Sell200AprilAt142</a>
+			<div class="markdown"><p>28 of them are for Outlook</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GenXCub" target="_blank">GenXCub</a>
+			<div class="markdown"><p>Chrome wants a few processes for pre-loading.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kucksdorfs" target="_blank">kucksdorfs</a>
+			<div class="markdown"><p>I think you mean Chrome.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thelogical1" target="_blank">thelogical1</a>
+			<div class="markdown"><p>It has very little to do with process count, as most of them are in a waiting state anyway. The big killer is Hard Drive access or Network access as a bottleneck. I would recommend an NVMe drive and the fastest RAM they can afford to solve most people's perceived computer issues.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/katamuro" target="_blank">katamuro</a>
+			<div class="markdown"><p>or speaking from experience not opening ten thousand tabs. </p>
+<p>Also when speaking of browsers a lot of time it's the network not the actual pc that is slow.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Daenkneryes" target="_blank">Daenkneryes</a>
+			<div class="markdown"><p>Most people would need to replace their motherboard if they wanted to go NVMe. A normal SATA SSD is going to be all any regular user would require.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mjarf88" target="_blank">Mjarf88</a>
+			<div class="markdown"><p>I recently replaced my regular SSD's with an NVMe drive and my system certainly got more zip to it now. Combined with 32 gigs of RAM with decent speed it can chew  on a lot of data.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chuckury" target="_blank">chuckury</a>
+			<div class="markdown"><p>Which is completely normal for any os.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lookmeat" target="_blank">lookmeat</a>
+			<div class="markdown"><p>Hijacking the top question.</p>
+<p>It's not contention. That is we aren't fighting over resources or in conflict with anyone else. This used to be the problem with old rotating disks, where moving the disk from place to place slowed things down, and loading, so as multiple programs asked for different pieces of code the disk wouldn't do the fastest. Nowadays with SSD's this isn't a problem, and it isn't a problem with modern RAM and even cache.</p>
+<p>TL;DR: Computers spend time waiting on your RAM and hard disk.</p>
+<p>Imagine that your CPU is like a bureaucrat on a desk. The CPU has various bins on their desk, we call them registers in program, were it puts the papers its working with right now. It also has an in and out box which go to other places. It has a clock, and it uses this clock to time its operations (it's faster this way), some operations take a single tick of the clock, others take multiple ticks. We call these ticks cycles. Your CPU mostly spends its time waiting for things to load into the inbox. Now sometimes there's other things to do, and the CPU will do that, but it's so fast, so so much faster, than the work coming in, that it will delay things.</p>
+<p>Now as you noticed the clocks in computers go very fast, so they can do a lot of things. Lets assume that we have a 3.0ghz CPU, which means that it takes 1/4 of a nanosecond to have a tick. That's really fast, and really hard to imagine. So instead I am going to slow down time in your computer until it does a tick ever 1 second.</p>
+<ul>
+<li>So our CPU wants to load Firefox (or Chrome). The first thing we need, from the get go, is to read the program to run it.
+<ul>
+<li>For the CPU to read this it has to process it through it's registers. The desk is small though, it only fits a small amount of data (lets say 200 bytes) so we have to go piece by piece.</li>
+<li>Chrome is about 38MB.</li>
+<li>So we take about 199230 seconds to process the whole thing. Assuming it takes one operation to load data and doesn't do anything else.</li>
+<li>The reality is that CPUs do a lot of tricks to get things running as fast as they can. Multitasking jobs at the same time (we call this pipelining), it will try to guess what goes next and set things up. When it screws things it has to go back and fix things. This can take up to 20 seconds of our slowed down computer. All in all it's not bad.</li>
+<li>This isn't were it takes time though. In our 3.0ghz sped up CPU it wouldn't even be a tenth of a millisecond so what gives?</li>
+</ul></li>
+<li>Our CPU has to get the data from somewhere. It has a really fancy in and out box system where it can put many stacks of paper. We call this the L1 cache. 
+<ul>
+<li>It takes 2 ticks, or two seconds, to load data from here.</li>
+<li>The CPU is smart and good at multitasking, so it may do other things while it loads. The time it takes isn't that much longer.</li>
+<li>It's bigger, but only has something close to 40KB (on modern CPUs), so even here we can't fit all of chrome!</li>
+</ul></li>
+<li>So we need to load the data in pieces from a bigger space. We have a messenger that constantly takes things from &quot;outside&quot; and loads them into the inbox-outbox. They have their own inbox-outbox system, this is the L2 cache.
+<ul>
+<li>Loading a chunk from L2 takes a little bit longer though. A full 28 seconds in our sped up computer. So we need to load things.</li>
+<li>So this is pretty fast still.</li>
+</ul></li>
+<li>Then we hit the L3 Cache. Think of this as sort of the mail room, it's shared across the building (cores) and sends data outside.
+<ul>
+<li>It's 12 MB, so it's pretty solid at this point, but chrome still doesn't fit all in it!</li>
+<li>Loading data from here takes a bit longer, but actually not much more than with others. We can't use all 12 MB because we share it with other CPUs.</li>
+</ul></li>
+<li>So now we hit the outside. We send data to a larger offsite storage facility (RAM) which sends us boxes of pages which we then forward on.
+<ul>
+<li>RAM has enough space. I don't know how many GB you have, but it should be enough.</li>
+<li>But RAM is <em>slooowwww</em>. Getting a box from RAM takes about 400 seconds, we need to do this for 95 &quot;boxes&quot;!</li>
+<li>Say that we load enough boxes to fill our L2 cache optimally (remember L3 is shared and complicated). Say that we load half and then the other half. </li>
+<li>Loading one half takes about 7 minutes.</li>
+<li>L1 cache can do the same trick (fill half while the other half is used) which means it will slow things down by at most 28 seconds.</li>
+<li>But its a lot of data the CPU can process all 750 KB in half the L2 cache in only 15 minutes.</li>
+</ul></li>
+<li>But we first have to put things in RAM. They come from our hard drive. Lets assume you have a really fast SSD.
+<ul>
+<li>It takes about 150,000 seconds to get 4KB, a whole 1,000,000 seconds to read 1MB. That is it takes 11 and a half <em>days</em> to read 1 MB.</li>
+<li>Loading Chrome's binary takes <strong>1.2 years</strong> in our slowed computer. At normal speeds we'd see something like 0.038 seconds.</li>
+</ul></li>
+<li>And what does Chrome does when it loads up?
+<ul>
+<li>It starts loading configuration files, which also go at this insanely slow level. All the plugins start, which also load their own data.</li>
+<li>It loads data from the internet, in our slowed down schedule sending a single packet of data from California to Netherlands and getting a response back takes 150,000,000 seconds, or 4.75 years. Now your bandwidth (how many megabytes per second) really tells you how much data you can put in one (here it's a few megabytes), but the speed is just how fast it leaves your home, and then your ISP into the internet, it still has to travel and get back, which is the latency, which in our slowed schedule is almost 5 years.</li>
+</ul></li>
+<li>So our program takes a few years of slowed time to load, then decides it needs to load more data, which takes a few more years, and on and on it goes. </li>
+</ul>
+<p>And this is assuming a program that all it does is load data and nothing else. It doesn't do smart things, it doesn't do encryption, it doesn't do any thing else. It just reads data and that's it. There's a lot of data that we don't know when to load until later, but that we can't start the program until we're done. All of these things take time, lots of it. Meanwhile our CPU only needed a little over two days (about 55 hours) to do all the work. So it mostly spends time waiting for the next batch of data to arrive.</p>
+<p>And then, data in the disk is encrypted and needs to be decrypted as it's loaded, and then the OS is handling various things and deciding when to trigger things. The data may be in RAM but the OS may decide it's not time yet. And then, there's all the security and checks that need to happen. So now our packets go through various security checks which are done by other CPUs (or our own) but this requires passing the data and then sending it back to RAM, so we need to read it multiple times.</p>
+<p>This ends up making things take minutes. Could we make it faster? Probably but it would come at the cost of other features.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ViskerRatio" target="_blank">ViskerRatio</a>
+			<div class="markdown"><blockquote>
+<p>It's not contention.</p>
+</blockquote>
+<p>What you're describing is a contention issue. You might try conceptualizing it in terms of the pathways the data takes - the various buses, for example. L1 cache is not 'better' than L2 cache. It's just closer (less physical distance to travel) and smaller (less addressing). If you could run everything out of L1 cache, you could.</p>
+<p>However, you can't - and every task on your computer wants to be using that L1 cache (as well as the pathways leading to it).</p>
+<p>Or consider one of the most common slowdown issues: virtual memory. This maps an abstract memory over the entire storage space of the computer, including fixed disks. If you're not using much memory, it's incredibly fast -  because it all occurs in RAM. If you are using a lot of memory - running into resource contention issues - it slows down.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lookmeat" target="_blank">lookmeat</a>
+			<div class="markdown"><p>My example built on a single task. Contention wasn't needed.</p>
+<p>Hell contention on cache is still in the order of nano seconds, microseconds at worst. This includes issues going to RAM.</p>
+<p>Virtual memory can be an issue us pages get moved to the disk, but it's rare nowadays and it's not an issue that happens when you are just loading (all memory is hot).</p>
+<p>The core problem is that it takes a while to get stuff from the disk. Like in the order of seconds for a really fast SSD. Now realize that seconds and microseconds from contentions are like comparing the distance from the USA to Europe, to the distance to the Moon. It's noise, a rounding error.</p>
+<p>Now you add contention to the disk and it slows things down a bit more. But the thing that really slows down browsers is that they need to keep loading a file, read it and then load more based in the data there. And the browser waits until it's all ready. Then there's internet data, which takes way longer. And this is how you start getting into tens of seconds.</p>
+<p>If you're on a crappy connection or disk (spinning platter) drive? Now we're in the world of minutes.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bmwhd" target="_blank">bmwhd</a>
+			<div class="markdown"><p>Exactly right. On Windows, open Resource Monitor and look at the Disk tab. If you see a queue value more than 10, your disk is the bottleneck and it’s likely because some background process is downloading a giant Windows update, syncing with a cloud storage like OneDrive, etc. all while regular processes like your browser are trying to do their day jobs.</p></div>		</li>
+					</ul>
+	
