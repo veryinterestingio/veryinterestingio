@@ -1,0 +1,67 @@
+<li class="post" data-handle="fd2r6q">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/fd2r6q/eli5_how_is_it_that_when_your_computer_is_lagging/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/fd2r6q" onclick="return false">How is it that when your computer is lagging really badly, but playing a song, that song still plays smoothly while everything else is unresponsive?</a>
+		</h2>
+		<!--<span class="date">2020-03-07</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: How is it that when your computer is lagging really badly, but playing a song, that song still plays smoothly while everything else is unresponsive?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="fjepptk">
+		<a class="author" href="https://www.reddit.com/user/Arth_Urdent" target="_blank">Arth_Urdent</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Audio processes are often assigned some of the highest priority because stuttering audio is horrible and audio lag is some of the most notable. So there is a chance that the audio playback is one of the few things that has higher priority than whatever causes the hold up.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fjeziqf">
+		<a class="author" href="https://www.reddit.com/user/_pigpen_" target="_blank">_pigpen_</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are lots of reasons. One is simply that the operating system is designed that way: media playback is highly time critical so modern OSes prioritize it over other processes. Secondly, audio in particular is relatively low data rate. Audio playback is handled by dedicated hardware. Your application likely reads the audio data in to memory and then tells the hardware where in memory that data is. Once that’s done,  the audio hardware can read directly from the memory. This means that the rest of the system, can, within reason, lose its mind and the audio will keep playing until the data in memory runs out.   </p>
+<p>Source: I was the lead engineer on the port of a major non linear video editing system to MacOS. We had to do unholy things in order to stop iTunes from starving out our video hardware.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fjeznu1">
+		<a class="author" href="https://www.reddit.com/user/MasterGreenbolt" target="_blank">MasterGreenbolt</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>When you play sound, you have dedicated hardware which does all the decoding, buffering, playback and anything else. This for example allows you to play music on your phone while your phone is in your pocket. Also, your sound player usually keeps a buffer in memory, where the next few seconds are already decoded and are ready to be played back. This prevents your sound from lagging mostly.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fjf2ic2">
+		<a class="author" href="https://www.reddit.com/user/Murgos-" target="_blank">Murgos-</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Audio gets a high priority to interrupt and also requires very little data to sound reasonably good.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fjf5p7y">
+		<a class="author" href="https://www.reddit.com/user/diverextraordinaire1" target="_blank">diverextraordinaire1</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The overall audio behavior is controlled by a combination of the hardware architecture and the audio driver stack.</p>
+<p>On the software side: the drivers are loaded at system startup, they reserve enough memory to not need more allocations later. The application typically reads ahead several MBs from storage so even if the access to filesystem is stuttery, nobody will notice.</p>
+<p>On the hardware side, almost all modern SOCs have dedicated audio codecs in hardware that will efficiently decode compressed audio into wave streams and pipe it directly to the audio channels with minimal intervention from the Processor cores that may be busy with  whatever-is-causing-the-lagginess.</p>
+<p>I was thinking of a PC running Windows in this example, but I suspect the answer is true across most modern devices.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/fd2r6q" onclick="return false"><span>show</span></a>
+</li>

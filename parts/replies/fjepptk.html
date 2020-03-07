@@ -1,0 +1,125 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/UrsaMinorNinth" target="_blank">UrsaMinorNinth</a>
+			<div class="markdown"><p>One of the first things we learnt in the science of video production is that you can allow frames of video to drop because you don’t <em>really</em> notice unless it gets really bad. But drop a single frame of audio and it’s instantly unlistenable.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dashiGO" target="_blank">dashiGO</a>
+			<div class="markdown"><p>Quote from an audio engineering book:</p>
+<p>“Your ears never blink.”</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/igeek5" target="_blank">igeek5</a>
+			<div class="markdown"><p>Source on book? Am sound design student.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LaBrestaDeQueso" target="_blank">LaBrestaDeQueso</a>
+			<div class="markdown"><p>And your brain processes sound much faster than any other sense. It takes your brain about .05 seconds to process and react to auditory stimulation vs about .2 seconds for visual.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jrkirby" target="_blank">jrkirby</a>
+			<div class="markdown"><p>The real reason why audio can't be dropped is that there's no acceptable fallback for missing information.</p>
+<p>If video players that missed a frame displayed an entire black screen, that wouldn't be palatable either. But they can just repeat the previous frame, which isn't so bad.</p>
+<p>Audio usually does zero out for missed frames, which is terrible. But even if you just repeated the last 1024 samples of audio computer, that wouldn't be acceptable either. The phase of the frequency information wouldn't align, introducing artifacts that sound like clicks, on top of a noticeable and jarring repetition.</p>
+<p>You could technically use some clever techniques with crossfading or matching zero crossings or something to create a less offensive. But that requires computation too, so if you could do that, you might as well compute what the sound was supposed to be anyway.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dudemanbrosirguy" target="_blank">Dudemanbrosirguy</a>
+			<div class="markdown"><p>In Networking, we talk about how voice, despite taking up a tiny amount of bandwidth, has to be given the highest priority (known as QoS value). Humans are just really good at telling when another humans voice sounds wrong.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cd29" target="_blank">cd29</a>
+			<div class="markdown"><p>And some people think a single T1 line for internet in 2020 is still enough to run an office of 10 people including VoIP :(</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NotMyRealNameObv" target="_blank">NotMyRealNameObv</a>
+			<div class="markdown"><p>Can confirm - I work in telecom, and VoLTE calls have very high QoS.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Emotional_Writer" target="_blank">Emotional_Writer</a>
+			<div class="markdown"><p>Wasn't one of the first applications of EQ literally just WW2 pilot radios not having the right amplitude on formants, making all the words sound the same?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Iisk" target="_blank">Iisk</a>
+			<div class="markdown"><p>Interesting point! Never thought about it that way. I wonder if this explains why playing an audio at 0.5x speed sounds so weird to us since it has dropped frames.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/UrsaMinorNinth" target="_blank">UrsaMinorNinth</a>
+			<div class="markdown"><p>It depends on how it has been halved in speed. </p>
+<p>Dropping frames of digital audio is not an option, you will get nasty digital clipping as the algorithm tries to average between two non-contiguous samples. Not to mention, you are now out of sync if you are running it alongside video. </p>
+<p>If the speed is just halved then the pitch will also be halved, meaning it sounds lower, deeper, half as high. Which would describe the “sounding weird”. On analogue mediums it just sounds half as fast and half as high in pitch without any artefacts because, say on tape, you’re just running the information past the tape head half as fast. </p>
+<p>Digitally you have to do something if you’re preserving the sample rate because by halving it you’ve just lost half your samples and the computer wants to read them and they’re not there. It does this in a variety of different ways, so you can double each sample (hello harmonic distortion, how’d you like all these sharp edged waveforms?), which will introduce artefacts which sound glitchy, or you can mathematically average between the samples before and the sample after to add in a new sample. Which can also be glitchy and artefacted if your math sucks. </p>
+<p>This gets even worse if you don’t just want to slow it down but you also want to preserve the pitch. You can’t just double the samples or average between them because that will not have the effect of preserving the pitch. You need to maintain the shape of the waveform and add in a load of samples mathematically that have that effect (we’re talking Fourier Transforms here). This is done in many different ways, some far more successful and expensive than others. That’s why Izotope plugins are so expensive, both monetarily and in terms of system resources, and are very good at performing tasks like that. Where YouTube or audible sound kinda glitchy when you start messing with the speed.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bigestboybob" target="_blank">bigestboybob</a>
+			<div class="markdown"><p>and listening to songs that have &quot;every other beat removed&quot;</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gavooki" target="_blank">Gavooki</a>
+			<div class="markdown"><p>the audio could also be loaded in packets, giving your computer time to catch up before it runs out of data to play</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Xaldyn" target="_blank">Xaldyn</a>
+			<div class="markdown"><p>I really wish being able to adjust the volume of that audio was at the very least an equal priority. Nothing's worse than having audio blaring and not being able to do a damned thing about it.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/UpperEchelon666" target="_blank">UpperEchelon666</a>
+			<div class="markdown"><p>Oof you’re making me time travel back to windows xp, that shit ALWAYS happened when it was too loud and I needed to lower it quickly</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/doublebass120" target="_blank">doublebass120</a>
+			<div class="markdown"><p>Porn, eh?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/scrumbly" target="_blank">scrumbly</a>
+			<div class="markdown"><p>You can get a physical volume knob. Some speaker sets have them or you can add one inline. I think you can also get remote controlled ones.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Xaldyn" target="_blank">Xaldyn</a>
+			<div class="markdown"><p>On a laptop?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KaktitsM" target="_blank">KaktitsM</a>
+			<div class="markdown"><p>Do it on the physical audio device you are listening trough? Unless you are using a laptop, then yeah, it could be a problem.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ToranjaNuclear" target="_blank">ToranjaNuclear</a>
+			<div class="markdown"><p>...so that means lagging audio is a sign that things are pretty fucked up right</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ChopperGunner187" target="_blank">ChopperGunner187</a>
+			<div class="markdown"><p>Yeap. For me, the trio to look for are: </p>
+<p>1) Lagging audio - rare, for me at least.</p>
+<p>2) &quot;<em>Task Manager</em> <strong><em>(Not Responding)</em></strong>&quot; or alternate: CPU/MEM/HDD all at 100% because of a rogue process</p>
+<p>3) Checking to see if my numlock/capslock light on the keyboard lags.</p>
+<p>If the lights on your keyboard aren't responding for several seconds, then you know shit has really hit the fan. At that point, If I'm not in the middle of a file transfer, I just force power-down (yank the power cable). Fortunately, it's rare for me to have to do that these days. Kinda miss the Windows XP days.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eljefino" target="_blank">eljefino</a>
+			<div class="markdown"><p>This reminds me somehow of doctors checking pupils with a flashlight to see if someone's quite brain dead.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/vizzyq" target="_blank">vizzyq</a>
+			<div class="markdown"><blockquote>
+<p>Kinda miss the Windows XP days.</p>
+</blockquote>
+<p>Modern teens will never know the anxiety of panic-closing a web browser only to have the porn audio still playing in the background while XP slowed to a crawl.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mustbhacks" target="_blank">Mustbhacks</a>
+			<div class="markdown"><blockquote>
+<p>3) Checking to see if my numlock/capslock light on the keyboard lags.</p>
+<p>If the lights on your keyboard aren't responding for several seconds then you know shit has really hit the fan. At that point, If I'm not in the middle of a file transfer, I just force power-down (yank the power cable). Fortunately it's rare for me to have to do that these days. Kinda miss the Windows XP days.</p>
+</blockquote>
+<p>What kind of keyboard waits for a response from the PC to light up a key...?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Soul_of_Jacobeh" target="_blank">Soul_of_Jacobeh</a>
+			<div class="markdown"><p>ya done lost by this point</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Yadobler" target="_blank">Yadobler</a>
+			<div class="markdown"><p>From my anecdotal experience when the audio starts to stutter like a drill, the computer is dead (either blue screen or the computer turns off, or I need to manually strangle the power button off)  </p>
+<p>Makes sense tho based on this thread. Things often crash or do things wrong/things it's not suppose to do, and Windows in the background catches it and corrects it like a baby sitter watching out for kids falling from the couch. But if the highest priority, the audio, it stuck in a loop then chances are that the kernel is also stuck and there's nothing below the kernel to save the computer</p>
+<p>Also since the audio is handled by another hardware like sound chip, if that's lagging it also means that the computer is unable to handle interrupts, it's calling the cpu's mobile number but the cpu isn't picking up its phone. So either the cpu is putting everything aside and doing damage control (ie blue screen) or it's dying, maybe because of short circuit or something wrong like deadlock in the software that caused the kernel to take over but it also got into a deadlock like the baby sitter also fell off the couch that's why they are unconscious, baby also ded, phone ringing no one picking up. Gg</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pseudopad" target="_blank">pseudopad</a>
+			<div class="markdown"><p>Minor correction: It's the kernel itself that does the bluescreen (or kernel panic if you're using various other operating systems). If the kernel itself encounters a problem it can't handle, it has no way of knowing what will happen next. If it's allowed to continue, it might try to for example overwrite data that's critical to the user. The safest course of action in this case, is to immediately stop all processes, including itself. That way, you'll only lose unsaved data, but at least you'll avoid damaging other data you've saved earlier.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
