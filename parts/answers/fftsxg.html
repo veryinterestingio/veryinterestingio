@@ -1,0 +1,69 @@
+<div class="answers">
+	<div class="answer" data-handle="fk0t9nc">
+		<a class="author" href="https://www.reddit.com/user/FoxtrotSierraTango" target="_blank">FoxtrotSierraTango</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Imagine you have to do everything by mail, and you don't feel safe sending postcards due to your post office being staffed by your overprotective mother. A VPN is like putting the postcard in an envelope to your buddy who is away at college. Your buddy opens the envelope and resends the postcard. He gets a response via postcard and puts it in an envelope back to you.</p>
+<p>Now the benefit to avoiding your snooping mother (who is actually an ISP) is obvious, but you often hear things like &quot;Australian Nexflix has that show, sucks to be in Canada.&quot; If your buddy (who is the VPN endpoint) is in Australia, how does Netflix know? As far as they're concerned, they're sending stuff to an Australian address.</p>
+<p>As to how it works, it's mainly software in your PC or your router that's signed up for a service that encrypts traffic and sends it to the designated endpoint. One of the less talked about applications is very common in remote work - Companies set up VPNs so you can connect to all the internal tools as though your on the company network by setting up endpoints within the company firewall.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fk0mnrl">
+		<a class="author" href="https://www.reddit.com/user/jonfitt" target="_blank">jonfitt</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>All of your traffic that goes to the VPN adapter is addressed to the same destination (the VPN gateway). Inside those packets (encrypted) is another packet with the real destination and contents that you want. </p>
+<p>The VPN gateway unencrypts the packet and sends it on its way with a source address that’s part of the network the VPN gateway is in. It does the same for packets headed back to you. </p>
+<p>What that means is your traffic is (virtually) inside the network that’s behind the VPN gateway. </p>
+<p>Let’s say that that network is your home (many home WiFi routers can run a VPN gateway). </p>
+<p>It lets all of your traffic from your laptop that’s away from home get to your home computers without going through the router so things like printer sharing will work without exposing your printer through port sharing etc. It’s as if your laptop was on your home WiFi. </p>
+<p>It’s great for things like being on your work network, when you’re not at work. </p>
+<p>So why do people like them for “security”?</p>
+<p>Well, anyone spying on your remote laptop only sees encrypted traffic going to one place (the VPN gateway). It doesn’t know what’s in it, or where it’s going. </p>
+<p>The final destination of your traffic doesn’t have to be within that VPN. It could be intended for xxxpirates.net. When the traffic gets to that VPN it would be sent out to that server from the VPN and back to you via that VPN. Anyone wanting to charge someone with piracy would only be able to charge the owner of the VPN (who probably lives outside the US). </p>
+<p>Nobody can connect you to that piracy (unless the owner of the VPN decides to turn over their records).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fk18mx8">
+		<a class="author" href="https://www.reddit.com/user/SeeYouNextTyrsday" target="_blank">SeeYouNextTyrsday</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The diagrams below are an oversimplification of TCP/IP and IPSec, to get the point across without going too far into the weeds about the details.</p>
+<p>A VPN is designed to prevent anyone between two computers from being able to inspect the information being sent between the two computers. </p>
+<p>As for how it works, we can look at an example of non-vpn traffic and compare it to vpn traffic. The data your computer sends over the internet is sent in chunks called packets. A normal TCP/IP packet looks like this</p>
+<pre><code> |------|------|--------------|
+ |  IP  | TCP  |     Data     |
+ |------|------|--------------|</code></pre>
+<p>IP contains the source and destination IP. TCP contains the source and destination Port information. Data contains the data being sent to the destination IP. </p>
+<p>Anyone, such as an ISP, with access to this packet can read it an know what server you are sending information, as well as the information itself. You can protect the data you are sending using HTTPS, which will encrypt the Data portion of the packet using Transport Layer Security (TPS). But this just encrypts the data, not the source and destination TCP/IP information. So someone might know you're visiting a banking website, but won't be able to read whatever data is being sent, like your account password or balance or whatever other information is being sent. </p>
+<p>However, HTTPS doesn't obscure the TCP/IP information, so someone can still figure out your browsing habits if they really wanted to. </p>
+<p>VPNs go an extra step by taking the entire original packet, encrypting it, and wrapping it in another new packet with different destination information. Like so:</p>
+<pre><code>               |---             Encrypted          ---|
+               |--    Original Packet     --|
+ |------|------|------|------|--------------|---------|----------|        
+ | New  | ESP  |  IP  | TCP  |     Data     |   ESP   | ESP Auth |
+ |  IP  |Header|      |      |              | Trailer |  Trailer |
+ |------|------|------|------|--------------|---------|----------|</code></pre>
+<p>You can see the original packet is still there, surrounded by new parts. VPN software using ESP, Encapsulating Security Payload, to encapsulate the original packet to protect it from eavesdroppers. This new packet is not sent to the original destination IP, but to an intermediate VPN device. The packet is protected while enroute to the new VPN IP. Once it reaches the VPN endpoint, the endpoint unpackages and decrypts the original packet, overwrites the source information with its own information, and then sends it along to the original destination. Anyone listening would find it exceedingly difficult to discover the true origin of this packet. </p>
+<p>The VPN endpoint will also do the same thing in reverse. Once the packet reaches its destination server, the server will respond with data, sending it to the VPN endpoint. As far as the destination is concerned, the VPN <em>is</em> the originator of the packet. The VPN will then encapsulate and encrypt the return packet, and send it back to your device.  </p>
+<p>This is useful for a lot of different things. Businesses can use it to securely share a file server to remote locations without exposing the file server traffic to the public internet, for instance. If you have to routers set up with a VPN tunnel between them, then the devices on either end of that tunnel wouldn't even necessarily be aware that they weren't on the same internal network and were actually traversing other networks.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fk0ryve">
+		<a class="author" href="https://www.reddit.com/user/liquid_at" target="_blank">liquid_at</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Simply put, a VPN is like a privately run underground train system in a city. </p>
+<p>You enter a station at one point and leave at another, but no one knows where you came from or where you are going, unless they run the underground train system. But they promise really really hard, that they aren't looking or writing anything down.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fk1ekni">
+		<a class="author" href="https://www.reddit.com/user/_____no____" target="_blank">_____no____</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Normal network communication works by your computer (the client) sending a request to a remote computer (the server) and then the server will respond back to you fulfilling the request. If this is represented as flow from A (your computer) to B (the remote server), then back to A again a VPN does this: From A to V (VPN), V to B, B back to V, and then V back to A again.</p>
+<p>A -&gt; B -&gt; A</p>
+<p>Becomes:</p>
+<p>A -&gt; V -&gt; B -&gt; V -&gt; A</p>
+<p>The VPN acts as a middleman between you and the remote content you are accessing. The content between your computer and the VPN is usually encrypted, while the content between the VPN and the remote server (B) may not be.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
