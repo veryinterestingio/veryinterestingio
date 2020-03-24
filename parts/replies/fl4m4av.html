@@ -1,0 +1,91 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aaaaaaaarrrrrgh" target="_blank">aaaaaaaarrrrrgh</a>
+			<div class="markdown"><p>And they're surprisingly &quot;normal&quot; computers too, usually running Linux.</p>
+<p>Some details like the &quot;hard drive&quot; will be different, but if you're familiar with the Linux command line and find a way to access your router, you can telnet or SSH in and find a reasonably familiar environment.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/demize95" target="_blank">demize95</a>
+			<div class="markdown"><p>Hell, you can get a high performance router just by installing pfSense (or OPNsense) on a normal computer with two ethernet ports. Depending on how you get internet, you may even be able to use that as your modem too (extra hardware, like an SFP+ NIC, may be required).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aaaaaaaarrrrrgh" target="_blank">aaaaaaaarrrrrgh</a>
+			<div class="markdown"><p>What's the typical performance of that? You get a much more powerful CPU but lose the hardware acceleration dedicated router hardware has.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ZaviaGenX" target="_blank">ZaviaGenX</a>
+			<div class="markdown"><p>Is this possible with windows for less technical users?</p>
+<p>My old linksys wrt is probably at the end of life stage.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ssl-3" target="_blank">ssl-3</a>
+			<div class="markdown"><p>Or go Full Monty:  Pick a favorite hypervisor, buy a managed switch, learn VLANs, and turn (just about) any modern-ish desktop into a virtualized beast-machine that can run OPNsense and Linux and Windows and FreeNAS and gaming and...well, everything, all at once.</p>
+<p>Virtualize all the things!  (and save power doing it, too).</p>
+<p>(Remember:  The common home router is just a network switch with VLAN support, with one of the ports directly accessible by the CPU as a singular network device (plus wifi interfaces).  There's nothing particularly wrong with that topology and it is in use in almost every house, anywhere.)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ioangogo" target="_blank">Ioangogo</a>
+			<div class="markdown"><p>It's also slightly more than &quot;it's booting&quot; in order to save space routers also use a compressed filesystem called squashfs. Because it's compressed the bootloader has to spend a bit of time on the weak CPU decompressing the filesystem inorder to boot Linux</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/permalink_save" target="_blank">permalink_save</a>
+			<div class="markdown"><p>They are really stripped down so it's likely you'll find something like busybox environment. The locations of things is .. interesting too, because of how they build the rom. But yeah I had a linksys I flashed with a custom rom and SSH'd in, could poke around pretty well.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Negs01" target="_blank">Negs01</a>
+			<div class="markdown"><p>I have seen this explanation before but I don't think it is correct, or at least it's incomplete.  Yes, it may take 30 seconds or a minute (it's not like it has to load a highly complex program from a physical drive) to boot up but then the system will be up and running and &quot;trying to connect&quot; for several minutes.  During this time you can open up your browser, navigate to the admin page via local IP (usually <a href="https://192.168.0.1" target="_blank">192.168.0.1</a>) and see that it is up and running just fine, but still trying to connect to your ISP.</p>
+<p>I have always assumed the ISP has placed you in a queue of some sort, or establishing the connection takes a long time because of design limitations and outdated technology.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bmwiedemann" target="_blank">bmwiedemann</a>
+			<div class="markdown"><p>Indeed. If the router includes a modem, it will try to negotiate with the ISP's modem which frequencies are available and which work best to transmit data. That &quot;modem sync&quot; can take a bit.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Negs01" target="_blank">Negs01</a>
+			<div class="markdown"><p>Good point.  I took it for granted the OP was referring to his cable or DSL modem but he didn't actually ask that.  If it's just a wifi router on a network and not also a modem, then probably all it should need to do is reboot and perhaps take a little time to authenticate each client.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/graebot" target="_blank">graebot</a>
+			<div class="markdown"><p>Why can't it just assume the same settings as last time before re-negotiating?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/crossrocker94" target="_blank">crossrocker94</a>
+			<div class="markdown"><p>What are you talking about? Frequencies for what? Please explain.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/stampedingTurtles" target="_blank">stampedingTurtles</a>
+			<div class="markdown"><blockquote>
+<p>(it's not like it has to load a highly complex program from a physical drive) </p>
+</blockquote>
+<p>It is important to remember that although we tend to associate solid-state storage with high performance, this is not necessarily true. The storage in these devices is generally very, very slow compared to what is used in a modern PC.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gathorall" target="_blank">Gathorall</a>
+			<div class="markdown"><p>All USB Drives and memory cards are solid state, and all but rather recent ones have an earned reputation as slow.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pseudopad" target="_blank">pseudopad</a>
+			<div class="markdown"><p>The router is a mini computer, but it's also usually a very weak mini computer. It'll take way longer to boot up than your laptop or gaming rig.</p>
+<p>Typically, routers are fitted with the bare minimum of RAM and CPU power needed to route data from the WAN connection to the LAN connection. Just moving data around and dealing with routing to a handful of home users doesn't take a lot of effort, so it's not unusual for a budget router to have as little as a 800-1000 MHz dual core ARM processor and maybe just 256MB RAM.</p>
+<p>That's comparable to the specs of the very early gen smartphones of 2006-2007.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Beaglegod" target="_blank">Beaglegod</a>
+			<div class="markdown"><p>Eh. Depends on the device, but most newer home routers are reasonably fast but definitely not general purpose machines. More like a raspberry pi with a bunch of antennas.</p>
+<p>A lot of the bootup time is loading libraries and drivers in the router OS, just like booting up anything it’s gotta load stuff into ram in a certain order. The flash storage is probably the weakest point in the boot process. And developers who don’t give a shit how long your router takes to boot up won’t spend time on optimization there - they’ve got more important shit to work on.</p>
+<p>For the combo router/modems it also has to go through an authentication process with the cable company. Which looks like <a href="https://volpefirm.com//wp-content/uploads/2012/02/DOCSIS-3.0-Registration-Picture.png" target="_blank">this.</a></p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gaurdia" target="_blank">Gaurdia</a>
+			<div class="markdown"><p>Wait, someone actually explaining it like OP is 5? What has this sub come to?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PC__LOAD__LETTER" target="_blank">PC__LOAD__LETTER</a>
+			<div class="markdown"><p>From the rules</p>
+<blockquote>
+<p>The first thing to note about this is that this forum is not literally meant for 5-year-olds. Do not post questions that an actual 5-year-old would ask, and do not respond as though you're talking to a child.</p>
+</blockquote></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gaurdia" target="_blank">Gaurdia</a>
+			<div class="markdown"><p>I get that, but some of the explanations on here are so technical it entirely defeats the purpose of the sub.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
