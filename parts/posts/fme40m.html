@@ -1,0 +1,77 @@
+<li class="post" data-handle="fme40m">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/fme40m/eli5_how_do_electronics_know_what_battery/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/fme40m" onclick="return false">How do electronics know what battery percentage they have?</a>
+		</h2>
+		<!--<span class="date">2020-03-24</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: How do electronics know what battery percentage they have?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="fl3yv9q">
+		<a class="author" href="https://www.reddit.com/user/Cilph" target="_blank">Cilph</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In short there are two ways, sometimes combined.</p>
+<p>1) Measure the battery voltage and compare this against a graph that you obtained through calibration. This will tell you at what voltage, what the battery SOC (State-of-Charge) is. This will not be a linear relation. (being halfway between two extremes does not imply being half charged). Generally this is the <em>least</em> accurate way to measure, but it isn't affected by long-term errors.</p>
+<p>2) You measure the current going in and out of the battery. You know how much energy a battery will hold if full. Current can describe how much energy escapes the battery every second. Therefore if you measure half the energy has left, the battery is half full. This method is affected by errors over long periods of time, but is much more accurate on shorter periods.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fl3tknj">
+		<a class="author" href="https://www.reddit.com/user/JavaFishi" target="_blank">JavaFishi</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Most batteries have a different output (voltage) based on how full they are. </p>
+<p>For example in a lipo battery (common hobby bats) a charged 1 cell battery will output 4.2 volts, and its &quot;dead&quot; when it reaches 3.0 volts. So around 3.6v would be 50% charged.</p>
+<p>However you can overcharge and over discharge these batteries, but doing that may result in a bad time that usually involves fire and toxic smoke.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fl3u0el">
+		<a class="author" href="https://www.reddit.com/user/TheOtherJola" target="_blank">TheOtherJola</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's an estimate. A clever one based on lots of calculations, but it's still an estimate.</p>
+<p>Imagine you have a dumb battery cell, and it outputs at a voltage. Say, 5V. That's the only thing you can measure from a battery, is what the voltage is (temperature is also measured for protection against overcharging and overheating). You run your device, and it works fine until the battery gets to 3.9V, at which point it starts misbehaving, and there's a potential to damage the device or lose data.</p>
+<p>So, the calculation is then done as follows:</p>
+<p>Voltage 5V = Battery 100%
+Voltage 4.5V = Battery 50%
+Voltage 4V = Battery 0%</p>
+<p>Why not 3.9V? Well, some margin is left between 4V and 3.9V for you to find a charger whilst the battery keeps things like the clock and other volatile things going. It also helps prevent against things like the phone requiring more juice than the charger can provide during start-up, so that it doesn't flake out whilst you're switching it on, things like that.</p>
+<p>Basically, it's a calibration based on trial and error. Battery calculations are also nowadays self-calibrating, which is why your laptop is able to tell you that it needs a new battery (and why Apple were fined for manipulating phones based on battery stats).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fl3pssm">
+		<a class="author" href="https://www.reddit.com/user/arderoma" target="_blank">arderoma</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Voltaje is like the amount of water you have in a tank. If at the bottom of that tank there is a hole the water will start flowing through it and the pressure the water is flowing with depend on the amount of water on the tank, the more water the more pressure you just need to set a sensor (count how much water is flowing per second/time) at the hole to measure the pressure and you will know how much water there is left.</p>
+<p>Edit: and voltaje is the amount of energy you have on a battery</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fl4uqqj">
+		<a class="author" href="https://www.reddit.com/user/zakudon" target="_blank">zakudon</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I actually work with batteries for a living. A basic concept with any batteries is &quot;nominal voltage&quot;. Say you have a 12V car battery; A fully charged car battery isnt actually 12V but more like 12.6V. If a car battery is at 12V or below its essentially &quot;dead&quot;. Lower voltages than the nominal 12V would mean something severe happened to the battery, like a dry cell, or cold damage.</p>
+<p>The same goes for phones and many electronics. Many rechargeable lithium ion batteries have 3.7V nominal voltage. This means a fully charged battery will naturally be a small bit higher. So a 3.7V nominal battery at 3.8V would tell me it has a bit of charge on it still. </p>
+<p>If anyone has any questions feel free to ask, ill try to answer the best i can!</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/fme40m" onclick="return false"><span>show</span></a>
+</li>
