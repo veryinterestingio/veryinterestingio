@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: Why are the GHz speeds in computers the same after such a long period of time?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="fmnml6">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/fmnml6/eli5_why_are_the_ghz_speeds_in_computers_the_same/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/fmnml6" onclick="return false">Why are the GHz speeds in computers the same after such a long period of time?</a>
+		</h2>
+		<!--<span class="date">2020-03-24</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Why are the GHz speeds in computers the same after such a long period of time?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="fl53vjh">
+		<a class="author" href="https://www.reddit.com/user/thatscifiwriterguy" target="_blank">thatscifiwriterguy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Rather than increasing processor speed, which is becoming increasingly difficult thanks to things like substrate bleed (which is a whole other conversation), the push hasn't been to increase clock speed (measured in Hz) but rather to simply add more processor cores. As software development has matured and proper utilization of multiple cores to get work done has become commonplace, the value of number of cores has steadily outpaced raw clock speed. </p>
+<p>Clock speed used to be king because there was only a single &quot;pipeline&quot; at work in the processor. Stuff went in at one end, did what it had to do, and came out the other end. The faster you could get through the pipeline, the better. Modern processor architecture has added more and more pipelines running together. By spreading what's coming in across multiple pipelines, it keeps everything flowing more smoothly than trying to stuff it all through one pipeline. </p>
+<p>Additional factors include decreasing cost and size of what's called <em>cache memory</em>. This is memory that's actually on the processor itself and is used to store data the processor is actively using. It's far, far faster than having to write data to system memory and retrieve it. Between increased cache memory and more effective use of multiple processor cores, the importance of raw clock speed has sharply dropped off over the past 10 years.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fl5javs">
+		<a class="author" href="https://www.reddit.com/user/Stressweekly" target="_blank">Stressweekly</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A lot of this has already been answered, but let me provide a bit of perspective from closer to the silicon level since I'm currently on an internship working with this issue. While clock speeds are important, they are not the only factor in computer performance. Thus, current designs aren't focused solely on increasing clock speeds. </p>
+<p>One of the main issues is simply heat. As we increase the rate transistors switch the power required increases exponentially and it gets difficult to cool. </p>
+<p>A more fundamental issue is that transistors and associated wire have capacitances, or the ability to store electrical charge. This effectively slows down the rate you change your signal- as the electrons in these reservoirs counteracts any changes you make until the electrons it holds is depleted.   This makes a nice sharp clock signal flatten out and slows down rise times. </p>
+<p>Lastly, it is difficult to design good interconnects. Even if we have a really high clock speed, it's not easy to design wires that can carry information at that clock speed. All wires have some capacitance and inductance where energy is temporarily stored in electric and magnetic fields instead of being sent down the wire. Worse still, the magnitude of this energy that is stored is frequency-dependent. This means at higher clock speeds/frequencies a lot more energy is &quot;lost&quot; before getting to the end. This means that the magnitude of the signal at the end is a lot less. For example, one thing you see is that at higher frequencies, signals on one wire start leaking to other wires close by- something you obviously want to avoid.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fl567jz">
+		<a class="author" href="https://www.reddit.com/user/ledow" target="_blank">ledow</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For something to oscillate past a few GHz, the length of time between two signals has to be short.  That time is now *not long enough* to cross the entire length of the silicon chip.  This means that one signal can &quot;overtake&quot; the one in front of it, which causes absolute confusion and merry hell as we design chips to be &quot;synchronous&quot; (i.e. things happen at the same time everywhere).</p>
+<p>We don't have asynchronous chips (we can have multiple chips that aren't in sync, but one chip tends to have a single concept of &quot;a clock signal&quot; that turns on and off regularly and makes everything else happen).</p>
+<p>Past about 5GHz, the length of the pulses needed for that clock signal mean that, even at the speed of light, they can't make it across the physical length of the silicon chip before another one starts its journey.</p>
+<p>Making the chips asynchronous, shorter, or quicker actually makes things incredibly complex and liable to all kinds of problems if there's a bug found later on.  Not to mention, the higher the clock speed, the more heat given out (because the power required to make more oscillations is greater), which means more cooling or more problems with heat, and more interference.</p>
+<p>Pretty much, we've hit a physical boundary that you can only compensate for by making chips tinier and tinier (which has other problems, not least manufacturing), colder and colder (supercomputers are sometimes liquid-helium cooled or similar), or more and more complex to design, produce, run, program and diagnose.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fl5fy9l">
+		<a class="author" href="https://www.reddit.com/user/JustUseDuckTape" target="_blank">JustUseDuckTape</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The GHz 'speed' is cycles per second, but that tells us nothing about how much the computer can do with each cycle. Modern computers tend to do more with each cycle, and have multiple cores running at once. So even though they don't appear to be getting faster, they get a lot more work done in the same amount of time. Immagine a little car vs a fleet of vans; they all drive at the same speed, but the vans deliver a lot more stuff in the same time.</p>
+<p>As for <em>why</em> the speeds haven't increased, you can improve performance either by speeding it up, or by improving efficiency. Currently it's easier to do the latter. Making anything go really quickly is hard; at larger scales this is generally self evident, but it still applies at smaller scales. At their heart computers rely on moving electrons about; they're really small so they go really fast, but there's still a limit.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fl5490w">
+		<a class="author" href="https://www.reddit.com/user/DarkAlman" target="_blank">DarkAlman</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>We're hitting the upper speed limit for processors because of limitations like the speed of light, and we are having trouble making things smaller because on that scale quantum mechanics starts doing unexpected or unwanted things.</p>
+<p>We are overdue for a discovery that will revolutionize computer processing yet again.</p>
+<p>So for the past decade the focus hasn't been to increase speed, but to increase efficiency. Processors are being made with increasing numbers of cores so they can do more at once, and bus speeds are increasing so the processor can talk to devices and RAM more quickly. All of these things translate to improved performance.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/fmnml6" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
