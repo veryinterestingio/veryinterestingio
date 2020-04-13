@@ -1,0 +1,125 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/varungupta3009" target="_blank">varungupta3009</a>
+			<div class="markdown"><p>This is very interesting. Thank you so much for the explanation!</p>
+<p>Additionally, how does one come across (or even create) such approximation functions? It seems so random... (x ^(0.5¹⁹) - 1)*227697. Is there a trick to it or just brute force?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eyamil" target="_blank">eyamil</a>
+			<div class="markdown"><p>I <em>think</em> I know where this approximation came from, although I'm not sure I know how to simplify it to an ELI5. If you've done a bit of calculus and are comfortable with algebra, I think this explanation will be accessible to you.</p>
+<p>The exponential function with base e is the inverse of the natural log. This means that if we're trying to find the natural log of a quantity x, the equivalent question we can ask (when we're working with positive real numbers) is &quot;what is the number y such that the exponential of y gives x?&quot;.</p>
+<p>Well, it turns up that there's a particular definition of the exponential that rears its head here. I'm on my phone, so I'm going to post a link to it instead of trying to format it into the comment. Here we go: <a href="https://wikimedia.org/api/rest_v1/media/math/render/svg/81e72f98ed538d02b4abf9ec7484ad8339374815" target="_blank">https://wikimedia.org/api/rest_v1/media/math/render/svg/81e72f98ed538d02b4abf9ec7484ad8339374815</a></p>
+<p>We're going to try to invert this definition. However, calculators don't calculate limits, so we're going to have to plug in some numbers to approximate them.</p>
+<p>First, to deal with the power: As you've probably found out yourself, it turns up that we can raise a number x to any power of 2 by repeatedly squaring. Or we can reverse that process - square roots are enough for us to find any radical with a radicand that is a power of 2. This is how we undo the power n - just take a really big root (square root 19 times, e.g., take a (2 to the 19th) root)</p>
+<p>Now, you can subtract 1 and deal with the fraction similarly: if you just multiply by the degree of the root, you'll have an approximation to the natural log of your initial number.</p>
+<p>Base change rules mess with this a little - since you care about base 10, you're going to have to scale by the natural log of 10. This gives us some insight into where the number 227697 comes from - it's probably the closest integer to (2 to the 19th) / (ln(10)).</p>
+<p>Let me know if you've got questions! 😊</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chandlerr85" target="_blank">chandlerr85</a>
+			<div class="markdown"><p>more succinctly explained in equation form:  <a href="https://imgur.com/s9eBx5Z" target="_blank"><a href="https://imgur.com/s9eBx5Z" target="_blank">https://imgur.com/s9eBx5Z</a></a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zebediah49" target="_blank">zebediah49</a>
+			<div class="markdown"><p>19 seems like such a weird choice in there though.  I'm guessing whoever came up with this was pushing the limits of the calculator's precision, and for whichever reason, 20 doesn't work.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xumixu" target="_blank">xumixu</a>
+			<div class="markdown"><p>dont know if its really ELI5 but i think this is the best answer</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Cilph" target="_blank">Cilph</a>
+			<div class="markdown"><p>There are some things like Taylor series, which allow you to write any function as an infinite polynomial. You could cut this off at some point and call it accurate enough. I'm not sure how they came up with this specific one though.</p>
+<p>Another famous one is the Fast Inverse Square Root that was hacked together for the Quake game engine. <a href="https://en.wikipedia.org/wiki/Fast_inverse_square_root" target="_blank">https://en.wikipedia.org/wiki/Fast_inverse_square_root</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PrivateRedditUser224" target="_blank">PrivateRedditUser224</a>
+			<div class="markdown"><p>To add on to the Taylor series</p>
+<p>They work by simplifying calculus formulas into something computer can work with more easily. Computers are not able to understand calculus so you can use certain conditions, like the position of points on a graph, to make an estimate only using algebra. This makes it so the graph is accurate for a small section, but close enough for the data to be useful</p>
+<p>This is how I understood them in my calc classes. Mind you I took them years ago so I may not be fully correct</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Brunsy89" target="_blank">Brunsy89</a>
+			<div class="markdown"><p>Yeah. Aren't finite Taylor series only accurate over certain certain intervals centered around the expansion. I can't even find an interval where this trick isn't highly accurate.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rabid_briefcase" target="_blank">rabid_briefcase</a>
+			<div class="markdown"><p>The fast inverse square root isn't due to the Taylor series. It's due to the way floating point numbers are encoded as exponents already.</p>
+<p>Back in 1997 Jim Blinn wrote about it in depth in his IEEE column, an article called &quot;Floating-Point Tricks&quot;.  You can modify the math slightly to apply it to many exponential operations for a very quick approximation.  Plenty of other people have also explained it, but that's the paper I prefer for it.</p>
+<p>In that old article (Google finds many unauthorized copies, if you don't have an IEEE membership) he describes how to calculate it for any value of x^p .  That applies to various roots since they're just specific values of p: square root = x^1/2 cube root = x^1/3 etc, and to inverse operations because they're negative values of p.</p>
+<p>The popular inverted square root approximation is p=-1/2.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Physmatik" target="_blank">Physmatik</a>
+			<div class="markdown"><p>You can just use a function to approximate and run the fit algorithm.</p>
+<p>In this case you try to fit function f(x) = (x^a - 1) * b. You can even fix <code>a</code> and just optimize for b (although results will be worse).</p>
+<p>As and example, you can modify you method to the following one:</p>
+<ol>
+<li>Type the number to log from</li>
+<li>Recursively take its square root 10 times</li>
+<li>Subtract 1</li>
+<li>Multiply the result by 411</li>
+</ol>
+<p>You will get similar results, albeit with worse precision. For 364 you will get 2.549 with the method and 2.561 &quot;honestly&quot;.</p>
+<p>You can also take the root 20 times and multiply by 455356. For 364 you will get 2.5609 approximately and 2.561 honestly.</p>
+<p>Generally, the higher you are willing to go with <code>a</code>, the bigger the <code>b</code> and the higher the overall precision.</p>
+<p>P.S. Code to play with <a href="https://pastebin.com/AmfE3QcC" target="_blank">https://pastebin.com/AmfE3QcC</a>
+You can paste in Google Colab and fix other values for a.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Deto" target="_blank">Deto</a>
+			<div class="markdown"><p>For the curious - I plotted this.  Was amazed at how accurate it is!</p>
+<p><a href="https://imgur.com/a/x6fFm2c" target="_blank">link</a></p>
+<p>Edit: The first plot actually has two lines, but they overlap so completely you can't see the blue.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SignDeLaTimes" target="_blank">SignDeLaTimes</a>
+			<div class="markdown"><p>The same thing in wolfram.</p>
+<p><a href="https://www.wolframalpha.com/input/?i=%28+%28x%5E%280.5%5E19%29+-+1%29+*+227697%29+-+log10%28x%29+where+x+%3D+100+to+10000" target="_blank"><a href="https://www.wolframalpha.com/input/?i=%28+%28x%5E%280.5%5E19%29+-+1%29+\*+227697%29+-+log10%28x%29+where+x+%3D+100+to+10000" target="_blank">https://www.wolframalpha.com/input/?i=%28+%28x%5E%280.5%5E19%29+-+1%29+\*+227697%29+-+log10%28x%29+where+x+%3D+100+to+10000</a></a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thetgi" target="_blank">thetgi</a>
+			<div class="markdown"><p>Wow, that’s way more accurate than I expected it to be</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/asdfaklayf" target="_blank">asdfaklayf</a>
+			<div class="markdown"><p>What software did you use?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jul3q" target="_blank">jul3q</a>
+			<div class="markdown"><p>Looks like python's pyplot</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Solar_Cycle" target="_blank">Solar_Cycle</a>
+			<div class="markdown"><p>Reminds me of this</p>
+<p><a href="https://en.wikipedia.org/wiki/Fast_inverse_square_root" target="_blank"><a href="https://en.wikipedia.org/wiki/Fast\_inverse\_square\_root" target="_blank">https://en.wikipedia.org/wiki/Fast\_inverse\_square\_root</a></a></p>
+<p>Allegedly a Doom programmer came across this in the source code and left a comment to the effect of:</p>
+<blockquote>
+<p>WTF??</p>
+</blockquote></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BadBoy6767" target="_blank">BadBoy6767</a>
+			<div class="markdown"><p>This was for Quake 3: Arena, not Doom.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Apprentice57" target="_blank">Apprentice57</a>
+			<div class="markdown"><p>For anyone interested, the code snippet is: </p>
+<pre><code>float Q_rsqrt( float number )
+{
+    long i;
+    float x2, y;
+    const float threehalfs = 1.5F;
+
+    x2 = number * 0.5F;
+    y  = number;
+    i  = * ( long * ) &amp;y;                       // evil floating point bit level hacking
+    i  = 0x5f3759df - ( i &gt;&gt; 1 );               // what the fuck? 
+    y  = * ( float * ) &amp;i;
+    y  = y * ( threehalfs - ( x2 * y * y ) );   // 1st iteration
+//  y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration, this can be removed
+
+    return y;
+}</code></pre>
+<p>With original comments, but without some C preprocessor directives.</p>
+<p>Better to review<a href="https://en.wikipedia.org/wiki/Fast_inverse_square_root#A_worked_example" target="_blank"> this worked example</a> to see wtf is going on. But basically the line that elicits the &quot;wft&quot; involves a &quot;magic number&quot;, 0x5f3759df (that's in hexadecimal, in decimal it is 1597463007).</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Skyenar" target="_blank">Skyenar</a>
+			<div class="markdown"><p>This was really interesting and then I noticed not a single person upvoted you. I have corrected this.</p></div>		</li>
+					</ul>
+		</ul>
+	
