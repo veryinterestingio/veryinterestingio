@@ -1,0 +1,129 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PearsonFlyer" target="_blank">PearsonFlyer</a>
+			<div class="markdown"><p>Batching also makes a difference.  I work on the EDI side of things, transferring data electronically between banks and their clients (ACH transmissions, etc.).</p>
+<p>Some banks charge $1 per transmission. If that transmission is one ACH payment or check, or 10,000 ACH payments or checks doesn't matter. $1.  So companies save up their ACH and check transmissions and batch them together once per day. So instead of paying $10,000 per day, they pay $1 per day, for the same data sent less frequently.</p>
+<p>This hurts fast processing, but is entirely a problem brought about by banks.  Most of the clients I've dealt with would MUCH rather transmit in near real-time.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mvoccaus" target="_blank">mvoccaus</a>
+			<div class="markdown"><p>When I got to the comments section, I searched for &quot;batch&quot; to find this.</p>
+<p><strong>This is the correct answer.</strong></p>
+<p>This implementation of EDI isn't just for banking and finance.  It's virtually how all electronic insurance (heath, dental, etc.) claims are processed, too.</p>
+<p>There are some good reasons for this, too.  If there is an error on the transaction amount, or the bank payment, or the insurance claim, or whatever,  it gives the banker or doctor or organization a window to fix and correct it.  And having everything sent in one batch reduces the overhead of doing everything one-at-a-time—said overheads are usually passed on to the initiating party through transaction/transmission fees.</p>
+<p>You don't just press a big red button and it's off ...and then 15 minutes later something makes you realize, &quot;oh fuck, this was wrong!&quot; and have no way of stopping it.</p>
+<p>Instead, you press a button and it's batched.  And if there is nothing several hours or a day later that makes you go, <em>oh shit! Hold that transaction!</em>, then it goes out on the next batch.</p>
+<p>But say a transaction or account-holder gets flagged by <a href="https://www.fincen.gov/" target="_blank">FinCEN</a>, or a procedure or claim was later found to be missing or incorrect, or something needs to be put on hold for further review/confirmation, etc.  It's just a matter of pulling up the batch processor and removing that transaction from the queue before it otherwise automatically goes out.</p>
+<p>The number of &quot;oh shit&quot; moments that don't get realized until after it's too late goes down considerably.  And the cost and overhead of those &quot;oh shit&quot; moments is way more than the cost everybody bears when those &quot;oh shit&quot; moments wouldn't otherwise be caught (due to it happening too quickly/instantaneously) until it's too late (and less costly) to do anything about.</p>
+<p>TLDR: This current legacy system used for EDI is less costly (and has more safeguards/protections) than an instantaneous system.  It comes at the expense of taking longer.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MrBallzsack" target="_blank">MrBallzsack</a>
+			<div class="markdown"><p>Fair enough but it’s still excuses. Those safeguard can be built into the system without days to do it and certainly not business days only. Still archaic people running things refusing to move into the modern world</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Abyssallord" target="_blank">Abyssallord</a>
+			<div class="markdown"><p>I used to work for GXS the company that literally invented EDI. There have been a lot of advancements with the standards. The problem biggest problem isn't the standard it's that the companies and their staff literally know fuck all and thus supply shit files. For banks swift is the thing now,( or it was a few years ago) but I don't know anything about, nor did anyone else in my office. It was literally one guy and that's it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PatricksFisher1" target="_blank">PatricksFisher1</a>
+			<div class="markdown"><p>Very interesting, but I still don’t understand how this answers the question about business days. Someone please explain.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/daHob" target="_blank">daHob</a>
+			<div class="markdown"><p>I'd love to 997 your post, but you didn't include an ISA</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PearsonFlyer" target="_blank">PearsonFlyer</a>
+			<div class="markdown"><p>Well, that made me honest-to-god lol, but then I also remembered I'm supposed to be working instead of redditting. :)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Yardbinn" target="_blank">Yardbinn</a>
+			<div class="markdown"><p>I’m sure the banks would prefer monthly batches for the same. Seems like a neat tension of incentives.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ShadowRancher" target="_blank">ShadowRancher</a>
+			<div class="markdown"><p>The ACH system is so insanely outdated. The error reports you get back when an EFT doesn’t go through look like they’re from 1989 it’s kinda hilarious</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/teebob21" target="_blank">teebob21</a>
+			<div class="markdown"><pre><code>PC LOAD MONEY LETTER</code></pre></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/smb_samba" target="_blank">smb_samba</a>
+			<div class="markdown"><p>“What the fuck does that mean?!?”</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chooxy" target="_blank">chooxy</a>
+			<div class="markdown"><pre><code>MONEY LOADER GO BRRR</code></pre></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Akimotoh" target="_blank">Akimotoh</a>
+			<div class="markdown"><blockquote>
+<p>PC LOAD MONEY LETTER</p>
+</blockquote>
+<p>$</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gopher_space" target="_blank">gopher_space</a>
+			<div class="markdown"><p>1994, I wrote some of them!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MP-The-Law" target="_blank">MP-The-Law</a>
+			<div class="markdown"><p>Hence why many banks can’t differentiate a direct deposit and an ACH transfer</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kharski" target="_blank">Kharski</a>
+			<div class="markdown"><p>So would you say its damn hard, for a 32yo engineer knowledgeable in c++?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/throwawayaimit" target="_blank">throwawayaimit</a>
+			<div class="markdown"><p>You should do an AMA!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RealMcGonzo" target="_blank">RealMcGonzo</a>
+			<div class="markdown"><p>Sometimes I think the A in ACH stands for Ancient, lol.  Thing is, it works.  We've apparently solved all the problems.  It's secure.  It is tough to go to the risk adverse people and say we need to fix this thing that works.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BeenJammin69" target="_blank">BeenJammin69</a>
+			<div class="markdown"><p>To me this seems like the main reason there haven’t been updates. If something is required to be as secure as possible and currently works, it’s very risky to try to rebuild the system from scratch just to make it easier to change.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ISpendAllDayOnReddit" target="_blank">ISpendAllDayOnReddit</a>
+			<div class="markdown"><blockquote>
+<p>it works</p>
+</blockquote>
+<p>Mailing a check also works. That's not excuse. The current system is garbage.</p>
+<p>In the UK, a bank transfer happens instantly. It doesn't take 3 <em>business</em> days. That's nuts.</p>
+<p>The UK system (FPS) was created in 2008. There's no reason the US couldn't have been working on a new system for the last 10 years.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/whiskeyjet1" target="_blank">whiskeyjet1</a>
+			<div class="markdown"><p>Just like the nuclear weapons launch computers running 8” floppies</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/stayinthebonezone" target="_blank">stayinthebonezone</a>
+			<div class="markdown"><p>one of my old bank employers recently got their youngest cobol engineer - he's on $80,000+ and he's about 22. Crazy money for frontline engineering.</p>
+<p>for those that say this is not a lot:</p>
+<p>most people don't live in the heart of the west or east coasts in the united states. $80,000 here will get you what well over $200,000 will get you in north america. Of anything. A lot of these people here own 2-3 4 bedroom houses. </p>
+<p>Obviously they can't buy as many online products as you; if they wanted to purchase computer parts, they'd have a lot less. But when their entire house costs around $90-150 thousand, $80k is a ridiculous salary.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/targz254" target="_blank">targz254</a>
+			<div class="markdown"><p>How do you get COBOL experience?</p>
+<p>I am a Comp Sci Grad student and need more marketable skills</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RandoAtReddit" target="_blank">RandoAtReddit</a>
+			<div class="markdown"><p>Take a couple COBOL classes, then apply somewhere. Work for a few years then apply somewhere else with your two years experience for a 25% raise.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FullstackViking" target="_blank">FullstackViking</a>
+			<div class="markdown"><p>I got hired on at a top health insurance company straight out of college with the intentions of C# backend and some COBOL work.  The tough answer is you will realistically never know as much as the 15+ year COBOL guys do. It's not even just the language, but the programming structure and practices itself.</p>
+<p>It's not something you can just learn on youtube or via some tutorals. I completed a course on it and thought I knew the basics, but once I was editing files written in 1982 - it all went out the door. Manager and I mututally decided it just ultimately isn't worth the time investment.</p>
+<p>C# or Anguar/React + Javascript, and a database language  will cover 90% of your job applications.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/flafotogeek" target="_blank">flafotogeek</a>
+			<div class="markdown"><p>Why in the hell would you wish that on yourself?  I got COBOL experience by accident. I thought I was being hired as a C++ developer and I found out after being hired it was actually COBOL with a C++ front end. 6 years later I spent maybe a week doing C++ and the rest doing COBOL. I'd go back to it if they paid 200K, no less. But realistically, they want old farts like me to do it for starvation wages. So eff that.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wolfgang784" target="_blank">wolfgang784</a>
+			<div class="markdown"><p>Had a buddy that went to a college for open house and found a business that paid for his ENTIRE tuition and housing fees with the condition that he learn the languages they needed (cobol and something else ancient) and then work for them for 5 years.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/yamaha2000us" target="_blank">yamaha2000us</a>
+			<div class="markdown"><p>Until 4 years down the road and he only has that COBOL experience but doesn’t want to work in the Bank Arena...</p></div>		</li>
+					</ul>
+		</ul>
+	
