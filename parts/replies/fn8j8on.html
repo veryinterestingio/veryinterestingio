@@ -1,0 +1,108 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dmilin" target="_blank">dmilin</a>
+			<div class="markdown"><blockquote>
+<p>It's really, really difficult to sequence RNA and really easy to sequence DNA.</p>
+</blockquote>
+<p>Ok, follow up question. Why is this the case? Could you explain it at an &quot;Bio 101&quot; college class level?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gembeany" target="_blank">Gembeany</a>
+			<div class="markdown"><p>One reason is RNA is more unstable than DNA - not only is RNA single stranded, but the extra OH on the ribose makes it more reactive. Making the RNA into DNA gives you a more stable template for doing sequencing reads.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Nemehtostella" target="_blank">Nemehtostella</a>
+			<div class="markdown"><p>RNAses (-ase means it breaks in this case degrades) are everywhere! Including the people working with RNA, and the cells you got the RNA from.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/percyhiggenbottom" target="_blank">percyhiggenbottom</a>
+			<div class="markdown"><p>One thing I always wondered is how does DNA stay stable at PCR temperatures? Way I understand it, they sourced some high temperature DNA replication proteins from extremophiles so you could replicate DNA at high temperatures (=faster) but how does the resultant DNA not get denatured?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jimmy_Black" target="_blank">Jimmy_Black</a>
+			<div class="markdown"><p>I thought Ribose only had one extra O atom and that’s it. Or do you mean extra OH as a whole because it acts differently to just the H on Deoxyribose?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Elphirine" target="_blank">Elphirine</a>
+			<div class="markdown"><p>The half-life of RNA makes the read from any sequencing techniques (e.g. illumina) very hard since optimally RNA is workable ~30min tops (from my RNA lab experience). Moreover sequencing is done offsite at a commerical sequencing company and therefore by the time they recieve the degradation is too extensive for proper reads in the chromatogram. Therefore approaches is still to generate cDNA via RT (reverse transcriptase) and then sending it for sequencing. </p>
+<p>DNA on the other hand is very stable and can be comfortably left on the lab bench for days without suffering extensive degradation, and can still be used for futher sequencing or recombination.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ComradeGibbon" target="_blank">ComradeGibbon</a>
+			<div class="markdown"><p>Stupid question if RNA is unstable. Does that mean that it degrades when it's contained in the virus as well?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Derpblaster" target="_blank">Derpblaster</a>
+			<div class="markdown"><p>This really isn't true, for one RNA is far more stable than you let on. The myth that RNA is really unstable and difficult to work with is very wide spread. It comes from people who have impure RNA from poor isolation procedures and storing RNA in improper buffer. Pure RNA is stable on the order of days at room temperature  with minimal loss in quality as RNA autohydrolysis is pretty slow at neutral pH.</p>
+<p>So everyone saying the instability of RNA is why we sequence DNA isn't telling the main story. We sequence DNA for a pretty simple reason. DNA sequences relies on our ability to amplify DNA. We can do that because all living organisms have an enzyme to copy their DNA. If you take a bacterial version of that enzyme and mix it with nucleotides and some primers (short piece of DNA corresponding to somewhere on the DNA of interest) you can cycle the mix through specific temperatures to amplify a stretch of DNA. If you do a modified version of this process you can read out each letter of DNA using fluorescently labeled nucleotides. So why can we do this for DNA but not RNA? Many organisms have an enzyme called RNA dependent RNA polymerase. These are not as well characterized for in vitro use as DNA polymerase and some of them have very undesirable properties for copying RNA. But in general RNA dependent RNA polymerases have two massive issues. First, as far as I know we don't have a heat stable version which means that as you temperature cycle the reaction you'd have to add more enzyme every time, babying the reaction for hours. Also, it turns out that RNA dependent RNA polymerases are very error prone. It makes on the order of 10x-1000x the number errors as DNA dependent DNA polymerase. This is obviously not great if you want to know the sequence of something.</p>
+<p>TL;DR We sequence DNA rather than RNA because DNA sequencing is easier and less error prone. RNA is far more stable than people give it credit.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/natalieisnatty" target="_blank">natalieisnatty</a>
+			<div class="markdown"><p>Everyone else is right about the half life of RNA vs DNA. Although - the main reason RNA is tough to work with isn't necessarily its chemical instability, but the fact that enzymes that degrade RNA are everywhere and they can easily contaminate your samples. Enzymes that degrade DNA are much less common. Also we've just developed a lot more technology for DNA sequencing and it's not interchangeable with RNA.</p>
+<p>Modern sequencing (Next Generation Sequencing, aka NGS) uses DNA polymerases. These are the enzymes that usually duplicate DNA in cells before cell division. They are very fast and very accurate, in order to reduce errors from copying DNA. In the sequencing machine, the polymerases add individual base pairs with a fluorescence tag to a single stranded copy of the DNA you're trying to sequence, which is immobilized on a chip. The different base pairs fluoresce with different colors, so the machine just reads out the sequence of colors and uses that to determine the sequence.</p>
+<p>If you wanted to do the same thing with RNA, you'd need to use an RNA dependent RNA Polymerase, which are, as far as I know, only used by viruses. They take an RNA genome and copy it to produce more RNA. They're not as fast or accurate as DNA polymerases, because viral genomes are smaller than ours and they don't need to worry so much about errors in copying DNA. So to do NGS technology on RNA, you'd probably have to design a better RNA dependent RNA polymerase, which is not a small feat. And since we have enzymes to convert RNA into DNA, and DNA is more stable for processing, everyone just uses that.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zomziou" target="_blank">zomziou</a>
+			<div class="markdown"><p>I was trying to answer this question and found it quite difficult, but you nailed it well !!</p>
+<p>Perhaps another important reason is that DNA amplification requires the use of a particular DNA polymerase that can sustain high temperatures (&gt; 90 °C), which are necessary to separate double-stranded DNA molecules before DNA synthesis. This was made possible by the discovery of a thermostable DNA polymerase isolated from a thermophilic bacteria living in hot springs of the Yellowstone. So i guess RNA sequencing would require a thermostable RNA-dependent RNA-polymerase, which I'm not sure we know of.</p>
+<p>Finally, 3rd generation sequencing technologies should be able to provide us with a direct read of a DNA or a RNA molecule. At least in the case of Oxford Nanopore that I'm a bit familiar with, there is no need for amplification before sequencing.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lemrez" target="_blank">lemrez</a>
+			<div class="markdown"><blockquote>
+<p>If you wanted to do the same thing with RNA, you'd need to use an RNA dependent RNA Polymerase, which are, as far as I know, only used by viruses.</p>
+</blockquote>
+<p>Nope, there are eukaryotic RdRPs. They're mostly used in RNA interference. And they're not simply the remnants of a virus that infected a eukaryote at some point, but look structurally very different, so they've been divergent from viral RdRPs for a long time or not evolutionarily related to them at all.</p>
+<p>One eukaryotic protein that might be related to viral RdRPs is telomerase weirdly.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Deto" target="_blank">Deto</a>
+			<div class="markdown"><p>Still, isn't it odd that we publish the DNA sequence?  Sure we measured RNA transformed into DNA, but technically we did something like the RNA transformed into the DNA transformed into fluorescence signals.  The DNA was just another intermediate in a chain of transformations (from source molecule to ones and zeros), so why back it out to the DNA and not all the way to the RNA?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drkirienko" target="_blank">drkirienko</a>
+			<div class="markdown"><p>Two reasons. First, the fluorescent signals that we read from the machine are a much better approximation of the DNA than the DNA is of the RNA (because of the reasons I listed before) and second, people generally want to use DNA for the same reason that they want to use decimals instead of fractions: it's easier that way. (As a bonus, most of what they want to <em>do</em> with the sequence data (especially in a lab) is going to need to be DNA anyway.)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NotSoBadBrad" target="_blank">NotSoBadBrad</a>
+			<div class="markdown"><p>Also RNA is a sob to deal with. cDNA is more viable in long term storage iirc.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Cave_Matt" target="_blank">Cave_Matt</a>
+			<div class="markdown"><p>This. It's a convention. Almost all the tools to work with sequencing data are designed for DNA bases. I work in influenza sequencing, now SARS-CoV2, and while most of our data is cDNA based, even the direct RNA stuff is handled and deposited as DNA sequences</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Deto" target="_blank">Deto</a>
+			<div class="markdown"><p>That's what I suspected - that it was more of a convention to just have the sequences in the DNA form in GenBank.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/czhunc" target="_blank">czhunc</a>
+			<div class="markdown"><p>It's important to report the results you get, not your interpretation of what it means. There's tons of unknowns and surprises at every level. Publishing the &quot;source&quot; ensures transparency and many eyes to figure out different interpretations.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/F0sh" target="_blank">F0sh</a>
+			<div class="markdown"><p>Most scientific papers include an interpretation, and many don't include the raw data (only producing graphs or summary results). If you explain how you produced the RNA sequence this is not problematic.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jStarOptimization" target="_blank">jStarOptimization</a>
+			<div class="markdown"><p>Publishing the DNA that was sequenced with certainty allows any research group working with the viruses genome to use their own intuition, understanding, and unpublished/personal research to infer what the RNA might be... One group or another may be able to better interpret the DNA results to have a more accurate estimation of the original RNA... There may be a set of sequence in the DNA results that means something to one group but not another when making this estimation of the original RNA... I'm a chemist and biochemist... But I'm also just guessing based on my own understanding... Publish definite results and methods rather than inferences... Shrug <strong>added last few lines</strong></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Deto" target="_blank">Deto</a>
+			<div class="markdown"><p>It depends on the purpose of Genbank.  I'm all for publishing raw results when you do an experiment, but if you are building a reference database, then it's understood that 'this is our best knowledge of what XXX really is&quot;.  My understanding is that Genbank is more of a reference for characterized genomes and NOT just a repo for direct experimental results - with NCBI's SRA serving as the latter.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/vikarjramun" target="_blank">vikarjramun</a>
+			<div class="markdown"><p>So are we publishing the cDNA? Or the complement of the cDNA (the RNA but U subbed for T)?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drkirienko" target="_blank">drkirienko</a>
+			<div class="markdown"><p>Ultimately, it doesn't really matter. Writing a computer program to switch between the two can be done in a single line of code, and you can easily do it by hand (for short sequences). You just start from the end of the one that you have and write an A for a T, a C for a G, a G for a C, and a T for an A. If you're doing RNA instead, just use a U instead of a T. </p>
+<p>You need to know where the genes are, and where they stop and start, but that's pretty easy (they usually have obvious clues). But if you do this much, it's pretty simple. Not gonna lie, it sounds a lot harder than it actually is. </p>
+<p>(Ultimately, that's a problem. It's actually pretty simple to do a lot of genetic engineering (when it is simple stuff), as long as you are patient and persistent.)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheSonar" target="_blank">TheSonar</a>
+			<div class="markdown"><p>Lol it's all fun and games until you order a probe using the reverse complement instead of the complement or something. When you order probes, you really do need to carefully trace replication</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
