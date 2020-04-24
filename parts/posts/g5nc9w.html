@@ -1,0 +1,78 @@
+<li class="post" data-handle="g5nc9w">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/g5nc9w/eli5_how_do_solid_state_drives_ssd_store_and/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/g5nc9w" onclick="return false">How do solid state drives (SSD) store and retrieve data?</a>
+		</h2>
+		<!--<span class="date">2020-04-24</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: How do solid state drives (SSD) store and retrieve data?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="fo4mjg2">
+		<a class="author" href="https://www.reddit.com/user/Amphorax" target="_blank">Amphorax</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>On a very basic level, an SSD is like a large plastic sheet covered with a grid of those bumps that you see on soda-cup lids. To write a file to the disk, you pop and unpop the bumps to represent the file in terms of 1s and 0s. To read from the disk, you run your finger across them and feel the pattern of popped and unpopped bumps. </p>
+<p>These bumps are called flash memory cells, and there can be billions or trillions of them packed in several tens of layers on a silicon chip. They consist of microscopic transistors and capacitors, and they're 'popped' and 'unpopped' by applying a positive or negative voltage across them, which either stores a tiny amount of electric charge or releases it. To check the state of one of these cells, you can measure the voltage across it to see whether there is charge stored in that cell. A controller chip on the SSD receives read and write commands from the host computer and applies the necessary voltages to the right rows and columns of cells to write and read blocks of several thousand cells, called 'pages'. The exact format of the data on the disk is entirely up to the controller and may not be consistent across different models of SSD's -- so long as the controller implements a common protocol (SATA or NVMe, for example), the computer doesn't care.</p>
+<p>These cells aren't perfect, and repeatedly writing and erasing a cell causes it to wear out and lose its ability to store charge. When this happens, the controller can no longer read from those cells, causing data loss. To combat flash memory wear, an SSD controller is smart enough to spread out the reads and writes across the many billions of cells at its disposal. This process is known as 'wear-leveling'. Even with this algorithm in action, a disk has a limited amount of read-write cycles before the probability of a data loss incident becomes more than negligible. This quantity is usually expressed in write cycles, where one write cycle consists of using every cell on the disk once. Because of this, larger-capacity SSD's take longer to fail on average.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fo4qysy">
+		<a class="author" href="https://www.reddit.com/user/mikesanerd" target="_blank">mikesanerd</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There's one really fascinating thing that the other very good explanation didn't mention. If the data is stored as charge, why doesn't it just leak out as soon as there's no power to the computer to hold the charge in the cells (like what happens in RAM)? SSDs hold the charge in an impenetrable box from which there is no exit. But here's the rub--if the box is going to be impenetrable and require no power to hold it closed, then it cannot have a &quot;lid&quot; or &quot;door&quot; which could come open when the power is off. As a result, there is no entrance to the box either. The only way the charge can get into the box is to kind of &quot;teleport&quot; through the wall of the box using a process known as Quantum Tunneling. Although the box is impenetrable with no openings, the charge is able to pass through the solid barrier and suddenly find itself on the other side, trapped inside the box.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fo4ybmq">
+		<a class="author" href="https://www.reddit.com/user/vexir" target="_blank">vexir</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Can we get an ELI5 on the quantum tunneling that some of the comments and sub comments have mentioned?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fo4ua0w">
+		<a class="author" href="https://www.reddit.com/user/classicalL" target="_blank">classicalL</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The basic element inside a solid state storage device like an SSD is called a floating gate transistor. More on that in a moment. Each of these devices used to store a single yes or no called a bit: 1 or 0. Now each of these devices stores a few yes or nos. Typically 3: 000, 001, 010, 011, 100, 101, 110, or 111. This increase in questions that can be asked to a single device is why you can have really big SD cards and SSD drives.</p>
+<p>That and scaling. The size of one of these devices is on the order of 40 nm. Your hair is about 200 um or 200,000 nm across.</p>
+<p>How do these devices work?</p>
+<p>If you have ever rubbed your hair on a balloon and attracted your hair to it, you have seen something called static electricity. On that surface you have trapped some electrons. That is possible because the rubber is an insulator. On your hair of you have left the absence of electrons. This allows there to be a force between the absence and the extra electrons. It is this force that makes you hair stick up opposing gravity. The force is described by an electric field.</p>
+<p>Floating gates on transistors trap charge on them too just like the balloon, only it stays a lot longer because the layer of insulator the charge is trapped in is very isolated.</p>
+<p>This charge can attract mobile charges into a region of the transistor called the &quot;channel&quot;. The channel is physically directly under the gate. Think of the charges as a liquid, say water. If the channel is full of water then it conducts, if it is empty of water is does not. It conducts better if there is more water. So depending on how much charge you store on the floating gate you will get more or less conduction.</p>
+<p>If we measure how well it conducts we can measure some levels and assign those levels values: 000, to 111.</p>
+<p>How do we get the charge on the floating gate? Do we have little hairs we rub on the gate? No. What we do is we use another gate. This one is attached to a chunk of metal which allows us to flood it with electrons. If we put enough electrons on it, it will create such a strong electric field to the channel that some of the very crowded metal will jump to the floating gate, this is called &quot;tunneling&quot; it is governed by a branch of physics called quantum mechanics. We make the other gate crowded by putting a high voltage on the metal gate.</p>
+<p>The reason flash memory or SSDs wear out is that sometimes the electrons jumping to the floating gate hit things instead of jumping between the atoms they smack into them and break chemical bonds. When they do this they change the properties of the insulator that lets the floating gate store charge for a long time so some of the electrons escape just like they normally do from the balloon into the air (due to humidity). This makes the floating gate transistor &quot;forget&quot; the information that was stored on it over time as the high level of 111 becomes 110 which is the wrong answer, not what you stored. If the memory is not reliable to remember then its bad/dead.</p>
+<p>Typical flash memory can only be written a few 1000 times now before it starts to forget too quickly because everything is so small and fragile.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fo4y2uq">
+		<a class="author" href="https://www.reddit.com/user/positron3000" target="_blank">positron3000</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A bit on an SSD is like a light switch. You can flip the switch to change the state of the light (Write) or just look at the light switch to know if the light is on. (Read)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/g5nc9w" onclick="return false"><span>show</span></a>
+</li>
