@@ -1,0 +1,46 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FalconX88" target="_blank">FalconX88</a>
+			<div class="markdown"><p>But why does this only happen in case of protected content? Wouldn't everyone (youtube, media player, videogames,...) do it like that if it has general benefits?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RoyAwesome" target="_blank">RoyAwesome</a>
+			<div class="markdown"><p>Fullscreen mode in video games does something similar (skips the compsitor).  This is why most screenshot utilities grab from the framebuffer* rather than the windows compositor.  Screenshot tools that don't take this into account will capture your desktop background when playing a full screen game (Dropbox does this).  </p>
+<p>It's also why certain streaming tools have &quot;Game Capture&quot; versus &quot;Desktop Capture&quot;, as the former grabs from the framebuffer and the latter grabs from the compositor.  </p>
+<p>EDIT: &quot;Borderless Fullscreen&quot; is the mode where the game writes to the compositor, but takes up the entire screen.  </p>
+<p>* The framebuffer in this use is the part of memory that is sent to the monitor.  the term &quot;framebuffer&quot; is used in a lot of other places, but I mean the output framebuffer.  The Compositor writes to the framebuffer, but for a fullscreen video application, the graphics system writes to it directly.  This is also why when you alt-tab out of a full screen game, your screen goes completely crazy for a bit, as it disengages the direct framebuffer writing and engages the compositor.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Solliel" target="_blank">Solliel</a>
+			<div class="markdown"><p>I have a crazy powerful desktop (no battery) will I get better frames/performance in games from fullscreen mode (I usually use fullscreen borderless for easy ALT+TAB)?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FearlessScientist" target="_blank">FearlessScientist</a>
+			<div class="markdown"><p>Can you ELIF the role of compositor. Why OS requires it when you can send directly as a framebuffer to monitor</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Shipleaves" target="_blank">Shipleaves</a>
+			<div class="markdown"><p>Indeed, some do. The problem is that it can be tricky to implement, even things like rounded corners and control overlays can break it.</p>
+<p>Additionally, it's not the same on all platforms. So if you want your app to work on Win7 and Win10 you'll have to write and maintain different implementations for each. Many choose to use the lowest common denominator instead.</p>
+<p>Lastly, sometimes it's not up to you. Websites like YouTube get little say in how their content is rendered, it's up to the browser.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/m-simm" target="_blank">m-simm</a>
+			<div class="markdown"><p>I don’t understand the last point. If sites can take advantage of video pipelines to bypass the OS’ compositor, then there’s no need to worry about what the browser is rendering. The video is being sent to the screen separately from the rest of the browser.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jrhoffa" target="_blank">jrhoffa</a>
+			<div class="markdown"><p>Some do.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ConfusedMaddin" target="_blank">ConfusedMaddin</a>
+			<div class="markdown"><p>Happy cake day :)</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/btribble" target="_blank">btribble</a>
+			<div class="markdown"><p>It should be noted that software which runs the actual GPU hardware (drivers/firmware) may allow such content to be captured or streamed from the card itself. Graphics chips often have compression capabilities in the hardware to allow games and such to be streamed, and anything in a frame buffer can theoretically be captured. GPU developers typically try to prevent this for legal reasons, but stuff still falls through the cracks.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thoughtful_appletree" target="_blank">thoughtful_appletree</a>
+			<div class="markdown"><p>Ah, now this is the answer I was looking for. All the others are about Apps I think</p></div>		</li>
+					</ul>
+	
