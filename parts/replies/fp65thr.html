@@ -1,0 +1,103 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CamperStacker" target="_blank">CamperStacker</a>
+			<div class="markdown"><p>Most operating systems use journaled file systems, so when the pc starts up it can view the journal and see of each action in it got completed or seemed to be corrupted, and simply use the journal of changes to roll back to a working state.</p>
+<p>So while a system should never come to corrupt, you could for instance lose settings or file changes that might have not had their data saved and journal completed.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Certain_Abroad" target="_blank">Certain_Abroad</a>
+			<div class="markdown"><p>Though most filesystems only journal the metadata. The contents of the file could be corrupted :(</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fl4shbang" target="_blank">Fl4shbang</a>
+			<div class="markdown"><p>While the contents of the file could be corrupted, you won't end up with a messed up file system at least.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KrakenOfLakeZurich" target="_blank">KrakenOfLakeZurich</a>
+			<div class="markdown"><p>Exactly this. Most applications write stuff in multiple steps and the OS doesn't really know, when an application is done. Also, from OS point of view, a file is just a bunch of <code>1</code> and <code>0</code> without any meaning to it.</p>
+<p>Hence there's no way for the OS to roll-back to a known good state, because it can't technically know, what this &quot;good state&quot; is supposed to be.</p>
+<p>A possibility would be, that applications tell the OS when a transaction begins and when the transaction is completed. But that relies on the applications actually using that feature and doing the right thing. Nothing the OS can enforce without breaking about every legacy application out there.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/flekkzo" target="_blank">flekkzo</a>
+			<div class="markdown"><p>And it won’t journal transactionally either, so if you installed half of something and off goes the power, unhappy time.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/feng_huang" target="_blank">feng_huang</a>
+			<div class="markdown"><blockquote>
+<p>simply use the journal of changes to roll back <em>the filesystem</em> to a working state.</p>
+</blockquote>
+<p>Journaling filesystems protect <em>the filesystem</em> from corruption. Remember having to wait for the OS to check the filesystems for consistency? <em>That's</em> what you're skipping; it's not necessarily getting the system back to a working, consistent state.</p>
+<p>To illustrate what I mean with an extreme example, imagine losing power in the middle of upgrading your OS. Once you can power the system back on, the filesystem won't require any checking (remember CHKDSK?), but the system is extremely unlike to function correctly.</p>
+<p>You probably already meant/intended this and I'm just being pedantic, but I thought it merited an explicit mention.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jarfil" target="_blank">jarfil</a>
+			<div class="markdown"><p>If we're talking Windows, there is system protection, shadow copies, image verification and so on, that can recover even from an interrupted upgrade.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DHermit" target="_blank">DHermit</a>
+			<div class="markdown"><p>That's why filesystems with snapshots like ZFS are great. Just make a snapshot before the system upgrade (or whenever you like) and you can revert everything without problems.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KillerOkie" target="_blank">KillerOkie</a>
+			<div class="markdown"><p>This is still a thing, even on modern file systems, for servers at least.</p>
+<p>Really depends on what the hell the morons are using the server for and what the hell I have to do to fix the file system the best I can (helllooo xfs_repair!) before turning it back over to them with &quot;well this is the best you are getting, hope you been backing up your shit, lol&quot;. And before you ask, no backups are not my problem :).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nerdy_glasses" target="_blank">nerdy_glasses</a>
+			<div class="markdown"><p>Actually, journalling filesystems don’t roll back, they replay the journal to roll forward after a crash / power loss.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lmnjello" target="_blank">lmnjello</a>
+			<div class="markdown"><p>Pretty much the only time I see it any more is if you force a power off during a windows update. You’re really rolling the dice on whether your system will boot at all after that.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tezoatlipoca" target="_blank">tezoatlipoca</a>
+			<div class="markdown"><p>I had that happen too once but the Windows Recovery was able to restore back to the last system update. Quite impressive really.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Zenguppy" target="_blank">Zenguppy</a>
+			<div class="markdown"><p>yeah i had a computer do that also was mostly just a lot of waiting and if fixed its self god damn i love me some modern computers sometimes</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/demize95" target="_blank">demize95</a>
+			<div class="markdown"><p>I had to do that once. It resulted in a week's worth of trying to recover, a blog post on how I did recover, and a fresh install of Windows.</p>
+<p>It was fun.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rgeneb1" target="_blank">Rgeneb1</a>
+			<div class="markdown"><p>If you enjoyed that you should switch to linux. I have to do that every time I install a new program (not really but some days it feels like it).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marr" target="_blank">marr</a>
+			<div class="markdown"><p>That or while modifying software that burrows way deeper into the OS than it has any right to, popular with shoddy AV, anticheat and DRM.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Karilyn_Kare" target="_blank">Karilyn_Kare</a>
+			<div class="markdown"><p>For reference, it's still possible to fuck up a computer by spontaneous power loss.</p>
+<p>Just last year, on a modern Windows 10 Laptop with a dead battery, we had a power cord get tripped over, and when we turned the computer back on it could not recover.</p>
+<p>Luckily I'm surrounded by a lot of hard tech friends, and we managed to fuck around with it for like 3 days, digging through files via the command prompt through the recovery program, and find the files that got fucked up and replaced them.  Took them a while though and they weren't sure they would be able to do it.</p>
+<p>Please forgive my lack of correct jargon, my friends are super techie, I am not; I don't fully understand what they did.  It was definitely a problem severe enough that a lot of repair shops probably would've been all like &quot;fuck it, here is a USB stick with your hard drives data on it&quot;</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tezoatlipoca" target="_blank">tezoatlipoca</a>
+			<div class="markdown"><p>sfc /scannow at the recovery prompt is your lifesaver. It compares an archived copy of all Windows system files in the recovery partition with the ones in your boot partition and restores them if necessary.
+It can take some time, it literally has to verify each and every byte of the executable for integrity (and Windows is like 20+ GB for a default install now, of which I'd expect 2-3 GB to be core system files) but if you can get to the Windows Recovery partition or boot from a Recovery CD/DVD/usb, it is a lifesaver.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RandoNandoz" target="_blank">RandoNandoz</a>
+			<div class="markdown"><p>Does it really scan every single byte? That sounds pretty inefficient, couldn't they just compare the hash of each file?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thockinator" target="_blank">thockinator</a>
+			<div class="markdown"><p>Meanwhile I turned off my first PC with Windows XP hundreds of times by turning off the power supply and nothing ever happened. Nowadays you really have to get unlucky for something to happen, especially with modern file systems.</p>
+<p>Then again Windows 10 has devolved into a chaotic mess in more than just one aspect.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/evileyeball" target="_blank">evileyeball</a>
+			<div class="markdown"><p>On my old XP machine (XPx64 mind you) I BLEW TWO POWER SUPPLIES in 12 years and had ZERO other hardware go with it.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Riael" target="_blank">Riael</a>
+			<div class="markdown"><p>tezoatlipoca: haven't had a corrupt system in many years since moving to windows 7</p>
+<p>Microsoft: We've listened to your complaints and fixed this in future versions starting with Windows 8</p></div>		</li>
+					</ul>
+		</ul>
+	
