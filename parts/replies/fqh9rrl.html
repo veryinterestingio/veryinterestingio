@@ -1,0 +1,41 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BuxtonTheRed" target="_blank">BuxtonTheRed</a>
+			<div class="markdown"><p>I am literally using this technique on an Arduino project I'm working on. LED RGB light strips to go on the sides of my bike.</p>
+<p>I'm powering it from a pair of Ni-MH rechargeable D-cells (really expensive 8500mAh ones) and using a nice power-boost module to turn the battery voltage from those to a constant 5v for the arduino and the LED strips.</p>
+<p>But it's not good for those cells to be discharged below 1.0v as it harms the internal chemistry. And those are quite expensive batteries (over 20 GBP for the set of two) so I really don't want to ruin them with over-discharge.</p>
+<p>So, I have a wire running from the battery-positive (before it gets converted to 5v by the boost module), to an analogue-input pin on the Arduino. The Arduino has a built in ADC (analogue to digital converter) with a built-in 5v reference generator and when my code does an analogue-read of the input pin, the result is a number between 0 and 1023 which is the scale of &quot;input voltage on that analogue-in pin, compared to the 5v reference&quot; (so a value of 0 means 0.0v, value of 1023 means 5.0v). From that, my code can calculate the voltage of the battery pack and do things like refuse to turn the pretty lights on if the batteries are at or below that 1.0v per cell (2.0v for the pair) limit.</p>
+<p>Different battery chemistries and designs have different voltages for &quot;fully charged&quot; and &quot;so drained you must stop using them&quot; - and also different discharge curves (what the voltage across the terminals is, versus how much &quot;useful power&quot; they have left).</p>
+<p>Lithium-polymer range from 4.2 to 3.3v (and get permanently ruined if discharged much below 3.3v), the Ni-MH &quot;normal consumer rechargeable batteries&quot; I'm using go from 1.4v to 1.0v but are around 1.2v for much of their discharge curve.</p>
+<p>I am much less annoyed by battery displays on devices ever since I implemented my own. There's some serious engineering required to reach the level of &quot;my phone can estimate how many hours it can go on the remaining charge&quot;.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Saporificpug" target="_blank">Saporificpug</a>
+			<div class="markdown"><p>I'm not disagreeing that discharging below x voltage doesn't ruin batteries (especially lithium). But it's also worth mentioning that just because the voltage dropped below their recommended voltage that it doesn't mean they are bad. </p>
+<p>If you have a 12V car battery for example and it gets discharged to 6V, depending on the charger, you can charge it back up to 13V and it will work mostly like normal but the capacity might not be as good. Car batteries are also another example of showing dead cells, 0V is not an indicator of dead cell. An indicator is when the battery will not reach 12.6+V from 10.5V (12.6 - 2.1V = 10.5). The likelihood of all cells being dead at the same time is slim and low voltages like that means that something drained them. Pumping higher amps into a 0V battery can potentially bring it back to 12.6V-13V.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BuxtonTheRed" target="_blank">BuxtonTheRed</a>
+			<div class="markdown"><p>Yep, different chemistries and types have quite different behaviours. Which is equal parts interesting and annoying as hell, of course. And yes, before I sold my car (due to killing the battery with lots of not using it), I killed a couple of batteries. Sometimes they would take a charge and keep working after a jump-start and an hour's therapeutic driving-around, at least once I had to jump-start it to take it in for its MOT and new battery and hope I didn't stall it on the way.</p>
+<p>I'm old enough to remember the old Ni-Cad cells which really liked to be discharged way way down before recharging, to avoid the &quot;memory effect&quot;.</p>
+<p>I am being quite picky about cell voltage in my bike-lighting project because I fully intend to get as much high-quality life out of those brutally expensive Ansmann cells (£22.50 for two!) as I possibly can. I'm sure going down to 0.9v per cell would not kill them particularly rapidly, but I cared enough to dig out the proper data sheet for them and if I can get more cycles out of them by respecting their stated specs then that's what I'll do.</p>
+<p>Plus it's also been fun to implement that as a basically free feature (just add one wire) and it's been an interesting learning experiment to see how the battery voltage also fluctuates with the current being drawn. I have brightness-level switching in my Arduino code (as I'm using strips of addressable RGB LEDs and the FastLED library gives a super nice global-dimmer control) and I can watch the battery-voltage drop down in real time if I turn that up, then recover again if I reduce it.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Saporificpug" target="_blank">Saporificpug</a>
+			<div class="markdown"><p>One thing that might be worth mentioning, is that voltage is not capacity. While voltage is a good indicator of charge level, you're not checking the capacity of the battery when you check for voltage.</p>
+<p>This is why you can have an older lithium battery at 4.2V fully charged but only last 5 mins vs the amount of time when it was brand new. To check the capacity, usually means charging and discharging and comparing them to previous cycles.  This is partly why if your phone says that it says it's 30% charged, but shuts off.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/popijn" target="_blank">popijn</a>
+			<div class="markdown"><p>I don't think your explaining it like they're five</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/schorhr" target="_blank">schorhr</a>
+			<div class="markdown"><p>It literally says at the right of the subreddit:</p>
+<blockquote>
+<p>LI5 means friendly, simplified and layperson-accessible explanations - not responses aimed at literal five-year-olds.</p>
+</blockquote></div>		</li>
+					</ul>
+		</ul>
+	
