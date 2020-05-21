@@ -1,0 +1,40 @@
+<div class="answers">
+	<div class="answer" data-handle="fqyuzfk">
+		<a class="author" href="https://www.reddit.com/user/linuxthrowaway2020" target="_blank">linuxthrowaway2020</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Since Android has system-level volume control, changing volume in Android seamlessly changes the volume so other apps don't have to worry about it. So if you mute using the Android UI, the apps are still running as normal, but the audio passes through a system-level mixer before being played over the speaker. Muting is really just a toggle for zero volume that remembers the last volume you had it at.</p>
+<p>Short answer is yes the apps send audio data (unless they have options to customize volume or muting, etc), but the OS controls overall volume.</p>
+<p>An app could be written to check to see if it's muted and if so avoid processing sound, as long as the OS underneath provides access to volume information.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fqz3ufx">
+		<a class="author" href="https://www.reddit.com/user/ledow" target="_blank">ledow</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There's still data moving, but audio is one of the least taxing things you will ever ask a computer to do.</p>
+<p>44KHz, 16-bit sound?  88Kb/s per channel, 176Kb/s for stereo.  It's pathetic.  The processor can do that in idle and barely bother waking up, because it just shoves it into a buffer and processes it all in a fraction of a second.  Audio is mainly &quot;waiting for the speaker to be ready for the next byte&quot;, and it's incredibly slow by modern computing standards.</p>
+<p>There's still thousands of data streams being processed by a phone all the time, but they don't result in anything and can be done in fractions of a second and then put back to sleep.  Hell, if nothing else, it has to listen out for text messages, Internet data, phone calls,  Bluetooth devices that you usually join to it, button presses, swipes, fingerprint activation, etc.  Some are catered for by specialist chips but those chips are doing just the same - waiting for the data stream to indicate that something needs to be done, and then &quot;interrupting&quot; the main CPU to get it to do something with the data.</p>
+<p>Somewhere in any modern machine there are probably dozens of audio channels playing away to themselves (even if they're just sending 0 constantly), they're mixed and send to a variety of destinations (speakers, headphone, Bluetooth, the apps themselves to send up to Facebook or whatever).  Your Windows machine has a channel for each program running, in effect, so you can make your browser quieter than your movie without having to adjust the central system volume, and so on.</p>
+<p>But if the volume is down, or off, or the device missing then the stream just gets mixed and then... nothing happens to it.  It might be that the speaker is just sent zeroes, or that it's actual power is disconnected (depending on the type of speaker), but it makes no real difference in terms of power anyway.  A headphone cable is probably only 1V peak-to-peak at it's loudest, and an internal speaker isn't far off, and a Bluetooth speaker is separately powered and it's the radio signal to it that costs power.</p>
+<p>But no different to the stream off data coming off your touchscreen even though you're not actually pressing anything - it gets sent, filtered (so specks of dirt aren't mistaken for fingers), processed, converted to a suitable format, and sent on their way.  It's probably only &quot;off&quot; when the phone is locked, but even then it has to wake up instantly so likely it's only in a low-power mode rather than actually off.</p>
+<p>So many bytes flowing through your phone even on idle for a few minutes that you wouldn't be able to process them all as a human in a year, most likely.  But computers are built for that, and an audio stream is one of the simplest and smallest lots of data of all.  Your USB hub (even an internal one like on a phone or laptop) with nothing plugged in communicates hundreds of times faster, using more power, all the time the machine is on.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fqzf0of">
+		<a class="author" href="https://www.reddit.com/user/megablast" target="_blank">megablast</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you mute it in the app, my apps stop playing the sound file. If you mute it in the OS, it still plays the sound, but it doesn't make it to the speaker.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fqyujgl">
+		<a class="author" href="https://www.reddit.com/user/DerpSouls" target="_blank">DerpSouls</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's easier for the phone manufacturer to control volume and have the apps just play an audio signal rather than having apps also controlling phone performance</p>
+<p>It's impossible to say for certain as there are too many apps to account but typically the apps just play music independent of phone volume.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fqziclz">
+		<a class="author" href="https://www.reddit.com/user/popgeist_official" target="_blank">popgeist_official</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Something like that would only work on apps designed to pause execution while on background. A music app by designed should also continue executing while in the background.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
