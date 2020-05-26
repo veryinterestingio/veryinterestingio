@@ -1,0 +1,74 @@
+<div class="answers">
+	<div class="answer" data-handle="frjtico">
+		<a class="author" href="https://www.reddit.com/user/you_have_my_username" target="_blank">you_have_my_username</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If I gave you a Plinko board and told you to get the chip into a specific spot, it’d be hard. But, if you could control whether the chip fell left or right when it hit a pin, you could choose where it went.</p>
+<p>With this new setup, you could pass enough chips through and start stacking them up that you could spell your name. Thus, with many simple chips going through many simple gates, you can create a message.</p>
+<p>The computer does this on a much larger, far more complex, and much faster scale. Different components, like your monitor, will receive some of those messages and decode it, turning on/off pixels in the process.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="frje2i2">
+		<a class="author" href="https://www.reddit.com/user/MrOctantis" target="_blank">MrOctantis</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A CPU has two main components, the processing unit and the control unit. The processing unit can store small amounts of data, do basic math and number manipulations, and other sorts of calculations. The control unit does stuff like sending data between different parts of the CPU, controlling input/output to other parts of the computer, and implementing logic that approaches what we would call a program. CPUs also have a Bus, which is a bunch of wires that run in a parallel line that all the other components of the CPU attach to in order to transfer data from one part of the CPU to another. In the case of a 64-bit computer (which most modern computers are), that bus has 64 wires, meaning that it can move a binary number with at most 64 digits. The main effect this has is on the maximum size of a number (in either direction from 0, since binary can do negative numbers) that the computer can handle. CPUs also have internal mini-blocks of memory called registers, which can handle small amounts of data (in modern computers, 64 ones or zeroes per register). The x86_64 CPU architecture that's used on most desktops has four general-purpose registers, named A, B, C, and D (there are technically four more general purpose registers, but they generally contain important information you only mess with if you know what you're doing). The names get changed a bit depending on how much of the register you're using. If you're using the first byte of the register, it's called AL (A lower), second byte is AH (A higher). If you're using two bytes, it's AX. Four bytes is EAX. 8 bytes (64 bits) is RAX.</p>
+<p>Memory, also called RAM (which is different from storage space), is where your computer stores data it isn't actively using, or hasn't in the past few nanoseconds. Memory on modern computers is what's called byte-addressable (a byte is 8 bits, or 8 ones and zeros, and is the basic unit of data in a computer) meaning that you can think of RAM as a really long straight road with a line of houses on one side, and each house has its own address, and each house can hold 8 bits. If you want a number larger than one byte, say a 4-byte number (also called a long), you would say &quot;address 245 and the next three after it.&quot; Among the data in memory is programs, the data used by those programs, and data being sent from the CPU to something else, like video information being sent to your GPU.</p>
+<p>If you want to implement a program that adds two numbers together, you would need to write it in machine code (which is binary numbers that represent individual instructions like &quot;move data from this spot to this other spot&quot; or &quot;add the numbers in these two spots and put the result in some other spot.&quot; What we think of programming languages can be converted to assembly language (which is basically human-readable machine code) and then converted into machine code. Here's a simple example of a program that adds two numbers from memory, in the format &quot;MEMORY_ADDRESS: INSTRUCTION //COMMENT EXPLAINING&quot;:</p>
+<pre><code>0: MOV AL, [3]   // Move data from memory address 3 to the AL register
+1: MOV BL, [4]   // Move data from memory address 4 to the BL register
+2: ADD AL, BL    // Add the contents of AL and BL together, and store the result in AL
+3: DB 4          // Declare one byte of data, with a value of 4
+4: DB 8          // Declare one byte of data, with a value of 8</code></pre>
+<p>In order to make that program actually happen, we need to convert it to machine code. As it happens, instructions like MOV and ADD have binary number representations that vary depend on what they're doing. For example, there's a binary number that means &quot;MOVE X AMOUT OF DATA FROM MEMORY ADDRESS TO REGISTER. THE NEXT 4 BITS REPRESENT THE REGISTER NUMBER AND THE X NUMBER OF BYTES AFTER THAT REPRESENT THE MEMORY ADDRESS TO LOOK IN&quot;. Those numbers are completely arbitrary and are chosen by the people that designed the CPU.</p>
+<p>Each instruction is made up of a few smaller mini-instructions that don't take parameters in the way that the instructions above do. From here, it's important to know about the system clock, the instruction register, and the instruction pointer. The system clock doesn't know what time it is, it's just a peice of crystal that oscillates at a known frequency, generating what's known as the clock signal. The pulses from the clock advance the steps of the mini-instructions in a similar way that a metronome advances the beat of a song. (as a side note, when you see a CPU listed as 3.2GHz, that means the clock pulses 3.2 billion times per second, or once every 0.3 nanoseconds). The instruction register is paired with a little counter that increments with each clock pulse. The instruction register is hardcoded (as in hardware programmed rather than software programmed) to have the binary representation of the current instruction (including the parameters) placed in side it, and to output the mini-instruction you need to do for that that instruction depending on the value of the counter. There are usually more than one mini-instructions per clock pulse, and usually with an IN or OUT part. If it's OUT, it means that the contents of the component referred to is sending data out to the bus, and if its IN, it's reading data from the bus. This is how data is transferred between components in the CPU. The instruction pointer is effectively just a normal register, but it contains the memory address of the current instruction.</p>
+<p>In order to execute the first instruction of the example program above (MOV AL, [4]), these are the mini-instructions that would happen:</p>
+<pre><code>INSTRUCTION POINTER OUT - MEMORY ADDRESS IN. This tells the Instruction Pointer to output its contents (which is starting at zero) to the bus, and tells the RAM controller to open up memory the memory address that it reads from the bus (which is zero, from the instruction pointer).
+
+MEMORY CONTENTS OUT - INSTRUCTION REGISTER IN - INSTRUCTION POINTER INCREMENT. This moves the contents of memory address 0 (which is the MOV instruction itself) to the instruction register so that the CPU actually knows what instruction to execute. This also increments the instruction pointer, so that next cycle it'll look at address 1 and execute that instruction. These two steps are the same for any instruction, since they're required in order to know what the instruction actually is.
+
+INSTRUCTION REGISTER OUT - MEMORY ADDRESS IN. This outputs the contents of the instruction register (but only really the part of it that contains the memory address to be loaded, not the entire contents) to the RAM controller.
+
+MEMORY CONTENTS OUT - A REGISTER IN. This moves the contents of memory at the address that was loaded to the A register.</code></pre>
+<p>At this point, the entire MOV instruction has been executed. The mini-instruction counter resets 0 zero, and the cycle begins again, loading and executing the next instruction in the program. Because the instruction has 4 mini-steps, each mini-step takes one clock cycle (0.3 nanoseconds), and there are only three instructions in the program (DB isn't an instruction, it's encoded as just data with an address in machinecode), that means our program will execute in only 3.6 nanosecond. This is why computers can do calculations so quickly.</p>
+<p>In order to display graphics, the technique really depends on the type of display and how you communicate with it. In the old days, before fancy GPUs, the CPU would calculate what needs to be on the screen and the videocard would translate that into something that the screen can speak. In the normal RGBa colorspace that we've used for quite a while, the computer sees the display as a grid of pixels, with each pixel having 4 bytes of data, one for each of Red, Green, Blue, and Alpha (alpha means transparency). This is where we get the term RGB, and why RGB colors are 0-255 (the range of value available in 1 byte of data).</p>
+<p>I hope this answers your questions, and I'd be glad to answer any followups. I'm sure I might have gotten a few details wrong, so anyone else feel free to correct me as I'm still studying this stuff.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="frjeeq9">
+		<a class="author" href="https://www.reddit.com/user/ViskerRatio" target="_blank">ViskerRatio</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>At the most basic level, you've got a transistor. This is a device with three pins. If you apply a voltage to one of those pins, it permits current to flow between the other two. If you take away the voltage, current will no longer flow.</p>
+<p>Now, imagine I have a pathway between high voltage and ground that passes through two of these transistors. If I look at the voltage before both transistors, it will either be equal to my high voltage or equal to ground depending on how I set the gates (control pin) of my transistors. If I set them both to 'open', then my output will be zero (equal to ground). If I set either to 'closed', then my output will be one (equal to high voltage).</p>
+<p>This is what is known as a 'NAND gate'. It performs the inverse of the logical operation AND.</p>
+<p>As it turns out, you can use NAND gates to simulate any other logical gate - AND, OR, NOT, etc. - by combining them in various ways.</p>
+<p>So now we can perform any basic logical operation.</p>
+<p>But if we can perform any basic logical operation, that also means we can perform any basic <em>arithmetic</em> operation.</p>
+<p>It also means we can build devices called 'flip flops' where we use logical gates feeding back into one another. This permits us to have outputs based on past inputs, or memory.</p>
+<p>Since we now have mathematical operations and memory, all we need to do is route our outputs to an array of LED to display our outputs. Since we've got those transistors, we can re-route signals easily - just like a switching tracks for a train.</p>
+<p>All you have to do at this point is scale it up to staggeringly complex levels.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="frjqz1q">
+		<a class="author" href="https://www.reddit.com/user/sacheie" target="_blank">sacheie</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you really want a &quot;like I'm five&quot; answer, explaining everything from the ground up, the book you should read is &quot;Code&quot; by Charles Petzold. This book starts with the absolute basics of binary and switch-based logic circuits. By the end, it has shown in detail how to build a simple CPU, roughly the sophistication of the Intel 8080. And after that it explains the basics of software.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="frjit4w">
+		<a class="author" href="https://www.reddit.com/user/BradleyUffner" target="_blank">BradleyUffner</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Ben Eater has an absolutely amazing series of YouTube videos that walk you through building a computer from fundamental components on bread boards. You'll learn how everything works at the lowest levels.</p>
+<p><a href="https://www.youtube.com/playlist?list=PLowKtXNTBypGqImE405J2565dvjafglHU" target="_blank">https://www.youtube.com/playlist?list=PLowKtXNTBypGqImE405J2565dvjafglHU</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
