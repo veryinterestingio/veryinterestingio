@@ -1,0 +1,86 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ecmcn" target="_blank">ecmcn</a>
+			<div class="markdown"><p>This is a good summary. In short, if people cared a huge amount about this devs would devote more time to being accurate, but nobody really cares. If I’ve got 10 steps to perform I might run some tests on a few machines and say step #3 is about 20% done or whatever and move on to a feature that people want.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Spinnlo" target="_blank">Spinnlo</a>
+			<div class="markdown"><p>On older machines this was a real issue. Just preparing showing and updating a progress bar could take up a not insignificant part of your processing power. But people really hate it when the computer 'isn't responding' for a couple of Minutes. They assume something broke. So we were stuck with slower processes, entertained by mostly arbitrary progress bars.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Saladino_93" target="_blank">Saladino_93</a>
+			<div class="markdown"><p>It wouldn't even have  to be a progress bar, just some thing that indicates that there is still stuff happening. Like a spinning circle in some games loading screen.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kahzgul" target="_blank">Kahzgul</a>
+			<div class="markdown"><p>I had a few older programs where the progress bar was just an animation. The line would keep growing well past the box it was supposed to fill if the program loading took a while.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SkateKnight" target="_blank">SkateKnight</a>
+			<div class="markdown"><p>The weird inverse is fake loading bars with how fast stuff is now, a lot of programs can open and do something simple in 0.1 second, so if it had zero visual feedback the user would assume it never happened or they messed something up.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/audigex" target="_blank">audigex</a>
+			<div class="markdown"><p>Even if you spent a ton of time as a dev to make it more accurate... you'd only ever be making it more accurate for your machine, right now</p>
+<p>I could make it 95% accurate on my machine, but when someone runs the same code on a machine with faster/slower RAM, HDD/SSD, Networking, or CPU speeds, then it will be wrong again.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/l337hackzor" target="_blank">l337hackzor</a>
+			<div class="markdown"><p>Most accurate way might be to benchmark it on a variety of systems. When it goes to install it approximates your system to the closest benchmark system and uses its install time as the estimate. This can be done with a quick hardware check without benchmarking anything locally.</p>
+<p>The progress bar won't be any more accurate but you could say from the start &quot;this installation typically takes 5-7 minutes on similar systems&quot;.</p>
+<p>Edit: I could even see a 3rd party providing this as a service.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nodiaque" target="_blank">nodiaque</a>
+			<div class="markdown"><p>We will never be accurate. There's a lot of other factor that enter here and even if a full benchmark was made before, just the fact that the computer can start other process that weren't in the benchmark would change the value.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ImprovedPersonality" target="_blank">ImprovedPersonality</a>
+			<div class="markdown"><p>Another great uncertainty comes from how slow it is to read and write small files. A large, continuous file can often be read and written at several 100MB/s, many small files will be much much slower. With old hard disks you could even hear the read/write head moving and see the progress bar slow to a crawl when the installation program encountered lots of small files.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hobadee" target="_blank">Hobadee</a>
+			<div class="markdown"><p>Which raises another point:
+Do you set the progress bar based on total file size, or total number of files?  Both will accurately display what percentage of the operation is complete, but in different ways.</p>
+<p>For example, take say 99 small files and 1 big file.  With a file size progress bar it will slow down during the small files, since those slow operations down and they aren't contributing much to total file size compared to the large file.  If you have a progress bar based on number of files though, it will quickly get to 99% as it does the small files, then hang while it does the large file.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Krt3k-Offline" target="_blank">Krt3k-Offline</a>
+			<div class="markdown"><p>If I were able to &quot;change&quot; it, I'd say mainly based on file count, but split up the large files in like 4MB progress chunks or something like that. But yeah, there is no &quot;perfect&quot; solution, because who wants to spend work time on a freaking progress bar that you, the dev, are not going to see often</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sneakerheadfarb" target="_blank">sneakerheadfarb</a>
+			<div class="markdown"><p>Wonder if you can run on multiple threads and define download progress by evaluating status for each of the running and completed threads as opposed to number of file or file size</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/btxtsf" target="_blank">btxtsf</a>
+			<div class="markdown"><p>But why can’t they know? Like surely they could know speeds of different types of hard disks and hardware combinations and make a more accurate estimate based on the hardware?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ImprovedPersonality" target="_blank">ImprovedPersonality</a>
+			<div class="markdown"><p>You’d have to test the installer on <em>lots</em> of combinations of hardware and fill a huge database with it. Just to display a more accurate remaining time estimate. </p>
+<p>A more realistic approach would be for the installer to do some quick tests at the start, for example measuring how long creating an empty file takes, how much continuous throughput the disk can sustain, how fast the CPU can decompress archives etc. etc. But it still can’t account for things which happen later, like you starting other programs, or the CPU reaching a high temperature which forces it to reduce its speed. </p>
+<p>Sorry for the car analogy, but it’s like estimating your time of arrival based on the speed you are currently driving and the remaining distance. You could improve the estimate by taking elevation changes, intersections, speed limits etc. etc. into account but at some point it’s a lot of effort and still can’t account for a sudden, unexpected traffic jam.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/username--_--" target="_blank">username--_--</a>
+			<div class="markdown"><p>imagine your mother sends you to a store to buy some food. you know exactly where you are going, the distance, the speed limits, so you tell your mother, i will be back in 30 minutes. On your way to the store, every red light turns red, there is a 20 person line at the checkout and you got stopped for speeding. You wind up taking 40 minutes. </p>
+<p>The installation makes an estimate based on condition it expects, but things rarely are straight-forward, so the time is always wrong</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/deannnh" target="_blank">deannnh</a>
+			<div class="markdown"><p>While I like the top voted answer, this is the true eli5.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/causeNo" target="_blank">causeNo</a>
+			<div class="markdown"><p>I'm afraid I have to agree.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[gelöscht]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Conlaeb" target="_blank">Conlaeb</a>
+			<div class="markdown"><p>Different services are going to have their own compression/optimization methods but I don't think you would see those in a plain file download too often.  In addition ISPs, especially residential, sometimes have speed bursting configurations that can make real time bandwidth tests look funny.  At the end of a day however maximum sustained transfer rate across a link is very much so going to be dictated by the throughput capacity of the link.  Whether you're pushing pressurized water or barely a trickle, the capacity of the pipe hasn't changed.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

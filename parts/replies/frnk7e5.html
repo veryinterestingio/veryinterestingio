@@ -1,0 +1,79 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sapiogram" target="_blank">Sapiogram</a>
+			<div class="markdown"><p>This answer is completely wrong. </p>
+<ul>
+<li>
+<p>Unless you have something particularly demanding going on the background (like another installation process), background tasks consume negligible resources.</p>
+</li>
+<li>Even if you <em>are</em> running a heavy background task, this is indistinguishable from just having a slower computer, so the progress bar will take it into account.</li>
+</ul></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/different55" target="_blank">different55</a>
+			<div class="markdown"><p>This dude is right, the scheduler has 0 impact here. If it was behaving in a manner that impacted time estimates, it's a shamefully bad scheduler and would lead to an unusably bad computing experience. There can be competition over resources, but how it's split up will not vary randomly over time.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/12_Yrs_A_Wage_Slave" target="_blank">12_Yrs_A_Wage_Slave</a>
+			<div class="markdown"><p>Yup. Background processes don't usually behave that way. If they did, you would notice your computer intermittently being very slow, like, &quot;you have a virus&quot; slow.</p>
+<p>Installation speed (strictly in terms of bytes per second) should vary quite a bit over the course of the installation, with things like average number and size of the files momentarily being installed, the compression scheme, download rate, and write speed if it's a heavily fragmented disk.</p>
+<p>But this should all be manageable with a sophisticated estimation algorithm. Collecting user stats, benchmarking your system before installation, breaking up the installation into phases known to vary in speed, etc.. In today's tech ecosystem there's probably no excuse for a margin of error larger than 50%. A margin of 500% is a total failure, a bug.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Lemmings19" target="_blank">Lemmings19</a>
+			<div class="markdown"><p>I don't like this answer. Modern systems aren't very hindered by most background prpcesses. Also, installation estimates rarely get throttled by CPU speed, but rather something such as disk usage. And when it is throttled by CPU (such as video encoding), the estimate is usually pretty accurate so long as you're not hammering the CPU with something else (in which case the estimate takes account of this). </p>
+<p>tl;dr The software that provides the estimate is crap, that's why the estimate is crap. Not applications competing for the CPU.</p>
+<p>I'd suggest that most inaccurate estimates for things done locally (such as installations) are due to it being difficult to write code that estimates this. Also, it's a been a very low priority for businesses and developers to spend time improving this code.</p>
+<p>Installations include a varied set of tasks throughout the process, and each task takes a different amount of time. The program can't just get a baseline reading of how long the first few seconds are taking and use that. It hasn't run the future tasks before either, so it's not sure how long they take. It's also not smart enough to guess how long those tasks take on your hardware. It probably doesn't even know how long they take on <em>any</em> hardware.</p>
+<p>The program just sees that it's completed 1/100 tasks, so it thinks it's 1% complete. Even if the first task was really really simple compared to the rest.</p>
+<p>You might suggest the program just remember how long it took to install during development and go off that, but the developers are more worried about getting the software finished and not on providing an accurate installation time estimate. The business people telling the developers what to do also don't care about installation time estimates compared to the product itself.</p>
+<p>The developers would also know that even if they record how long it took on their machines, everyone else's machines are going to be totally different and take different times, so their estimate will probably be off anyway. So they just go with whatever the out-of-the-box installer has for an estimate, which happens to be crap.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Anubissama" target="_blank">Anubissama</a>
+			<div class="markdown"><p>Can't installation processes make higher priority request? Or include the level of priority in their estimate somehow?</p>
+<p>Like, there are x processes running that have similar priority as we so it's likely we will be denied processor time this often so the installation time will be prolonged this much.</p>
+<p>I don't expect some incredible to the second accuracy, but whenever I bothered to compare the actual time to the time estimate I'm dealing here with 300%-500% margins of errors.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JOhn2141" target="_blank">JOhn2141</a>
+			<div class="markdown"><p>Installation isn't a high priority task compared to incrementing system time, check peripherals inputs.... Also it can come from hard drive speed, internet speed or any other lag that make the estimation instable.</p>
+<p>Also estimating this time can slow down the process</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GiverOfZeroShits" target="_blank">GiverOfZeroShits</a>
+			<div class="markdown"><p><em>&quot;I used the processing time to destroy the processing time&quot;</em></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jelsaispas" target="_blank">jelsaispas</a>
+			<div class="markdown"><p>This</p>
+<p>If you give too much priority to a single process it can end up starving the critical processes and crash the system</p>
+<p>You generally do not want a system crash, you want that even less while the system is busy changing itself. Imagine, losing consciousness while you are performing brain surgery on yourself, you might never wake up, or wake up with brain damage.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TriantaTria" target="_blank">TriantaTria</a>
+			<div class="markdown"><p>Processes do have priorities, but the operating system decides these (otherwise everyone would make their app &quot;high priority&quot;!). It's taken account by the scheduler to try not ignore low priority processes totally.</p>
+<p>Another factor is errors. Things are quite often going wrong to some extent and need micro-repairing.</p>
+<p>Another is anti-virus applications which are very nosy and resource intensive.</p>
+<p>Finally, when installing (ie . Writing data to disk) you are severely limited by the disk speed. And this is exasperated if other processes also want to write to disk.
+This is one reason why an SSD is such a huge upgrade over HDD.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/InsanityWolfie" target="_blank">InsanityWolfie</a>
+			<div class="markdown"><p>Exacerbate means to make it worse.</p>
+<p>Exasperate means to annoy someone til they get really pissed off.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Latexi95" target="_blank">Latexi95</a>
+			<div class="markdown"><p>Also disk write speed isn't constant, not even when writing continuous data to a single file. SSDs can overheat and reduce write speed, HDDs will have to seek new positions and then there is filesystem overhead and metadata updating and potentially other processes accessing same disk etc.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/splenetic" target="_blank">splenetic</a>
+			<div class="markdown"><p>That's a good point - anti virus programs can really slow down software installations.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/you_have_my_username" target="_blank">you_have_my_username</a>
+			<div class="markdown"><p>I think the bigger problem is, how would you decide how much time is left?</p>
+<p>You could go by the current rate of data/second. But that rate changes. If you have a HDD, it takes time for the disk to spin one revolution to write the next data point. Every HDD will have different data and will need to find room and spin around to different places. Each computer is different.</p>
+<p>The rate is also affected by the operating system you use. Different operating systems consume different cpu resources for different reasons.</p>
+<p>There’s more to it than that, but basically the rate of data/second is <em>constantly</em> changing so you’re estimated download time jumps from 3min, to 2min, to 15min, to 8hrs, to 30sec, to 1sec (and then hangs there for 3min), and then done.</p>
+<p>Another way to do it is by how much of my total data have I downloaded? In this case, you get a % completion and are left in the dark about how much time is left.</p>
+<p>Finally, to answer your question, downloads do get assigned priority. Just not the priority you want. But definitely the priority it deserves. If your windows firewall got bumped down in the cpu usage priority, your download could complete before a virus scan runs. A malicious download could also consume too many resources and effectively brick your computer because the OS can’t use the resources it needs to update your screen refresh.</p></div>		</li>
+					</ul>
+		</ul>
+	

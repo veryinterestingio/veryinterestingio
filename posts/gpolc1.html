@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: Why is the time estimated on computer installation/download/repairs etc. ALWAYS wrong?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="gpolc1">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/gpolc1/eli5_why_is_the_time_estimated_on_computer/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/gpolc1" onclick="return false">Why is the time estimated on computer installation/download/repairs etc. ALWAYS wrong?</a>
+		</h2>
+		<!--<span class="date">2020-05-27</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>No matter what it is, be it an installation, a download, a diagnostic process.</p>
+<p>Whenever a computer does a process that it gives a time estimate for it is always wrong. While I understand that for things like a download, speed can change and so does the time, I don't understand why it cannot reliably predict how long a process on local hardware will take?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="frnvfff">
+		<a class="author" href="https://www.reddit.com/user/causeNo" target="_blank">causeNo</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Downloads are actually pretty good to predict (as long as the connection is somewhat stable) because what the program is doing is fairly uniform: Download some chunk of data, write it to the disk. Once you've done that a few times and you know how big the actual file is (i. e. how many more times you have to repeat that process until you're done) you can predict pretty well how much longer it's gonna take. You just take the average of the last x cycles and multiply it with the number of cycles left.</p>
+<p>The problem starts when you have to do very different things in one process that to the user looks like one process. Let's say I'm installing a game (to the user one process). But at the working level that involves multiple steps with completely different properties. One subprocess of that is downloading the packed archives from some server. (Quite easy to mesaure, as I just talked about). But the next step is uncompressing those to the disk. How does that compare to downloading? Hard to say upfront. Downloading depends practically only on download speed and disk write speed. Unzipping depends on how fast  the CPU is, how much CPU time is consumed by other processes and how fast the disk can read <em>and</em> write. Were we capped by the download speed before? Can the disk actually write much faster? How does the disk read speed compare to the write speed? Will some anti virus guard delay our write calls per file? We don't know yet. Notice that the uncompressing part by itself can again be predicted okayish as well. But only once we started it. Worse than downloading an archive, because depending on the file sizes in that archive the OS might handle writing very unpredictably. But still okayish. You can uncompress say 50 MB three times, check how long that took on average and again multiply that with the rest of 50MB chunks left. After that you have to create some registry entries and/or shortcuts in some folders. Now that's some completely different calls to the OS again. How long do those take? Might not even be consistent over several patches of the same OS. Let alone different versions of it. Or god forbid we have multi-platform support. So we have Windows 7 vs. Windows 10 vs. Mac OS vs. whatever powers a Playstation. (Actually now I'm a little curious).</p>
+<p>So to sum up: The individual steps needed - when they are quite uniform - can be estimated pretty well <strong>once you've done some part of them</strong>. Thats also why you often see different progress bars for individual steps. Or at least status messages of what step we're currently in. That's the best info we have at that point in time. What's hard is bringing them together upfront, especially with data that is unknown at the start of the whole process. The best you can do are rough estimations with a lot of assumptions about the computer this process will be running on.</p>
+<p>I mean you could totally measure most of it with &quot;test download, &quot;test unzip&quot;, &quot;test xy&quot; before the actual process takes place and that would improve the upfront estimation siginificantly. But at some point the effort and software complexity is just ridiculous compared to a slightly more accurate progress bar. Also I'm not sure how happy users would be if they found out we actually added two minutes to their installation process doing pointless downloading and unzipping. Just to measure their system in order to improve estimation accuracy. I believe in the end people prefer if it get's actually done as fast as possible.</p>
+<p>But I admit is <strong>is</strong> kinda annoying when the first 60% take 5 minutes, the next 30% 8 minutes and then the last 10 go through in a minute.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="frnt2fn">
+		<a class="author" href="https://www.reddit.com/user/Krispyn" target="_blank">Krispyn</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In addition to the actual explanations, I'd like to offer this one: the psychological effect of a progress bar is to show that progress is being made, so that you wouldn't be wondering if it's still running or not. Giving an accurate estimation of how long it will take is probably very difficult or impossible in most cases because many things can influence computing performance, and might not be worth the effort.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="frnkqif">
+		<a class="author" href="https://www.reddit.com/user/thundarod" target="_blank">thundarod</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>when an install or download starts the estimated time is based on data transfer. As a connection is made the estimation starts, however it is only transfer small files so it may take a snippet of a second then have to find a new space for the next file to begin. Each time it has to find a new slot there is no data transferring, that is why it estimates a long time. As it reaches the main files these are normally larger and data transfer remains high for longer time and the estimate changes and becomes more accurate. As it closes out the install it also does some small files which again need to have space found and to be transfered each time making the estimate different again even though It may have 5kb left that 5kb might be 100 text files that all need to be place so instead of taking a fraction of a second, could take 1 or 2.</p>
+<p>Installs and downloads rely on the hard disc write speed(fragmentation also affects this) as well as data transfer speeds. Downloads can also fluctuate because of changing sources but are generally closer in estimation because there is often less smaller files to transfer.</p>
+<p>When writing to a disc it needs to a:find where to write something b:write something there c:write where it closes d:note where to find it again. This is why those little files take longer than they would seem they should and as these files in installs are all through it that is why the estimated is wrong. Eg a game may have 1000 tiny files for programming and stuff and 10 large files for video audio and game data etc.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="frnk7e5">
+		<a class="author" href="https://www.reddit.com/user/TriantaTria" target="_blank">TriantaTria</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Your processor has many applications that want its time. To give you the illusion they're ALL running at once it quickly swaps between them.
+So, when the application in question is briefly running and asks itself &quot;when might I be done?&quot; it has to guess; it's at the mercy of the operating systems scheduler.</p>
+<p>So just like a download is at the mercy of the wild West which is the internet, so too are your local applications - as there's often hundreds always running in the background, each of which could spring into action at any time.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="frnvsf8">
+		<a class="author" href="https://www.reddit.com/user/FearHAVOK" target="_blank">FearHAVOK</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>One issue is simply how they choose to display the progress bar. Are you 50% done the installation because 50% of the files have been installed? Or are you at 50% because 50% of the data has been installed? Some files are &lt;1KB, and are considered 1 file. Some files are 200MB and are considered 1 file.   </p>
+<p>Then there are the other processes on your computer fighting for their time to be looked at, each having its own bottleneck somewhere. Things like UAC popping up will cause your install to hang as well.  </p>
+<p>Approximation is good enough for me.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/gpolc1" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
