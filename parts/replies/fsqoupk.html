@@ -1,0 +1,26 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/setiinstitute" target="_blank">setiinstitute</a>
+			<div class="markdown"><p>I use FORTRAN, mostly because of the astronomers being conservative. However, when you need to do lots of math and you have very little data to keep (think eight planets orbiting for billions of years), FORTRAN is relatively efficient. I usually write my own integrators for simulating the orbits of planetary satellites, as usually I need to at least tweak them for every paper because the moons in question are affected by some specific physical process (including tides etc). For integrating asteroids or comets, I usually use Hal Levison's SWIFT, which was also written in FORTRAN in the 90's and is still good for studying small bodies. For a wide range of applications REBOUND by Hanno Rein is probably now becoming the most popular integrator and it's quite easy to use (and it lives in the Python universe). Still, most of the time I find it necessary to write something of my own for the problem I am studying.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/liquidpig" target="_blank">liquidpig</a>
+			<div class="markdown"><p>Cool. I wrote a galaxy collision simulator in undergrad back in 2005 in FORTRAN. </p>
+<p>It... worked...</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/stojakovicn" target="_blank">stojakovicn</a>
+			<div class="markdown"><p>I'm also interested in knowing this - also, what are the most challenging aspects of development in your branch?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/setiinstitute" target="_blank">setiinstitute</a>
+			<div class="markdown"><p>In planetary dynamics our problems are inherently serial, and cannot be 100% parallelized (as each body interacts with every other body). There are ways around it in some cases, but the speed of our integrations is determined by  a single processor speed, which has not been moving much for years. Some people use GPUs but that requires lots of development work and is usually done only for major projects (I never tried myself).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ginorK" target="_blank">ginorK</a>
+			<div class="markdown"><p>If some people use GPUs then it means the work can be parallelized though, right? I mean, in terms of single core speed GPUs are much slower than CPUs, they essentially have thousands of little &quot;weaker&quot; cores. </p>
+<p>Have you ever tried to compare speeds between, say, a 4 thread CPU and an 8 or 12 thread CPU? Because while it does make sense that the integration cannot be fully parallelized, due to all the mutual interactions, in large systems of equations there are tons of calculations to be performed even before you need the results of the next iteration</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
