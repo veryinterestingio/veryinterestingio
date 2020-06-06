@@ -1,0 +1,78 @@
+<li class="post" data-handle="gw2imh">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/gw2imh/eli5_how_did_they_fit_open_world_games_like_zelda/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/gw2imh" onclick="return false">How did they fit open world games like Zelda and the original Final Fantasy into NES cartridges</a>
+		</h2>
+		<!--<span class="date">2020-06-06</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>With some basic Googling  It looks like that the max size was around 512 KB.  How is this even possible to fit games of this size onto such little memory? What is this magic?</p>
+<p>Edit: Wow, this absolutely blew up.  Thank you everyone for the detailed answers.  Several people have linked the Morphcat Games video which I will share here.  It is very informative.   </p>
+<p><a href="https://www.youtube.com/watch?v=ZWQ0591PAxM" target="_blank">https://www.youtube.com/watch?v=ZWQ0591PAxM</a></p>
+<p>Edit 2: I also did some more of my own research and found this video very informative about 8 bit graphics and processing:
+<a href="https://www.youtube.com/watch?v=QaIoW1aL9GE" target="_blank">https://www.youtube.com/watch?v=QaIoW1aL9GE</a></p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="fssi7fz">
+		<a class="author" href="https://www.reddit.com/user/max_p0wer" target="_blank">max_p0wer</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The game is a grid.  Legend of Zelda is 16 screens wide by 8 screens tall.  And each screen is a grid of 11x16 tiles.  Now let's say there are 16 different types of tiles, then you only need 4 bits of information for each tile, which means the entire overworld of zelda is only 11kb.</p>
+<p>But 11kb is a lot in the 1980's.  They probably used a lot of tricks to make it less than that.  How about instead of 16 different types of tyles, each screen only has 4 types of tiles (and those 4 can be different for different screens, so one screen might be sand, rock, water and cave, but another screen might be sand, grave stone, bush, and tree).  Now you only need 2 bits for each tile, so your file size is 5.5kb. </p>
+<p>And maybe you come up with some other shortcuts... like on a desert screen you make &quot;sand&quot; the default tile and now you only have to store the data for the rocks on the top of the screen.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fst4irb">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fssj3pk">
+		<a class="author" href="https://www.reddit.com/user/Fruity_Pineapple" target="_blank">Fruity_Pineapple</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Old games are like storing a brick and the plan of the house, then tell the processor to copy the brick according to the plan to build the house. Most of the size gain is because the graphics are done using repeating patterns and only storing a little square and telling the processor to repeat it.</p>
+<p>Modern games are like storing the whole house and its 500 000 bricks. Often even the parts of the bricks you never see because they don't care about size anymore.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fst0dfg">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fst46qc">
+		<a class="author" href="https://www.reddit.com/user/mredding" target="_blank">mredding</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>All graphical information was stored in 16KiB of memory. This area of memory was divided into sections.</p>
+<p>The first was a pattern table. The table was 8KiB in size and divided into 8x8 tiles. The table was usually split vertically, half for backgrounds, half for sprites. A pixel was stored in 4 bits, meaning the NES could display 16 colors. The pattern table only stored the lower 2 bits of each pixel. The other two bits were looked up in one of the other two tables.</p>
+<p>The next table was the &quot;name table&quot;, of which there were typically 2 but up to 4. A name table is 960 bytes. This corresponds to a 32x30 grid of 8x8 tiles from the pattern table. The top and bottom 8 scanlines weren't rendered on a CRT television, so that memory could be used to hold game data. You can see the effect along the top and bottom edges of Tecmo Super Bowl.</p>
+<p>A name table has an attribute table 64 bytes in size that maps the upper two bits of every pixel to the lower two bits in the pattern table.</p>
+<p>There was also a sprite table, or sprite RAM, that used 4 bytes to map the x and y location, upper color bits, the tile index (meaning the x and y location is relative to a given tile in the background), horizontal or vertical flip, and foreground/background. This table was 256 bytes so there could be 64 sprites on the screen at any given time.</p>
+<p>There were two color pallets of 16 colors each, and the color bytes split between the pattern table and the name or sprite tables indexed into these pallets. One was for the background, the other for the sprites. These two 16 color pallets mapped into a 256 color pallet built into the hardware.</p>
+<p>If you don't understand all that, don't fret. The whole thing works out like a relational database, where one table maps into another. The data is down to packed bits, so while you have addressable bytes, you had to mask and pick out bits and combine them in registers to get complete values out. The hardware was built around all of this and could do it for you, which is how the system was fast enough to actually render this much data onto a CRT. A cartridge was ROM that basically plugged into this memory space, so the data was already laid out and good to go, the video hardware mapped right onto the cartridge data.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/gw2imh" onclick="return false"><span>show</span></a>
+</li>
