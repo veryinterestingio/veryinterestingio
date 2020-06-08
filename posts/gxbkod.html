@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>How do computers keep track of time passing?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="gxbkod">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/gxbkod/how_do_computers_keep_track_of_time_passing/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/gxbkod" onclick="return false">How do computers keep track of time passing?</a>
+		</h2>
+		<!--<span class="date">2020-06-08</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>It just seems to me (from my two intro-level Java classes in undergrad) that keeping track of time should be difficult for a computer, but it's one of the most basic things they do and they don't need to be on the internet to do it. How do they pull that off?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ft0gt4e">
+		<a class="author" href="https://www.reddit.com/user/Rannasha" target="_blank">Rannasha</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The component that keeps track of the time in a computer is called the Real Time Clock (RTC). The RTC consist of a crystal that oscillates at a known frequency. In this case, 32768 Hz is often used, because it's exactly 2^(15) and that allows for convenient binary arithmetic. By counting the oscillations, the RTC can measure the passage of time.</p>
+<p>In a regular computer, the RTC runs regardless of whether the computer is on or off with a small battery on the motherboard powering the RTC when the computer is off. When this battery runs out, the system can no longer keep track of the time when it's off and will reset the system time to a default value when it's started up.</p>
+<p>RTCs are fairly accurate, deviating at most a few seconds per day. With internet connected devices, any deviation can be compensated for by correcting the RTC time with the time from a time server every now and then.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ft26yil">
+		<a class="author" href="https://www.reddit.com/user/StupidPointless" target="_blank">StupidPointless</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you ever get into electronics like microcontrollers and gate programming, you'll need to understand oscillators. A little, usually quartz, crystal that effectively converts DC to AC so that the computer can measure how many &quot;ticks&quot; there have been. Knowing details about the crystal oscillator and the current supplied to it, you know what frequency the output is and you can use the information and the number of ticks to calculate the passage of time.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ft3g2bo">
+		<a class="author" href="https://www.reddit.com/user/McThor2" target="_blank">McThor2</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Another way that computers keep track of time (other the quartz oscillators that have been mentioned) is by use of a phase-locked loop. This type of circuit makes use of a voltage controlled oscillator that typically consists of capacitors and transistors to create a switching circuit. The advantage of this is that you can control the frequency of the clock easily, just by applying a suitable voltage.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ft3pjik">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ft4fpuu">
+		<a class="author" href="https://www.reddit.com/user/GI_X_JACK" target="_blank">GI_X_JACK</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>That really depends on the type of computer. Different architectures have different ways of doing this.</p>
+<p>the x86 which is your desktop PC, and most modern servers, as a RTC(Real Time Clock). Its a separate smaller microprocessor with a quartz crystal similar to a wristwatch, that does nothing but keep the time. For the last 25 years or so, they've all been powered by a standardized 2032 watch battery. If you ever opened a computer and saw a silver button battery on the motherboard, this is what that is for. (and storing BIOS settings)</p>
+<p>BUT. Not all computers have an RTC. Many smaller embedded ones do not. So how do they keep time? I can't speak for other computers, but Linux, on boot, will do a certain amount of null ops to get the relative speed of the proccessor in a delay loop and use that to check the speed. It can then use the input clock to determine time.</p>
+<p>Speaking of which. Before RTCs were added to the x86(PC architecture), this is how it was done, but with no delay loop. There was only one PC, that ran at a set frequency, and the system clock was used to calibrate a human clock by measuring ticks per cycle. Not accurate but it worked.</p>
+<p>Now of course, how do we get all the world's computers in sync? often for cryptography, or science, we need clocks in precision sync.</p>
+<p>Enter NTP, the Network Time Protocol. Using UDP port 123, this protocol is how a computer or a server can automatically have their clocks sync'd with official time. NTP is tiered, with 7 stratum each relaying on a higher level Time server. This can help balance the load a little.</p>
+<p>At the top, Stratum 0, is a computer hooked up to an atomic clock, relaying time to lower echelon servers and finally your computer.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/gxbkod" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/seventomatoes" target="_blank">seventomatoes</a>
+			<div class="markdown"><blockquote>
+<p>Enter NTP, the Network Time Protocol. Using UDP port 123, this protocol is how a computer or a server can automatically have their clocks sync'd with official time. NTP is tiered, with 7 stratum each relaying on a higher level Time server. This can help balance the load a little.</p>
+</blockquote>
+<p>interesting. any place we can read about this? how often do the down stream servers ping the upstream for latest time? are they geographically spread out too? does the protocol reach out to the closest server ? is this code open source?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GI_X_JACK" target="_blank">GI_X_JACK</a>
+			<div class="markdown"><blockquote>
+<p>how often do the down stream servers ping the upstream for latest time?</p>
+</blockquote>
+<p>That is configured in software. Best practices are about once a day. As long as you aren't flooding NTP traffic(this happens, reflection attacks are a seperate topic), no one cares.</p>
+<blockquote>
+<p>are they geographically spread out too?</p>
+</blockquote>
+<p>Yes. On every continent, in every country. You can run one too. Many places do.</p>
+<blockquote>
+<p>does the protocol reach out to the closest server ?</p>
+</blockquote>
+<p>No, that is on you or other software to set the server. Often its set based on locale data. But autolocation is not in the protocol.</p>
+<blockquote>
+<p>any place we can read about this?</p>
+</blockquote>
+<p>Its an open protocol with many implementations, some of them are Free/Open Source.</p>
+<p>Official RFC: <a href="https://tools.ietf.org/html/rfc5905" target="_blank">https://tools.ietf.org/html/rfc5905</a></p>
+<p>wiki: <a href="https://en.wikipedia.org/wiki/Network_Time_Protocol" target="_blank">https://en.wikipedia.org/wiki/Network_Time_Protocol</a></p>
+<p>Home page: <a href="http://www.ntp.org/" target="_blank">http://www.ntp.org/</a></p>
+<p>includes reference implementation.</p></div>		</li>
+					</ul>
+		</ul>
+	

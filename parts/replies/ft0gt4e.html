@@ -1,0 +1,88 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blorgbots" target="_blank">blorgbots</a>
+			<div class="markdown"><p>Oh wow, that's not what I expected! So there is an actual clock part in the computer itself. That totally sidesteps the entire issue I was considering, that code just doesn't seem capable of chopping up something arbitrarily measured like seconds so well.</p>
+<p>Thank you so much for the complete and quick answer! One last thing - where is the RTC located? I've built a couple computers and I don't think I've ever seen it mentioned, but I am always down to ignore some acronyms so maybe I just didn't pay attention to it.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tokynambu" target="_blank">tokynambu</a>
+			<div class="markdown"><p>There is an actual clock (usually: as a counter example, there is no RTC on a Raspberry Pi) but it doesn't work quite as the post you are replying to implies.</p>
+<p>This explanation is Unix and its derivatives, but other operating systems work roughly the same.  The RTC is read as the machine boots, and sets the initial value of the operating system's clock.  Thereafter, hardware is programmed to interrupt the operating system every so often: traditionally 50 times per second, faster on more modern hardware.  That's called &quot;the clock interrupt&quot;.  Each time that happens, various other housekeeping things happen (for example, it kicks the scheduler to arbitrate what program runs next) and the system's conception of time is bumped by 1/50th (or whatever) of a second.</p>
+<p>The hardware that does this is pretty shit: the oscillator has a tolerance of perhaps 50 parts per million (worse than a second a day) and is rarely thermally compensated.  So you can in some cases measure the temperature in the room by comparing the rate of the onboard clock with reality.  Operating systems are also occasionally a bit careless, particularly under load, and drop occasional clock interrupts.  So the accuracy of the OS clock is pretty poor.</p>
+<p>So things like NTP exist to trim the clock.  They are able to adjust the time (&quot;phase&quot;) of the clock -- in very rough terms, they send a request to an accurate clock, get a reply, and set the time to the received value less half of the round trip time -- but more importantly they can adjust the rate.  By making repeated measurements of the time, they can determine how fast or slow the 50Hz (or whatever) clock is running, and calibrate the OS so that each time the interrupt fires, the time is incremented by the correct amount (1/50 +/- &quot;drift&quot;) so that the clock is now more stable.  </p>
+<p>There are other modern bells and whistles.  The processor will count the pulses of the basic system clock (running at 2GHz or whatever) and use that counter to label interrupts.  That allows you to, for example, attach an accurate pulse-per-second clock to a computer (derived from an atomic clock, or more prosaically a GPS timing receiver) and very accurately condition the onboard clock to that signal.  I'm holding Raspberry Pis to about +/- 5 nanoseconds (edit: I meant microseconds.  What’s three orders of magnitude between friends?) using about $50 of hardware.</p>
+<p>If you're wise, you periodically update the RTC with the OS clock, so you are only relying on it providing an approximate value while the machine is powered off.  But it is only there to initalise the clock at boot.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ThreeJumpingKittens" target="_blank">ThreeJumpingKittens</a>
+			<div class="markdown"><p>To add on here: For precise time measurements, the processor has its own super-high-resolution clock based on clock cycles. The RTC sets the coarse time (January 15th 2020 at about 3:08:24pm), but for precise time, the CPU assists as well. For example, the <code>rdtsc</code> instruction can be used to get a super precise time from the CPU. Its accuracy may be low because of the RTC (a few seconds) but its precision is super high (nanoseconds level), which makes it good for timing events, which is usually what a computer actually needs. It doesn't care that an event happens precisely at 3:08:24.426005000 pm, but rather that it happens about every 5 microseconds.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/darthminimall" target="_blank">darthminimall</a>
+			<div class="markdown"><p>50 parts per million is like 4.5 seconds a day. I would argue that counts as a few.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/McNastte" target="_blank">McNastte</a>
+			<div class="markdown"><p>Hold on. So temperature effects the time reading of a crystal? What does that mean for my smartphone getting overheated while I'm in a sauna? Could that 20 minutes run by my phones stopwatch not actually be 20 minutes?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/netch80" target="_blank">netch80</a>
+			<div class="markdown"><p>> One last thing - where is the RTC located?</p>
+<p>In the old IBM PC, it was a separate chip, but since devising &quot;chipsets&quot; it's typically a tiny part of &quot;<a href="https://en.wikipedia.org/wiki/Southbridge_(computing)" target="_blank">south bridge</a>&quot; that is visible on any PC-like motherboard. Somewhere at the motherboard you can see a small battery (CR2032 type) - it provides power to this component even when computer is plugged off from any external electricity.</p>
+<p>To be more precious:</p>
+<ol>
+<li>The specified names (as RTC) are x86/Wintel-specific. But most other architectures have analogs (UPD: often also known as RTC, as this is common manner). Smartphones, e-books, etc. use power from their accumulator when switched off.</li>
+<li>RTC is tracking time always but, when a computer is switched on and OS is loaded, OS utilizes own time tracking (with correction using NTP/analog, if specified). It updates RTC state periodically or at a clean shutdown.</li>
+</ol></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Markaos" target="_blank">Markaos</a>
+			<div class="markdown"><p>The name RTC isn't specific to x86 - check datasheet of basically any microcontroler with RTC functionality and you'll see it's called RTC there</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rannasha" target="_blank">Rannasha</a>
+			<div class="markdown"><blockquote>
+<p>One last thing - where is the RTC located?</p>
+</blockquote>
+<p>It can be either a separate IC or part of the chipset. Check the spec sheet of your motherboard to see if it has any indication on where it might be.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blorgbots" target="_blank">blorgbots</a>
+			<div class="markdown"><p>SO interesting. Ty again!</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dsfg95" target="_blank">dsfg95</a>
+			<div class="markdown"><p>I powered up an old device that had been totally devoid of any battery life for numerous years. Is the lack of power to this RTC why it reset the clock back to 1970?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/michaelpenta" target="_blank">michaelpenta</a>
+			<div class="markdown"><p>The “beginning” of time for a computer starts at January 1 1970 00:00:00. Then it basically calculates the number of milliseconds since then to create the current time. This is called epoch time or unix time and there is an interesting issue coming in a couple decades. In the year 2038, computers that use 32 bits to store the elapsed time will overflow to 0 and it will be 1970 for that computer. </p>
+<p><a href="https://en.wikipedia.org/wiki/Unix_time" target="_blank">https://en.wikipedia.org/wiki/Unix_time</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Year_2038_problem" target="_blank">https://en.wikipedia.org/wiki/Year_2038_problem</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AmazingRealist" target="_blank">AmazingRealist</a>
+			<div class="markdown"><p>This can cause problems even now for programs that store time in 32-bit variables, for example storing the value of a long-lifetime certificate.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ghosttwo" target="_blank">Ghosttwo</a>
+			<div class="markdown"><p>There is also a secondary, processor-bound clock that runs once the system is on; '<a href="https://en.m.wikipedia.org/wiki/Time_Stamp_Counter" target="_blank">precision counter</a>' or <a href="https://en.m.wikipedia.org/wiki/High_Precision_Event_Timer" target="_blank">something like that</a>.  It's at least 1000 times as precise and handles things like performance monitoring and possibly hardware timings.  Instead of an independent crystal, it counts the number of clock cycles the processor has had since startup.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/antiduh" target="_blank">antiduh</a>
+			<div class="markdown"><blockquote>
+<p>Instead of an independent crystal, it counts the number of clock cycles the processor has had since startup.</p>
+</blockquote>
+<p>It's a little more complicated than that, it has to use a clock whose frequency never changes. Most processors change their core clock to match demand and thermal constraints, so either they need to adjust for that or use a different clock.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ghosttwo" target="_blank">Ghosttwo</a>
+			<div class="markdown"><p>There's some way around it, maybe a weighted sum.  I know the windows api has <a href="https://docs.microsoft.com/en-us/windows/win32/sysinfo/acquiring-high-resolution-time-stamps" target="_blank">two functions</a>; one that gives the count (qpc), and another that gives the frequency(qpf).  Divide the former by the latter to get a fixed time within a couple nanoseconds, plus maybe a little jitter.</p>
+<p>Ed. It would seem that the implementation has changed with hardware, to the point that in any version after Vista or so it's effectively a wrapper for HPET and accounts for variable frequency/core desyncs.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
