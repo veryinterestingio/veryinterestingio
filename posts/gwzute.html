@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>Given that radiowaves reduce amplitude according to the inverse square law, how do we maintain contact with distant spacecraft like Voyager 1 &amp; 2?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="gwzute">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/gwzute/given_that_radiowaves_reduce_amplitude_according/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Astronomy">Astronomy</span>
+			<a href="/posts/gwzute" onclick="return false">Given that radiowaves reduce amplitude according to the inverse square law, how do we maintain contact with distant spacecraft like Voyager 1 &amp; 2?</a>
+		</h2>
+		<!--<span class="date">2020-06-08</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Given that radiowaves reduce amplitude according to the inverse square law, how do we maintain contact with distant spacecraft like Voyager 1 &amp; 2?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="fsyguyd">
+		<a class="author" href="https://www.reddit.com/user/Rannasha" target="_blank">Rannasha</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>With great difficulty.</p>
+<p>The Voyager spacecraft have a 3.7 meter dish antenna and on Earth the signals are handled by the Deep Space Network, which consists of pretty large (20+ meter) dish antennae placed in various locations around the world to ensure more or less continuous coverage of all regions of the sky.</p>
+<p>But even then, the data rate of Voyager 1 has decreased to a mere 160 bits per second (<a href="https://voyager.jpl.nasa.gov/mission/science/" target="_blank">source</a>). To put that into perspective, the little Reddit-alien-character image in the header of this sub consists of around 8400 bytes of data and would take 7 minutes to transfer at a rate of 160 bits per second.</p>
+<p>We're still able to receive signals from across such a large distance thanks to error correcting codes in the signal. Essentially, even a weak signal can still be identified amidst a lot of noise if you repeat the signal often enough. The lower the signal-to-noise-ratio (SNR) is, the less usable bandwidth remains.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fsz4c9y">
+		<a class="author" href="https://www.reddit.com/user/TheHeroYouKneed" target="_blank">TheHeroYouKneed</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>We get more of that signal than you think.  Rather than transmitting omnidirectional, that large parabolic antenna lets Voyager send a beam less than 1° wide. The 70m dishes of the Deep Space Network (California, Spain, Australia) are also highly sophisticated and basically creates a receiver similar to a parabolic dish the diameter of the Earth, so we get about 10e-18W and not the 10e-27 you'd expect Voyager's 20W transmission to manage. It also uses the worldwide reserved frequency of 8.415GHz, but there's still resonant frequency noise as well as internal noise to contend with.</p>
+<p>Those massive antennae are <em>also</em> ultra high-gain, so by accepting signals from only a <em>very</em> narrow band, they can isolate out a lot of the deep space background noise. The gain factor is somewhere around 8-10 million. Impressive. </p>
+<p>The power's not going to last that much longer, but before it runs out, we're going to hit a different wall: signal-to-noise. In order to be able to distinguish data, the signal transmission rate has had to be slowed down a few times. This gets into information theory and things like bandwidth limits &amp; response time, complicated by frequencies used. This is stuff Claude Shannon wrote the book on, and he &amp; Harry Nyquist figured out these bandwidth limitations (Nyquist-Shannon Sampling Theorem).</p>
+<p>Back when it reached Jupiter (a measly billion miles away) the speed was 115K baud, impressive for terrestrial communications back when those bad boys launched. At Saturn we'd knocked that back by more than half to 44.8K.  A software upgrade drastically improved data compression so that pictures of Uranus &amp; Neptune came back so much better, but the speeds were again reduced to 29.9K and 21.6K baud.</p>
+<p>New Horizons transmitted those pics of Pluto at only 1200 baud, it was so far away. Voyager I is 5× as far away as Pluto; it can only reliably transmit at 160 bits/sec. It can't transmit at any slower rate, so in just a few more years we won't be able to pick out the data from the noise. There'll still be a few years left when we can track it through the carrier wave, but then...</p>
+<p>It'll be another few more years until their plutonium is spent, and then...</p>
+<p>It was great knowin' ya.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fsyr4nu">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fsz0lh2">
+		<a class="author" href="https://www.reddit.com/user/otzen42" target="_blank">otzen42</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Keep an eye on <a href="https://eyes.nasa.gov/dsn/dsn.html" target="_blank">https://eyes.nasa.gov/dsn/dsn.html</a> to see what spacecraft are actively talking on the Deep Space Network. </p>
+<p>For example as I write this Voyager 2 is on talking to Canberra Australia with an RX power of about -160dBm (at 160 bit/sec), a TX power of 18.4kW (at 16 bit/sec), a range of 18.46 billion km, and a round trip light time of 1.43 days.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fszhkjw">
+		<a class="author" href="https://www.reddit.com/user/Arbiterze" target="_blank">Arbiterze</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>So the transfer of power between two antenna in the simplest of scenarios is governed by something called the Friis transmission equation. This equation as you rightly pointed out, shows that the power received at the receiver is inversely proportional to the square of the distance between the antennas. The equation is proportional to the wavelength of the tramsmitteded signal and the gains of both the recieve and transmit antenna. The gain of an antenna is in layman terms how directive an antenna is. An example of this would be a cellphone tower would have low gain and thus would not be directive but a satellite TV dish would be a high gain antenna. So if you want to transmit information over long distances it makes sense that you want most of the power to go in the direction of your receiver and you want your receiver to be listening in the direction of your transmitter and to nothing else. This is what we work off. What also helps is to cryogenically cool your receiver to reduce the vibrations in the components which cause a lot of noise. When your recieve signal is so tiny then even the slightest amount of noise can completely drown out the signal.</p>
+<p>Bare in mind, this is all from a hardware perspective. The signal is specially composed and altered before being send and has error correction codes built into the package of bytes being transmitted. A side note relating to this is one of my favourite telecommunications trick is called the Weiner-Hopf filter, what that is is you deliberately distort your signa in a special way so that when you pump it over your transmission medium, in this case space, the medium distorts it in such a way that you end up back with the normal signal is what is received at the receiver. </p>
+<p>The field of communications is a fascinating one and if you have more to ask I'm willing to answer.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/gwzute" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
