@@ -1,0 +1,65 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/superbob201" target="_blank">superbob201</a>
+			<div class="markdown"><p>To clarify strategy B, there are ways to store a picture so that the later parts of the image actually clean up the original blurry image rather than sending the whole picture at a higher resolution.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mysticpoisen" target="_blank">Mysticpoisen</a>
+			<div class="markdown"><p>This is important to note. You aren't redownloading each image, the quality iteratively improves.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/the_misc_dude" target="_blank">the_misc_dude</a>
+			<div class="markdown"><p>Can you get a little more technical?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tserkovich" target="_blank">Tserkovich</a>
+			<div class="markdown"><p>The term is &quot;progressive JPEG&quot;.
+<a href="https://www.liquidweb.com/kb/what-is-a-progressive-jpeg/" target="_blank">https://www.liquidweb.com/kb/what-is-a-progressive-jpeg/</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GuyPronouncedGee" target="_blank">GuyPronouncedGee</a>
+			<div class="markdown"><p>Imagine you have a 1000x1000 pixel image. I could send you every 10th dot and fill in the missing dots (1 through 9) with that same color. The picture would be inaccurate and blocky, but you’d start to get the gist.<br />
+Then I could send every 5th dot and fill in dots 1 through 4 with <em>that</em> same color.  The image is now less blocky and closer to the real thing.<br />
+I keep sending more and more dots until eventually you have all the actual colors for every dot.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DavidBlackledge" target="_blank">DavidBlackledge</a>
+			<div class="markdown"><p>I guess they don't use it anymore, but us old-school Internet dweebs would cite Interlaced Gifs... the image format was every 2nd (or maybe more) line of the image followed by the next set of lines, etc. and smart web browsers would just multiply the height of each line to make a blocky image visible while you wait for the next set of lines.  </p>
+<p>Back when bandwidth was super slow that let you abort a page download when you realized what it was and it wasn't what you were looking for.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Rynox2000" target="_blank">Rynox2000</a>
+			<div class="markdown"><p>Most internet CDNs today also offer native image optimization technologies, for example: <a href="https://www.liquidpixels.com/" target="_blank">https://www.liquidpixels.com/</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/citymongorian" target="_blank">citymongorian</a>
+			<div class="markdown"><blockquote>
+<p>this case, the website is smart enough to detect your internet speed and send images of the appropriate quality.</p>
+</blockquote>
+<p>Can you show just one example of this?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/x0r1k" target="_blank">x0r1k</a>
+			<div class="markdown"><p>This is lie, no website do this. Maximum is when your browser check your pixel ratio and send you best matched image from list.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DreamingDitto" target="_blank">DreamingDitto</a>
+			<div class="markdown"><p>Nowadays, there’s the Network Information API, but I’m hesitant to say that it’s common to use it. I guess you could measure the time to download a resource, but I’m not sure that’s common either. I guess you can guesstimate the device to see if it’s older which might imply poor internet speed but that’s a lot of assumptions to make.
+It’s more common to lazy load images and to adjust the size of an image according to the device size.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/413612" target="_blank">413612</a>
+			<div class="markdown"><p>Is it based on picture format? e.g. PNGs are loaded line by line, JPEGs are unblurred?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fireattack" target="_blank">fireattack</a>
+			<div class="markdown"><p>Both PNG and JPEG have ways to do so.</p>
+<p>In term of JPEG, it is done by a feature called &quot;progression&quot; (specifically, &quot;spectral selection&quot;). </p>
+<p>It essentially splits the image into multiple &quot;scans&quot; and transfer them one by one instead of just one scan top-down. Since JPEG already stores the actual image data in frequency domain (instead of spatial domain, i.e. pixel by pixel) due to its compression algorithm, it's trivial to do so: all it needs is to transfer the low frequency part of the whole image first, and followed by high(er) frequency parts to make the image from a blurry one to having more and more details for each subsequent scan.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pxcrunner" target="_blank">pxcrunner</a>
+			<div class="markdown"><p>Great answer, this is exactly it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/p44v9n" target="_blank">p44v9n</a>
+			<div class="markdown"><p>And in PNG it's called Interlacing which is sort of similar</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

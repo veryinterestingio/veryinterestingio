@@ -1,0 +1,55 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/purebuu" target="_blank">purebuu</a>
+			<div class="markdown"><p>I'll add that MIPMAPs differ from progressive images because the low resolution mips are full images, not just the image with gaps missing waiting to be filled like in progressive images. Mip levels are scaled down versions from the original high res image which also means the pixels are averaged at smaller resolutions. So the same image stored as progressive will not contain the same pixel values at lower resolutions of a MipMap.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OriginalName667" target="_blank">OriginalName667</a>
+			<div class="markdown"><p>This reminds me of something I used to do with some games that used the Source engine. Basically, for some games, you could choose a custom image to tag onto the map that everyone who walked by could see - I think they were called sprays or spray paints. (The feature has since fallen out of favor doubtless due to the obscene images that a lot of people would choose.) Anyway, it turned out that once you loaded your custom image into the game, the game would automatically generate a texture for it - including mipmaps. This meant that, after the fact, you could sort of create animated gifs by editing the different mipmap levels and putting each frame of the animation in there. As people moved closer, the image would appear to animate. You could even do some neat things like jump scares.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Akucera" target="_blank">Akucera</a>
+			<div class="markdown"><p>Nothing like seeing a little porn just outside spawn on 2fort</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Spader312" target="_blank">Spader312</a>
+			<div class="markdown"><p>Yes they were called Sprays, loved using them in Garry's Mod</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TinyBreadBigMouth" target="_blank">TinyBreadBigMouth</a>
+			<div class="markdown"><p>Interestingly, Nintendo used custom mipmaps in a lot of their games to get cheap fade-out effects on things like fog and sunbeams, or to make stars in Super Mario Galaxy appear orange at a distance and lava-y close up.</p>
+<p><a href="https://dolphin-emu.org/blog/2017/11/03/dolphin-progress-report-october-2017/" target="_blank">Some good screenshots in a Wii emulator update post.</a></p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/_PM_ME_PANGOLINS_" target="_blank">_PM_ME_PANGOLINS_</a>
+			<div class="markdown"><p>These days it’s probably not an interlaced image you’re seeing, but the thumbnail used as a placeholder until the full image is loaded. Most web image galleries work like that.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/baselinegrid" target="_blank">baselinegrid</a>
+			<div class="markdown"><p>Front end dev here. This is the correct answer. Look up Medium’s image loading technique for more info ;)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/french_panpan" target="_blank">french_panpan</a>
+			<div class="markdown"><p>Why do this when the progressive JPG/interlaced PNG exist ?</p>
+<p>The progressive is slightly less efficient in size (in my experience the difference is minimal and totally worth it for the benefits it offers), but I'm pretty sure than a smaller thumbnail will add more file size, and it most add a bunch of unnecessary JS code to swap the 2 pictures around.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/solohelion" target="_blank">solohelion</a>
+			<div class="markdown"><p>Agreed. Never heard of this file format, but if you Google how to make images load quickly on websites, they'll handle it explicitly using code. This presumably looks different than saving it with the progressive formatting: since you're explicitly controlling the loading behavior, you can apply blur to make it look just right. You might be able to do that anyway, but programmers will probably go for the path of least resistance. If using this special format is extra work, when a library could do the trick combined with using a free website to turn a single picture into a picture with multiple sizes, they'll probably go with the fast and easy one.</p>
+<p>Also, when you write a mobile application you sometimes need images saved at multiple resolutions. Same in video games for models. So it's just a standard thing to do.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/themgiraffes" target="_blank">themgiraffes</a>
+			<div class="markdown"><blockquote>
+<p>Images saved this way don't compress as efficiently though, so it's not commonly used.</p>
+</blockquote>
+<p>I was interested in this claim, so I looked into it and came across <a href="https://yuiblog.com/blog/2008/12/05/imageopt-4/" target="_blank">this source</a>, which tested 10,000 images and found that on average, progressive JPEGs are actually smaller than non-progressive JPEGs by a very small margin. So, size seems not to be an actual consideration for this choice. However, according to <a href="https://cloudinary.com/blog/progressive_jpegs_and_green_martians" target="_blank">this blog post</a>, one consideration is that progressive JPEGs tend to use more processing and memory to encode/decode (about 2.5x slower to decode, and 6-8x slower to encode). For decoding, this CPU time is  negligible for most computers (JPEG decoding is very fast), but on smartphones it may drain battery. I suspect that the biggest reason progressive JPEG is not used often is because of the 6-8x slower encoding times, which is why most cameras use non-progressive JPEGs. If cameras are taking non-progressive JPEGs by default, most people will just upload images to their site as non-progressive JPEGs. The links I mentioned have some fascinating reads if anyone wants to learn more, including alternative (but less popular) JPEG encodings that try to tackle the problem of faster-feeling loading times in different ways.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lexxiverse" target="_blank">lexxiverse</a>
+			<div class="markdown"><blockquote>
+<p>For decoding, this CPU time is negligible for most computers (JPEG decoding is very fast), but on smartphones it may drain battery.</p>
+</blockquote>
+<p>Keep in mind progressive images were a more popular thing in the '00s, at a time when these numbers would have been drastically different. More efficient methods took over and the whole need for progressive images pretty much just dissolved.</p></div>		</li>
+					</ul>
+		</ul>
+	
