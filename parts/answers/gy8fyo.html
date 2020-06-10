@@ -1,0 +1,79 @@
+<div class="answers">
+	<div class="answer" data-handle="ft9206o">
+		<a class="author" href="https://www.reddit.com/user/Schnutzel" target="_blank">Schnutzel</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A programming languages essentially requires two things:</p>
+<ol>
+<li>
+<p>Rules that determine how it works.</p>
+</li>
+<li>An interpreter or a compiler that will run it.</li>
+</ol>
+<p>A compiler is a program that reads the program and translates it into code in another, usually lower level, language. That language can run using existing program or directly on the processor (if it's machine code). An interpreter is a program that reads the program and runs it on the fly.</p>
+<p>Yes, the compiler and interpreter are simply written in other languages. When the language becomes usable enough, you can even write a compiler for a language using its own language (for example modern C compilers are written in C).</p>
+<blockquote>
+<p>how was the first one created?</p>
+</blockquote>
+<ol>
+<li>
+<p>The lowest level of programming is machine code. Machine code is binary (0s and 1s) and it is hardwired into the CPU - the circuits are designed to interpret machine code. In order to write machine code, programmers had to actually write 0s and 1s (usually on <a href="https://en.wikipedia.org/wiki/Punched_card" target="_blank">punch cards</a>).</p>
+</li>
+<li>
+<p>The first actual programming languages are <a href="https://en.wikipedia.org/wiki/Assembly_language" target="_blank">Assembly languages</a>. Assembly is just a human-readable way to present machine code, for example instead of writing <code>10110000 01100001</code> in binary, you write <code>MOV AL, 61h</code> which means &quot;move the value 61 (in hex) into the register AL&quot;. The compiler for this program is called an assembler. Early assemblers were written meticulously using machine code.</p>
+</li>
+<li>Once assembly was available, it could be used to create higher level programming languages.</li>
+</ol></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ft935ye">
+		<a class="author" href="https://www.reddit.com/user/Vplus_Cranica" target="_blank">Vplus_Cranica</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>To understand this, you need to understand what a programming language actually does, and to understand that, you need to understand how computers work at a very basic level.</p>
+<p>At a fundamental level, a computer consists of a block of <em>memory</em> where information is stored and a <em>processor</em> that does operations on that memory.</p>
+<p>Imagine, for example, that we just wanted to have a processor that could do logical operations and store the result somewhere. We'd need to tell it which logical operation to do: let's say we just want AND, OR, NOT, and EXCLUSIVE OR (XOR for short). Computers talk in zeroes and ones, so we'll need a code composed of zeroes and ones to &quot;name&quot; them. Let's say 00 is NOT, 10 is OR, 01 is XOR, and 11 is AND.</p>
+<p>We also need to tell it which two things to apply the operation to. We'll say we only have 16 slots in memory, each holding a zero or a one. We can, in turn, name these 16 slots using a 4-digit binary code, with 0000 for the first slot, 0001 for the second, 0010 for the third, 0011 for the fourth, and so on through 0100, 0101, 0110, 0111, 1000, 1001, 1010, 1011, 1100, 1101, 1110, and 1111 (in order, the numbers 0 through 15 written in binary). The operations can have two inputs, so we'll need two of these 4-digit codes.</p>
+<p>Finally, we need one last four-digit code to tell it where to store the result.</p>
+<p>We can now feed our processor a fourteen-digit list of zeroes and ones as an instruction, agreeing that the first two digits represent the operation we want to do, the next four indicate the first slot in memory we want to operate on, the next four indicate the second slot in memory we want to operate on, and the last four indicate where we want to put the result. </p>
+<p>For example, the code 11111011000011 could be read as [11][1110][1100][0011] = [do the AND operation][with the first value being the digit stored in slot 1110 = slot 14 in memory][and the second value being the digit stored in slot 1100 = slot 12 in memory][then store the result in slot 0011 = slot 3 in memory].</p>
+<p>Fundamentally, this is all computers ever do - everything else is just window dressing. Processors have a hard-wired list of some number of instructions - usually a few hundred, consisting of things like &quot;add thing at address A to thing at address B and store to address C&quot; - and everything else gets built on top of that.</p>
+<p><em>(By the way, you might notice that this computer only has 16 slots of memory, but it takes 14 slots just to store an instruction! In the real world, the addresses are usually 64 digits long, and there are many trillions of possible addresses, so this is less of a problem!)</em></p>
+<hr />
+<p>So - what's a programming language? At its base, a programming language is just a way to make these instructions human-readable. To &quot;create&quot; a programming language, we just need to tell our computer how to translate the instructions we write into machine instructions like the 14 digit number we gave just above. For example, we might write AND(14, 12, 3) instead of 11111011000011.</p>
+<p>Before this works, we need to write a <em>different</em> program that tells the computer how to translate AND(14, 12, 3) into 11111011000011. To do that, we just do everything by hand - we write out a program, using the numerical codes, to read the text symbols. But the core idea is that we only ever have to do this once. Once we've done it, we can then write every other program using this (somewhat) human-readable language. &quot;AND(14, 12, 3)&quot; is really ugly, but it's less ugly than 11111011000011. We call the program that translates human-readable language like AND(14, 12, 3) into machine code like 11111011000011 a <em>compiler</em>.</p>
+<p>This first human-readable language, which is just words stuck on top of the actual instructions in the processor, is known as <em>assembly</em> language. It's still hard to read, because you have to turn everything into such simple operations, but it's a start. And we can repeat this process, by writing a program in assembly language to interpret something even more human-readable, possibly breaking down a single human-readable line of code into five or ten machine instructions.</p>
+<p>In practice, most modern languages break down into existing languages that are closer to the 0's and 1's the processor uses (called <em>low-level</em> languages in programming parlance). For example, the Python programming language runs on top of a base written in C (another programming language), which in turn sits on top of your operating system, which in turn sits on top of assembly. Each layer in this hierarchy removes less direct control from the programmer, but also allows them to do things much more easily without worrying about the details of manipulating ones and zeroes.</p>
+<p>If you wanted to make a new programming language (we'll call it Esperanto), you'd start with some existing language. Let's say you use C. You write a C program that reads text source code written in Esperanto, and translates the human-readable Esperanto text into C commands (or into machine code directly if you wanted). This is your compiler. Once you've done that, you can stop worrying about the C level at all! You can write your program in Esperanto, then run your C compiler program to translate it into C commands, and run them however you would run a C program. As long as you can say, in an existing language, what you want an Esperanto command to do, you can write it into your compiler and be on your way.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ft9eizw">
+		<a class="author" href="https://www.reddit.com/user/redbat606" target="_blank">redbat606</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I like the answers but I think they're too in depth. I'm going to attempt an ELI5.</p>
+<p>You know how today we use tools to make other tools. Like using a hammer to make a hammer. The first hammer was very rough and kinda wonky. But we used that one to make a better one. And then now we can have a factory that makes great hammers. </p>
+<p>I'd argue that's very similar to programming languages. The first one was a bit rough and a human had to do it. Then we used that one to make a better one and so on. Now we have a lot of programming tools that make the next iteration better and easier.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ft9xwwh">
+		<a class="author" href="https://www.reddit.com/user/horsesaregay" target="_blank">horsesaregay</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I won't go into detail, as others have done it well already in this thread. But imagine landing on a desert island with no tools. You'll probably start by rubbing a stick against something harder than a stick to create a pointy stick. Then bash some rocks together to create a sharp edge and tie it to another stick. Then you can use this new axe to cut down trees to make more tools. If you're smart enough, you could dig for iron/copper ore and melt it to make better and better tools. Eventually, you could create a combustion engine which allows you to run machines to make even more complicated stuff. </p>
+<p>This is a bit like how languages work. Someone had to manually type in a load of 0s and 1s to create a basic language. Then you can use that language to create a more useful language, and so on.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ft96nuf">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
