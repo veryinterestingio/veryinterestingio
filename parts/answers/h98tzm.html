@@ -1,0 +1,81 @@
+<div class="answers">
+	<div class="answer" data-handle="fuvkli0">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fuvq92u">
+		<a class="author" href="https://www.reddit.com/user/Ellustra" target="_blank">Ellustra</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Many answers here are tackling how attackers use leaks and phishing to accomplish this, but I do want to highlight one frequently used brute force method:</p>
+<p>There is a very common attack vector called “password spraying”, which essentially uses a set of common passwords (iloveyou, password123) generic to everyone and/or personalised ones (firstname123, email alias, phone number, etc.) to see what accounts they could get into. </p>
+<p>The key is that you can set up password attempt limiting in two ways -</p>
+<ul>
+<li>absolute attempts: no matter who is trying to sign into an account, lock it up after x attempts. This means that if you tried to sign into your account with a wrong password from your phone twice, then from your laptop once, it would lock you out of your account. Many high security financial apps have this.</li>
+<li>relative attempts: they lock your device out, but not the whole account. Websites use information about your device (e.g. from your cookie), session, IP, etc. and just lock you out from that attempt. While this works against manual hack attempts, like your boyfriend trying to log into your messenger account, it doesn’t protect much against automated hackers. All a hacker has to do is reset their proxy to a new location, clear their cookies (both of which can be automated in a matter of milliseconds), and try another set of passwords as part of a new attempt. Most social media accounts that are optimised for access rather than security use versions of this, with varying levels strictness of how they define a new login attempt. </li>
+</ul>
+<p>But in any case - use good, strong passwords. And don’t use the same one everywhere - some websites are incredibly easy to crack or reverse engineer so your security online becomes dependent on the weakest link.</p>
+<p>**edit: to add a bit more context on spraying, these attackers don’t typically try a bunch of passwords on a few accounts. Instead they try a limited set of common passwords on a bunch of accounts. It’s incredibly easy to buy dumps of registered email addresses - I’d bet that at least 3% of them have a super common password.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fuveot3">
+		<a class="author" href="https://www.reddit.com/user/MrBulletPoints" target="_blank">MrBulletPoints</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><ul>
+<li>Modern passwords work by a process called &quot;hashing&quot;.</li>
+<li>Hashing basically means:
+<ul>
+<li>you take some input, like the characters someone enters for a password, and you shove it through a machine.</li>
+<li>That machine then spits out some new string of characters that doesn't seem like it has anything to do with what was shoved in to start with.</li>
+<li>But the trick is that it does have some sort of connection.</li>
+<li>The only way to get that specific output is to feed in that specific input.</li>
+</ul></li>
+<li>So when you sign up an account with a website, they take the password you made up, shove it through their hash-machine and then store the output.</li>
+<li>So even if they get hacked, the hacker will only get the hash, not the password.</li>
+<li>But when you go back to the website and enter in your password their hash-machine will spit out the correct &quot;hash&quot; and since it matches with the one linked to your user name, they let you in.</li>
+<li>However, if a hacker was able to steal a complete list of all the hashed passwords for a site, they could build their own hash-machine and just start trying every possible combination of inputs to see if one of them spits out a hash that was in the list.</li>
+<li>This would allow them to make as many attempts as they want without running into the rate limit on the website. </li>
+<li>This is typically not easy to do though.</li>
+<li>So most hackers actually just try to trick you into giving them your password.</li>
+<li>Like sending you a link on Facebook that looks like it leads to a login-page when really it's a fake website that just copies whatever you type in the password box.</li>
+<li>EDIT: Updated to more directly answer OP's question.</li>
+</ul></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fuvc5d2">
+		<a class="author" href="https://www.reddit.com/user/AcusTwinhammer" target="_blank">AcusTwinhammer</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They're not doing it that way. If they're attempting password combinations, then they already have a copy of the password database file, with encoded (hashed) passwords. Hashing algorithms are no particular secret, so what they;re doing is taking a word, hashing it, and comparing to the database to see if they have any matches.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fuw8bvh">
+		<a class="author" href="https://www.reddit.com/user/MysterAitch" target="_blank">MysterAitch</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The answers given so far all seem to be correct, but appear to answer a different question than the one asked.</p>
+<p>You are 100% correct that if attackers use the same website/system to attempt a login, then they will also get locked out too.</p>
+<p>Consider this flowchart/steps needed to login</p>
+<ol>
+<li>Type details into your web browser and click submit</li>
+<li>The web server computer receives this data and decides whether to continue or not (e.g. auto reject if you've tried too many times)</li>
+<li>The web server computer then communicates with the database server computer to see if the data you submitted matches the data they have stored (I.e. username/password/email address/whatever)</li>
+<li>The database replies with the relevant information/data for the web server to use</li>
+<li>The web server computer then responds to the user with the relevant response (e.g. &quot;no&quot; if it doesn't match up)</li>
+</ol>
+<p>What if you could trick step #2 into always allowing you through, or what if you could skip around steps 1+2+5 and have the database respond directly to you?</p>
+<p>The first way around this is to figure out how they determine &quot;repeated attempts to login&quot; (i.e. step 2) - e.g. they might be counting the number of attempts coming from a specific computer/IP address etc, in which case they will just use lots of different computer to get more attempts (e.g. a network of remotely/robotically controlled computers - a botnet). This doesn't work if they're counting the number of attempts to login to a specific account though as it won't matter WHERE the attempt came from, just that an attempt was made.</p>
+<p>Another way around it is to bypass the checks/counting. Wherever the counting is taking place, if you can avoid that then you no longer have a limit on the number of attempts you're making. One option might be to find some way to reset the counter, but in practice this typically means getting direct access to the database and running your attacks against that. When you have direct access to the database (either the live one with protections bypassed, or a local copy of it that you downloaded) then you have as many attempts as you want/need. </p>
+<p>Other answers go into substantial detail about what is normally stored within the database and how that is attacked, but that is mostly irrelevant when considering the number of attempts made.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

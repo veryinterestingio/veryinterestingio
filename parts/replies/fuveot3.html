@@ -1,0 +1,126 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jackalsclaw" target="_blank">jackalsclaw</a>
+			<div class="markdown"><p>There are also massive lists/databases available of the hashes for a huge number of possible passwords. This greatly reduces the effort to crack the passwords. </p>
+<p><a href="https://en.wikipedia.org/wiki/Rainbow_table" target="_blank">https://en.wikipedia.org/wiki/Rainbow_table</a> </p>
+<p>To defeat this type of attaching website will generate a random value to add to your password before hashing it. </p>
+<p><a href="https://en.wikipedia.org/wiki/Salt_(cryptography" target="_blank">https://en.wikipedia.org/wiki/Salt_(cryptography</a>)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ThatWeirdTechGuy" target="_blank">ThatWeirdTechGuy</a>
+			<div class="markdown"><p>might have looked over it on the wiki, but how is such a salt randomly choosen? You'd have to get the same salt everytime for the hash to be the same? I'd assume it is another hash calculated from the username or other unique information (so that users with the same password will get a different hash).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/klowny" target="_blank">klowny</a>
+			<div class="markdown"><p>You save the salt in plaintext with the hash. Just any random string will do, because yes, the purpose of it is to make the same password look different.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/saposapopt" target="_blank">saposapopt</a>
+			<div class="markdown"><p>Without the salt you could generate hashes for common passwords or try all possible combinations and then see if any user has that hash as their password.</p>
+<p>The salt is just a random string, different for each user, that is appended to the password when generating their hash.</p>
+<p>This way you can only try to break the password of one user at a time because you have to add their personal random salt when generating the hash for the attempted password.</p>
+<p>This salt is stored in the database together with the password hash.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/intensely_human" target="_blank">intensely_human</a>
+			<div class="markdown"><p>You can simply store the salt right there with the hashed password.  </p>
+<p>The salt does not increase the difficulty of the hacker who stole the database as they do their brute force check-every-combination process.  </p>
+<p>What the salt does is it nullifies the time-saving utility of rainbow tables.  </p>
+<p>If your rainbow table has an entry like  </p>
+<p>| password | hashed_password      |
+| hunter2    |  137bf27a1749b2619 |    </p>
+<p>And the database has 137...619 stored as your hashed_password, the rainbow table lets the hacker just get hunter2 by looking up your hashed value.  </p>
+<p>But that rainbow table takes a huge effort to build. It maps any conceivable string (or possibly all the ones involved in a dictionary attack) to its hashed representation, and back again. But this means you need to generate the hash for every single string.  </p>
+<p>The rainbow table is therefore already built long before the hacker’s attack begins. In fact, the hacker didn’t generate it, he just downloaded it from some shared repository of hacker tools.  </p>
+<p>The rainbow table maps every instance of a string to the output of an algorithm like SHA 256 or MD5. There are a finite number of hashing algorithms that we use so there are just a finite number of rainbow tables out there.  </p>
+<p>However when you add a salt, your algorithm is no longer SHA 256. If your salt is “abc123” then your algorithm is now an algorithm you could call “SHA 255 with the salt abc123” and would be expressed something like:  </p>
+<pre><code>def sha_256_with_salt_abc123(plaintext)  
+  return sha_256(plaintext + “abc123”)  
+end</code></pre>
+<p>A person could of course make a new rainbow for <em>this</em> algorithm, but it’s a shit ton of work.  </p>
+<p>The thing about the salt is you can salt each row in your passwords table with a randomly-generated salt. Your table looks like.  </p>
+<p>| username | hashed_password | salt |<br />
+| joe@shmoe.com | ab1947b875fd703 | b6477d64e |<br />
+| xmarks@thespot.com | 9174fy477d764e | 86c56cc85 |  </p>
+<p>Even if the hacker gets the salt, because they have stolen this table, all the salt lets them do is determine which of the algorithms in the sha_256_with<em>salt</em><foo> family that particular password was hashed in, to let them <em>start</em> building the rainbow table (which has same level of effort as just brute forcing the password (times 2), ie high).  </p>
+<p>There’s something called peppering too but that’s too sophisticated for my understanding.  </p>
+<p>edit: I guess tables don’t work in reddit markdown. Lame.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/I_Say_Fool_Of_A_Took" target="_blank">I_Say_Fool_Of_A_Took</a>
+			<div class="markdown"><p>Anyone with half a brain salts passwords for years now. Rainbow tables are not really relevant</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/space_keeper" target="_blank">space_keeper</a>
+			<div class="markdown"><p>This conversation is about 20 years out of date. The focus for a long time has been on making the hashing process itself computationally expensive or space-inefficient deliberately, to make it harder to brute-force stolen data.</p>
+<p>So it might take a bit of extra time to digest and check your password when you log into something, and that's fine because it's a low-frequency event. If you're attempting to brute force, that's a high-frequency event and the extra time amounts to a substantial slowdown in the process.</p>
+<p><code>bcrypt</code> was doing this in the late 90s, and there are more similar approaches available now. The web was always behind the curve on things like this because cowboy web developers got it into their heads that they were Ronald Rivest and were trying to do this sort of thing themselves without the necessary technical background.</p>
+<p>Remember when Adobe lost millions of passwords because their outsourced web development shop used MD5 for password storage?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/stumblinbear" target="_blank">stumblinbear</a>
+			<div class="markdown"><p>Unfortunately I had a website email my password to me a few weeks ago.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/annihilatron" target="_blank">annihilatron</a>
+			<div class="markdown"><p>iirc you can still use them if you go old school for hacking, like physically stealing a hard drive and attacking the hashed local passwords.</p>
+<p>it's pretty pointless because it's way easier to spam a company's mailing list and find the one idiot dumb enough to click a virus link.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MoffKalast" target="_blank">MoffKalast</a>
+			<div class="markdown"><p>Indeed, hashing should be taken with a grain of salt.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/newaccount721" target="_blank">newaccount721</a>
+			<div class="markdown"><p>These are all correct. But the answer to OPs question is simply that no one is brute forcing passwords that are set up to lock you out after 3 attempts.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Bubbagump210" target="_blank">Bubbagump210</a>
+			<div class="markdown"><p>Correct answer. This simply isn’t how it’s done anymore as we do have lockouts via pamtally, faillock, fail2ban, Group Policy and every programming language having pre-made libs to do similar.</p>
+<p>The hashing example is incomplete too. While you can play Rainbow Tables, anyone who is competent is salting their hashes and using something like bcrypt.</p>
+<p>Password hacking via brute force mostly doesn’t exist anymore except on boxes that can be popped via Metasploit or other script kiddie tools as the sysadmin didn’t even try. Simply tricking people into giving you their password via phishing is much more common.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Captain-Griffen" target="_blank">Captain-Griffen</a>
+			<div class="markdown"><blockquote>
+<p>The hashing example is incomplete too. While you can play Rainbow Tables, anyone who is competent is salting their hashes and using something like bcrypt.</p>
+</blockquote>
+<p>Unfortunately, not everyone is competent, and the incompetent ones are more likely to get hacked.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Daxadelphia" target="_blank">Daxadelphia</a>
+			<div class="markdown"><p>What does 'salting a hash' mean?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MrVinceyVince" target="_blank">MrVinceyVince</a>
+			<div class="markdown"><p>this is r/ELI5 mate.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hamburglin" target="_blank">hamburglin</a>
+			<div class="markdown"><p>Thanks. This is the actual answer to the question.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/doubletwo" target="_blank">doubletwo</a>
+			<div class="markdown"><p>Yep that's why so many peeps are setting up fake website scams these days</p>
+<p>Or rarely so, they found an exploit to circumvent the 3 attempt limit</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ItIsWhatItIs24" target="_blank">ItIsWhatItIs24</a>
+			<div class="markdown"><p>Username checks out. Good response too!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Brainix" target="_blank">Brainix</a>
+			<div class="markdown"><p>It is what it is.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Art_em_all" target="_blank">Art_em_all</a>
+			<div class="markdown"><p>I like the consistency</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/charlie_pony" target="_blank">charlie_pony</a>
+			<div class="markdown"><p>Tautologies are tautologies.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/P0sitive_Outlook" target="_blank">P0sitive_Outlook</a>
+			<div class="markdown"><p>&quot;Id id waddid id do yo&quot;</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/amorfotos" target="_blank">amorfotos</a>
+			<div class="markdown"><p>I saw his point.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CupcakePotato" target="_blank">CupcakePotato</a>
+			<div class="markdown"><p>Password too.</p></div>		</li>
+					</ul>
+		</ul>
+	

@@ -1,0 +1,75 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/created4this" target="_blank">created4this</a>
+			<div class="markdown"><p>It’s also worth noting that the “three fails = lockout” is only helpful when the attacker is attacking a single account. Instead of using 100000 passwords on one account, most hackers will be using 1 password on 100000 accounts. And using a bot net so these requests all appear to be coming from from different places.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OnePieceTime" target="_blank">OnePieceTime</a>
+			<div class="markdown"><p>This is the real significance. Doesn't matter if the lockout is relative or absolute if you're trying a different account each time.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/YsoL8" target="_blank">YsoL8</a>
+			<div class="markdown"><p>this is why the more secure systems also operate maximum overall limits. If you know your hourly rate of logins is 100 attempts and you suddenly get 100 in a second or two you know it's overwhelmingly likely you are under attack and you need to lock out access. You deny access to your users but in exchange they don't get their bank accounts emptied the next day.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Reefer-eyed_Beans" target="_blank">Reefer-eyed_Beans</a>
+			<div class="markdown"><p>Is there a source for this? </p>
+<p>I mean it sounds plausible at first....but how would this really work? How can you have that many sign-in pages open, that many potential targets---as opposed to targeting a single individual, or at least a single demographic, or a list of accounts that are already known to actually exist---and how would it not take fucking forever? </p>
+<p>I believe the origin of this attack was that (back before there were limits on number of attempts) computers would literally try EVERY password combination possible...like 0001, 0002, 0003, etc. (this is obviously just a 4-digit numeric example). And it could still take days even with thousands of attempts per minute. The problem with trying this across multiple accounts is the vast majority of combinations would not be passwords for anyone in the entire world.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ellustra" target="_blank">Ellustra</a>
+			<div class="markdown"><p>It’s actually really easy to script - you don’t need to physically open a browser to do it.</p>
+<p>Essentially a login attempt is you sending the website your username and password (called a post method) and waiting for a response either accepting or rejecting it back. </p>
+<p>A browser is a user friendly way to write down that information, the login form packages it all up nicely, and the submit button sends that post for you. But you don’t need a browser to send this information - you can do it directly through something called an API. </p>
+<p>All you really need is some python code and an internet connection and you can iterate through hundreds of post calls made to the website in a second, all with a different source location, user ID and password attempt. </p>
+<p>Typically these attacks don’t care about actually doing something with the account after they get an accept response. They just note down the username and password that worked and then sell it to someone with more malicious plans.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hawkinsst7" target="_blank">hawkinsst7</a>
+			<div class="markdown"><p>You don't need a browser to do it.</p>
+<p>When you enter your username and password, the browser takes that data, formats it how the web page expects it, and sends it to the server.</p>
+<p>A hacker can skip all the steps except the last one, and just send hundreds of username /password combinations at once.</p>
+<p>There are ways to stop this, but there are ways around those ways. Very cat and mouse.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dumbo9" target="_blank">dumbo9</a>
+			<div class="markdown"><blockquote>
+<p>absolute attempts: no matter who is trying to sign into an account, lock it up after x attempts. This means that if you tried to sign into your account with a wrong password from your phone twice, then from your laptop once, it would lock you out of your account.</p>
+</blockquote>
+<p>Used 'literally' this is a terrible idea.  An attacker can periodically send 3 invalid login requests for every account in the system, causing all of the users to be permanently locked out.  (effectively a DOS)</p>
+<p>It can work (to some degree) if it's either combined with locking by client/IP or in systems with a more complex authentication method.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sarusongbird" target="_blank">sarusongbird</a>
+			<div class="markdown"><p>Generally it would be done with a timer.  You're locked out for 5 minutes, not permanently.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dumbo9" target="_blank">dumbo9</a>
+			<div class="markdown"><p>Yes, the attacker has to periodically send 3 login requests for each user (every 5 minutes or however long the timeout lasts).</p>
+<p>The response doesn't matter, so the requests are quite lightweight.  If you use a botnet/cloud servers alongside a list of emails (from exposed user lists of other websites) then you can probably lock an entire system down permanently.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/drukweyr" target="_blank">drukweyr</a>
+			<div class="markdown"><p>&quot;Are you a robot?&quot;</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MXron" target="_blank">MXron</a>
+			<div class="markdown"><p>You're on ELI5, you're not exactly getting the whole story on internet security.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sp0rked" target="_blank">sp0rked</a>
+			<div class="markdown"><p>It's great fun to lock the system administrators out of the company Network and then create a helpdesk ticket.  Naturally craziness ensues.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tylerchu" target="_blank">tylerchu</a>
+			<div class="markdown"><p>With regards to brute force methods, couldn’t you implement a measure such that any username can only attempt one login per second or something like that? That’s about how long it takes a fast person to clear the password box and retype their password which allows manual input and prevents the million attempts per second method.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/icepyrox" target="_blank">icepyrox</a>
+			<div class="markdown"><p>Well, to be fair, on slower connections, it takes more than 1 second just to get a response. Also, many people use variations so they don't need to &quot;clear&quot; the password box in the first place. For example, if I try &quot;hunter2!&quot; on one website, I might try &quot;hunter2#&quot; on another, meaning when I get it wrong, I'll just backspace and type the other character. I've done that faster than getting a response in the first place.</p>
+<p>Anyways, a hacker can automate trying once per second as well, so locking the account for 5-10 minutes is much more secure. It will take much longer to figure out the password from 3 attempts per 5 minutes than once per second.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DezXerneas" target="_blank">DezXerneas</a>
+			<div class="markdown"><p>That won't work. If I'm understanding this right they're trying thousands of user names with one password, each from a different location.</p></div>		</li>
+					</ul>
+		</ul>
+	
