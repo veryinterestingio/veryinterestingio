@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>Why does a web browser require 4 gigabytes of RAM to run?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="hajbhy">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/hajbhy/why_does_a_web_browser_require_4_gigabytes_of_ram/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/hajbhy" onclick="return false">Why does a web browser require 4 gigabytes of RAM to run?</a>
+		</h2>
+		<!--<span class="date">2020-06-20</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Back in the mid 90s when the WWW started, a 16 MB machine was sufficient to run Netscape or Mosaic.  Now, it seems that even 2 GB is not enough.  What is taking all of that space?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="fv3c55z">
+		<a class="author" href="https://www.reddit.com/user/YaztromoX" target="_blank">YaztromoX</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The World-Wide-Web was first invented in 1989.  Naturally, back then having a computer on your desk with RAM in the gigabyte range was completely unheard of.  The earliest versions of the web had only very simple formatting options -- you could have paragraphs, headings, lists, bold text, italic text, underlined text, block quotes, links, anchors, plaintext, citations, and of course plain text -- and that was about it.  It was more concerned with categorizing the data inside the document, rather than how it would be viewed and consumed^0.  If you're keen eyed, you might notice that I didn't list images -- these weren't supported in the initial version of the <em>HyperText Markup Language</em> (HTML), the original language of the Web.</p>
+<p>By the mid 1990s, HTML 2.0 was formally standardized (the first formally standardized version of HTML).  This added images to the standard, along with tables, client side image maps, internationalization, and a few other features^1. </p>
+<p>Up until this time, rendering of a website was fairly simple:  you parsed the HTML document into a document tree, laid out the text, did some simple text attributes, put in some images, and that was about it.  But as the Web became more commercialized, and as organizations wanted to start using it more as a development platform for applications, it was extended in ways the original design didn't foresee.</p>
+<p>In 1997, HTML 4 was standardized.  An important part of this standard was that it would work in conjunction with a new standard syntax, known as <em>Cascading Style Sheets</em> (CSS).  The intent here was that HTML would continue to contain the document data and the metadata associated with that data, but not how it was intended to be laid out and displayed, whereas CSS would handle the layout and display rules.  Prior to CSS, there were proprietary tag attributes that would denote things like text size or colour or placement inside the HTML -- CSS changed this so you could do this <em>outside</em> of the HTML.  This was considered a good thing at the time, as you could (conceptually at least) re-style your website without having to modify the data contained within the website -- the data and the rendering information were effectively separate.  You didn't have to find every link to change its highlight colour from blue to red -- you could just change the style rule for anchors.</p>
+<p>But this complexity comes at a cost -- you need more memory to store and apply and render your documents, especially as the styling gets more and more complex.</p>
+<p>And if that were only the end of things!  Also in 1997, Netscape's Javascript was standardized as ECMAScript.  So on top of having HTML for document data, and CSS for styling that data, a browser now also had to be capable of running a full language runtime.</p>
+<p>Things have only continued to get more complicated since.  A modern web browser has support for threads, graphics (WebGL), handling XML documents, audio and video playback^2, WebAssembly, MathML, <em>Session Initiation Protocol</em> (typically used for audio and video chat features), WebDAV (for remote disk access over the web), and piles upon piles of other standards.  A typical web browser is more akin to an Operating System these days than a document viewer.</p>
+<p>But there is more to it than that as well.  With this massive proliferation of standards, we also have a massive proliferation of developers trying to maximize the use of these standards.  Websites today may have extremely complex layering of video, graphics, and text, with animations and background Javascript processing that chews through client RAM.  Browser developers do a valiant effort to try to keep the resource use down to a minimum, but with more complex websites that do more you can't help but to chew through RAM.  FWIW, as I type this into &quot;new&quot; Reddit, the process running to render and display the site (as well as to let me type in text) is using 437.4MB of RAM.  That's <em>insane</em> for what amounts to less than three printed pages of text with some markup applied and a small number of graphics.  But the render tree has hundreds of elements^3, and it takes a lot of RAM to store all of those details, along with the memory backing store for the rendered webpage for display.  Simpler websites use less memory^4, more complex websites will use gobs more.  </p>
+<p>So in the end, it's due to the intersection of the web adopting more and more standards over time, making browsers much more complex pieces of software, while simultaneously website designers are creating more complex websites that take advantage of all the new features.  HTH!</p>
+<hr />
+<p>^0 -- In fact, an early consideration for HTML was that the client could effectively render it however it wanted to.  Consideration was given to screen reading software or use with people with vision impairment, for example.  The client and user could effectively be in control of how the information was to be presented.<br />
+^1 -- Several of these new features were already present in both the NCSA Mosaic browser and Netscape Navigator, and were added to the standard retroactively to make those extensions official.<br />
+^2 -- until HTML 5 it was standard for your web browser to rely on external audio/video players to handle video playback via plug-ins (RealPlayer being one of the earliest such offerings).  Now this is built into the browser itself.  On the plus side, video playback is much more standardized and browsers can be more fully in control of playback.  The downside is, of course, the browser is more complex, and requires even more memory for pages with video.<br />
+^3 -- Safari's Debug mode has a window that will show me the full render tree, however it's not possible to get a count, and you can't even copy-and-paste the tree elsewhere (that I can find) to get a count that way.  The list is at least a dozen or more pages long.<br />
+^4 -- <a href="http://www.example.com" target="_blank">example.com</a> only uses about 22MB of memory to render, for example.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fv3qi6g">
+		<a class="author" href="https://www.reddit.com/user/kuroimakina" target="_blank">kuroimakina</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>All the stuff about feature creep - especially JavaScript- is true, but there’s also one more thing.</p>
+<p>A lot of web browsers simply don’t actually need that much. Chrome for example has a reputation for being a “memory hog” but the reason is it will take up as much RAM as is available for caching purposes. This helps you have to reload fewer and fewer times while switching tabs, going back and forth in your history, etc. If it detects you are low on available memory, it will release memory it is using as a cache.</p>
+<p>Also, when you talk about machines with 2GB of RAM “not being good enough for web browsing,” that’s also because OSes in general have gotten larger too. Literally <em>everything</em> about computers has grown to take up more space as storage becomes cheaper and cheaper. Same with memory. If most computers ship with 4+ GB of RAM, developers will say “okay we have a little more space for xyz features.” </p>
+<p>Windows for example can idle at well over a gigabyte of RAM. If you get very minimalist forms of Linux, you can have it running at under 200MB pretty easily. </p>
+<p>So yeah, it isn’t just as simple as “the web is expanding.” I mean, that’s true, but doesn’t tell the whole story. If that were true, my iPhone would be <em>struggling</em> with its 3GB of RAM to run a bunch of web tabs in safari, but it doesn’t.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fv3q2xa">
+		<a class="author" href="https://www.reddit.com/user/rudigern" target="_blank">rudigern</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>An additional item that I can’t see covered here yet. Web pages have become more graphic over time, images, video and audio. While this media might be compressed in jpeg or h264 (and many many others), they can’t be displayed like that. They have to be uncompressed for rendering (displaying on the screen). So while a website might 5 -10 mb images, this could easily account for 50-100mb of memory usage for displaying it on the screen.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fv3md70">
+		<a class="author" href="https://www.reddit.com/user/FundingImplied" target="_blank">FundingImplied</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Developers will only optimize as far as they have to.</p>
+<p>Efficiency is measured in man-hours not compute cycles, so the better the hardware gets, the sloppier the code gets.</p>
+<p>Also, don't underestimate the impact of feature creep. Today's web browsers are saddled with more duties than the whole OS was back in the 90's.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fv3zlmo">
+		<a class="author" href="https://www.reddit.com/user/himmelstrider" target="_blank">himmelstrider</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Simplest possible explanation - websites have gotten immeasurably more heavy. Animations, carousels, the sites themselves are much bigger, they access much more things, run scripts, etc. </p>
+<p>Cache has became a thing. It's overall acceptable to have a lot of RAM as a one time cost to have a system that is more &quot;snappy&quot;.</p>
+<p>Browser itself doesn't use all 4GB of RAM, ever, probably. However in time of Netscape you had a system that you'd boot up, and go to Netscape. Today, you have automatic updaters, third party apps, Discord, Viber/WhatsApp, Steam (and any number of other gaming clients), cloud, and all of those are running in the background. Granted, they are quite efficient, but they still take resources.</p>
+<p>And, lastly, safety. Back in those days internet wasn't really that dangerous place. Today, it is, people are phishing, shelling out malware, trojans etc. Google Chrome is known to be a memory sink, but it's often unknown for what reason : Chrome treats every tab as a completely new browser, runs everything required for it again, and, well, hogs RAM. While immediately annoying, there is a good reason for it. Treating every tab as a system of its own makes all the others impervious to danger from one malicious tab. Simplest example - you can have your bank account opened up in one tab, type in the password, and the other tab that is malicious will have absolutely no ability to keylog it, because, for all intents and purposes, it's on a different PC. You probably don't even need this feature, afaik this is not all too common, but it can be very costly if it happens, so, better safe than sorry.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/hajbhy" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

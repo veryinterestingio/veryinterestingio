@@ -1,0 +1,58 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LedinKun" target="_blank">LedinKun</a>
+			<div class="markdown"><p>Thanks, that's a point that's often overlooked.</p>
+<p>Back in the day, many people (like me) would look at RAM usage and think: ok, this program needs this much RAM, and from there I would determine if running another certain program would be ok, or if that would result in a lot of swapping.</p>
+<p>This worked back then.<br />
+But there has been a shift in how we think about RAM. It's not a resource like CPU that you don't want to overuse (e.g. because of loud fans). Today you rather say that RAM is of zero use if you don't use it. Aggressive caching really helps, as getting data from hard disk drives is just slow beyond comparison.</p>
+<p>It's a good thing, but it also means that I have to think differently when looking at how much RAM is in use by certain applications.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/darps" target="_blank">darps</a>
+			<div class="markdown"><p>On the other hand, the rise of performance SSDs has made caching on disk a lot more useful, and disk storage is much cheaper than RAM.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/half3clipse" target="_blank">half3clipse</a>
+			<div class="markdown"><p>Not really. I mean, it's <em>better</em>, but the use of a cache depends on how fast it is relative to the processor, and DRAM (which is something like 200X faster than flash memory), is already to much slow.  </p>
+<p>It has it's use case, but that exists parallel to caching in RAM, rather than supersededs it.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NiteLite" target="_blank">NiteLite</a>
+			<div class="markdown"><p>I remember reading a blog post by some Microsoft engineers talking about how difficult it was to actually measure how much memory a specific process was taking up since there was so much dynamic stuff going on. When you check the memory usage in Task Manager you are generally seeing a best effort at estimating usage, since it all split into committed memory, the paged pool, the non-paged pool and the different caches. On top of that Windows 10 does memory compression which means the amount of memory the process has requested might take less space in actual memory than what it has available to it. It's a big bucket of spaghetti :D</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LedinKun" target="_blank">LedinKun</a>
+			<div class="markdown"><p>Yes, the details deep down are pretty complicated.</p>
+<p>If anyone reading this wants to go down there, the &quot;Windows Internals&quot; set of books is the way to go, authors are Pavel Yosifovich, Mark E. Russinovich, David A. Solomon, Alex Ionescu.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/elsjpq" target="_blank">elsjpq</a>
+			<div class="markdown"><p>That doesn't mean the problem isn't still there though.</p>
+<p>Caching is not really optional anymore, but almost a requirement for all performant applications. So you can't really put it into a separate category from &quot;required&quot; memory usage and ignore it as if it doesn't count. Cache usage is still usage. And more cache for one program means less available for another.</p>
+<p>If you're only viewing a few webpages, and doing absolutely nothing else on that computer, it might work ok. But more frequently than not, you have more than a few tabs open, and the browser isn't the only program running on your computer, and all those demands are fighting for resources at the same time.</p>
+<p>Developers used take this into account and make an active effort to minimize CPU, RAM, and disk usage, even if the resource usage wasn't a problem when it was the only active program. Now, many devs have become selfish and inconsiderate, and always expect their app to take priority, and don't try to play nice with the rest of the system or the users' preferences.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LedinKun" target="_blank">LedinKun</a>
+			<div class="markdown"><blockquote>
+<p>Cache usage is still usage. And more cache for one program means less available for another. </p>
+</blockquote>
+<p>And this exactly isn't necessarily the case anymore. Someone above (rightfully) said that browsers will hog memory for pretty aggressive caching, but will quickly free up memory if other applications request more.</p>
+<p>Apart from that, there always have been devs who pay attention to resources and those who don't. I might be that you see more of the latter, because it's just a lot easier today to make and put put a piece of software that many people will use.</p>
+<p>And while I think that it's generally important to consider that, I also recognise that for quite a lot of programs out there it doesn't really matter much.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/krameriffic" target="_blank">krameriffic</a>
+			<div class="markdown"><p>Developers of truly performance critical software still have to take this into account. It's why it takes 5+ years of development time for Naughty Dog to make the absolute best possible version of a game like TLOU2. It's hugely, absurdly, ridiculously complicated and difficult. Millions of man hours to make a 12 hour long video game.</p>
+<p>The macho shit around &quot;real developers&quot; writing &quot;real code&quot; in &quot;real languages&quot; is pathetic. It's unnecessary in the vast majority of daily usage cases. Javascript and the web moves as fast as it does because of its ease of use compared to how development had to be done 20 or 30 years ago. And our hardware can take it nowadays in the vast majority of cases.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ShirooChan" target="_blank">ShirooChan</a>
+			<div class="markdown"><p>I can attest to this, my laptop has 2GBs of RAM. Opening up to the windows desktop and I check task manager, 50-60% of RAM already used. Opening up Google Chrome and using 2-3 tabs? 85-90% RAM.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wung" target="_blank">wung</a>
+			<div class="markdown"><p>But it does. One or two years ago I last tried to use my first generation iPad and it was absolutely impossible to open absolutely anything. It would just OOM and the browser would die.</p>
+<p>Web sites <em>did</em> massively get bigger. Of course not only the web is growing and everything is, but it is. And it is for absolutely no valid reason at all, and we <em>should</em> be bothered as users and developers.</p>
+<p>Especially on mobile people are using old devices for a long time. The German corona tracking app spawned a wave of people complaining that their iPhone 6es didn’t support it. Of course as a developer I don’t want to maintain something eight years old, but they <em>are</em> massively in use.</p></div>		</li>
+					</ul>
+	

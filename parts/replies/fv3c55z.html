@@ -1,0 +1,129 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ammorth" target="_blank">Ammorth</a>
+			<div class="markdown"><p>Just to tack on some additional ideas.  </p>
+<p>Developers write software to the current capabilities of devices. As devices have more memory and processing power, developers will use more of it to make fancier and faster websites, with more features and functionality. This is the same with traditional software as well. This is part of the reason why an old device starts feeling &quot;slower&quot; as the software that runs on it today is more complex than the software that ran on it when you first bought it.  </p>
+<p>In terms of ram usage specifically, caching data in ram can greatly improve performance. The more things that can be held in fast ram, the less has to be loaded from slower disks, and even slower network connections. Yes, the speed of the internet has improved, but so has the complexity of websites. And even still, many sites load within a second. A lot of that comes down to smart caching and utilizing ram so that resources that will be needed now can be accessed without having to wait. The only way to cache something effectively is to hold onto it in memory. And if you have memory to spare, why not use it to improve performance?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pier4r" target="_blank">pier4r</a>
+			<div class="markdown"><p>It is also true that website software is bloated (exactly because more resources give more margin of error). Is not everything great out there.</p>
+<p>Example: <a href="https://www.reddit.com/r/programming/comments/ha6wzx/are_14_people_currently_looking_at_this_product" target="_blank">https://www.reddit.com/r/programming/comments/ha6wzx/are_14_people_currently_looking_at_this_product</a></p>
+<p>There is a ton of stuff that costs resource that is not necessary for the user or it is done in a suboptimal way.</p>
+<p>You may be surprised how many bubble sorts are out there.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Solonotix" target="_blank">Solonotix</a>
+			<div class="markdown"><p>A lot of this discussion is trapped in the ideals, like applying sorting algorithms or writing superfluous code. The real killer is code written by a developer who doesn't see the point in writing what they see as needlessly complex code when it runs fine (in their dev sandbox) and quickly (with 10 items in memory), but frequently these devs don't predict that it won't be just them (server-side pressure) or that the number of items might grow substantially over time, and local caching could be a bad idea (client-side pressure).</p>
+<p>I can't tell you how many times, in production code, I've seen someone initialize an array for everything they could work with, create a new array for only the items that are visible, another array of only the items affected by an operation, and then two more arrays of items completed and items to retry, then recursively retrying that errored array until X times have executed or the array is empty, with all of the intermediate steps listed above. This hypothetical developer can't imagine a valid use case in which he can't hold 10 things in memory, never considering a database scales to millions of entities, and maybe you should be more selective with your data structures.</p>
+<p>That's not even getting into the nature of how nobody uses pointer-style referential data. Since disk space is cheap, and RAM plentiful, many developers don't bother parsing large volume string data until the moment you're trying to use it, and I've given many a presentation on how much space would be saved using higher order normal forms in the database. What I mean by pointer-style is that, rather than trying to create as few character arrays as possible, people decide to just use string data because it's easier, nevermind the inefficient data storage that comes along with Unicode support. There was a time when it was seen as worthwhile to index every byte of memory and determine if it could be reused rather than allocate something new, like swapping items or sorting an array in place. These days, people are more likely to just create new allocations and pray that the automatic garbage collector gets to it immediately.</p>
+<p>-Tales of a salty QA</p>
+<p>PS: sorry for the rant. After a while, it got too long for me to delete it without succumbing to the sink cost fallacy, so whatever, here's my gripe with the industry.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Blarghedy" target="_blank">Blarghedy</a>
+			<div class="markdown"><p>I worked on an in-house software that had some weird issues.  Can't remember exactly why I was working on it, but I found out some fun stuff.</p>
+<p>For example, rather than querying the database and only pulling back whatever data it needed, it queried the database for all data that matched a fairly broad query (all available X instead of all applicable X) and, in a for loop on the machine, iterated over all of that data, querying the database for particulars on each one, and, I think, another query on <em>those</em> results.  The whole thing really should've just had a better clause and a couple inner joins.  One query.  Done.</p>
+<p>Then it turned out that this whole procedure was in an infinitely running while loop that repeated immediately, so even optimizing the queries didn't immediately help.  </p>
+<p>Finally, the server maintained one instance of each loop for every open client, generating something like 300 MB/s of SQL traffic. </p>
+<p>Fortunately this was just an in-house tool and not something our clients had access to.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ammorth" target="_blank">Ammorth</a>
+			<div class="markdown"><p>It may not be necessary to the user, but it's likely necessary to the business (or, at least there is a manager that believes it is). Most code is written for a company or business use. If you're not paying for the software, the software wasn't written with you as the main focus. Therefore it's likely not optimized for you either.</p>
+<p>It sucks sometimes, cause I'm in the camp that software should be elegant and beautiful, but rarely is there an opportunity in business to do that. Most of the time it's shrinking due dates, growing scope, and oblivious clients, that force developers to cut corners for the bottom line of the company.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/polaarbear" target="_blank">polaarbear</a>
+			<div class="markdown"><p>There are security concerns that also impact the amount of RAM used.  Older browsers ran everything under a single process, but modern browsers sandbox every tab into its own process.  That means each tab has its own memory overhead that can't all be shared like it would have in older browser models.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/_AlreadyTaken_" target="_blank">_AlreadyTaken_</a>
+			<div class="markdown"><p>When you have a lots of tabs open then check the task manager in windows to check resource usage it is a real eye opener</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pantless_pirate" target="_blank">pantless_pirate</a>
+			<div class="markdown"><p>You actually can broadcast between tabs and share things but you have to <a href="https://developers.google.com/web/updates/2016/09/broadcastchannel" target="_blank">explicitly do it.</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dial-A-Lan" target="_blank">Dial-A-Lan</a>
+			<div class="markdown"><p>That's kind of a side-effect of the creep of browser capabilities, though. Way fewer vulns without complete language runtimes.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/awoeoc" target="_blank">awoeoc</a>
+			<div class="markdown"><p>As a software engineer is can add that part of &quot;writing software to current capabilities&quot; isn't just about making the product better or do more stuff. Often it's to save dev time, why optimize if no one will notice?</p>
+<p>A lot of it is bloat as software devs know less and less about cpu efficiency and more about time efficiency to get more features out there quicker. It's not purely selfish it also helps reduce prices as it costs less to actually develop, both in raw time and what skill level you can get away with hiring.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ammorth" target="_blank">Ammorth</a>
+			<div class="markdown"><p>Agreed. Other than some open source projects, most software is written within the realm of business, which looks to always reduce costs and increase returns. This is why we use frameworks. Don't reinvent the wheel, use something that someone else already wrote to get you 90% of the way to the solution. Sure, you can write a more efficient and elegant piece of software from scratch, but it'll take a magnitude or more additional time, and save maybe 20-50% performance.</p>
+<p>And as a developer, I love writing things from scratch. But I recognize both sides and decide with my managers which is more important and write accordingly.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sir_Spaghetti" target="_blank">Sir_Spaghetti</a>
+			<div class="markdown"><p>And trying to justify changes to management, that aren't necessary, is nigh impossible.</p>
+<p>Then when you consider the risk involved in unnecessary optimizations (especially to a live service product), you start to agree with them, sometimes.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dbxp" target="_blank">dbxp</a>
+			<div class="markdown"><p>Exactly, so many devs will use a massive is library for something that can be implemented with vanilla js or jquery</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Faalor" target="_blank">Faalor</a>
+			<div class="markdown"><p>Very good explanation.</p>
+<p>My addendum :</p>
+<ol>
+<li>
+<p>A lot of modern websites run scripts to collect data from the client that isn't used to display the current &quot;page&quot;. Statistics, mostly, to be used to enhance the product in some way in the future, but that don't actually contribute to what you're seeing on screen now.</p>
+</li>
+<li>Security considerations also usually increase resource requirements. Decryption, encryption, sandboxing, small increases usually, but they add up.</li>
+</ol></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/im_thatoneguy" target="_blank">im_thatoneguy</a>
+			<div class="markdown"><ol>
+<li>
+<p>JavaScript libraries are generally used now. So maybe the website only needs a clock in the corner, it still loads a huge monolithic library of code to do a million other things as well.</p>
+</li>
+<li>Speed. Users expect silky smooth scrolling which means prerendering lots of the page. Which takes up memory.</li>
+</ol></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Chipnstein" target="_blank">Chipnstein</a>
+			<div class="markdown"><ol>
+<li>Ads everywhere! Depending on the website you're visiting, loading the adds could take more memory and bandwidth than the site itself. They're also prioritised above rendering of the page contents itself.</li>
+</ol></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dinisd" target="_blank">dinisd</a>
+			<div class="markdown"><p>Webgl and three.Js and hardware aceleration. Ima digital art director, we sometimes design websites that are meant to be either brand experiences or just general gamefication based experiences using 3d, AR or VR or simply high end animation effect libraries such as tweenmax. Those things just suck up the life of your machines.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/debbiegrund" target="_blank">debbiegrund</a>
+			<div class="markdown"><p>The monolith library is pretty much a thing of the past now. Now it’s more like a million libraries to do every little thing instead of one that does a million things.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Korlus" target="_blank">Korlus</a>
+			<div class="markdown"><p>I think it's also generally worth remembering that today, many modern web pages &quot;link to&quot; (in one way or another), dozens of other pages. Often multiple sites will be gathering tracking data on you, with two or three more different sites providing ad-data.</p>
+<p>You may find that the font information is coming from one site, which will also load a relevant EULA and pull in some tracking data and leave tracking cookies behind. Another site provides the ads, again, with even more overhead. This is forgetting things like social media linking buttons, iFrames to other sites, embedded YouTube videos, etc.</p>
+<p>Modern websites are extravagant of data.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Faalor" target="_blank">Faalor</a>
+			<div class="markdown"><p>And, often, all of these separate streams of data are encrypted and compressed to save on bandwidth. That means even more resources are needed to plop everything into place for just a single we page.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
