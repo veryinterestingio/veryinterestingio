@@ -1,0 +1,79 @@
+<li class="post" data-handle="hfm35u">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/hfm35u/eli5_how_do_internet_cables_that_go_under_the/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/hfm35u" onclick="return false">How do internet cables that go under the ocean simultaneously handle millions or even billions of data transfers?</a>
+		</h2>
+		<!--<span class="date">2020-06-28</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I understand the physics behind how the cables themselves work in transmitting light. What I don't quite understand is how it's possible to convert millions of messages, emails, etc every second and transmit them back and forth using only a few of those transoceanic cables. Basically, how do they funnel down all that data into several cables?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="fvynfdy">
+		<a class="author" href="https://www.reddit.com/user/audigex" target="_blank">audigex</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In the earliest days of wire-based communication (analogue), there was only one signal on the wire at a time.</p>
+<p>Later, we learned to pass multiple signals by using different frequencies/wavelengths for different signals. In it's simplest forms, imagine that instead of shining a white light down a wire for one signal, you're shining red, green, and blue lights. By measuring the amount of red, green, and blue light at the other end, you can separate the signals. That's the principle, just scaled up and with a bit of fiddly detail at each end. This gives us (with current technology) up to about 80 signals per strand of fiber. A cable can have dozens of fibers, so that's potentially a few thousand signals in a cable with a hundred fiber strands</p>
+<p>But as you say, there are millions of data transfers... this part is fairly easy though. Although the signals appear to be fully simultaneous, we don't actually have a constant connection along each possible pathway: what we do is break our data up into chunks called &quot;packets&quot;, and put an address on it of where it needs to go (your IP address).</p>
+<p>That might sound strange, but think of it like sending things in the mail. Instead of having someone drive back and forth and give the message, we put them in packets, and send them down the road with an address on it.</p>
+<p>Think of our cable as a road network. We make a road (a strand of fiber) and then we give it 80 lanes: those are our multiple signals. Now imagine we can overlap those signals so all 80 lanes are just one lane where the cars don't interfere with each other.</p>
+<p>And then for each lane, we can send lots of individual cars (packets) down one after another, with their own destinations. We don't need to make a full connection (lane) between each pair of destinations, we just send everything down the shared lanes and let it split off when it needs to.</p>
+<p>And then we combine a whole bunch of these roads (fibers) into one cable. So imagine we have 100 of these roads next to each other.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fvye052">
+		<a class="author" href="https://www.reddit.com/user/mpegfour" target="_blank">mpegfour</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A key feature of fiber optics is the ability to multiplex multiple wavelengths of light onto the same strand of glass. Think of it like a prism- the one beam of white light can be broken down into multiple beams of colored light. Each of those &quot;colors&quot; (the light used in fiber operates at wavelengths invisible to humans) can carry as much data as your modulation scheme allows for- say 1Gbps to make it easy. </p>
+<p>Using dense wavelength division multiplexing (DWDM) we can fit 80 of those wavelengths onto one strand. And of course most fiber cables are multiple strands- lets say its a small cable with only 12. Doing the math, that's almost 1Tbps of bandwidth on a fiber cable. </p>
+<p>Real life applications can carry even more, it all depends on the equipment being used. As our technology improves we'll be able to modulate more data per wavelength and pack more wavelengths per strand.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fvymhnl">
+		<a class="author" href="https://www.reddit.com/user/johnnymac80" target="_blank">johnnymac80</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'd like to know how they are laid? Ship has a giant reel on the back laying thousands of miles of cable?  How does that work?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fvyj8bf">
+		<a class="author" href="https://www.reddit.com/user/Leucippus1" target="_blank">Leucippus1</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Hi! Here is a good link ( <a href="https://twistedsifter.com/2012/07/the-undersea-cables-that-connect-the-world/" target="_blank"><a href="https://twistedsifter.com/2012/07/the-undersea-cables-that-connect-the-world/" target="_blank">https://twistedsifter.com/2012/07/the-undersea-cables-that-connect-the-world/</a></a> ) on what the fiber looks like. It is super durable because, well, there is a lot of things that can go wrong at the bottom of the ocean. In essence, there are normally always one or two cable ships laying undersea cable at any given time, sometimes to fix lines that broke and sometimes to give more bandwidth. From what I have read before, to solve attenuation every 100KM or so there is a repeater device. </p>
+<p>There isn't only one or two wires in a cable bundle, there can be hundreds. The cable is huge, but the wires themselves are the width of a human hair. I can't find the exact number of wires in the undersea cable but from looking at the picture they must have at least 48 pair. </p>
+<p>So, quick explainer, on the internet you typically have one wire for send and one wire for receive. So if you want a 10Gb connection between two pieces of electronics, you would need two wires. So if you have a 48 wire cable, then you get 24 different send and receive pairs that can be put into electronics. </p>
+<p>Technology has come along and we know how prisms work. For example, I have residential F/O service in my house. They gave me 1 wire. So how do I send and receive? The technical answer is 'coarse and dense wave multiplexing' which is a complicated way of saying you can send a communication in one direction on one wavelength (or 'color' for short) and receive on a different wavelength. The colors are a handy way of talking about it, but these electronics can use the non-visible spectrum as well. I think, the last time I purchased multiplexing optics,  I was able to get 10 10Gb pairs on one wire. So for that undersea cable, assuming it is 48 pin, it is 48 x 10 send/receive pairs.</p>
+<p>How the data actually flows? That is a topic called 'digital signal processing' (DSP) and you will need to ask another ELI5 for that.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fvyi6xk">
+		<a class="author" href="https://www.reddit.com/user/UsefulSound9" target="_blank">UsefulSound9</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You mentioned &quot;only a few of those transoceanic cables&quot; -- there are far, far more than a few.   There are a few hundred, some longer than others but all serving the same purpose.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/hfm35u" onclick="return false"><span>show</span></a>
+</li>
