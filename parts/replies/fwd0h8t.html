@@ -1,0 +1,95 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AcidicAzide" target="_blank">AcidicAzide</a>
+			<div class="markdown"><p>This doesn't seem likely to me (meaning this probably isn't the only reason) as my Linux Mint computer does the same thing with the delay and I don't have any Linux Mint online account.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Crimtos" target="_blank">Crimtos</a>
+			<div class="markdown"><p>It is also easily disproved considering that the delay occurs even if you use a windows local only account.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thx1138-" target="_blank">thx1138-</a>
+			<div class="markdown"><p>And that the delay behavior has been around longer than Microsoft has done online authentication.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/I_AM_ALWAYS_ANGRY" target="_blank">I_AM_ALWAYS_ANGRY</a>
+			<div class="markdown"><p>Its not, he's wrong. He just said it with confidence and people ate it up.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/der1n1t1ator" target="_blank">der1n1t1ator</a>
+			<div class="markdown"><p>It also happens to me when I don't have any Internet connection. So can't be the communication with any server.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chillwombat" target="_blank">chillwombat</a>
+			<div class="markdown"><p>This is exactly what i thought but everybody else keeps talking about timing attacks. Funnily, i would guess that timing attacks happen at millisecond scale, if not even quicker, no need to add 5 sec delay.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/InVultusSolis" target="_blank">InVultusSolis</a>
+			<div class="markdown"><blockquote>
+<p>everybody else keeps talking about timing attacks</p>
+</blockquote>
+<p>&quot;Timing attack&quot; doesn't mean what a lot of people think it means.</p>
+<p>A timing attack is where you have fairly low-level access to the computer performing the encryption and are able to guess the input parameters of the encryption routine (the key) based on how long certain portions of the operation take. It's a highly advanced attack and can effectively reduce the key search space into the realm of brute forcing.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheDunadan29" target="_blank">TheDunadan29</a>
+			<div class="markdown"><p>Also if someone had physical access to the machine you're boned anyway since there are other less sophisticated ways to bypass the Windows login.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SethDraconis" target="_blank">SethDraconis</a>
+			<div class="markdown"><p>I thought a timing attack was when you wait for +1 weapons and stim to finish just as you push their natural.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SharkBaitDLS" target="_blank">SharkBaitDLS</a>
+			<div class="markdown"><p>You can absolutely have timing attacks against really naive security without low level access. That being said, adding a multi-second delay is absolutely not how you should be preventing timing attacks anyway so this discussion is largely just academic and not relevant to the post.</p>
+<p>Say Bob has broken the cardinal rule of crypto and has rolled his own verification routine for an auth token. Bob takes the encrypted token, decrypts it, then does a string equals check against the input parameters to make sure the token hasn’t been modified.</p>
+<p>Bob is now vulnerable to a timing attack because string equality isn’t a constant-time operation and short-circuits at the first invalid character. A malicious actor times the API call after running through the entire character space for the first character of one of the parameters with a two-character string, and sees that the call returns slightly slower for one first character. The malicious actor now just needs to repeat that, adding one character each time, until the API call succeeds. Bob has been compromised by a timing attack.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/stringdom" target="_blank">stringdom</a>
+			<div class="markdown"><p>People in this thread are incorrectly assuming that things have a single undisputable right answer. And that the answers are mutually exclusive. It is all of those things at the same time. Microsoft's engineers are not simpletons. They have actually thought this one through. Those online checks take literal milliseconds. The random 2-5 sec delay, though, is for the potential human in front of the keyboard.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Vanq86" target="_blank">Vanq86</a>
+			<div class="markdown"><p>Yeah, imagine if someone's Enter key got stuck and there was no delay - they'd get locked out in a split second.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fuduzan" target="_blank">Fuduzan</a>
+			<div class="markdown"><blockquote>
+<p>Microsoft's engineers are not simpletons.</p>
+</blockquote>
+<p>Ehhhh, their codebases and documentation beg to differ.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Unique_username1" target="_blank">Unique_username1</a>
+			<div class="markdown"><p>After multiple failed attempts it will make you wait a long time before retrying, or lock you out entirely until you provide additional verification. Those are the features that prevent password guessing.</p>
+<p>Making somebody wait a second after each guess when you only give them 10 guesses before you lock them out is unnecessary and doesn’t really help anyways. You’ve slowed them down, what, 10 seconds total because they only have 10 guesses? That’s not a big deal. What is a big deal is locking them out after 10 guesses which makes password guessing nearly impossible. </p>
+<p>The real reason for the <em>small</em> delay each time (not the longer “wait before you can try again” delay) is for the computer to check if the password it thinks is wrong might actually be right.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Human_by_choice" target="_blank">Human_by_choice</a>
+			<div class="markdown"><p>So clueless it hurts</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Th3Nihil" target="_blank">Th3Nihil</a>
+			<div class="markdown"><p>What if I changed my password online and then enter my old password. Wouldn't it then accept this one even though it's wrong?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Unique_username1" target="_blank">Unique_username1</a>
+			<div class="markdown"><p>At first, I believe it would accept the old one, yes. </p>
+<p>After you’re logged in and it gets a chance to “catch up” with Microsoft, it will probably be told the password has changed, and you’d need to enter the new one (and it would need to be verified online as being correct) next time you logged in. It probably won’t disable the old password until you’ve logged in once using the new one, because if you lost internet connection it might not be able to verify the new one and you could be stuck unable to log in with either password. </p>
+<p>If you changed it online and your computer doesn’t have an internet connection, the old password will continue working indefinitely because it has no way of knowing the password changed.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheOnlyXBK" target="_blank">TheOnlyXBK</a>
+			<div class="markdown"><p>Exactly. </p>
+<p>My work laptop is used for emergencies when I'm out of the office, so it is turned on rather rarely. Our password policy dictates changing passwords every 3 months, so quite often the laptop would &quot;remember&quot; the expired password. Additionally, connection to the work domain is via VPN, so until it actually connects to the office subnet the laptop's OS is unaware if there were any password changes, and lets me log in with the expired password. After it catches up with the domain controller and finds out about the change, it shows a popup notification over the tray area saying I need to lock the OS and log in using the new password. </p>
+<p>The fun part is when the laptop goes unused for so long that the domain controller drops it from the accepted list. Then I'd need to reboot it to sever the VPN connection and let the OS accept the expired password because otherwise, it knows that the old one is no longer valid, AND the workstation is not allowed to connect to the domain and verify the new password.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tehlemmings" target="_blank">tehlemmings</a>
+			<div class="markdown"><p>It will.  It does this on a domain joined computer as well.</p>
+<p>But if you reconnect to the internet (or to a network where you can reach the ADC) you'll only be able to use this trick once.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/deed02392" target="_blank">deed02392</a>
+			<div class="markdown"><p>The real answer is - it depends. The administrator can configure a machine to only permit logins when online.</p></div>		</li>
+					</ul>
+		</ul>
+	

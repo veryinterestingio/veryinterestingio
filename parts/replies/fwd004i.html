@@ -1,0 +1,60 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blubox28" target="_blank">blubox28</a>
+			<div class="markdown"><p>While timing attacks are a real thing, but most wrong password delays are a fixed time period and don't really prevent a timing attack. Further if a timing attack is what you cared about the delay would only need to be as long as the maximum length of time it takes to calculate a whether a password is correct or not, maybe a few hundred milliseconds at most, which most people wouldn't notice.</p>
+<p>The long delay is simply to prevent fast password guessing brute force attacks.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ButterKnights2" target="_blank">ButterKnights2</a>
+			<div class="markdown"><p>My best guess is to prevent a usb &quot;keyboard&quot; attack where a usb device pretending to be a keyboard brute force password. If left plugged in after the office leaves no delay would crack over night based off the fact most people use weak passwords.
+Does each computer have a different salt for the password hash? I can't imagine why you can't pull the physical address where the hash is stored for comparison and brute force it on another computer?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Cantremembermyoldnam" target="_blank">Cantremembermyoldnam</a>
+			<div class="markdown"><p>The hash isn't kept in memory for very long or even as a whole. Usually the hash is read from disk, then (or at the same time) compared and then immediately removed from memory. It's also at a protected location in memory which is not easy to read without permission by the operating system or even the cpu itself.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blubox28" target="_blank">blubox28</a>
+			<div class="markdown"><p>Each password hash uses a different random salt, not just each computer.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Darkhuman015" target="_blank">Darkhuman015</a>
+			<div class="markdown"><p>u/undeleteparent</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SanityInAnarchy" target="_blank">SanityInAnarchy</a>
+			<div class="markdown"><p>Why not do both at once? Rather than try to figure out how long of a delay you need, all you need is to record the time the user hits enter, then on a wrong password, delay until (enter time + a fixed number of seconds).</p>
+<p>Modern crypto libraries may try to make timing attacks difficult, but it's still easier to do something like that than to fix all timing-related bugs, or compute exactly how long it'll take to verify all passwords on the user's actual hardware.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ERRORMONSTER" target="_blank">ERRORMONSTER</a>
+			<div class="markdown"><p>Doesn't that assume that the password hash takes a different amount of time for different inputs? I thought that wasn't true</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mrlazyboy" target="_blank">mrlazyboy</a>
+			<div class="markdown"><p>There's a lot that can go into this, most implementations should be pretty good.</p>
+<p>To start with something basic, let's pretend that the computer will compare the user entered password with the password it has on file, character by character. Once an incorrect character is detected, the computer outputs &quot;wrong password.&quot; You can trivially crack this type of system by randomly guessing a password and measuring the elapsed time. When the amount of time the computer takes to evaluate the password increases, you know you guessed correctly because the computer tried a new character.</p>
+<p>Here's something more complex. Similar algorithm, but now the computer checks every character of the password every time. If it sees an incorrect character in the password, it &quot;remembers&quot; that the password is incorrect, but still reads everything so you can't run the trivial attack I mentioned previously. However, there are open source libraries (I'm looking at you, OpenSSL) that have historically been vulnerable to this type of attack.</p>
+<p>If you want an ELI18, here's a few more resources:</p>
+<p><a href="https://wiki.crashtest-security.com/prevent-ssl-lucky13" target="_blank">Lucky 13</a></p>
+<p><a href="https://www.netsparker.com/blog/web-security/how-the-beast-attack-works/" target="_blank">BEAST</a></p>
+<p><a href="https://blog.qualys.com/ssllabs/2012/09/14/crime-information-leakage-attack-against-ssltls" target="_blank">CRIME</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AlanzAlda" target="_blank">AlanzAlda</a>
+			<div class="markdown"><p>Sadly this is more common than one may expect, even in modern systems. Additionally, other side channels are often unprotected (power analysis, etc).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jonomacd" target="_blank">jonomacd</a>
+			<div class="markdown"><p>In general for authentication systems there may be other failure modes as well. Errors like unsupported characters, overflows, DB read errors, etc. In windows there are likely a fairly limited set of things that can go wrong but in general you don't want to take the risk of leaking to the attacker any information about your system. Standardizing the response time is an easy &quot;catch all&quot; to prevent accidental leaking of information.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thornstriff" target="_blank">thornstriff</a>
+			<div class="markdown"><p>It can happen in a weak implementation. Strong ones are constant time.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/90h" target="_blank">90h</a>
+			<div class="markdown"><p>Timing attacks only apply to very dump password checks. Even if the hash function and the hash compare function are not time constant, this would still don't yield any information (as long as the hash function is strong), because the similarity of hashes does not correlate with the similarity of the passwords.</p>
+<p>That being said, timing attacks are very hard to tackle problem in anything related to encryption.
+This is not only working on local hardware/software, but can even work over the internet.
+Just adding a delay isn't enough, it just makes timing attacks a little bit harder (more samples needed). You need an time constant implementation (executing the exact same cpu instructions or instruction with the same total execution length).</p>
+<p>To answer the original question, delaying the password check is to make brute force attacks nearly impossible.</p></div>		</li>
+					</ul>
+	

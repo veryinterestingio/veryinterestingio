@@ -1,0 +1,109 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Merilinorr" target="_blank">Merilinorr</a>
+			<div class="markdown"><p>Makes sense. Thank you!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HandOfTheCEO" target="_blank">HandOfTheCEO</a>
+			<div class="markdown"><p>It should do that after 3-4 failures though.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ohlongjohnson-longjo" target="_blank">ohlongjohnson-longjo</a>
+			<div class="markdown"><p>That’s just a flaw that people who can’t type will complain about, frankly having that system is enough to waste enough time and stop any random person accessing an acc</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/The_MAZZTer" target="_blank">The_MAZZTer</a>
+			<div class="markdown"><p>That could potentially get exploited in some way by having an automated system try 3-4 passwords, then use some method to reset the delay and try again.</p>
+<p>For example, on a domain, you could try to log in from any PC on the network. If you have a domain user's account you could use this to try and brute force a domain administrator account.</p>
+<p>You could try to protect against this sort of thing, but better to Keep It Simple and just have the delay always in place.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/konaya" target="_blank">konaya</a>
+			<div class="markdown"><p>Why?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/audigex" target="_blank">audigex</a>
+			<div class="markdown"><p>It makes sense but is actually the wrong answer</p>
+<p>The real answer is that Windows first checks for a local account with the supplied credentials. If they exist, it logs you in immediately</p>
+<p>If they don't exist, it then looks for an Active Directory (network account) domain controller to see if it can find somewhere else you're allowed to authenticate against. That takes a second or two</p>
+<p>If that doesn't exist, it may check against Windows Live for an online login. Again, taking a second or two</p>
+<p>So if your credentials are wrong, though, it has to run a couple of extra checks, which takes longer. Obviously when your credentials are right, it doesn't need to bother with that</p>
+<p><strong>Edit: there seems to be disagreement on this, and I’m now questioning myself on it. I’m leaving the comment up rather than deleting it, so as not to confuse the debate...</strong></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/939319" target="_blank">939319</a>
+			<div class="markdown"><p>Don't you already specify if you're logging into a local account or a domain account when logging in though?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hahainternet" target="_blank">hahainternet</a>
+			<div class="markdown"><p>No, it's correct. AD auth takes milliseconds and this delay has been around since way before online logins.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/YimYimYimi" target="_blank">YimYimYimi</a>
+			<div class="markdown"><p>Nah, this ain't it, chief. Like, on a level unnoticed by 99% of people those checks make it take longer. But mess up your password like 5 times and look at that delay. That's on purpose and not because it's doing anything complicated in the background.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/noopthenobody" target="_blank">noopthenobody</a>
+			<div class="markdown"><p>Well shit what was it</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MrchntMariner86" target="_blank">MrchntMariner86</a>
+			<div class="markdown"><p>I thought they were asking why it might takes 8 seconds to come back with a wrong password and only 3 seconds to grant access after the correct one.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Oenonaut" target="_blank">Oenonaut</a>
+			<div class="markdown"><p>Exactly—if you enter the right password it starts up in three seconds; if you enter a wrong one it deliberately waits a few seconds before letting you try again. If you've just mistyped it it's only a minor inconvenience, but it makes a brute force attack via the keyboard much less practical.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Beefsideiron" target="_blank">Beefsideiron</a>
+			<div class="markdown"><p>I don't know if it randomizes delays in the same manner as Linux, but that's a nice way to do it too.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/trex_on_cocaine" target="_blank">trex_on_cocaine</a>
+			<div class="markdown"><p>Do you have a source for this?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thockinator" target="_blank">thockinator</a>
+			<div class="markdown"><p>Yes, and the answer is correct. Many IT systems add an artificial delay after failed login attempts to make it significantly more time-consuming for attackers to try out different passwords.</p>
+<p>This is also done with online accounts on websites, so that if an attacker wants to try out e.g. the 1000 most commonly used passwords on an account it'll slow them down for hours, or even longer as some online services will increase the delay over time or just block the connection completely at some point.</p>
+<p>Windows really doesn't need more than a short fraction of a second to check the password. On successful login it probably still shows you the login screen for a short period to hide the loading time of the desktop.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/componentWillMountU" target="_blank">componentWillMountU</a>
+			<div class="markdown"><p>Another thing to take into account is that without an artificial delay, a bad actor could potentially guess which encryption technique is being used by the amount of time it takes to check the password.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/abnormalcausality" target="_blank">abnormalcausality</a>
+			<div class="markdown"><p>Doesn't really matter what security features they add when you can just plug in a USB and remove the lock screen password. </p>
+<p>Set a BIOS password and encrypt your drives, people.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jimothyjones" target="_blank">jimothyjones</a>
+			<div class="markdown"><p>Also depends on local authentication vs domain authentication.  If you are authenticating against a domain controller, your usename/password needs to travel to that server and back to be verified, whereas local accounts the password file is stored on the system. (yes I know it caches the profile after first AD login)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ABetterKamahl1234" target="_blank">ABetterKamahl1234</a>
+			<div class="markdown"><p>Mind you, the travel time you speak of is fractions of a second.</p>
+<p>If your AD server is taking seconds to work, something is wrong.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pust6602" target="_blank">pust6602</a>
+			<div class="markdown"><p>This is incorrect. When a password is entered, Windows checks that password locally on the computer, if it's incorrect then it will do a check against Windows Live and/or check domain controllers (used in enterprise environments for user management) for password updates. The password update check is the delay when you enter an incorrect pw.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/stringdom" target="_blank">stringdom</a>
+			<div class="markdown"><p>These are not exclusive. It is actually both. So it is not incorrect, just not the only factor.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/amazingmikeyc" target="_blank">amazingmikeyc</a>
+			<div class="markdown"><p>yep: <a href="https://devblogs.microsoft.com/oldnewthing/20100323-00/?p=14513" target="_blank"><a href="https://devblogs.microsoft.com/oldnewthing/20100323-00/?p=14513" target="_blank">https://devblogs.microsoft.com/oldnewthing/20100323-00/?p=14513</a></a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Absentia" target="_blank">Absentia</a>
+			<div class="markdown"><blockquote>
+<p>Another reason why invalid passwords take longer to reject is to reduce the effectiveness of dictionary attacks. If invalid passwords were rejected just as quickly as valid passwords were accepted, then a bad guy could just churn through a dictionary trying out invalid passwords at high speed. Adding a delay of a few seconds before rejecting invalid passwords introduces a minor inconvenience to users who mistyped their passwords, but makes a huge dent in stopping dictionary attacks. For example (and these numbers are completely made up), suppose you have a 75,000 word password dictionary, and passwords are accepted or rejected in 100ms. It would take a little over three hours to attempt every password in the dictionary. Introducing even a simple 5-second delay into the rejection of invalid passwords increases the time to perform a dictionary search to over four days.</p>
+</blockquote></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hahainternet" target="_blank">hahainternet</a>
+			<div class="markdown"><p>Read past the first paragraph.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Active_Phone" target="_blank">Active_Phone</a>
+			<div class="markdown"><p>Can I migrate my account over to a local one.</p></div>		</li>
+					</ul>
+		</ul>
+	
