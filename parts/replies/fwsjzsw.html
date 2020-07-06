@@ -1,0 +1,82 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ACoderGirl" target="_blank">ACoderGirl</a>
+			<div class="markdown"><p>Note that this is the typical way 3D models are done: there exists only surfaces that don't have a thickness. But non-model based graphics <em>can</em> have thickness. eg, fluids can be simulated without a model existing, as can particle systems (used for fire, smoke, magic, etc).</p>
+<p>But for the vast majority of things, 3D models are the typical way to go because they are simple and easy to make. Not to mention that games have to run in real time, which requires things be kept simple (so eg, most games will use a model for stuff like someone drinking from a glass, because simulating a fluid you're not even supposed to enter is complex and computationally a waste.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Thrawn89" target="_blank">Thrawn89</a>
+			<div class="markdown"><p>It's not just that 2D triangles are widely used because they are simple, but because they are the native primitive type of the fixed graphics functionality of GPUs. All 2D rasterization is performed with fixed hardware that understands triangles. How to clip triangles, how to scale triangles, how to barycentric interpolate triangles, etc. Other native primitive types are lines and points, but never solid objects, GPUs render pixels natively, not voxels.</p>
+<p>You'd need to skip all that deliciously efficient fixed functionality if you want to simulate solid objects such as fluids or voxels. This is all processed solely by the general purpose simd shader processors (compute), which makes it relatively slow compared to how a GPU can turn out triangles.</p>
+<p>Although, modern GPUs now natively support ray tracing, where it doesn't use triangles to render surfaces, but instead projects rays of light to light individual pixels. Many new GPUs have fixed functionality to aid in the ray collision detection tree, but the majority of the calculations still use those (slower) general purpose simd shader processors. So it's still inferior to triangles <em>today</em> in terms of speed.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blueg3" target="_blank">blueg3</a>
+			<div class="markdown"><blockquote>
+<p>It's not just that 2D triangles are widely used because they are simple, but because they are the native primitive type of the fixed graphics functionality of GPUs.</p>
+</blockquote>
+<p>They're the native type for GPUs because they're simple. Specifically, because it's important that your polygons are planar, and triangles are always guaranteed to be planar.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ravinghumanist" target="_blank">ravinghumanist</a>
+			<div class="markdown"><p>Raytracing can use triangles too. Usually does</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/crwcomposer" target="_blank">crwcomposer</a>
+			<div class="markdown"><p>That's just the rendering. The assets, themselves, would still be 3D models made up of triangles, with the same physics issue. Right?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/-Yare-" target="_blank">-Yare-</a>
+			<div class="markdown"><p>Solid 3D modeling is a thing, just not in games.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Umbrias" target="_blank">Umbrias</a>
+			<div class="markdown"><p>It's a bit more process intensive to do so there's really no reason to for games. But there are probably more parametric models than there are used video game models out there.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/immibis" target="_blank">immibis</a>
+			<div class="markdown"><p>Simple example: Minecraft knows whether you're inside a block, not just whether you're touching it's surface. Minecraft blocks are truly solid, though if you somehow end up in the middle of one, it doesn't know which direction to push you out.</p>
+<p>Also you can clip through an entire block if you're going too fast.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Thrawn89" target="_blank">Thrawn89</a>
+			<div class="markdown"><p>Kind of. Minecraft blocks are made up of 2D triangles like every other graphics model. You can easily see this by getting your camera inside someone else's head. They are not &quot;solid&quot;.</p>
+<p>That said, its a very simple calculation to collision detect the inside of a box, and since you have many blocks constructing the ground, the chances of you clipping through all of them into the void are nil (though I have fallen many times clipping through a single layer block platform).</p>
+<p>Minecraft absolutely knows which way to spit you out so you're not inside a single block. The problem is if you do clip through the first layer and get stuck inside a wall, you're actually stuck because you're being pushed in-between blocks on both sides of you. It can't spit you back out because you'd need to reclip through the outer layer.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DTWBagHandler" target="_blank">DTWBagHandler</a>
+			<div class="markdown"><p>Postcards in space</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Preform_Perform" target="_blank">Preform_Perform</a>
+			<div class="markdown"><p>If it's all 2D, then how come running into a &quot;thicker&quot; block at high speed is less likely to result in passing through it than a &quot;thinner&quot; block, if it's just the outer surfaces being made of 2d triangles?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheSkiGeek" target="_blank">TheSkiGeek</a>
+			<div class="markdown"><p>It’s not always done that way.  The visible geometry (which is usually just a “shell” of 2D triangles) isn’t always the same as what is used for collision.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Cuberal" target="_blank">Cuberal</a>
+			<div class="markdown"><p>A surface is infinitely thin but the entire object still has debt. So a thicker block has more debt you have to glitch trough. </p>
+<p>Either that or just more punishing physics on the object</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thefuckouttaherelol" target="_blank">thefuckouttaherelol</a>
+			<div class="markdown"><p>How much debt does the entire object have? Is it a lot of debt? Should we cancel its student loans?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thefuckouttaherelol" target="_blank">thefuckouttaherelol</a>
+			<div class="markdown"><p>Game engines often run by fixed timestep increments. Ex: 1/60 of a second exactly.</p>
+<p>Even if it's not exact, current_frame_time - last_frame_time.</p>
+<p>so let's call the time that's passed since the last frame t.</p>
+<p>how much you've moved = t*velocity</p>
+<p>If you move enough to break past a barrier, to where the extra checks in place for which direction your character came in from get confused, the engine might try to push you INSIDE of a material rather than OUTSIDE of it.</p>
+<p>There are physics engines that do things differently, creating a geometry for the deltas. Ex: Making a geometry between where you were last frame and where you are this frame.</p>
+<p>It then performs collision checks on those delta geometries and tries to work backwards and figure out which thing you hit first and simulate collisions from there.</p>
+<p>But this is expensive and still really hard to do, especially if you want custom interactions and not just a pure physics engine.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Preform_Perform" target="_blank">Preform_Perform</a>
+			<div class="markdown"><p>By &quot;geometry&quot;, you mean a line, right? A line between where you were last frame and this frame?</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

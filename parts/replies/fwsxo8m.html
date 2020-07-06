@@ -1,0 +1,57 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DejfCold" target="_blank">DejfCold</a>
+			<div class="markdown"><p>What is described here is called <a href="https://en.wikipedia.org/wiki/Collision_detection#A_posteriori_(discrete)_versus_a_priori_(continuous)" target="_blank">posteriori (descrete) collision detection</a> for anyone wondering.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zebediah49" target="_blank">zebediah49</a>
+			<div class="markdown"><p>Ah, neat.  Didn't know that there was a proper name for it -- I just wrote down and solved the bit of vector math.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DejfCold" target="_blank">DejfCold</a>
+			<div class="markdown"><p>I didn't know it myself. I still am not sure if this is the proper proper name. I feel like there is a difference between A and B on the <a href="https://i.imgur.com/E5DLbN0.jpg" target="_blank">picture</a> but I can't seem to find it on teh wiki page.  </p>
+<p>There surely is a name for collision detection technique when you rely on witnessing the actual collision (A on the picture). This is cheap and easy way to detect collision, but it's not very reliable. You just filter all vertices that are in the bounding box of an object and those that pass the filter are the ones you're colliding with. This would fit the posteriori description as you are seeing the collision after it happened (but you could argue that even if the collision happened at the beginning of the frame and you're now investigating it in the middle of the frame, the frame is a unit of time thus the collision happened now and it isn't neither posteriori nor priori detection)..<br />
+Also, this is the type of collision detection everyone starts with when learning about collision detection.  </p>
+<p>The other one (that you talk about, B on the picture), you detect collision that happened between frames, would also fit the posteriori. It works differently so I'd expect it has a unique name. Worth mentioning is that it still isn't 100% accurate as you can miss collision of moving objects (it works 100% if only one object is moving) like the C on the picture. When looking at the picture, when we'd raytrace red from 1c to 2c, there isn't anything in it's path. When we'd raytrace green from 1c to 2c, there also isn't anything in it's path, but, clearly, red and green collided with each other in between the frames. I'd expect that the algorithm that fixes this problem (which would also be a lot more complicated) also has a name.  </p>
+<p>So to sum up, there are at least 2 algorithms that fit into posteriori category. 1 that might not fit to either category. And I'd like to know what they're called, but I don't know where to start.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OnlyPostWhenShitting" target="_blank">OnlyPostWhenShitting</a>
+			<div class="markdown"><p>I don’t have anything of value to add here, but I just wanted to say that I enjoyed reading this small conversation of yours :-)</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hyndis" target="_blank">Hyndis</a>
+			<div class="markdown"><p>Yup. There are computer simulations that can simulate a nuclear detonation, simulating every atom and neutron with extreme detail. This simulation's complexity is such that it takes a very long time for that scenario to play out. The computer is doing an enormous amount of math.</p>
+<p>Meanwhile, a video game needs to be fast and responsive to real time inputs. Something good enough for a video game is not good enough for simulating nuclear weapons.</p>
+<p>A video game does not need 100% fidelity. Its okay to take short cuts because the video game's purpose isn't to simulate real life to perfect accuracy.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zebediah49" target="_blank">zebediah49</a>
+			<div class="markdown"><blockquote>
+<p>Yup. There are computer simulations that can simulate a nuclear detonation, simulating every atom and neutron with extreme detail. This simulation's complexity is such that it takes a very long time for that scenario to play out. The computer is doing an enormous amount of math.</p>
+</blockquote>
+<p>Note that even in that case, researchers need to choose an appropriate granularity and scale.  Current state of the art in <em>ab initio</em> high precision quantum chemistry is a few hundred atoms, but even that doesn't fully model nuclei.  You can drop your fidelity a bit and use plane-wave DFT (e.g. CP2K) , and go into the many thousands of atoms, but you're already approximating here.  Make some more approximations and various MD codes (e.g. GROMACS) can do millions of atoms.  You can keep going further into meoscale modeling, but you just continue making approximations, and coarse-graining things further.</p>
+<p>Incidentally, the code I was talking about earlier that needed &quot;correct&quot; collisions was what would be called &quot;implicit fluid brownian motion&quot;.  In other words, I replaced a trillion water molecules, and billions of collisions, with... r(t+dt) = r(t) + sqrt(2<em>D</em>dt).  Even then it was pretty expensive -- but at least it was feasible.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bubblesfix" target="_blank">bubblesfix</a>
+			<div class="markdown"><blockquote>
+<p>In short, &quot;because it's expensive&quot;. </p>
+</blockquote>
+<p>How much would it cost to make it doable? Rockstar put millions in their games so could they afford it?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zebediah49" target="_blank">zebediah49</a>
+			<div class="markdown"><p>Sorry, computational slang there.</p>
+<p>By &quot;expensive&quot;, I mean in terms of computer time to do the calculations.  The actual development work is pretty easy (actually, it's almost definitely easier than the versions that they use).</p>
+<p>At 30FPS, each frame of your game has to be done in less than roughly 30ms -- and that's for <em>everything</em> in the world.  That slice of computer time is the most valuable resource you have, when building a game.  That's all you get; if you exceed your budget, the game is going to be laggy for people.</p>
+<p>Hence, we refer to things as &quot;cheap&quot; or &quot;expensive&quot; in terms how how much time it takes your computer to do them.</p>
+<p>E: This budget metaphor actually goes pretty far.  You can &quot;afford&quot; to spend that time on various things.  Perhaps you really care that your clothing has realistic cloth physics.  You can do it, but that will have a price in terms of time... and maybe you would rather spend that time on something else more important to the game.</p>
+<p>Avoiding clipping is critical at a baseline level, but -- as long as it doesn't happen to players in normal use -- it doesn't really make the game &quot;better&quot;.  A developer would rather spend that time doing something cool, rather than preventing rare clipping incidents.   (And, of course, some times they make a bad choice here.)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BawdyLotion" target="_blank">BawdyLotion</a>
+			<div class="markdown"><p>Cost in this case is how many calculations are required.   </p>
+<p>Think 10-100x the spec requirements to do it ‘right’ vs how it works now, when you are focused on perfect 60 or even 144 hz graphics you aren’t willing to give up the performance when there are usually much simpler ways to cheat it and the player won’t notice</p></div>		</li>
+					</ul>
+		</ul>
+	

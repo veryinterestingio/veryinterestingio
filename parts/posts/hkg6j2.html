@@ -1,0 +1,85 @@
+<li class="post" data-handle="hkg6j2">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/hkg6j2/eli5_ive_learned_that_video_game_clipping_is/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/hkg6j2" onclick="return false">I've learned that video game 'clipping' is caused by high velocity, thin colliders, and too-slow physics updates. Why are terrain surfaces in most 3D video games paper-thin? Why isn't terrain given extra fill/thickness inside and under it to prevent 'falling through the map into the void'?</a>
+		</h2>
+		<!--<span class="date">2020-07-06</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I could see why you might not want to fill under the terrain in a game that features things like underground caves, but thin terrain seems to be present in a huge majority of 3D games (even those without underground features) and is not engine-specific. Why is terrain almost always a fragile piece of origami that's so easily punctured?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="fwsn67n">
+		<a class="author" href="https://www.reddit.com/user/yrrosimyarin" target="_blank">yrrosimyarin</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>So game engines already do this or they would never work at all.</p>
+<p>The collision engine checks &quot;which side of this triangle am I on?&quot; But if you build one of these engines you quickly find that a hard check clips all the damn time.</p>
+<p>So you add what's called an &quot;epsilon&quot; to the check. Essentially as you say your wall &quot;thickness&quot; - if something jumped past the wall in my calculation of where it was &quot;supposed&quot; to be, but not by that much, treat it as still outside/touching the wall and move it back outside. Some games do this by just moving things back immediately, some essentially put little &quot;springs&quot; on the object to &quot;pull&quot; it back outside.</p>
+<p>You can technically make that epsilon as big as you want! But then - you can't make any feature thinner than it. Like, if you want to walk on the roof and in the attic - too thick and it keeps kicking you up to the roof.</p>
+<p>Also the springs solution (which is otherwise generally simpler/more general) can have weird effects when you're too far from the surface - stuff that clips too far immediately gets <em>launched</em> back in the other direction. Sort of like the difference between walking and jumping on a trampoline.</p>
+<p>You can try to track things more granularly but it all comes down to tradeoffs in performance vs dev time vs accuracy. And there's always some situation the designers didn't think of - like a tire that shoots off at mach 4 when you place it in a whole pile of grenades. In the end, computer physics is limited by its sample rate. If you're doing physics at 30 fps, that tire moved <em><del>11</del> 45 meters</em> since your last update. You can sample faster, but then you're making the game slower.</p>
+<p>FWIW, some games have special logic for &quot;terrain&quot; that treats it as &quot;infinitely thick&quot; - but then your terrain and your building floors work differently, and caves and overhangs become problematic.</p>
+<p>Source: software dev, wrote several game-style physics/collision systems in college.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fwsjzsw">
+		<a class="author" href="https://www.reddit.com/user/Cuberal" target="_blank">Cuberal</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>One important thing to note is that surfaces don't have thickness, it's a bunch of triangles stringed together. This makes it that if your character intersects with one of those triangles the physics engine starts calculating if and how it should push you away. </p>
+<p>So in short, it's actually a bunch of 2d surfaces spanned in a 3d world</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fwsxo8m">
+		<a class="author" href="https://www.reddit.com/user/zebediah49" target="_blank">zebediah49</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In short, &quot;because it's expensive&quot;.  I've written some software that needed to do it &quot;right&quot;, and it's a lot slower.</p>
+<p>The correct way to avoid clipping is an algorithm that looks like this:</p>
+<ul>
+<li>Draw a line from my position last frame, to my position now</li>
+<li>For every triangle of every surface, calculate if the line crosses the triangle.  (Note: this is surprisingly inexpensive if you do out the linear algebra.  Still costs a few dozen mathematical operations though).</li>
+<li>If no triangles were hit, you're fine.  If one triangle was hit, collide with it.  If more than one triangle was hit, choose whichever one was hit <em>first</em>, and collide with that one.</li>
+<li>Depending on your collision algorithm (i.e. if you bounce off and still are moving), do the whole thing again based on your new start-point and velocity.</li>
+</ul>
+<p>Now, the problem is that this is insanely expensive for decently complex terrain.  So, to make something functional, game engine designers need to cut some corners.  The biggest one is to limit the area in which we look for triangles.  The more triangles we can ignore, and the more efficiently we can ignore them, the faster it will be.  The problem, of course, is that if we should have collided with something we ignored, we clip.</p>
+<p>The second thing we can do is cut down on how much math is involved.  Instead of calculating the intersection between our previous and current position with the triangle, we just check if we're near (and on the wrong side of) the triangle.  It's a lot faster, but can (in some cases) cause somewhat weird artifacts.</p>
+<p>You will note that both of these methods include tunable parameters: the designers need to pick the correct balance between better game performance, and the edge-case of clipping.  Usually this is set so that in normal gaming, you don't have clipping problems; those only come up when a player does something extremely weird.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fwsyuwk">
+		<a class="author" href="https://www.reddit.com/user/halsafar" target="_blank">halsafar</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In older games like Mario 64 they didnt do sweep tests. They did per frame checks. They assumed you couldn't get enough speed to move fast enough in a single frame to move through a surface.  Insert the backwards stairs jumping trick and you gain enough velocity to go through walls. Modern games will parameterize the collision check by time (t0 and t1) and detect when/if the collision happened.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fwsip9w">
+		<a class="author" href="https://www.reddit.com/user/EvieHarker" target="_blank">EvieHarker</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Terrain is technically just a picture that is shaped and textured. If computers had the processing power to handle an engine that could also handle rendered terrain being made in layers to provide that 'thickness' it would be more commonplace. It's cheaper and a lot less consuming both on time and power to place an invisible wall where the terrain and objects begin than to render that many things just to avoid some clipping. All comes down to the programming as to how often it does or does not happen</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/hkg6j2" onclick="return false"><span>show</span></a>
+</li>
