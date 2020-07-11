@@ -1,0 +1,55 @@
+<div class="answers">
+	<div class="answer" data-handle="fxb4ykk">
+		<a class="author" href="https://www.reddit.com/user/Xelopheris" target="_blank">Xelopheris</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are two things that you can tweak.</p>
+<p>The first is the compression algorithm. This will be things like MPEG versus h.264 or h.265 algorithms. They describe how to strip down the video file to as few elements as possible to reproduce it later. Essentially, you trade storage time for CPU time to compress/decompress it.</p>
+<p>The second is the lossy factor. Most video compression formats do not attempt to serve back the exact same set of pixels. Instead, you get something that is good enough to be recognizable on the other end. Of course, the amount of detail you want to keep is an adjustable factor in the compression algorithm. You can take the same source video and throw it into the same algorithm with two different settings and get different quality video out the other end.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="fxbnrcx">
+		<a class="author" href="https://www.reddit.com/user/SixOneZil" target="_blank">SixOneZil</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There is more to a video than its resolution and format. If you're learning video editing you'll have to learn about rendering and encoding too. Encoding/compression is nicely covered in a simple answer above.</p>
+<p>Rendering also has options, namely resolution but also bitrate.
+Super simply, the bit rate is the amount of data that will be put in the video. Imagine a water pipe. Resolution is the length of the pipe, and the bitrate is the amount of water you wanna flow through it. The file size is the diameter of the pipe.</p>
+<p>If you want more data, you'll have more detail, but will need a bigger file to hold it all together. That means more bitrate (compress less) </p>
+<p>If you use a lower bitrate (compress more) you'll still have the exact same number of pixels (résolution) but many of these will just be duplicated by the algorithm to fill the gap. Essentially the algorithm does this : if it's green to the left, right, above, and below, I can make that center pixel also green because it probably is, and save space because I don't need to remember it now&quot;. Try and render a video with really low nitrate and you'll just see big squares, but a very small file size.</p>
+<p>Now I wanna add about compression, because you can have a decent video with low bitrate if the video has very little pixel variation. Imagine a video of a slideshow . One frame stays the same for 20 seconds, then a new frame appears and stays for another 20... There you can lower the bitrate like crazy because it's a single image, so a screencast of you typing text for example can be very light, because only the letter you're typing is the difference between the current image and the next image,the algorithm knows to only change those few pixels, and that's the only information going through the pipe. If a pixel does not change, the information to change it simply doesn't travel. So, small pipe there is fine.</p>
+<p>It's a very simple and rough explanation, but it covers the general idea behind your question :) although the answer could be much more complete and accurate, I hope it's enough for you!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fxcle12">
+		<a class="author" href="https://www.reddit.com/user/think_im_a_bot" target="_blank">think_im_a_bot</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For an ELI5 it may be better to think about picture compression. A movie is just a string of pictures after all.</p>
+<p>Think of a very simple picture.
+You need to tell the computer how to save this image in a way it understands. </p>
+<p>The most basic way is to map every pixel. Pixel number 1 is black. Pixel number 2 is black....
+This is rather repetitive and can use more space than need be, but is accurate.</p>
+<p>We can compress that a lot by saying &quot;pixels 1 - 395 are all black, then 396 - 412 is yellow. For a basic example. If you have a large block of the same colour that saves a lot of space, but if each pixel is a different colour, it might end up costing more space.</p>
+<p>To compress a bit more we can start using mathematics, &quot;there's a black background, with a yellow circle of diameter X in the centre... &quot; That saves a ton of space, but if the maths isn't quite right, the picture might end up a little off...</p>
+<p>When you have a dozen different ways to compress the same picture, a dozen different ways of expressing each one, and a dozen different maths sets you can use, each is going to have varying sizes, Or levels of accuracy.</p>
+<p>Some might be better suited for a certain kind of picture - on the internet we want a small size, the quality isn't as important, but you want the page to load at a decent speed.</p>
+<p>Your round-the-world hike you will what the pictures at full quality, even if it uses a lot of space on your PC. So you won't use the same compression for both these cases.</p>
+<p>Video compression is the same. Its all just different ways of taking a really big, detailed picture, and making it smaller so it can be downloaded, or streamed, or saved. Whatever. But each different method will have its own pros and cons.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fxbwmas">
+		<a class="author" href="https://www.reddit.com/user/Pengucorn" target="_blank">Pengucorn</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Video formats are like different languages. Some languages have words to describe very complex situations or objects and others have synonyms which can be substituted.</p>
+<p>Different formats are simply different languages expressing the same sentence. But It takes time to convert the language, and to find the best fitting words.</p>
+<p>So Hello might be converted into Ola to save space, but you could also replace it with Hi which is even shorter.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="fxcc78m">
+		<a class="author" href="https://www.reddit.com/user/q0pq0pq0p" target="_blank">q0pq0pq0p</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The only thing I'd like to add is compression decompression typically uses math formulas to replace individual 1s and 0s. They find math formulas that when processed equal all the ones and zeros. Lossless codecs' formulas create answers that exactly equal the original files 1s and 0s a loss codec gets some wrong to get smaller math formulas that take up even less space. A loss codec file is significantly smaller than a lossless.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
