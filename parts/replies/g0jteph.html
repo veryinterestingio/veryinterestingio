@@ -1,0 +1,55 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HyperboleJoe" target="_blank">HyperboleJoe</a>
+			<div class="markdown"><p>I've never understood why Windows names the folder x86 for 32-bit programs, the 64-bit architecture is also x86. Why didn't they just use 32b?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KylVonCarstein" target="_blank">KylVonCarstein</a>
+			<div class="markdown"><p>x86 is the name of the architecture, so a 32 bit x86 system runs one set of instructions and a 32 bit ARM system runs a slightly different set. They are both 32 bit systems, but since their instructions are different, software has to be made differently for them. Windows for everyday users has only really been available for x86 systems.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HyperboleJoe" target="_blank">HyperboleJoe</a>
+			<div class="markdown"><p>Sure, but I'm referring to the 64-bit Windows default of installing 32-bit programs to a folder named Program Files (x86). If it was even necessary to distinguish them it would have made more sense to name that Program Files (32b) or something like that.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MadHousefly" target="_blank">MadHousefly</a>
+			<div class="markdown"><p>It's worse than that. Your 64bit system libraries are found at C:\Windows\System32, and your 32bit system libraries are found in C:\Windows\SysWOW64 (WOW64 stands for <strong>W</strong>indows 32-bit <strong>o</strong>n <strong>W</strong>indows <strong>64</strong>-bit)</p>
+<p>A 64bit program needs to use 64bit libraries, and a 32bit program needs to use 32bit libraries. Way back in the way back 16bit programs would need 16bit libraries, and would find them at C:\Windows\System, and new fancy 32bit programs would find their 32bit libraries in C:\Windows\System32.</p>
+<p>Now 64bit comes along, and programmers just want to recompile their old 32bit programs with a 64bit compiler and have it just work. But they coded it to load libraries from System32, not System64, and they don't want to deal with this. System libraries have been in System32 for years now, because 32bit was around during the largest portion of the explosion of home computer use. So Microsoft comes up with this system:</p>
+<p>Just look for the libraries in System32. If a 64bit program looks in System32, it can load 64bit libraries from there that it can use. But if a 32bit program looks in System32, the OS will divert it to SysWOW64 so it sees 32bit libraries it can use. If a 32bit program actually needs to access files in C:\Windows\system32 (for whatever reason) it has to look in C:\Windows\Sysnative, a folder that doesn't actually exist but will magically divert to the real System32.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HyperboleJoe" target="_blank">HyperboleJoe</a>
+			<div class="markdown"><p>I feel much dumber having read that :)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/unsigned_tables" target="_blank">unsigned_tables</a>
+			<div class="markdown"><p>There's a ton of answers but the real one is that they suck at naming, but changing it now would be more trouble than it's worth. The 64 bit system API is called &quot;win32api&quot;.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dvali" target="_blank">dvali</a>
+			<div class="markdown"><p>Excellent answer but since you asked, you definitely did <em>not</em> succeed in the 'like I'm 5' aspect.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thefoolinme" target="_blank">thefoolinme</a>
+			<div class="markdown"><p>ELIcoworker</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Successful_End_3670" target="_blank">Successful_End_3670</a>
+			<div class="markdown"><p>x86 can actually only address 48 bits of memory physically as that’s the maximum width of the memory bus. Your program can virtually address pretty much the whole 64 bit address space, but not physically.</p>
+<p>2^48 is still an insane amount of memory however!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GearBent" target="_blank">GearBent</a>
+			<div class="markdown"><p>That’s not an architectural limit though, IIRC, it’s just that current processors only break out 48 address bits. They could just as easily do the full 64 bits, they just don’t do that right now because nobody is making computers with enough physical memory to require all the address lines.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Successful_End_3670" target="_blank">Successful_End_3670</a>
+			<div class="markdown"><p>You’re right that it’s not an architectural limit however I believe you started off your post talking about x86 specifically</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zeealex" target="_blank">zeealex</a>
+			<div class="markdown"><p>That is actually correct! thank you for jogging my memory! it's been a while!</p></div>		</li>
+					</ul>
+		</ul>
+	

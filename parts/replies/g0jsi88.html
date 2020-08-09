@@ -1,0 +1,85 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/royaltrux" target="_blank">royaltrux</a>
+			<div class="markdown"><p>And, at least as importantly, a 64 bit OS can natively address more than four GB of RAM.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Muffinsandbacon" target="_blank">Muffinsandbacon</a>
+			<div class="markdown"><p>I thought that was just a windows limitation, and that x86 Linux didn’t have that limitation?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ron_krugman" target="_blank">ron_krugman</a>
+			<div class="markdown"><p>You might be thinking of the <a href="https://en.wikipedia.org/wiki/2_GB_limit" target="_blank">2GB limit</a> of 32-bit Windows which was because Windows by default allocated half the virtual address space for kernel addresses (i.e. drivers, video memory, etc.), leaving at most 2 GB for user processes. </p>
+<p>It was possible to restrict the kernel address space to 1GB which would allow applications that had the &quot;large address aware&quot; flag set to use up to 3GB of RAM.
+This used to be an issue with the original release of Skyrim which was only released as a 32-bit executable. You had to manually patch in &quot;large address aware&quot; support to get it to use more than 2GB of RAM (up to 4GB on 64-bit Windows, which was already very common at the time).</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>As long as the CPU had PAE (Physical Address Extension), you're correct.  Linux usually allowed it if the kernel supported PAE.  Windows AFAIK only did this on Datacenter Edition, despite home CPU's supporting it well 20 years ago.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Yancy_Farnesworth" target="_blank">Yancy_Farnesworth</a>
+			<div class="markdown"><p>They both have the same limitation, can't get around the limitation of the underlying hardware. That said, both Linux and Windows eventually had workarounds to allow the 32 bit version of the OS itself to support more than 4gb of RAM, but the processes were still limited in size to 2gb.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SerahTheLioness" target="_blank">SerahTheLioness</a>
+			<div class="markdown"><p>Some 32-bit things can address more than 4GB, but that’s only in specific cases with specific workarounds.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Badjib" target="_blank">Badjib</a>
+			<div class="markdown"><p>Hence the word “natively”</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/34HoldOn" target="_blank">34HoldOn</a>
+			<div class="markdown"><p>Physical Address Extension (PAE)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/terminbee" target="_blank">terminbee</a>
+			<div class="markdown"><p>How much ram can 64gb take? Is 64 just any number bigger than 4 billion?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zeekar" target="_blank">zeekar</a>
+			<div class="markdown"><p>32 bits gets you 2^32 addresses. Which is about 4 billion. If each byte has its own address, as is standard, that means you can access up to 4GB of memory.</p>
+<p>64 bits gets you 2^64 addresses. Which is about 4 billion <em>squared</em>: 16 billion billion, or 16 quintillion addresses. In fact, since 2^32 is somewhat bigger than 4 billion, 2^64 is actually over <em>18</em> quintillion, so you get more than 18 exabytes of addressable memory.</p>
+<p>(If these systems didn't allow byte-addressability, they could access even more memory: 32-bit systems with 32-bit words would get you 16GB, while 64-bit systems with 64-bit words would get you 147 exabytes. But dealing with individual bytes would get more complicated, and text processing requires dealing with individual bytes.)</p>
+<p>However, word size and address size don’t have to match. The MOS 6502 CPU that old Atari and Commodore and NES systems used is an 8-bit chip, but it uses 16-bit addresses (otherwise the Commodore 64 would have had to be the Commodore 0.25). And our modern &quot;64-bit&quot; systems, at least the x86_64 and ARM architectures, go the other way – while they manipulate 8-byte values natively, they only use 48 of the 64 bits in a memory address. So instead of that theoretical max of 18 quintillion addresses, they can only see 2^48 = 280 trillion. Since those systems are also byte-addressable, that gets you a max usable memory size of &quot;only&quot; 280 terabytes.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/f1zzz" target="_blank">f1zzz</a>
+			<div class="markdown"><p>Bits are each 1 or 0. So like with 4 digits of our normal decimal system, you can represent 0 to 9999, which could instead be written as 0 to 10^4 -1 (ten to the fourth power, minus one).</p>
+<p>So in base 2, 32bits gives you the ability to represent 0 to 2^32 -1, 64bits gives the ability to represent 2^64 -1</p>
+<p>Here’s some common numerical types and their ranges <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types" target="_blank">https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types</a></p>
+<p>A signed numbers allocates half the numbers to negative and half to positive. So you end up with one magnitude smaller numbers, but the ability to represent negatives. Like, negative 2^31 -1 to positive 2^31 -1</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheRealSunner" target="_blank">TheRealSunner</a>
+			<div class="markdown"><p>The exact numbers are just 2\^<number of bits>. So 32 bit = 2\^32, which is  4294967296 but we say 4 billion because it's a lot easier unless you actually need to know the exact number. And by the same math 2\^64 is 18446744073709551616‬, which in mathematical terms is called &quot;A whole fuck of a lot of numbers&quot;. Or around 18 quintillion.</p>
+<p>By the way I'm assuming the question is actually somehing like &quot;How large can a 64-bit number be&quot;.</p>
+<p>Oh and numbers aren't any particular bitness in and of themselves, but as the OP explained if you want to store a particular number in a single register it needs to fit, i.e. 5 billion won't fit in one 32-bit register so you'll either have to stick it in a 64-bit (or larger) register or split it up across two registers. The number itself is still &quot;just a number&quot; though. It's easier to just think of the registers as storage space and the numbers as stuff you put in that storage, you can put something really tiny into a large space, but you can't stuff something really large into a tiny space.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MyFacade" target="_blank">MyFacade</a>
+			<div class="markdown"><p>How about this...</p>
+<p>It is easier to count to 200 by doing the calculation 100+100 vs. 10+10+10+10+10+10+10+10+10+10+10+10+10+10+10+10+10+10+10+10.</p>
+<p>Is that a very simplified ELI5?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RodgarTallstag" target="_blank">RodgarTallstag</a>
+			<div class="markdown"><p>Proper enough tho!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/handyjuanito" target="_blank">handyjuanito</a>
+			<div class="markdown"><p>Easier or just faster?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheSerialLyer" target="_blank">TheSerialLyer</a>
+			<div class="markdown"><p>Both, really. Fewer operations needed means a simpler/easier process, but the main benefit is that it's faster.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aresman" target="_blank">aresman</a>
+			<div class="markdown"><p>both. You'd have to allocate the registries with 10 and not lose track of the whole operation.  </p>
+<p>So it's easier and faster to know there are only 2 registries being used , each with 100, then doing the sum and storing it in 1 place.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kil47" target="_blank">kil47</a>
+			<div class="markdown"><p>Just to add ,  bit refers to the word size..
+A 64 bit processor can pick 64 bit in one single cycle since the architecture for picking up from memory, doing processing and/or display has 64 pipes in parallel</p>
+<p>32 bit processor can pick and process 32 pipes (in one go) .</p>
+<p>If the computation is less than 32 bits then it does not matter but if it crosses 32 then architecture comes into play...</p></div>		</li>
+					</ul>
+	

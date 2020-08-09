@@ -1,0 +1,91 @@
+<div class="answers">
+	<div class="answer" data-handle="g0k71ph">
+		<a class="author" href="https://www.reddit.com/user/vikirosen" target="_blank">vikirosen</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Imagine that you could only count using your fingers. If I asked you to count to 8, you could do it. But if I asked you to count to 12, you couldn't. And even if you could show me both 8 and 5, you couldn't add them together.</p>
+<p>Now, if you also used your toes, you could do both those things.</p>
+<p>That's basically the difference between a 32-bit and a 64-bit CPU. It limits the highest number they can represent -- though there are certain workarounds by losing precision , akin to using each finger to represent 10 instead of 1, you could count to 100, but you still couldn't show me 12 (there are other workarounds as suggested by some commenters, see below) -- and, more importantly, the amount of memory they have for operations.</p>
+<hr />
+<h1>PS:</h1>
+<p>Forgot to mention how it relates to a bit. The highest number a 32-bit CPU can work with is 2^32 which is roughly 4.2 billion. A 64-bit CPU can work with a number as large as 2^64, which is roughly 18 billion billions.</p>
+<hr />
+<h1>PPS:</h1>
+<p>Wow thanks for the silver, kind stranger. I didn't expect for this comment to explode the way it did.</p>
+<p>I'll take this opportunity for some clarifications. Those who pointed out that 8 + 5 = 13, you are correct. However, as u/bart2019 pointed out, I gave example one &quot;you can't count to 10&quot; and example two &quot;you can't add 8 and 5&quot;. I believe my offence is esthetical, not mathematical.</p>
+<p>As some other commenters posted out (u/earthwormjimwow or u/dbratell) you don't necessarily lose precision when representing out of bounds values on a 32-bit system. There are other workarounds as well.</p>
+<hr />
+<h1>PPPS:</h1>
+<p>Many commenters are asking the same questions, so I'm going to address them. Some of these might be more than ELI5. I also took the time to format the edits for better readability.</p>
+<p><strong>But I can count to X with my 10 fingers using my knuckles, phalanges, a 10-bit system etc.</strong></p>
+<p>Even if you use a more memory-efficient system for representing numbers on your fingers than the standard base 10, you still have to face the physical limitation at some point.</p>
+<p><strong>64-bit systems are most relevant when addressing memory.</strong></p>
+<p>This is absolutely true.</p>
+<p>To continue with my analogy: you realise that instead of counting on your actual fingers, you could draw the position of your fingers on a piece of paper. That way, whenever I asked you what the answer was, you could just look at the paper and hold up your fingers the same way. Holding a reference to information like this is called <em>addressing</em> in computer science.</p>
+<p>You could even use more pieces of paper to represent more answers (to different questions or put them together to overcome the limitation of 10 fingers). If you use more pieces of paper though, how would you be able to keep track of them? Well, you would number them from 1 to 10 and count on your fingers to keep them in order. You could even have each piece of paper be a record of 10 <strong>other</strong> pieces of paper. Now you could count to 1000!</p>
+<p>The problem is instead of holding up your fingers instantly, you'd have to go rummaging through your papers to find the answer. If your papers addressed other papers, it would take forever.</p>
+<p>In a computer, the papers we're talking about is the RAM. In a 32-bit system, you can address -- without shenanigans -- a maximum of 2^32 bytes (I won't get into what a byte is, let's just consider it a unit of memory), which is about 4 GB (gigabytes) of memory. If you have more than 4 GB RAM in a 32-bit system, you most likely won't be able to use it all. In a 64-bit system, you can address much much much much much much much more. In 2010, the entirety of the Earth's digital information was estimated to be 2^70 bytes; that's only 64 times more than what you can address in your personal computer today.</p>
+<p><strong>Why don't we make a 128-bit system?</strong></p>
+<p>There are 128-bit systems out there, but 64-bit systems are more than enough for the processing memory needed, not just for everyday applications, but also for more specialised uses. Most of the time, supercomputers use a large number of 64-bit processors working in tandem to get the job done, rather than relying on a non-standard architecture.</p>
+<p>Also, designing more memory-capable systems is complicated, which would raise the cost of a 128-bit system with respect to a 64-bit system. You'd have to make sure that all the 64-bit (and 32-bit, for that matters) software you might want to use work on it properly.</p>
+<p>As a sidenote, some popular encryption algorithms use 128-bit keys. It might be profitable to have a small 128-bit processor (on top of your regular 64-bit one) whose sole purpose is on-the-fly encryption. Since it only has to do one job, it would be cheaper to design than a full-fledged processor, and being able to work with the 128-bit encryption key within a single registry would drastically speed up the otherwise lengthy process.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="g0jsi88">
+		<a class="author" href="https://www.reddit.com/user/RodgarTallstag" target="_blank">RodgarTallstag</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>As easy as I can: the processor does billions of math operations per second. Those are made between numbers that are stored in memory cells called registers. The &quot;number of bits&quot; of the cpu is the biggest size of register, which means both the bigger number it can save and the bigger number it can do math on.</p>
+<p>Matter is, depending on what the program does, it may need to do operation with very big numbers. When you have numbers &gt; 4 billions c.a, the memory size needed to store it (and calculate it) increases from 32 bit to 64.</p>
+<p>Now, if my computer has 64 bit system and processor, then making math between those large numbers is a native operation, and costs just one operation. But if you instead have a 32 bit system (meaning that the biggest calculation it can do is on 32 bit), but the program asks for 64 bit calculation, you can't, so instead the cpu has to go all the way around, splitting each operand in multiple memory registers, making multiple operations to achieve one single sum or multiplication.</p>
+<p>In everyday use, this kinda &quot;heavy stuff&quot; almost never happens, but apply that on heavy math software, cryptography and all sort of math things and the change is heavily relevant.</p>
+<p>Last note: as someone said already, another difference is that the same size of registers applies when the cpu asks the ram to save/load data. If you have 32 bit the biggest number is 4 billion and something, meaning the &quot;most far&quot; ram address it can address to is 4 Gb (which is little for nowadays use), whilst with 64 bit you can go beyond.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g0kiwjs">
+		<a class="author" href="https://www.reddit.com/user/AeternusDoleo" target="_blank">AeternusDoleo</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It deals with how much memory you can give to a process. Applications these days can need a lot of memory!</p>
+<p>Say you can only put one thing in a storage box, and on an index list you have a two character limit to list which box carries what. With two numbers you could keep track of what's in 100 boxes (00 through 99). If you increase that to four, you suddenly can track 10000 boxes, (0000 through 9999), two orders of magnitude more! </p>
+<p>Computers use that kind of indexing to keep track of where the ones and zeros are stored. The 32 bit address space allows for a maximum of 4 gigabytes of memory to be kept track of (2 to the power of 32). Modern computers often have much more then this, so if you only had a 32 bit operating system, you wouldn't be able to use all that memory without some inefficient workarounds. 64 bit raises that maximum to 18 exabytes (that's with 18 zeros, coincidentally), which should be enough for the foreseeable future.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g0jsunl">
+		<a class="author" href="https://www.reddit.com/user/Bondator" target="_blank">Bondator</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>People have already explained how it's about the usable memory that's the thing. But how it relates to a bit is this: Every byte of memory needs an address to be usable, and a 32 bit address book has 2^(32) addresses, and 64 bit has 2^(64) addresses.</p>
+<p>2^(32) = 4*2^(30) =&gt; 4 gigabytes.</p>
+<p>2^(64) = 16*2^(60) =&gt; 16 exabytes.</p>
+<p>So, in order to hit 64 bit memory max with 128 GB sticks, youd need 2^(27) or about 134 million sticks. Good luck finding a suitable motherboard. Also operating systems don't actually support that much. But they could.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g0jteph">
+		<a class="author" href="https://www.reddit.com/user/zeealex" target="_blank">zeealex</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>EDIT: My first silver! Thank you, anonymous redditor! &lt;3I'm going to TRY explain it like you're 5, please tell me if I succeed. I'm a bit rusty on my x86 architecture and I'm trying to get used to explaining to people in layman's terms how a computer works. - I may edit this several times.</p>
+<p>Firstly, the 'bits' can be described for simplicity's sake as a binary value, a 1 or a 0. in the lowest level of computer architecture, the 1 represents 'on' the 0 represents 'off'</p>
+<p>So 32-bits is essentially 32 1's or 0's. These are often summed up as a hexadecimal value (hexadecimal allows 16 numbers - including 0 to be represented in a single character, 1-9, and A-F) each hexadecimal value uses 4 bits, or half of a byte, to represent itself. so F is 1111 in binary and is equal to 15 in decimal.</p>
+<p>The maximum number that can represented in 32 bits is <strong>0xFFFFFFFF</strong> or <strong>32 binary 1's</strong> or <strong>4,294,967,295</strong>. Keep that number in mind, it comes in later.I could talk about binary maths all day, and how I got to that number, I absolutely LOVE IT!! but for now all you need to know is the math is correct.</p>
+<p>So, in CPU architecture, there are these little things on the CPU that hold data, they're called <strong>'registers'</strong>. Two of the main registers on the CPU are called the <strong>'base pointer'</strong> <strong>'stack pointer'</strong> registers, this is like a phonebook with addresses.</p>
+<p>You want to send a letter to a friend but only have their name, you can look them up in the phonebook and that'll have their address in.</p>
+<p>The base pointer divides the phonebook up into A-Z, while the stack pointer points to a specific person/address. that's the theory behind it explained as simply as I can go.</p>
+<p>The <strong>base pointer</strong> and <strong>stack pointer</strong>, however, point to specific addresses in <strong>random access memory (RAM)</strong> You'll see this listed a lot when you're in the market for a new computer, normally as '8GB RAM, so speedy!!'</p>
+<p>The issue arises, when you realise that in <strong>32-bit CPU architecture</strong>, these pointer registers can hold a maximum of <strong>32 bits</strong>. Because that's how it is physically designed. So the maximum address these pointers can refer to is <strong>4,294,967,295</strong>, each number being a byte of <strong>random access memory</strong>. If you convert that to <strong>Gigabytes</strong> you get <strong>4.2GB</strong>. This is the maximum amount of memory a 32 bit computer can look at. If you're old enough you might remember this being a thing back in Windows XP's hayday; &quot;32-bit windows can't see more than 4GB RAM&quot; now you know why.</p>
+<p>In <strong>64-bit CPU architecture</strong>, these registers are, you guessed it, <strong>64-bits!</strong> meaning the maximum value they can hold is <strong>FFFFFFFFFFFFFFFF</strong> or <strong>18,446,744,073,709,551,615</strong>. Meaning they can address <strong>18,446,744,073,709,551,615 bytes</strong> of memory meaning 64-Bit computers are capable of seeing up to <strong>18,446,700,000</strong> Gigabytes of RAM. The average consumer computer has 8, 16, or 32gb RAM to put that in perspective.</p>
+<p>So one of the primary benefits of 64-bit CPU architecture already is that the CPU can address SO MUCH more RAM, which is beneficial for a multitude of tasks in the modern day, including gaming, multitasking, rendering, etc etc.</p>
+<p>This will <strong>only</strong> work however, if you are using a 64-bit operating system. The operating system is specifically designed to utilize 32-bit or 64-bit architecture hence why you have windows 32 bit and 64 bit respectively.</p>
+<p>A 32-bit operating system cannot use 64-bit registers, even if they are present on the machine itself, because of how it is programmed. A 64-bit operating system, can, however use 32-bit registers, and can therefore run 32-bit programs just fine hence why you will have program files (x86) on your 64-bit windows OS. The <strong>x86</strong> denotes 32-bit <strong>Intel x86 CPU architecture.</strong> So you can probably guess that that folder stores all the 32-bit software.</p>
+<p>There are also other noted benefits of 64 bit architecture, such as the enablement of multiple cores on the CPU or in some cirucmstances, multiple CPU's, because of similar reasons as noted above, and the handling of those multiple cores in x64 programs is much more efficient, so you get faster overall performance.</p>
+<p>That hopefully sums it up easy enough for you, please let me know if you have any further questions or if I was unclear.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
