@@ -1,0 +1,73 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/teejermiester" target="_blank">teejermiester</a>
+			<div class="markdown"><p>Speaking as someone who regularly runs simulations for 10 billion years, a typical time step is somewhere around 1 million years. Any smaller than that and you're just increasing computation without increasing accuracy very much.</p>
+<p>Edit: I run simulations of galaxies. For planetary systems, yes the time step would have to be much smaller.</p>
+<p>Edit 2: When simulating galaxies, you're often dealing with millions of bodies. When you simulate a star system, there is much less mass and fewer objects to worry about. A time step in a star system simulation is much less expensive than a time step in a galaxy simulation, so you can afford to do more of them.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jacob8015" target="_blank">jacob8015</a>
+			<div class="markdown"><p>Can you talk more about that?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thfuran" target="_blank">thfuran</a>
+			<div class="markdown"><p>Then you'd have to be using orbital parameters rather than position/velocity as your state variables?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BestManagement5" target="_blank">BestManagement5</a>
+			<div class="markdown"><p>1 million years is very obviously not an appropriate time step for planetary bodies.  Galaxies sure, but not solar systems.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FrankAbagnaleSr" target="_blank">FrankAbagnaleSr</a>
+			<div class="markdown"><p>There are ODE solvers that are &quot;symplectic&quot; and don't have the same type of instabilities as normal Runge-Kutta type algos. These types of ODE solvers will have other types of instabilities, but are very good at simulation e.g. a periodic orbit over a very long time. Try to simulate even a simple periodic orbit with an Euler method and you will see crazy behavior from the instabilities over even a relatively short time, coming mainly from the time discretization error, which builds exponentially.</p>
+<p>See <a href="https://en.wikipedia.org/wiki/Symplectic_integrator" target="_blank">https://en.wikipedia.org/wiki/Symplectic_integrator</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mfb-" target="_blank">mfb-</a>
+			<div class="markdown"><p>A trillion steps one by one wouldn't work well. You can do a lot with effective models where you just model how the orbit changes instead of tracking the position day by day.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wotoan" target="_blank">wotoan</a>
+			<div class="markdown"><p>So we get 365 trillion steps for the price of 1 trillion?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tomrlutong" target="_blank">tomrlutong</a>
+			<div class="markdown"><p>Do those models capture all the oddball interactions that makes the solar system chaotic?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SmokinReaper" target="_blank">SmokinReaper</a>
+			<div class="markdown"><p>Thank you for using basic enough math that I followed that for the most part.  Wouldn't making the small time scale calculations over and over for these small chunks of time just cause any unknown errors to amplify over time as well?  I guess I'm surprised that this is a better way to to it rather than adding known errors into a longer time scale and just accepting the known margin for error rather than risking and unknown error propagate itself over and over in smaller time segments.  I know I'm wrong on this but I guess I just don't understand why the smaller time segments is more reliable approach to it.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/phiwong" target="_blank">phiwong</a>
+			<div class="markdown"><p>The problem of &quot;chaotic&quot; systems (I might be using the term loosely) is that the system is unpredictable - which is why simulation is used. Basically the attempt to adjust for error margins give wildly varying results (pretty much why it is called a chaotic system - one that is very sensitive to input state).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SmthgEasy2Remember" target="_blank">SmthgEasy2Remember</a>
+			<div class="markdown"><p>You're using the term &quot;chaotic&quot; correctly. The 3 body problem is a classic example of mathematical chaos</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Baloroth" target="_blank">Baloroth</a>
+			<div class="markdown"><blockquote>
+<p>The problem of &quot;chaotic&quot; systems (I might be using the term loosely) is that the system is unpredictable </p>
+</blockquote>
+<p>Actually that's not quite true. Chaotic systems are usually completely deterministic and therefore fully predictable (in theory). You can even have chaotic systems that are analytically solvable, i.e. for any set of initial conditions you can know <em>exactly</em> all future states for all time. The problem with chaotic systems is that any small deviation in initial conditions will (given enough time) grow into an <em>exponential</em> deviation. That means numerical or measurement accuracy make many such systems hard to predict in practice. This is why, for example, we can predict weather phenomenon pretty well over a time frame of a week or so, but beyond that it predictions become unreliable. The small deviations of the actual weather from our measurements grows into massive deviations over time.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kami_inu" target="_blank">kami_inu</a>
+			<div class="markdown"><p>You can also estimate the size of the error bounds when doing those simulations. The size is (generally) relative to the step size (delta t, or h) raised to some power, and would be known for most (probably all) modelling methods for simple problems.</p>
+<p>Eg if the error is proportional to 1/h^2 , you can get 4 times the accuracy by halving the step size.</p>
+<p>For more chaotic systems like the 3 body problem, I suspect the error margins can be a bit less controllable.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mikelywhiplash" target="_blank">mikelywhiplash</a>
+			<div class="markdown"><p>For this problem, it's usually the opposite: smaller chunks are more accurate that big ones. </p>
+<p>In a three body problem, it's not that it's unpredictable overall, but that there are no shortcuts. In a two-body system, you have a cycle, so you don't need to go bit by bit, but cycle by cycle. What season will it be in 50 months? Well, you know seasons return every 12 months, so you can say 50 months is the same as 2 months.</p>
+<p>3-bodies are chaotic, so you can't generalize like that. But you do know the force each object exerts on the other two, at any given moment. Unfortunately, that force changes their velocities, the velocities change the distance between them, and the distance changes the force. </p>
+<p>It's ultimately continuous, but you can approximate it by pretending the changes only happen once per second (or per minute, or per hour). So you pretend the force doesn't change for a whole minute, then calculate the new velocities, and then new positions, and then the new forces for the next minute.</p>
+<p>Doing this once per minute is less accurate than doing it 60 times per minute (i.e. once per second), because a second is closer to an instant than a minute is. But you never quite get there, and the system doesn't become predictable. You just account for as much error as you can.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SVPERBlA" target="_blank">SVPERBlA</a>
+			<div class="markdown"><p>To be fair, things like the Fast Multipole Method, for the more general N-body problem, do something very analogous to considering the earth and moon as a single body, and can get some pretty nice algorithmic speedups.</p></div>		</li>
+					</ul>
+	
