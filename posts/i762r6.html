@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: How can information be transmitted so accurately with little to no errors even at several MB/s?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="i762r6">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/i762r6/eli5_how_can_information_be_transmitted_so/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/i762r6" onclick="return false">How can information be transmitted so accurately with little to no errors even at several MB/s?</a>
+		</h2>
+		<!--<span class="date">2020-08-13</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>If I'm not wrong, information is transmitted in 0s and 1s which is binary.<br />
+0s replaced by 1s or vice versa is all it takes to corrupt a file. How is this not prevalent even at high speeds? Even slight disturbance or delay could destroy such fragile signals.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="g0zxwjy">
+		<a class="author" href="https://www.reddit.com/user/DarkAlman" target="_blank">DarkAlman</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The most common protocol used for communication is TCP/IP which includes mechanisms to confirm all the data is received accurately.</p>
+<p>Data transferred over the internet is broken into smaller chunks called packets. That way if a file gets damaged during transport only a small part of it (a single packet) will be affected.</p>
+<p>Packets are typically 1500 bytes, or 1.5kb in size</p>
+<p>In addition to source + destination, filename, etc Each packet includes a verification called a checksum.</p>
+<p>Think of the checksum like a skill testing question</p>
+<p>4 x 7 = 28</p>
+<p>When the packet is received the checksum is verified. If it has become damaged then the checksum will no longer be valid and the receiver  sends a message to re-transmit that packet.</p>
+<p>3 x 7 = 28 ERROR</p>
+<p>Once all the packets for a file have been received and verified, the file is re-assembled.</p>
+<p>Not all traffic is verified in this way though. Instead of TCP some types of traffic use UDP which is 'best effort' protocol. This is used for things like voice chat and video that operate in real time and can afford to have a couple of errors during the transfer process.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="g100c9u">
+		<a class="author" href="https://www.reddit.com/user/Unique_username1" target="_blank">Unique_username1</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Error correction is vital, yes.</p>
+<p>But 1s and 0s are uniquely easy to transmit compared to other data formats. </p>
+<p>Say your circuit operates with a voltage from 0v up to 5v. A 0 should be near 0v and a 1 should be near 5v. The difference between them is <em>as big of a difference as the circuit can produce</em>, because they are complete opposites. If you get something in the middle, say between 1v-4v, you could discard it and ask for it to be sent again. You don’t need any nuance or ability to recognize in-between signals because all you’re interested in is an on/off, or yes/no, or 1/0 status.</p>
+<p>Yes, delays can be an issue. This is a lot of the reason for Cat 5e and Cat 6 (or even higher) Ethernet cables. Ethernet can be very long and though they have the same amount of wires inside, higher speeds need less interference between the wires and for each wire to be kept at the same length as the others. USB also requires quality cables to achieve its best speeds. So do DisplayPort and HDMI. In fact, all of the new high-speed communication methods that I know of need a cable built to a higher standard, even though older cables may have been similar with the same number of wires and contacts in them. </p>
+<p>It seems easy to solve these problems because you can just walk into a store and buy a cable certified for USB 3.2 speeds, or Gigabit Ethernet speeds (or 10 Gigabit!), but a lot of work went into developing, testing, and producing those cables accurately enough to avoid problems.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g0zxy3o">
+		<a class="author" href="https://www.reddit.com/user/Verence17" target="_blank">Verence17</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's called error correction.</p>
+<p>On the low level (0s and 1s) the information is not transmitted &quot;as is&quot;, it uses specific codes where we add a few extra bits (there 0/1s) per this low-level message and encode it in a specific way where, if any bit (or several) gets an error, the receiver will be able to restore the original content.</p>
+<p>On the higher level, the information is usually grouped into packets (tens of kBs in length each) and each packet has a thing called the checksum which is, to put it simply, a fast way to check if the packet is broken or not. So even if the packet is wrong after that low-level correction, the receiver has a way to identify it reliably and ask the sender to resend that packet.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g105dbo">
+		<a class="author" href="https://www.reddit.com/user/capilot" target="_blank">capilot</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are two ways: error detection and error correction.</p>
+<p>Error detection involves adding a checksum (e.g. TCP) or CRC code (more advanced protocols). If there's a problem in the data you received, the receiver can tell, and ask the sender to re-send that chunk of data that was bad.</p>
+<p>Sometimes it's not feasible to ask the sender to re-send the data, typically because the data has been stored and you're looking at it later on. Error correction involves storing not just simple checksums, but enough extra data that corrupt data can be reconstructed. This is a rather advanced topic, but google «hamming codes» for more information.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g0zys7j">
+		<a class="author" href="https://www.reddit.com/user/lobsang_ludd" target="_blank">lobsang_ludd</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>We use error correction codes to deal with them. The simplest is to make your message, then count the number of 1s in the message and attach it to the message. The receiver can then count the number of 1s and see if they match what the sender counted. If they don't match, the receiver asks the sender to retransmit the message.<br />
+It's unlikely (but not impossible) for random bit flips to garble the message and also produce the correct <em>checksum</em> for the new garbled message. </p>
+<p>More advanced error correction codes also exist, that <a href="https://en.wikipedia.org/wiki/Error_correction_code" target="_blank">add redundancy to the message so that if a small portion is lost it can be reconstructed by the receiver without retransmission</a>.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/i762r6" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

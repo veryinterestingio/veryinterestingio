@@ -1,0 +1,51 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gameinator3000" target="_blank">gameinator3000</a>
+			<div class="markdown"><p>Slight correction, TCP doesn't send a request for a resend; instead it sends a confirmation after a good packet. The idea is that if a resend request was lost in transmission then the resend would never happen so the message is incomplete, but if the confirmation is lost then we just have an extra packet sent, which isn't that big a deal. Like you said, TCP is willing to sacrifice a bit of bandwidth to guarantee all packets are sent.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CollectableRat" target="_blank">CollectableRat</a>
+			<div class="markdown"><p>How much faster could data travel if we didn’t care about error correction at all?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DarkAlman" target="_blank">DarkAlman</a>
+			<div class="markdown"><p>Interesting question</p>
+<p>Theoretically speaking UDP is faster than TCP because it has less over head and should result in 10-30% more throughput.</p>
+<p>However in real world tests TCP (with error correction) proved to be upwards of 50% faster than UDP (no error correction) because of efficiencies like buffering built into the protocol and the various devices used.</p>
+<p>This is because TCP traffic is so common place that all the routers and network adapters used day are specifically built to deal with TCP/IP traffic and make transmission as efficient as possible.</p>
+<p>One interesting option is to increase the packet size. The maximum packet size is called the MTU and it's limited to 1500 bytes on the Internet. Increasing this size to 9000 bytes is possible and is referred to as Jumbo Frames. This reduces the packet overhead because you send less packets for the same amount of data and increases transfer speeds on larger files upwards of 30%. </p>
+<p>We do this on corporate storage networks where there is biggest bang for your buck, however the price you pay is less reliability and all the equipment that handles that data has to support the feature... and on the internet it doesn't.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dconman2" target="_blank">dconman2</a>
+			<div class="markdown"><p>If TCP is, in practice, faster than UDP due to routing optimization, why do we use UDP?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MrScreeps" target="_blank">MrScreeps</a>
+			<div class="markdown"><p>That would be the UDP (User Datsgram Protocol) technology, which is used f. e. in streaming. It just sends the packages and doesn't care if it even arrives. Some other comment explains UDP more detailed and where/why errors are acceptable.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RedFiveIron" target="_blank">RedFiveIron</a>
+			<div class="markdown"><p>I'd tell you a UDP joke but I don't care if you get it.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mmmmmmBacon12345" target="_blank">mmmmmmBacon12345</a>
+			<div class="markdown"><p>Depends on the quality of the link.  UDP is effectively no error correction</p>
+<p>If you're dropping half your packets then TCP/IP ends up using the full bandwidth to send data at the half the maximum rate while UDP sends your packets at full speed but you only get half of them</p>
+<p>If you have a good quality link then you shave off a bit from the back and forth overhead of ACKs but it doesn't get you a huge bandwidth increase.  It does significantly reduce the overhead on the server thats dishing out all these packets which is why video streaming like Netflix generally goes over UDP, it lets the server more efficiently handle large numbers of users</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/new-username-2017" target="_blank">new-username-2017</a>
+			<div class="markdown"><p>Does Netflix really use UDP?</p>
+<p>Edit: on my PC it's definitely using https over TCP.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/immibis" target="_blank">immibis</a>
+			<div class="markdown"><p>TCP also stops and waits for packets to catch up a lot, which is the real reason they use UDP for those things. If you receive packet 1, then packet 2, then packet 3, then packet 4 got lost somehow, then receive packet 5, then 6, then 7: TCP will tell the program about packets 1-3, but it'll wait for packet 4 to come in (even if it has to ask for it again) before it delivers 5-7. UDP will just deliver all the packets that come in and skip over 4. UDP is used when your program is very sensitive to delays; TCP is used when it isn't, because it's easier to program with.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bmwiedemann" target="_blank">bmwiedemann</a>
+			<div class="markdown"><p>Fun fact : we once did experience corrupted files from a TCP transfer over the LAN and found that the NIC's Linux driver offloaded the checksum checking to the hardware and that did not catch the errors.</p>
+<p>Also, many checksums are only CRC16
+so you could miss one in 65536 errors. I guess it is not a big problem in practice because multiple layers use checksums.</p></div>		</li>
+					</ul>
+	
