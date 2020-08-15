@@ -1,0 +1,81 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aquoad" target="_blank">aquoad</a>
+			<div class="markdown"><p>A cool thing about that idea of asynchronous serial signalling using start and stop bits is that it is much older than you'd expect - it was in commercial use by 1919, for teleprinters sending typed text over telegraph lines. Exactly as described above, except using only five bits for each character instead of eight. (Not counting start and stop)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CornCheeseMafia" target="_blank">CornCheeseMafia</a>
+			<div class="markdown"><p>The five bits you're referring to is morse code right? How did they make a distinction between a beep and a beeeeep? Using the parent comment example, would the beeps be transmitting on every metronome tick or do they consider the interval in between the ticks? Or is telegraph vs digital not an appropriate comparison because you can make a short blip or long blip by holding the button down vs a computater transmitting at a specific rate?</p>
+<p>Edit: i am dumb, clearly</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/manzanita2" target="_blank">manzanita2</a>
+			<div class="markdown"><p>Actually no.  Morse code is composed of a sequence of long and short pulses sometimes known as &quot;dots&quot; and &quot;dashes&quot;   <a href="https://en.wikipedia.org/wiki/Morse_code" target="_blank">https://en.wikipedia.org/wiki/Morse_code</a></p>
+<p>Morse was not designed for machines, but for humans.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aquoad" target="_blank">aquoad</a>
+			<div class="markdown"><p>No - this is a different thing. It's real binary data just like u/Problem119V-0800 was describing, and using a character set called Baudot. </p>
+<p>There is no shared or synchronized timing between the two ends (which is why it's called asynchronous.)  They only need to roughly agree on how long a unit of time is (the Baud rate). </p>
+<p>Morse uses long blips, short blips, long pauses, and short pauses, so there are several types of &quot;symbol&quot;. </p>
+<p>With the digital signalling we're talking about, &quot;ones&quot; and &quot;zeros&quot; are all the same length. The sender basically sends a &quot;heads up, data coming&quot;, then five periods of time elapse during which the state of the line can be either on or off, indicating &quot;zero&quot; or &quot;one&quot;, then an &quot;ok I'm done for now.&quot; </p>
+<p>The receiver then ignores the start and stop periods and assembles the string of five &quot;data&quot; bits into a letter. There are 32 possible combinations of 5 yes/no values, so you get 26 letters plus 6 assorted other characters to work with. </p>
+<p>In the old days, this was all done mechanically. The &quot;start&quot; signal pulled in a lever that physically engaged a clutch, just like a clutch in a car. That started a full revolution of a wheel with five cogs on it, each of which, as it came around, knocked a metal bar into one position or another depending on whether there was electricity flowing at that instant or not. At the end of the full revolution the clutch got disengaged again and the positions of those 5 metal bars shifted a bunch of other levers into position and caused a particular letter to be typed on paper.  In modern electronics terminology we'd call this a shift register, and the decoding process is what CS types will recognize as a &quot;state machine&quot;, but in 1919 it was all 100% mechanical.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Arve" target="_blank">Arve</a>
+			<div class="markdown"><p>The five bits are typically using what is called Baudot coding, and was still in military use in the 90’s, possibly a bit later. </p>
+<p>In commercial use, the UK ceased operating Telex services in 2008. </p>
+<p>On old teleprinters, you would typically get the message in two forms: A printout on paper, and a ticker with holes punched representing the Baudot coding.  Once you’d operated the equivalent for a few months, you’d typically read the message right off the ticker, as it was readable before the print became visible.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/matt-s-perrin" target="_blank">matt-s-perrin</a>
+			<div class="markdown"><p>Yeah now outside of serial busses it’s pretty rare to find clocked signals. Most signals involve modulation and differential signals to self clock themselves.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/redline83" target="_blank">redline83</a>
+			<div class="markdown"><p>They are still clocked. The clock is just embedded/encoded in the data. If it were not, the interface would not work as clock recovery would be impossible. It's not asynchronous logic. I would say the opposite is true; synchronous logic dominates everything.</p>
+<p>High-speed buses are differential for EMI and common-mode rejection reasons.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					</ul>
+		</ul>
+	

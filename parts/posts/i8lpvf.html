@@ -1,0 +1,109 @@
+<li class="post" data-handle="i8lpvf">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/i8lpvf/how_does_information_transmission_via_circuit/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/i8lpvf" onclick="return false">How does information transmission via circuit and/or airwaves work?</a>
+		</h2>
+		<!--<span class="date">2020-08-15</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>When it comes to our computers, radios, etc. there is information of particular formats that is transferred by a particular means between two or more points. I'm having a tough time picturing waves of some sort or impulses or 1s and 0s being shot across wires at lightning speed. I always think of it as a very complicated light switch. Things going on and off and somehow enough on and offs create an operating system. Or enough ups and downs recorded correctly are your voice which can be translated to some sort of data.</p>
+<p>I'd like to get this all cleared up. It seems to be a mix of electrical engineering and physics or something like that. I imagine transmitting information via circuit or airwave is very different for each, but it does seem to be a variation of somewhat the same thing.</p>
+<p><em>Please feel free to link a documentary or literature that describes these things.</em></p>
+<p>Thanks!</p>
+<p>Edit: A lot of reading/research to do. You guys are posting some amazing relies that are definitely answering the question well so bravo to the brains of reddit</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="g19j5yb">
+		<a class="author" href="https://www.reddit.com/user/Problem119V-0800" target="_blank">Problem119V-0800</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's a <a href="https://en.wikipedia.org/wiki/OSI_model" target="_blank">huge tower of abstractions</a>. I'm just going to talk about wires to simplify, and I'm going to leave off a bunch of essential but distracting bits. Let's imagine you've got a couple of computers and your network cable is that lightswitch and light bulb.</p>
+<p>First off, agree on what <em>on</em> and <em>off</em> are. (e.g.: Don't confuse the issue by using dimmer switches. Don't use a blacklight. That sort of thing.) And agree on a <a href="https://en.wikipedia.org/wiki/Line_code" target="_blank">signalling scheme</a> and bit-rate. One <a href="http://www.robotroom.com/Asynchronous-Serial-Communication-1.html" target="_blank">common scheme for slower connections</a> is: let's say I want to send a byte (8 bits). I start a metronome. I turn on the light for one <em>tick</em> (just to let the receiver know somethig is incoming). For the next eight ticks I turn the light on or off depending on whether I'm sending a 1 or 0. And at the end of the byte I make sure to leave it off for a couple ticks so that the receiver has time to write stuff down. The receiver, when they see the light go on the first time, starts their metronome and each time it ticks they record a 1 or 0 depending on whether the light is on or not. After eight ticks they have a byte.</p>
+<p>So you can see I've built a tiny slice of that tower. I started with &quot;I can flip a switch back and forth&quot; and now I have &quot;I can send bytes&quot;. Next up I'll want to build something more sophisticated, but I can forget about light switches and just think in terms of bytes. For example, maybe I come up with the idea of a network packet / datagram, and I define something like &quot;I send a special value to start, then the sender and receiver addresses, then a count of the number of bytes in the contents, then the contents, then an end-marker or error-checking-code or something&quot;. Now I'm one step closer: I can send <em>packets</em> around, I can build networks (computers can look at those sender and receiver addresses and forward packets along if they know where they go next), I can use the wire for multiple things by sending to different addresses.</p>
+<p>Next I might define a way to do a request-response exchange — we exchange some packets to establish that we're talking, I send as many packets as I need to tell you what I want from you, you respond with as many packets as you need to reply. Now I can request webpages from you. And so on.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="g19q9cx">
+		<a class="author" href="https://www.reddit.com/user/ShuRugal" target="_blank">ShuRugal</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The process of encoding information onto a waveform is called &quot;modulation&quot; -  <a href="https://en.wikipedia.org/wiki/Modulation" target="_blank"><a href="https://en.wikipedia.org/wiki/Modulation" target="_blank">https://en.wikipedia.org/wiki/Modulation</a></a></p>
+<p>&#x200B;</p>
+<p>The simplest/oldest method of modulation, though i would not consider it &quot;true&quot; modulation, is called &quot;pulse modulation&quot; - you simply turn the signal off and on at set intervals to represent data.  PM has problems with bandwidth because there is a natural warm up and cool down period for any emitter, limiting the number of pulses possible in a given time span.  Morse Code is an example of pulse modulation which uses a live human as the encoder/decoder (though modern systems can automate this)</p>
+<p>&#x200B;</p>
+<p>the simplest form of true modulation is &quot;amplitude modulation&quot; - data is encoded onto the signal strength of the waveform.</p>
+<p>The positive side of this technique is that it is easy to do, and equipment for encoding and decoding analog AM signals is very easy to construct - so easy that you can probably do it with items in your house right now.</p>
+<p>The negative side of this technique is that it results in very poor signal-to-noise ratio.  anything that attenuates the signal strength as it flies through the air changes the data, and the signal quality drops off rapidly as range increases.</p>
+<p>&#x200B;</p>
+<p>The next method is called Frequency Modulation.  With FM, the power of the signal is not changed significantly, and data is encoded by varying the frequency around a set point.  This has the advantages of being much more robust, because the receiver always knows what the reference position is.  Since there is a defined reference position, FM can also be used to encode digital data - you can make the amount of frequency variation from the reference frequency equate to a predetermined value (for example, + variation can be a 1, and - variation can be a 0).</p>
+<p>FM signals also have longer range - since the data encoded is not dependent on the signal power, any ability to detect the signal translates to ability to read the data.</p>
+<p>Frequency modulation is slightly more complicated to design and implement than Amplitude, but building an FM transmitter or receiver is still well within range of an entry-level hobbyist.</p>
+<p>&#x200B;</p>
+<p>Modern methods of modulation use techniques called &quot;shift keying&quot; to encode digital information more tightly onto a signal. These methods use multiple identical waveforms which have one variable changed.  these signals are constantly generated inside the device, but which one is connected to the antenna (and thus transmitted) is rapidly switched by solid-state electronics to encode digital data.  The various types of shift keying are:</p>
+<ul>
+<li>Phase - frequency and amplitude are the same, but the <a href="https://en.wikipedia.org/wiki/Phase_(waves)#Phase_shift" target="_blank">phase angle</a> of each waveform is different.  For example, you might use 2 signals at 180-degree phase, or 3 at 120 degree phase, 4 at 90 degrees, etc etc.  the limitation here is the receiver's ability to detect minute phase angle diferences.  This method of modulation is highly sensitive to physical obstacles, which may cause the receiver to see unintended phase angle changes due to <a href="https://en.wikipedia.org/wiki/Multipath_propagation#:~:text=Multipath%20interference%20is%20a%20phenomenon,wave%20interfere%20constructively%20or%20destructively" target="_blank">multipathing</a>.  This method is the simplest to use as passive methods can be used to generate multiple out-of-phase signals from the same source.  A PSK signal can also be received by a simple single-channel receiver - the only requirement is that the digital processor have a high enough clock rate to sample the signal rapidly enough to detect a phase change at the frequency selected.</li>
+<li>Frequency - two or more signals of predetermined frequency are swapped between.  This method is more resilient and less vulnerable to interference, but requires two or more discrete signal generators, as well as the ability to receive on multiple frequencies simultaneously.</li>
+<li>Amplitude - similar to FSK in method and strengths, but requires less complex equipment, only need the ability to detect a single frequency, and it is easy to make a circuit which will turn a single signal into multiple signals of varying amplitudes.  This method has the same drawback as analogue AM in that the ability to distinguish signal levels is directly proportionate to signal strength, greatly limiting range, but it has the advantage being capable of very high bandwidth, with a theoretical limit on bandwidth being equal to one symbol per cycle (practical limits are much lower, as receivers may need multiple cycles to reliably measure amplitude)</li>
+<li>Quadrature Amplitude Modulation - this method combines PSK and ASK, increasing the number of detectable shift types without requiring a more sensitive receiver.  This method allows for the most bandwidth on a given frequency.  This allows a theoretical maximum of two multiplied by the number of phases in use symbols per cycle (with the same caveats about detectable limits as ASK and PSK).  Using QAM, extremely high bitrates can be achieved, at the cost of being sensitive to both range and obstacles.</li>
+</ul></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g19jn6u">
+		<a class="author" href="https://www.reddit.com/user/sacheie" target="_blank">sacheie</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Encoding binary information in circuits is simple - you vary the voltage between two levels. Low voltage represents the digit 'zero', slightly higher voltage (5 volts, for example) represents the digit 'one'.</p>
+<p>With digital signals over radio, things can get much more complicated since there are concerns about efficiency, interference, etc. But it's not hard to imagine simple schemes that work just like regular AM or FM audio transmission (over radio). Pick a frequency to represent 'zero' and a different frequency to represent 'one', and transmit a carrier wave that varies between the two.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g1a3iwb">
+		<a class="author" href="https://www.reddit.com/user/jayb2805" target="_blank">jayb2805</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><blockquote>
+<p>I always think of it as a very complicated light switch. Things going on and off and somehow enough on and offs create an operating system.</p>
+</blockquote>
+<p>A number of comments have explained the principles of how electrical signals can be used to makeup binary information, which isn't too far removed from your light switch example in most cases.  I think something that could help is to understand the sheer number of switches and the speed at which they can work.</p>
+<p>CPUs will have their base clock speed advertised pretty readily (1-5GHz typically, depending on whether it's for a smart phone or a gaming computer).  What does the clock speed mean? It means how fast the &quot;light switches&quot; inside the CPU can switch. For most modern CPUs, they're switching over 1 <em>billion</em> times a second.  And how many of them are doing the switching? Easily around <a href="https://www.quora.com/How-many-transistors-are-in-i3-i5-and-i7-processors" target="_blank">1 billion</a> little switches in a CPU.</p>
+<p>For modern computers, you have a billion switches flipping between 0 and 1 at faster than a billion times a second.</p>
+<p>As for how fast they travel in air or on wire? The signals are traveling either at or pretty near the speed of light.</p>
+<blockquote>
+<p>Or enough ups and downs recorded correctly are your voice which can be translated to some sort of data.</p>
+</blockquote>
+<p>Easiest way to think about this is digitizing a voltage signal.  When you sing into a microphone, your sound waves move a little magnet around a coil of wires, which induces a voltage (this, by the way, is the exact inverse of how a speaker works, where a voltage around a coil of wires moves a magnet connected to a diaphragm that creates sound).</p>
+<p>So you have a voltage? So what?  Well, you can take a voltage reading at a specific instance of time, and that will just be some number, and numbers can be converted to binary easily. The main question becomes how accurate do you want the number (how many decimal points of accuracy?) and the dynamic range of the number (are you looking at numbers 1-10, or from 1-100,000?).  So you record the voltage from your voice with (for sake of example) 16 bits of accuracy.</p>
+<p>Now, to accurately record your voice, typical audio recordings are sampled at 44kHz (44,000 times a second). So for every 1/44,000th of a second, you record a 16-bit number that represents the voltage that your microphone picked up.  And that is how you turn voice into data.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g19k859">
+		<a class="author" href="https://www.reddit.com/user/IT_KEEPS_HAPPENING" target="_blank">IT_KEEPS_HAPPENING</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You are correct in your understanding of information being stored at it's most simple level as 1s and 0s. Data can be encoded into 1s and 0s in a variety of ways, depending on what data is stored, and what the agreed upon format is. A common example that has been used for a long time is <a href="http://sticksandstones.kstrom.com/appen.html" target="_blank">ASCII text encoding</a>, which represents computer characters as a group of 1s and 0s. Your computer doesn't actually store the letters, it stores the binary codes for those characters, and it's the computer's job to reconstruct those binary codes back into text when the data is opened from storage.</p>
+<p>Since all data can be stored as a collection of 1s and 0s, in order to transmit data from one system to another system, all that's needed is a way to generate two differentiable signal types- one that is defined as a &quot;1,&quot; and one that's defined as a &quot;0.&quot; A very simple way to represent 1s and 0s in an electrical system is to use a voltage source like a battery, and turn it on for a set period of time to signal a 1, and to turn it off for a set period of time to signal a 0. For example, if we want to represent the data &quot;1001&quot; in this method using a time period of 1 nanosecond, the resulting signal that would be transmitted would be a 4 nanosecond signal that would be on for 1 nanosecond, off for two nanoseconds, and on for 1 nanosecond.</p>
+<p>In practice, there are many more robust ways to transmit data, each with their own benefits and drawbacks. For example USB transmits data using a method that doesn't use on/off to represent 1s or 0s, but instead uses signal rising/falling edges or their absence to detect a 1 or a 0. <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/USB_signal_example.svg/581px-USB_signal_example.svg.png" target="_blank">Here is a picture from wikipedia of an example USB signal</a>.</p>
+<p>Through the air, it's a little more challenging, since only periodic signals like sine waves are easily transmitted. The most basic way to transmit information using a sine wave through the air is to adjust or modulate its amplitude to represent a different signal level.</p>
+<p>This modulation scheme could be used to represent binary values (this method is called <a href="https://www.mathworks.com/matlabcentral/mlc-downloads/downloads/submissions/30580/versions/1/screenshot.jpg" target="_blank">amplitude shift keying</a>), or it could be used to encode an analog signal like sound (called <a href="https://www.watelectronics.com/wp-content/uploads/Basic-Amplitude-Modulation-Wave.png" target="_blank">amplitude modulation</a>, which is the way that AM radios work). Many other modulation schemes are available with their own upsides and downsides.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/i8lpvf" onclick="return false"><span>show</span></a>
+</li>
