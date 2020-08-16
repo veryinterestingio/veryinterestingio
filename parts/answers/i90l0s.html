@@ -1,0 +1,49 @@
+<div class="answers">
+	<div class="answer" data-handle="g1bxgmx">
+		<a class="author" href="https://www.reddit.com/user/Xelopheris" target="_blank">Xelopheris</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There's not really a point. The reason we went from 32 to 64 bit processors was because we started hitting the limit of RAM at 4GB.</p>
+<p>This is because processors had to say where in memory they wanted to address in a single instruction, so they were limited by the number of bits the CPU could handle at once.</p>
+<p>When we went to 64 bit processors, we can now address up to 16 Exabytes of RAM. When we eventually get close to that, we can look at going from 64 to 128 bit, but we're still a few orders of magnitude short.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="g1bvu4q">
+		<a class="author" href="https://www.reddit.com/user/Pocok5" target="_blank">Pocok5</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There is no point in using a more than 64 bit architecture in mainstream CPUs. We are  <em>nowhere</em> near its limitations, and adding more bits increases CPU complexity very fast.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g1bx4lv">
+		<a class="author" href="https://www.reddit.com/user/AtomKanister" target="_blank">AtomKanister</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'm assuming you mean 64-bit in general by &quot;x64&quot;, which is just the 64-bit version of the popular x86 architecture. </p>
+<p>What stops it from being replaced is the property of exponential growth. 64-bit systems can't only handle numbers twice as big as 32-bit, but 2^32 times as big. </p>
+<p>And 2^64 is a number large enough for most intents and purposes. 2^32 seconds are a little less than 140 years, 2^64 seconds are 585 BILLION years, or 45 times the age of the universe. And for the few applications that need larger numbers than that, there are mathematical tricks to calculate with larger numbers even on 64-bit systems. You lose some efficiency, but considering how rare these applications are, it's nowhere near worth changing to 128-bit for just that.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g1cw2x4">
+		<a class="author" href="https://www.reddit.com/user/surfmaths" target="_blank">surfmaths</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I work in processor architecture design, so I can answer the question. But I'm going to simplify a lot of things here.</p>
+<p>Latest CPU have a 512 bit datapath and most common ones have a 256 bit datapath, per core. And for GPU we are more into the 512 bit to 1024 bit, per core.</p>
+<p>But at the same time, CPU are still 64 bit, and GPU are still 32 bit. But what does that mean?</p>
+<p>It's because that datapath bitwidth can be split into smaller chunks. If you have a 512 bit datapath, and do 32 bit operations with it, you get 16 operation per cycle. If you do 64 bit operations with it, you get 8 operations. It happens that nobody really rarely need more than 64 bit computation, and when we do we can do it the &quot;slow way&quot; which is 3 to 4 times slower. (In C you can use int128_t to do 128 bit computation on a 64 bit CPU for example, computer are Turing complete after all)</p>
+<p>GPU tend to do graphics, and in that domain 32 bit is already more precision than needed. So there is a tiny bit of hardware that can do 64 bit computation, but most of it is dedicated to 32 bit or less. Modern GPU actually bring back 16 bit computation as machine learning is happy with that kind of precision.</p>
+<p>Note that we kind of stopped increasing the datapath bitwidth of our cores and started to go with more cores. Because we might as well do completely different operations at the same time, instead of big bunch of vector operations.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g1dbh2j">
+		<a class="author" href="https://www.reddit.com/user/pm_me_wet_kittehs" target="_blank">pm_me_wet_kittehs</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Simple: more is not better.</p>
+<p>32 bit allows you to build a computer that can natively address 2 Gigabytes. 64 bit allows you to address over 8 billion gigabytes. Not twice as much, but 4 billion times as much.</p>
+<p>A 128-bit computer can address more, but we're not even close to (nor do we expect to get close to in the foreseeable future) maxing out this capacity. So there's just no need for it.</p>
+<p>While it's true that a 64 bit computer can process bigger numbers than a 32 bit computer, at the end of the day, there's twice as much of everything in the cpu. Which uses up more power, makes bigger chips (which have to run at a slower clock speed), gives worse yields (twice as much transistors on a chip means there's a higher chance of getting defects in any one chip), etc. 64 bits is kind of a sweet spot that gives us unfettered access to as much memory as we can practically put in a computer while not consuming too much power and giving acceptable yields.</p>
+<p>If we want to process tons of data, we now have gpus that can be used, that are better suited for that kind of task.</p>
+<p>edit: I messed some numbers up by a factor of two. 32 bit allows you to access 4 gigabytes, not 2. 64 bits allows you to access 16 billion gigabytes, not 8 billion</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
