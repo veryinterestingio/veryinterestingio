@@ -1,0 +1,94 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gileotine" target="_blank">Gileotine</a>
+			<div class="markdown"><p>I had not even considered that!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pseudopad" target="_blank">pseudopad</a>
+			<div class="markdown"><p>There is another factor at play too. Often times, a single &quot;server&quot; is not really just one server, but a collection of servers all dealing with their own part of the game world. </p>
+<p>There will be one server for a certain city, another for a couple of woodslands areas, another server for the coastal region further south, etc. Typically, dozens of low-traffic areas share one server, while high traffic areas get perhaps a whole server for itself. </p>
+<p>The company running the game will attempt to balance the load so that every piece of hardware has roughly the same amount of work to do. </p>
+<p>When everyone is spread across many <em>actual</em> servers, no single server is overloaded, but if everyone in the game gathers in one area that usually has very little traffic, the server handling that area will have a lot to do while the others have nothing to do.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ThatOtherGuy_CA" target="_blank">ThatOtherGuy_CA</a>
+			<div class="markdown"><p>Yes, people severely underestimate the power of instancing.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shocsoares" target="_blank">shocsoares</a>
+			<div class="markdown"><p>EVE online has players warn the devs of future big battles so they move that system to a dedicated server as soon as possible, battles can last hours and the only limit is how many players can be in the server at once</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/K3wp" target="_blank">K3wp</a>
+			<div class="markdown"><blockquote>
+<p>There will be one server for a certain city, another for a couple of woodslands areas, another server for the coastal region further south, etc. Typically, dozens of low-traffic areas share one server, while high traffic areas get perhaps a whole server for itself.</p>
+</blockquote>
+<p>I worked at the datacenter where EverQuest was operated out of about 20 years ago.</p>
+<p>You could literally walk down the aisles of 90's 'beige box' PCs and see how the world was partitioned, as everything was labeled along those lines.  Every location had its own server, so when you were &quot;entering&quot; an area you were actually essentially logging into the server.  There was something like IRC for chatting to everybody and there was a massive Oracle cluster to store all player info.  I think there was even a maximum number of players that could be in any one area at a time and the game simply wouldn't let you go in until someone else left. </p>
+<p>Other than that you were essentially invisible to players in other areas.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OwainX" target="_blank">OwainX</a>
+			<div class="markdown"><p>Every client (player) needs to know a lot of detail about every other entity (npc, game object, and other players) within a certain distance of them.  The further separated the less data is synced.  Far enough away and the server doesn't need to tell you the other players are there as there is no interaction.  The growth in resources needed can be exponential as each new client not only sends all it's information to the server but it must also get all the updates on every other player, game object, npc, etc in that range.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TwentyTwoTwelve" target="_blank">TwentyTwoTwelve</a>
+			<div class="markdown"><p>Another point to consider: a very simplified way of looking at how games work is like chess. Each player takes their turn one at a time.</p>
+<p>This is the same for online games, only at an extremely accelerated rate. Like in the region of hundreds to thousands of turns per second.</p>
+<p>The fewer players in one area, the less time it takes to complete a full cycle of turns, and thus the more frequently players can take their turn.</p>
+<p>In games that have endless modes, this is part of why it gets laggier in later levels when there are extreme numbers of enemies as each enemy is effectively another player.</p>
+<p>The metaphor can be extended by defining what a turn is to such a point as drawing and rendering each character, taking their input, checking that against anything it effects or is affected by etc. All of which can be broken down in to what is handled client side and what is handled server side which can help determine what's causing the latency.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kaellian" target="_blank">Kaellian</a>
+			<div class="markdown"><p>The amount of message sent is always going to scale with the number of players by a factor of n².</p>
+<p>If there is 3 players, the server will receive 3 input  (ie: movement, actions, etc), and will need to update the remaining two players with your actions. In this case, there is 3 inbound message, and 6 outbound (3x2).  If there is 72 players nearby, there will be 72 inbound message, and 5112 outbound message (72*71). And that's just for one action. You have to keep everyone updated about gears, emotes, battle actions, movement, gears durability, health, status effect, and so on. Sometime, the server even update your own position as well, which is what result in &quot;rubber banding&quot; when you're out of sync.</p>
+<p>Of course, they don't send everything all the time. Those update generally occurs at a server tick (the instant where everything is processed). Outdoor area will have a clock that tick much slower than an high end instance, but in both case, it's generally why the stuff you see on your screen isn't exactly what the server saw. Games will also resort to various trick to limit the potential issue of large group of people. In it's early day, FFXIV  would limit to 50 players the max number you could see on screen. However, they weren't prioritizing party member and you would end up being unable to see half of your team. That's the kind of net code issue developer have to works on. Cut the fluff that isn't needed, find way to package more information in one message,  and be smart about what is updated</p>
+<p>Secondly, server aren't single thread process. Each region, and sometime, smaller section within a region are &quot;instanced&quot;. That's why in WoW, you will often reach a point where someone by you or a mining node will despawn as you get close. That just means your characters data was sent to another thread/processes. Walk a few step back , and you're sent back to your previous &quot;instance&quot;.  Fragmenting the world like this is a good way to keep the amount of work each process do to a reasonable amount, but if you fragment it too much, the players will notices and be impacted by it. Cataclysm expansion was pretty bad at breaking up the land, and those invisible zoneline were everywhere. Last few expansion seemed much better at it though.  </p>
+<p>To answer OP question more directly:</p>
+<ul>
+<li>
+<p>Games will fragments the world into smaller sections to reduce the scope of what &quot;one place&quot; means. </p>
+</li>
+<li>If too many players end up in the same threads, their algorithm intelligently (or not) prioritizes certain information, to make the games look smooth, despite cutting corner.</li>
+</ul>
+<blockquote>
+<p>there is no need to check if they are colliding</p>
+</blockquote>
+<p>Technically, collisions are almost always handled locally on the players PC. There is however a bunch of integrity check to prevent checking (ie: movement speeds)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Azmisov" target="_blank">Azmisov</a>
+			<div class="markdown"><p>The server could batch the messages, say on a 10ms window and then only send out n messages. But still, the amount of data being sent in each message may be n*n without compression</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Marcus_Vini" target="_blank">Marcus_Vini</a>
+			<div class="markdown"><p>So there is no solution for this kind of lag or just a few hardware upgrades do the trick?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pwalkz" target="_blank">pwalkz</a>
+			<div class="markdown"><p>Better hardware \ more hardware \ smarter usage of the hardware (software changes). Those are the only options to address the situation that I know of</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NeguSlayer" target="_blank">NeguSlayer</a>
+			<div class="markdown"><p>The solution is a proper load balancing algorithm that ensures no server is overloaded when situations like this arise. However, this is easier said than done because load balancing is a complex topic that is the focus of many research papers nowadays. </p>
+<p>Plus, you really can't expect typical MMO distributors to have the manpower and resources to perfectly handle these situations. These companies are not Netflix or Amazon. Often times MMO companies are mid to small sized.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/biobasher" target="_blank">biobasher</a>
+			<div class="markdown"><p>Not forgetting that many firms offload the actual server work to an AWS unit.<br />
+They can spin up extra instances as needed.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IamfromSpace" target="_blank">IamfromSpace</a>
+			<div class="markdown"><p>If the players are close enough to one another, this becomes impractical.  You simply cannot balance to another server, because the state will then be split across two different servers.  Trying to keep them in sync is impractical because it reintroduces the problem you’re trying to solve.</p>
+<p>It really doesn’t have anything to do with effort or talent at a fundamental level.  When you have a large state space that needs to be consistent with itself, you simply cannot distribute it and expect things to keep up.</p>
+<p>Netflix has no need to keep that many things in sync (but have a ton of hard technical problems), and there are many places where AWS (rightly) does not attempt to do so (ex. DynamoDB Global Tables are not fully write consistent or Kinesis does not preserve order outside of its shards).</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Maxentium" target="_blank">Maxentium</a>
+			<div class="markdown"><blockquote>
+<p>The solution is a proper load balancing algorithm that ensures no server is overloaded when situations like this arise. However, this is easier said than done because load balancing is a complex topic that is the focus of many research papers nowadays. </p>
+</blockquote>
+<p>WoW does this, it &quot;shards&quot; the current area, creating multiple copies of it, and it allows certain numbers of players in each, seamlessly.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/youre_grammer_sucks" target="_blank">youre_grammer_sucks</a>
+			<div class="markdown"><p>It’s probably a result of multiple small bottlenecks that, combined, cause a lot of lag. You’ll have to deal with network latency and processing delays (both server AND client side). This means there is not really one place to slap extra hardware to make everything faster. If all players were on very low latency lines, everything would probably already be a lot better.</p></div>		</li>
+					</ul>
+		</ul>
+	

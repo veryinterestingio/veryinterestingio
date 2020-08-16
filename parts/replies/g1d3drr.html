@@ -1,0 +1,133 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JordieCarr96" target="_blank">JordieCarr96</a>
+			<div class="markdown"><p>Great answer, thanks for this! I’m a longtime Runescape fan and I’ve always been curious myself.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ryan22_rs" target="_blank">ryan22_rs</a>
+			<div class="markdown"><p>Same here dude, I like this question a lot.</p>
+<p>But I'm still not sure how like an entire world gets knocked offline at once (with a ddos attack, let's say) if a single world is broken up into multiple servers.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ReshKayden" target="_blank">ReshKayden</a>
+			<div class="markdown"><p>Man, lots of great questions in this thread.</p>
+<p>Generally speaking, DDoS attacks on MMOs don't go after individual zone servers. Yes, you could use that to knock a zone offline and basically strand/crash anyone trying to move there. But DDoS-ers are usually aiming for a bigger bang for the buck with their mischief.</p>
+<p>More commonly, you go after single chokepoints that aren't individual zone servers, but are still required to play the game at all. Authentication servers which process logins are a fantastic target, because nobody can do anything if they can't log in!</p>
+<p>Patch servers are another good target. Most MMO clients need to check on startup if they're at the latest version, and download a patch if not. You can't let people log in if they're not at the latest version. So if you bring down the patch server and now clients can't verify &quot;hey, what version should I be?&quot; you're dead in the water.</p>
+<p>Another popular target is what MMOs alternately call the &quot;world&quot; server or &quot;orchestration&quot; server or &quot;realm&quot; server, which is often a server who's only job is to coordinate the communication between individual zone servers as players move across zones. Destroy the glue holding the zones together, and the world falls apart.</p>
+<p>Yet another popular target is *not* to go after individual servers at all, but to target the network nodes those servers are hosted on. If you DDoS the actual network pipe going into the data center that hosts the servers, now no one can connect period.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zebediah49" target="_blank">zebediah49</a>
+			<div class="markdown"><p>Runescape, I believe, used (uses) single monolithic servers per-world*.  However, because many of the expensive checks between players don't happen, it actually performed relatively well with a couple thousand people in the same place, even on decades old hardware.</p>
+<p>*They did add some instantiated content, which is thus partitioned off onto separate servers.  Generally when you hit a loading screen, it is an opportunity to switch servers; transparent server switching in an open world is extremely hard to do, and not usually worth it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Odatas" target="_blank">Odatas</a>
+			<div class="markdown"><p>Well those servers obviously need to communicated. For example when one player walks over the boarder to the other server. </p>
+<p>So the one server ask &quot;Hey do you have players for me?&quot; and then the other server answers &quot;Here i have those players for you, do you have players for me?&quot; &quot;Yes here i have players for you. Good day sire&quot; &quot;Good day sir&quot;. </p>
+<p>And when one server suddenly doesnt answer anymore depending on the designe it could crash the whole mrrorpg.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KuntaStillSingle" target="_blank">KuntaStillSingle</a>
+			<div class="markdown"><p>RuneScape skips the collider problem by just letting players walk through each other lol.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/YoungLecter" target="_blank">YoungLecter</a>
+			<div class="markdown"><p>RS would be absolute shit with character collision</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/liftoff_oversteer" target="_blank">liftoff_oversteer</a>
+			<div class="markdown"><p>That's a feature and as far as I can remember almost all MMOs do this. Only exception I know is Lineage II (does this still exist?). Poblem with player collision is that if they don't run through each other, they will cause disruption to other players, for instance by blocking entrances to a tower where people want to do quests in (looking at you again Lineage II). Blocking can also happen inadvertently, like in front of the banker, blocking other players from accessing the bank. </p>
+<p>Also server computation cost would raise quadratically with the amount of players nearby if you have player collision.</p>
+<p>So the wise decision is to do away with player collision checks. ESO for instance only has collision check with NPCs.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/venum4k" target="_blank">venum4k</a>
+			<div class="markdown"><p>Lots of MMOs don't do player collision. In fact it's the norm from my experience and it's weird playing MMOs that do have it.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Pylitic" target="_blank">Pylitic</a>
+			<div class="markdown"><p>Fun fact, Runescape works a lot like this!</p>
+<p>Each square you stand on is 1 tile.</p>
+<p>&quot;Chunks&quot; make up 8x8 tiles, and &quot;Regions&quot; make up 8x8 chunks or 64x64 tiles.</p>
+<p>However, with Runescape the collision example given above doesn't quite work as Runescape only checks your collision with things while you walk. The reason for lag on Runescape is the amount of data sent to render each player. Its actually quite a lot. Now, same principal exists, when there aren't very many players in your &quot;region&quot;, the server doesn't have to send you much data. But if you're standing w2 ge, the server is sending data for every single person in there.</p>
+<p>Jagex has done a great job of trying to minimize this data sent and will try to only send you the information the client needs to process changes. So you only get sent a persons appearance once. And only again if they equip a new item or something. You don't get sent it each tick, same with emotes, hit points, graphics, etc. You only get sent this information when it needs to be updated. Makes a HUGE difference.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Brandon23z" target="_blank">Brandon23z</a>
+			<div class="markdown"><p>I think that's pretty much standard in game design. You're not gonna update a menu or inventory or hotbar if nothing changes. Even in a single player game.</p>
+<p>I agree though, RuneScape does it well. Even though it feels laggy, you gotta realize how much shit is processed in that game.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HittingSmoke" target="_blank">HittingSmoke</a>
+			<div class="markdown"><p><em>Every</em> multiplayer game minimizes the data sent to only what's required. The collision example does work. Just because the guy didn't describe every single tiny condition which would trigger collision checking doesn't imply that collision checks are going on every time two players are standing next to one another.</p>
+<p>What you're describing is just basic multiplayer game networking in less specific detail than the guy in the parent comment using a specific game.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/LadyLazaev" target="_blank">LadyLazaev</a>
+			<div class="markdown"><p>Yeah, but what you explained only really affects you. OP is asking why, in their example, it affects everybody on the server when a lot of people are in one place. Even if you yourself are not present at the gathering.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FaustTheBird" target="_blank">FaustTheBird</a>
+			<div class="markdown"><p>It's also important to note that while there maybe be a 300k players on one &quot;server&quot;, it's not one computer, it's a cluster. You can take 100 zones and put them on 100 computers (1 each) and get lots of scale, but it's much harder to distribute 1 zone across mulitple computers, so if a single zone has a ton of people in it, it all has to get handled by 1 computer.</p>
+<p>Is that right?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ReshKayden" target="_blank">ReshKayden</a>
+			<div class="markdown"><p>Yup, you're correct. It's significantly easier to architect an MMO based on zones, where you have one physical server simulating each zone, than it is to have one massive open world and distribute the partitions transparently among servers.</p>
+<p>Being able to have a zone line, hand off, loading screen, and server hop gets you a LOT of shortcut benefit. And not just server side!</p>
+<p>For example, it is not possible to hold all of the textures for every piece of terrain, every possible character armor piece, every monster, etc. in an MMO loaded into client video card texture memory at all times. MMOs have <em>massively</em> broader sets of art across their game than FPS arena, Battle Royales, or MOBAs. So being able to swap out all the textures in one zone with all the textures in another zone is really quite convenient. It lets you both have higher texture fidelity <em>within</em> a zone while also requiring less beefy video cards.</p>
+<p>If you <em>don't</em> do that, and you want seamless transitions like World of Warcraft, now you have to come up with an entire client-side system to smoothly stream textures in/out of memory based on how you're moving and what way your camera is facing, and even then you end up having to have very obviously artistically different areas that look like zones anyway.</p>
+<p>Can it be done? Absolutely. It's been done. A lot. But similar to a reply I made below, you only have so much time and so much money on these things. And you have to ask yourself, is this a critically important enough piece of our game to spend the money on writing it again? Or could that effort be better invested elsewhere?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/gothlips" target="_blank">gothlips</a>
+			<div class="markdown"><p>Just reading about loading scenes reminded me of playing Everquest, where zone lines would occasionally just be right in the middle of a field and you'd know you were going to run into it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SirLouisVincent" target="_blank">SirLouisVincent</a>
+			<div class="markdown"><p>One of the reasons why World of Warcraft has always been one of my favorite games all time. You can run across the entire continent without a loading screen. I don’t play Live, I play Classic, and in Classic the only time the zones get split up is when you take a boat to the other continent across the ocean.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/worthyNull" target="_blank">worthyNull</a>
+			<div class="markdown"><p>Isnt there a cheap way to partition the world map dynamically depending on the positions of the player at a given time? For example say a middle layer before the collision checking that assigns areas on the map to said server so those servers can do their checks in the assigned are?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/cyan0g3n" target="_blank">cyan0g3n</a>
+			<div class="markdown"><p>I think this is what makes 2b2t so special on Minecraft. It's 250 players on one server /map and not 2000 players scattered on 200 maps.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/N1ghtshade3" target="_blank">N1ghtshade3</a>
+			<div class="markdown"><p>Are there any industry-standard materials on MMO server architecture? I know they're all different but like general practices and patterns?</p>
+<p>I'm just a regular backend developer so I kind of have an idea how I would do it but I imagine there's plenty I'm overlooking and that there are common pitfalls and concerns that don't need to be re-solved every time.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ReshKayden" target="_blank">ReshKayden</a>
+			<div class="markdown"><p>There are, but one thing to keep in mind is that the MMO server engineering community is... quite small. Big-budget MMOs come along only a few times per decade. They are egregiously expensive and risky to make, and so you usually don't have a lot of them in full production at the same time. So a lot of us end up working on a LOT of MMOs over 20 years, and we just kind of take our knowledge along with us in our heads rather than putting it down on paper.</p>
+<p>I actually didn't start off as a server engineer. I was supposed to be something else. But I sort of learned from the other server engineers on the job through proximity/osmosis, and found that I was actually not that bad at it, at which point I transitioned to doing it full time and never looked back. These days I've graduated up to the ranks of CTO, but I still consider myself an MMO server coder at heart, and it's easily the part of MMO engineering I still feel personally most knowledgeable about.</p>
+<p>But anyway... no, I'm afraid I don't know any great sources (books, etc.) on how to do this stuff. I know they must exist! They gotta, at this point. But because that's not how I learned, and I never wrote a book myself, I don't know where to look.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Krowdzilla" target="_blank">Krowdzilla</a>
+			<div class="markdown"><p>There are way more MMORPG rising and dying in Asia without even coming to the occident, do you think that they are ahead of the rest of the world in making these? Or the flow is just because they are all ripoff of previous failures without much evolution...</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aioliole" target="_blank">aioliole</a>
+			<div class="markdown"><p>I fear for the day you guys go extinct and there is no history left behind. Only songs and oral poetry.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/InconspicuousRadish" target="_blank">InconspicuousRadish</a>
+			<div class="markdown"><p>It's always a pleasure to hear about people unexpectedly finding that they're both good at something, and like doing it. </p>
+<p>Your whole career path sounds really wholesome. I don't know you, but I'm happy for you!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thelordpsy" target="_blank">thelordpsy</a>
+			<div class="markdown"><p>This is remarkably accurate:  <a href="https://leanpub.com/development-and-deployment-of-multiplayer-online-games-vol1" target="_blank">https://leanpub.com/development-and-deployment-of-multiplayer-online-games-vol1</a></p>
+<p>5 years ago when I was a server engineer on a game you’ve heard of, this book read like it was written by a coworker.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/N1ghtshade3" target="_blank">N1ghtshade3</a>
+			<div class="markdown"><p>Awesome; thanks. I looked through all the available free pages and I think this might be exactly what I was looking for.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bitspace" target="_blank">bitspace</a>
+			<div class="markdown"><p>I'm tempted to get this. Like so many people who have gotten into software development, some of my earliest motivation for getting into the field was the dream of some day making games. Also like most professionals in the field, I'm not developing games. I'm a services/API/architecture person so this book is appealing. However, it seems to have been abandoned a few years ago. Do you happen to know if it, and the others the author mentions, has any chance of progress?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Johnny_Bob" target="_blank">Johnny_Bob</a>
+			<div class="markdown"><p>If I understand correctly SpatialOS parts the world into little zones. Each zones has its own local event log. So the game is event sourced, but each event is spatially local. </p>
+<p>The game logic is handled by workers. Each of these workers handles the game logic of several zones, but there is a load balancing system that allows an idle worker to steal take over a zone from a neighboring overburdened worker. (I am not sure if two workers can somehow share a square)</p></div>		</li>
+					</ul>
+		</ul>
+	

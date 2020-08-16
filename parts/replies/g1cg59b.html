@@ -1,0 +1,48 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/grumd" target="_blank">grumd</a>
+			<div class="markdown"><p>Correct! Let's do a simple calculation.</p>
+<p>A server has 1000 players. Let's say every player moves 1 time per second. This means that they send a message &quot;I moved here&quot; to server 1 time per second, and server in response sends message &quot;This guy moved here&quot; to everyone who can see you.</p>
+<p>If all 1000 players are spread out in small groups 10 players each, every player will make the server send 9 messages every second to the people who can see you. This results in 9000 messages every second.</p>
+<p>If 500 players are in one huge group and 500 are in separate groups 10 players each, then we have a different scenario.</p>
+<p>500 of them are responsible for 9 messages per second, and 500 of them are responsible for 499 messages per second.</p>
+<p>This results in 254000 messages per second. This is 28x more messages to process and send.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Beepooppoop" target="_blank">Beepooppoop</a>
+			<div class="markdown"><p>Great example. That was a great way to portray to it a layman like myself. Thank you!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Brunis_Pistol" target="_blank">Brunis_Pistol</a>
+			<div class="markdown"><p>The other side of this issue is that combining systems to handle more connections scales in the <em>opposite</em> direction, logarithmically. This is known as Concurrency.</p>
+<p>Each process ends up having to wait for others to finish what they are doing to ensure one process isn't using information while it is being rewritten by another process. They end up spending a significant amount of time just waiting or &quot;blocking&quot;. Not to mention the job of overseeing who gets to access what information when takes additional computation work. Writing concurrency code is a massive cluster fuck compared to linear computation.</p>
+<p>So doubling players makes more than double the work, while doubling your hardware gives diminishing returns the larger a system you are trying to split a task across. </p>
+<p>This outlines how important it is to keep the scope of your problem small enough that it can be done on fewer physical machines, the ratio of work required and cost to acheive that work gets unreasonable very quickly</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ShadeofIcarus" target="_blank">ShadeofIcarus</a>
+			<div class="markdown"><p>So if all 1000 are in the same area. You're looking at 999,000 messages a second.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/grumd" target="_blank">grumd</a>
+			<div class="markdown"><p>Yup!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dkevox" target="_blank">dkevox</a>
+			<div class="markdown"><p>Do you work in the industry (honestly curious, I don't so glad to be told I'm wrong.) I understand the point you are making, but even that many &quot;messages&quot; is hardly anything for a server to process. That's functions of a relatively simple relaying device.</p>
+<p>I think most of the lag people experience is either client side (graphics can't keep up), or isp related. I doubt even large large groups in an area cause much additional stress to the server than spread out.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/grumd" target="_blank">grumd</a>
+			<div class="markdown"><p>I'm not sure about MMORPG, but PUBG notoriously had reduced server tickrate when more people are alive in the server. Especially when more people are in the same place. The numbers I said were made up for eli5 purposes, the point was how much more work it is for a server compared to not having many people in the same place. Also, I remember that when big raids took place in Lineage or WoW, servers took noticably more time to process user input. But yeah most likely the &quot;lag&quot; OP describes is client lag. I kinda didn't think of it that way. But server lag still exists.</p>
+<p>I don't work in gaming development, but I'm a programmer in a different field.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/richterlevania3" target="_blank">richterlevania3</a>
+			<div class="markdown"><p>This is the correct answer.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/catcatdoggy" target="_blank">catcatdoggy</a>
+			<div class="markdown"><p>i remember i had this raid add on that would collect all player's combat statistics as the battle progressed. JESUS CHRIST was that a HUGE text file. my pc had a hard time even handling it.</p></div>		</li>
+					</ul>
+	

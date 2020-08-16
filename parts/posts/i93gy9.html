@@ -1,0 +1,82 @@
+<li class="post" data-handle="i93gy9">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/i93gy9/eli5_on_mmorpgs_how_can_a_server_laglessly_handle/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/i93gy9" onclick="return false">On MMORPGs, how can a server laglessly handle thousands of players across the entire game world, but experiences problems when lots of players are in one place?</a>
+		</h2>
+		<!--<span class="date">2020-08-16</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Evening. Not sure if this is the right place to post this question, but I thought I would give it a try since the internet and networking seems super complex and I'm not a big brain.</p>
+<p>I play WoW and Final Fantasy XIV. Recently I've been in areas where hundreds if not thousands of players are in the same area in the game world. Client-side computer graphics/processing capacity aside, how come servers seem to chug/have lots of lag when everyone is one place, aside from that same amount of people being spread out across the game world? In WoW especially, the play quality of an entire server begins to degrade when this happens, despite few players being outside of that one area.  </p>
+<p>Edit: Well, that's a lot of answers. Thanks to everyone who has replied, I think I understand it a little bit better now! </p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="g1d3drr">
+		<a class="author" href="https://www.reddit.com/user/ReshKayden" target="_blank">ReshKayden</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Hi! 20 year MMO server-side engineering veteran here, so I'm delighted by this question. The best way to answer it is with a very specific example, to get you a general idea.</p>
+<p>One of the most important checks a server has to do is to verify whether players are colliding with each other, or the environment, or are aimed right for weapons fire, etc. Because these checks are computationally expensive, we resort to clever tricks to avoid having to do them for everything in the world every time.</p>
+<p>One trick is to partition your world. Take your game map, and divide it into four quadrants. If two players are in the same quadrant, you know you have to look closer to see if they're colliding. But if one player is completely in quadrant 1, and another is completely in quadrant 4, you can skip that check because you know there's no way they can be physically touching.</p>
+<p>But say two players are both in quadrant 1. Well, you can also subdivide quadrant 1 into four quadrants!  1a, 1b, 1c, and 1d.  Now similarly, if both players are in 1a, you need to look closer. But if one is in 1a and another in 1d, you can skip checking them. You keep doing this until the quadrants become so small that further partitioning isn't very useful.</p>
+<p>Another benefit with this approach is parallel computation. For example, you can have one server thread or process running the check on everyone in quadrant 1, and a separate process running it on everyone in quadrant 4. They can do this independently because you know you don't ever have to compare anyone across these quadrants.</p>
+<p>Trouble is, if EVERY player is in tiniest quadrant 1a-iii., now you're back to having to directly compare every character to every other character in the most expensive way possible, and there's no super easy or cheap ways to parallelize that computation. And that's when your server hardware starts to choke.</p>
+<p>This example is only about collision. But the point is, there are probably 9-10 different places in MMO server development where we <em>conceptually</em> take similar shortcuts -- even down to simple things like just how much data a server can physically upload to players over its network card at once -- which rely on the assumption that not everyone is in exactly the same place.</p>
+<p>(Edit: tweaked a few words for clarity, based on some of the excellent follow-up questions I got asked.)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="g1cfo72">
+		<a class="author" href="https://www.reddit.com/user/kichik" target="_blank">kichik</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Servers have to work harder when more people are in the same area. If two people are in different areas, there is no need to check if they are colliding, for example. There is also no need to even tell the players where those other players are. But when a lot of people are in the same area, more data needs to be sent out and more calculations need to be made.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g1cg59b">
+		<a class="author" href="https://www.reddit.com/user/tmahfan117" target="_blank">tmahfan117</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Because now it needs to handle sending everyone’s information to everyone else.</p>
+<p>When you’re on the server, and move your character, your computer sends a message to the server with what you did, and then the server, takes that, interprets it, and sends it to any other players that can see you to display it correctly on their screen. </p>
+<p>When there’s just handfuls of people grouped together, this isn’t too bad to do.</p>
+<p>But when you have hundreds of people all in one spot, that then means every little action you do, instead of being forwarded along to say 10 people, is getting forwarded along to 100 people. And the same goes for everyone else, so you get and order of magnitude larger number of actions that the server has to deal with, causing it to lag.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g1cgmyi">
+		<a class="author" href="https://www.reddit.com/user/tezoatlipoca" target="_blank">tezoatlipoca</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The goegraphical area of the game &quot;world&quot; is usually spread out amongst individual servers. A particular town or region and usually specific dungeons (or instances) are handled by specific servers or farmed out to temporary servers (&quot;shit, <twitch streamer> streamed a raid on the Dragon of Light temple, now everyone is raiding there! Spin up some extra server shards to handle the Dragon of Light raid&quot;). It could be that some MMO platforms allow for load balancing and sharing between servers, or allow for extra capacity to be called on.. but that stuff is hard.</p>
+<p>In the context where a dungeon is &quot;instanced&quot; i.e. when you raid with your party you exist in a specific instance of that dungeon. Its not like 11 different parties are raiding the dungeon all at once, you'd trip over each other.   However in the context of an un-instanced environ, the more players present, the more work the server has to do. Or maybe the server can only do x ticks, or slices per second and beyond Y players it can't do all of them, so it will priorities the ones that got missed THIS slice to be done first the next slice... and so on. Or it can just skip players at random leading to glitching, stutters, jumps etc. </p>
+<p>EVE online handles this differently. TO over simplify, each solar system... or each space station, planet is a server. Beyond maybe a few dozen players in the same spot, the server runs out of time to process player actions and redistribute to every other player. So instead of skipping players, or time, it <em>slows time down</em> using time dilation. Don't ask me how the &quot;slow&quot; zone matches up with the rest of the universe I dunno (I think they just ignore that for simplicity), but time dilation with hundreds of users fighting in the same spot can slow time down by orders of magnitude. </p>
+<p>Check out <a href="https://en.wikipedia.org/wiki/Bloodbath_of_B-R5RB" target="_blank">https://en.wikipedia.org/wiki/Bloodbath_of_B-R5RB</a> - where like a considerable portion of the entire userbase was fighting the same battle. Time was slowed by like x1000. If your real-time weapon recharge was usually 30 seconds, it now takes HOURS. But in that game its better than being so glitchy its unplayable. Works for them.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g1cvq2k">
+		<a class="author" href="https://www.reddit.com/user/adeveloper2" target="_blank">adeveloper2</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>MMORPG is like McDonalds. It can have many stores around the city so that everyone can order happy meal. However, if everyone in the city goes to the same McDonalds stores then that store does not have enough happy meal for everyone.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/i93gy9" onclick="return false"><span>show</span></a>
+</li>
