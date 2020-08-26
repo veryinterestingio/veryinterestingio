@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>eli5: Why can we upscale video to 4k and even beyond (Nvidia Shield) but cant upscale audio from low bitrate files?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="if9pol">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/if9pol/eli5_why_can_we_upscale_video_to_4k_and_even/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/if9pol" onclick="return false">eli5: Why can we upscale video to 4k and even beyond (Nvidia Shield) but cant upscale audio from low bitrate files?</a>
+		</h2>
+		<!--<span class="date">2020-08-26</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>eli5: Why can we upscale video to 4k and even beyond (Nvidia Shield) but cant upscale audio from low bitrate files?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="g2mbmi5">
+		<a class="author" href="https://www.reddit.com/user/dkf295" target="_blank">dkf295</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You definitely can. The issue is the same as with upscaled video - you're generally not actually accurately representing the missing data, just making a somewhat good approximation of what the computer thinks should be there.</p>
+<p>Few people really have 4K TVs large enough and watch their TVs from a visual distance where it is extremely obvious whether you're looking at 4k or not. Therefore, crappy &quot;4k&quot; video still looks decent.</p>
+<p>Doing an okay job of approximating the tone of an instrument or voice based off of a low quality sample is going to be easier to notice.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="g2man8p">
+		<a class="author" href="https://www.reddit.com/user/duriken" target="_blank">duriken</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Actually we can! <a href="https://en.m.wikipedia.org/wiki/Upsampling" target="_blank">https://en.m.wikipedia.org/wiki/Upsampling</a>
+But upsampling cannot add any new information, so if source is poor quality you cannot make it better.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g2mn88b">
+		<a class="author" href="https://www.reddit.com/user/MTeson" target="_blank">MTeson</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>One way that we regularly &quot;upsample&quot; audio is with surround channels. If you are listening to a stereo (2 channel) music recording from a CD or something on a surround (5.1 channel) system, your audio system tries to intelligently place certain elements as best it can in various speakers. There are often several preset modes, since the logic for music (which they assume you would want surrounding the listener somewhat equally) is different than watching a movie (where you would want dialogue in the center channel and music/fx in the surrounds).</p>
+<p>Like picture upscaling, these modes are not perfect but they are most of the time &quot;good enough&quot; for the average listener.</p>
+<p>NOTE: these best guess surround modes are different than features like Dolby Pro Logic. DPL recordings can actually compress 4 channels (LCRS) into 2 tracks which play like stereo on stereo systems, but for surrounds the Pro Logic decoder unpacks them according to that compression algorithm and it's not a guess, the tracks are discrete and specific.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g2nkv9z">
+		<a class="author" href="https://www.reddit.com/user/marcan42" target="_blank">marcan42</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A lot of this boils down to audio working very differently from video. Any given part of a video frame shows one thing, one object. There is a lot of space around the image for everything to be separated, identified, and for a neural network to try to guess what detail to add. Audio is like a one pixel image, or like a stack of dozens of images blended together. Everything is mixed. Different instruments have different frequencies, but they overlap and blend together and that is what we call music. Splitting things again is hard, and you'd have to perfectly do that in order to try to add detail like a neural network would. And our ears are very sensitive if anything goes wrong.</p>
+<p>That said, we can try. There are different scenarios to consider here.</p>
+<p>First, there is &quot;low bitrate&quot; as in a compressed file, like an MP3. MP3 and other audio compression formats work by throwing away parts of the sound that we can't hear (much). They literally punch holes in the audio and remove certain frequencies. This is similar to JPEG artifacts. In principle, you can smooth over JPEG artifacts and make an image look better (see e.g. waifu2x, which does that for anime-style art), but it isn't something that you can do for any image with quality, it only works well for certain kinds of images. For audio it's similar: you can try papering over the holes by filling them in with &quot;something&quot;, and that does sound better (in fact, more modern compression algorithms like Opus effectively do this by default), but it will never be the original audio. In general, if audio is &quot;simple&quot; enough (like a voice only, or a single instrument) it probably won't have that many artifacts, and if it does then you've lost too much information already.</p>
+<p>Then, there is &quot;low bitrate&quot; as in a lower sampling rate than CD quality (44.1 kHz). In that case, you lose higher frequencies entirely (the audio is muffled). That information is gone. This is like upscaling a lower resolution image. The problem is that images and audio work very differently. With images, different things are in different parts of the image, and adding higher frequencies just adds more detail to them. However, with music, <em>different instruments are at different frequencies</em>, even though they all overlap to some extent. If there is an instrument that only exists at higher frequencies, like cymbals, and you chop off those frequencies (for example by putting the audio through a phone call, at 8 kHz), then those cymbals are gone and nothing will ever get them back. If it's an instrument that starts off at a lower frequency, like the human voice, and you just lost the higher frequencies (harmonics) which make the sound &quot;brighter&quot; (so it sounds muffled but you can hear it), then you can try to add them back by distorting the audio. This is called an &quot;exciter&quot; in audio production and it's a common trick to make parts or entire songs sound &quot;better&quot; or more interesting, but it's not something that will magically restore a low sample rate recording, though it might make it sound a bit better.</p>
+<p>There's also &quot;low bitrate&quot; as in lower bit depth than CD quality (16 bits). In that case, that's like adding noise, like film grain on an image - a (properly created) 8-bit audio file sounds exactly the same as 16-bit audio file, except with a bunch of constant noise added. This whole section also applies if the audio is high bit depth, but just has noise for some other reason. You can try blurring noise in an image away, but you'll lose some real information. You can do that with audio too (it's called a multiband gate, the Audacity noise removal filter works roughly like this), but it probably won't sound terribly good if you need to do it a lot. It works fine when the audio is silent (the noise gets removed) or when it's loud and distinct (you can't hear the noise much), but in the transition in between you get artifacts as quieter sounds mixed with noise suddenly cut to silence once they become quiet enough. If you do it too widely (to the song as a whole or to large frequency bands) then it sounds like cutting in and out. If you do it too finely (to very narrow frequency bands) then you're doing the same thing an MP3 does, punching small holes in the audio, and it literally starts sounding like MP3 artifacts.</p>
+<p>Finally, there is &quot;low bitrate&quot; as in CD quality, which you'll hear from the snake oil salesmen selling &quot;high bitrate&quot; audio at 96kHz/24bit and beyond. This is bullshit. CD quality audio can reproduce everything humans can hear, perfectly (we haven't fully gotten there with video yet, though think of it as a similar concept to a &quot;retina&quot; HDR screen; but technology has been able to do this perfectly for decades with audio). There are technical reasons to use higher sample rates and bit depths in music production, but for finished tracks, it makes no difference or can make things worse. You can downscale from any &quot;high bitrate&quot; audio like that to CD quality and it will sound exactly the same. What usually happens if a song sounds &quot;better&quot; in high definition like that is that it was mastered/produced differently, and they lie and tell you it's because it's high definition, when in fact it's literally a different song.</p>
+<p>I should also add that there's not a whole lot of research into this, and no reason to go off training neural networks like with video, because... If you want high quality audio, you can just get it. Buy the CD, or a lossless download version. The files aren't huge. If we come up with better ways of compressing audio to preserve quality, we can just recompress from the original lossless version. There just isn't much of a reason to attempt to &quot;restore&quot; or &quot;upscale&quot; things like MP3s. Video is different, and there is legit reason to upscale stuff that was originally produced in lower quality, while audio, well, has never been produced in low resolution (we went straight from analog to CDs). </p>
+<p>There are reasons to improve old analog recordings, and some of the above techniques apply, but this is something that usually an engineer/human will do partially manually once (using their ears and artistic judgement as to what to do to the recording) and then we all get to enjoy the finished product. No need for a universal &quot;makeitsoundgooder&quot; algorithm.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g2mthce">
+		<a class="author" href="https://www.reddit.com/user/hungrylens" target="_blank">hungrylens</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Audio is upsampled all the time, but it's not always great. There are some new technologies that are making improvements.</p>
+<p>Here is a video that explains it very simply and better than I can.<br />
+<a href="https://www.youtube.com/watch?v=OG97I2NagvY" target="_blank"><a href="https://www.youtube.com/watch?v=OG97I2NagvY" target="_blank">https://www.youtube.com/watch?v=OG97I2NagvY</a></a></p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/if9pol" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
