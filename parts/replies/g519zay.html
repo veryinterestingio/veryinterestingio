@@ -1,0 +1,47 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TuurDutoit" target="_blank">TuurDutoit</a>
+			<div class="markdown"><p>To expand upon this:</p>
+<p>Say you have to store 1 billion code-link pairs. Each code is stored as a 64-bit (8 byte) number and each corresponding link has a 50 character limit. Most characters (especially in URLs) are encoded as 1 byte. That makes at most 58 bytes of storage for each code-link pair, or 58 billion bytes for the whole database table. That's 58 GB. Quite large for a DB (you won't run that easily off your average laptop), but still very manageable for most companies - especially the size of Spotify.</p>
+<p>As already mentioned in the comment above, there are way more efficient ways if storing this data. For example, instead of storing a full URL (e.g. <code>https://www.spotify.com/track/123456790</code>), you could store just the content type (song, playlist, user, ...) as a single byte (giving you 256 possible content types; e.g. 0 is a song, 1 is a playlist, 2 is a user, etc.) and the ID of the  song/playlist/user as 32 or 64-bit integer. With this method, you only have to store 8 (code) + 1 (type) + 8 (ID) = 17 bytes for each row; less than a third of our first attempt!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lionon" target="_blank">lionon</a>
+			<div class="markdown"><p>It's basically like a tree. HTTP URLs with DNS are trees and can get you to virtually anything on the internet with a few letters.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bibbidybobbidyboobs" target="_blank">bibbidybobbidyboobs</a>
+			<div class="markdown"><p>ELI5 what a code-link pair is</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheRiflesSpiral" target="_blank">TheRiflesSpiral</a>
+			<div class="markdown"><p>In a database, it can be as simple as two fields. One field holds the &quot;code&quot; (the Spotify code in this example) and the other field holds the URL to the -whatever- (song/playlist/album/etc)</p>
+<p>You can visualize this as a spreadsheet. Two columns, billions of rows.</p>
+<p>In reality, there are likely more fields to make searching more efficient, but the code and value are all that are strictly necessary.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TuurDutoit" target="_blank">TuurDutoit</a>
+			<div class="markdown"><p>It's not a technical term or anything. The comment above explained that you somehow need to have a database on a server that can map a certain code to a certain link (URL), in other words you need pairs of codes and links:  &quot;code-link pair&quot; is the best word I could come up with.</p>
+<p>In a traditional database, you'd have a row for each pair, with a column for the code and a column for the link.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SvPateyl" target="_blank">SvPateyl</a>
+			<div class="markdown"><p>The generic name of this data structure is key-value pair. The first part - the key - serves as an index which can be easily searched by the database engine or program runtime, second part is the real value stored in the pair.</p>
+<p>For example weekdays could be encoded as [1, 'Monday'], [2, 'Tuesday'] etc. and by looking up weekday with key equal to 1 you receive text value 'Monday'.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thechickenmoo" target="_blank">thechickenmoo</a>
+			<div class="markdown"><p>I'm sure its load balanced at the very least and it would be very easy to split to different clusters/tables/etc for any given piece of that number based simply on specific digits. I doubt it's as inefficient as you might think at first.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Delantier" target="_blank">Delantier</a>
+			<div class="markdown"><p>I think you may have misread the note. I am specifically saying that it is not inefficient.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thechickenmoo" target="_blank">thechickenmoo</a>
+			<div class="markdown"><p>Totally did, but ill leave my note since it kind of explains one of the methods you mentioned.  Haha.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/QuarterSwede" target="_blank">QuarterSwede</a>
+			<div class="markdown"><p>Good job Watson.</p></div>		</li>
+					</ul>
+	
