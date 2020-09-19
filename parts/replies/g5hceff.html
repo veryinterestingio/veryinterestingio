@@ -1,0 +1,97 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AltitudeF4" target="_blank">AltitudeF4</a>
+			<div class="markdown"><p>Like this but on graphing calculators like the Ti-84 how would something so simple solve questions like the determinant of a 586x586 matrix?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Angdrambor" target="_blank">Angdrambor</a>
+			<div class="markdown"><blockquote>
+<p>determinant of a 586x586 matrix?</p>
+</blockquote>
+<p>It's not a hard problem. There's a formula, and you can just plug and chug. It all breaks down to simple arithmetic, and the calculator is really quite fast at arithmetic. </p>
+<p>Under the hood, some dude wrote a software to handle determinants pretty much exactly the way you would handle it with a pencil and paper, except that instead of writing numbers down on paper, it writes them down in a memory register. It also doesn't get tired or frustrated or start feeling petulant towards the teacher, the way I would if I tried to grind through a 586x586 matrix.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DoomGoober" target="_blank">DoomGoober</a>
+			<div class="markdown"><p>I am a programmer and with any hard programming problem I solve samples of the problem with pencil and paper first so I understand the problem. It's very tedious and error prone but if I can solve it with pencil and paper, coding it is just &quot;translating&quot; my sample procedure into computer language and generalizing it for all inputs.</p>
+<p>In fact this is one of the keys to programming deterministic algorithms: do it slowly by hand then translating those instructions to the computer is easy. Beginning programmers tend to think the computer has some magic shortcut but if you can't solve a problem by hand you probably can't code it.</p>
+<p>(There are some exceptions like machine learning where it's so complicated a human doesn't fully understand everything the computer is doing but those are not normal algorithms like determinants of large matrices.)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zorngov" target="_blank">zorngov</a>
+			<div class="markdown"><p>The &quot;standard way&quot; in which you're usually taught to compute determinants by hand is known as <a href="https://en.wikipedia.org/wiki/Laplace_expansion" target="_blank">Laplace expansion.</a> This method is recursive and involves commuting determinants of smaller matrices. Although it may seem innocent, some careful counting shows that it takes on the order of n! (n factorial) operations to compute for an n x n matrix. </p>
+<p>For context, 586! is approximately 10\^1369, an absolutely huge number. All of the supercomputers in the world together can perform about 1 ExaFLOPS = 10\^18 FLOPS (floating point operations per second).  So it would take roughly 10\^1351 seconds to compute the determinant of a 586 x 586 matrix in this way.  This is merely 10\^1333 times the age of the universe. </p>
+<p>So it's not really a case of &quot;There's a formula, and you can just plug and chug. &quot; in practice. </p>
+<p>A particularly nice way of computing determinants is to perform an <a href="https://en.wikipedia.org/wiki/LU_decomposition" target="_blank">LU decomposition</a>. That is, write your matrix A = LU where L is lower triangular and U is upper triangular. This can be done, more or less by using the Gaussian elimination algorithm and takes on the order of n\^3 operations (586\^3 =  201230056 way smaller than 586!). </p>
+<p>The determinant of a triangular matrix is just the product of the diagonal entries (n-1 multiplications)  and then you use the fact that det(A) = det(L) det(U) and you've now reduced your computation time by about 10\^1333 ages of the universe.</p>
+<p>It's often the case that the algorithms taught in math classes are not the best way of doing things on a computer. People spend research careers developing suitably efficient (and less error prone) algorithms.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SynarXelote" target="_blank">SynarXelote</a>
+			<div class="markdown"><blockquote>
+<p>It's not a hard problem</p>
+</blockquote>
+<p>Yes it is. Linear algebra can get quite complicated to implement once matrices become big enough, since the number of operations needed grows very fast.</p>
+<blockquote>
+<p>pretty much exactly the way you would handle it with a pencil and paper</p>
+</blockquote>
+<p>I mean it depends on how you do it by pen and paper, but that's unlikely. </p>
+<p>Most people are taught to expand the determinant, and so to find the determinant of a matrix of size n, you need to compute the determinants of n matrices of size (n-1), which lead to O(n!) operations, which is way too much.</p>
+<p>The way computers do it is for example by using LU factorization (which I'm sure some people learn to do) paired with fast matrix multiplication (which I don't believe is ever taught for use with pen and paper, though I'm willing to be proven wrong). This methods only need as much O(n^3 ) or as few as O(n^2.3729 ) operations depending on the specific implementation.</p>
+<p>&quot;Eli5&quot; version : human way to compute those takes too much time for big matrices. Computers use smarter algorithm that humans could also use with pen and paper, but never do since humans don't typically compute big determinants by hand : they have computers for that.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EgNotaEkkiReddit" target="_blank">EgNotaEkkiReddit</a>
+			<div class="markdown"><p>Computers prime strength is literally the ability to do a lot of math really fast. Ti-84 is by no means a simple device, it's no supercomputer but it is more than capable of following a generalized algorithm that finds determinants of an n * n matrix. </p>
+<p>So: to answer your question:</p>
+<ul>
+<li>
+<p>Because computers are a lot more complicated than you think</p>
+</li>
+<li>
+<p>Because the math you're thinking of is a lot simpler than you think it is. </p>
+</li>
+<li>Because most mathmatical problems you'd commonly use a graphing calculator to work out can be solved using general methods we've known about for decades, and someone programmed that method in to the calculator so that it can solve those problems as well.</li>
+</ul></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Angdrambor" target="_blank">Angdrambor</a>
+			<div class="markdown"><blockquote>
+<p>computers are a lot more complicated than you think</p>
+</blockquote>
+<p>It's true pretty much no matter what level you are at. I'm a devops engineer, so my customers are other software developers, and my entire job is to help them deal with the complications in our toolchain. Even with all that, I still sometimes realize that the whole empire of dirt is rooted in some pretty mysterious stuff. I regard it as an abyss that I shouldn't gaze into for too long.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/domiran" target="_blank">domiran</a>
+			<div class="markdown"><p>In short, the programmers basically write out the solution, and it will work for any problem in the domain. 586x586 vs 5860x5860, the only limit is CPU time and RAM to store the temporary results.</p>
+<p>I've written various basic calculators. You can assign a variable x to a number, plug in sin(3.14) + 1 / x, and get a result. It'll work out the correct order of operations. One of the first things this calculator of mine does is verify your input can be interpreted, tries to interpret them, and then turns them into numbers. If any part of this fails, it kicks it back to you and calls you a dumbass.</p>
+<p>I haven't done determinants in forever but your graphing calculator can only solve things that have a perfectly defined method of solving. Solving for 5 + 3 is a definite problem. Solving for 5 + x = 8 is also a definite problem. Solving for (5 + x) * (1 + 2x) = 3 has a definite solution. Solving for 5 + x = y has multiple solutions. Matrix multiplication is also a solved problem. There is a generalized way to multiply any two matrices of arbitrary size (assuming they fit the correct criteria for being compatible sizes).</p>
+<p>This page has a rather simple algorithm to solve for determinants that the TI-84 may use.</p>
+<p><a href="https://www.mathsisfun.com/algebra/matrix-determinant.html" target="_blank">https://www.mathsisfun.com/algebra/matrix-determinant.html</a></p>
+<p>There are a load of complicated ways a computer may solve a math problem but the calculators of yore definitely do not use any kind of machine learning, as they wouldn't have the computing capacity for it. If there isn't a well-defined method to solve it for every problem in the domain, they can't do it. For every &quot;x + 3 = 5&quot;, there's a go to piece of code that runs to get x.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FS2Z" target="_blank">FS2Z</a>
+			<div class="markdown"><p>Fun fact: the method on that page (cofactor expansion) has factorial complexity (i.e. if your matrix is n×n, the runtime will be up to some multiple of n!).</p>
+<p>For that reason, nobody uses it for generalized determinants - trying to find the determinant of a 10x10 matrix would take half a million times longer than a 3x3 matrix!</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DustinAwesome" target="_blank">DustinAwesome</a>
+			<div class="markdown"><p>I'm over 6 x 5 years old and I have no idea what you just said lol.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/domiran" target="_blank">domiran</a>
+			<div class="markdown"><p>Which bit? For most common math operations, like doing division, square root, or even cos and sin, there's a formula to approximate an answer. If part of your equation -- say, &quot;15 + sin(3) / sqrt(50 / x\^2)&quot; -- contains a math function, it knows how to calculate because a programmer quite literally wrote a function to calculate sin of any number. If I give it two vectors -- &quot;[1, 2, 3] . [5, 2, 9]&quot; it knows how to calculate a dot product for any two vectors of the same size.</p>
+<p>The ELIComputerScienceMajor involves knowing a little bit about programming and how something like this can actually be done but suffice to say the calculator picks out bits it understands and calculates them individually until all that's left is one number, which will be the final answer. For &quot;1 + 8 / 4 - 5&quot;, it'll replace &quot;8 / 4&quot; with 2, giving you &quot;1 + 2 - 5&quot;, then replace &quot;1 + 2&quot; with 3, giving you &quot;3 - 5&quot; then replace that with &quot;-2&quot;, which is your result. How it interprets order of operations is complicated. Throwing in parentheses makes it even <em>more</em> complicated.</p>
+<p>I wrote a calculator a while back where all I have to say to add a new operation is the symbol or function (like % or tan) and the actual code to go with it and it will accept new operations. The modulo operator, %, is tied to a function in the program named CalculateModulo that takes two numbers and spits out a single number. The tan function is tied to CalculateTangent that takes a single number and spits out a single number.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DustinAwesome" target="_blank">DustinAwesome</a>
+			<div class="markdown"><p>You had me up until you said square root and then you totally lost me haha. It's all good man I was just making a joke about my stupidity lol, I didn't expect a serious response. Anything beyond division and I'm totally lost, add in letters to the mix and I feel like I'm reading chineese.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Swissboy98" target="_blank">Swissboy98</a>
+			<div class="markdown"><p>And if there isn't a set way you can also use numerical methods instead of analytical ones.</p>
+<p>Not a nice way nor is it efficient but processing power is cheap nowadays.</p></div>		</li>
+					</ul>
+	

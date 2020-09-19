@@ -1,0 +1,85 @@
+<li class="post" data-handle="itxyq3">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/itxyq3/eli5_how_do_calculators_solve_complex_problems/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Mathematics">Mathematics</span>
+			<a href="/posts/itxyq3" onclick="return false">How do calculators solve complex problems like matrices graphing etc. do programers have to write out every solution or are there shortcuts?</a>
+		</h2>
+		<!--<span class="date">2020-09-19</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: How do calculators solve complex problems like matrices graphing etc. do programers have to write out every solution or are there shortcuts?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="g5hpqmt">
+		<a class="author" href="https://www.reddit.com/user/Racsoth" target="_blank">Racsoth</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Ingredient 1: Computers are machines that perform simple operations VERY fast.</p>
+<p>Ingredient 2: Most complex math can be decomposed into (or approximated by) simpler math. For example, imagine that you know how to add 2 numbers. Well, with that tool, you can also multiply numbers (by performing several additions) and even calculate exponentiation (by performing several multiplications, which we already mentioned you can do with addition).</p>
+<p>By combining the two ingredients (a set of simple operations and knowledge on how to decompose complex math into simpler math), you get a machine that can perform complex math.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="g5i2kl7">
+		<a class="author" href="https://www.reddit.com/user/pyromaster114" target="_blank">pyromaster114</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Like everyone else said. Computers do math, really fast. That's actually <em>all</em> they do. </p>
+<p>The programming / firmware inside your calculator interprets the user input, applies the formula / method to solve the problem, and then does it. Much like you would show a person 'how to do algebra', a programmer 'shows' the calculator how. </p>
+<p>It's not like they have every possible answer preprogrammed in, no; that would be insane. And impossible.</p>
+<p>As others said, there are actually lots of shortcuts and specific tactics for increasing efficiency, but it doesn't change the fundamental idea.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g5hceff">
+		<a class="author" href="https://www.reddit.com/user/domiran" target="_blank">domiran</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Are you referring to a complex math program like Matlab? The hard part of most of these is actually parsing out the bits you type in, either for a 4x4 matrix, a summation or just a basic linear formula.</p>
+<p>There is almost always an algorithm to do this, a set way to do it that works for every problem. If you give Google y = sin(x\^2) - cos(2x) and ask it to graph, it works out what the variables are, turns that into a formula internally and graphs it using the exact formula you typed. If you try entering y = sin(x\^2) - cos(x*y), Google doesn't interpret that as a formula since it gets way more complicated and Google chose not to bother.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g5i3l2l">
+		<a class="author" href="https://www.reddit.com/user/MrMagistrate" target="_blank">MrMagistrate</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>These little computers use what’s called “numerical analysis” to solve most problems. </p>
+<p>Basically, some nerdy programmer put some “algorithms” into the computer which are series of simple steps for the computer to follow to solve certain types of problems. Once it recognizes the kind of problem it will put it into an algorithm it knows can solve it. The numerical analysis algorithms will “guess” the answer to the problem, plug that guess back into the problem, and check if its guess was correct over and over until it has a really good guess. If it wants to find the square root of two (sqrt(2) = x) it might use a “guess-check” algorithm something like this </p>
+<p>Guess: sqrt(2) = 1.5
+Check : 1.5<em> 1.5 = 2.25 (too big! Try again)
+Guess: sqrt(2) = 1.25
+Check: 1.25</em>1.25 = 1.5625 (too small! Try again)</p>
+<p>Now it knows the answer is between 1.5 and 1.25, so let’s try something right in between, AKA the average</p>
+<p>Guess: sqrt(2) = (1.5+1.25)/2 = 1.375
+Check: 1.375*1.375 = 1.89 (too small! Try again)</p>
+<p>Okay, so it has to be between 1.375 and 1.5, take the average again which is 1.4375</p>
+<p>Guess: sqrt(2) = 1.4375
+Check: 1.4375*1.4375 = 2.066 (so close! Let’s try this again...)</p>
+<p>It will keep doing this until it “converges” to one number, in other words, until two guesses in a row are basically the exact same. Then it knows it found the answer, or close enough anyways. This is just of many different “numerical methods” and is probably one of the most simple. More complicated methods will basically try to get a more precise answer with less guesses for more different types of problems.</p>
+<p>The thing about sqrt(2) is that it doesn’t have an exact answer because it’s an “irrational number.” In other words, the computer could run this algorithm until the end of time and not converge to one answer, so we settle for “good enough.” The number literally goes on forever like pi.</p>
+<p>People actually solved problems like that by hand for a long time. We found a Babylonian clay tablet where someone used numerical analysis to solve sqrt(2) = x as early as 1800BC:</p>
+<p><a href="http://it.stlawu.edu/~dmelvill/mesomath/tablets/YBC7289.html" target="_blank">http://it.stlawu.edu/~dmelvill/mesomath/tablets/YBC7289.html</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g5i437s">
+		<a class="author" href="https://www.reddit.com/user/jedi-son" target="_blank">jedi-son</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Computers perform very simple arithmetic extremely fast. This allows them to solve harder problems numerically by using iterative approximation algorithms. Taylor series are a good example of this idea (though not necessarily the exact algo a calculator may be using).</p>
+<p>For example, in my work I needed to invert a large matrix without access to a mathematical package. So we implemented <a href="https://en.m.wikipedia.org/wiki/Conjugate_gradient_method" target="_blank">a simple approximation from scratch. </a> Our code relied purely on basic arithmetic like addition and multiplication to accomplish the more complicated operation of matrix inversion.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/itxyq3" onclick="return false"><span>show</span></a>
+</li>
