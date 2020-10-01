@@ -1,0 +1,57 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/raygundan" target="_blank">raygundan</a>
+			<div class="markdown"><blockquote>
+<p>At the speed of light, the time it takes electricity to cross the surface of the chip is so drastically close</p>
+</blockquote>
+<p>To put this another way, at 4GHz, light can only travel about three inches (7.5cm) per clock cycle.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Deto" target="_blank">Deto</a>
+			<div class="markdown"><p>And in physical circuits, pulses are even slower - traveling between 1/2 to 2/3rds the speed of light.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ledow" target="_blank">ledow</a>
+			<div class="markdown"><p>Which would be true for the electricity too, were it light and in a vacuum.  So it's actually far worse than that.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/raygundan" target="_blank">raygundan</a>
+			<div class="markdown"><p>Yeah, I didn't mean to imply that signal propagation happened at the speed of light-- just that one-fourth of a nanosecond is an astonishingly small amount of time during which even the universe's maximum speed limit only lets something move a couple of inches.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eightfoldabyss" target="_blank">eightfoldabyss</a>
+			<div class="markdown"><p>I'm sorry, are you telling me that in addition to transistors getting so small and close to each other that the electron's wavelength is significant, but we're also running them so fast that the speed of light has become a significant limiting factor?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MiffedMouse" target="_blank">MiffedMouse</a>
+			<div class="markdown"><p>No. The speed of light is a significant issue, but it is not the reason chips have stopped at 5 GHz. Also, asynchronous (as in no clock signal) CPUs exist. I should know, I helped work on some.</p>
+<p>The actual reason is transistor size and heat dissipation. Transistors have been stuck on ~1 volt power internally for decades (lower voltage means more leakage, and more errors). However, power goes up with higher frequency (my math here was probably wrong, see below).</p>
+<p>Why is that so bad? Almost all the power the computer uses is turned into heat by the transistors. That heat needs to dissipate out of the chip before the transistor destroys itself. That is a problem, as silicon is not a good heat conductor.</p>
+<p>THAT is why cooling your computer lets you push the speeds up a bit higher.</p>
+<p>The speed of light issues above are a tricky engineering problem, but solvable. The heat problem doesn’t have a solution yet.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blaktronium" target="_blank">blaktronium</a>
+			<div class="markdown"><p>The volt frequency curve is determined by the foundry process, so not all processes will double power usage between 3ghz and 5. And some will quadruple it for the same change.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheLootiestBox" target="_blank">TheLootiestBox</a>
+			<div class="markdown"><p>Lower voltages lead to longer electron wavelengths and hence more tunneling, i.e. leakage. Simply put, the electron wavelength is the actually root of the thermal issue.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheLootiestBox" target="_blank">TheLootiestBox</a>
+			<div class="markdown"><p>The electron wavelength causes issues at nanoscales due to tunneling, which prevents smaller transistors from operating reliable. Lower voltages (longer electron wavelength) lead to more tunneling, so this is also the root cause of the thermal issue. The collection of these factors create a lower limit to transistor size and packing density. The size of the entire integrated circuit cannot be made arbitrarily small due to this. Hence the speed of light becomes a limiting factor as the time scale is reduced with higher operating frequencies (GHz).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Cossack-HD" target="_blank">Cossack-HD</a>
+			<div class="markdown"><p>There are consumer CPUs with cores running at independed speeds. Some cores can &quot;park&quot; (turn off) or run at 1GHz while neighbouring core blasts workloads at 5GHz. Intel CPUs can do 5.1GHz all-core overclock with good liquid cooling, nothing uber expensive.</p>
+<p>There are other buses in CPU that move data between cores and different controllers, the buses run at much lower frequency.</p>
+<p>In AMD Zen 2 CPUs, going beyond 4.4 GHz doesn't seem to give much better performance. Scaling is not linear, there is a bottleneck elsewhere.</p>
+<p>AMD Zen 2 can perform more calculations per clock than Intel's most recent somethingLake, so frequency is not everything. One core has several execution units, and scheduler (thing that prepares microinstructions) plays huge role in x86 CPU performance.</p></div>		</li>
+					</ul>
+	
