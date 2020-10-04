@@ -1,0 +1,53 @@
+<div class="answers">
+	<div class="answer" data-handle="g79d34p">
+		<a class="author" href="https://www.reddit.com/user/Rannasha" target="_blank">Rannasha</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Mathematics doesn't depend on the order of operations. That concept is just something we need for the way we typically write down operations. If we were to change the order of operations, all that would be needed is for existing texts to be rewritten to add parentheses to formulas that were affected, but nothing would fundamentally change.</p>
+<p>Note that there are other ways to write down mathematical operations where something like the order of operations isn't even a thing, because the notation is unambiguous. One such example is the &quot;Polish notation&quot;. This notation places the operator in front of the operands. So instead of &quot;1 + 2&quot;, one would write &quot;+ 1 2&quot;.</p>
+<p>Combining operations is easy too: &quot;(1 + 2) <em> 3&quot; becomes &quot;</em> + 1 2 3&quot;.</p>
+<p>To evaluate expressions in Polish notation, you always evaluate the innermost expression first and work your way outwards. There is no need to decide on whether multiplication or addition takes precedence or where to include parentheses. There is only one way to interpret this notation.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="g79pudr">
+		<a class="author" href="https://www.reddit.com/user/DefenestrationPraha" target="_blank">DefenestrationPraha</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Are you speaking of notation (the way how operations are written down on paper), or real change of precedence between, say, addition and multiplication?</p>
+<p>If the first, there are multiple notations already, some suitable for some purposes, others for other purposes. That has no influence on the math working. I would compare it to your name written down. You may write it down in Latin alphabet, Cyrillic alphabet or Nordic runes, you are still u/WizardOfLies.</p>
+<p>If the second, yes, that would break the algebraic structures. People who study algebra work with so-called rings (and their lesser brethren semirings), which need to satisfy some requirements, including distributivity. Once you throw this out of the window, you throw out of the window entire books of results, probably the very concept of a polynomial as well.</p>
+<p>But there is a third possibility lurking in your question. Creating new structures which work differently from the existing rings and semirings. You are free to do that, mathematics is all about creativity. But if you cannot demonstrate your new creation to be either elegant or useful, do not expect many people to join you in your research.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g7avnbg">
+		<a class="author" href="https://www.reddit.com/user/Nyrin" target="_blank">Nyrin</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This isn't strictly a mathematics question, believe it or not, but more a question on computational syntax.</p>
+<p>Order of operations is a set of conventions we use to <em>infer</em> the sequencing of discrete evaluations in a compound statement. It's the set of rules we apply to translate ambiguous, implicit ordering into explicit ordering that's guaranteed to be consistent.</p>
+<p>So when we say that OOO is responsible for making it true that</p>
+<pre><code>1 + 2 x 3</code></pre>
+<p>Evaluates to '7' and not '9' (rule: resolve multiplication before addition), what we're skipping over is that all the rule is actually responsible for is telling us where the parentheses would go if they weren't omitted; being extra verbose, the above resolves to:</p>
+<pre><code>(1 + (2 x 3))</code></pre>
+<p>Which is now what we call an <em>unambiguous parse</em> of the previously ambiguous statement.</p>
+<p>You don't need order of operations at all in order for mathematics at any level to work, and that's provable because every &quot;rule needed&quot; form like the first can be represented as a &quot;rule not needed&quot; form like the second. The existence of OOO is purely a convenience of shared implicit decisions to make it less tedious to write the exact same patterns of parentheses over and over again.</p>
+<p>So to your question: things work just fine as long as everyone uses the same convention for the resolution of ambiguous parses and would resolve the &quot;where do I put the parentheses&quot; question with the same answers. If, tomorrow, everyone agreed that addition now comes before multiplication, everyone in the loop would be fine knowing that &quot;1 + 2 x 3&quot; is now 9 and not 7.</p>
+<p><em>But,</em> every bit of old recorded syntax you had would now be a mess: you have to ask each and every time &quot;was this written before or after the rule?&quot;, which would get tiresome so very quickly.</p>
+<p>There's an additional consideration in the form of <em>optimality of encoding representation.</em> I haven't done the math (pun intended), but I strongly suspect that if you tallied up the places where an &quot;addition before multiplication&quot; rule could save extra parentheses against where the current &quot;multiplication before addition&quot; rule saves them, you'd find that what we do is way more efficient. Imagine how you'd need to rewrite &quot;a <em> b + c </em> d&quot; expressions and you can see where you'd be adding much more work than you'd save!</p>
+<p>In that way, even if it's possible to use <em>any</em> semantically complete set of parsing rules, it may be the case that there's a clearly <em>optimal</em> set of rules that we're already well-aligned to. &quot;Possible, but not worth it&quot; is probably the best summary.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g79ph0x">
+		<a class="author" href="https://www.reddit.com/user/Cliff_Sedge" target="_blank">Cliff_Sedge</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It is intrinsic because operations with higher priority represent repeated versions of operations with lower priority.</p>
+<p>Exponents represent repeated multiplication. Multiplication represents repeated addition.</p>
+<p>Therefore simplifying powers should be done before products and products before sums. </p>
+<p>Non-algebraic functions, such as sin(x), log(x), etc. are most similar to repeated multiplication in their complexity, so should be handled in the exponents step - though most use parentheses (explicit or implied) to make clear what to do first.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g79kr1e">
+		<a class="author" href="https://www.reddit.com/user/manifestsilence" target="_blank">manifestsilence</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Already great answers here, but for a deeper dive into why there are limitations to what we can prove in math and there may be an inherent truth to math beyond our systems, I suggest this book, which is more biography/history than math but goes into enough of the mathematical ideas to make them make sense:</p>
+<p>Rebecca Goldstein</p>
+<p>Incompleteness: The Proof and Paradox of Kurt Gödel (Great Discoveries)</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
