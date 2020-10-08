@@ -1,0 +1,58 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/subscribedToDefaults" target="_blank">subscribedToDefaults</a>
+			<div class="markdown"><p>Granted this wouldn't neceasarily work for laptops, but for desktop stations, what's preventing a policy of after-hours updates to avoid interrupting the workday?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/darthcaedus81" target="_blank">darthcaedus81</a>
+			<div class="markdown"><p>Nothing and any admin worth his salary will schedule updates to desktops out of hours using Wake-on-LAN to ensure compliance. However if users don't log out, this can cause problems when the inevitable reboot occurs and then the screams of &quot;I LOST ALL MY WORK!!&quot;</p>
+<p>So we tend to push them, let them install and then give users a nice big window with plenty of gentle nudges for reboots. If we are ignored repeatedly, then it's gonna reboot anyway. Can't say you weren't warned. </p>
+<p>Look, as Admins, we've got work to do, you've got work to do, let's just try and play nice together</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Noctew" target="_blank">Noctew</a>
+			<div class="markdown"><p>We used to have software running on the desktops that shuts them off at the end of the workday to save energy. No keeping them on unless you get an exception. You lost your files once, you'll have learned the lesson.</p>
+<p>Nowadays, I don't know anyone who doesn't use a laptop - that saved  the company from total chaos when suddenly everybody had to work from home because of Covid-19.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/subscribedToDefaults" target="_blank">subscribedToDefaults</a>
+			<div class="markdown"><p>Wake on LAN was on my mind as I was writing my comment. Thanks for confirming my thoughts.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/currentscurrents" target="_blank">currentscurrents</a>
+			<div class="markdown"><p>One of the corporate environments I worked in would automatically force-logout all users in the middle of the night - every night, whether there was an update or not. </p>
+<p>I'm actually kind of a fan of this approach. It provided a good way to make people get used to saving their work at the end of the day, gave a window to do forced updates, and avoided performance issues that might arise from leaving the computer on for months.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jack_BE" target="_blank">Jack_BE</a>
+			<div class="markdown"><p>It's very common to schedule updates on &quot;always on, always connected&quot; devices outside of work hours. Desktops and Virtual Desktops fall under this.</p>
+<p>However more and more of the workforce is switching to laptops. It was already ongoing, and COVID accelerated it even more. On laptops you need to presume &quot;only available during work hours&quot;, and schedule accordingly.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/blablahblah" target="_blank">blablahblah</a>
+			<div class="markdown"><p>This setting exists. If you go to Windows Update, there's an option to set your &quot;active hours&quot; so it won't restart the computer during that time.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/subscribedToDefaults" target="_blank">subscribedToDefaults</a>
+			<div class="markdown"><p>Yes that is true, but I'd expect most workplace IT departments would be configuring it with something along the lines of group policy.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OneAndOnlyJackSchitt" target="_blank">OneAndOnlyJackSchitt</a>
+			<div class="markdown"><p>Corporate environment checking in.</p>
+<p>So our MSP has a thing installed where, if a high-priority update is installed, there's a big bright yellow window that pops up and obscures 1/4 of the whole screen with always-on-top that lets you restart now or postpone up to 4 hours.</p>
+<p>Besides that, all of the computers in the offices have wake-on-lan enabled. About twice a month, I push updates to the machines using PDQ Deploy. These install silently and don't force a restart. I push the restart after hours when no one is logged in.</p>
+<p>The only deficiency in this is that Windows Feature Updates aren't easily deployable this way so those require me to RDP into the machines when I can and manually run them. (We are not currently running WSUS.)</p>
+<hr />
+<p>In case you're Googling PDQ Deploy and Windows 10 Feature Update and find this post: Feature Updates CAN be deployed using PDQ Deploy but you have to copy an up-to-date Windows 10 installer (all files inside the ISO or all files the media creation tool puts on a flash drive) to the machine and then run setup.exe with a bunch of command line switches (don't run from a network share). It doesn't set the Restart Needed flag so there's no way to tell when the update is done running and you're ready to restart. It doesn't update the Windows version number until after the computer restarts so it's sort of a blind update that may or may not work. Setup.exe returns immediately with a success code so there's not way to tell when it's done, either successfully or not. Also, when you do push restart can take 30+ minutes versus doing it from Windows Update.</p>
+<p>setup.exe /auto upgrade /quiet /noreboot</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Azudekai" target="_blank">Azudekai</a>
+			<div class="markdown"><p>If updates didn't do stupid shit like hide/remove features, reinstall Skype (and run it at start), and advertise their shitty apps with splash screens and taskbar pins maybe users would be more positive about them.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MarshallStack666" target="_blank">MarshallStack666</a>
+			<div class="markdown"><p>This needs about half a million more upvotes.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/surfacing_husky" target="_blank">surfacing_husky</a>
+			<div class="markdown"><p>Yesssss!!!!</p></div>		</li>
+					</ul>
+		</ul>
+	
