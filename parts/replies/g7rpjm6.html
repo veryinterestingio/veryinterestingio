@@ -1,0 +1,93 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/suddenly_seymour" target="_blank">suddenly_seymour</a>
+			<div class="markdown"><p>Good answer. Just nitpicking, but technically the A320neo was the first aircraft in service with a PW1100G. A220 came afterwards with the 1500G.</p>
+<p>Also just because no one in this thread has given any hard numbers, here are some for OP:</p>
+<ul>
+<li>
+<p>PW1000G (geared turbofan): fan max rpm is around 5k, low pressure shaft at 10-15k rpm, high pressure shaft at 20-25k rpm</p>
+</li>
+<li>
+<p>CFM-56 (common on older A320s and B737s): LPC max rpm around 5k, HPC max rpm around 15k</p>
+</li>
+<li>JT8D (old engine once common on MD-80s, DC-9s, very old B737s, B727s): LPC max rpm around 8k, HPC max rpm around 12k</li>
+</ul></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SyrusDrake" target="_blank">SyrusDrake</a>
+			<div class="markdown"><p>I'm not even an engineer but just reading &quot;25k RPM&quot; is already giving me anxiety...</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/suddenly_seymour" target="_blank">suddenly_seymour</a>
+			<div class="markdown"><p>It's giving Pratt's engineers anxiety too, it seems. There have been lots of challenges with the HPC and HPT hardware already.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JP8_And_Coke" target="_blank">JP8_And_Coke</a>
+			<div class="markdown"><p>Check out the RPM on the F-16 Jet Fuel Starter, that starts the main engine. 65k:<br />
+&nbsp;<br />
+(PDF warning)<br />
+&nbsp;<br />
+<a href="https://asmedigitalcollection.asme.org/GT/proceedings-pdf/GT1986/79290/V002T02A001/2396411/v002t02a001-86-gt-1.pdf&ved=2ahUKEwjU7trh5p3sAhWSvZ4KHRc_Bl0QFjACegQILxAB&usg=AOvVaw3Qmgb0R_SZd8iK7lxg-hnd&cshid=1601913255085" target="_blank">https://asmedigitalcollection.asme.org/GT/proceedings-pdf/GT1986/79290/V002T02A001/2396411/v002t02a001-86-gt-1.pdf&ved=2ahUKEwjU7trh5p3sAhWSvZ4KHRc_Bl0QFjACegQILxAB&usg=AOvVaw3Qmgb0R_SZd8iK7lxg-hnd&cshid=1601913255085</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/suckmywakelol" target="_blank">suckmywakelol</a>
+			<div class="markdown"><p>Check out APU speeds. (small turbine generator in the tail of the plane)</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AddisonTract" target="_blank">AddisonTract</a>
+			<div class="markdown"><p>Would love to hear your spiel on surge margin if you've got the time to type it out. I've had a good understanding of turbofans for a while, but more from a maintenance engineering viewpoint. The design constraints on machinery like this are very interesting.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BobbyP27" target="_blank">BobbyP27</a>
+			<div class="markdown"><p>In a compressor, each blade row is designed to have the flow arrive at the blade at a particular angle, a bit like the angle of attack of an aircraft wing.  This angle is determined by the rotational speed of the blade and the axial speed of the air, as well as any component of circumferential speed in the air.  The axial speed of the air comes down to the mass flow, the air density and the size of the annulus (the area between the hub and casing).  As air moves through a compressor, the pressure goes up and the density goes up, so the annulus gets smaller to maintain the desired axial velocity so that the flow hits the next blade at the correct angle.  If you run the compressor slower than its design speed, each blade does a bit less work, and the pressure goes up less than intended, so the density goes up less than intended.  In a fixed annulus this means the axial velocity is not at the design value.  Over a number of stages this effect is cumulative, the more stages the more the deviation from the design intent.</p>
+<p>In a multistage compressor running slower-than-design, the front stages tend to get overloaded and the back stages under-loaded, while at faster-than-design the opposite happens, the front is unloaded and the back over-loaded (by faster than design I don't mean a mechanical over-speed, rather a compressor will have an aerodynamic &quot;design point&quot;).  If any one stage is too overloaded, that is the angle of attack on the blades is too high, the ability of the blades to compressor the flow breaks down, and all of the work that stage should do shifts to the neighbouring stages causing them to be overloaded, and eventually the whole compressor stops compressing.  As there is high pressure behind the compressor, the result is the combustion chamber empties out through the compressor, this is a surge, and a Very Bad thing.</p>
+<p>With a multispool engine, the aerodynamic design of the compressor and turbine stages on each spool can be arranged so that as they go off design, the mechanical speed of each spool changes differently, so that while the back of one spool is unloaded and the front of the next spool is up-loaded, the middle of each spool is where it should be, and overall each stage doesn't move as far from its design point compared to how it would on a single spool.  This means that the compression system as a whole can move further from its design point without surging, or alternatively a design with fewer more highly loaded stages can be used (saving part count, weight etc).  There are other tricks that can be used to modify the aerodynamics within a compressor, notably variable stator vanes and blow-off valves that can buy a bit more margin.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AddisonTract" target="_blank">AddisonTract</a>
+			<div class="markdown"><p>Wow, really appreciate your response. </p>
+<p>I wonder how much the difference (from the design point) in aerodynamic/mechanical loading for the ends of each spool affects blade wear. I'm guessing in the design world you'd be trying to flatten the top of that unstable equilibrium curve first, then worry about component life second. Would still be cool to evaluate wear across stages for a few thousand shop visits. </p>
+<p>Also can those small compensatory changes in mechanical speed between spools be used to monitor engine performance/health? I know engine condition monitoring is widely used by operators, but it's mostly snapshots at certain instances in flight. Would high fidelity N1/N2 (and N3... ) vs. time data be able to pinpoint degraded performance for VBVs, VSVs, and other components? The future of health monitoring and predictive maintenance is something I find quite interesting, but I lack the understanding of FADEC to really wrap my mind around it.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/noleander" target="_blank">noleander</a>
+			<div class="markdown"><p>When there are two different shafts, turning at different speeds, are they connected by a gearbox? </p>
+<p>One shaft is the driver, I guess that's the compression shaft, and it goes through gears to reduce the RPM for the propeller fan shaft? </p>
+<p>Is the gearbox especially complicated to withstand the high speeds and continuous use?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SilkeSiani" target="_blank">SilkeSiani</a>
+			<div class="markdown"><p>In currently used engines, the two shafts are independent and powered by separate turbine sections. </p>
+<p>Geared shafts where one turbine sections powers both the high speed and -- through a gearbox -- low speed sections are an area of active research.</p>
+<p>Making compact, lightweight gearboxes that can withstand the power developed by these engines is a major challenge, though.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Bodark43" target="_blank">Bodark43</a>
+			<div class="markdown"><blockquote>
+<p>Making compact, lightweight gearboxes that can withstand the power developed by these engines is a major challenge, though.</p>
+</blockquote>
+<p>Funny thing, the original steam turbine designer,  Parsons, also had to overcome a big problem of gearing: in his case, ones that could handle the very high RPM of a turbine shaft and convert it to the low speed of a propeller shaft. Of course, he didn't have to worry too much about gravity:  if his gearbox failed his boat wouldn't sink.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kirknay" target="_blank">kirknay</a>
+			<div class="markdown"><p>My time in the army taught me that magnesium is your friend. Just make sure it's always either oil coated, or painted. Otherwise it corrodes insanely quickly, and a spark getting between it and the likely aluminum airframe is an easy way to be rid of both.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/noleander" target="_blank">noleander</a>
+			<div class="markdown"><p>Thx</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bigwebs" target="_blank">bigwebs</a>
+			<div class="markdown"><p>No - the shafts are not connected to each other. The geared turbofan design still has two distinct  turbine shafts that make power, but in between the fan section and the low pressure turbine there is a reduction gearbox (plantoid setup). According to Pratt and Whitney, the gearbox contains just 7 moving parts - so not overly complex.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/robbak" target="_blank">robbak</a>
+			<div class="markdown"><p>Hmm 7 parts. 2 3-gear planetary sets, and a runner between them?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/noleander" target="_blank">noleander</a>
+			<div class="markdown"><p>Thanks!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BobbyP27" target="_blank">BobbyP27</a>
+			<div class="markdown"><p>In a conventional jet engine each shaft is completely free spinning, with a compressor on one end and a turbine driving it on the other.  There are obviously things like starter motors and alternators for power takeoff, but there is no gear box.</p></div>		</li>
+					</ul>
+		</ul>
+	
