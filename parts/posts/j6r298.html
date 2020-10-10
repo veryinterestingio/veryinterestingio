@@ -1,0 +1,143 @@
+<li class="post" data-handle="j6r298">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/j6r298/how_do_radio_stations_know_how_many_people_are/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/j6r298" onclick="return false">How do radio stations know how many people are tuning in?</a>
+		</h2>
+		<!--<span class="date">2020-10-10</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>How do radio stations know how many people are tuning in?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="g80qlwo">
+		<a class="author" href="https://www.reddit.com/user/vswr" target="_blank">vswr</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I am a broadcast engineer.</p>
+<p>There were two primary companies doing ratings: Nielsen and Arbitron.  Nieslen was mostly TV, Arbitron was radio.  Nielsen eventually bought out Arbitron.  I'll speak about radio.  </p>
+<p>Arbitron would mail out letters asking you to participate by surveying what you listened to.  You'd write down what you listening to, when, and for how long.  These were called diaries.  Stations focused on catchy phrases and easy to remember names to assist with getting you to correctly credit them in your diary.  Your demographic was put through a whole bunch of fancy formulas to expand it to the greater demographics of your region.  For example, if you were a 30 year old male, your single diary could account for hundreds or thousands of 25-54 males as they scale it up.  Obviously filling out diaries by memory was problematic and led to the feeling &quot;when ratings are up, diaries are good; when ratings are down, diaries are a terrible measurement.&quot;</p>
+<p>20-ish years ago, a new technology was developed to automate the process.  It began rollout 15-ish years ago.  This was called CBET, or Critical Band Encoding Technology.  It was watermarking the audio by using 10 trigger frequencies between 1khz and 3khz.  When spectral energy of sufficient amplitude is around a trigger frequency, the encoder will inject a 400ms tone around -30dBfs:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Lower</th>
+<th style="text-align: center;">Trigger</th>
+<th style="text-align: center;">Upper</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">998</td>
+<td style="text-align: center;">1031</td>
+<td style="text-align: center;">1064</td>
+</tr>
+<tr>
+<td style="text-align: center;">1189</td>
+<td style="text-align: center;">1221</td>
+<td style="text-align: center;">1252</td>
+</tr>
+<tr>
+<td style="text-align: center;">1385</td>
+<td style="text-align: center;">1418</td>
+<td style="text-align: center;">1451</td>
+</tr>
+<tr>
+<td style="text-align: center;">1572</td>
+<td style="text-align: center;">1608</td>
+<td style="text-align: center;">1643</td>
+</tr>
+<tr>
+<td style="text-align: center;">1763</td>
+<td style="text-align: center;">1797</td>
+<td style="text-align: center;">1830</td>
+</tr>
+<tr>
+<td style="text-align: center;">1955</td>
+<td style="text-align: center;">1989</td>
+<td style="text-align: center;">2022</td>
+</tr>
+<tr>
+<td style="text-align: center;">2158</td>
+<td style="text-align: center;">2193</td>
+<td style="text-align: center;">2228</td>
+</tr>
+<tr>
+<td style="text-align: center;">2373</td>
+<td style="text-align: center;">2406</td>
+<td style="text-align: center;">2439</td>
+</tr>
+<tr>
+<td style="text-align: center;">2591</td>
+<td style="text-align: center;">2627</td>
+<td style="text-align: center;">2662</td>
+</tr>
+<tr>
+<td style="text-align: center;">2814</td>
+<td style="text-align: center;">2850</td>
+<td style="text-align: center;">2885</td>
+</tr>
+</tbody>
+</table>
+<p>Each channel represents 2 bits of data using a lower and upper tone.  It's 50 bits per second and translates to roughly 375 characters per minute.  You didn't hear this as the goal was to be a hidden watermark which transmitted station information and time.</p>
+<p>The device used to listen for these tones is a <a href="https://en.wikipedia.org/wiki/Portable_People_Meter" target="_blank">Portable People Meter</a>.  It's the size of a pager and it listens for the watermarking, then reports back.  Because the time is included in the watermark, listening to recordings does not result in credit.</p>
+<p>But this had problems.  You can't watermark silence so talk stations tremendously suffered; those tiny pauses in-between your words had no encoding.  Noise, like in a car, made it difficult to decode the watermark.  Certain songs were difficult to encode because they either lacked spectral density in the 1khz-3khz region or it was completely absent.</p>
+<p>Several years ago, with the first super secret test units becoming available around 2014, a company found a way to enhance the watermarking.  They'd take program audio in, side chain it to the watermarking encoder.  By flipping the phase on the program audio, time aligning it, and adding it to the watermarked audio, you can completely remove the audio and are left only with the watermarking tones.  This means you can increase their amplitude and provide metrics to determine how well something is being watermarked.  Starting around 2015, this became standard in the industry as you could not compete without one of these enhancement devices.</p>
+<p>Nielsen responded by coming out with eCBET, or Enhanced Critical Band Encoding Technology, which supposedly negated the need for these enhancement devices.  It's all patented trade secrets, but my best guess is they increased the amplitude of the watermark tones, decreased the needed spectral energy to trigger a tone, and possibly changed the tones themselves.</p>
+<p>Much like the arrow in the Fedex logo, once I tell you this you won't be able to unhear it.  Stop reading if you don't want radio and TV ruined.</p>
+<p>The watermarking is so loud that you can hear it.  It sounds like a slight metallic echo, or a slowly pulsating buzzsaw.  Talk stations and sporting events with crowd noise are most noticeable.  Once you identify the noise, you will definitely hear it going forward.</p>
+<p>So while the current method of obtaining ratings is more reliable than the old diaries, it's not perfect.  I don't think we'll ever see a perfect way to tell who is listening over the airwaves.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="g804ea7">
+		<a class="author" href="https://www.reddit.com/user/Rannasha" target="_blank">Rannasha</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There is little fancy engineering or hard science behind this, because as you might imagine there is no direct way to tell that someone is receiving a radio signal and is actually tuned in / listening to a radio station.</p>
+<p>Instead, certain companies compile the so-called &quot;ratings&quot; (which are a measure of the number of listeners) by sampling a small subset of the population. These volunteers will record their listening habits and provide demographic information (age, family composition, socioeconomic status, etc...) and with this data and the appropriate statistical tools, the company is able to make an estimate for the total number of listeners in a market.</p>
+<p>In the past, listening activity was logged manually by the volunteer, who would simply write down when they would tune in to the radio and which station they would listen to. These days, it's more common to use a device which picks up inaudible tones embedded in the broadcast and uses this information to determine what station is being listened to and when.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g80en1w">
+		<a class="author" href="https://www.reddit.com/user/MrSloppyPants" target="_blank">MrSloppyPants</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I was an Arbitron surveyor for a few years. They gave us a pager like device that you would wear on your belt all day. It would pick up tracking signals embedded in commercial radio broadcasts and use cellular to send the data back to Arbitron every night. It could even detect movement, so you couldn't just leave it in a room all day, you actually had to wear it on you. You needed to log at least 6 hours per day to have the day &quot;count&quot; for you. You didn't have to actually listen to something for 6 hours, but the pager had to be &quot;in use&quot;. They paid ok though, and it wasn't much hassle at all.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g8087xl">
+		<a class="author" href="https://www.reddit.com/user/silver-fusion" target="_blank">silver-fusion</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In addition to u/Rannasha's good post you'll find many commercial radio stations run competitions. Radio stations have a good idea of number of listeners relative to competition entries even accounting for the type of competition. Other formats like encouraging people to text in, song requests etc. are also used.</p>
+<p>This is also true for TV.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="g80d030">
+		<a class="author" href="https://www.reddit.com/user/Camel_Knight" target="_blank">Camel_Knight</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Nielsen sends out surveys to peoples homes to get the estimate of listeners along with demographics. Radio stations live and die by their ratings results which occur periodically throughout the year. Similar to &quot;sweeps week&quot; in television. Radio station sales team uses those numbers to adjust their rates for sales of advertising spots (time) on air and further, on specific shows at specific times. Radio advertisement is big in car dealership marketing. Dealerships do their own survey a lot of times. They have their mechanics record what station the cars radio is tuned to when its brought in for maintenance, backbfrom a test drive, or rental returns. They dont gaf about neilsen ratings. I sat in on a few of those meetings in a former life. I did a whole AMA on this a few years ago.</p>
+<p><a href="https://www.reddit.com/r/IAmA/comments/6d9f2w/iama_former_radio_disc_jockey_the_radio_business/" target="_blank">https://www.reddit.com/r/IAmA/comments/6d9f2w/iama_former_radio_disc_jockey_the_radio_business/</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/j6r298" onclick="return false"><span>show</span></a>
+</li>
