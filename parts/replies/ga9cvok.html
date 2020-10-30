@@ -1,0 +1,54 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dj-illysium" target="_blank">dj-illysium</a>
+			<div class="markdown"><p>Thank you very much! I understand file size and load priority now, but can you elaborate load order a bit more? You lost me at the markers part</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/VictosVertex" target="_blank">VictosVertex</a>
+			<div class="markdown"><p>(I'm sorry if this is badly formatted, I'm writing from my phone so it's somewhat hard to check)</p>
+<p>Generally code is interpreted sequentially, meaning one line after the other, this alone would mean that some parts run later than others. With todays computer speed and the way to parallelize things this may not be as noticeable. However, if some part A of the code depends on another part B to run, then A can not be run, let alone result in a display, before B is done.</p>
+<p>For instance consider this pseudo code:</p>
+<blockquote>
+<p>async function getDataFromUrl(Url) {</p>
+<p>return await ( await Fetch(Url).json())</p>
+<p>}</p>
+</blockquote>
+<p>Let this be a function that gets some data from a given address, then turns it into another format  (here json) and then returns it. So it basically just gets some data from a different place.</p>
+<p>Now consider the following lines as well:</p>
+<blockquote>
+<p>const data = getDataFromUrl(&quot;<a href="http://my-data-website/data/datafile" target="_blank">http://my-data-website/data/datafile</a>&quot;);</p>
+<p>data.then(jsonData =&gt; () {</p>
+<p>displayDataOnScreen(jsonData);</p>
+<p>});</p>
+</blockquote>
+<p>The first line just uses the function to get our data and we provide the website where our data is initially stored.
+The second statement, starting with data.then, then just displays our data on the screen.</p>
+<p>Now the syntax and so on is irrelevant, you just need to understand this:</p>
+<p>The displayDataOnScreen function is supposed to show our data right? But executing it right away would be pointless, because our data isn't here yet. Just like it would be pointless for you to start drawing a picture before you even know what you're supposed to draw.</p>
+<p>So our data can't be displayed, because it is still on the other website. We have to get that data to our site first. That is what the first function does. If you look inside it you see the keyword &quot;await&quot; two times. This indicates that the codes waits for the action to be done before continuing. In this case we would first have to wait for the data to get to us and then we have to wait for the data to be turned into the json format. On top of that we have to tell the second function to wait for all this to happen by using the &quot;then&quot; statement - only then are we able to display the data.</p>
+<p>If we just wrote this instead:</p>
+<blockquote>
+<p>const data = getDataFromUrl(&quot;<a href="http://my-data-website/data/datafile" target="_blank">http://my-data-website/data/datafile</a>&quot;);</p>
+<p>displayDataOnScreen(jsonData);</p>
+</blockquote>
+<p>You see the keyword &quot;then&quot; is missing now, this time the program, doesn't actually wait for the data to get to us and instead tries to display what ever is there already. As the execution time is far smaller than the transfer time of the data, by the time the second line is run there is no data and thus nothing gets displayed (in other cases this may even result in fatal errors).</p>
+<p>So to conclude: Code generally runs sequentially, if line B comes after A, then B has to wait for A to be executed.
+(First pick up the pen, then draw)</p>
+<p>But even in parallel execution a function C has to wait for a function D if D contains information that C needs to be executed in the first place. (Even though you can listen and draw in parallel, you have to listen and wait for the crucial information - what to draw - first, then start to draw)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dj-illysium" target="_blank">dj-illysium</a>
+			<div class="markdown"><p>Thanks for elaborating! I do have a really basic knowledge of coding and I think I do understand what you said here! Love the fact that you put so much effort in this!</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jhairehmyah" target="_blank">jhairehmyah</a>
+			<div class="markdown"><p>Load order has two aspects... first what needs to come first, and second what the website maker wants to load first.</p>
+<p>Let's say you're moving into a new house tomorrow, you absolutely need to sign the loan docs before you get the keys to the place, and that needs to happen before the truck arrives. Let's say your car needs service but is low on gas... you need to get gas first or you might run out before you arrive at the mechanic's. There are lots of things that have to come before something else.</p>
+<p>That said, the website programmer has some control over the rest of the stuff. Adding to those examples above, lets say for your new house you ordered a new bed and its being delivered. Whether the bed is delivered before the rest of your furniture or not doesn't matter, but you still need to first sign the loan docs and get the keys. For the car example, let's say your car is also dirty. You still need to get gas first, but whether you then get your car washed or go to the mechanic next is up to you.</p>
+<p>And you better believe some websites load the ads before they load the content, ESPECIALLY sites with ad block paywalls. They try to load the ad before they load the content, and check if the ad loaded, and if it didn't, they assume you've blocked the ads, and therefore they choose not to load the content.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ramborocks" target="_blank">ramborocks</a>
+			<div class="markdown"><p>Someone has experience with things like js.. Do you prefur top or bottom 😉🤔</p></div>		</li>
+					</ul>
+	

@@ -1,0 +1,76 @@
+<li class="post" data-handle="jixzfy">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/jixzfy/eli5_when_loading_a_page_with_bad_internet/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/jixzfy" onclick="return false">ElI5: When loading a page with bad internet connection, how come the ads are always fully loaded while the rest of the page is struggling to load in?</a>
+		</h2>
+		<!--<span class="date">2020-10-30</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>For example: when watching a YouTube video on a bad internet connection, the video stops every 2 seconds to load/render. But suddenly there is a 30sec ad, and it isn't affected by the bad connection.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="ga9ckbf">
+		<a class="author" href="https://www.reddit.com/user/dont-YOLO-ragequit" target="_blank">dont-YOLO-ragequit</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>World wide sides like Youtube use an algorithm where the video you are trying to load is uploaded to the nearest server to the uploader then as viewers go, it gets uploaded to servers that are the closest to the majority of previous viewers. </p>
+<p>So if you are have issues with the video, chances are you are one of the firsts to wan to see it in your area (or some connection issues). </p>
+<p>On the other side, the ads are only local ads: so 100 ads are uploaded to the closest server, your video from a random country asks for an ad and the server randomly sends an ad first because they are located in the same servers that sent you the youtube homepage.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ga9cvok">
+		<a class="author" href="https://www.reddit.com/user/VictosVertex" target="_blank">VictosVertex</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>On top of what others have mentioned, namely the different contents being served by different providers and thus one may take a significantly shorter route, one also has to consider other factors.</p>
+<p>First of all, file size: If everything is collected in parallel, meaning no file has to wait for another, then, when considering the same download speed for all files, the smallest file arrives first. So maybe the ad is smaller because it is of lower quality or uses better compression. For example if you had a site with a video in the middle and ads scattered around it, then these ads will most likely be way smaller than the video.</p>
+<p>Secondly, load order: on some websites some content may not be visible because it has certain dependencies. For instance the content of a data-driven site may not show up because the site has yet to fetch, collect, the data from a different place. So you can't show the markers on an interactive map before you have the coordinates for said markers. Ads however do not depend on the data you're using, whether or not you have your marker data is irrelevant to the ads, unless you load your ads sequentially on purpose, but why would you do that.</p>
+<p>Thirdly, load priority: I don't know whether or not that can be the case regarding youtube but maybe ads have some form of load priority that basically puts ads first and content second. That could be feasible as ads are usually shorter than the content and provide a means of &quot;buffering&quot;, meaning they distract the user while the video can load in the background, afterwards the full bandwidth open to be used for the video alone.</p>
+<p>Those are just some of my thoughts on this.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ga99wao">
+		<a class="author" href="https://www.reddit.com/user/catwhowalksbyhimself" target="_blank">catwhowalksbyhimself</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Because the ads are actually a completely different website.  Think of the internet as a series of tube in this case.  The flow from Youtube's &quot;tank&quot; is slow, but the flow from the ad server's &quot;tank&quot; is still flowing smoothly.  Both tubes empty into the same webpage, so it's not obvious they are coming from two different places, but they are.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gaaevvf">
+		<a class="author" href="https://www.reddit.com/user/rexxar-tc" target="_blank">rexxar-tc</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Many large services like YouTube, Netflix, Google ads, etc, use what is called a Content Distribution Network. This is a network of servers distributed geographically around the world/continent.</p>
+<p>It takes time for packets to physically move through the network. Connecting to a server on the other side of the Atlantic is obviously going to be much slower than connecting to one in the next state over. Content is copied to all the CDN servers (also called nodes) so that almost every user has a server that is geographically close to them.</p>
+<p>A CDN also helps reduce load on the primary datacenter. If everyone in the world had to get their shows directly from Netflix's main datacenter, that would create enormous strain on whatever internet connection they have. Instead, they use a high speed connection from the datacenter to the CDN nodes to copy content, then users consume the content directly from the nearest CDN node.</p>
+<p>So, why do ads load before your content?</p>
+<p>Youtube uses an algorithm to decide which videos are copied to which CDN nodes. It's impractical to copy the entire YouTube library to a CDN node, it simply requires too much storage. Instead, they only copy what users in a particular area are likely to watch.</p>
+<p>If you request a video that is <em>not</em> in your nearest CDN node, the server will request a copy from the main datacenter. The video is streamed to the node at high speed which then streams it to you as it comes in. This process is usually pretty fast, but it does take some time.</p>
+<p>Ads, on the other hand, will just about always already be in a CDN node near you. That content is always available immediately, so it tends to download before any other content.</p>
+<p>TL;DR: Ads load faster because they are on a server that is physically close to you, while your YouTube video needs to load from a server far away.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gaayp42">
+		<a class="author" href="https://www.reddit.com/user/unsure_of_everything" target="_blank">unsure_of_everything</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Imagine you’re at a restaurant and you order pancakes (your webpage content) and orange juice (ads), your waiter will take your order to the kitchen (the origin of your webpage content) for the pancakes and go pickup your orange juice at the salad bar near by (a local CDN). You can order more juice as you wait for the pancakes and the waiter will go and bring you more quickly. If more kids are at the restaurant the kitchen will be busy making pancakes, that will slow down the pancakes. Also the waiter needs to go farther to pickup the pancakes, so a combination of longer distance and busier kitchen will make your pancake deliveries slower than your orange juice.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/jixzfy" onclick="return false"><span>show</span></a>
+</li>
