@@ -1,0 +1,58 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FatFiredProgrammer" target="_blank">FatFiredProgrammer</a>
+			<div class="markdown"><p>To amplify, I'm a developer who worked for a mass emailer (somewhat more legitimate but no less annoying than a spammer) for a while. There are lots of tricks but I'll share a common one that really isn't useful as much anymore. An email would contain an image which has a single white pixel in it. If the email was viewed, our server got a request for the picture and we knew the email address was valid and the email had been viewed.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dingoperson2" target="_blank">dingoperson2</a>
+			<div class="markdown"><p>Hence good email clients will not load images from unknown email addresses unless a button is clicked.</p>
+<p>The answer to OP is &quot;mostly not, but they may still get some information and it completely depends&quot;</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FatFiredProgrammer" target="_blank">FatFiredProgrammer</a>
+			<div class="markdown"><p>Most clients I am aware of now load images and display html content as a matter of course unless the email is flagged for some reason. Blocking images simply isn't effective because many emails rely on HTML and specifically on image based content.</p>
+<p>On the other hand, email scanning has gotten much better at detecting bugs as an example or, alternately, the <em>usefulness</em> of the bugs is diminished because the resource may be accessed by any number of actors <em>before</em> or in addition to the ultimate target of the email.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rabid_briefcase" target="_blank">rabid_briefcase</a>
+			<div class="markdown"><p>That's old school and easily blocked.</p>
+<p>These days the bulk of the content is in images, the hooks are text. Even with webbug protections the user reads the hooks and will direct the blocker to show the images despite security warnings. </p>
+<p>Same effect, you know the address is valid, the image requested, everything about the connection can be logged, plus all the helpful browser fingerprint data (browser data, advertising ID, etc) sent these days.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FatFiredProgrammer" target="_blank">FatFiredProgrammer</a>
+			<div class="markdown"><p>i know. I <em>said</em> it was no longer useful but it's a good simple example that helps people understand the principle.</p>
+<p>I provided more detail in another comment.</p>
+<p>Programmatically, email clients now routinely strip down all data in the http header for an image GET. And, to the extent you get ip information, all you really glean is that - for example - google's server just scanned your email.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FatFiredProgrammer" target="_blank">FatFiredProgrammer</a>
+			<div class="markdown"><p>I wanted to add a bit by way of example. </p>
+<p>Let's say you put an image in an email and send it to someone using gmail via a browser. Your image actually gets scanned and then loaded indirectly via a google cdn (typically the googleusercontent.com domain). You get no header data typically and an ip that's useless to you.</p>
+<p>For reputable emailers, this is great cause your content gets put on google's cdn. </p>
+<p>For spammers, it means sooner or later you'll get your domain black listed so-to-speak. At yesmail, there were tons of email domains rotated through as soon as they got a bad rep.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Elgatee" target="_blank">Elgatee</a>
+			<div class="markdown"><p>That explain why I suddenly got more of those single ladies looking for me as a kid than I did now.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/currentscurrents" target="_blank">currentscurrents</a>
+			<div class="markdown"><p>This is not necessarily true, as <a href="https://gmail.googleblog.com/2013/12/images-now-showing.html" target="_blank">some email providers</a> now proxy the images. </p>
+<p>So GMail loads the image onto their servers whether the email address is valid or not, and then when you open the email the image is delivered to you from the GMail servers. So to spammers, any email sent to Gmail always looks like it's been opened - whether the email address is valid or not.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FatFiredProgrammer" target="_blank">FatFiredProgrammer</a>
+			<div class="markdown"><p>This is true. But the game is even more complex. Imagine if I <em>change</em> an image sometime after the client scans it. The client should, theoretically, check the caching and see the image has now been updated and a new request is needed. Google doesn't though. Not always. Or sometimes not for a <em>while</em>.</p>
+<p>It's a game that's played. With trade offs. And lots of variations. For example, I might try to return a 403 or 404 for a few seconds or minutes or X attempts then switch to a 200. </p>
+<p>And this is only a <em>small</em> part of the game of sending spam.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/currentscurrents" target="_blank">currentscurrents</a>
+			<div class="markdown"><p>Interesting. I'm not surprised, spam vs spam filters has always been an arms race.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ChrisFromIT" target="_blank">ChrisFromIT</a>
+			<div class="markdown"><p>Just openning the email can cause it to send a read receipt. Loading the images isn't required for the attacker to learn it is a valid or active email address.</p></div>		</li>
+					</ul>
+	
