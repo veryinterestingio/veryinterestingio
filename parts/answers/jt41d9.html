@@ -1,0 +1,59 @@
+<div class="answers">
+	<div class="answer" data-handle="gc3g0js">
+		<a class="author" href="https://www.reddit.com/user/uwu2420" target="_blank">uwu2420</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A lot of that is tracking information. Here I'll break down your entire URL for you.</p>
+<p><code>q</code> = The query it's actually searching for. Usually the same as <code>oq</code> unless you clicked on a suggested search term, then <code>oq</code> would be the text you typed and <code>q</code> is what you clicked on (what's actually being searched for)</p>
+<p><code>tbm=isch</code> tells it you want to search Google Images. It stands for <strong>t</strong>o <strong>b</strong>e <strong>m</strong>atched = <strong>i</strong>mage <strong>s</strong>ear<strong>ch</strong>.</p>
+<p><code>ved</code> decodes to tell Google what links you clicked on previous pages on Google to get to the current page (<a href="https://valentin.app/ved.html" target="_blank"><a href="https://valentin.app/ved.html" target="_blank">https://valentin.app/ved.html</a></a>)</p>
+<p><code>oq</code> = The original query you wanted to search for that you typed in (see <code>q</code>)</p>
+<p><code>gs_lcp</code> = Not sure, but it's Protobuf encoded. Edit: Someone said in replies this is likely to encode to a physical location, which also seems likely.</p>
+<p><code>sclient</code> = Where you came from (so if you used <a href="https://images.google.com" target="_blank">images.google.com</a> it would be <code>img</code>)</p>
+<p><code>ei</code> = an encoded string that tells it the time of the request (<a href="https://deedpolloffice.com/blog/articles/decoding-ei-parameter" target="_blank"><a href="https://deedpolloffice.com/blog/articles/decoding-ei-parameter" target="_blank">https://deedpolloffice.com/blog/articles/decoding-ei-parameter</a></a>)</p>
+<p><code>bih</code> = Browser height (pixels)</p>
+<p><code>biw</code> = Browser width (pixels)</p>
+<p><code>hl</code> = Host language (what language you want, in this case <code>en</code> for English).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="gc3bdca">
+		<a class="author" href="https://www.reddit.com/user/Nagisan" target="_blank">Nagisan</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Those are called parameters - they're a way to pass information about a click to the next page.  </p>
+<p>For example, if I had a store front website, instead of making a separate .html page for every product, I could tell the server what product details to reply to the request by doing something like:  </p>
+<pre><code>http://example.com/moreinfo?product=1234  </code></pre>
+<p>That way I don't have to build a page for each product, I just build one (moreinfo) and pass the product id (1234) to the server. The server then replies with info about product 1234, and the page (moreinfo) is built to display that info.  </p>
+<p>It can also be used for tracking, if I display ads on every page I can dynamically add ?source={currentpage} (replacing {currentpage} with some identifier unique to every page) then the server knows which page I clicked the ad from. I can then use this information to discover which page users are most likely to visit ads from.  </p>
+<p>As for what those parameters mean on Google, that's hard to say without having inside knowledge. You can guess on some of them though - &quot;bih=610&quot; sounds like some form of height parameter (not sure what &quot;bi&quot; means) whereas &quot;biw=1280&quot; sounds like a width parameter. Additionally &quot;hl=en&quot; may refer to &quot;English&quot;, but I'm not sure what the &quot;hl&quot; (parameter name) is short for.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gc3ncyb">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gc3ezka">
+		<a class="author" href="https://www.reddit.com/user/trinite0" target="_blank">trinite0</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>So, every little string that starts &quot;&amp;[x]=&quot; is a parameter, with [x] being the parameter name and everything after the = being the parameter value. So as described by others, &quot;&amp;hl=en&quot; means &quot;host language = English&quot; so Google knows what language to display results in.</p>
+<p>That big old &quot;gs_lcp=&quot; parameter is most of what makes the URL so long. A quick couple of searches gave me some computer scientists trying to figure out what it does, but no actual answers, so presumably it's some complicated search tracking magic for Google that they don't want to publicly explain.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gc4s8wi">
+		<a class="author" href="https://www.reddit.com/user/CharmCityCrab" target="_blank">CharmCityCrab</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Even a lot of regular non-search engine websites attempt to do this sort of URL-based tracking.  News sites, whatever.</p>
+<p>There is a browser extension called &quot;ClearURLs&quot; that attempts to &quot;automatically remove tracking elements from URLs to help protect your privacy when browsing through the Internet.&quot;.  Sometimes it works and sometimes it doesn't, but when it doesn't, it still displays the website you're looking for.</p>
+<p>I don't know if it works for Google's search engine specifically, because I don't use Google for search, but it works for a lot of non-search stuff that uses similar tracking techniques to what you posted.</p>
+<p>It is available for free for both the Firefox and Chrome desktop browsers, along with almost any other desktop browsers based on the same code as either browser (Examples include Vivaldi, recent versions of Edge, and Waterfox, but there are more), as long as they use the same extension stores.</p>
+<p>As far as I know, because Chrome doesn't support extensions on Android at all, and Firefox did a redesign that drastically cut back on the number of extensions it allows on Android, the only stable Android browser that is still being maintained that has it available is Iceraven (A fork of Firefox), which you can download here:</p>
+<p><a href="https://github.com/fork-maintainers/iceraven-browser/releases" target="_blank">https://github.com/fork-maintainers/iceraven-browser/releases</a></p>
+<p>If you decide that you specifically don't like what Google is doing based on the responses in this thread, a good alternative search engine that you can make the default search engine for virtually any browser on earth and virtually any device on earth is DuckDuckGo:</p>
+<p><a href="https://www.duck.com" target="_blank">https://www.duck.com</a></p>
+<p>One simple trick for some of these longer URLs on general non-search sites is that often the question mark and everything after it are unnecessary tracking, not always, but like 90% of the time.  So, <em>usually</em>, you can take that part off of a URL, copy what remains of the URL in a new tab, hit enter, and it'll load just fine without all the rest of it. That trick is really only helpful if you are trying to share link with friends, though, because few people look <em>that</em> closely at a URL before they click on it.  Once it's staring at them in the URL bar, though, more people do.</p>
+<p>Google also has a scheme called AMP where it stores it's own formatted versions of websites on its own servers and sometimes tries to disguise it.  There is an extension called &quot;AMP to HTML&quot; that is available for basically all the browsers &quot;ClearURLs&quot; is available for and not available for basically all the same ones the other ones isn't available for, that tries to get you to the real non-Google non-AMP version of a page when you click on a link to an AMP site (As with the other extension mentioned, sometimes it works and sometimes it doesn't).</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
