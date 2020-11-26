@@ -1,0 +1,34 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kinzer13" target="_blank">kinzer13</a>
+			<div class="markdown"><p>Awesome example</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[gelöscht]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ShelfordPrefect" target="_blank">ShelfordPrefect</a>
+			<div class="markdown"><p>Yeah, I've got bugs in my brain.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marcan42" target="_blank">marcan42</a>
+			<div class="markdown"><p>MP3 doesn't just throw away high frequencies (that's just what using a lower sample rate WAV does). What MP3 does is more subtle, and related to how JPEGs work.</p>
+<p>Turns out we've figured out that if you hear a loud sound at the same time as a quiet sound, then it's pretty hard to pick out the quiet sound, especially if it is at a similar frequency to the loud sound. If you're in a noisy environment, then you won't be able to hear quiet things. And even if you <em>can</em> hear something quiet, you won't be able to hear it well, so the quality doesn't matter much. So what MP3 does is pick out all the loud parts (frequencies) of the sound, store <em>those</em> in good quality, then degrade or completely remove all the quieter bits. It does bias towards removing higher frequency sounds because indeed those matter less.</p>
+<p>This works by chopping up the audio into short chunks and doing it independently for each chunk, similar to how JPEG chops up the image into blocks.</p>
+<p>MP3 isn't terribly good at this, and we have better codecs these days, but fundamentally they still work in much the same way, just with better ideas. For example, Opus, which most people don't know about but use every day because it powers almost every modern audio/video calling app as well as being the codec used by YouTube and many other companies, is much better. It has figured out that if you <em>completely remove</em> whole chunks of frequencies you do get ugly artifacts, so it's better to just degrade the quality, even to complete noise, while keeping the volume level (power) about right. This one reason why low-quality MP3s sound &quot;metallic&quot; and &quot;ringy&quot; (as whole chunks of frequencies pop up and disappear) while Opus at the same file sizes sounds much better.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ShelfordPrefect" target="_blank">ShelfordPrefect</a>
+			<div class="markdown"><p>TIL. I figured I was oversimplifying a bit with MP3 - I've studied JPEG compression but only had a generic comp. sci. understanding of MP3.</p>
+<p>I love the stuff that comes out of compression tuned to human perception - the fact that you can hugely lower the resolution of the chroma channels in an image as long as you keep the luma detailed, stuff like that.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/marcan42" target="_blank">marcan42</a>
+			<div class="markdown"><p>Yeah, lossy codecs are amazing... and also incomprehensible at times.</p>
+<p>I've actually fixed a bug in Opus, years after I found it, because I didn't <em>know</em> it was a bug until much later. One trick that MP3 uses too, for stereo audio, is to store a mono version and then just the difference between left and right. Most detail in stereo music is actually mono just duplicated in both sides, so you can reduce the quality of the difference signal and save space that way. Opus added a new trick: if you're encoding at lower qualities, and there is a super wide sound in stereo (so it sounds like the same sound coming from both sides instead of being centered), you can actually just store it in mono and then play back on the left and inverted on the right, and it'll sound super wide. That's all fine and good, but the problem is that if you then convert the output to mono, those sounds cancel out into literal nothingness. That ends up sounding <em>horrible</em>, back to really low quality MP3 land, as chunks of frequencies cancel out to nothing (by accident, due to this feature). I thought it was a problem for people who listened in mono, then talked to other people and learned about this feature, and turned it off, and went on my way.</p>
+<p>Years later, having a discussion with a developer again, I found out that at the quality levels that I was using, this feature was only supposed to be active for the highest frequencies. It shouldn't have sounded so <em>bad</em> even when converted to mono. So I investigated more... and found out that with certain non-default settings that I was using, there was a bug where the encoder calculated the quality wrong, then thought the quality was impossibly low (actually negative... like a negative file size, no joke) and applied this feature to basically all frequencies. I fixed it (it was a typo in the code...) and now everything makes more sense. It only really affected people using Opus for low latency streaming, so maybe video/audio conferencing with stereo audio streams played through a mono speaker on the receiving end will sound a bit better thanks to this :-)</p>
+<p>It's good that it didn't affect normal high latency music encoding, so nobody with Opus files (or even YouTube with Opus audio tracks) needs to worry about their files having lower quality than intended; only when used with low-latency settings, which is always for streaming, did the bug happen.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
