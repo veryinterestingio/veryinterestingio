@@ -1,0 +1,57 @@
+<div class="answers">
+	<div class="answer" data-handle="ge29nth">
+		<a class="author" href="https://www.reddit.com/user/Steve_Jobs_iGhost" target="_blank">Steve_Jobs_iGhost</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Mostly heat generation and lack of dissipation. </p>
+<p>Faster things produce substantially more heat than slower things, and with as dense as we pack that stuff in, there's only so much heat we can get rid of so quickly. </p>
+<p>Eventually it'll just melt. Or at least it will cease to perform as a computer needs to perform.</p>
+<p>edit:: Making the CPU larger serves to increase the length between each transistor. This introduces a time delay that reduces overall clock speeds. CPU's are packed as densely as they are because that's what gives us these insanely fast clock speeds that we've become accustomed to.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="ge2fdl2">
+		<a class="author" href="https://www.reddit.com/user/SteelFi5h" target="_blank">SteelFi5h</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The limitation on clock speed is caused by a concept known as the &quot;Critical Path&quot; through the CPU. Each of the 100s transistors used to make a calculation, (add, subtract, write to mem, read from mem, etc) need time to potentially change states. To go from a 1 to 0 or a 0 to a 1. The clock speed must be slower than the slowest possible calculation step so that in a worst case all operations can occur and fully complete within 1 cycle. </p>
+<p>Modern chip use tons of techniques, one of which is called pipelining, to try to run operations in stages to circumvent this limitation. For example while a math operation is calculated, the values for the next calculation can be loaded into place ready for the next cycle. This creates interesting challenges when the result of that second calculation depends on the second, but that is the price you pay for speed in that case.</p>
+<p>In addition as others have mentioned, beyond simplifying the structure for a shorter critical path (part of why Apples new M1 Chips are so much more efficient), you can make the switches flip faster. However this is a thermal issue. A stored 1 value or 0 value changing into the opposite requires current to flow in or out of the transistor, which generates heat which must be removed or the transistor will degrade or even melt. The more you have flipping faster, the more heat you get.</p>
+<p>Lastly, you can shorten the critical path physically but making it shorter but designing the CPU die so that components that talk to each other are close by or making the transistors themselves smaller through this cant be done in all cases. We have been building CPUs with components so small that the actual speed of electric voltage moving though wires is starting to become relevant. </p>
+<p>For context, an Intel i9 lists a 5.3 GHz clock speed. In one clock cycle, light - the fastest thing in the universe - travels only 5.66 centimeters and electric voltage (signals) moves much slower than that in metal, some where slightly slower than speed of light depending on other factors</p>
+<p>Edit: speed of light</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ge2zszt">
+		<a class="author" href="https://www.reddit.com/user/pencan" target="_blank">pencan</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>First, Power Density (or Heat).</p>
+<p>Processors got exponentially faster over the last 50 years due to &quot;Moore's Law&quot; <a href="https://en.wikipedia.org/wiki/Moore%27s_law" target="_blank"><a href="https://en.wikipedia.org/wiki/Moore%27s\_law" target="_blank">https://en.wikipedia.org/wiki/Moore%27s\_law</a></a>.  This was an economic prediction made in 1965 that the number of transistors on chips will continue to double every 2 years. It became a self-fulfilling prophecy because Intel integrated that schedule as part of their business plan. Having more transistors available lets you clock faster because you're able to use the transistors for fancy tricks such as deep pipelining.</p>
+<p>EDIT: I got caught wearing my architecture hat.  It's important to note that smaller transistors are just plain faster, so during this period, even with no tricks, the circuits would just magically get about 1.4x faster every generation.</p>
+<p>This doubling was possible because of &quot;Dennard Scaling&quot; <a href="https://en.wikipedia.org/wiki/Dennard_scaling" target="_blank"><a href="https://en.wikipedia.org/wiki/Dennard\_scaling" target="_blank">https://en.wikipedia.org/wiki/Dennard\_scaling</a></a> which at a high level means that due to the physics of the transistors, the power density of a transistor will stay constant as they decrease in size. This allows you to fit twice as many transistors on a chip while using the same cooling mechanisms. However, this broke down in the late 90s. The graph here is a great illustration of this (haven't read the rest of the article, but it's probably good: <a href="https://www.extremetech.com/computing/116561-the-death-of-cpu-scaling-from-one-core-to-many-and-why-were-still-stuck" target="_blank"><a href="https://www.extremetech.com/computing/116561-the-death-of-cpu-scaling-from-one-core-to-many-and-why-were-still-stuck" target="_blank">https://www.extremetech.com/computing/116561-the-death-of-cpu-scaling-from-one-core-to-many-and-why-were-still-stuck</a></a>). Because Dennard scaling failed, we couldn't use those transistors to make it go faster, so instead the industry moved to multicore processors which were each clocked lower.</p>
+<p>Incidentally, this trend has also failed due to the &quot;Dark Silicon&quot; problem <a href="https://en.wikipedia.org/wiki/Dark_silicon" target="_blank"><a href="https://en.wikipedia.org/wiki/Dark\_silicon" target="_blank">https://en.wikipedia.org/wiki/Dark\_silicon</a></a>. This has resulted in huge innovation in the field, where custom hardware blocks are used for power efficiency rather than relying on a bulky CPU.</p>
+<p>Second, Power Efficiency.</p>
+<p>Power scales linearly with frequency, but quadratically with voltage. <a href="https://physics.stackexchange.com/questions/34766/how-does-power-consumption-vary-with-the-processor-frequency-in-a-typical-comput" target="_blank"><a href="https://physics.stackexchange.com/questions/34766/how-does-power-consumption-vary-with-the-processor-frequency-in-a-typical-comput" target="_blank">https://physics.stackexchange.com/questions/34766/how-does-power-consumption-vary-with-the-processor-frequency-in-a-typical-comput</a></a> Having a higher frequency requires a higher voltage.  Conversely, underclocking the processor allows you to lower the voltage safely. This results in a cubic decrease in power consumption.  So for similar  performance, you might rather have several slower, cooler cores versus a single blazing fast and hot core.</p>
+<p>Third, the Memory Wall (<a href="https://www.researchgate.net/publication/224392231_Mitigating_Memory_Wall_Effects_in_High-Clock-Rate_and_Multicore_CMOS_3-D_Processor_Memory_Stacks/figures?lo=1" target="_blank"><a href="https://www.researchgate.net/publication/224392231\_Mitigating\_Memory\_Wall\_Effects\_in\_High-Clock-Rate\_and\_Multicore\_CMOS\_3-D\_Processor\_Memory\_Stacks/figures?lo=1" target="_blank">https://www.researchgate.net/publication/224392231\_Mitigating\_Memory\_Wall\_Effects\_in\_High-Clock-Rate\_and\_Multicore\_CMOS\_3-D\_Processor\_Memory\_Stacks/figures?lo=1</a></a>)</p>
+<p>Most of the speed increase has gone to logic and not memory. This means that your CPU gets way faster, but the backing memory doesn't.  If your CPU triples in speed, but your DRAM  goes 1.4x, the CPU will just end up idling for long periods of time. This is inefficient and results in poor relative performance increases. This problem gets even worse with multicore processors, which is why it's still an active area of research.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ge3jj39">
+		<a class="author" href="https://www.reddit.com/user/Aanar" target="_blank">Aanar</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The limiting factor for speed is simply the maximum frequency response of silicon.  Most of the responses you are getting are more related to what are the bottlenecks to getting more throughput which is a little bit different question than raw maximum speed.  </p>
+<p>It’s been 20 years since I took semiconductor physics in college but I still remember that and nothing has changed there. If you want a cpu with a 10 GHz clock you’re going to have to use something other than silicon. </p>
+<p>Radio circuitry that operates at higher frequencies use transistors made from different semiconductor material with a higher maximum frequency response. Gallium arsenide is one option. Silicon is still used for CPUs because we’ve gotten very good at making it with very few impurities which allow us to make smaller transistors and pack them in.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="ge2k7dw">
+		<a class="author" href="https://www.reddit.com/user/NortWind" target="_blank">NortWind</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The speed is limited in part by capacitance, which you have to charge up for an amount of time to get to a desired voltage.  Making the parts smaller also makes the capacitance go down, so they can run faster.  Of course, insulation barriers can't handle as much voltage, so working voltages go down.  At some point, you can't work with barriers that are thinner or voltages that are lower.  That is a big reason that multiple cores are so popular now, one core at 5GHz can't do as much work as two cores at 3MHz if you can partition the work effectively.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>

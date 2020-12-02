@@ -1,0 +1,75 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/futlapperl" target="_blank">futlapperl</a>
+			<div class="markdown"><p>I'm neither an expert nor claiming you're wrong. An instruction on an x86-64 machine can take more than one clock cycle. Many do, in fact. RAM access on its own usually takes about 120 cycles.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SteelFi5h" target="_blank">SteelFi5h</a>
+			<div class="markdown"><p>Yeah I glossed over that for an attempt at simplicity, but you are totally correct. A single cycle is often for a single “stage” in a computation. x86 cpus use a CISC (Complex Instruction Set Computer) design which is notorious for this but in general a single add 2 numbers and write the values to either ram or a register (on cpu memory) takes several cycles to complete, just that other operations are getting some “prep work” and “post work” done at the same time</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Combo_Breaker_Denied" target="_blank">Combo_Breaker_Denied</a>
+			<div class="markdown"><p>I feel like this level of detail is not &quot;ELI5&quot;. </p>
+<p>&quot;limit of 5ghz is because in one 5 billionth of a second, electrons travel about 2cm, so we can't make a physically larger chip unless we slow the clock speed down, and we can't increase the clock speed unless we make the chip smaller. &quot;</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sigma476" target="_blank">Sigma476</a>
+			<div class="markdown"><p>~6 cm unless my napkin math is off (.3B÷5B) but yeah, kind of crazy to think that modern computers are already butting up against limits as hard set as the speed of light.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/das_funkwagen" target="_blank">das_funkwagen</a>
+			<div class="markdown"><p>120 cycles of actual instructions, or a 120 cycle penalty because RAM is slow?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/futlapperl" target="_blank">futlapperl</a>
+			<div class="markdown"><p>The latter.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Minuted" target="_blank">Minuted</a>
+			<div class="markdown"><p>Nice write-up. This made me wonder if it would be possible to use light instead of electricity for computing. Turns out <a href="https://en.wikipedia.org/wiki/Optical_computing" target="_blank">it is a thing.</a></p>
+<p>Do you know if using light would be able to overcome some of the challenges associated with electrical processors? Namely heat generation, I would assume light doesn't cause the same resistance and can travel through materials more easily, as an example light through a fibre optic cable vs electrons through a metal one.</p>
+<p>I know that using fluids has been investigated, but I don't know whether the properties of light would work similarly enough to be viable in general purpose computers. Even if it were, apparently converting light to electricity is costly so it seems integrating light-based components into conventional systems comes with a pretty hefty inbuilt disadvantage, and obviously it would take a long time and a lot of effort to completely change the underlying technology our computing is based on. Not that everything would need to be replaced, like anything the newer technology would slowly come in and replace the older one, or perhaps each type would have their own practical applications.</p>
+<p>Either way the future of computing is exciting to think about, whether we find viable non-resistant materials, quantum computing finds more applications or some novel ideas come along to help us continue our progress. Kinda wish I could be alive longer just to watch the progress.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SteelFi5h" target="_blank">SteelFi5h</a>
+			<div class="markdown"><p>Look up photonics, you can use light to encode information and do computation which comes with a completely new set of challenges. Any system you can build logic gates out of, you can build a structure called a “Turing Machine” which is essentially the most basic possible computer. And Alan Turing proved mathematically that if you can build and run a Turing machine, then any possible computation (possible on any other Computer) would run on yours. </p>
+<p>So computers can use electricity, light, oil pressure (hydraulic computers in some car engines), Minecraft Redstone, or even conceptually rocks given enough time (xkcd.com/505)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hahass" target="_blank">hahass</a>
+			<div class="markdown"><blockquote>
+<p>And Alan Turing proved mathematically that if you can build and run a Turing machine, then any possible computation (possible on any other Computer) would run on yours.</p>
+</blockquote>
+<p>It wasn't really a proof, just more of a statement. This is called the Church-Turing thesis. Because TMs (or lambda calculus) are how &quot;computable&quot; is defined in the first place, there are some annoying questions about just how falsifiable this statement really is.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rangerryda" target="_blank">rangerryda</a>
+			<div class="markdown"><p>I'd be a very confused 5 year old.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/daniu" target="_blank">daniu</a>
+			<div class="markdown"><p>Rule 4.</p>
+<blockquote>
+<p>Unless OP states otherwise, assume no knowledge beyond a typical secondary education program. Avoid unexplained technical terms. Don't condescend; &quot;like I'm five&quot; is a figure of speech meaning &quot;keep it clear and simple.&quot;</p>
+</blockquote></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Thatsnicemyman" target="_blank">Thatsnicemyman</a>
+			<div class="markdown"><p>This subs’ ELI5 is sometimes more like ELI10 or 15, I’ll try to summarize the OP above, people can call me out where I’m wrong:</p>
+<p>Computers, despite being digital, run using physical things like electricity, and these physical parts needs time to go through the computer to send signals and compute stuff. Modern computers need to reduce this distance as much as possible (because at thousands of cycles/actions a second that 0.0001 seconds of extra travel time every cycle matters). </p>
+<p>The things people do to reduce the distances involved are using special techniques to process things independently (so the electricity doesn’t have to move around in order and it can go in every direction at once), redesigning the computer chips so there’s less physical distance to travel. </p>
+<p>Another alternative is <em>making each tiny “stop” on the electricity’s path through the computer take less time, which is a pretty widespread and general way of making computers run faster called Overclocking. The problem is that it creates more heat, and you need more and more heat sinks to remove that heat</em>. Other comments here have said there’s an upper limit to how much we can heat up computers without them bursting into flames (even with the best modern <del>AC</del>systems), and this is partly why we’re looking at making other parts of the system run faster.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GrowWings_" target="_blank">GrowWings_</a>
+			<div class="markdown"><p>This is a pretty complex topic. Definitely hard to explain at 5yo level. I think your first paragraph covers about as much as is possible.</p>
+<p>Specifically, I don't think your last paragraph about overclocking and cooling is accurate. Even an &quot;optimal&quot; CPU could run faster if overclocked. It does come down to cooling, but not like AC cooling at all. We're limited by materials and surface area. After all the miniaturization we've done to make computers faster we're left with tiny chips producing more heat than we can reasonably remove from them, at least with standard heat sinks.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TechnicallySound" target="_blank">TechnicallySound</a>
+			<div class="markdown"><p>I don't think a 5 year old asking about physical limits on clock cycles in CPUs would have a hard time understanding that answer. Also, rule 4.</p>
+<p>ELI5 is simply &quot;because it gets too hot&quot; but people want more detail than that, so people are giving more detailed answers. Try enjoying learning something new instead of finding violations of a (fabricated) subreddit name.</p></div>		</li>
+					</ul>
+		</ul>
+	
