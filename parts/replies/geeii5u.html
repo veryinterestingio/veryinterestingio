@@ -1,0 +1,65 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rexxar-tc" target="_blank">rexxar-tc</a>
+			<div class="markdown"><p>To add to this, it was a long time before GPUs existed as we know them today. Floating point performance was tied pretty tightly to the exact processor you had.</p>
+<p>Because of the avaliable technology, we just didn't have the kinds of processors that could handle floating point operations that fast. It requires a different kind of architecture that simply hadn't been invented yet.</p>
+<p>Once 3D accelerators started coming out, they were still fairly limited, they could essentially <em>only</em> do 3D rendering, which meant you had to also have a 2D card and connect the two with a pass-through VGA cable.</p>
+<p>Graphics cards are in essence a big ol processor on a card. You feed it a bunch of raw data and tell it what to do with it, and it crunches the numbers on its own while the CPU does other things. This is the real benefit: you have dedicated hardware just for 3D rendering. You don't have to occupy the CPU with rendering, so you suddenly have a ton more resources to do more useful computation, like generating the &quot;random&quot; number causing some shit stupid mob to one hit kill you.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/andygauge" target="_blank">andygauge</a>
+			<div class="markdown"><p>haven't thought about the pass through VGA in a while.  That stuff was weird.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rexxar-tc" target="_blank">rexxar-tc</a>
+			<div class="markdown"><p>Fortunately that was just a bit before my time, haha</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/FunStayReee" target="_blank">FunStayReee</a>
+			<div class="markdown"><p>And this was before multi-core pcs were the norm, so doing the calculations of all of those bags of triangles in series on the only thread you have to work with would slow framerates down even more?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rexxar-tc" target="_blank">rexxar-tc</a>
+			<div class="markdown"><p>Yeah, that was the main benefit. With CPU rendering, you are basically pausing the entire game while you render the frame, for every frame.</p>
+<p>3D accelerators and later full GPUs had the incredible benefit that you could shift most of the rendering off to a dedicated processor, which gives back almost all of that CPU time.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Target880" target="_blank">Target880</a>
+			<div class="markdown"><p>If you look at the requirement of Doom has 486 66MHz and Quake have a Pentium 75Mhz</p>
+<p>You can find a benchmark for a <a href="https://www.researchgate.net/figure/Pentium-processor-and-i486-CPU-performance-for-SPEC-benchmarks_fig2_3214681" target="_blank">486 66 and a Pentium</a><a href="https://www.researchgate.net/figure/Pentium-processor-and-i486-CPU-performance-for-SPEC-benchmarks_fig2_3214681" target="_blank"> 66</a> </p>
+<p>SPECin92</p>
+<ul>
+<li>32.2 for a 486 66MHz</li>
+<li>64.5 for a Pentium 66MHz</li>
+</ul>
+<p>SPECfp92</p>
+<ul>
+<li>16 for a 486 66MHz</li>
+<li>56.9 for a Pentium 66MHz</li>
+</ul>
+<p>So 2x the integer performance and 3.5x the floating-point performance</p>
+<p>Doom used fix point maths with an integer for the 2.5D but Quake required floating-point for 3D.</p>
+<p>So you had quite a performance leap and a the same there was code improvement that made it faster.</p>
+<p>The Pentium 66 is, in fact, is a bit faster than the Pentium 75 because the bus speed is at 66MHz vs 50 MHz but the point still stands. A 486 was to slow for a game like Quake.</p>
+<p><a href="https://www.vogons.org/download/file.php?id=76154&amp;mode=view" target="_blank"><a href="https://www.vogons.org/download/file.php?id=76154&mode=view" target="_blank">https://www.vogons.org/download/file.php?id=76154&mode=view</a></a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/idkwhatiseven" target="_blank">idkwhatiseven</a>
+			<div class="markdown"><p>Eli5 dedicated floating points?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/stevoblunt83" target="_blank">stevoblunt83</a>
+			<div class="markdown"><p>A floating point is a decimal number. For example: 1265.011933 is a floating point number. Integers are of course whole numbers. 3D requires a lot of floating point math, but old processors didn't have dedicated units to perform floating point match because its expensive computationally. The Pentium was the first Intel chip that had a portion of the CPU dedicated to working with floating point numbers. Previous to the Pentium it only worked with integers and floating point calculations required extra CPU cycles to convert integers to floating point.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/restless_metaphor" target="_blank">restless_metaphor</a>
+			<div class="markdown"><p>A small addition to that: floating point is a <em>representation</em> of the real numbers that allows us to do efficiently perform arithmetic on them with a computer. It's a trade-off between range (what numbers can be expressed?) and precision (how accurately can a number be expressed?)</p>
+<p>The advantage of floating point arithmetic is that it allows us to approximate real numbers with a set of integers and do math to them, and computers already know how to do integer math.</p>
+<p>The floating point representation takes the form of significand × base^(exponent), where significand, base, and exponent are all integers. For example, 1265.011933 can be represented as 1265011933 × 10^(-6). One common type of floating point is the <a href="https://en.wikipedia.org/wiki/IEEE_754" target="_blank">IEEE 754 standard</a>, which is used by essentially all computers in use today.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/idkwhatiseven" target="_blank">idkwhatiseven</a>
+			<div class="markdown"><p>Thanks!</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

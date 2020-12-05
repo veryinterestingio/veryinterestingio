@@ -1,0 +1,56 @@
+<div class="answers">
+	<div class="answer" data-handle="geedob6">
+		<a class="author" href="https://www.reddit.com/user/d2factotum" target="_blank">d2factotum</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Well, what it mainly comes down to is that PCs of the time didn't have dedicated 3D hardware the way they do now, or the way that the 1994 Playstation did--it wasn't until the release of the 3Dfx Voodoo 3D card in 1996 that this capability really started to become mainstream in gaming PCs. So, any 3D in a game had to be rendered entirely using the machine's CPU, and ray casting engines like the ones used in Doom were simply a far more efficient way of rendering 3D, albeit they took some shortcuts in order to do that.</p>
+<p>I actually remember playing through the whole of the original Tomb Raider (1996) on the PC in software rendering only, and the huge difference it made once I got a 3D card and ran it via that instead.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="geeii5u">
+		<a class="author" href="https://www.reddit.com/user/theelectricmayor" target="_blank">theelectricmayor</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Doing true 3D polygons requires a lot of floating point operations (the PS1 did use intermediate integer shortcuts on top of dedicated floating point hardware which is why PS1 games have that distinctive warped perspective and shimmering) but in 1995 the target for PC games was still the 486. The fact that the makers of Dark Forces demanded a whole 8MB of RAM when there were still many people with only 4MB drew some interesting complaints at the time. </p>
+<p>Unfortunately the big performance difference between the existing base of 486 users and the new Pentium adopters was the processor's floating point performance. That's why Quake (1996) required a 75Mhz Pentium and even on a 100Mhz 486 would run at about 10fps (I know because I only had the 486 at home so it was easy to compare just how big a difference the Pentium's floating point unit made). So the two advances that allowed for 3D games where processors with strong floating point performance (Pentiums) and dedicated accelerators cards that could do many floating point operations in parallel (even better than a Pentium).</p>
+<p>By comparison 2.5D games required no floating point operations and could use small integer based lookup tables. 2.5D games are based on a very simple ray casting. For each vertical line on the screen the game projects a ray along the 2D overhead grid until it hits a wall. It then takes the distance to the wall to determine which scale lookup table to use and draws an appropriate vertical strip of pixels taken from that walls texture, which unlike 3D texturing aren't from arbitrary points but rather a simple vertical line using that lookup table to know when the duplicate (stretch) or omit pixels to draw it at the correct scale.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gef3xsl">
+		<a class="author" href="https://www.reddit.com/user/e_dan_k" target="_blank">e_dan_k</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Most of the answers so far are talking about the lack of 3D rendering hardware at the time as the cause. This actually wasn't the issue at the time.</p>
+<p>The issue wasn't how quickly to render the polygons; the issue was how do you determine which polygons you need to render. And that is not a graphics card issue; that is a CPU issue. In all games that have a moving viewpoint, from way back in Battlezone all the way to today's best looking games, the computer needs to rapidly filter out what it can ignore and not even send to the video card.</p>
+<p>Carmack and iD made the breakthrough of using Binary Space Partitions to *instantly* know the exact list of walls they had to consider rendering based on where the camera was located. <a href="https://arstechnica.com/gaming/2019/12/how-much-of-a-genius-level-move-was-using-binary-space-partitioning-in-doom/" target="_blank">Ars Technica has a great article going in depth on it, probably at a higher-than-ELI5 level...</a> </p>
+<p><strong>At an ELI5 level, what is Binary Space Partitioning in a 2.5D game?</strong></p>
+<p>Simply, the level is looked at from the top, so processed on the basis of the &quot;floors&quot; of the model. The computer splits the the floors into triangles on the basis of what walls can be seen when the camera is on the triangle. Depending on how varied that list can be, the triangle can be cut into further smaller triangles, so the list is as close to totally accurate as possible. (Imagine one giant rectangular room with 10 hallways coming off of it. Depending on which hallway you are looking down, the walls will be vastly different. So the giant room gets cut into many many triangles rather than just 2). This processing takes a very very long time, and is saved with the level. It is not done on the player's computers.</p>
+<p>Additionally, the use of triangles mean the game never needs to calculate &quot;which triangle am I on?&quot;, because when the triangles are built, they also save what triangle is on the other side of each edge. So when you move from one triangle to the next, the game already knows &quot;crossing edge B of Triangle 12 moves you to Triangle 16&quot;.</p>
+<p><strong>Oh yeah, and additional ELI5: What does Binary Space Partitioning mean?</strong></p>
+<p>Complex word and complex science, but actually very easy conceptually:</p>
+<ul>
+<li>Binary: Means two options, &quot;on or off&quot;, or &quot;yes or no&quot;.</li>
+<li>Space: On the map/level</li>
+<li>Partitioning: dividing</li>
+</ul>
+<p>So, Binary Space Partitioning means &quot;dividing up your level so you know if you are in front of or behind each wall&quot;</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="geej0np">
+		<a class="author" href="https://www.reddit.com/user/Zahz" target="_blank">Zahz</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>When the first &quot;3D&quot; engines were created, there were no 3d acceleration. So doing actual 3d were not possible.</p>
+<p>With the ID Tech 1 engine, they basically made a 2D engine but flipped the textures for the walls to make it look 3D. </p>
+<p>There are a bunch of videos that explains how it works and why it was revolutionary. It is thoroughly fascinating.</p>
+<p>What I loved was the 2D background with 3D characters on top kind of games that worked around the early limitations in processing power. Games like <a href="https://en.wikipedia.org/wiki/Final_Fantasy_VII" target="_blank">Final Fantasy VII</a> and <a href="https://en.wikipedia.org/wiki/Silver_\(video_game\)" target="_blank">Silver</a>.<br />
+Silver can be bought on GOG and has aged very well in my opinion.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="geg38qr">
+		<a class="author" href="https://www.reddit.com/user/GrowWings_" target="_blank">GrowWings_</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Wait this is 2.5D? I thought 2.5D was strictly games rendered in 3D but with 2D movement like platformers. Wikipedia says it is both, but it seems confusing to me since they're very different and only one of them is still commonly used.</p>
+<p>I always call it original Doom or Wolfenstein 3D type graphics but that is not concise.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
