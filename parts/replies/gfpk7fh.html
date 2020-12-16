@@ -1,0 +1,67 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Experienced_AP" target="_blank">Experienced_AP</a>
+			<div class="markdown"><p>To be complete, do you also have to include T3, the ambient temperature? That's what both masses' temperatures will tend towards.</p>
+<p>Also there's radiative heat to the surroundings as well, but let's ignore that.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/xElMerYx" target="_blank">xElMerYx</a>
+			<div class="markdown"><p>Absolutely.</p>
+<p>You can start with two one-dimentional objects touching at the tip (giggity) and calculate heat transfer with these equations.</p>
+<p>Then, you can go for the same one-dimensional objects, but with non-uniform temperatures, and varying heat resistances.</p>
+<p>You can move on to two and three-dimensional objects then.</p>
+<p>If you keep going, add air as a solid, to get an idea of how much heat is lost. If you're feeling brave do it as a fluid, fluid thermodynamics ain't so hard, right?</p>
+<p>Then you can take into account radiation energy (both incoming and outgoing), including how reflective the materials are to specific wavelengths.</p>
+<p>Then you could also take into account the stability of the elements that make the objects, there's a reason why uranium is spicy.</p>
+<p>Lastly, get them all in motion! Maybe the friction is also making them hot.</p>
+<p>What I'm trying to say Is you can always go further down the physics rabbit hole, and the deeper you go the larger your paycheck is, the harder it is to actually get a job doing it and the probability a computer will do it for you goes up exponentially.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Iron_Pencil" target="_blank">Iron_Pencil</a>
+			<div class="markdown"><p>When you add air you can also add navier stokes to calculate how the hot air rises</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Experienced_AP" target="_blank">Experienced_AP</a>
+			<div class="markdown"><p>Got it.</p>
+<p>At some point though, some third or fourth or fifth iteration, the returns become so small that the approximation is &quot;good enough&quot;, correct?</p>
+<p><em>Ba bananas. Ba ba bananas...</em></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/saywherefore" target="_blank">saywherefore</a>
+			<div class="markdown"><p>Well T3 exists, but you don’t need to know it to set up and solve this equation. What matters at any given moment is the delta T.</p>
+<p>If you wanted to add a third body (the environment) then naturally everything gets another layer of complication.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheTalkingMeowth" target="_blank">TheTalkingMeowth</a>
+			<div class="markdown"><p>Fully modeling heat flow in any &quot;real&quot; environment would be way more complicated than this, yeah.</p>
+<p>In particular, you'd need to account for a whole bunch of geometry that is all jammed into those k terms in the expression I gave.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kilotesla" target="_blank">kilotesla</a>
+			<div class="markdown"><blockquote>
+<p>to actually get temperature as a function of time you need to then solve these differential equations. Which can be difficult.</p>
+</blockquote>
+<p>But fortunately, this is an easy one.</p>
+<p>dT1/dt=k(T2-T1)/C1 dT2/dt=k(T1-T2)/C2</p>
+<p>Define ∆T = T1-T2</p>
+<p>Subtract equations</p>
+<p>d∆T/dt = -k(1/C1 + 1/C2)∆T</p>
+<p>Define 1/tau = k(1/C1 + 1/C2)</p>
+<p>In terms of tau and the initial temperature difference ∆T(0),</p>
+<p>∆T(t) = ∆T(0) • e^(-t/tau)</p>
+<p>The final temperature, equal for both, is Tf = (T1•C1 + T1•C2)/(C1 + C2).  </p>
+<p>You can then write the individual temperature trajectories, </p>
+<p>T1(t) = Tf + (T1(0)-Tf)e^(-t/tau).</p>
+<p>And the same for T2.</p>
+<p>This is an exact solution of that differential equation, but that differential equation is an approximation, as many comments have directly or indirectly discussed.  The level of approximation is very similar to the level of approximation in Newton's law of cooling.  A quick summary is that the two bodies are effectively isolated from the surroundings and that the temperature within each is uniform.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Demeter-is-a-Girl" target="_blank">Demeter-is-a-Girl</a>
+			<div class="markdown"><p>You fail to describe C in your equation which is hugely important. C is specific heat, or rather, an objects affinity to taking up or losing energy in the form of heat. Specific heat of an object tells you how easy it is to heat an object, the lower the number the easier it is to heat up regardless of changes in other temperatures.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Chemomechanics" target="_blank">Chemomechanics</a>
+			<div class="markdown"><blockquote>
+<p>You fail to describe C in your equation which is hugely important. C is specific heat</p>
+</blockquote>
+<p>Not quite: C1 and C2 are not specific heats (or even heat capacities) in the equations dT1/dt=k(T2-T1)/C1 and dT2/dt=k(T1-T2)/C2, as the units don't work out. They stand for (and it took me a good 10 minutes to work this out) cρxV/A, where c is specific heat, ρ is density, x is the distance corresponding to the temperature difference, V is the volume of the material being heated, and A is the cross-sectional area of heat flux. The units of 1/C are then m·K/J, which is consistent with the equations.</p></div>		</li>
+					</ul>
+		</ul>
+	
