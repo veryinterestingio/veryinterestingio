@@ -1,0 +1,61 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/nicknameedan" target="_blank">nicknameedan</a>
+			<div class="markdown"><p>What is the difference between normal restart, and instant restart via button on the cpu?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CheapMonkey34" target="_blank">CheapMonkey34</a>
+			<div class="markdown"><p>A restart is triggered by the operating system. It gets the chance to clean up (write temporary data to disk, close files etc). </p>
+<p>A reset is rücksichtslos. Doesn’t matter what the computer was doing. It’s starting from scratch the next clockcycle.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/basementmatt" target="_blank">basementmatt</a>
+			<div class="markdown"><blockquote>
+<p>rücksichtslos</p>
+</blockquote>
+<p>TIL a new word. Thank you.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/space_fly" target="_blank">space_fly</a>
+			<div class="markdown"><p>Fun fact: from a programmers point of view, there are <a href="https://wiki.osdev.org/Reboot" target="_blank">a couple of ways</a> to reset the system. The most fun one is causing a triple fault, which will make the CPU reset itself.</p>
+<p>A <a href="https://wiki.osdev.org/Exceptions" target="_blank">CPU fault</a> is basically the CPU figuring out that it can't execute the next instruction (things like a division by 0, or it cannot access a memory section because of various reasons, or someone tried to do something it's not allowed to). When this happens, it has a special table of functions (which is called the &quot;interrupt vector table&quot;), and the CPU will call the function which corresponds to the error code. Operating systems plug their own functions into this table, so they can take appropriate actions when these faults happen (like terminating the executing program, or loading some memory from the paging file etc).</p>
+<p>If a function handling these faults causes another fault to appear (e.g. it divides by 0), you get a &quot;double fault&quot;. If the &quot;double fault&quot; function also causes another fault, you get a &quot;triple fault&quot; in which the CPU says &quot;I'm done with your shit, I'll restart and run a proper OS that knows what it's doing&quot; and will reset.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/skylarmt" target="_blank">skylarmt</a>
+			<div class="markdown"><blockquote>
+<p>button on the cpu</p>
+</blockquote>
+<p>The CPU has no buttons, it's the main chip that processes data and calculates.  It's mounted on the motherboard which is contained inside the computer case, which has the buttons.  The case buttons connect to the motherboard, which handles power and most other things.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/im_thatoneguy" target="_blank">im_thatoneguy</a>
+			<div class="markdown"><p>To continue the chef analogy, restart is the chef, in this case the operating system (Windows, Linux, Android, MacOS, iOS etc), carefully putting things away, washing dishes, going through their ingredients to see how much can be put back in the fridge etc.</p>
+<p>Reset switch is like swiping everything off the counter straight into a garbage can and starting over with brand new pots, ingredients and knives.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/edu2004eu" target="_blank">edu2004eu</a>
+			<div class="markdown"><p>You keep talking about reset, but the question asks about a restart. Those are very different things. A restart is somewhat different than a shutdown (even except for the obvious).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CheapMonkey34" target="_blank">CheapMonkey34</a>
+			<div class="markdown"><p>You’re right, maybe I interpreted the question a bit.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/WednesdayHH" target="_blank">WednesdayHH</a>
+			<div class="markdown"><p>Also, not every computer is powered down when you &quot;shut down&quot;.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pseudopad" target="_blank">pseudopad</a>
+			<div class="markdown"><p>Depends on how you define &quot;powered down&quot;. If you mean that there's still power going into the motherboard, then absolutely no PC or Mac made in the last 25 years powers down when you tell it to shut down, as the motherboard is always powered enough to look for the power-on pulse from the power button. </p>
+<p>If you don't count that as being powered on, then the vast majority of computers <em>are</em> powered down when you explicitly tell them to shut down via software (i.e. not standby).</p>
+<p>Nothing with a power button that doesn't physically break or close a circuit is truly without power when turned off, If they were, the electronics responsible of bringing it back up wouldn't be able to detect the power button being pushed.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/WednesdayHH" target="_blank">WednesdayHH</a>
+			<div class="markdown"><p>I mean that they are essentially still running when you shutdown, not just the normal power flow. </p>
+<blockquote>
+<p>servers</p>
+</blockquote></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
