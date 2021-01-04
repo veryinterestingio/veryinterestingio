@@ -1,0 +1,56 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/J-Roc67" target="_blank">J-Roc67</a>
+			<div class="markdown"><p>Thanks for your answer! It all makes sense now :)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NotTooDeep" target="_blank">NotTooDeep</a>
+			<div class="markdown"><p>The same principle applies to all databases. Indexing is what makes searches fast. </p>
+<p>And, as you may be thinking now, there are tradeoffs when you index.</p>
+<p>Stuff changes. Data about stuff changes. So indexes have to change to keep up. This takes work, which costs time and money. If you index for everything under the sun, you may go broke. So, you pick what kinds of data are important to you and index those first.</p>
+<p>That's what google is doing when it &quot;tags&quot; web pages. The crawler says it found a kind of data that's important and makes an entry in the index at google's server with the location of that web page and its tag. So when you search Google for videos (a data type) about mentos (a data type) and Coke (a data type), Google recognizes those key words as something its already tagged and then knows where to search. </p>
+<p>It's useful to think of indexes as a tool that eliminates data. Searching less data is why things go fast.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/caine2003" target="_blank">caine2003</a>
+			<div class="markdown"><p>Another thing to add. Their index is only as good as their last spider crawl and DB record update. That's why you can get broken links from any search engine. Sometimes, a site admin gets a bit ambitious, and will block all bots. Then they wonder why traffic has dropped when they have no advertising...</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/J-Roc67" target="_blank">J-Roc67</a>
+			<div class="markdown"><p>Yeah, I see how it works. Reminds me of the search function of windows explorer which takes ages to come up with results - but that's an example of a mon indexed database I guess</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/half3clipse" target="_blank">half3clipse</a>
+			<div class="markdown"><p>It's not even just indexing websites. Google is perfectly happy to precompute search results. You're not the first person to search diet coke and mentos videos. You're probably not the first person to search diet coke and mentos videos within 10 miles of you in the last 15 minutes. </p>
+<p>Search for that and the resulting webpage is already living on a CDN server.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/im-a-guy-like-me" target="_blank">im-a-guy-like-me</a>
+			<div class="markdown"><p>To add to this, they also have a distributed network of caches for common queries.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tenderhombre" target="_blank">Tenderhombre</a>
+			<div class="markdown"><p>To add to that further it's likely that google ignores &quot;stop words&quot; in most cases. Stop words are things like &quot;a&quot;,&quot;the&quot;,&quot;of&quot; words that dont add much context. </p>
+<p>Another fun thing I'm sure they do is using controlled vocabularies personalized to a user. A controlled vocabulary helps you identify closely related words in a given context. So if you are searching an engineering database, &quot;design&quot; might also hit &quot;systems design&quot;, or even &quot;systems&quot; where in an art context it might hit &quot;digital design&quot; or &quot;digital&quot;. </p>
+<p>There are ways to use search history and web history to create better controlled vocabs for an individual to enhance searches.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/photon_blaster" target="_blank">photon_blaster</a>
+			<div class="markdown"><p>Do they still do the ranking algorithm based on random walks through links on other websites? I remember learning about the in undergrad discrete math and it was so cool.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/featherfooted" target="_blank">featherfooted</a>
+			<div class="markdown"><p>It may be a a factor used in training the ML model but ultimately it is no longer the &quot;primary&quot; thing. PageRank is a purely document-side feature that does not necessarily return relevant results and IIRC Google upgraded/deprecated it a few years ago. </p>
+<p>For example, Wikipedia links to a hundred thousand different sources but outside of reddit comments, not many people link back to Wikipedia. If this is the case, why would Wikipedia rank highly in the PageRank algorithm? The answer is they must be including other ML features, such as the user behavior that in an A/B test (really an A/B/C/D/... test), users click Wikipedia a lot when searching for terms that match Wikipedia article title. So maybe result sorting is part PageRank, part number of clicks. And of course there's some sort of TF-IDF feature, and maybe a &quot;top websites domains visited in Google Chrome browsers&quot; feature, etc.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rogerbarton" target="_blank">rogerbarton</a>
+			<div class="markdown"><p>The reality is they’re much more advanced even than this. Quality &amp; relevance of content is the main ranking factor for any large domain.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/needlzor" target="_blank">needlzor</a>
+			<div class="markdown"><p>AFAIK PageRank is still part of the core idea but right now they take a lot more signals into account based on content, social signals, etc. The ranking doesn't do an actual random walk when you're searching though, that would be very slow.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PixelRayn" target="_blank">PixelRayn</a>
+			<div class="markdown"><p>Really important here is also that they don't have to search all   indexed websites for tags but can just pull up a list of the tagged websites and only look through those.</p>
+<p>How exactly they do that is a trade secret but they most likely use some sort of hashing algorithm which basically means that they know where to put something from the contents of website and then later derive that position from the search query.</p></div>		</li>
+					</ul>
+	

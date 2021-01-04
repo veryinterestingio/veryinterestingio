@@ -1,0 +1,50 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wizardyourlifeforce" target="_blank">wizardyourlifeforce</a>
+			<div class="markdown"><p>That doesn’t explain why whole text searches are done instantly, even long ones that don’t have any of the indexed keywords.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/YoureSpellingIsBad" target="_blank">YoureSpellingIsBad</a>
+			<div class="markdown"><p>Full text search is its own strange beast, but the same principle of &quot;analyze everything ahead of time&quot; is the same. Text search uses a whole slew of tricks, like counting the frequency of words, common word combinations, increased usage of rare phrases. (If you search for &quot;chocolate rain&quot; then Google is going to heavily favor a page that mentions that phrase once and ignore a page that has the word chocolate fifty times). But all of those things can be boiled down to indexable characteristics of the page that can be calculated and stored in advance.</p>
+<p>But that's just the kind of search a regular developer can do with publicly available tools. Google has a bunch more dark magic on top of that.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lamalalamal" target="_blank">lamalalamal</a>
+			<div class="markdown"><p>And the resources of Google. Creating your own database of all the phrases on the internet is absolutely impossible. Google though... they can get close.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/oberon" target="_blank">oberon</a>
+			<div class="markdown"><p>Yeah, I've been disappointed by the answers here. They're all about boring, ancient technology that has existed in information theory for centuries or more (indexing) and hardly a mention of parallelization or map-reduce.</p>
+<p>It's almost like most of the responders are just eager to share what they know about databases, rather than answering OP's question with relevant, Google-specific information.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/turkeypedal" target="_blank">turkeypedal</a>
+			<div class="markdown"><p>Because the question was clearly from someone who didn't know those things, given how they asked their question. </p>
+<p>Plus, well, Google isn't doing anything magical. It really is just scaling up the basic stuff. At most they're using an algorithm (likely AI-driven at this point) to add some additional categorization.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Aggravating-Forever2" target="_blank">Aggravating-Forever2</a>
+			<div class="markdown"><p>OP asked a question that lends itself to an answer rooted in boring ancient technology, and it's asked in a way that conveys an unfamiliarity with the same. It's not unreasonable that the answers be in that space, as they're being answered in context with the question, and with the assumed audience in mind.</p>
+<p>For that matter: <em>MapReduce</em> is boring, ancient technology - the paper was in 2004, and you'd be silly to think things hadn't evolved <em>greatly</em> since then. So it would still be a major oversimplification to say &quot;and then use MapReduce!&quot;.</p>
+<p>MapReduces are big, batch jobs - high latency, but high throughput. They're something that would be mostly fine with a relatively static web, circa 2004, if you're cool with your index always being hours-to-days out of date. But it's super awkward to try to make something like that work on fast-updating dynamic sites (think Reddit, Twitter, news sites, etc.) where, to actually be useful and be able to give meaningful results, you need to be updating in near real-time. So, yeah. There are other things that exist now, because they need to.</p>
+<p>Unfortunately, you probably won't get more interesting answers on the indexing side, I think - as anyone who realistically <em>can (as in, knows)</em> also <em>can't</em> (is under NDA).  I don't think the guts of the current indexing system are public knowledge, and I'm not risking a cushy job so I can tell fun stories on Reddit, y'know?</p>
+<p>Best I can say is: much of what's used <em>has</em> been published in some form.  It's just that they will never specify that a particular thing is being used for indexing (vs. any other random problem at Google). But if you're interested in large scale data processing, reading papers about large scale data processing from a corporation that processes bafflingly large amounts of data is probably worth it, regardless.</p>
+<p>But I certainly wouldn't dump all that on OP, in the first place - I think they'd be the wrong audience for that info. You're welcome to ask your own indexing specific question, and see if someone who has a better feel for &quot;what's actually been made public enough to talk about&quot; is willing to bite, there.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thefoojoo2" target="_blank">thefoojoo2</a>
+			<div class="markdown"><p>There are a few tricks I'm aware of.</p>
+<p>They index every word in the page body, not just keywords. For each word, they also index the word that comes after it and where in the source page that combination is. When a search query is made, they look up all entries in the index that the match each pair of words from the query text. So if you searched &quot;I got 99 problems&quot; that would translate to an index search of (I, got), (got, 99), (99, problems), which would return a giant list of pages that matched at least one of those pairs. From there, additional magic happens to narrow down and prioritize results. </p>
+<p>This is a lot of data to process: a search engineer told me that the average individual Google search query results in <em>hundreds</em> of megabytes of network traffic between servers in a single data center. When I worked there (not on Search), they told engineers to assume that network bandwidth between servers within a single cell (cluster of 10k servers) was &quot;infinite.&quot; There's a lot of bandwidth and compute power being utilized to parallelize things and make them fast.</p>
+<p>Before starting the index search, Google uses natural language algorithms to parse the query. This includes phrase recognition (eg &quot;mountain bike&quot; is one thing and not two unrelated words), entity recognition (eg &quot;Barack Obama&quot; is an entity that exists in Google's knowledge graph), and parsing the &quot;grammar&quot; to understand how words in the query related to each other. For example in the query &quot;how tall is Barack Obama&quot;, it can essentially draw a sentence map recognizing that &quot;is&quot; is a verb acting on the object &quot;Barack Obama&quot;, and &quot;how tall&quot; modifies &quot;is&quot; etc etc. It can also do something similar for the query &quot;Barack Obama height,&quot; recognizing that there's a grammatical relationship between &quot;Barack Obama&quot; and &quot;height.&quot; That all gets feed into other systems which use that query knowledge to execute the search.</p>
+<p>Source: ex-Google employeewho attended a talk I've mostly forgotten about the basics of how search works.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					</ul>
+		</ul>
+	
