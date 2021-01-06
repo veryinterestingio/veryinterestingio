@@ -1,0 +1,59 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/obviowhy" target="_blank">obviowhy</a>
+			<div class="markdown"><p>This also means there’s a physical limit to how much it can be improved ? As in the wavelengths/photons can’t get smaller</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/seeasea" target="_blank">seeasea</a>
+			<div class="markdown"><p>That is a theoretical limit on size, not power/capabilities itself (though there are smart people working on that with things like 1/2 open logic gates and quantum computing) There are improvements in areas like hyperthreading/multi cores/power optimization you may be familiar with, but there's also in manufacturing technique itself. </p>
+<p>Right now, with printing at these sizes, there are inevitably dead transistors due to manufacturing defects or silicon defects etc. So the manufacturers simply print all boards at the target highest number (most powerful board) and then test them, and then based on defects, each one has a different power capability, and the lower tier models are simply the better ones that had more defects.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/obviowhy" target="_blank">obviowhy</a>
+			<div class="markdown"><p>And that’s one way they categorise them as i3, i5, i7, i9? The better “printing” job, the better cpu? In eli5 terms</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/f_a_d" target="_blank">f_a_d</a>
+			<div class="markdown"><p>Presumably this must mean there is a range of performance across boards labelled as the same, or do they manage to hobble boards down to a certain limit for each product?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rasamson" target="_blank">rasamson</a>
+			<div class="markdown"><p>I've never heard of half open gates and am having trouble finding more info. What should I search for?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SlingDNM" target="_blank">SlingDNM</a>
+			<div class="markdown"><p>Yes, another fun fact: </p>
+<p>Clock speed has a limit because at some point the time electricity needs to travel from one side of the chip to the other is bigger than one clock cycle  of your chip.</p>
+<p>This is also why we can't just make processors way wider, the bigger the chip the smaller the max clock rate</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/obviowhy" target="_blank">obviowhy</a>
+			<div class="markdown"><p>Amazing. So in the future or 2-digit (edit: binary) computers will just not be fast enough to further improve processing? We need to advance to like quantum computing or what more.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/slugonamission" target="_blank">slugonamission</a>
+			<div class="markdown"><p>This is already a pretty big issue. It's been a while, but even a few years ago, I believe the figure was that a signal could transit ~5% of the chip in a single clock cycle (maybe it was 0.5%. It wasn't much in any case). </p>
+<p>This tends to be solved instead by a few approaches; keep everything more &quot;local&quot;, so have shorter wires and try and keep functional units close together, and asynchronous tricks (globally asynchronous, locally synchronous). An area of the chip will exist in one clock domain, but to cross to other sections of the chip, it will have to cross into another, asynchronous domain (which carries a few cycles of penalty).</p>
+<p>Really, larger dies with multiple cores helps here, if each core is small, but there's a lot of them, then you don't need many long connections :)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Dashing_McHandsome" target="_blank">Dashing_McHandsome</a>
+			<div class="markdown"><p>How is this managed for chips that use the full wafer? There is a company called Cerebras that seems to at least have some of these in testing, though I don't think they are commercially available yet.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OMGihateallofyou" target="_blank">OMGihateallofyou</a>
+			<div class="markdown"><p>Yes. But even if you could get around that to manufacture smaller finer details then eventually you would have other problems to address like quantum tunneling.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/majnuker" target="_blank">majnuker</a>
+			<div class="markdown"><p>Yes, but also, cramming more and more electronics into smaller packages actually creates an issue with heat as well, as there's more heat energy per cubic centimeter. </p>
+<p>Moore's Law will fail sometime, so we'll have to transition to more effective methods of computing instead of hardware improvements.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Obtusus" target="_blank">Obtusus</a>
+			<div class="markdown"><blockquote>
+<p>&quot;photolitography&quot; - which means &quot;writing with light&quot;.</p>
+</blockquote>
+<p>I believe it means &quot;writing in stone with light&quot;, as &quot;writing with light&quot; is photography.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wantkitteh" target="_blank">wantkitteh</a>
+			<div class="markdown"><p>An important point missing from the &quot;Lithography: smaller is better&quot; concept is what GPU manufacturers actually do with the ability to pack more transistors into a practical package. While improvements in raw horsepower are certainly welcome, there is also an organic, reactive process of steady changes to the architecture depending on how software developers actually leverage previous-gen GPUs. Some of these improvements are low-level changes that increase raw efficiency - Nvidia's recent changes that allow their GPUs to handle multiple different calculation precisions and modes at the same time instead of having to change modes between clock ticks is a good example of this, as is AMD's &quot;Fine Wine&quot; tech that increased maximum word width the compute units could handle. These tend to go quietly unnoticed by regular consumers in favour of the flashy high-level features that see all the publicity - adding a hardware-supported feature to replace something software devs were previously figuring out how to handle themselves (usually) comes with a reduction in the performance hit of turning that setting up in-game - things like shadow casting, ray-tracing, texture mapping modes, anti-aliasing methods, they've all been introduced to satisfy demand by gamers and software devs to improve graphical feature sets and image fidelity with reduced impact on performance compared to software-only implementations of the same features. Don't get me wrong, they also lean on increased availability of compute power that's provided by improvements in lithography, but leveraging that extra power in the most efficient manner possible is just as important, and it's a process of hardware and software improving and reacting to each other over time.</p></div>		</li>
+					</ul>
+	
