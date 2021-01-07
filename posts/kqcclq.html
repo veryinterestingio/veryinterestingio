@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: What's the difference between source code and the code you can find in the progam/files?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="kqcclq">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/kqcclq/eli5_whats_the_difference_between_source_code_and/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/kqcclq" onclick="return false">What's the difference between source code and the code you can find in the progam/files?</a>
+		</h2>
+		<!--<span class="date">2021-01-07</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>been seeing a lot of source code leaks lately and i don't really get it</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="gi2yx5e">
+		<a class="author" href="https://www.reddit.com/user/Chel_of_the_sea" target="_blank">Chel_of_the_sea</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Source code is made to be readable by humans, while the data in a typical executable (what you mean by 'program') is made to be readable by a computer's processor.</p>
+<p>For example, I might write something like this in source code:</p>
+<pre><code>int x = 14;</code></pre>
+<p>But in fact, this human-readable instruction requires quite a bit of extra work behind the scenes. The exact work depends on the language, but one example might be:</p>
+<pre><code>allocate space for an integer and store an address to that space
+store the value 00000000000000000000000000001110 [i.e., '14' written in binary] to the address from the previous step
+add x to the list of currently used variables</code></pre>
+<p>But even this is human readable. In an executable, &quot;allocate space&quot; would be identified by some numeric code (say, 1010111101101), &quot;store an address&quot; would be identified by another one (say, 0011111001000), &quot;store this value to this address&quot; by another (say, 0001000101110), and so on. So in an executable, this would read as something like:</p>
+<pre><code>1010111101101[some location to store the address goes here]0011111001000000100010111000000000000000000000000000001110[the location from before goes here]</code></pre>
+<p>Which is obviously not very useful to a human eye!</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="gi3ogb8">
+		<a class="author" href="https://www.reddit.com/user/ledow" target="_blank">ledow</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Source code is the recipe.</p>
+<p>The program you have on your computer is the cake.</p>
+<p>Though the cake does its job just perfectly, if you want to find out how it was made, you need the source code.  And you can't unbake the cake (at least, not without spending so much effort that you could just bake another cake all of your own, from scratch).</p>
+<p>The recipe tells you how to make the cake.  So if  you have the recipe, you can make as many cakes as you like, and even change the cake to do what you want.</p>
+<p>If you only have the cake... then you only have the cake.  You can't change it, and you won't know how it was made.</p>
+<p>Thus the source code is far more useful, valuable and protected by the companies than the cakes that they sell to you.</p>
+<p>It's like someone finding out the recipe for Coca Cola and telling the world.  Now everyone could, in theory, make their own Coca Cola that tastes just like the real thing.</p>
+<p>Worse, though, is that the recipe will reveal other secrets about the program that you may not want exposed - security vulnerabilities, hidden codes, patented methods of doing things, trade secrets, etc.</p>
+<p>(And in this example, the &quot;oven&quot; is called a compiler, it's a program that turns source code into a program that will run on your computer)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gi2yz5s">
+		<a class="author" href="https://www.reddit.com/user/Pocok5" target="_blank">Pocok5</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Hello World in C:</p>
+<pre><code>#include &lt;stdio.h&gt;
+int main() {
+   printf("Hello, World!");
+   return 0;
+}</code></pre>
+<p>The very same, compiled and hex dumped (had to snip out some from the middle to fit in a comment):</p>
+<pre><code>0000000 457f 464c 0102 0001 0000 0000 0000 0000
+0000010 0003 003e 0001 0000 1060 0000 0000 0000
+0000020 0040 0000 0000 0000 3978 0000 0000 0000
+0000030 0000 0000 0040 0038 000d 0040 001f 001e
+0000040 0006 0000 0004 0000 0040 0000 0000 0000
+0000050 0040 0000 0000 0000 0040 0000 0000 0000
+0000060 02d8 0000 0000 0000 02d8 0000 0000 0000
+0000070 0008 0000 0000 0000 0003 0000 0004 0000
+0000080 0318 0000 0000 0000 0318 0000 0000 0000
+...
+0003650 0000 0000 0000 0000 6300 7472 7473 6675
+0003660 2e66 0063 6564 6572 6967 7473 7265 745f
+0003670 5f6d 6c63 6e6f 7365 5f00 645f 5f6f 6c67
+0003680 626f 6c61 645f 6f74 7372 615f 7875 6300
+0003690 6d6f 6c70 7465 6465 382e 3630 0030 5f5f
+00036a0 6f64 675f 6f6c 6162 5f6c 7464 726f 5f73
+00036b0 7561 5f78 6966 696e 615f 7272 7961 655f
+00036c0 746e 7972 6600 6172 656d 645f 6d75 796d
+00036d0 5f00 665f 6172 656d 645f 6d75 796d 695f
+00036e0 696e 5f74 7261 6172 5f79 6e65 7274 0079
+00036f0 7768 632e 5f00 465f 4152 454d 455f 444e
+0003700 5f5f 5f00 695f 696e 5f74 7261 6172 5f79
+0003710 6e65 0064 445f 4e59 4d41 4349 5f00 695f
+0003720 696e 5f74 7261 6172 5f79 7473 7261 0074
+0003730 5f5f 4e47 5f55 4845 465f 4152 454d 485f
+0003740 5244 5f00 4c47 424f 4c41 4f5f 4646 4553
+0003750 5f54 4154 4c42 5f45 5f00 6c5f 6269 5f63
+0003760 7363 5f75 6966 696e 5f00 5449 5f4d 6564
+0003770 6572 6967 7473 7265 4d54 6c43 6e6f 5465
+0003780 6261 656c 5f00 6465 7461 0061 7270 6e69
+0003790 6674 4040 4c47 4249 5f43 2e32 2e32 0035
+00037a0 5f5f 696c 6362 735f 6174 7472 6d5f 6961
+00037b0 406e 4740 494c 4342 325f 322e 352e 5f00
+00037c0 645f 7461 5f61 7473 7261 0074 5f5f 6d67
+00037d0 6e6f 735f 6174 7472 5f5f 5f00 645f 6f73
+00037e0 685f 6e61 6c64 0065 495f 5f4f 7473 6964
+00037f0 5f6e 7375 6465 5f00 6c5f 6269 5f63 7363
+0003800 5f75 6e69 7469 5f00 625f 7373 735f 6174
+0003810 7472 6d00 6961 006e 5f5f 4d54 5f43 4e45
+0003820 5f44 005f 495f 4d54 725f 6765 7369 6574
+0003830 5472 434d 6f6c 656e 6154 6c62 0065 5f5f
+0003840 7863 5f61 6966 616e 696c 657a 4040 4c47
+0003850 4249 5f43 2e32 2e32 0035 2e00 7973 746d
+0003860 6261 2e00 7473 7472 6261 2e00 6873 7473
+0003870 7472 6261 2e00 6e69 6574 7072 2e00 6f6e
+0003880 6574 672e 756e 702e 6f72 6570 7472 0079
+0003890 6e2e 746f 2e65 6e67 2e75 7562 6c69 2d64
+00038a0 6469 2e00 6f6e 6574 412e 4942 742d 6761
+00038b0 2e00 6e67 2e75 6168 6873 2e00 7964 736e
+00038c0 6d79 2e00 7964 736e 7274 2e00 6e67 2e75
+00038d0 6576 7372 6f69 006e 672e 756e 762e 7265
+00038e0 6973 6e6f 725f 2e00 6572 616c 642e 6e79
+00038f0 2e00 6572 616c 702e 746c 2e00 6e69 7469
+0003900 2e00 6c70 2e74 6f67 0074 702e 746c 732e
+0003910 6365 2e00 6574 7478 2e00 6966 696e 2e00
+0003920 6f72 6164 6174 2e00 6865 665f 6172 656d
+0003930 685f 7264 2e00 6865 665f 6172 656d 2e00
+0003940 6e69 7469 615f 7272 7961 2e00 6966 696e
+0003950 615f 7272 7961 2e00 7964 616e 696d 0063
+0003960 642e 7461 0061 622e 7373 2e00 6f63 6d6d
+0003970 6e65 0074 0000 0000 0000 0000 0000 0000
+0003980 0000 0000 0000 0000 0000 0000 0000 0000
+*
+00039b0 0000 0000 0000 0000 001b 0000 0001 0000
+00039c0 0002 0000 0000 0000 0318 0000 0000 0000
+00039d0 0318 0000 0000 0000 001c 0000 0000 0000
+00039e0 0000 0000 0000 0000 0001 0000 0000 0000
+00039f0 0000 0000 0000 0000 0023 0000 0007 0000
+0003a00 0002 0000 0000 0000 0338 0000 0000 0000
+0003a10 0338 0000 0000 0000 0020 0000 0000 0000
+0003a20 0000 0000 0000 0000 0008 0000 0000 0000
+0003a30 0000 0000 0000 0000 0036 0000 0007 0000
+0003a40 0002 0000 0000 0000 0358 0000 0000 0000
+0003a50 0358 0000 0000 0000 0024 0000 0000 0000
+0003a60 0000 0000 0000 0000 0004 0000 0000 0000
+0003a70 0000 0000 0000 0000 0049 0000 0007 0000
+0003a80 0002 0000 0000 0000 037c 0000 0000 0000
+0003a90 037c 0000 0000 0000 0020 0000 0000 0000
+0003aa0 0000 0000 0000 0000 0004 0000 0000 0000
+0003ab0 0000 0000 0000 0000 0057 0000 fff6 6fff
+0003ac0 0002 0000 0000 0000 03a0 0000 0000 0000
+0003ad0 03a0 0000 0000 0000 0024 0000 0000 0000
+0003ae0 0006 0000 0000 0000 0008 0000 0000 0000
+0003af0 0000 0000 0000 0000 0061 0000 000b 0000
+0003b00 0002 0000 0000 0000 03c8 0000 0000 0000
+0003b10 03c8 0000 0000 0000 00a8 0000 0000 0000
+0003b20 0007 0000 0001 0000 0008 0000 0000 0000
+0003b30 0018 0000 0000 0000 0069 0000 0003 0000
+0003b40 0002 0000 0000 0000 0470 0000 0000 0000
+0003b50 0470 0000 0000 0000 0084 0000 0000 0000
+0003b60 0000 0000 0000 0000 0001 0000 0000 0000
+0003b70 0000 0000 0000 0000 0071 0000 ffff 6fff
+0003b80 0002 0000 0000 0000 04f4 0000 0000 0000
+0003b90 04f4 0000 0000 0000 000e 0000 0000 0000
+0003ba0 0006 0000 0000 0000 0002 0000 0000 0000
+0003bb0 0002 0000 0000 0000 007e 0000 fffe 6fff
+0003bc0 0002 0000 0000 0000 0508 0000 0000 0000
+0003bd0 0508 0000 0000 0000 0020 0000 0000 0000
+0003be0 0007 0000 0001 0000 0008 0000 0000 0000
+0003bf0 0000 0000 0000 0000 008d 0000 0004 0000
+0003c00 0002 0000 0000 0000 0528 0000 0000 0000
+0003c10 0528 0000 0000 0000 00c0 0000 0000 0000
+0003c20 0006 0000 0000 0000 0008 0000 0000 0000
+0003c30 0018 0000 0000 0000 0097 0000 0004 0000
+0003c40 0042 0000 0000 0000 05e8 0000 0000 0000
+0003c50 05e8 0000 0000 0000 0018 0000 0000 0000
+0003c60 0006 0000 0018 0000 0008 0000 0000 0000
+0003c70 0018 0000 0000 0000 00a1 0000 0001 0000
+0003c80 0006 0000 0000 0000 1000 0000 0000 0000
+0003c90 1000 0000 0000 0000 001b 0000 0000 0000
+0003ca0 0000 0000 0000 0000 0004 0000 0000 0000
+0003cb0 0000 0000 0000 0000 009c 0000 0001 0000
+0003cc0 0006 0000 0000 0000 1020 0000 0000 0000
+0003cd0 1020 0000 0000 0000 0020 0000 0000 0000
+0003ce0 0000 0000 0000 0000 0010 0000 0000 0000
+0003cf0 0010 0000 0000 0000 00a7 0000 0001 0000
+0003d00 0006 0000 0000 0000 1040 0000 0000 0000
+0003d10 1040 0000 0000 0000 0010 0000 0000 0000
+0003d20 0000 0000 0000 0000 0010 0000 0000 0000
+0003d30 0010 0000 0000 0000 00b0 0000 0001 0000
+0003d40 0006 0000 0000 0000 1050 0000 0000 0000
+0003d50 1050 0000 0000 0000 0010 0000 0000 0000
+0003d60 0000 0000 0000 0000 0010 0000 0000 0000
+0003d70 0010 0000 0000 0000 00b9 0000 0001 0000
+0003d80 0006 0000 0000 0000 1060 0000 0000 0000
+0003d90 1060 0000 0000 0000 0185 0000 0000 0000
+0003da0 0000 0000 0000 0000 0010 0000 0000 0000
+0003db0 0000 0000 0000 0000 00bf 0000 0001 0000
+0003dc0 0006 0000 0000 0000 11e8 0000 0000 0000
+0003dd0 11e8 0000 0000 0000 000d 0000 0000 0000
+0003de0 0000 0000 0000 0000 0004 0000 0000 0000
+0003df0 0000 0000 0000 0000 00c5 0000 0001 0000
+0003e00 0002 0000 0000 0000 2000 0000 0000 0000
+0003e10 2000 0000 0000 0000 0012 0000 0000 0000
+0003e20 0000 0000 0000 0000 0004 0000 0000 0000
+0003e30 0000 0000 0000 0000 00cd 0000 0001 0000
+0003e40 0002 0000 0000 0000 2014 0000 0000 0000
+0003e50 2014 0000 0000 0000 0044 0000 0000 0000
+0003e60 0000 0000 0000 0000 0004 0000 0000 0000
+0003e70 0000 0000 0000 0000 00db 0000 0001 0000
+0003e80 0002 0000 0000 0000 2058 0000 0000 0000
+0003e90 2058 0000 0000 0000 0108 0000 0000 0000
+0003ea0 0000 0000 0000 0000 0008 0000 0000 0000
+0003eb0 0000 0000 0000 0000 00e5 0000 000e 0000
+0003ec0 0003 0000 0000 0000 3db8 0000 0000 0000
+0003ed0 2db8 0000 0000 0000 0008 0000 0000 0000
+0003ee0 0000 0000 0000 0000 0008 0000 0000 0000
+0003ef0 0008 0000 0000 0000 00f1 0000 000f 0000
+0003f00 0003 0000 0000 0000 3dc0 0000 0000 0000
+0003f10 2dc0 0000 0000 0000 0008 0000 0000 0000
+0003f20 0000 0000 0000 0000 0008 0000 0000 0000
+0003f30 0008 0000 0000 0000 00fd 0000 0006 0000
+0003f40 0003 0000 0000 0000 3dc8 0000 0000 0000
+0003f50 2dc8 0000 0000 0000 01f0 0000 0000 0000
+0003f60 0007 0000 0000 0000 0008 0000 0000 0000
+0003f70 0010 0000 0000 0000 00ab 0000 0001 0000
+0003f80 0003 0000 0000 0000 3fb8 0000 0000 0000
+0003f90 2fb8 0000 0000 0000 0048 0000 0000 0000
+0003fa0 0000 0000 0000 0000 0008 0000 0000 0000
+0003fb0 0008 0000 0000 0000 0106 0000 0001 0000
+0003fc0 0003 0000 0000 0000 4000 0000 0000 0000
+0003fd0 3000 0000 0000 0000 0010 0000 0000 0000
+0003fe0 0000 0000 0000 0000 0008 0000 0000 0000
+0003ff0 0000 0000 0000 0000 010c 0000 0008 0000
+0004000 0003 0000 0000 0000 4010 0000 0000 0000
+0004010 3010 0000 0000 0000 0008 0000 0000 0000
+0004020 0000 0000 0000 0000 0001 0000 0000 0000
+0004030 0000 0000 0000 0000 0111 0000 0001 0000
+0004040 0030 0000 0000 0000 0000 0000 0000 0000
+0004050 3010 0000 0000 0000 002a 0000 0000 0000
+0004060 0000 0000 0000 0000 0001 0000 0000 0000
+0004070 0001 0000 0000 0000 0001 0000 0002 0000
+0004080 0000 0000 0000 0000 0000 0000 0000 0000
+0004090 3040 0000 0000 0000 0618 0000 0000 0000
+00040a0 001d 0000 002e 0000 0008 0000 0000 0000
+00040b0 0018 0000 0000 0000 0009 0000 0003 0000
+00040c0 0000 0000 0000 0000 0000 0000 0000 0000
+00040d0 3658 0000 0000 0000 0202 0000 0000 0000
+00040e0 0000 0000 0000 0000 0001 0000 0000 0000
+00040f0 0000 0000 0000 0000 0011 0000 0003 0000
+0004100 0000 0000 0000 0000 0000 0000 0000 0000
+0004110 385a 0000 0000 0000 011a 0000 0000 0000
+0004120 0000 0000 0000 0000 0001 0000 0000 0000
+*
+0004138</code></pre>
+<p>As you can see, one of these is a little easier to understand and work with.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gi2zfw9">
+		<a class="author" href="https://www.reddit.com/user/BigFootV519" target="_blank">BigFootV519</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Computer programs are a bunch of instructions written in binary. It's nearly impossible for humans to read/understand binary so we write programs in another language (C++, Assembly, Basic, etc) and use another program, called a compiler, to translate our instructions to binary. </p>
+<p>Source code is the original file written where humans can still read it, included comments/notes in the code, named variables, and all the logic spelled out. Your local programs are only the binary translation.</p>
+<p>This can be dangerous to have source code leaked because its easier for hackers to find holes in the security when they can see exactly how the system works.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gi42f83">
+		<a class="author" href="https://www.reddit.com/user/JustSomeGuy556" target="_blank">JustSomeGuy556</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Source code is a recipe.</p>
+<p>The stuff that's on your computer is like a cookie.</p>
+<p>Sure, at some level, with sufficient skills and equipment, you can kind of deduce what the ingredients were, but only sortof. </p>
+<p>You'll never get the actual recipe back out again.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/kqcclq" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

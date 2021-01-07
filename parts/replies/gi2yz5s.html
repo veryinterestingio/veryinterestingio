@@ -1,0 +1,36 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EphraimXP" target="_blank">EphraimXP</a>
+			<div class="markdown"><p>Digitalized punch cards</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/General_Urist" target="_blank">General_Urist</a>
+			<div class="markdown"><p>Jesus all you're doing is printing out 13 characters of text to the console, how does that end up needing <em>that many</em> bytes of machine code?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Pocok5" target="_blank">Pocok5</a>
+			<div class="markdown"><p>I suspect mostly stdio.h/c.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Yancy_Farnesworth" target="_blank">Yancy_Farnesworth</a>
+			<div class="markdown"><p>That output most likely doesn't include anything that happens inside of printf. Printf is a system call. Most of the time compiled programs will not include the machine code for system calls as those are delegated to the OS kernel. What that machine code probably includes is a bunch of operations to locate the memory address for the printf function and telling the CPU to start executing those instructions and where to find &quot;Hello, World!&quot; in memory. So you're definitely not getting the whole picture of what the CPU is doing to draw &quot;Hello, World!&quot; on your screen.</p>
+<p>There's a reason why abstraction is such a key concept in software. Something as simple as just making a function call actually involves dozens of CPU operations. Assembly programing is for masochists or the truly insane.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RSA0" target="_blank">RSA0</a>
+			<div class="markdown"><p><code>printf</code> is not a system call. On Windows writing to console uses <code>WriteFile</code> system call, on Linux - <code>write</code> system call.</p>
+<p>Depending on compiler options, it is completely possible to have <code>printf</code> code in the binary.</p>
+<blockquote>
+<p>Something as simple as just making a function call actually involves dozens of CPU operations. </p>
+</blockquote>
+<p>Not really, more like 4 for both call and return, +1 for each parameter passed.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/circlebust" target="_blank">circlebust</a>
+			<div class="markdown"><p><strong>It has to retread the entire human history every time</strong>. Managing/allocating data/resources so you don't immediately die (hunter-gatherer), setting up correspondence between 0s and 1s and meaningful symbols (writing), discovering the standard built in libs (universities, where knowledge is passed down), handling everything relating to outputting colored pixels on a different machine (development of anatomy/art), ...</p>
+<p>Layer after layer of complexity.</p>
+<p>You can never just talk to the metal. It's always starting from absolute zero.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Thteven420" target="_blank">Thteven420</a>
+			<div class="markdown"><p>speak for yourself you 63 6f 6f 6c 20 61 74 74 72 61 63 74 69 76 65 20 70 65 72 73 6f 6e !!!</p></div>		</li>
+					</ul>
+	

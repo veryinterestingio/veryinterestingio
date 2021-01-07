@@ -1,0 +1,54 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sixft7in" target="_blank">sixft7in</a>
+			<div class="markdown"><p>I can't imagine how difficult it would be to write a decompiler.  Is that even possible?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Kryptochef" target="_blank">Kryptochef</a>
+			<div class="markdown"><p>It's possible to get something that looks like source code back, but not the original source. For a simple example, you might write (not a real programming language, for simplicity):</p>
+<pre><code>sum = 2+2; //Compute the sum 2+2
+print(sum); // print the sum</code></pre>
+<p>There a multiple things here that won't make it to the executable itself:</p>
+<ul>
+<li>There are comments documenting the code. Those are meant for human readers, so the compiler (the thing that converts source code into an executable) will ignore them, and you can't recover them.</li>
+<li>The name of the variable (&quot;sum&quot;) isn't actually important. A compiler will only care that the variable on the second line is the <em>same</em>, but the actual name is unimportant</li>
+<li>Modern compilers are <em>optimizing</em>, so they will for example see that sum is always 4; the program doesn't actually need to compute this every time it is run. As a matter of fact, it doesn't even care that you used a variable to temporarily store the value.</li>
+</ul>
+<p>This means that the compiler will basically output something equivalent to just:</p>
+<pre><code>print(4);</code></pre>
+<p>So any decompiler will not actually be able to accurately guess what the original program looked like.</p>
+<p>Here, compiling+decompiling actually made the program <em>simpler</em>, but that's often not the case: Code is written not just for computers, but also for humans to read and understand. If a lot of the details that are there to help humans (especially things like comments and variable names) are missing, then understanding the actual purpose of the original program becomes much harder. </p>
+<p>Also, the things I've shown here are just the tip of the iceberg; this process can often change much more about the structure of the program, because there are often many different ways of writing equivalent programs, and compilers are pretty smart about optimizing stuff these days.</p>
+<p>Generally, it's better to think of decompilers not as literally reversing what the compiler did, but as analysis tools that show the executable in a format that is often simpler to understand than just the underlying assembly code. It's even quite common to &quot;decompile&quot; to a language that the original code wasn't even written in!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hiranonymous" target="_blank">Hiranonymous</a>
+			<div class="markdown"><blockquote>
+<p>Code is written not just for computers, but also for humans to read and understand.</p>
+</blockquote>
+<p>I wish every programmer had this tattooed on the back of both hands.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sixft7in" target="_blank">sixft7in</a>
+			<div class="markdown"><p>I understand that compilers will often try to shortcut things as much as possible (I'm sure that's highly complex also!).  I would imagine that making these shortcuts during compilation makes it harder to decompile.  </p>
+<p>Of course, none of the names that are assigned in the code make it to the final binary, so I would imagine that attempting to make sense of decompiled code would be pretty difficult.  I'm sure that's especially true the larger the binary becomes.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thebobbrom" target="_blank">thebobbrom</a>
+			<div class="markdown"><p>I'm not sure where you're getting this from but Java decompilers actually do keep variable names hence why obfuscation is important.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fuzzything44" target="_blank">fuzzything44</a>
+			<div class="markdown"><p>It's very possible and they exist. The amount of information lost depends on the language, but usually variable names (at the very least) get lost. So the real source code could have something like &quot;int maxPlayers = 5&quot;, indicating (probably, names don't actually mean anything to the compiler/computer, but it's kind of pointless to make them purposefully misleading), whereas the decompiled version would just be &quot;int a = 5&quot;, and then you'd have to figure out what a is depending on the context it's used.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sixft7in" target="_blank">sixft7in</a>
+			<div class="markdown"><p>Yuck.  </p>
+<p>I don't imagine any name at all is stored in the actual binary since it only needs to know addresses and values.  I'd think the decompiler would spit out &quot;a, b, c, etc&quot; and &quot;function1, function2, function3, etc&quot;.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/valeyard89" target="_blank">valeyard89</a>
+			<div class="markdown"><p>Yeah, I've written one before.  It helps to know a lot about what compiler was used to compile the program initially.  Sometimes there are clues in the way the compiler allocates registers, or the library functions it calls.  </p>
+<p>You won't get back your original function names, macros or variable names as those are 'thrown away' by the compiler if debugging information is stripped out.  You can end up with code that functions the same as the original source but does not look like it.  Especially if high optimizations were turned on, the compiler will throw away and reorganize code.</p>
+<p>Switch statements may end up as a bunch of if-else results as that is sometimes what the compiler uses..  for/do/while loops look very similar at an assembly level.</p></div>		</li>
+					</ul>
+		</ul>
+	
