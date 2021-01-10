@@ -1,0 +1,93 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zalpha314" target="_blank">zalpha314</a>
+			<div class="markdown"><p>To build on this, you can actually have uncompressed video; it's very useful for video editing because it doesn't lose any detail that a lossy compression algorithm would throw away.  I regularly deal with 10-second long videos that over a gigabyte in size.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eltrotter" target="_blank">eltrotter</a>
+			<div class="markdown"><p>That's really interesting; I work in audio and audio file compression basically works by dynamically cutting out frequency information, which would be kind of akin to compressing video by having a smaller colour palette...</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PhasmaFelis" target="_blank">PhasmaFelis</a>
+			<div class="markdown"><blockquote>
+<p>which would be kind of akin to compressing video by having a smaller colour palette...</p>
+</blockquote>
+<p>Animated GIFs do that. It's why actual GIFs are so bad for video; squashing an entire color video down into 256 colors causes terrible pixelation.</p>
+<p>(That and GIFs <em>do</em> store every frame, because '90s computers couldn't handle high-speed video decompression, so they get very large very fast. They were good for short animations on slow computers, but not for the modern web.)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zalpha314" target="_blank">zalpha314</a>
+			<div class="markdown"><p>Yes, I recently learned that if you cut out all frequencies that a human can't hear, there's a mathematically minimum amount of data you can use to perfectly reconstruct the sound.</p>
+<p>For video compression, you can actually use a smaller colour palette to save on data.  If you're watching a low quality stream, you might notice that the dark colours don't blend well; this is one of the more blatant artifacts of compression.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eg135" target="_blank">eg135</a>
+			<div class="markdown"><p>Actually video compression downsamples color. Not in depth but in resolution.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ChaChaChaChassy" target="_blank">ChaChaChaChassy</a>
+			<div class="markdown"><p>Yes but the temporal compression algorithm described above is (or at least could be) loss-less. The only reason not to use it is if you value CPU-bound performance over IO-bound performance... which is very unusual as CPU time is cheap as hell compared to disk time*. The only place I can see that being true is with streaming large frames to fast volatile storage as quickly as possible such as a high-speed camera might do where it can capture hundreds of thousands of frames a second and has literally no time to run even a simple compression algorithm as maximum frame rate is the entire point. I'd bet it still compresses when transferring from volatile to non-volatile storage though.</p>
+<p><a href="https://www.phantomhighspeed.com/products/cameras/ultrahighspeed" target="_blank">https://www.phantomhighspeed.com/products/cameras/ultrahighspeed</a></p>
+<p>*cheap in terms of performance, not dollars or anything like that</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pensivewombat" target="_blank">pensivewombat</a>
+			<div class="markdown"><p>Video editor here: Typically the problem is that we rarely watch videos in sequence. We're constantly jumping to different frames of the video very quickly--playing it at different speeds or in reverse--all kinds of things that normal people don't do when they are watching a video from start to finish.</p>
+<p>So while we still use compressed formats to avoid giant file sizes, there are some limitations. Compression algorithms like the one OP noted, where a frame only contains information about changes from the previous frame, don't really work because it's very unlikely that I have actually <em>watched</em> the previous frame. So every time I start watching a clip, the CPU needs to look back X frames until it finds a key frame and then reconstruct ALL of those frames before I can start watching.</p>
+<p>Now I'm out of my depth as I'm not a computer scientist. But as I understand it, in the editing codecs we use (mostly versions of ProRes or DNX) each frame has all the information needed to display that frame, and the compression that is done is essentially the same as what is done in lossless compression of still images.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zalpha314" target="_blank">zalpha314</a>
+			<div class="markdown"><p>I didn't realize there were lossless video compression codecs; it looks like there's even a lossless variant of H.264.  I wonder if I can find a way to capture my source material with it.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dcbork" target="_blank">dcbork</a>
+			<div class="markdown"><p>Compression is also why things like snowflakes, raindrops, and small debris and particles can make streaming video so bad</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/incognitoshadow" target="_blank">incognitoshadow</a>
+			<div class="markdown"><p>There's a good <a href="https://www.youtube.com/watch?v=r6Rp-uo6HmI" target="_blank">Tom Scott video</a> on that</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/scragar" target="_blank">scragar</a>
+			<div class="markdown"><p>That's actually a slightly different issue, namely the bitrate.</p>
+<p>When you're recording what changes you need to make sure that your list of changes takes less time to read and process than it does to show a frame of the video otherwise you will get stuttering issues because some frames will need to be shown for longer than normal(or worse it'll need to pause for a moment while it renders a few frames to catch up).</p>
+<p>As a result we try to limit the rate of changes, if the video has a lot of stuff going on this means lowering the video quality so we can still fit the data of what changes into a small enough stream of data.</p>
+<p>YouTube has fixed bit rates based on the needs for the average video, if you upload something with a lot of changes then even high quality video will be rendering using lower quality so the video still conforms to the relevant bitrate.</p>
+<p>You may find with some videos you can download that have heavy action scenes or similar it uses a much higher bitrate for those scenes just to avoid a quality drop even though it uses a lower bitrate for the rest of the video(because needing to store less instructions means smaller files).</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eltrotter" target="_blank">eltrotter</a>
+			<div class="markdown"><p>Oh my god, suddenly I completely understand now why overly-compressed video does that weird still-background, freezing thing, as if each new movement is 'wrapped' with the old image.</p>
+<p>That's nuts. Thank you!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/compounding" target="_blank">compounding</a>
+			<div class="markdown"><p>Exactly. If you don’t let the software put in enough key frames like when the scene changes it can cause some very weird effects.</p>
+<p>It gets <a href="https://i.imgur.com/N6PogUq.gif" target="_blank">especially trippy</a> with bad encoding software if a keyframe is somehow missing (or intentionally removed) but the color data for new movement keeps pointing back to the last one that still exists.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/vitezkoja88" target="_blank">vitezkoja88</a>
+			<div class="markdown"><p>for more trippy action google: Data Moshing</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BallerGuitarer" target="_blank">BallerGuitarer</a>
+			<div class="markdown"><p>That looks like a scene out of a satire of the movie Annihilation.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ImprovedPersonality" target="_blank">ImprovedPersonality</a>
+			<div class="markdown"><p>It also explains why quick movements or scenes with lots of changes (think snow storm or flock of birds) look so bad. In order to keep the bit rate low the compression algorithm has to drop a lot of information.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/karangoswamikenz" target="_blank">karangoswamikenz</a>
+			<div class="markdown"><p>That’s usually some corruption in the video or the decoder hardware or software.</p>
+<p>The video compression has no flaw.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zvug" target="_blank">zvug</a>
+			<div class="markdown"><p>This is why the bitrate of the video peaks during rapid action scenes and such.</p>
+<p>Lots of stuff changing quickly = less generalization = less compression</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheSkiGeek" target="_blank">TheSkiGeek</a>
+			<div class="markdown"><p>Depends on whether it's encoded with fixed or variable bitrate.</p>
+<p>With fixed bitrate, rapid action will cause the video to look like crap, because it has to drop a lot of important information to stay under the bitrate cap.</p>
+<p>With variable bitrate, rapid action will result in a higher bitrate.</p></div>		</li>
+					</ul>
+		</ul>
+	
