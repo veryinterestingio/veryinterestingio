@@ -1,0 +1,62 @@
+<li class="post" data-handle="kxqbjf">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/kxqbjf/eli5_how_is_information_transmitted_through_wires/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/kxqbjf" onclick="return false">How is information transmitted through wires?</a>
+		</h2>
+		<!--<span class="date">2021-01-18</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Take a simple USB cable. It’s just a small array of conductive contacts and metal wire. Obviously the computer/device decodes the information but how is that information communicated? Morse code?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="gjbrdj4">
+		<a class="author" href="https://www.reddit.com/user/Oulawi" target="_blank">Oulawi</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For copper/metal wires like that its basically morse code, you just toggle the electricity on and off real fast. In a usb cable and other such cables there's also often multiple wires woven inside the isolating sleeve to allow for more information traveling simultaneously.</p>
+<p>What's really interesting is fibre optic cables. These ones are made from (i think plastic) transparent fibres, and instead of running a current through it, you shine light into the fibre in a particular angle, such that it bounces off the walls of the fibre and stays inside, so you can see the light coming out the other end. These cables carry a lot of information, because not only can you wrap many of these fibres into one cable, you can also shine multiple different colours (wavelengths) of light into a single fiber, and they won't interfere with each other. Then you again just toggle the different colours in each fibre on and off really quickly to transmit information.</p>
+<p>Also note that its not actually morse code, its simpler because in computers all data is already in the form of ones and zeros, so you just transmit it raw.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="gjc2oc4">
+		<a class="author" href="https://www.reddit.com/user/Rookie64v" target="_blank">Rookie64v</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>At the basic level, voltage. If the wire is short enough (good approximation for the simplest stuff) you can think of the process as someone putting either high or low voltage on the wire and the guy at the other end can instantly check whether the voltage is low or high. Morse code of telegraphs itself is based on some variation on this theme, although the information is carried by duration of pulses.</p>
+<p>There are, however, a number of practical considerations. The guy at the other end checks the level, all good... but when? If the voltage stays high for 1 s, is it 1 &quot;1&quot; or 100 &quot;1&quot;s? How do we manage &quot;noise&quot; on the line, caused by some external interference? Who says when we are transmitting and when we are doing nothing? Who wins if both sides of the cable want to transmit at the same time? What happens if the cable is very very long and the propagation time is actually significant?</p>
+<p>The solutions are many, the problems depend on the application and that's why we have a number of protocols and cables and whatnot. If you have metal wires, it is always changes in voltage. More wires may be required if you want to also bring power instead of data only (e.g. USB, SATA), or if you have additional information that you want to send on the side for some reason, or you want bidirectional simultaneous communication, or you want your data to come byte by byte instead of bit by bit. Stuff other than wire can be used as the actual medium not using voltage, but requires transducers of some kind (antennas for wi-fi, some kind of LED wizardry for fiber).</p>
+<p>If the wonder comes at what we can do with just those four little wires inside the USB cable, know that it is but voltage changes sending ones and zeroes... but there are a lot of them. Hundreds of millions every single second. The same exact information could be transmitted with any other protocol, with some being faster and some being slower. I work with I²C which is an almost 40 years old protocol made to connect many chips in the cheapest possible way (quite literally, 2 wires around the board and let's say one hundred chips all connected to them), and even that can transmit millions of bits every second.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gjc2c0s">
+		<a class="author" href="https://www.reddit.com/user/Mirar" target="_blank">Mirar</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Simple answer: yes.</p>
+<p>&#x200B;</p>
+<p>More complex answer: We use better codes than Morse, that is easier for a computer to handle. But otherwise, yes.</p>
+<p>&#x200B;</p>
+<p>Fun fact: The same kind of codes are used to store data on a medium like a tape, CD or magnetic disk like floppy or hard drive. (But not SSD.)</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gjc4rol">
+		<a class="author" href="https://www.reddit.com/user/esp0101010f" target="_blank">esp0101010f</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>ELI5: Its like morse code but much faster. </p>
+<p>Check out the book Code: The Hidden Language of Computer Hardware and Software by Charles Petzold. The author explains this and much more in an easy to understand way.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gjc7m5c">
+		<a class="author" href="https://www.reddit.com/user/TrustmeImaConsultant" target="_blank">TrustmeImaConsultant</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>USB is a really bad example, it's pretty complicated since it's a differential protocol, but in general, for simpler protocols, it is actually some kind of Morse code.</p>
+<p>Take the old serial protocol. What happened here was that in the wire that connected the two computers, the power was turned off and on in rapid succession at a specific speed, for the sake of this argument, let's say every millisecond you could either send 12v or 0v on the cable, and both computers knew that this was the speed they worked at, then all they had to do was to define what a certain number of pulses meant, similar to Morse code.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/kxqbjf" onclick="return false"><span>show</span></a>
+</li>
