@@ -1,0 +1,60 @@
+<div class="answers">
+	<div class="answer" data-handle="gk507sm">
+		<a class="author" href="https://www.reddit.com/user/petascale" target="_blank">petascale</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Approximation: 55% drag, 43% rolling resistance and 2% fixed consumption for a Tesla Model 3 at 100 km/h (compared to almost 80% drag for a Jeep Wranger with Cd = 0.58). Assuming 20&deg;C, no climate control, flat ground, dry asphalt. </p>
+<p>Drag: Formula from <a href="https://www.engineeringtoolbox.com/drag-coefficient-d_627.html" target="_blank">engineeringtoolbox</a>. Cd from specs, frontal area I've used width x height of the car excluding side mirrors, air density from <a href="https://www.engineeringtoolbox.com/air-density-specific-weight-d_600.html" target="_blank">here</a>. </p>
+<p>Rolling resistance: <a href="https://www.engineeringtoolbox.com/rolling-friction-resistance-d_1303.html" target="_blank">Table and formula</a>, I used the formula for &quot;air filled tires on dry roads&quot; with parameters for speed and tire pressure.</p>
+<p>Fixed consumption: Some energy is spent whether or not the car is moving - instruments, headlights, infotainment, climate control, etc. On my EV that's about 300W at 20&deg;C when climate control is turned off, so that's the number I've used.</p>
+<p>Variables: </p>
+<ul>
+<li>Temperature: On an EV any climate control uses the battery, and air is more dense at lower temperatures. (About 16% denser at -20&deg;C compared to +20&deg;C, so drag increases proportionally.) Altitude too affects the air density.</li>
+<li>Elevation changes: Driving uphill uses more energy, so the drag percentage will be smaller. Going downhill it's the other way around.</li>
+<li>Road surface: Rolling resistance is noticably higher with rain/snow/sleet on the road, and if you're driving on unpaved roads or loose sand the numbers can look quite different.</li>
+</ul></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="gk58yri">
+		<a class="author" href="https://www.reddit.com/user/FRLara" target="_blank">FRLara</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For a vehicle moving at constant speed at a level road, there are 2 places the tractive power (seen at the wheels, so ignoring the loss from engine to wheel) goes: aerodynamic drag, and rolling resistance on the wheels. <a href="https://www.if.ufrgs.br/~lang/Textos/Pot_veloc.pdf" target="_blank">Here's a nice text about the subject (in Portuguese).</a></p>
+<p>The power of the rolling resistance is proportional to the speed and to the mass (ignoring any vertical component of aerodynamic forces), and the power of the aerodynamic drag is proportional to the cube of the speed. Using an example from the article, with a 1200 kg vehicle, with 2 m² of frontal area, drag coefficient of 0.35, and rolling resistance coefficient of 0.01, the speed where both factors contribute equally is approximately 60 km/h.</p>
+<p>I'll calculate using these estimates for the Tesla model 3: M=1611 kg, C=0.23^[1], S=2.22 m²^[2], α=0.01^[3], at sea level (ρ=1.22 kg/m³, g=9.8 m/s²). At a speed of 100 km/h, the power lost to aerodynamic drag is 6.7 kW, and the power lost to rolling resistance is 4.4 kW. So, under these conditions the mass of the vehicle contributes to approximately 40% of the power. </p>
+<p>Sources <a href="https://en.wikipedia.org/wiki/Tesla_Model_3" target="_blank">[1]</a>, <a href="https://teslamotorsclub.com/tmc/threads/model-3-frontal-area.94907/" target="_blank">[2]</a>, <a href="https://www.if.ufrgs.br/~lang/Textos/Pot_veloc.pdf" target="_blank">[3]</a>.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gk5kr15">
+		<a class="author" href="https://www.reddit.com/user/macnlz" target="_blank">macnlz</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I found this handy calculator spreadsheet: <a href="https://www.johnsavesenergy.com/ev-range-calculator" target="_blank"><a href="https://www.johnsavesenergy.com/ev-range-calculator" target="_blank">https://www.johnsavesenergy.com/ev-range-calculator</a></a></p>
+<p>As you can see, the losses due to rolling resistance scale linear with weight, and do not depend on the speed. So the quadratic relationship between speed and air resistance is going to quickly outgrow the constant rolling resistance, as speed increases.</p>
+<p>Edit: Since you're asking specifically about Tesla - the following calculator gave me a result that is eerily close to reality (348Wh/mile at 79mph is almost exactly what I get with my Model 3 Performance): <a href="http://bikecalculator.com/tesla/" target="_blank"><a href="http://bikecalculator.com/tesla/" target="_blank">http://bikecalculator.com/tesla/</a></a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gk4y284">
+		<a class="author" href="https://www.reddit.com/user/repeatnotatest" target="_blank">repeatnotatest</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Engineering Explained covers this well in some of his videos. The one that comes to mind is this one about electric vehicles and towing where there is lots of analysis of drag etc. </p>
+<p><a href="https://youtu.be/S4W-P5aCWJs" target="_blank">https://youtu.be/S4W-P5aCWJs</a></p>
+<p>The anecdotes others have mentioned about speed that drag starts to matter are often very misleading. Aerodynamic drag is always present while moving through air but it’s significance depends heavily on how the vehicle was designed and to some extent it’s purpose.</p>
+<p>You can use the equation from the above video to calculate exactly what you have asked by putting in the specific values for the vehicle you want. I think Engineering Explained has a well researched set of numbers for a Tesla Model 3 on his channel somewhere if it’s not in that video.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gk5lr71">
+		<a class="author" href="https://www.reddit.com/user/thalassicus" target="_blank">thalassicus</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If there was a caravan consisting of a motorcycle, a Mini Cooper, a Cadillac Escalade, A Mercedes Sprinter, and a Semi Truck and you had exactly 200 gallons to share between them however you wanted, would you travel further driving them arranged from smallest to largest with each vehicle punching a hole of air for the next to go through or from largest to smallest with each vehicle benefiting from drafting behind it's larger predecessor?</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
