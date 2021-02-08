@@ -1,0 +1,28 @@
+<div class="answers">
+	<div class="answer" data-handle="gm4uuqs">
+		<a class="author" href="https://www.reddit.com/user/lagerbaer" target="_blank">lagerbaer</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>That really depends on the particular hardware approach of the particular quantum computing vendor.</p>
+<p>In D-Wave, qubits are represented as the circular currents in superconducting wires (Joesphson Junction). </p>
+<p>In IonQ, not surprisingly, qubits are represented as the energy levels of trapped <em>ions</em>.</p>
+<p>And then there's a number of approaches that try and make &quot;quantum dots&quot; in semiconductors.</p>
+<p>The fact there's so many different and wildly distinct approaches out there shows that we haven't quite settled yet on what will work best. They all have their pros and cons. What you need is <em>something</em> that will behave like a two-level quantum system (two levels because bits, 0 and 1). Then you need a way to accurately control operations on these systems <em>without</em> messing up the delicate quantum entangledness. It's hard enough to completely isolate something from its environment. It is even harder to then still be able to control that thing.</p>
+<p>So the &quot;storing&quot; works by holding your quantum system in this delicate state for long enough so your computation finishes. As for the materials used, again that depends highly on your architecture. I don't think anything too weirdly exotic is used for the semiconductor quantum-dot approach.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="gm4xduc">
+		<a class="author" href="https://www.reddit.com/user/Eloth" target="_blank">Eloth</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A qubit as a logical concept is just the basic unit of information in quantum computing - and this is a concept we can map onto many different physical systems. </p>
+<p>What are these physical systems? Well, our first requirement for the qubit is that it has two independent possible basis states, which we name 0 and 1 to be analogous to classical computing. Classically (i.e. ignoring quantum superposition) the system would be able to be in either one of these states, but not both, or a little bit of one and a little bit of the other (this is basically what we mean when we say the state can be expressed in terms of two orthonormal basis vectors). Our next requirement, then, is the ability to create a superposition of states with a long decoherence time (i.e. we need to be able to put the system in a quantum state and limit its interactions with the environment; when it interacts with the environment, we lose quantum information to the environment and the state decoheres). Finally, we need to be able to measure the state of the system.</p>
+<p>One way to satisfy these requirements is with a trapped charged particle -- for instance, an electron, or an atomic nucleus. We confine these spatially using an ion trap, such as a Paul trap, that uses a particular configuration of electric fields to keep a charged particle trapped in place. We can then encode information in the spin state of the particle (so the spin up state corresponds to 0, and the spin down state corresponds to 1). Electron spin states are really easy to manipulate and couple with each other, so they're great for actually computing with -- but for long(er) term storage, nuclear spin is preferred due to a longer decoherence time (it loses its quantum information to the environment more slowly). Even then, the longest we can preserve the state of a qubit for is of the order of hours, and this was done using nuclear spin-based qubits. . </p>
+<p>There are plenty of other ways to build a qubit too: the quadratures of coherent light are used to form bases in optical quantum computing; polarisation states of photons can also be used; and semiconductor 'quantum dots' also have the potential to be used in quantum computing. I personally can't say much about quantum dots and how they work, so I do apologise if that is specifically what you were interested in when you were asking about semiconductors -- but they aren't the only way to achieve quantum computing by any means</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gm4y2rf">
+		<a class="author" href="https://www.reddit.com/user/EngSciGuy" target="_blank">EngSciGuy</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For superconducting (Google, IBM, Rigetti, etc.), it is thin film superconducting niobium or aluminum microwave circuitry with Josephson junctions (aluminum/aluminum oxide) to form the qubits.  Your qubit will be a planar capacitor (of some shape) with Josephson junction(s) bridge the two parts. It is then coupled (probably capacitively) to busses (probably CPW resonators) readout (again probably CPW resonators) and control lines (CPW transmission line). </p>
+<p>The qubit state (let's consider a charge qubit for simplicity) is set by a difference of Cooper pairs across the Josephson junction. It will be &quot;stored&quot; for about the qubits decoherence time (T1).</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
