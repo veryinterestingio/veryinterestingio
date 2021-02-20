@@ -1,0 +1,86 @@
+<li class="post" data-handle="llfv3z">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/llfv3z/eli5_what_does_the_code_that_makes_up_programming/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/llfv3z" onclick="return false">ELI5 What does the code that makes up programming languages look like?</a>
+		</h2>
+		<!--<span class="date">2021-02-20</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>Take a language like Java. How was it originally created? I can’t wrap my head around how someone invented a computer language to run without having some “prior” language that it allows the first lines to function. Is it just Java all the way down, like someone wrote a single line of Java and then every other line was built on that? </p>
+<p>What about the first computer language? What was the basis that that functioned on?</p>
+<p>Thanks for any help, I hope that was phrased in a mildly intelligible way.</p>
+<p>Edit; I’m trying to think of it like human language: at some point there was a first “word” spoken by someone and understood by another and from there the structure started to be born. What were the first “words” on a computer that led to where we are now?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="gnpioil">
+		<a class="author" href="https://www.reddit.com/user/zachtheperson" target="_blank">zachtheperson</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are many different &quot;levels,&quot; to programming. (Warning, lots of words, but pretty simple)</p>
+<p>The lowest level of programming is transistors. We can build up simple logic gates such as AND and OR directly in the circuitry, and by turning certain switches on and off, we can get out certain behavior such as switching between different components, storing information, or doing simple math. These on and off switches can be represented as 1s and 0s or &quot;binary.&quot;</p>
+<p><strong>01010101 01001111 01101011</strong> -&gt; Would give the instruction &quot;store number 79 in memory slot 107.&quot; The first block (or &quot;byte&quot;) would be the &quot;store,&quot; instruction, followed by the binary number for &quot;79,&quot; and finally the binary number for &quot;107.&quot;  (the actual binary would differ depending on CPU architecture, so this is just pretend).</p>
+<p>Writing complex programs in nothing but 1s and 0s would be a nightmare, so instead we wrote just enough 1s and 0s to build a program that translates a more readable language called &quot;assembly,&quot; directly into the 1s and 0s we need. So instead of binary, we now write:</p>
+<p><strong>mov 79, 107</strong>-&gt; When run through our new assembler program, gets directly translated to the binary 1s and 0s from the first example. It basically just looks up what &quot;mov,&quot; translates to in a large dictionary and swaps it out for the needed binary. Basically just simple cut and paste.</p>
+<p>An assembler is a <em>very</em> simple program, but allows us to start thinking closer to human language, and thus allows us to develop more complex software. From there we can write a &quot;compiler,&quot; which is a program that can read over a text file in whatever language we want to come up with and translate that into the binary we need.</p>
+<p><strong>int myVariable = 79;</strong> -&gt; This gets read over by our compiler and translated into binary to be executed. This is how languages like C, C++ work.</p>
+<p>From there it's a self contained loop. A compiled language can be used to write new/better compilers, which in turn can be used to write new/better compilers, etc.</p>
+<p>Languages like Java and C# are one level above this. They aren't compiled into binary, but instead into &quot;bytecode,&quot; which is like binary but instead of being run by the CPU, it's run using either the Java Virtual Machine or .NET framework which are programs on the users machine designed to read this special bytecode. This allows the individual software developer (like you or I) to write a Java/C# program once, and it will work on any computer system someone has programmed a virtual machine for (most likely programmed in C or C++) which is designed to read these instructions.</p>
+<p>Finally we have &quot;Interpreted,&quot; languages like Python and Javascript which are the highest level. With these languages the actual text the programmer typed is what is sent to the end user, and the actual conversion to binary happens as each line is run on the users machine. This is why you can press &quot;F12,&quot; right now and see all of Reddit's code, since HTML5/Javascript is interpreted.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="gnpa2zm">
+		<a class="author" href="https://www.reddit.com/user/surfmaths" target="_blank">surfmaths</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Java is actually run by a &quot;virtual machine&quot; entirely written in C++. So it's a pretty bad example.</p>
+<p>But C++ is being compiled by compilers entirely written in C++. How do you compile such compiler? Well, with an older C++ compiler!</p>
+<p>But, but, what about the first compiler? It was written in assembly, a long time ago. Although people like to bootstrap C++ from time to time, aka. start from scratch with a smaller language, easier to compile. But that's just for the kicks of it.</p>
+<p>By the way, did you know we need a mill to make a mill?</p>
+<p>Lots of stuff in the world is built on previously built stuff, it's kind of a fun chicken and egg problem. Almost all of them, originally started from painstaking manual work.</p>
+<p>Edit: It's even more fun when you realize C++ compilers have bugs, yet produce newer C++ compilers with less (hopefully) bugs.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gnpd7s7">
+		<a class="author" href="https://www.reddit.com/user/mrg1957" target="_blank">mrg1957</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Many prior languages existed and some were similar to Java or c++. </p>
+<p>I am a retired mainframe assembly language developer, I did that in the 80-90s. Assembly was the first mainframe language, it's a step above the machine code executed by the chip. Assembly language is what many mainframe languages compiler generates as it's native to the chipset. </p>
+<p>Assembly is crude and rude, you better know WTF you're doing or bad things happen. Sometimes you can have to read and understand the machine code to debug your code. Principles of Operation is the reference manual for the language.</p>
+<p>ETA: One of our programs for class was to be written in machine code to demonstrate our knowledge of the language.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gnpb2gh">
+		<a class="author" href="https://www.reddit.com/user/DiamondIceNS" target="_blank">DiamondIceNS</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The very first &quot;words&quot; on a computer were some poor, patient soul litterally plucking in every 1 and 0 by hand. They'd do this by baking it straight into the circuitry rather than programming it with a keyboard, because, well, how would a keyboard even work if programming doesn't exist?</p>
+<p>People still do this all the time, by the way. A common tool that lets you experiment rapidly is called a &quot;breadboard&quot;, which lets you plug and unplug wires and simple chips to create complex circuits.</p>
+<p>After the first literal hard-coded computers were in place, they were extended to be more modular and accept arbitrary input from users via input peripherals, that could then be run as new code. Everything snowballed from there.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gnp9qgx">
+		<a class="author" href="https://www.reddit.com/user/trtlclb" target="_blank">trtlclb</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>It's easy to build up a small sand castle with just a single small bucket, and this is like binary. If you want to build something amazing, though, you'll need to have more tools to make the job doable. You can technically use binary to create whatever you like, although it is much easier to program simple programs which encompass basic tasks like adding or subtracting. Then, using this new program as a 'frame' for a new program, you can layer on complexity (or remove complexity, depends how you look at it) for accomplishing more complex tasks. This is the difference between coding &quot;bare metal&quot; and using a high-level language like Java.</p>
+<p>There was a first word, but instead of thinking of it as a baby learning English, think of it as how humanity learned to communicate - we're talking ancient runic text instead of &quot;mom&quot; or &quot;dad&quot;. Compared to programming, English itself is like a high-level language.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/llfv3z" onclick="return false"><span>show</span></a>
+</li>
