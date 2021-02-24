@@ -1,0 +1,68 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/beardy64" target="_blank">beardy64</a>
+			<div class="markdown"><p>What kind of frequency and antenna did you have for that? That's impressive.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Markr1957" target="_blank">Markr1957</a>
+			<div class="markdown"><p>We used the 915MHz ISM band to achieve 19KBaud data rates. The antennae were a Wideband type with +7dB gain.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zap_p25" target="_blank">zap_p25</a>
+			<div class="markdown"><p>When you use the term baud, are you talking about the symbol rate or the actual data rate? </p>
+<p>Just curious as I’ve spent the better part of the decade working with everything from 1200 bps packet systems to 9600 bps, 64 kbps to 1 Mbps narrowband data systems.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sidgup" target="_blank">sidgup</a>
+			<div class="markdown"><p>Where were the antennas for that usecase between Florida and Louisiana? On a tall tower? I am pretty intrigued.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ASeriousAccounting" target="_blank">ASeriousAccounting</a>
+			<div class="markdown"><p>Any intermod issues with the wideband antenna?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RadBenMX" target="_blank">RadBenMX</a>
+			<div class="markdown"><p>How can signals significant less strong than the background noise be read reliably?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Markr1957" target="_blank">Markr1957</a>
+			<div class="markdown"><p>The incoming signal plus noise are amplified and filtered to only look inside the signal bandwidth. The way the decoder works is anything that doesn't exactly match the spreading code is spread out and effectively suppressed, while only the correctly matching signal gets decoded into a discernible data bit. The detailed explanation is a semester's worth of grad school, but the book &quot;Spread Spectrum Systems with Commercial Applications&quot; by Robert C Dixon is the book I learned from, along with guidance from my Principle RF Engineer.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jivow" target="_blank">jivow</a>
+			<div class="markdown"><p>It's actually pretty simple idea - I will try to ELI10 it with a laser pointer.</p>
+<p>So imagine you want to communicate with someone using a laser pointer in a big city. The laser pointer is green and really weak.  There are yellow street-lamps and colourful  neons and a lot of car lights that drown the faint light of that laser pointer in the city's night glow.</p>
+<p>But it's a laser pointer - it emits almost a perfect single frequency of light. So you get a sheet of plastic that only lets though that specific color. Now you don't need to worry about the street-lamps or red taillights or most of neons... This is you frequency filter.</p>
+<p>Now that you only look through your filter you can at least notice the pointer. When you turn the pointer on you can see that there is a bit more of a bit less green light. It is a very small change - the green blinking neons or a headlights of a passing cars outshine it still.  (Even that small portion of light that get through your filter is still much stronger than you pointer is.) Nonetheless, even if you stare straight into a headlight you can see it gets a little bit more bright when you turn the pointer on, or a little bit darker when you turn it of. The problem is that when the light turns your way or turns away, or a neon blinks you can't see the change caused by your pointer, it gets drowned in the big change.</p>
+<p>So now you get yourself a random number, a really long one. For example this one 10110101100111100100. You take the message you want to send, split it into bits. And if the first bit of your message is 1: You take a stopwatch and exactly every second you take a next bit from you number and if it is 1 you turn on the pointer (or keep it on if it's already on), if its 0 you turn it off (or keep it off). If the first bit is zero you do the opposite  - turn on on 0 and turn off on 1.</p>
+<p>Your receiving party to read your message takes a stopwatch that is precisely synchronised with yours and every seconds checks what happens to the light seen through the filter. Did it get a bit lighter? They write down 1. Did it get dimmer? They write down 0. There wasn't any change? They repeat the last number they've written. And if there was a change but not exactly on a second mark they just ignore it.</p>
+<p>After 20 seconds have passed your receiver takes their notes, which will have random 0 and 1 here and there that came from the flickering lights and not you turning the pointer on and off.  But then they compare it to the random numer you've shared before. If more than a half of the bits is the same they note they received 1, if less than a half they note 0. And now you repeat this process for every consecutive bit of your message.</p>
+<p>&#x200B;</p>
+<p>Edit: Here is a good description <a href="https://www.e-education.psu.edu/geog862/book/export/html/1407" target="_blank"><a href="https://www.e-education.psu.edu/geog862/book/export/html/1407" target="_blank">https://www.e-education.psu.edu/geog862/book/export/html/1407</a></a> look for &quot;More About Code Chips&quot;  for details explained better than I can from my memory.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/polyic" target="_blank">polyic</a>
+			<div class="markdown"><p>Is there a limit to the amount of code gain? Like if you wanted to have a low power transmitter with a huge gain, but only needed to send a couple bits per hour, would that be possible? If your code sequence lasted an hour long? Or does the gain fall off quickly with longer sequences?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/crwper" target="_blank">crwper</a>
+			<div class="markdown"><p>One way to think of it is like listening to someone across a noisy room. If you don’t know what they’re saying, it can be very difficult to understand. But if I just asked you to listen for your name, you could pick it out even in very noisy conditions.</p>
+<p>Even though the GPS signal is much weaker than background noise, it’s sending a code which was decided ahead of time. So the receiver listens for that code, just like you listening for your name.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/rlbond86" target="_blank">rlbond86</a>
+			<div class="markdown"><p>It is essentially a type of averaging. The signal is very faint but very long, if you average it over time the noise averages out and you can see the signal.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/chewy_mcchewster" target="_blank">chewy_mcchewster</a>
+			<div class="markdown"><p>What are we using for the voyager probe? I assume when we send commands we send them insanely strong out into the void..</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Markr1957" target="_blank">Markr1957</a>
+			<div class="markdown"><p>They use a 70m wide dish antenna with very high directional gain on the earth end, and 3.7m wide high directional gain antenna on Voyager 2. The signals coming back from Voyager are limited in power by the amount of power the radioisotope thermoelectric power source can generate, which is at most a couple of hundred watts, so that's the limiting factor. The earth based receiver has to be capable of detecting an incredibly weak signal coming from 4 billion miles away, and the practical limits on what you can put on a satellite mean that no amount of antenna gain and receiver gain will give you a decodable signal, so code gain from a spread spectrum system is the only method left to use that I'm aware of.</p>
+<p>Note:- I don't work for NASA so I cannot say with certainty this is how they do it, but it's the best way I know of.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Plumb_n_Plumber" target="_blank">Plumb_n_Plumber</a>
+			<div class="markdown"><p>I’m reading this far to see when someone would mention that multiple widely separated receiving antennae on earth combined in a ‘phased array’ are  required to yield the sensitivity needed to reliably detect and decode the information transmitted by a sub watt radio transmitter on the voyager probes when they were billions of miles away.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

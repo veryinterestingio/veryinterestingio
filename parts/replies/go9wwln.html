@@ -1,0 +1,62 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Tomus" target="_blank">Tomus</a>
+			<div class="markdown"><p>I don't think Linux is used on perseverance itself, but Ingenuity the drone. I'm not aware of the drone communicating directly with Earth.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/the_hobbyte" target="_blank">the_hobbyte</a>
+			<div class="markdown"><p>You are correct - I just wanted to point out that we are actually using Linux in space and Linux devs are aware of the constraints of interplanetary TCP communication.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thunk_stuff" target="_blank">thunk_stuff</a>
+			<div class="markdown"><p>According this <a href="https://link.springer.com/article/10.1007/s11214-020-00765-9" target="_blank">this very detailed link</a> about the cameras and microphones on Perseverance, the Data Storage Unit runs Linux.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/melbogia" target="_blank">melbogia</a>
+			<div class="markdown"><p>Thanks for this. I wasn’t aware that 120s is the max RTT.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Cough_Turn" target="_blank">Cough_Turn</a>
+			<div class="markdown"><p>Yes, this is the issue with TCP/IP for space applications and is the impetus for the development of Bundled Protocols such as DTN, which stands for Delay (or Disruption) Tolerant Networking. Depends on who you ask whether it is Delay or Disruption, but either way, DTN.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tomrlutong" target="_blank">tomrlutong</a>
+			<div class="markdown"><p>A lot more than that. I doubt you want SYN/ACK exchanges or automatic resends, and there's a lot of overhead that's not useful for point-to-point communications.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Inle-rah" target="_blank">Inle-rah</a>
+			<div class="markdown"><p>I’m upgrading all my phones to VoDTN, just to be ready. Sheesh it would take a month for a SIP header to transmit. Like racing a Pinto.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MeAndTheLampPost" target="_blank">MeAndTheLampPost</a>
+			<div class="markdown"><p>But if the TCP protocol is otherwise fit for the job, why don't they just extend that time to whatever they need, like 1 hour? They can call it Space TCP and that's it. What is the reason not to do this?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SilverStar9192" target="_blank">SilverStar9192</a>
+			<div class="markdown"><p>But 120s is just an arbitrary constant. They could increase that in a closed system if needed. But there are too many other factors as alluded elsewhere.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Niallism" target="_blank">Niallism</a>
+			<div class="markdown"><p>Ok but wouldn’t that not be TCP/IP any more?</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wosmo" target="_blank">wosmo</a>
+			<div class="markdown"><p>To add insult to injury, that 182 seconds is a best-case scenario - it varies from 3 to 20 minutes depending on how the orbits align.  So even if TCP did accept it, that'd still be 9-60 minutes for a syn-ack handshake.</p>
+<p>Interesting to note that Vint Cerf (the author of tcp/ip) has been involved in this for over a decade.  Some interesting links:</p>
+<ul>
+<li><a href="https://www.quantamagazine.org/vint-cerfs-plan-for-building-an-internet-in-space-20201021/" target="_blank">https://www.quantamagazine.org/vint-cerfs-plan-for-building-an-internet-in-space-20201021/</a></li>
+<li><a href="https://www.nasa.gov/home/hqnews/2008/nov/HQ_08-298_Deep_space_internet.html" target="_blank">https://www.nasa.gov/home/hqnews/2008/nov/HQ_08-298_Deep_space_internet.html</a></li>
+<li><a href="http://ipnsig.org" target="_blank">http://ipnsig.org</a></li>
+</ul>
+<p>(I don't have a specific answer to OP's question, I don't know precisely what protocols are in use, but I believe most of the DSN uses store &amp; forward.  In switched networking we only forward, so each node receives a packet, sends it back out the most optimistic interface, and promptly forgets it even existed.  If it's dropped anywhere, the final recipient has to say to the original sender &quot;it looks like I'm missing packet #3&quot; and initiate a retry.  In store &amp; forward each relay saves every packet until the next relay/node confirms it has it, so each step can be retried individually and packet #3 should always arrive .. eventually.)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Cough_Turn" target="_blank">Cough_Turn</a>
+			<div class="markdown"><p>DTN/Store and Forward/Bundled Protocols still have very limited operational uses. So no, most of the DSN does not use store and forward. Generally speaking space communications protocols have to reach &quot;blue book&quot; status before they're implemented in the standard services catalogue. And it's not there yet.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wosmo" target="_blank">wosmo</a>
+			<div class="markdown"><p>I specifically didn't say DTN/Bundle as I'm aware they're still experimental.  But store &amp; forward is much older than this, it's just the alternative topology to a bent pipe.  I was just trying to explain why this doesn't work like terrestrial networking - in terrestrial networking retransmission is cheaper than storage, once you get to mars, retransmission carries a significant penalty.  It does come up a lot in the DTN context because that's the biggest differentiator to IP, but fundamentally even phone trees are store &amp; forward topologies.</p>
+<p>(as far as I'm aware MRO &amp; Melacom use store &amp; forward but Odyssey uses a bent pipe, which is why Odyssey got the first recordings of Curiousity back - but makes MRO much more useful as it can be used whenever it has LOS to the ground - it doesn't need LOS to the ground and earth simulatenously)</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>What protocol(s) does NASA use to communicate long distances?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="lp20h0">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/lp20h0/what_protocols_does_nasa_use_to_communicate_long/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Engineering">Engineering</span>
+			<a href="/posts/lp20h0" onclick="return false">What protocol(s) does NASA use to communicate long distances?</a>
+		</h2>
+		<!--<span class="date">2021-02-24</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I am looking at <a href="https://mars.nasa.gov/mars2020/spacecraft/rover/communications/" target="_blank">https://mars.nasa.gov/mars2020/spacecraft/rover/communications/</a> which talks about how the rover communicated with Earth, which is through the orbiter. </p>
+<p>I am trying to figure what protocol does the orbiter use? Is it TCP/UDP, or something else? Naively I’d assume TCP since the orbiter would need to resend packets that were lost in space and never made it to Earth.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="go9llv4">
+		<a class="author" href="https://www.reddit.com/user/Markr1957" target="_blank">Markr1957</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>For reliable extremely long distance communication nowadays the transmitters and receivers use Direct Sequence Spread Spectrum (DSSS) encoding with BPSK modulation with a suppressed carrier center frequency. Each time the sequence gets to the end and starts over counts as one bit of data, so your data rate is determined by the length of the sequence as well as the frequency of the device used to generate the sequence. This is why the rover and the orbiter can only transmit a couple of pictures a day</p>
+<p>As complicated as this all sounds DSSS allows a receiver to detect signals that are significantly below the cosmic background noise level. The sequence used creates what is known as 'code gain'. For example the background noise level for GPS is -110dBm while the signal strength at a receiver is -125dBm, but GPS works because it has +43dBm of code gain.</p>
+<p>As for the actual data encryption this uses Hamming code to allow error detection and correction, but otherwise it is a serial data stream.</p>
+<p>Source: not NASA but I worked we had a setup that allowed two DSSS transceivers with 100mW output power (same as cordless home phones)  to communicate reliably between New Orleans, Louisiana and Pensacola, Florida in all but the very worst weather conditions.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="goacsth">
+		<a class="author" href="https://www.reddit.com/user/pxslip" target="_blank">pxslip</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I can't say for certain that that perseverance is currently using it (though I know that it is in NASA/JPL flight code) but NASA maintains an implementation of Delay Tolerant Networking called ION. The protocol has been running around for about 20 years (see <a href="https://tools.ietf.org/html/rfc4838" target="_blank">RFC 4838</a>) and is necessary to overcome some of the limitations that using TCP would introduce (as discussed elsewhere in this thread)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="go9wwln">
+		<a class="author" href="https://www.reddit.com/user/the_hobbyte" target="_blank">the_hobbyte</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I just remembered a comment in the Linux kernels code that contains an oddly specific answer to your question.</p>
+<p>Btw, with Perseverance, for the first time Linux is used on Mars. The comment is in the part that handles TCP:</p>
+<blockquote>
+<p>Note that 120 sec is defined in the protocol as the maximum possible RTT. I guess we'll have to use something other than TCP to talk to the University of Mars.</p>
+</blockquote>
+<p>What is RTT: Round Trip Time, the time a packet needs to travel from the sender to the receiver and the time for the answer to travel back. In TCP, the sender has to wait for a reply that tells the packet was received correctly. As the packet speed cannot exceed the speed of light, the physical distance defines the minimum time required for a round trip.</p>
+<p>So while TCP/IP can be used to communicate with the Moon (1.3 light-seconds x 2 = 2.6s RTT), Mars minimum distance to Earth (182 light-seconds) already exceeds the maximum RTT defined in the TCP protocol.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="go9d7ee">
+		<a class="author" href="https://www.reddit.com/user/Sapratz" target="_blank">Sapratz</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Protocol in which layer?  TCP/IP is used on the terrestrial deep space network (dsn). The transmission mode to spacecraft i believe is BPSK, and they are using protocols governed by CCSDS</p>
+<p><a href="https://www.google.com/url?sa=t&source=web&rct=j&url=https://public.ccsds.org/Pubs/130x0g3.pdf&ved=2ahUKEwjTwf2H4PvuAhX3GFkFHXwyDf4QFjAAegQIAhAC&usg=AOvVaw1E2Lh-bTqfri5X1Tc1QwjQ" target="_blank">https://www.google.com/url?sa=t&source=web&rct=j&url=https://public.ccsds.org/Pubs/130x0g3.pdf&ved=2ahUKEwjTwf2H4PvuAhX3GFkFHXwyDf4QFjAAegQIAhAC&usg=AOvVaw1E2Lh-bTqfri5X1Tc1QwjQ</a></p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="goahr6f">
+		<a class="author" href="https://www.reddit.com/user/sceadwian" target="_blank">sceadwian</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Your minimum ping time to Mars is like 6 minutes so you'd have to wait 6 minutes to get a NAK on a single packet rendering TCP totally useless.  </p>
+<p>Keep in mind TCP and UDP are software protocols, you could encapsulate something like UDP and send that but all the real magic happens with the encoding and modulation of the RF signal itself, there's a lot of error correction involved in the transmitted signal because of that minium 6 minute delay makes retransmits a REALLY bad option.  </p>
+<p>u/Markr1957 layed out some general information about the RF signal itself, it's quite complicated to build a truly robust communication signal with the low signal levels involved here.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/lp20h0" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
