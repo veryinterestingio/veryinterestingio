@@ -1,0 +1,60 @@
+<div class="answers">
+	<div class="answer" data-handle="gqc35rq">
+		<a class="author" href="https://www.reddit.com/user/TorakMcLaren" target="_blank">TorakMcLaren</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are electronic components called diodes.  These are sort of like one-way streets for electricity.  If you try to pass AC through one of these, only half the wave will get through, say the positive half.  This is called a <em>half-wave rectifier</em>.</p>
+<p>Now, if you do two of these, one in each direction, you can have one stream that gets the positive halves of the waves and a second that takes the negative half.  You can then combine these together using some more diodes so that you basically get the full wave, but with all the negative bumps flipped to positive.  This is a <em>full-wave rectifier</em>.</p>
+<p>Sometimes, your circuit uses 3-phase power.  There are 3 wires running AC, but ⅓ of a cycle out of step with each other.  If you fully rectify this, you get a signal that's just a slightly bumpy version of DC.</p>
+<p>Regardless of single or 3 phase, the next step is to smooth things out as best you can.  This can be done using a <em>low-pass filter</em>.  LP filters let through signals that don't vary much, and are resistant to quickly changing signals.  If you've got a sound system with a woofer and a tweeter (low and high speakers), there's an LP filter making sure the woofer only gets the bass.</p>
+<p>A simple LP filter is just a coil of wire, known as an inductor.  When you pass a current through it, it generates a magnetic field.  This field is resistant to changes in the current.  It store energy, and when the supply drops, it gives off some of the stored energy to stabilise it.  When the current tries to increase, the inductor takes in some of that energy to 'charge up' the magnet.  This means the current coming out the inductor will be smoother than what went in.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="gqcy1ip">
+		<a class="author" href="https://www.reddit.com/user/AzertyQwertyQwertz" target="_blank">AzertyQwertyQwertz</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Imagine the energy as some water. Now imagine a big glass of water - something like a water tank full of water with a hole in the bottom with a continuous output flow. This is your D.C. current. Now, imagine that you bury this water tank in the sand on a beach and that each wave that arrives fill it a little bit (and you still have a the water going out of this tank). Well, the waves are you A.C. current entering in pulses in your tank. When an A.C. to D.C convertet is designed, its basically a calculation on how much you can bury your tank in the and the size of your tank (voltage and capacitance value for the capacitors) in order to have a more or less stable output flow out of the tank - also depending on the frequency of the waves arriving.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gqdawyf">
+		<a class="author" href="https://www.reddit.com/user/zaphodava" target="_blank">zaphodava</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>This is one of those things that's much harder to explain with just words, so I'm going to invest about a hundred seconds in MSpaint to make some bad images that will help a great deal.</p>
+<p>First off, DC, or direct current, is electricity that flows in one direction.</p>
+<p>AC, or alternating current is simply electricity that switches directions on a regular basis. Household AC switches 60 times per second.</p>
+<p>AC starts out looking like this on a device called an oscilloscope. You can see it smoothly changes from one direction (positive, or +)  to the other (negative, or -):</p>
+<p><a href="https://i.imgur.com/ZjbQoo9.jpg" target="_blank">https://i.imgur.com/ZjbQoo9.jpg</a></p>
+<p>Using a pretty simple circuit, you can 'cut off' one side and send it all in one direction, so that it looks like this:</p>
+<p><a href="https://i.imgur.com/bc8jlbN.jpg" target="_blank">https://i.imgur.com/bc8jlbN.jpg</a></p>
+<p>That circuit just uses a few components called diodes, which only allow electricity to flow in one direction through it.</p>
+<p>The problem is that it isn't very smooth. It's more like very fast bursts of DC current, so we need to try and fill in those gaps.</p>
+<p>To do that, we use a component called a capacitor. That device is like a tiny battery. When there is current going through it, it charges up. When there isn't, it discharges. We can use these to sort of fill in those gaps, like so:</p>
+<p><a href="https://i.imgur.com/RiYSlKb.jpg" target="_blank">https://i.imgur.com/RiYSlKb.jpg</a></p>
+<p>The better a job done by the capacitors, the more it looks like a straight line, the closer to pure DC it gets.</p>
+<p><a href="https://i.imgur.com/rxp5Sl8.jpg" target="_blank">https://i.imgur.com/rxp5Sl8.jpg</a></p>
+<p>There are more modern ways of converting AC to DC with much more accurate results using transistors, but this classic way has been around for a very long time.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gqc5689">
+		<a class="author" href="https://www.reddit.com/user/mmmmmmBacon12345" target="_blank">mmmmmmBacon12345</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The most important part is the bridge rectifier.  We use little electrical one way valves (diodes) so that no matter the input voltage (+ on top or on the bottom) you always get positive voltage on one wire and negative on the other, <a href="https://upload.wikimedia.org/wikipedia/commons/3/34/Diodebridge-eng.gif" target="_blank">the wiki has a nice GIF showing this</a></p>
+<p>Generally we will put a big capacitor on the output to store the energy.  This capacitor takes the ups and downs that are coming into it and stores the energy so it just sits at the peak voltage.</p>
+<p>Now you've got a constant voltage that you can use to power things or can step down to a low voltage using a DC-DC converter so you can get 5V for your phone or 3V for a little micro controller.</p>
+<p>Old style boxes, the really heavy ones, used to put a step down transformer in the front to bring the peak voltage down from 170V (on US 120V power) to the 12 or 24V that they were needing in the end and then they ran that lower voltage through the rectifier and into the capacitor.  These are simple and don't require any fancy electronics but they do require about 5 pounds of iron in the transformer core.  Electronics are wayyyy cheaper these days than they used to be so its now cheaper to use the fancy electronics for the DC-DC converter than a big transformer meant for stepping down line voltage at just 50/60 Hz</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gqd5oxy">
+		<a class="author" href="https://www.reddit.com/user/LouSanous" target="_blank">LouSanous</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>AC is electricity that goes from positive voltage to negative voltage over and over again. Each time it does this, we call that a cycle.  The number of cycles per second are called hertz.  </p>
+<p>DC is electricity that is always a positive voltage.  </p>
+<p>There are 2 components you need to know about to converting AC to DC.  The first is called a diode.  A diode only allows electricity to flow one direction through it.  Since AC voltage goes positive to negative, the current flows backward and forward.  We want to stop that.  The second component is a capacitor.  More on that later.</p>
+<p>So, imagine a sine wave of electricity, that is AC.  The diode chops off the bottom half of the wave, or the negative part.  What you have now is like hills of positive voltage with 0 volts between them.  This is called pulsing DC.  We want to make the pulses smooth, so that the voltage is constant.</p>
+<p>This is where the capacitor comes in.  The capacitor charges and then slowly releases that charge.  So it charges up from the pulse of DC and the releases a longer slowly decreasing voltage that bridges the gap between the hills.  Its still not perfectly constant, but its much closer to a constant voltage and most DC items don't really care about the noise.</p>
+<p>Extra credit:  there are circuits you can build called full-bridge rectifiers that flip the negative part of the wave to positive and add it to the positive wave so that there is no time when the voltage is at zero and the hills are closer together.  This is both more efficient and has less noise.  These are made with 4 diodes in a clever arrangement.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
