@@ -1,0 +1,61 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Sci_Joe" target="_blank">Sci_Joe</a>
+			<div class="markdown"><p>As long as we have someone here who seems knowledgeable</p>
+<p>Where/how is the hibernate info stored (drive or mainboard)? The OS will load RAM contents onto the drive and power down the PC. How does the PC know to restore the session? if i had 2 OS installs on 2 drives, only one is plugged in. I hibernate one, swap the drive, use and shut down the other OS, then boot again from the first one. Will it restore the hibernate?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mxtommy" target="_blank">mxtommy</a>
+			<div class="markdown"><p>Note: my knowledge of the internal workings of recent versions of windows is less than the older ones, though in theory it works the same. </p>
+<p>Hibernate would be stored on the hard drive. In windows usually there will be a file hiberfil.sys on your C drive (hidden of course). Memory/state will be stored there. As for how the computer knows how to boot that? The computer doesn't. The bios boots windows as it normally would. The OS (the install that you are booting) in its boot procedure has code that would decide to restore the hibernate file or not. Unfortunately I'm not familiar with how it decides, but its an OS thing, not a &quot;low level computer&quot; thing like the power management that does the soft off/reset.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NateDevCSharp" target="_blank">NateDevCSharp</a>
+			<div class="markdown"><p>Hibernate is also an ACPI state (S4), (sleep is S3) so it is a low level thing</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/fiskfisk" target="_blank">fiskfisk</a>
+			<div class="markdown"><p>The mainboard doesn't really have any useful storage, so it's either disk or RAM.</p>
+<p>There's multiple levels of hibernation (usually suspend vs hibernate), and one of them keeps power running for the RAM. That way the content of RAM is kept available for the underlying OS, so that when it's woken up again there is no need to restore anything.</p>
+<p>The other option is that the contents of RAM is swapped out to disk, and then when your OS wakes up the memory content is copied from disk into RAM again.</p>
+<p>There's a lot more to successful hibernation than just the contents of RAM, but that's most &quot;visible&quot; part of the process.</p>
+<p>If the content of RAM has been swapped out to disk and you've removed the disk that contains the RAM information, it's not longer available - so it can't be restored, and a full boot happens.</p>
+<p>In the other case you'll probably also see a full boot if critical hardware has been swapped (so just removing an USB device won't be critical, but swapping out the system hard drive could be).</p>
+<p>The <a href="https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate" target="_blank">arch linux guide to hibernation</a> gives a good, top level introduction to suspend and hibernate from a technological viewpoint.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/HasHands" target="_blank">HasHands</a>
+			<div class="markdown"><p>Hibernate is just dumping RAM to disk, then reloading that state into RAM on wake. Some implementations preserve CPU / device state as well and try to restore those on wake. The OS install that initiated the hibernate handles the hibernation state 100% in modern implementations. BIOS / CMOS has no idea about hibernation state or anything like that because once its job is complete (hardware initialization), it hands off responsibility completely to the booted OS.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/frollard" target="_blank">frollard</a>
+			<div class="markdown"><p>This. I'm reminded of some super oldschool computer stuff (386? first gen pentium?) where various manuals/software would say to do a power off power on cycle, and not just reboot because <insert name of hardware here> didn't have any soft reset capabilities...but this way pre-dates all of what we're used to today.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JoeDidcot" target="_blank">JoeDidcot</a>
+			<div class="markdown"><p>I had a recent example of reboot not being the same as power-off-power-on. </p>
+<p>It was to do with logging onto a VPN. From what I gather, some of the crypto stuff can survive a soft-reboot, and idenfies the PC as in the same session, but a cold start clears it. This to me implies that the random seed for the crypto is stored on the mainboard somewhere.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TERRAOperative" target="_blank">TERRAOperative</a>
+			<div class="markdown"><p>In a TPM (Trusted Platform Module), which is either a chip on the motherboard, or a small plug-in module.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kyrsjo" target="_blank">kyrsjo</a>
+			<div class="markdown"><p>I remember one computer where the PS/2 mouse wouldn't work after rebooting from Linux to Windows (or the other way around, can't remember). To get mouse support after switching OS, the power had to be turned off for a few seconds.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wRAR_" target="_blank">wRAR_</a>
+			<div class="markdown"><p>My PC XT clone manual said &quot;wait several seconds between powering off and on&quot; IIRC.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wanze" target="_blank">wanze</a>
+			<div class="markdown"><p>You say</p>
+<blockquote>
+<p>It does restart all the way (not halfway like some people seem to suggest). This is why you see the bios etc on reboot.</p>
+</blockquote>
+<p>But in the quote you pasted yourself, it clearly states:</p>
+<blockquote>
+<p>The motherboard never actually turns off, it only resets various components and then behaves as if the power button has just been pressed.</p>
+</blockquote>
+<p>So I don't know what misinformation you're referring to. Certainly, that could be put under a loose definition such as &quot;only restarts halfway&quot;.</p></div>		</li>
+					</ul>
+	
