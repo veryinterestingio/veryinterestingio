@@ -1,0 +1,136 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Harrison_Fjord" target="_blank">Harrison_Fjord</a>
+			<div class="markdown"><p>This is a cool explanation, thanks.  I've never heard this explanation of a quantum computer before (or more likely, I never heard it distilled into simple enough terms for me to understand).  Is there a list of these quantum processes that 'happen to be' equivalent to real-world problems we're trying to solve?  My main curiosity is what natural quantum process is used for Shor's algorithm, which is the only quantum algorithm I'm tangentially familiar with.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GroundStateGecko" target="_blank">GroundStateGecko</a>
+			<div class="markdown"><p>Shor's algorithm is quite more &quot;indirect&quot;. I'll try to give an explanation here, but the level of <em>explain-like-I'm-five-ness</em> will be significantly higher. So this comment will only give you a feeling and please know that this is not by any means rigorous.</p>
+<p>In the following formulas, you can assume all numbers are integers.</p>
+<p>Shor's algorithm is to find factors for a number. If we want to find the factor for the number B, we happen to prove that there must exist a relationship:</p>
+<p>A^(p) = m * B + 1</p>
+<p>where we just randomly pick some number A (without some trivial scenario), and we can eventually find a power P, that the remainder after divided by B is 1.</p>
+<p>We now just assume we have found the power P for an A we picked. We can write:</p>
+<p>(A^(p/2) + 1)(A^(p/2) - 1) = m * B</p>
+<p>(It's the same thing, just wrote differently. You can multiply this back to the formula above.)</p>
+<p>For example, if we want to find the factor of 85, we randomly pick a number 11, and try multiple power P, until we find one that satisfies A^(p) = m * B + 1:</p>
+<p>11^(2) = 1 * 85 + 36</p>
+<p>11^(3) = 15 * 85 + 56</p>
+<p>11^(4) = 172 * 85 + 21</p>
+<p>11^(5) = 1894 * 85 + 61</p>
+<p>11^(6) = 20841 * 85 + 76</p>
+<p>11^(7) = 229260 * 85 + 71</p>
+<p>11^(8) = 2521869 * 85 + 16</p>
+<p>11^(9) = 27740561 * 85 + 6</p>
+<p>11^(10) = 305146171 * 85 + 66</p>
+<p>11^(11) = 3356607889 * 85 + 46</p>
+<p>11^(12) = 36922686784 * 85 + 81</p>
+<p>11^(13) = 406149554634 * 85 + 41</p>
+<p>11^(14) = 4467645100979 * 85 + 26</p>
+<p>11^(15) = 49144096110772 * 85 + 31</p>
+<p>11^(16) = 540585057218496 * 85 + 1</p>
+<p>Got it!</p>
+<p>Now, we wrote:</p>
+<p>(11^(8)+1)(11^(8)-1) = 540585057218496 * 85</p>
+<p>which is</p>
+<p>214358882*214358880 = 540585057218496 * 85</p>
+<p>Now, remember, we want to find C * D, so that C * D = 85.</p>
+<p>So we wrote</p>
+<p>214358882*214358880 = 540585057218496 * (C * D)</p>
+<p>Now, as the left and the right are the same, they MUST share the same factors.</p>
+<p>So if neither 214358882 itself nor 214358880 itself is a multiple of 85, it must satisfy:</p>
+<p>214358882 = C * something</p>
+<p>214358880 = D * something</p>
+<p>(or vise versa)</p>
+<p>we now know:</p>
+<p>85 = C * something</p>
+<p>214358882 = C * something</p>
+<p><strong>So 85 and 214358882 share factor.</strong></p>
+<p><strong>Also 85 and 214358880 share factor.</strong></p>
+<p>There is a fast algorithm that is specifically used for finding common factors, called  <a href="https://en.wikipedia.org/wiki/Euclidean_algorithm" target="_blank">Euclidean algorithm</a>. Which you can even do it by hand for 85 and 214358882 / 214358880.</p>
+<p>214358882 = 2521869 * 85 + 17</p>
+<p>And 17 is a prime number, <strong>so 85 has a factor 17</strong>.</p>
+<p>214358880 = 2521869 * 85 + 15</p>
+<p>85 = 5 * 15 + 10</p>
+<p>15 = 1 * 10 + 5</p>
+<p>And 5 is a prime number, <strong>so 85 has a factor 5</strong>.</p>
+<p><strong>So we got it! 85 = 5*17</strong></p>
+<p>&#x200B;</p>
+<p>Now, why do we go through this hell?</p>
+<p>(Continue on the second part, as Reddit have a 10000 character limit)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GroundStateGecko" target="_blank">GroundStateGecko</a>
+			<div class="markdown"><p>(This is the second part, read the first part first)</p>
+<p>Now, why do we go through this hell?</p>
+<p>Indeed, using a classical computer, this algorithm is definitely not faster than just trying to divide 85 by prime numbers. The main problem is to find a <strong>p</strong>, so that we have:</p>
+<p>A^(p) = m * B + 1</p>
+<p>&#x200B;</p>
+<p>We now need another fact:</p>
+<p>If  A^(p) = m * B + 1, and we pick any number q:</p>
+<p>A^(q) = n * B + k</p>
+<p>We multiply those two, you will always get:</p>
+<p>A^(q) * A^(p) = A^(p+q)  = something * B + k</p>
+<p>(you can multiply (m * B + 1)*(n * B + k) yourself to get the <em>something</em> term)</p>
+<p>Also:</p>
+<p>A^(q) * A^(p) * A^(p) = A^(2p+q)  = something * B + k</p>
+<p>A^(q) * A^(p) * A^(p)  * A^(p) = A^(3p+q)  = something * B + k</p>
+<p>.....</p>
+<p>You can derive it yourself.</p>
+<p>Now we test it with our case:</p>
+<p>Our p is 16, we randomly pick q to be 8.</p>
+<p>You can test:</p>
+<p>&#x200B;</p>
+<p>11^(8) = 2521869 * 85 + 16</p>
+<p>11^(8+16) = [A long number] * 85 + 16</p>
+<p>11^(8+16×2) = [A much longer number] * 85 + 16</p>
+<p>11^(8+16×3) = [A much much longer number] * 85 + 16</p>
+<p>The remainder is always 16.</p>
+<p>&#x200B;</p>
+<p>This satisfies for ANY q:</p>
+<p>&#x200B;</p>
+<p>Like when q is 5: </p>
+<p>11^(5) = 1894 * 85 + 61</p>
+<p>11^(5+16) = [A long number] * 85 + 61</p>
+<p>11^(5+16×2) = [A much longer number] * 85 + 61</p>
+<p>11^(5+16×3) = [A much much longer number] * 85 + 61</p>
+<p>The remainder is always 61.</p>
+<p>&#x200B;</p>
+<p>So, here is the most important message, <strong>this sequence has a period of p</strong>. If we find the period (frequency), we find our factors.</p>
+<p>The answer to <em>how do we find a period</em> is almost always Fourier transform.</p>
+<p>It's kinda like when you hear a sound, the sound signal is very very complicated if you look at the position-time diagram (<a href="https://res.cloudinary.com/practicaldev/image/fetch/s--GyKZe6be--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://cl.ly/3o1j163Z2E2u/download/Image%25202018-08-17%2520at%252012.17.04%2520PM.png" target="_blank">see this image</a>). But after Fourier transform, you can immediately see it's just the superposition of three sine waves.</p>
+<p>Now when you hear a song, you immediately notice that's an A-minus, not because you can calculate really fast, but because there are hair cells, that will resonances with different frequencies <a href="https://upload.wikimedia.org/wikipedia/commons/7/72/Journey_of_Sound_to_the_Brain.ogv" target="_blank">(Wikipedia)</a>, <strong>only the hair cell that has the right frequency will vibrate strongly, forced vibration to the other cells will cancel out as multiple periods of the sound passes through</strong>.</p>
+<p>In a strikingly accurate way, your ear is a Fourier transform computer!</p>
+<p>This finding-period part is where the quantum part comes in.</p>
+<p>Now we can do a very similar thing with a quantum computer to crack passwords.</p>
+<p>As we said before,</p>
+<p>11^(8) , 11^(8+16), 11^(8+16×2),11^(8+16×3) all satisfies [A much much longer number] * 85 + 16</p>
+<p>11^(5) , 11^(5+16), 11^(5+16×2),11^(5+16×3) all satisfies [A much much longer number] * 85 + 61</p>
+<p>So we can somehow craft a system, which is the superposition of the states including the power and the remainder:</p>
+<p>|8, 16&gt; + |8+16, 16&gt; + |8+16*2, 16&gt; + |8+16*3, 16&gt; + ...</p>
+<p>|5, 61&gt; + |5+16, 61&gt; + |5+16*2, 61&gt; + |5+16*3, 61&gt; + ...</p>
+<p><strong>All this sequence will have a period 16, which is our p</strong>.</p>
+<p>So this sequence will resonance only with something that also has a period 16 (or the multiple of it)</p>
+<p>So, we can somehow build a &quot;quantum ear&quot;, called QFT (quantum Fourier transform), so that only the &quot;quantum hair cell&quot; that has a period 16 will vibrate strongly, and the other will stay still.</p>
+<p>Why do we need to do this? As I said in the original comment &quot;you can only get ONE answer from the superposition of 2^(N) states.&quot; So we must do something, to let the correct answer &quot;pop out&quot;.</p>
+<p>By constructing the &quot;quantum ear&quot;, only the period-16 &quot;hair cell&quot; vibrates, so it has the largest amplitude. If we do a measurement, it's <em>highly likely</em> we will find the period-16 &quot;hair cell&quot; (the wave function will collapse to period-16), instead of any other number.</p>
+<p><strong>Now we can find our p (it's 16) with one measurement (one try)!</strong></p>
+<p>And with some simple Euclidean algorithm. We can crack the Internet!</p>
+<p>&#x200B;</p>
+<p><del>(Actually, not all encryption is based on prime factors. There are things like Elliptic-curve Diffie–Hellman that will not be solved by Shor's algorithm and a quantum computer. So not all of the Internet will be cracked.)</del> Edit: This sentence is not correct, as pointed out by u/Oye_Beltalowda. Elliptic-curve can be accelerated by Shor's algorithm. Although people have proposed variants to ECDH like SIDH that can resist quantum computer attacks.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Zachthing" target="_blank">Zachthing</a>
+			<div class="markdown"><p>Thanks for taking the time to write this up.  great explanation</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JRRudy" target="_blank">JRRudy</a>
+			<div class="markdown"><p>MinutePhysics made a great video breaking down Shor's algorithm, if you're interested: <a href="https://youtu.be/lvTqbM5Dq4Q" target="_blank">https://youtu.be/lvTqbM5Dq4Q</a></p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/itachiaizen" target="_blank">itachiaizen</a>
+			<div class="markdown"><p>Thank you for including all those links! Really helped!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SyntheticAperture" target="_blank">SyntheticAperture</a>
+			<div class="markdown"><p>I've taken a year of graduate Quantum Mechanics, and this helped me understand quantum computers better.</p></div>		</li>
+					</ul>
+	

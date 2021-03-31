@@ -1,0 +1,127 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BAXterBEDford" target="_blank">BAXterBEDford</a>
+			<div class="markdown"><p>How do you calculate SD for more than two data points? Let's say you're finding the mean age for a group of 5 people and also want to find the SD.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/RashmaDu" target="_blank">RashmaDu</a>
+			<div class="markdown"><p>For each individual, take the difference from the mean and square that. Then sum up all those squares, divide by the number of indiduals, and take the square root of that. (note that for a sample you should divide by n-1, but for large samples this doesn't make a huge difference)</p>
+<p>So if you have 10, 11, 12, 13, 14, that gives you an average of 12. </p>
+<p>Then you take </p>
+<p>sqrt[[(10-12)^2 +(11-12)^2 +(12-12)^2 +(13-12)^2 +(14-12)^2 ]/5]</p>
+<p>= sqrt[ [4+1+0+1+4]/5] </p>
+<p>= sqrt[2] which is about <strong>1.4</strong>.</p>
+<p>Edit: as people have pointed out, you need to divide by the sample size after summing up the squares, my stats teacher would be ashamed of me. For more precision, you divide by N if you are taking the whole population at once, and N-1 if you are taking a sample (if you want to know why, look up &quot;degrees of freedom&quot;)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hedoh" target="_blank">Hedoh</a>
+			<div class="markdown"><p>Need to divide by N here before taking the sqrt I think. </p>
+<p>Shouldn’t it be sqrt(10/5) = sqrt(2) = 1.41</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/A_Deku_Stick" target="_blank">A_Deku_Stick</a>
+			<div class="markdown"><p>You need to divide by N, your sample size, before taking the square root of the differences squared. So it should be sqrt[10/5] = Sqrt[2] or Sqrt[10/4] = sqrt[2.5] if from a sample.  </p>
+<p>Edit: It depends on if the observations are from a sample or population. If it’s from a sample it’s n-1, if from a population it’s N. Thanks for the correction from those that pointed it out.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BAXterBEDford" target="_blank">BAXterBEDford</a>
+			<div class="markdown"><p>Thanks. THat was simple enough and direct.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GolfSucks" target="_blank">GolfSucks</a>
+			<div class="markdown"><p>I was told that you have to square the differences so that you get positive values. Why not just take the absolute value instead?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/acwaters" target="_blank">acwaters</a>
+			<div class="markdown"><p>You can! There are lots of different metrics for dispersion, and SD is not always the most appropriate one!</p>
+<p>A key insight to understanding dispersion IMO that is almost always overlooked when discussing this: SD isn't some magical formula, it's just the <em>root-mean-squared deviation from the mean</em>. Now, you may recognize RMS as just a different kind of mean, and mean as just one of many different averages you can take? Yeah, you can pretty much mix and match here. Also somewhat common are mean absolute deviation about the mean and median absolute deviation about the median — these are both more robust than SD and maybe more intuitive, but less &quot;nice&quot; because they're not differentiable everywhere.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/silverdevilboy" target="_blank">silverdevilboy</a>
+			<div class="markdown"><p>The squareing thing means numbers further from the mean count for more, and behaves better once the maths gets more detailed than this.</p>
+<p>Your way would work and it would have information about the amount the data is spread out. It's just less useful for mathematicians.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TomatoManTM" target="_blank">TomatoManTM</a>
+			<div class="markdown"><p>Because 1 difference of 10 means a lot more than 10 differences of 1. It's to increase the weight of points farther from the average. If you just add up absolute values of differences, you lose that.</p>
+<p>Theoretically I suppose it could use higher (even) exponents... you could go to the 4th power instead of 2nd and it would be the same general concept, but (a) harder and (b) probably unnecessary?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Jkjunk" target="_blank">Jkjunk</a>
+			<div class="markdown"><p>Calculating it is a pain, but understanding it is easier.  Roughly 2/3 of a population (68%) should be within 1 SD of the mean (average).  Let's say we're dealing with typical adult Male height.  US Male height has a mean of 70 inches and a SD of 3. If I measure 10 people off the street their heights would probably end up looking something like this:  62 65 67 69 69 70 71 72 73 77. Their heights will be clustered around 70 inches with roughly 2/3 of them between 67 and 73 inches.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Katakros" target="_blank">Katakros</a>
+			<div class="markdown"><p>Not should be, is equal to, the Empirical Rule.  That percentage is a consequence of the calculation.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hurricane_news" target="_blank">hurricane_news</a>
+			<div class="markdown"><p>I was taught that standard deviation = root of this thing called variance. How do they both link together? I'm very confused by the standard deviation formula I get in my book</p>
+<p>As in, what's ths different between standard deviation between 2 data versus standard deviation in something like say 10 elements of data?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Statman12" target="_blank">Statman12</a>
+			<div class="markdown"><blockquote>
+<p>I was taught that standard deviation = root of this thing called variance.</p>
+</blockquote>
+<p>Yep, that's correct! The variance is a more mathematical thing, but it doesn't really have real-world meaning, so we take the square root to put it back into the original units.</p>
+<p>It's be kind of silly to say that the average age is 17.5 years old, but talk about how spread out they were in terms of some thing like 144 years^(2).</p>
+<p>As for n=2 vs n=10, just more information.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/15_Redstones" target="_blank">15_Redstones</a>
+			<div class="markdown"><p>With 2 data points both are the same distance from the average so it's trivial. With more data points they're at different distances from the average so it gets a bit more complicated. </p>
+<p>Since far away data points are more important you take the square of the distance of each data point, then you take the average of the squares, and finally you have to undo that squaring. </p>
+<p>If you don't take the root you get standard deviation squared which is the average (distance to average value squared) and that's called variance because it's often used too so it gets a fancy name.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/juiceinyourcoffee" target="_blank">juiceinyourcoffee</a>
+			<div class="markdown"><p>What does variance tell us that SD doesn’t?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hurricane_news" target="_blank">hurricane_news</a>
+			<div class="markdown"><p>Why do we square the distance in the first place tho? I'm confused</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sacoPT" target="_blank">sacoPT</a>
+			<div class="markdown"><p>Despite the absurd number of upvotes I’m not a major on statistics so don’t quote me on that but standard deviation and variance are essentially two different expressions of the same concept, the difference being that standard deviation is in the same unit (years in my example) as the original numbers and the average while the variance is not.</p>
+<p>The standard deviation is basically the average distance between each value and the average.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Emarnus" target="_blank">Emarnus</a>
+			<div class="markdown"><p>Sort of, main difference between the two is variance allows you to compare between two different distributions whole SD does not. SD is how far away you are relative to your own distribution.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/seakingsoyuz" target="_blank">seakingsoyuz</a>
+			<div class="markdown"><p>Variance is the average of the <em>squares</em> of the differences between the values and the mean, so it goes up very quickly if some values are quite far from the mean.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Backlists" target="_blank">Backlists</a>
+			<div class="markdown"><p>Yes. Essentially, you want to get to an &quot;average deviation&quot; value. This is an imaginary concept that I've made up to explain why we need variance even though it's not used for anything.</p>
+<p>Logically, if we did that, without calculating the variance first, you'd be finding the average of the difference (deviation) between every datapont and the mean. In this way, the deviations of dataponts that are below the average will cancel out with those of dataponts that are above the average. This will make our &quot;average deviation&quot; figure 0. Always. A bit useless.</p>
+<p>So to avoid this cancelling out of higher and lower, we square the deviation of every datapoint and find the average of that. That's the variance, and it must be calculated before the standard deviation.</p>
+<p>Why square it? It's just a convention - an easy one.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Brunosrog" target="_blank">Brunosrog</a>
+			<div class="markdown"><p>Standard deviation also let's you know if a single value with in the set of numbers is an outlier.  If you have a number with in one standard deviation of the mean then it is a number that is much more common or closer to the majority of the numbers in the group.  If you have a normal distribution (a bell curve) then 68% of numbers are within 1 standard deviation and 95% of numbers are within 2.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Aromatic-Blackberry5" target="_blank">Aromatic-Blackberry5</a>
+			<div class="markdown"><p>Yo mommas so mean, she got no standard deviation!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/skofa02022020" target="_blank">skofa02022020</a>
+			<div class="markdown"><p>How much I laughed at this somehow made all my statistics training worth it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TomatoManTM" target="_blank">TomatoManTM</a>
+			<div class="markdown"><p>ouch.</p>
+<p>brilliant.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/perepascuet" target="_blank">perepascuet</a>
+			<div class="markdown"><p>Most underrated comment.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/owdbr549" target="_blank">owdbr549</a>
+			<div class="markdown"><p>And 99% will be within 3 standard deviations of the mean for a normally distributed data set.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/maddog1956" target="_blank">maddog1956</a>
+			<div class="markdown"><p>This is what I would think of as Standard Deviation. Which doesn't just tell me how far two numbers are apart but also how close a data point is from the group or average.</p>
+<p>In an example with only two data point it neither is an outlier.</p></div>		</li>
+					</ul>
+		</ul>
+	

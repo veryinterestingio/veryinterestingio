@@ -1,0 +1,81 @@
+<li class="post" data-handle="mexver">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/mexver/how_exactly_do_quantum_computers_simulate/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Computing">Computing</span>
+			<a href="/posts/mexver" onclick="return false">How exactly do quantum computers simulate molecular/particle interactions better than classical computers?</a>
+		</h2>
+		<!--<span class="date">2021-03-31</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>I’m struggling to understand why quantum computers can simulate nature better than classical computers.</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="gsle4tx">
+		<a class="author" href="https://www.reddit.com/user/GroundStateGecko" target="_blank">GroundStateGecko</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>First, I'd like to demystify something. It's common that people say an N-bit quantum computer can simultaneously exist in a superposition of 2^(N) states, such that it will be able to access 2^(N) answers, thus much faster than classical computers.</p>
+<p>This is FALSE. You can only get ONE answer from the superposition of 2^(N) states. ONE measurement will disrupt the whole system so that the superposition (of that property you were measuring) is broken. So an N-bit quantum computer has nothing to do with running 2^(N) calculations at the same time.</p>
+<p>Now the real answer to this question:</p>
+<p>A tl;dr answer would be: because we can construct certain quantum systems, so that some physical properties of that system <em>happens to be</em> the same as some formula we need. (And that formula is hard to calculate using other stuff, like a classical computer or in our head.)</p>
+<p>You can use this exact same explanation to answer &quot;<em>how do classical computers calculate addition faster than human&quot;</em>. An adder, built with classical electronic circuits (<a href="https://suchprogramming.com/wp-content/uploads/2017/09/half-adder.png" target="_blank">like this one</a>), are just some physical objects that do &quot;experiments&quot; so that if you flip the switches as your input, the output light bulbs will almost instantaneously illuminate in a way that <em>happens to be</em> the same as how addition works. We then measure the on/off of the light bulbs, and say that this &quot;computer&quot; (consisted of two switches, two logical gates, and two light bulbs) can do addition as fast as the electricity can flow through the wire, like billions of times a second (assuming you have bulbs that can flicker really fast).</p>
+<p>We can now put our switch-gate-light bulb thing in a case, and call that thing &quot;a classical computer that can quickly calculate the sum of two one-bit numbers&quot;. The switches are input, and (the brightness of) the light bulbs are output.</p>
+<p>So what's a fast computer?</p>
+<p>It's a physical apparatus, which we have configurations to change as input; and the measurement of some physical property <em>happens to</em> correlate to some formula we need.</p>
+<p>Now, the same thing for quantum computers.</p>
+<p>I'll use the calculation of a permanent of matrix as an example. A permanent <a href="https://en.wikipedia.org/wiki/Permanent_(mathematics)" target="_blank">(Wikipedia)</a> of an n*n matrix is a sum of products, each product is consisted by n element, the horizontal indices are 1...n, and the vertical indices are each of the possible permutations for the n indices. So the total number of products in the summation is the factorial of n. Like <a href="https://wikimedia.org/api/rest_v1/media/math/render/svg/cdcb3f54d546a84077167d1ac0cf74ef7076502d" target="_blank">for 2*2 matrix</a>,  <a href="https://wikimedia.org/api/rest_v1/media/math/render/svg/dfc363abd9069f45d2129962dd6da84e6e56be08" target="_blank">for 3*3 matrix</a>, and I generated <a href="https://i.imgur.com/1H2x9PN.png" target="_blank">the permanent for 4*4 and 5*5 matrices</a>. You can see as the matrix grow bigger, it will be exponentially more complicated if we calculate the multiplications one by one (and the optimal complexity on a classical computer is ~O(n×2^(n))). For a 100*100 matrix, You would need to do \~10^(32) times calculation to get the result, and that will need \~1000 years on our best classical supercomputers. </p>
+<p>However, there <em>happens to be</em> a quantum process, called <em>Boson sampling</em> <a href="https://en.wikipedia.org/wiki/Boson_sampling" target="_blank">(Wikipedia)</a>, whose physical property <em>happens to satisfy</em>:</p>
+<p>[<em>Boson sampling</em>] = |permanent of matrix|^(2) / S₁! S₂! ... Sn!</p>
+<p>We can calculate the &quot;S₁! S₂! ... Sn!&quot; part very quickly (using a classical computer), so we now build <a href="http://www.globaltimes.cn/Portals/0/attachment/2020/2020-12-03/4ecc0e08-0502-48ef-94a6-d6c89297c383.jpeg" target="_blank">a quantum apparatus</a> and measure the [<em>Boson sampling</em>] term for a certain input, we can now get the permanent of matrix very quickly from the above equation.</p>
+<p>And we finally put that apparatus in a case, and call this quantum apparatus &quot;a quantum computer that can quickly calculate the permanent of matrix&quot;. Just like our switch-gate-light bulb thing.</p>
+<p>(There are caveats that I glossed over for simplicity. Read this like an Explain-like-I'm-five-answer. Comments are welcome.)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="gsl25hl">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gskruwm">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gsljyww">
+		<a class="author" href="https://www.reddit.com/user/profdc9" target="_blank">profdc9</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A quantum system is described by a very large state space as compared to a classical system.  For example, if we had N classical particles, we could describe their current position and momentum of each of the N particles as the state of the system.  For example, think of the solar system, with the Sun and the planets each having a position and momentum, and using Newton's laws and the gravitational force to determine the paths that the planets will take.</p>
+<p>However, quantum systems are described by states where the N particles are generally coupled together.  If each of the particles were completely separate and did not influence each other, each particle would be described by a single wavefunction, or probability amplitude as a function of spatial position.   This is not unlike a classical wave (for example a light wave).  Then the system would be described by N separate wavefunctions.  However, generally the particles do affect each other (at least in interesting quantum systems), and the particles wavefunctions become entangled, so now we need to describe the possible states of the quantum system as a joint wavefunction of all particles.  There are many ways you can describe such a wavefunction, but this grows exponentially in size in the number of particles that are coupled together.  So for even a small number of particles, this state space could be very, very large.</p>
+<p>Now such a quantum state space could be represented in a classical computer, and there's nothing (in principle) preventing a classical computer from simulating the evolution of a quantum system.  However, the extraordinarily large size of the state space makes this prohibitively costly except for the smallest systems, which is why all kinds of tricks have to be devised to simplify this (Hartree-Fock, Density Functional Theory, etc.)</p>
+<p>A quantum computer is deliberately designed to take advantage of this large state space.  Furthermore, because the quantum computer has a quantum state space, this state space and interactions between the states can be set up to mimic a quantum system that one wishes to simulate.  The quantum state can then evolve in a manner analogous to the system being modeled.  The advantage of the quantum computer is that the quantum computer is a flexible, controllable processor with a way to prepare a quantum state, control its evolution, and measure its outcome, so it has generality.  It shares the same limitations of any other quantum system, in that any measurement of the outcome (whether intended or inadvertent) disturbs the state and so limits the information that can be extracted from a given calculation.  Of course, nothing is stopping one from repeating a calculation, but the information that can be extracted from a single state is limited by quantum uncertainty.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gsm1v6m">
+		<a class="author" href="https://www.reddit.com/user/EZ-PEAS" target="_blank">EZ-PEAS</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I'm only adding this answer because there are no other answers that get to the heart of it quickly. The problem is that simulating a quantum system requires an exponential amount of memory, while a quantum computer only needs a linear amount of qubits to model the same system. </p>
+<p>For example, a 100-particle system could be modeled with 100 qubits on a quantum computer, while a classical computer could in principle need to store ~2^100 values to simulate the same system. If each value is represented as a 32-bit single precision floating point number that would correspond to 5 <em> 10^18 terabytes of data, which is a truly terrifying amount of data. If Jesus started loading 80 million terabytes of data onto a hard drive every second back in 0 AD then he'd just now be getting to 5</em>10^18 terabytes of stored data. </p>
+<p>Suppose we have a system of quantum particles that can exist in two states. For simplicity we'll just call these states 1 and 0. Since these are quantum particles we don't know their exact state until the quantum system is measured. When the system is measured then every quantum particle settles into the 1 or 0 state. If we have one particle then the total number of output states is just 0 or 1. If we have two particles then there are four total output states: 00, 01, 10, and 11. If we have three particles then there are eight total output states: 000, 001, 010, 011, 100, 101, 110, and 111. </p>
+<p>In general, for an N particle system there are 2^N possible output states. This is one half of the problem.</p>
+<p>For example, in a 2 particle system you might compute that state 00 has a 10% chance of occurring, states 01 and 10 have a 20% chance of occurring each, and state 11 has a 50% chance of occurring. Once you have those amplitudes computed then simulating the quantum system is easy: pick a number between 0 and 100 and assign the corresponding output state. </p>
+<p>The other half is that there are no shortcuts (in the general case) to storing 2^N possible amplitudes. Simulating this quantum system requires computing the probability of each output state as we did above. We can't just store individual amplitudes of each qubit directly (which would only require 2*N storage) because such a scheme cannot replicate the probability assignments we gave above, but such probability assignments are possible to create in practice. Creating such state amplitudes is possible through quantum entanglement, but I won't go through the details here. </p>
+<p>So in the full general case, an simulating an N-bit system on a classical computer requires an exponential amount of memory. To faithfully simulate that quantum system we need to compute and store an amplitude for every state.  A ton of work has gone into simulating such systems efficiently by finding tricks for specific types of problems. In a particular problem many of these amplitudes might have zero or near-zero chance of occurring compared to other states. In other cases some subset of states will have the same amplitude, so you don't need to compute and store each one individually. But generally this only means a reduction in the exponential degree of the memory requirement, and simulating large systems is still a practical impossibility. </p>
+<p>However, an N-bit quantum computer can simulate N quantum states easily. If we can construct the same entangled quantum state in the machine that we want to observe in real life, then we can explore that quantum system observationally. A quantum computer could construct the same quantum state many times and measure it many times, and you will get many measurements of the most likely states the quantum system would be in. Using the Law of Large Numbers you will arrive at a good approximation of the true quantum distribution much much faster than exponentially computing every amplitude.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/mexver" onclick="return false"><span>show</span></a>
+</li>
