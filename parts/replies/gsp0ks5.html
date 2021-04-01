@@ -1,0 +1,100 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/im_thatoneguy" target="_blank">im_thatoneguy</a>
+			<div class="markdown"><blockquote>
+<p>A CPU or GPU (or any other chip) which works 30% faster than comparable products on the market while using the same area and power would be very amazing</p>
+</blockquote>
+<p>Now is a good time to add that even saying &quot;CPU or GPU&quot; is highlighting another factor in how you can dramatically improve performance: specialize.   The more specialized a chip is, the more you can optimize the design for that task.</p>
+<p>So lots of chips are also integrating specialty chips so that they can do common tasks very very fast or with very low power.   Apple's M1 is a good CPU.  But some of the benchmarks demonstrate things like &quot;500% faster H265 encoding&quot; which isn't achieved by improving the CPU but simply replacing the CPU entirely with a hardware H265 encoder.</p>
+<p>Especially now a days as reviewers do tasks like &quot;Play Netflix until the battery runs out&quot; which tests how energy efficient the CPU (or GPU's) video decoding silicon is while the CPU itself sits essentially idle.</p>
+<p>Or going back to the M1 for a second, Apple also included silicon paths so that memory could be accessed in an x86-like emulation path.   So if it's running x86 code and x86 memory access calls on ARM are slow to emulate... they just duplicated a small amount of silicon to ensure that the x86 compatible calls could be executed in hardware while the actual x86 compute calls could be translated into ARM equivalents with minimal performance penalty. </p>
+<p>Since everybody is so comparable for the same process size and frequency and power... Apple is actually in a good position because they control the entire ecosystem they can better force their developers to use APIs in the OS that use those custom code paths while breaking legacy apps that might decode H264 on the CPU and use a lot of battery power.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/13Zero" target="_blank">13Zero</a>
+			<div class="markdown"><p>This is an important point.</p>
+<p>Another example: Google has been working on tensor processing units (TPUs) which are aimed at making neural networks faster. They're basically <em>just</em> for matrix multiplication. However, they allow Google to build better servers for training neural networks, and phones that are better at image recognition.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/im_thatoneguy" target="_blank">im_thatoneguy</a>
+			<div class="markdown"><p>Or for that matter RTX GPUs.   </p>
+<p>RTX is actually a terrible raytracing card. It's horribly inefficient for raytracing by comparison to PowerVR Raytracing cards that came out 10 years ago and could handle RTX level raytracing on like 1 watt. </p>
+<p>What makes RTX work is that it's paired with a Tensor Processing Unit that runs an AI Denoising algorithm to take the relatively low performance raytracing (for hardware raytracing) and eliminate all of the noise to make it look like an image with far more rays cast.   Then on top of that they also use the RTX's TPU to upscale the image. </p>
+<p>So what makes &quot;RTX&quot; work isn't just a raytracing chip that's pretty mediocre (but more flexible than past hardware raytracing chips) but that it's Raytracing + AI to solve all of the Raytracing chip's problems.</p>
+<p>If you can't make one part of the chip faster, you can create entire solutions that work around your hardware bottlenecks.   &quot;We could add 4x as many shader cores to run 4k as fast as 1080p.   Or we could add a really good AI upscaler for 1/100th of the silicon that looks the same.&quot;</p>
+<p>The importance of expanding your perspective to rethink if you even need better performance out of a component in the first place.  Maybe you can solve the problem in a completely different, more efficient approach.   Your developers come to you and beg to improve DCT performance on your CPU. You ask &quot;Why do you need DCT performance improved?&quot; and they say &quot;Because our H265 decoder is slow.&quot;  So then instead of giving them what they asked for, you give them what they actually need which is an entire decoder solution. </p>
+<p>Game developers say they need 20x as many rays per second.  You ask what for. They say &quot;because the image is too noisy&quot; so instead of increasing the Raytracing cores by 20x, you give them a denoiser. </p>
+<p>Work smart.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ImprovedPersonality" target="_blank">ImprovedPersonality</a>
+			<div class="markdown"><p>Very good point I totally forgot to emphasize.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pm_me_wet_kittehs" target="_blank">pm_me_wet_kittehs</a>
+			<div class="markdown"><p>I don't think we'll see a big step with quantum computing. They are a separate technology and won't affect how classical computers work.</p>
+<p>Quantum computing can solve problems that classical computers can't. They also <em>cannot</em> solve most problems that a classical computer can. And vice versa.</p>
+<p>They are two different, incompatible paradigms. One of the most famous applications of quantum computers, Shor's algorithm, which could be used to factor large numbers runs partially in a quantum computer and partially in a classical one.</p>
+<p>For example: a huge difference between classical and quantum computers is that classical computers can very easily be made to &quot;forget&quot; information. ex. in a loop, you keep &quot;forgetting&quot; the output from the previous iteration to calculate the results of the current iteration. In a quantum computer, all the qubits depend on each other and trying to &quot;forget&quot; something somewhere causes unwanted changes to other qubits.</p>
+<p>edit: I meant to say quantum comouters cannot solve most problems faster than a classical computer would, not that they couldn't solve them at all. It is in fact possible to run any classical algorithm on a quantum computer, theoretically. But it likely wouldn't be worth the trouble to do so.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/enduringzenith" target="_blank">enduringzenith</a>
+			<div class="markdown"><blockquote>
+<p>One of the most famous applications of quantum computers, Shor's algorithm, which could be used to factor large numbers runs partially in a quantum computer and partially in a classical one.</p>
+</blockquote>
+<p>So, is this like a hybrid computer? If this became a reality for consumers, is it something like I could render videos with my quantum drive while checking emails with my classical drive?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pm_me_wet_kittehs" target="_blank">pm_me_wet_kittehs</a>
+			<div class="markdown"><p>Two computers.</p>
+<p>You need a classical computer to set up the problem in just the right way so that it can be processed by the quantum computer. That's the first part of the algorithm.</p>
+<p>You use a quantum computer to do the second part of the algorithm (which is the part classical computers can't do efficiently).</p>
+<p>Then you use a classical computer again to interpret the results of the quantum computer to come up with the final answer.</p>
+<p>You need both types of computers. They are good at different things. Neither one will ever make the other one obsolete.</p>
+<p>edit: obviously, in the future, I'm not discounting the possibility of some sort of chip that integrates both on a single die or something. Who's to say? But the quantum part would be more like a co-processor.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MrFantasticallyNerdy" target="_blank">MrFantasticallyNerdy</a>
+			<div class="markdown"><p>I think the analogy is more similar to the current CPU + GPU. One can do complex instructions but is slower (relatively), while the other can crunch through specialized simple instructions blindingly fast. Neither can be efficient by itself so you need both to do your task well.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mirrormn" target="_blank">Mirrormn</a>
+			<div class="markdown"><p>When quantum computing becomes viable for consumer use, it would be in the form of a separate chip/card, just like a graphics card. And also like a graphics card, it would be used to process specific tasks that aren't well-suited for the normal CPU.</p>
+<p>For a graphics card, those tasks would be gaming and crypto mining.</p>
+<p>For a quantum computing chip, that task would be quantum encryption. (And, I'm sure, some new kind of quantum crypto mining).</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shinn497" target="_blank">shinn497</a>
+			<div class="markdown"><p>are there any algorithms , beside's shor's, that have the quantum speedup?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pm_me_wet_kittehs" target="_blank">pm_me_wet_kittehs</a>
+			<div class="markdown"><p>Sure. Another one is Grover's algorithm for searching an unordered list. You can look <a href="https://en.m.wikipedia.org/wiki/Quantum_algorithm" target="_blank">here</a> for more.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GlassRoutine0" target="_blank">GlassRoutine0</a>
+			<div class="markdown"><p>Can you elaborate more on the &quot;forgetting&quot; part of the loop? Sure the iterations can be independent, but the values computed previously will still be stored on the stack/heap right? Also what sort of problems that classical computers can solve that a quantum computer can't ?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pm_me_wet_kittehs" target="_blank">pm_me_wet_kittehs</a>
+			<div class="markdown"><p>for(int i = 0; i &lt; 10; ++i) {}</p>
+<p>On iteration 0 we set i to 0.
+On iteration 1, we set i to 1 and &quot;forget&quot; that it used to be 0.</p>
+<p>Or when you pop then push the stack. You end up with something else at the top and you &quot;forget&quot; what used to be on top.</p>
+<p>Basically any time you write to a variable, you're forgetting its previous value.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mognakor" target="_blank">Mognakor</a>
+			<div class="markdown"><p>Optical CPU's may be the next thing for classical computing. In theory you get less waste heat so you can reach higher energy levels before the CPU fries itself.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Totally_Generic_Name" target="_blank">Totally_Generic_Name</a>
+			<div class="markdown"><p>That sounds great until you realize that optical waves still have to interact with atoms and their electrons to do things (photons don't meaningfully interact) and visible light is already 100x too big to use in a logical element (500nm wavelength vs 5nm gate pitch). Optics are used for interconnects</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Civ95" target="_blank">Civ95</a>
+			<div class="markdown"><p>Companies like Poet Technologies are apparently solving this, in effect integrating electrons and photons on the same wafer. This could be a significant development.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
