@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: How exactly does a computer randomize a number? What exactly pick the output number?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="ml8bnz">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/ml8bnz/eli5_how_exactly_does_a_computer_randomize_a/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/ml8bnz" onclick="return false">How exactly does a computer randomize a number? What exactly pick the output number?</a>
+		</h2>
+		<!--<span class="date">2021-04-09</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: How exactly does a computer randomize a number? What exactly pick the output number?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="gtk5krx">
+		<a class="author" href="https://www.reddit.com/user/trabbaro" target="_blank">trabbaro</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are two ways.</p>
+<p>First, a computer can use a complicated formula to generate a very unexpected number. This is known as &quot;pseudorandom&quot; (sue-doh-random). The formula will always generate the same numbers if it starts from the same place, but if you give it a random number to start with, it will generate a lot of numbers that are hard to predict. A lot of research goes into making good pseudorandom number generators.</p>
+<p>A very basic example: start with any number less than 37. Every time you want a random number, take your current number and multiply it by 7. Then, subtract 37 over and over until your number is less than 37. If you start with 12, you'll get 12, 10, 33, 9, 26, 34, 16, 1, 7... (It loops after it's done all 37 numbers!). Real generators are way more complicated, but you get the idea.</p>
+<p>But that's not very good if you're trying to use random numbers for security, is it? If you're relying on random numbers made by the computer as part of your encryption, then all an attacker has to do is guess you're starting number and they'll be able to guess all the rest by running the same algorithm. That's a problem.</p>
+<p>So computers have a second method- pulling randomness in from truly random sources.</p>
+<p>The computer hardware is full of random things. The hardware is all electronics and there's always some kinds of noise coming from electronics. You can listen to that noise and it's pretty random. The timing on when network messages arrive- lots of randomness. Also, you're pretty random and the computer can use <em>you</em>. It times how long between key presses and mouse movements- you think it's consistent but to a computer with a very fast clock inside it, there's a lot of unexpected variation- randomness!</p>
+<p>Many computer operating systems have what's called a &quot;random pool&quot;. A big queue of bits that are filled up by random events happening and it storing them. When any program asks the operating system for some <em>real</em> randomness, the good stuff, it provides the front of that queue, slowly filling up the rest as it can.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="gtjyx0k">
+		<a class="author" href="https://www.reddit.com/user/konwiddak" target="_blank">konwiddak</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A computer never produces a truly random number, it produces something that's called a pseudorandom number. A good pseudorandom number looks random, but is actually a very very long repeating pattern (trillions and trillions long).</p>
+<p>A simple example is:</p>
+<ol>
+<li>Pick a three digit number (the seed) </li>
+<li>Square it</li>
+<li>Take three middle digets - that's your &quot;random&quot; number </li>
+<li>Plug that number back into 1 to generate your next random number. </li>
+</ol>
+<p>Where the randomness actually matters (e.g encryption), your computer tracks user inputs to generate entropy, this is a measure of disorder. It then uses this entropy as the seed for a pseudorandom generator.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gtjycqy">
+		<a class="author" href="https://www.reddit.com/user/brknsoul" target="_blank">brknsoul</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Computers pick a seed number, for example, the current number of seconds since a certain time, and perform a sequence of mathematical operations on that number to produce a psuedo-random number. The computer then repeats this method on the new number.</p>
+<p>Since these number of seconds passed keeps changing, the next time the computer generates a batch of random numbers, those will be different.</p>
+<p>There are ways of having a computer choose truely random numbers, but that a little out of the scope of ELI5.</p>
+<p>You could read more here; <a href="https://www.freecodecamp.org/news/random-number-generator/" target="_blank">https://www.freecodecamp.org/news/random-number-generator/</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gtkgnc8">
+		<a class="author" href="https://www.reddit.com/user/conanfreak" target="_blank">conanfreak</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Fun fact: Our math teacher used the random function of our graphic calculator to pick students for his weekly homework grading. After one student was picked 8 times he realized that it was indeed not random. This method used the last commands which where calculated. After startup it was always 13 or 17.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gtk92d2">
+		<a class="author" href="https://www.reddit.com/user/dzsibi" target="_blank">dzsibi</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are two ways this can happen:</p>
+<ul>
+<li>The computer merely acts as if it could generate truly random numbers, but in reality, it is just returning seemingly random (so-called pseudorandom) numbers. There are a number of <a href="https://en.wikipedia.org/wiki/List_of_random_number_generators" target="_blank">different algorithms</a> that can be used to generate these numbers - they usually start with a seed value (like the current time, or the number of pixels your mouse cursor travelled in the past few minutes), and then produce a deterministic sequence of fake random numbers. If the same algorithm is used with the same seed value, the sequence of numbers will be the same.</li>
+<li>The computer contains a dedicated hardware component that uses a real world physical phenomenon to generate true random numbers. Most modern processors  have such a component <a href="https://en.wikipedia.org/wiki/RDRAND" target="_blank">built-in</a>, but using it can be significantly slower than using the fake random numbers, and there are concerns about the security of such numbers - many cryptographic algorithms rely on high quality random numbers, and since hardware is very hard to inspect for backdoors, you have to trust the manufacturer. A slightly different way to generate random numbers based on physical phenomenon was <a href="https://blog.cloudflare.com/randomness-101-lavarand-in-production/" target="_blank">demonstrated by Cloudflare</a> - they use the live video feed of a bunch of lava lamps to generate high quality random numbers.</li>
+</ul>
+<p>In many cases, the output of a hardware random generator is fed into a pseudo-random generator, which is then used to produce the actual random numbers - if used correctly, this solves speed and trust issues, while the quality of the output is only marginally affected.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/ml8bnz" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

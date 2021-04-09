@@ -1,0 +1,53 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DemIce" target="_blank">DemIce</a>
+			<div class="markdown"><p>It's definitely worth looking into an RNG as to whether it is, in fact, random...especially under a specific use case.</p>
+<p>Funnily enough ran into this one just the other day. A website was using userIDs (a simple increasing number) as the seed to JAVA's util.random, and then picking a number between 0 and 31:</p>
+<pre><code>for (int userID = 0; userID &lt; 10; userID++) {
+  final Random random = new Random(userID);
+  int value = random.nextInt(32);
+  System.out.println(userID + " = " + value);
+}</code></pre>
+<p>At first glance, the above may seem perfectly fine. Until you see the output; every 'value' generated is 23, all the way from userID 0 through userID <del>301</del> <em>255</em>. After which it becomes a long run of 24s, a run of 23s, a run of 24s again, 21s, 22s, and so on.<br />
+( edit: The above was updated with more information on the output runs. For a closer look, just loop to userID 1000. )</p>
+<p>Doesn't seem very random, does it? The 'culprit' is in nextInt(32). The bound value just happens to interact with <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Random.html" target="_blank">the underpinnings</a> in a way that the output is garbage. nextInt(31) is 'random', nextInt(33) is 'random'. Or the culprit is in seeding the RNG with a basic integer, when that input itself should be massaged to provide a better input to begin with. Or the culprit is in re-seeding the RNG in the userID loop in first place, instead of initializing with a known seed outside of that loop and only using nextInt(32) inside the loop.  Or the culprit is in using JAVA's util.random in the first place ;)</p>
+<p>Regardless of where to lay the blame, it was a real world example of how something involving an RNG, which looks benign and seemingly should work just fine, can break in unexpected ways.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/misplaced_optimism" target="_blank">misplaced_optimism</a>
+			<div class="markdown"><p>Okay, I didn't believe this at first and so I had to test it on my system... bizarre! The first 255 digits in the sequence are 23, after which you get a selection of 23 and 24. Why??? I haven't written Java code in quite a while, but I definitely remember using java.util.Random many times without running into anything like this... then again, I always seeded the generator using the current time.</p>
+<p>It's been 10+ years since I wrote any Java code, but I can't shake the suspicion that this has something to do with the JVM integer pool, or some other under-the-hood optimization, and not java.util.Random itself.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/justinba1010" target="_blank">justinba1010</a>
+			<div class="markdown"><p>Likely this has to do with Java's LCG, <a href="https://en.wikipedia.org/wiki/Linear_congruential_generator#Parameters_in_common_use" target="_blank">https://en.wikipedia.org/wiki/Linear_congruential_generator#Parameters_in_common_use</a> . The function is F<em>n = ((a*F</em>(n-1) + c) &lt;&lt; 16) &gt;&gt; 32, where a = 25214903917 and c = 11. Likely what happens when you seed it with a small number, it loses entropy at bit positions 16-48, thus you end up in a sort of loop which happens from time to time with LCGs and bad parameters. The other thing is, there are cycles in parity, even if you disregard the lower bit positions. As in without the bit shifts you have cycles of odd-even-odd..., and if you move one bit over you'll have cycles of even-even-odd-odd or some other 4 cycle. In designing these you want the cycles to be large enough that they are hard to find, thus here they disregard both the most significant and least significant 16 bits. As /u/konwiddak said, you try to design these that the cycles are VERY long, and in cryptographic instances you NEED high levels of entropy, such as /dev/random.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jwadamson" target="_blank">jwadamson</a>
+			<div class="markdown"><p>The lowest bits are basically garbage. When you do a small power or two with nextInt, it is effectively only using those bits.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DemIce" target="_blank">DemIce</a>
+			<div class="markdown"><p>Well, the blame (other than with the user) being placed with util.Random is based on the basic tenet that a random number generator should give random outputs. Dilbert comic aside, I think we can fairly safely assume that the output is not 'random'.</p>
+<p>Even just the fact that given an incremental seed, the first output is not significantly different in the case of the 32-bound, should give pause to a developer. Imagine, for example, being a game dev and the game's 'map' is determined by it, and when they just play with different seeds, for some reason the initial block, voxel, pixel, whatever is the same. You could waste a good bit of time trying to figure out where the bug is in your code, when it turns out it's some util.Random funkiness.</p>
+<p>The issue <em>is</em> with util.Random, though. From the link provided ( <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Random.html" target="_blank">https://docs.oracle.com/javase/8/docs/api/java/util/Random.html</a> ):</p>
+<pre><code>public int nextInt(int bound) {
+  if ((bound &amp; -bound) == bound)  // i.e., bound is a power of 2
+    return (int)((bound * (long)next(31)) &gt;&gt; 31);
+
+  int bits, val;
+  do {
+      bits = next(31);
+      val = bits % bound;
+  } while (bits - val + (bound-1) &lt; 0);
+  return val;
+}</code></pre>
+<p>( I removed an irrelevant part )</p>
+<p>You can see there's special handling for powers of 2, which is exactly where the issue pops up. I.e. try nextInt(2), 4, 8, 16, 64, 128.</p>
+<p>The page also explains <em>why</em> there is special handling, but doesn't explicitly point out the pitfall of this approach; probably because, again, the code I mentioned is not how util.Random is supposed to be used.</p>
+<p>Perhaps we should drop this in r/programming or r/java(help) and see what they come up with as an underlying cause :D</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EthiopianBrotha" target="_blank">EthiopianBrotha</a>
+			<div class="markdown"><p>Bro I thought that was c# before I read</p></div>		</li>
+					</ul>
+		</ul>
+	
