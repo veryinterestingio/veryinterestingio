@@ -1,0 +1,58 @@
+<div class="answers">
+	<div class="answer" data-handle="gtrnh84">
+		<a class="author" href="https://www.reddit.com/user/RobusEtCeleritas" target="_blank">RobusEtCeleritas</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><blockquote>
+<p>If two capacitors are in series wouldn’t the plates closest to the battery on each capacitor just form a capacitor with the middle plates being ineffective since there is no actual contact with the circuit?</p>
+</blockquote>
+<p>There doesn't have to be physical, conductive contact between the capacitor plates. Or else even a single capacitor wouldn't work, let alone two in series.</p>
+<p>Even though no charge is physically flowing across the (ideal) dielectric, there's still a <a href="https://en.wikipedia.org/wiki/Displacement_current" target="_blank">displacement current</a> in that region.</p>
+<p>Anyway, sometimes when translating between some physical system and an equivalent electrical circuit representing that system, it can be hard to think about whether two elements should be placed in series or in parallel in the equivalent circuit.</p>
+<p>The best way that I've found to think about it is in terms of the voltage or current across or through the two elements.</p>
+<p>From Kirchhoff's laws, you know that two circuit elements in parallel share the same voltage drop across them, and two elements in series share the same current passing through them.</p>
+<p>(And again, when we're talking about capacitors, you have to consider both regular currents and displacement currents. There can't be a <em>net</em> buildup of charge, so if one plate is accumulating a positive net charge, the opposing plate is accumulating an equal and opposite negative charge.)</p>
+<p>So thinking about it this way, it's clear that if you continue to sandwich more and more plates together with dielectrics in between, the equivalent circuit must be multiple capacitors in <strong>series</strong>, not in parallel. Because it's the current that's the same for all of them, not the voltage drop.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="gtrsep0">
+		<a class="author" href="https://www.reddit.com/user/realityChemist" target="_blank">realityChemist</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>In my personal experience, with capacitors it helps to think more about the <em>dielectric</em> than the conductors. When you have a voltage across the plates of a capacitor, you get an electric field between them, through the dielectric. That field is where your energy is being stored.</p>
+<p>So, look at two identical capacitors in series. The two middle plates are connected, so they'll stay at the same voltage †. But if you look end-to-end, the two capacitor circuit is very different from a one capacitor circuit! You have twice as much dielectric material separating the two ends of your circuit now than you would have with a single capacitor. All else being equal, more dielectric separating your plates means lower capacitance, and since you now have twice as much dielectric in your circuit you should end up with half the capacitance (which, for two identical capacitors, you do; you can check the math easily enough).</p>
+<p>† Unless you're working with a very high frequency circuit or something, but forget that for now.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gts8cyd">
+		<a class="author" href="https://www.reddit.com/user/GTdspDude" target="_blank">GTdspDude</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Just to add to the already great responses, couple other thing to note is </p>
+<p>1) there is in fact a capacitance between these structures and it is part of the total capacitance of the series elements (parasitic coupling)</p>
+<p>2) this also applies to everything else on the board, including traces that come close together</p>
+<p>3) I also think this is much clearer when you actually look at these components on a PCBA - none of them, whether through hole or SMA, tend to actually be in close, physical proximity the way you imagine when you see idealized images in books</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gtsz1zf">
+		<a class="author" href="https://www.reddit.com/user/1up_for_life" target="_blank">1up_for_life</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Two capacitors in series looks like this: ---||--||---</p>
+<p>let's call the plates A, B, C, and D.</p>
+<p>Imagine plate A has a negative charge, this will cause the electrons in plate B to move to plate C. Now plate B has a positive charge and plate C has a negative charge. Because plate C now has a negative charge it will force the electrons to move away from plate D, giving it a positive charge.</p>
+<p>the end result is a - + - + pattern to plate charges.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gtt3y70">
+		<a class="author" href="https://www.reddit.com/user/ShelfordPrefect" target="_blank">ShelfordPrefect</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Don't two capacitors in series behave the same way they would if the plates and dielectrics were just stacked up?  I thought</p>
+<p>-| |----| |-</p>
+<p>behaved the same as</p>
+<p>---|  |  |---</p>
+<p>which behaved more or less the same as </p>
+<p>---|     |---</p>
+<p>(ie. half the capacitance)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
