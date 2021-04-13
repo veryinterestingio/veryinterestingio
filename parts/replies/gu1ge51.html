@@ -1,0 +1,75 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SpamShot5" target="_blank">SpamShot5</a>
+			<div class="markdown"><p>What about Packet loss?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Grobyc27" target="_blank">Grobyc27</a>
+			<div class="markdown"><p>Pieces of data that are sent across a computer network are referred to as packets. It can takes many, many packets to send a single file for example. Sometimes some of those packets get lost along the way when traversing the network/internet. That percentage of lost packets makes up what is referred to as packet loss. Pings are just one of the many types of packet.</p>
+<p>That’s it simply. More detail below if you’re interested:</p>
+<p>A packet contains pieces of information specifying things like the device which it originated from as well as who it is destined for as well as the actual payload (segments of the YouTube video you are watching, as an example.</p>
+<p>The size of packets are generally fairly small by default (1.5 KB, i.e kilobytes), so for you to watch a video, it could be necessary for YouTube’s servers to send your computer tens or hundreds of thousands of packets. I’m it was an HD video that is 3GB in size, that is roughly 3.15 million KBs, as there are are about 1.048 million KBs in. GB. That means you’re looking at over 2 million packets required.</p>
+<p>Some of those packets get lost or discarded along the way from YouTube’s servers to your computer due to all sorts of factors. Faulty cabling, network configuration issues, internet service providers (ISPs) being overloaded, etc. If packets are lost, they are often re-sent so that you don’t experience issues with your video playback. This is one reason why YouTube will buffer the next X seconds of your video; so that if your connection experiences brief issues and you have sudden packet loss, it mitigates you noticing them.</p>
+<p>Packet loss is typically given as a percentage. Say it took 2.3 million packets to receive that YouTube video and 3,910 got lost. 3910 / 2.3 million x 100% means you had roughly 0.17% packet loss. Packet loss on a network connection that is operating normally should be very, very low. Under 1% for sure.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/GeenMachine" target="_blank">GeenMachine</a>
+			<div class="markdown"><p>To add to that, not all packets get retransmitted. In TCP/IP (Transmission Control Protocol / Internet Protocol)  there are two packet types used for data  transfer - UDP and TCP.</p>
+<p>UDP packets are sent with no guarantee it got delivered - this is used for example for voice calls where having a quick method of sending data is  more critical than having a guaranteed transmission (because of the real time nature of the audio data being transited, hearing a gap in the reconstituted steam is preferred to having the transmission being delayed further while missing packets are getting re-requested).</p>
+<p>TCP packets are sent with a sequence # as part of the header. This enables the receiving system to realize there is missing data if it sees packets out-of-sequence. It will then send a message to the sender with the missing sequence #s and delay reconstruction of the data.</p>
+<p>There are more complex things like flow control but that's the basics of it.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OneAndOnlyJackSchitt" target="_blank">OneAndOnlyJackSchitt</a>
+			<div class="markdown"><p>(I'm going to add a bit to this on a more technical note. This is from memory, though, so please correct me if you catch anything that's wrong.)</p>
+<p>Because of the fact that multiple computers can be connected to a network (versus just having two), a stream of data is split up into packets so that devices on the same node can have a chance to 'talk'. (This is why when there are more devices using the network, the overall throughput is proportionally slower.)</p>
+<p>Without getting into the different OSI layer stuff (I'm skipping over stuff dealing with how the signal gets from A to B, like WiFi, ethernet, fiber, carrier pigeon, etc), these data packets may arrive:</p>
+<ul>
+<li>Normally</li>
+<li>Late</li>
+<li>Out of order</li>
+<li>Not at all</li>
+</ul>
+<p>So to mitigate this, engineers came up with a couple different methods of transporting these packets, which have use cases and advantages/disadvantages.</p>
+<ul>
+<li>TCP: A machine will establish a connection with a host and then send data. This one is really good for transmitting data where the accuracy of the date is most important. File downloads and webpages, for example. This protocol introduces latency issues and overhead because the protocol automatically handles managing state information such as if the connection has been establish and resending late/missing/out of order packets. So sending a tiny bit of data may require a ton of packets being sent back and forth.</li>
+<li>UDP: A machine simply sends a packet to another machine or machines. 'Machines' is not a typo. Live streaming services very commonly use UDP for transmitting the actual live video/audio data. This is because, whereas on TCP, to send data to 10 recipients requires the data be sent ten times, UDP can send packets 1 which are received by all ten recipients at the same time without duplicating the data (this is called multicast). The overhead is tiny to non-existent and the latency is almost instant, fast enough for live Zoom video conferences. Also, on digital cable serves with 500+ channels, it consumes the bandwidth of 500 video streams, even with 200k people tuned in at once. There is no packet loss detection because it's not a huge deal if you get a momentary blip on the screen during a live stream. <del>PING is also an example of something which uses UDP.</del> EDIT: PING uses ICMP, not UDP</li>
+</ul></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NL_MGX" target="_blank">NL_MGX</a>
+			<div class="markdown"><p>That's DHL.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kassell" target="_blank">kassell</a>
+			<div class="markdown"><p>FedEx down here</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DarthLordi" target="_blank">DarthLordi</a>
+			<div class="markdown"><p>This is correct. Surprised to see how many incorrect answers so far.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MysticGrapefruit" target="_blank">MysticGrapefruit</a>
+			<div class="markdown"><p>Everyone wants to be the reddit expert</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wattnurt" target="_blank">wattnurt</a>
+			<div class="markdown"><p>It's not so much about trying to be an expert, it's more that ping itself really just shows a time in milliseconds, so people assume it's the time it took to get to the target.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Iron_Man_977" target="_blank">Iron_Man_977</a>
+			<div class="markdown"><p>It might also be worth it to add that this can be a good tool for trouble shooting, because you can target specific things with your pings. Press win+r, type cmd, and hit enter. Now type ping _<strong>____</strong> and fill in the blank with the website you want to ping. Your computer will sent the website 4 packets and record the time it takes to get them back. If you're ever having internet issues, this can be a good tool to try and diagnose where the problem is</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/notFREEfood" target="_blank">notFREEfood</a>
+			<div class="markdown"><p>Yes and no.</p>
+<p>You don't control the host on the other end, which means your results could be influenced by host settings.  For example almost everyone will rate limit icmp traffic from the internet, which means you can experience &quot;packet loss&quot; when pinging a target without actually having any issues.  Response rate can also be influenced by things such as host load, so if you see a random spike in latency it might not mean anything.  Furthermore (go look at the linked presentation for this), asymmetric routing really fucks with trying to do troubleshooting from a single host.  You can have a problem that exists on your ISP's local network that only shows up when you ping to a host on one network in particular.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Iron_Man_977" target="_blank">Iron_Man_977</a>
+			<div class="markdown"><p>Just like any tool, you have to use it right for it to be effective</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
