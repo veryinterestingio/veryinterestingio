@@ -1,0 +1,86 @@
+<div class="answers">
+	<div class="answer" data-handle="guajsn6">
+		<a class="author" href="https://www.reddit.com/user/finlshkd" target="_blank">finlshkd</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You know the rules for doing arithmetic operations on paper? Like &quot;carry the one&quot; and so on? Simply put, calculators pretty much just follow those same rules, but instead of carrying the one when they get to 10, they carry when they get to 2.</p>
+<p>Using 2, which is called &quot;binary&quot; is just more convenient because it can be represented by a bunch of indicators which are either on or off, which works out very nicely when it comes to electronics.</p>
+<p>Pretty much all the rules work out this way, and the same goes for carrying the one at pretty much any number. Although they're not the exact same, they work pretty similarly. As example, adding a 0 on the end doesn't multiply a number by 10, it multiplies by 2.</p>
+<p>Once the calculations have been completed in binary, the results can be converted to a base 10 system, the one we use in everyday life, and displayed on the screen. Likewise, the numbers you type in are converted to a binary, aka base 2, system before the computer really does anything with it.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="gua40n2">
+		<a class="author" href="https://www.reddit.com/user/Quietm02" target="_blank">Quietm02</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They calculate it. And I say that without trying to be funny.</p>
+<p>They don't &quot;know&quot; the answer. They work it out.
+To know the answer they would have to have every possible combination stored with its solution. Which just isn't feasible.
+(There may be a couple of specific examples like log tables or trig tables that are stored, but they're the exception).</p>
+<p>As for how it calculates, computers are really really good at doing sums. They can do them ridiculously fast. It will never make a mistake, so never needs to double check.</p>
+<p>There are small electrical components within the calculator that can do basic sums. Really fast. It uses them and does the calculation in stages until it gets the final answer. The same components can be used at multiple stages, as there's an overall programme that tracks where it is. And because it's so fast it looks instant to us.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gua5zdg">
+		<a class="author" href="https://www.reddit.com/user/ComradeMicha" target="_blank">ComradeMicha</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>All of the standard mathematical operations (add, subtract, multiply, divide) can be expressed as logical comparisons between two inputs, generating a specific output. To do it like the calculators do, you need to express all of the inputs and outputs as binary numbers. So &quot;2&quot; becomes &quot;10&quot;, as in 1*(2\^1) + 0*(2\^0). 3 becomes &quot;11&quot;, 4 becomes &quot;100&quot;, 7 becomes &quot;111&quot; and so on. Now you can compare the individual 0s and 1s of both inputs and the output will be defined by a logical rule. For addition, you have the rule &quot;not and&quot;, which means that the output is &quot;0&quot; if both inputs are the same, so if both have a &quot;1&quot; it becomes &quot;0&quot;, if one is a &quot;1&quot; and the other is a &quot;0&quot; it becomes &quot;1&quot; and so on. Obviously there's another little trickery involved with carrying over a bit, but hey, this is ELI15 already ;)</p>
+<pre><code>Example: 
+2+3 becomes "10" + "11" in binary, so you compare from right to left:
+0, 1 -&gt; not the same -&gt; result is "1"
+1, 1 -&gt; the same -&gt; result is "0", plus carry over "1"
+nothing (0), nothing (0), carry-over "1" -&gt; not the same -&gt; result is "1"
+So the final result is "101", or 1*2^2 + 0*2^1 + 1*2^0 = 4+0+1 = 5.</code></pre>
+<p>Now the only missing part of the explanation is how the binary conversion and comparison work. For the really cheap calculators, they actually used little nand-gates (microelectronics with two or three inputs and one output, where the logical comparison actually is done by the electrical setup of the gate itself. So if you put a certain voltage on the inputs (higher voltage is &quot;1&quot;, almost no voltage is &quot;0&quot;), then they will have the resulting voltage on the output. </p>
+<p>Put enough of them together in a vast network, and you have a hardcoded addition machine. Now you just need a way to convert button inputs into voltage and voltage into display, both of which have been done for decades.</p>
+<p>Modern calculator just use all-purpose microprocessors which are programmed to calculate, using the same logic, but with a similar hardware than smartphones or other electronic devices.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="guanhad">
+		<a class="author" href="https://www.reddit.com/user/oneplusetoipi" target="_blank">oneplusetoipi</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Not sure what part of the calculator you are most interested in, but here it goes.</p>
+<p>Parts of the calculator (the very simple cheap ones) </p>
+<ul>
+<li>Battery to supply the power for the other stuff</li>
+<li>Keyboard to input the numbers and the operator</li>
+<li>Display to show the numbers (the ones you input and the ones that get output)</li>
+<li>Chip (silicon based semiconductor integrated circuit) with: input connections, output connections, memory and computing elements. The chip has a small microprocessor for simple programming. </li>
+</ul>
+<p>Operation</p>
+<ol>
+<li>Enter the 1st number using the keyboard. The chip detects the key strokes and loads the numbers into the first memory location. The number is logically converted from decimal to binary during this stage. </li>
+<li>Enter the 'operator' using the keyboard (+, -, *, /). The chip is programmed to detect one of these keys as the end of the 1st number which locks the 1st number in memory. It also retains the knowledge of the operator for later. </li>
+<li>Enter the 2nd number using the keyboard. The chip detects the key strokes and loads the numbers into the second memory location. The number is logically converted from decimal to binary during this stage. </li>
+<li>Enter the '=' key using the keyboard. The chip is programmed to detect this key as the end of the 2nd number which locks the 2nd number in memory. The chip then proceeds to perform the operation associated with the operator entered earlier. (+, -, *, /)</li>
+<li>The chip now uses the program built in to the chip to select a pathway on the chip between the two memory locations and the ALU (Arithmetic Logic Unit). The ALU can add, subtract, and shift (shift is used for multiplying and dividing). For an ADD the two numbers enter the ALU and the circuits automatically compute the answer using a mechanism that is similar to what we do by hand. That is, each number that is the same 'power' is added and if there is a 'carry' that is passed to the next higher power part of the adder in the ALU. Remember the numbers are binary at this point so when you add values of the same power they are either a 1 or a 0 (result is 0, 1, or 2; and 2 needs a carry). Eventually all of the carry bits and adds complete in the adder and the new (binary) output can be saved to a third memory location.  Note higher power adds need to include the carry so the result can be 0, 1, 2, or 3. </li>
+<li>Now the chip will use the value in the 3rd memory location to convert the binary result into a decimal number that will be on the display.</li>
+</ol>
+<p>I did not cover subtracting (uses the adder), multiplying or dividing, but I can if needed. </p>
+<p>&#x200B;</p>
+<p>Hope this helps. </p>
+<p>Binary for 0, 1, 2, 3 is 00, 01, 10, 11 respectively</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gub5f4l">
+		<a class="author" href="https://www.reddit.com/user/5poko" target="_blank">5poko</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>They use algorithms to calculate it in binary. I studied the algorithms deeply in university and not going to explain them because (aside simple whole number addition and subtraction) they are too complex(floating point operations).
+In electrical aspect they use logic gates that will take at least two values and output a result. These gates are combined in a circuit that forms the algorithm.
+Here's an example of AND and OR gates. AND outputs 1 if all inputs are 1. OR outputs 1 if atleast one of them is 1.
+0 AND 1 = 0;
+1 AND 0 = 0;
+1 AND 1 = 1 ( AND is multiplication );
+0 OR    1 = 1;
+1  OR   0 = 1  ( OR is addition );
+0 OR    0 = 0;
+1 OR   1  = 10  ( 0 and carrying the one for the next bit)
+too lazy to write them all, plus gets too complex for 5 y.o.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>
