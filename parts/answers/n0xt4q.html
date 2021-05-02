@@ -1,0 +1,101 @@
+<div class="answers">
+	<div class="answer" data-handle="gwapqhi">
+		<a class="author" href="https://www.reddit.com/user/yoden" target="_blank">yoden</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The top posts are all incomplete or wrong, so let me try.  This is probably more like an ELI10 than an ELI5, but it's the best I can do.</p>
+<p>First, let's talk about what we want from a good video conferencing system:</p>
+<ol>
+<li>High resolution (sharp images)</li>
+<li>Low compression artefacts (clear, undistorted images)</li>
+<li>Low latency (no lag between you and other participants)</li>
+<li>Low enough bandwidth (don't use more bandwidth than your internet can support)</li>
+<li>Low enough CPU cost (don't use more CPU power than your computer has)</li>
+</ol>
+<p>These parameters are in contention with each other.  More resolution takes more bandwidth and CPU.  Compression lowers bandwidth, but increases CPU cost and latency.
+A big part of a good video system is selecting and adjusting these parameters.  It's hard because the computer usually doesn't know how fast your CPU is or how much bandwidth you have, so it has to guess and adjust.</p>
+<p>The main part of your question is about how Zoom can work so well for large group video chats.  There are two extra tricks applied here:</p>
+<ol>
+<li>The video is all sent to a central server</li>
+<li>The central server can transcode the video (adjust the parameters mentioned above)</li>
+</ol>
+<p>The reason for the first trick is simple; it's easier for your computer to send the video one place instead of to every participant.</p>
+<p>The second one is related to setting the appropriate parameters.  If someone is looking at 16 participants in a grid view, they likely don't need every video at full resolution since they are so small on screen.  The client can ask for a lower resolution video, and save CPU and bandwidth.  Similarly the compression can be tailored for each participant.  Slower devices and connections can get scaled down video  The server has a lot of CPU power and can change the video formats easier than your personal computer could generate all the options.</p>
+<p>Addressing some mis-information elsewhere:</p>
+<ol>
+<li>Typically, you won't see all videos encoded into one stream.  You can see this easily with Google Meets, where you can use javascript to reposition the videos wherever you like.  It's not flexible and the hard boundaries between participants compress poorly.</li>
+<li>The central server doesn't remove the ability to have end-to-end encryption, but the need to transcode the video does.  That's the biggest gain of this strategy, so an end-to-end encrypted video conference would require more resources or have less consistent quality than what zoom can provide.</li>
+</ol></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="gw9m0ot">
+		<a class="author" href="https://www.reddit.com/user/dmazzoni" target="_blank">dmazzoni</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You're not directly connecting to 9 other people, like 9 different peer-to-peer connections.</p>
+<p>Everyone has one connection to Zoom's central servers. Zoom puts them all together into one big composite and sends a single stream back to you and everyone else.</p>
+<p>So from your device's perspective, it's not doing any more work than videoconferencing with a single other person. It's uploading one video stream, and downloading and displaying another.</p>
+<p>By the way, Zoom got in trouble for advertising that their videoconferencing is &quot;end-to-end&quot; encrypted. It's obviously not. They decode all of the video streams on their servers in order to put them together. They could easy spy on you if they wanted to.</p>
+<p>Edit: well, this blew up! I was basing my information on <a href="https://theintercept.com/2020/03/31/zoom-meeting-encryption/" target="_blank">articles like this one</a> that talked about how as recently as a year ago, Zoom did not do end-to-end encryption, and in fact they've been <a href="https://digitalguardian.com/blog/zoom-hit-lawsuit-over-encryption-claims" target="_blank">faced with lawsuits</a> over their misleading advertising. However, it looks like I was mostly incorrect about my implication that Zoom processes the video on the server - it sounds like they actually just send you multiple low-quality video streams all packaged together in one connection.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gwa9bb3">
+		<a class="author" href="https://www.reddit.com/user/HighParLinks" target="_blank">HighParLinks</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>When you have a bad connection or something is going wrong, YouTube (streaming) and Zoom (live streaming) handle it differently:</p>
+<p>YouTube slows down by buffering, because who cares</p>
+<p>Zoom slows down by dropping frames and quality randomly degrading so that you can keep up with the stream, because it's &quot;live&quot; and generally you don't want to miss what the other person is talking about, or be behind on the stream</p>
+<p>Not sure I understand your question, but maybe you just don't notice the quality drops in Zoom because they don't <em>feel</em> as disruptive as buffering?</p>
+<p>FWIW even non-live streaming has started to do this. If you watch something with a bad connection on prime, or set a youtube video to &quot;auto&quot; quality, it will adjust on the fly to reduce buffering.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gwbqmgf">
+		<a class="author" href="https://www.reddit.com/user/Noctrin" target="_blank">Noctrin</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Hard to ELI5, i actually worked on a video conferencing system and can tell you a bit more about the setup involved, a few comments covered some things really well, this is a bit more on top (ELI15 maybe):</p>
+<p>There are multiple encoding algorithms, each with tradeoffs as mentioned, the main issue usually stems from latency:</p>
+<ul>
+<li>you have latency transmitting data to the server</li>
+<li>latency from encoding the data</li>
+<li>latency from sending data from the server to the client.</li>
+</ul>
+<p>Now, depending on the algorithm, you also get latency depending on how it &quot;delivers&quot; the video to your screen:</p>
+<p>ie: HLS (used widely) creates chunks of a few seconds, and generates a playlist that keeps adding new file chunks to the end. Your player plays those video chunks in order and fetches the playlist occasionally. (this is a bit oversimplified, but essentially correct)</p>
+<p>Each playlist includes multiple streams with different encoding (resolutions). This is how you switch from 480 -&gt; 1080p on youtube seamlessly:</p>
+<ul>
+<li>you click on the toggle to switch resolution</li>
+<li>on the next chunk, the player selects the higher bit rate stream</li>
+<li>all chunks are exactly the same, so it's perfectly seamless.</li>
+<li>this is why it is not instant.</li>
+</ul>
+<p>There are more advanced techniques, but they are out of the scope of this explanation.</p>
+<p>So, what does this mean for latency? If you're running 1 seconds chunks, the video will be 1 second + transmission/encoding delays behind. You cannot send the 1 second chunk before it is recorded.</p>
+<p>So what do we do to decrease latency --</p>
+<p>In come newer encoding algorithms that can have very small chunks, 0.2s or less, or just give up chunks altogether.</p>
+<p>How do these get around encoding?</p>
+<p>Simple, imagine an image which contains 8 pixels in a square. Imagine those as black blocks, now add another 8 white ones in between. You now have a 4 x 4 pixel array with alternating black and white blocks.</p>
+<p>You can now have 2 streams, one for the black squares and one for the white.</p>
+<p>The downside of smaller chunks or no chunks, is variations in speed. Imagine your connection as a water pipe, sometimes the pressure is high, sometimes low. These variations can be buffered by longer chunks, but cannot if chunks are too small/non existent.</p>
+<p>So, how can we handle these variations? </p>
+<p>Using the 2 stream example i gave, you request both, if one is more reliable and the other one is dropping data. You play just one, which renders at exactly half the resolution.</p>
+<p>When both work well, you combine to form a higher resolution image (the pixels are offset, right, so combining both produces the same image with more pixels all in the right place)</p>
+<p>There are more advanced techniques with how you route the 2 streams, and how you can combine the data. In other words, by doing so, you are unlikely to lose both at the same time, so they can be used to keep a consistent video output, at low latency and when your connection is stable enough, combine both for better quality.</p>
+<p>This can obviously be extended. This is the main trick for delivering low latency streams with the best video quality and reliability. </p>
+<p>Hope this helps :).</p>
+<p>Edit for the curious, without getting into much more complex explanations, there are multiple ways to transmit data over the net, in chunks or as a pipe (websocket), a websocket keeps an open connection to the client and can continuously send data over it. The new algorithms use websockets. Not using websockets also incurs a penalty for handshaking on each chunk etc..</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gw9srns">
+		<a class="author" href="https://www.reddit.com/user/scummos" target="_blank">scummos</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>While not the most technical explanation, it's also worth considering that software's performance is in <em>a lot</em> of real-life cases limited by how much optimization goes into making it fast, not actual hardware limitations. So there's a bias which makes all applications just fast enough so they work &quot;okay&quot;.</p>
+<p>MS Teams takes over one second to switch from one chat tab, containing twenty lines of static text, to another, also containing twenty lines of static text. Meanwhile, modern computer games draw millions and millions of 3d triangles on the screen in less than 0.02 seconds. There is no technical explanation for this. It's just laziness on the developer side.</p>
+<p>Computers are insanely fast these days. I think most end-users dont't realize just how fast they actually are, since many applications like to keep a lot of that to themselves, for ease of development.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>

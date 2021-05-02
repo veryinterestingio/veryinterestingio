@@ -1,0 +1,146 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Omniwing" target="_blank">Omniwing</a>
+			<div class="markdown"><blockquote>
+<p>Zoom puts them all together into one big composite and sends a single stream back to you and everyone else.</p>
+</blockquote>
+<p>While correct, I just want to emphasize the gigantic amount of software engineering and hardware infrastructure this takes.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/damisone" target="_blank">damisone</a>
+			<div class="markdown"><p>I don't believe Zoom sends the same stream to everyone, or that it's a single stream. See my comments about the variation in network bandwidth:</p>
+<p><a href="https://www.reddit.com/r/explainlikeimfive/comments/n0xt4q/eli5_how_do_conferencing_programs_like_zoom/gw9xwzi/" target="_blank">https://www.reddit.com/r/explainlikeimfive/comments/n0xt4q/eli5_how_do_conferencing_programs_like_zoom/gw9xwzi/</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/domesticatedprimate" target="_blank">domesticatedprimate</a>
+			<div class="markdown"><p>Yeah that statement immediately seemed suspect. No need to even analyze network traffic. The very fact each participant can control what they see and move it around shows that it's muxed in some way, and it would be extremely wasteful in resources and bandwidth to send full resolution streams of every participant to every participant irrespective of what they were actually looking at.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/melodyze" target="_blank">melodyze</a>
+			<div class="markdown"><p>Yeah, and even if everyone was viewing the same set of people's feeds, there would be no benefit in compositing them together rather than sending them separately.</p>
+<p>All that your browser cares about is how much data it needs to process. Using numbers that wouldn't be used exactly but are easy, four 500 pixel by 500 pixel feeds will use about the same amount of bandwidth as one 1000x1000.</p>
+<p>If I were designing it, I would look to do exactly the opposite, and send every person the minimum amount of data necessary for their view. That would mean not sending anything not on the screen, and connecting to substantially lower resolution streams for people who are smaller on your screen. I would be shocked if they didn't do both.</p>
+<p>Those two done perfectly together would make it an approximately constant amount of bandwidth for any number of feeds on a given screen resolution, although the backend wouldn't realistically serve every exact resolution you would want, so probably slight increase per feed on average.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AcceptableAnswer7" target="_blank">AcceptableAnswer7</a>
+			<div class="markdown"><p>Yeah it seems to me they're making some guesses but stating them as fact</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/omarhani" target="_blank">omarhani</a>
+			<div class="markdown"><p>That's the beauty of eli5, it's all super complex but explained simply</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JohnnyJordaan" target="_blank">JohnnyJordaan</a>
+			<div class="markdown"><p>And often incorrectly too as a bonus.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Gnostromo" target="_blank">Gnostromo</a>
+			<div class="markdown"><p>ELI5 how something can be both super complex and explained simply</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/damisone" target="_blank">damisone</a>
+			<div class="markdown"><blockquote>
+<p>Zoom puts them all together into one big composite and sends a single stream back to you and everyone else. So from your device's perspective, it's not doing any more work than videoconferencing with a single other person. It's uploading one video stream, and downloading and displaying another.</p>
+</blockquote>
+<p>Disagree. I've monitored Zoom's network bandwidth while changing the views between Gallery (everyone is small thumbnail) and Speaker (speaker is large, everyone else small thumbnail). I also compared network bandwidth with different number of attendees. It varies drastically anywhere from 250-2000 kbps. If Zoom were sending a single composite stream, the network bandwidth would be the same whether you had 2 attendees or 25.</p>
+<p>Edit: I thought of another major factor that proves my point. Zoom by default can show up to 16 videos. After that, it will be paged. However, you can change the <a href="https://support.zoom.us/hc/en-us/articles/201362323-Changing-the-video-layout-Speaker-view-and-Gallery-view-" target="_blank">settings to allow up to 49 videos on the same screen if your CPU is powerful enough</a>. If it were a single video stream, it wouldn't matter what your CPU was, it would be the same. The only explanation is that each video is a separate stream, and your CPU is combining them.</p>
+<p>Edit2: Another example to consider. I've been on a Zoom call with over 500 attendees, and it was just as smooth as a call with 4. Keep in mind that you can pin any attendees you want. This use case only makes sense to be streaming individual streams for each attendee that you have showing on your screen.</p>
+<blockquote>
+<p>You're not directly connecting to 9 other people, like 9 different peer-to-peer connections. Everyone has one connection to Zoom's central servers.</p>
+</blockquote>
+<p>I agree that you are connecting directly to Zoom's central servers, not PTP. But aren't the other video conferencing tools all doing that these days as well?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Towerful" target="_blank">Towerful</a>
+			<div class="markdown"><p>Most video conferencing like that is done with a Selective Forwarding Unit and WebRTC.<br />
+All clients connect to the SFU and will send a low-bandwidth and high-bandwidth webcam/screen cap stream along with whatever audio.<br />
+The clients can then request any of the video/audio streams that the server is aware of. The server will then forward the data for those streams to that client.  </p>
+<p>The server doesn't have to &quot;touch&quot; the data. It just shuffles bits and bytes. However a lot will inspect the audio for an &quot;active speaker&quot; feature. But, it could record all the streams, or run some face-detection.<br />
+However, it is in charge of signalling (ie, listening for new clients, letting clients know about stream availability, indicating highlighted streams and so on). As well as authentication and authorization (if required). And any other custom logic people might want.</p>
+<p>There is an issue where listening clients might drop frames due to their connection, and will request a new complete frame. Basic SFUs will forward that frame request to the transmitting client, which will increase their bandwidth usage. So, if there are a lot of listening clients, the probability of always sending full frames increases.<br />
+The common approach for this would be to pass the transmitting clients stream into a re-encoder, before passing onto listening clients.<br />
+This way, listening clients are requesting complete frames from the server instead the transmitting client.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BA_calls" target="_blank">BA_calls</a>
+			<div class="markdown"><p>Wait what? You are describing some sort of streaming model, not videoconferencing. </p>
+<p>The most common way to set up a call, server just does the NAT hole punching and then lets the sides talk directly, if that is possible. </p>
+<p>The only reason the server would host the stream is if there are more than a handful of clients or if NATs can’t be punched.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sarthakRddt" target="_blank">sarthakRddt</a>
+			<div class="markdown"><p>It is possible that zoom is not sending a static composite but rather on-demand composite. The client can perhaps negotiate with the zoom server about which particular streams it wants and at what quality, the server can then bundle the appropriate streams together and send them. The client would still need to decompress it and render each stream seperately. This is purely hypothetical but would explain the observations you have made.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ericek111" target="_blank">ericek111</a>
+			<div class="markdown"><p>Yes, I would think (without any investigation) that that's the case. To me, the original comment implies that their servers only send you one high-res video that's chopped client-side into the individual attendees views.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/theferrit32" target="_blank">theferrit32</a>
+			<div class="markdown"><p>This sort of compositing on the server and client side is an expensive operation, particularly on the server if it must <em>encode</em> different composites in real-time simultaneously for different clients within the same meeting. I do not think they're doing this. Given adequate enough real-time compression on each client uploading a feed, compositing the feeds together has a much smaller return on computation expense, especially for non-static content like this.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/conquer69" target="_blank">conquer69</a>
+			<div class="markdown"><blockquote>
+<p>If Zoom were sending a single composite stream, the network bandwidth would be the same whether you had 2 attendees or 25.</p>
+</blockquote>
+<p>Not really. The more video streams, the bigger the bitrate needed to maintain quality. That would explain why it's lower with less streams.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/boringestnickname" target="_blank">boringestnickname</a>
+			<div class="markdown"><blockquote>
+<p>Not really. The more video streams, the bigger the bitrate needed to maintain quality. That would explain why it's lower with less streams.</p>
+</blockquote>
+<p>Whilst it takes more space to properly encode more detailed scenes (like several small portraits, essentially), he's reporting a tenfold increase in bandwidth usage. That's a lot.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/EatShitLyle" target="_blank">EatShitLyle</a>
+			<div class="markdown"><p>Exactly, compression algorithms 101</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bluesam3" target="_blank">bluesam3</a>
+			<div class="markdown"><p>Not necessarily: more video streams means smaller video streams, so the required quality, and hence required bitrate, will drop.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/_2f" target="_blank">_2f</a>
+			<div class="markdown"><p>Lots of things wrong with this comment but one thing I am qualified to answer is group calls end to end encryption is 100% technically possible. Group keys can be made and shared secretly without zoom knowing anything.</p>
+<p>Think whatsapp or signal group chats. They all go to a central server and distributed back to devices.</p>
+<p>Key sharing algorithms exist and most corporate and educational zoom calls are E2E encrypted after April/May '20.</p>
+<p>Try installing a root certificate and MitM your own data stream, you'll see it's E2E even after removing the standard Zoom transit level encryption</p>
+<p>And yess compression etc. can still be performed on E2E streams, but zoom does most of it locally before sending so that's irrelevant.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/openRUSE" target="_blank">openRUSE</a>
+			<div class="markdown"><p>He never claimed it wasn't possible. Just that it wasn't. And it isn't, at least not by default.  </p>
+<p>You can't compress an E2EE stream. Any encryption worth its salt will turn its contents into white noise. You can't compress white noise.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bluesam3" target="_blank">bluesam3</a>
+			<div class="markdown"><p>I suppose in principle you could compress it locally, then encrypt the already-compressed thing, if you really wanted to.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/_2f" target="_blank">_2f</a>
+			<div class="markdown"><p>Aah not standard algorithms, but you don't RSA a video stream. There are special just as secure algorithms which allow postponement of compression after encryption.</p>
+<p>You can start here, I'm pasting the doi. Of course it has come a long way since then<br />
+DOI: 10.1109/ISPA.2013.6703746</p>
+<p>Anyway, it's pointless discussing this as zoom compresses locally before sending.</p>
+<blockquote>
+<p>He never claimed it wasn't possible. Just that it wasn't.</p>
+</blockquote>
+<p>Are you sure? Look at the comment and he said they <em>obviously</em> can decode the stream, never mind the wrong use of the word decode, it is not obvious. An encrypted stream wouldn't be decryptable. </p>
+<blockquote>
+<p>And it isn't, at least not by default.  </p>
+</blockquote>
+<p>Yeah I have no fight in that point. In fact I specified specifically after April '21, all corporate and educational streams were E2EE. Anyway what zoom actually did is irrelevant right now. This was a technical answer for the cryptography which I'm qualified enough to answer.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/loljetfuel" target="_blank">loljetfuel</a>
+			<div class="markdown"><blockquote>
+<p>end to end encryption is 100% technically possible</p>
+</blockquote>
+<p>It's not possible to <em>do what Zoom was doing</em> in mid-2020 -- that is, modifying the video encoding/compression/size/etc. on the server -- and also have E2E encryption.</p>
+<p>Video services with E2E encryption tend to require more-capable clients in part because any of that transcoding stuff has to be done on the client-side rather than by the server. For Zoom to handle video <em>the way they do</em> necessitates that they MITM the connection.</p>
+<blockquote>
+<p>Try installing a root certificate and MitM your own data stream, you'll see it's E2E even after removing the standard Zoom transit level encryption</p>
+</blockquote>
+<p>The stream was encrypted even if you strip off the TLS, yes, but not <em>end-to-end</em> -- it was encrypted to Zoom's servers, then encrypted before being sent to the client. E2E would require that Zoom not be able to see the video/audio content in an unencrypted form; the server-side processing they did wouldn't be possible with an actual E2E solution.</p>
+<p>This is, by the way, fine for the overwhelming majority of uses. But if you claim E2E and then do processing that requires you to have access to the data in the middle, it should (and did!) raise eyebrows. Which is why <a href="https://blog.zoom.us/zoom-rolling-out-end-to-end-encryption-offering/" target="_blank">Zoom had to make changes and slowly roll out real E2E</a> after they got called on it.</p></div>		</li>
+					</ul>
+		</ul>
+	

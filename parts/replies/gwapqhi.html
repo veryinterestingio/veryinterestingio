@@ -1,0 +1,100 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Hopai79" target="_blank">Hopai79</a>
+			<div class="markdown"><p>Excellent answer.</p>
+<p>This also explains why Zoom only allows 1080p video streams in webinar setting if request by client on Enterprise plan is approved.</p>
+<p>Also 720p video quality is only enabled on full screen mode and you see only one person’s video. This is a bit odd since I don’t see why this can’t be enabled in window mode rather than full screen mode.</p>
+<p>By default, you see 360p steams up to 4 folks, 720p in 1v1 conversation (full screen), and 320x180 in grid. When someone streams from iPhone front camera, I see 420x240 (don’t remember exact number)</p>
+<p>Oh and screen sharing - exact same resolution as computer’s screen output - does not cost lot of resources since the FPS is usually 1-15 FPS and is more “static” than video streams. When stuff move, 15-30 FPS. Hate it when people share YouTube videos via Zoom. FPS is so bad.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/loljetfuel" target="_blank">loljetfuel</a>
+			<div class="markdown"><blockquote>
+<p>I don’t see why this can’t be enabled in window mode rather than full screen mode.</p>
+</blockquote>
+<p>It <em>could</em> be, but the reality is it's expensive for all parties to send even 720p video to a client, and the vast majority of people aren't going to notice the difference between 720 and 360 when they're in a window (in part because most people don't have a big/hires monitor, and if they're using it in a window, it's probably not an almost-full-screen window).</p>
+<p>It's one of those things that is grounded in user psychology --  most people don't notice or don't care that they're doing the cheaper thing in window mode, but if you allow people to turn on &quot;higher quality&quot; settings, they'll tend to do so because it makes them feel better. Not allowing people to make that choice probably saves them a lot of money compared to the number of users it bothers.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/XediDC" target="_blank">XediDC</a>
+			<div class="markdown"><p>It would be nice if it would smartly detect when the window is large enough (by pixels) instead of just full screen.  A lot of us in tech have huge and high-res monitors...so it’s a blurry mess either way.  While a quarter-screen 720p view would look alright.</p>
+<p>(There are ways around that with all sorts of tricks of course.  Just an annoyance.)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Caeglathatur" target="_blank">Caeglathatur</a>
+			<div class="markdown"><p>AFAIK Zoom has an option to optimize the screen sharing for video, but it needs to be explicitly activated by the user, so hardly anyone uses it.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tom_watts" target="_blank">tom_watts</a>
+			<div class="markdown"><p>Even with that it's not great. I work in education sector and have learnt a lot of tricks to get the best quality out of zoom - none of them make screen sharing 'high quality' though.</p>
+<p>If anyone is wanting to know how to share video in the highest quality, you can squeeze the most out of zoom with an external HDMI to USB device (I use an ATEM Mini) and direct Zoom to it as a 2nd camera. You do have to change audio devices when you do that but it's a small sacrifice if you're getting people to watch a 20 minute video.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tsbiscaro1981" target="_blank">tsbiscaro1981</a>
+			<div class="markdown"><p>When I mediate zoom meetings I ask for people to close their camera if they are moving around. I noticed that this improved the quality of audio stream and now I know why. Thanks.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NDakotaLiquorStore" target="_blank">NDakotaLiquorStore</a>
+			<div class="markdown"><p>I've set my background to snowing scenes before for fun</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Detozi" target="_blank">Detozi</a>
+			<div class="markdown"><p>You’ve actually answered some questions I’ve had about computers in general lol. Thanks</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/m7samuel" target="_blank">m7samuel</a>
+			<div class="markdown"><p>I think there are some issues in your post.</p>
+<p>RE Sending video to central hub to be transcoded-- Zoom has claimed &quot;end to end encryption&quot; for years now. It's pretty well known they were lying at the time, but they have implemented it now and you can't do E2E while also having the central server transcoding.</p>
+<p>Additionally, transcoding one stream locally is going to result in far, far better quality than trying to aggregate 10-20 incoming uncompressed streams and transcode them all simultaneously. The bandwidth and cpu requirements would be insane. </p>
+<p>Conversely, even ancient, 10-year old CPUs are going to be able to hold ~30fps on x264 encoding @720p. Modern cpus can transcode hundreds of FPS of teleconference-quality video and it's often done without significantly affecting CPU usage (on-board transcoding / gpu / acceleration). This also means the latency is going to be minimal-- ~1-30ms depending on CPU age.</p>
+<p>And often, the cameras themselves have hardware encoding, so it's all moot; the stream coming from the camera may already be encoded.</p>
+<blockquote>
+<p>Similarly the compression can be tailored for each participant. </p>
+</blockquote>
+<p>This would imply that the server is not only encoding a dozen streams at once, but doing it a dozen times at different settings.</p>
+<p>I'm pretty sure Zoom is not ponying up for the AWS compute to handle that on their free calls. Their central server is handling connection brokering, encryption setup, moderation, and routing.</p>
+<p>Maybe I'm wrong on this-- and if so, I'd <strong><em>love</em></strong> to see a source on Zoom handling the encoding / transcoding.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/dauphic" target="_blank">dauphic</a>
+			<div class="markdown"><blockquote>
+<p>This would imply that the server is not only encoding a dozen streams at once, but doing it a dozen times at different settings.</p>
+</blockquote>
+<p>Zoom uses a scalable video codec to encode the video. The video stream can be downscaled by dropping parts of the stream; no re-encoding is necessary to turn 720p into 480p.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/m7samuel" target="_blank">m7samuel</a>
+			<div class="markdown"><p>TIL</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/yoden" target="_blank">yoden</a>
+			<div class="markdown"><blockquote>
+<p>Zoom has claimed &quot;end to end encryption&quot; for years now. It's pretty well known they were lying at the time, but they have implemented it now and you can't do E2E while also having the central server transcoding.</p>
+</blockquote>
+<p>Yep.  I assume the E2E video conferences have worse quality on bad connections or weak clients.</p>
+<blockquote>
+<p>Additionally, transcoding one stream locally is going to result in far, far better quality than trying to aggregate 10-20 incoming uncompressed streams and transcode them all simultaneously. The bandwidth and cpu requirements would be insane. </p>
+</blockquote>
+<p>They are always encoded locally before being transmitted, but it's done at a high resolution and quality.</p>
+<blockquote>
+<p>This would imply that the server is not only encoding a dozen streams at once, but doing it a dozen times at different settings.</p>
+<p>I'm pretty sure Zoom is not ponying up for the AWS compute to handle that on their free calls. Their central server is handling connection brokering, encryption setup, moderation, and routing.</p>
+</blockquote>
+<p>It is kind of expensive; I assume this is why all these services had low participant limits before the pandemic.  Of course it's not all or nothing; the server doesn't HAVE to re-encode the stream if the participant can handle it.  Having a client transmit multiple streams at different quality levels isn't crazy either, if the client is capable of doing so.  Here's a link that talks about this in the context of Google Hangouts, which seems to do both:</p>
+<p><a href="https://thenewdialtone.com/the-end-of-transcoding-webrtc-video-sessions/" target="_blank">https://thenewdialtone.com/the-end-of-transcoding-webrtc-video-sessions/</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/m7samuel" target="_blank">m7samuel</a>
+			<div class="markdown"><p>Reencoding the stream after it has been uploaded has pretty limited benefits. Encoding is the expensive part in terms of CPU, and upload is the expensive part in terms of bandwidth.</p>
+<p>Reencoding also drastically lowers quality compared to simply asking the client to encode at 720p.</p>
+<p>FWIW I have a better-than-1080p webcam and it looks like Zoom wants to use 480p or 720p regardless. I'd guess it's because 720p is the sweet spot for usability and resource usage.</p>
+<blockquote>
+<p>Having a client transmit multiple streams at different quality levels isn't crazy either, if the client is capable of doing so. </p>
+</blockquote>
+<p>It's going to double your CPU and bandwidth requirements, and start to introduce some serious latency into the call.</p>
+<p>If one client can encode at 100fps, thats a 10ms delay.</p>
+<p>If the server is having to encode 10 streams, now its a 100ms delay and that's noticable.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
