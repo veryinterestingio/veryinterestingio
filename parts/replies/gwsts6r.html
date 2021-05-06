@@ -1,0 +1,35 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fakipo2" target="_blank">Fakipo2</a>
+			<div class="markdown"><p>What if we use cookies instead? Will that have a significant effect on the reset timing?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ltburch" target="_blank">ltburch</a>
+			<div class="markdown"><p>We stray further from ELI5, but there are several strategies for handling this.  You can use cookies or local storage but the rub there is that it is insecure - the user can monkey with their browser to send whatever cookies they want so it isn't really trusted (not that people don't sometimes implement it this way).</p>
+<p>However all is not lost!  The trick is you use cookies or local storage but you encrypt it before you send it to the users browser.  This essentially makes the data in the cookie &quot;opaque&quot;, it is also essentially immutable as you can't monkey with it since if you do it will not properly decrypt on the server.  Often timestamps and browser IP are embedded in this to avoid replay attacks (other users sending your encrypted data)</p>
+<p>There are some other tricks as well but it isn't that relevant to a general understanding.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TakaoAstri" target="_blank">TakaoAstri</a>
+			<div class="markdown"><p>It would be implementation specific. You <em>could</em> use cookies to solve the issue, or you could not. It would completely depend on what is causing the video progress reset (authentication vs just video player state vs something else) and how the server and client track and deal with those things.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fakipo2" target="_blank">Fakipo2</a>
+			<div class="markdown"><p>I guessed that there isnt much point of holding on to user's session for a long time in the server. But you are right there could be other causes as well. Thanks for answering, cheers.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Comprehensive-Ad3963" target="_blank">Comprehensive-Ad3963</a>
+			<div class="markdown"><p>Why do we want to use sessions anyway?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ltburch" target="_blank">ltburch</a>
+			<div class="markdown"><p>Generally there are three answers to this:</p>
+<p>1) The session data is large and potentially dynamic and we don't want to have to be re-sending that to the browser every time.</p>
+<p>2) We don't want the browser to actually have direct access to the data, there may be secrets in the data like encryption keys we would prefer to keep on the server.</p>
+<p>3) We want to control the lifetime/validity of the data on the server (this is particularly relevant for authentication)</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Fakipo2" target="_blank">Fakipo2</a>
+			<div class="markdown"><p>So your page does not reload every few seconds.</p></div>		</li>
+					</ul>
+		</ul>
+	

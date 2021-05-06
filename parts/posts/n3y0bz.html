@@ -1,0 +1,70 @@
+<li class="post" data-handle="n3y0bz">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/n3y0bz/eli5_why_do_some_video_players_make_you_reload/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/n3y0bz" onclick="return false">Why do some video players make you reload the page if you leave them paused for too long, and why do some others work perfectly even after being paused for hours?</a>
+		</h2>
+		<!--<span class="date">2021-05-06</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: Why do some video players make you reload the page if you leave them paused for too long, and why do some others work perfectly even after being paused for hours?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="gwsts6r">
+		<a class="author" href="https://www.reddit.com/user/ltburch" target="_blank">ltburch</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Generally it has to do with session management.  Some players/sites are essentially stateless, if you have a URL that is all you need to go.  Other sites are stateful and are tracking something about your session on the server.  However they can't keep that data about your session on the server forever since eventually the server would drown in abandoned session, so on some timed basis they clear the server session data.  Then when you hit the URL it sees you have no session data and it prompts for login or some other action to reestablish your session.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="gwsvrie">
+		<a class="author" href="https://www.reddit.com/user/Semyaz" target="_blank">Semyaz</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There are a lot of reasons that video players behave strangely if left idle for a long time. They range from intentional to accidental side effects from their coding. As a rule, I am going to assume that you are speaking about video players in a browser that is streaming from the internet. </p>
+<p>Video streaming software operates with only small portions of the video at once. They are also meant to be lightweight, small in size so that they can refresh in the browser. For this reason, it is important to be fault tolerant in case the player doesn’t get a small piece of the data. If the browser doesn’t get the data for 4 frames of the video, but has the next 30 seconds ready to go, you probably prefer that the video keeps rolling with a brief glitch than stopping completely to catch up. This leads to design implications where small problems are acceptable, and largely unavoidable. </p>
+<p>Streamed data is easily re-fetched. If you want to rewatch a portion from 2 minutes prior, the player can just as easily request that portion of the video again as it would be for it to store previously watched video for a long time. In keeping with prioritization on keeping small memory and processor profiles on the host device, it is best that the player discards streamed data that has been user. In fact, the less data the player stores locally, the better. Some video players will aggressively clean up the data that was already used under the assumption it can easily be downloaded again later. </p>
+<p>You must authenticate to most streaming services. The period of time you are authenticated is limited, and inactivity may force a soft logout. This is mostly just to clear up resources on the server side, but can also help keep hackers from high jacking those sessions and accessing data from compromised computers. </p>
+<p>Modern video players are living, breathing software projects. Websites regularly update their media players and terms of service. These updates require a reload, so it isn’t a bad idea to sometimes force a refresh for inactive users. </p>
+<p>A lot of things can go wrong when streaming data. No piece of software is perfect, and streaming presents a lot of messy real-world issues. Memory leaks are common. Compatibility issues and run time errors abound. The best failure state might be to just force the page to refresh. This is similar to an application crashing and reopening itself.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gwsudsx">
+		<a class="author" href="https://www.reddit.com/user/chrike4" target="_blank">chrike4</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>I can’t speak for all video players but 90% of players are similar to youtube’s model. When you open a video it needs to store the video for playback somewhere in your computer until you close the page- at which point it is immediately forgotten. The best place to do this task is the RAM. A drawback to using ram is that there is only a certain amount your computer has before it has to decide on priority (what to drop for new information). Sites like youtube know there is a fight over ram and will only load a few seconds/minute ahead of where you are in the video in order to keep the size of memory used to a minimum. </p>
+<p>With this in mind, the servers that are used to send the video data have a set time before they will drop the connection to a computer to free up server space. The sites that “work perfectly” after being paused typically have just loaded the entire video into your ram and dont need the connection anymore.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gwstea0">
+		<a class="author" href="https://www.reddit.com/user/samanime" target="_blank">samanime</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Could be lots of reasons but no technical requirement to do so. The ones that force a reload are ultimately just coded poorly or want you to load a fresh batch of ads.</p>
+<p>Some reasons they might force a reload:</p>
+<ul>
+<li>stream can't resume and needs to start from the beginning</li>
+<li>can't refresh credentials without a full page refresh</li>
+<li>they want to force you to get new ads on the page</li>
+</ul></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="gwt702s">
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>[entfernt]</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/n3y0bz" onclick="return false"><span>show</span></a>
+</li>
