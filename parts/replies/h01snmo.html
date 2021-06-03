@@ -1,0 +1,123 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Grimarne" target="_blank">Grimarne</a>
+			<div class="markdown"><p>Also, and I believe Bethesda does this, a mix of procedural and manual is common. Procedural generation creates the bulk of the map, and then devs go in and tweak it, add local features, etc. Practically as good as manual, but much faster</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/UncleBobPhotography" target="_blank">UncleBobPhotography</a>
+			<div class="markdown"><p>Daggerfall is a great example of this. The map is so large it's unrealistic to explore any significant portion of it, but most of the areas and dungeons are generated and gets boring quite quickly. Being an earlier game, the flaws of procedurally generated maps are a lot more obvious than in newer games. Still, it made the game huge, and more attention was put into the maps which were part of the main storyline.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ponkanpinoy" target="_blank">ponkanpinoy</a>
+			<div class="markdown"><p>Daggerfall specifically (maybe also Morrowind and Oblivion, don't know) had the storyline dungeons hand-crafted, then all the other random dungeons had bits of those glued together randomly.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CollectableRat" target="_blank">CollectableRat</a>
+			<div class="markdown"><p>I used to think procedurally generated caves and stuff were cheap and lazy as a kid, like a game not worth playing because they just hit the random button on an area that takes hours to finish and said “yeah this instant random version looks about right”. Even worse is when it is random every time, and not just randomly generated in the first place. Things change though, randomly generated areas one fay might seem more hand crafted than actually hand crafted areas.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/kermityfrog" target="_blank">kermityfrog</a>
+			<div class="markdown"><p>I remember falling through gaps in the map often while exploring dungeons. Casting word of recall at the dungeon entrance was necessary in case you got lost in some of the dungeons.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Paddy_Tanninger" target="_blank">Paddy_Tanninger</a>
+			<div class="markdown"><p>Yes but not in that order, generally the manual work involved is the artists and devs laying the framework, and then the procedural stuff is used to fill in the blanks.</p>
+<p>So your artists will block in mountain ranges, rivers, roads, building locations, key landscape elements, maybe even hand placing things like trees in some areas where they really want it art directed. Then procedural tools take over to populate the environment from there, so like a flat piece of terrain near a river has a high chance of growing a willow tree, which has a high chance of propagating several shrubs, grasses, saplings, rocks.</p>
+<p>I've even experimented with writing some code that does a full on ecological simulation. I analyze how much sunlight hits all the different parts of the terrain, what the slope is, how much local height changes (ie: if terrain is flat for 20ft^2 then that's not a meadow, but if it's flat for 20,000ft^2 then it is), elevation, proximity to water, soil quality, wind, and a few other factors.</p>
+<p>Then what happens is I assign variables to all my different vegetation species to establish what kind of conditions they're most suited to grow from. I scatter a few million random plants/trees across the landscape, and each frame of the simulation they will either gain energy or lose energy based on the conditions they're in. A palm tree that was placed 10,000ft high up on a mountain is going to lose energy rapidly, won't reproduce, and will die. A palm tree at 100ft on a flat patch near a beach is going to keep its energy level and have a high chances of reproducing. Each frame of the simulation looks at the age of a tree, the energy level of it, and it can spawn another one nearby.</p>
+<p>Trees will also lose energy if they are too close to an older tree with a high energy level, so you won't get things like trees growing on top of each other.</p>
+<p>After the simulation has run for a few hundred frames, you've got beautiful pockets of vegetation that have all kind of found their favorite places to grow and propagate, and they will slowly fade into other species as the conditions change. It looks very natural in the end, but it's quite a lot of work to set up and it's very hard to art direct compared to just painting a mask for where you want a pine forest in your landscape.</p>
+<p>Source: Environment technical lead/supervisor.</p>
+<p>Edit: Can't share much stuff I work on but here's some test images that are okay.</p>
+<p><a href="https://media.discordapp.net/attachments/271493521058299909/689206730743218247/image.png?width=1594&height=908" target="_blank">https://media.discordapp.net/attachments/271493521058299909/689206730743218247/image.png?width=1594&height=908</a>  (procedural vegetation layout)</p>
+<p><a href="https://cdn.discordapp.com/attachments/351974457318834177/565375872832503828/unknown.png" target="_blank">https://cdn.discordapp.com/attachments/351974457318834177/565375872832503828/unknown.png</a> (eco sim test)</p>
+<p><a href="https://cdn.discordapp.com/attachments/351974457318834177/565042941219962880/unknown.png" target="_blank">https://cdn.discordapp.com/attachments/351974457318834177/565042941219962880/unknown.png</a> (eco sim test)</p>
+<p><a href="https://cdn.discordapp.com/attachments/351974457318834177/565374544739827723/unknown.png" target="_blank">https://cdn.discordapp.com/attachments/351974457318834177/565374544739827723/unknown.png</a> (eco sim test)</p>
+<p>And a breakdown video from a recent environment project I wrapped:</p>
+<p><a href="https://cdn.discordapp.com/attachments/351975587109273601/720722225594105977/drone_070_v021_breakdown.mp4" target="_blank">https://cdn.discordapp.com/attachments/351975587109273601/720722225594105977/drone_070_v021_breakdown.mp4</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/IceColdFreezie" target="_blank">IceColdFreezie</a>
+			<div class="markdown"><p>That's simulation thing is really cool, thanks for the explanation! Are you building that tool for a game in particular or is it a 3rd party thing other devs will work with? It'd be fun to play a game knowing about that process</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bibblode" target="_blank">bibblode</a>
+			<div class="markdown"><p>Sounds like you should be working on the no man's sky team</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/shawnaroo" target="_blank">shawnaroo</a>
+			<div class="markdown"><p>That's really cool. I'm assuming that if necessary, then the artists can go back in and modify things by hand again if the results in particular places are problematic. </p>
+<p>Tools like you describe feel like they could also become interesting little games in and of themselves, although obviously it would take a lot of extra work to get them to that point.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/The_Velvet_Helmet" target="_blank">The_Velvet_Helmet</a>
+			<div class="markdown"><p>Yeah with more than 16x the detail</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/virus5cx" target="_blank">virus5cx</a>
+			<div class="markdown"><p>and 5 times the size of Fallout 4</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ygritte_vrng" target="_blank">ygritte_vrng</a>
+			<div class="markdown"><p>On top of that as you've said it's usually a mix between procedural generation and direct design: some algorithm generates a portion of the map given some parameters which is then being fine-tuned by level designers. For instance, in Horizon Zero Dawn whole forests and canyons were made by program and later altered by designers to maximize user experience. </p>
+<p>But most of the time procedural generation is not that dramatic as in Horizon as such algorithms are quite complex. In The Witcher 3: Wild Hunt for example map structure (shapes etc) was designed by hand but foliage was put programmatically. CD Projekt Red came up with software that allowed level designers and artists  to &quot;paint&quot; trees and bushes on terrain with a &quot;brush&quot;  which would automatically adjust all sorts of things in order to create realistically looking environment.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/memoryballhs" target="_blank">memoryballhs</a>
+			<div class="markdown"><p>Thats why the question is bit hard to answer. Because in the end depending on the brushes you use, a designer will &quot;paint&quot; a whole forest in a relativly short time. For me this goes deep into procedural generation. And thats a good thing. Because painting every flower would not be possible on any larger scale. Its better to let that do a smart algorithm and perhaps correct some minor issues if completed.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SirDooble" target="_blank">SirDooble</a>
+			<div class="markdown"><blockquote>
+<p>And thats a good thing. Because painting every flower would not be possible on any larger scale.</p>
+</blockquote>
+<p>It's also just not necessary and likely counterproductive. Foliage is one of the more common aspects of map design that is done either entirely procedurally or painted with a procedural brush. The placement of foliage in real life in the wild is more or less random too (ignoring obviously certain aspects of the environment that prevent certain species growing there, like no oak trees in a desert). So as a player you expect there to be no real pattern to how the trees or shrubs in a forest are placed. </p>
+<p>You could spend a very long time carefully placing trees and shrubs in such a way as to produce a seemingly random and natural wild forest, but you're much more likely by human nature to accidentally introduce a recognisable pattern into the world (like there always being a red flower next to a blue flower, because you thought it was more random if the flowers kept changing instead of clumping in groups). You're much more likely to accidentally produce a designed garden instead of a wild forest.</p>
+<p>So you're better off letting it be procedurally generated, even via a brush. And saving a lot of time in the process too.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/ImBadAtReddit69" target="_blank">ImBadAtReddit69</a>
+			<div class="markdown"><p>I actually didn’t know that Wild Hunt had procedural foliage! Pretty astounding considering the level of quality that it had.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Xanjis" target="_blank">Xanjis</a>
+			<div class="markdown"><p>Foliage is procedural in basically any game with a natural setting. Humans aren't very good at manually building forests in such a way that they don't look artificial or intentional.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Thebazilly" target="_blank">Thebazilly</a>
+			<div class="markdown"><p>Watch for &quot;SpeedTree&quot; in game credits. It's everywhere!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PlayMp1" target="_blank">PlayMp1</a>
+			<div class="markdown"><p>Almost every game uses procedural foliage because placing every tree, shrub, and flower would be <em>insanely</em> time consuming for a worse result. In most open world games, even those with a &quot;hand sculpted&quot; map like TW3, Skyrim, BotW, or Just Cause, there's <em>heavy</em> procedural generation. It's just that it's not done when you run the game, but rather by the developers during production. They use some algorithms to automatically create terrain, trees, geographical features, climates, etc., and then go through the automatically generated stuff and carefully edit it into something that feels more curated and less generic.</p>
+<p>The OP comment contrasts procedural generation with direct design, but almost all direct design today includes significant amounts of procedural generation to automate time consuming and monotonous tasks like placing trees or valleys. The difference between this and Minecraft or No Man's Sky is that those games have <em>fully</em> procedural worlds, where there is no direct design outside of premade landmarks that are randomly placed in the game world.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Liefx" target="_blank">Liefx</a>
+			<div class="markdown"><p>Here's a great video on painting. Star Citizen is the exact definition of using both procedural and handcrafted</p>
+<p><a href="https://youtu.be/kcaCEYZS1eE" target="_blank">https://youtu.be/kcaCEYZS1eE</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sirmantex" target="_blank">sirmantex</a>
+			<div class="markdown"><p>Why so many rocks tho... :D</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BluudLust" target="_blank">BluudLust</a>
+			<div class="markdown"><p>Procedural generation with direct design on top is very common now for compression and ease of modeling. You only need to save terrain that's been modified from the procedural generation or where items are placed. Far more efficient than direct design. It's why some games with these massive worlds are the same size as games from almost a decade ago (aside from textures).</p>
+<p>Edit: typos</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/riskyClick420" target="_blank">riskyClick420</a>
+			<div class="markdown"><p>That is actually really smart. Minecraft could do this in theory, I wonder why it doesn't. Save only the changed blocks, not the entire chunks. Unless it's changed recently everything that's been &quot;seen&quot; once (generated) is stored.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/burnalicious111" target="_blank">burnalicious111</a>
+			<div class="markdown"><p>You lose that efficiency once you make a lot of changes, especially if the computer has to reconstruct a long change list in real time (e.g., terraforming in Valheim, at least last I played). There are ways around that too, just providing a reason it's not always so simple.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BluudLust" target="_blank">BluudLust</a>
+			<div class="markdown"><p>Takes too much CPU time in Minecraft. However there are some server mods that allow you to discard chunks which haven't been modified yet.</p>
+<p>And Minecraft is different because it's 3d and you need each block. Most procedural generation only needs the surface of the mesh. Way easier to do in real time.</p>
+<p>Also, you could get tricky and use an elevation map of terrain and have procedural generation fill in the gaps and add features and makes some inferences from tags, etc. Or use it to fill in interiors of office buildings like in spiderman. Tons of research into deep learning is going towards this right now.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BassoonHero" target="_blank">BassoonHero</a>
+			<div class="markdown"><p>This would reduce the storage space required, but that's not actually all that important. Minecraft's internal terrain storage is optimized for speed, which is a lot more important for it.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
