@@ -1,0 +1,81 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lilbigmango" target="_blank">lilbigmango</a>
+			<div class="markdown"><p>There are two kinds of randomness, pseudorandomness and true randomness. Most computers use pseudorandom number generators based on algorithms that can create a long string of random values, but eventually the numbers will start repeating. Most languages (i.e. Python, Ruby, R) use an algorithm based on the Mersenne Twister. Algorithms like this need what is called a &quot;seed&quot;, which is just a value to initiate the algorithm. Normally, the seed is derived from the computer's internal clock!</p>
+<p>This kind of randomness is sufficient for some, but not all, applications.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TickTak" target="_blank">TickTak</a>
+			<div class="markdown"><p>An improvement on using the clock as a seed is to collect “entropy” from many different sources. The operating system will collect information that is hard to analyze and combine it (clock, keystrokes, etc). Then as a programmer you make a call to the operating system to ask for a high entropy seed. The operating system will tell you to wait if enough entropy has not been generated yet</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/no-parachutes" target="_blank">no-parachutes</a>
+			<div class="markdown"><p>The Linux kernel uses these, along with architecturally provided sources like RDSEED</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/sgt_zarathustra" target="_blank">sgt_zarathustra</a>
+			<div class="markdown"><p>I remember reading that systems using collected entropy can be vulnerable to attacks that call the OS's RNG a ton to use up its stored entropy, then feed it some keystrokes or other input in a way that makes the output predictable. Is this still true?</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/justforthisjoke" target="_blank">justforthisjoke</a>
+			<div class="markdown"><p>Cloudflare does this with lava lamps, which is pretty cool! They basically have a wall of lava lamps set up and a camera oriented at it. The movement of the &quot;lava&quot; within the lamps is highly chaotic so it's a good source of entropy.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/grahamsz" target="_blank">grahamsz</a>
+			<div class="markdown"><blockquote>
+<p>This kind of randomness is sufficient for some, but not all, applications.</p>
+</blockquote>
+<p>Here's a rather delightful paper about this</p>
+<p><a href="https://www.datamation.com/applications/how-to-cheat-at-online-poker-a-study-in-software-security/" target="_blank"><a href="https://www.datamation.com/applications/how-to-cheat-at-online-poker-a-study-in-software-security/" target="_blank">https://www.datamation.com/applications/how-to-cheat-at-online-poker-a-study-in-software-security/</a></a></p>
+<p>&#x200B;</p>
+<p>tldr, poker site published their shuffle algorithm and showed it used a pseudorandom sequence and developers were able to test the possible seeds that would generate the exact hards they were dealt</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/no-parachutes" target="_blank">no-parachutes</a>
+			<div class="markdown"><p>To tack onto this comment, the x86 ISA has two instructions. RDRAND returns a pseudorandom number generated using some known algorithm. RDSEED, however, gets its randomness from some physical source of randomness, and is used as the seed for future RDRAND results.</p>
+<p>Of course, the latter takes a lot longer than the former.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheVanishingMan" target="_blank">TheVanishingMan</a>
+			<div class="markdown"><p>Here's a (bad, but good for teaching) algorithm to get you thinking about more sophisticated pseudo-random number algorithms:</p>
+<ol>
+<li>Start with a &quot;seed&quot; number (e.g. <code>12345</code>).</li>
+<li>Take the &quot;middle&quot; integer (e.g. <code>12345</code> -&gt; <code>3</code>) as your &quot;random&quot; number</li>
+<li>Update the seed by multiplying by the middle integer + 2</li>
+</ol>
+<p>This will let you generate numbers between 0-9, and the sequence of numbers may be replicated perfectly by starting with the same seed.</p>
+<p>This isn't perfect, but the results <em>look</em> fairly random even if they do not perfectly follow a uniform distribution in the limit:</p>
+<pre><code>8 8 1 3 1 5 0 2 8 7</code></pre>
+<p>Nonetheless, the three steps: (1) start seed, (2) sample, and (3) update internal state&mdash;are the three key ingredients of more sophisticated algorithms.</p>
+<p>A real pseudo-random number generator will sample a seed from something less predictable (the last few digits of the clock, the buffer of recent mouse and keyboard activity), and typically have better ways of generating different types of distributions that better match statistical properties of what you want to work with.</p>
+<hr />
+<p>Implementation in Python 3: <a href="https://tio.run/##ZZDNasMwEITveorBudgtSWq7hRBojukDlJ5KsQVeOwJHMrKctE/vSiunhVaX1c/HzGiGL3cyupznFV7JQWJ00jokI1GT4CL7iTYiHPCMfFfu8lKIhlqcVdP0VA1mVE4ZnTKZ7QX8WuHFS7kTIYlYAqUddWT9hNS302ahgaOxoE95Hnrao86L8vGpxnp9QF3WDFWjsxcfwY/Fiq8tucmyXsrEe0867jJstyg@MiFar10FYyt1R2n@8C9lDInbX2BavjZWdUrLHuH7Mauma8X2PsrfBgIVUw02BPphfYbo9zY00hFrc6PTqHQXe/JwLDvB1b9yE4vnUj6PO/zK4h5FJub5Gw" title="Python 3 – Try It Online" target="_blank"><strong>Try it online!</strong></a></p>
+<pre><code># Set a start "seed" value.
+seed = 183813
+
+def middle_position(value):
+    # Get the "middle" integer in an integer.
+    #   For example: `12345` --&gt; `3`
+    _strv = str(value)
+    return int(_strv[len(_strv) // 2])
+
+for _ in range(10):
+    # Get the middle position of the original seed.
+    new_value = middle_position(seed)
+    print(new_value)
+
+    # Update the seed using the "new value" we sampled.
+    seed = seed * (new_value + 2)</code></pre></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Carpik78" target="_blank">Carpik78</a>
+			<div class="markdown"><p>Sometimes observation and digitization of random real world events is used as source of random values. There’s good Tom Scott video on YT about it.
+<a href="https://youtu.be/1cUUfMeOijg" target="_blank">link</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/hazyninja" target="_blank">hazyninja</a>
+			<div class="markdown"><p>I just finished a NCIS episode that revolved around encryption. I was amazed to learn that the randomizer used (lava lamp wall) was a real thing.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Digital_Copy101" target="_blank">Digital_Copy101</a>
+			<div class="markdown"><p>Cloudflare uses it as well. But it's just one among many sources of entropy they use.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
