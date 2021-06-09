@@ -1,0 +1,33 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/floatontherainbowtw" target="_blank">floatontherainbowtw</a>
+			<div class="markdown"><p>that &quot;aaaa&quot; example was wonderful but you should have used &quot;a^20&quot; .</p>
+<p>So all compression algorithms the same? if not which is the best? or is it each different type of file needs a different compression  ? why we need so many compression extensions like .zip .7zip .rar .tar  you get the gist.</p>
+<p>Also do modern day compression even matters? i remember back then files really became smaller but not so much today and there isn't a reason because internet is fast, it is mostly used to bundle files together.</p>
+<p>i know compression with video is big now though with h265 promising higher quality in a smaller size and AV1</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/0b0101011001001011" target="_blank">0b0101011001001011</a>
+			<div class="markdown"><blockquote>
+<p>that &quot;aaaa&quot; example was wonderful but you should have used &quot;a20&quot; .</p>
+</blockquote>
+<p>That would be mathematically correct way, yeah, I guess that'd be better example. Though in context of files it would not matter.</p>
+<blockquote>
+<p>So all compression algorithms the same? if not which is the best? or is it each different type of file needs a different compression ? why we need so many compression extensions like .zip .7zip .rar .tar you get the gist.</p>
+</blockquote>
+<p>Some compression algorithms are optimized for specific things, or they might use multiple stages. PNG for example uses quite common <a href="https://en.wikipedia.org/wiki/Deflate" target="_blank">Deflate</a> algorithm, but does some filtering beforehand to make the data better compressible.</p>
+<p>Various compression algorithms are different. For video, you need an algorithm that does not need to uncompress the whole video first in order to play it. Also some algorithms let you choose compression level. Better level takes a lot of time, but might save even some more space. Some algorithms are designed to be very fast in uncompression stage, but those might take longer time/more memory to compress, or the compression ratio might be worse. Also as a sidenote, tar is just bundling the files inside a single file with some header information, so if you tar something, it will likely use even more space than it used to. That tar -file can then be compressed with some actual compression algorithm. Zip can have the whole directory tree compressed at the same time, but programs such as gzip, xz, or zstd require just one file as input, therefore tar is very useful.  </p>
+<blockquote>
+<p>Also do modern day compression even matters? i remember back then files really became smaller but not so much today and there isn't a reason because internet is fast, it is mostly used to bundle files together.</p>
+</blockquote>
+<p>Files still become a lot smaller, but that really depends what files. If you compress videos, or images, the compression algorithm can even just skip them and place them inside the zip as is, because they are most likely already compressed as much as they can (png, jpeg, mp4). If you compress Word or Excel documents, they don't compress either, because <em>those are already compressed</em>. Files such as .docx or .xlsx are really just .zip files (you can change the name to zip and just doubleclick it open and explore the contents).</p>
+<p>Also, about internet speed. You might have fast internet, and downloading even 1 GB should not take too long. But note that the server sends the files to possibly thousands of users every day. I'm just checking that I could update my system, it would download 1,052 MiB, but uncompressed (installed) size is going to be 4,200 MiB. Pretty good compression ratio.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/floatontherainbowtw" target="_blank">floatontherainbowtw</a>
+			<div class="markdown"><p>thanks this was very informative. I guess this why i don't see smaller files any more because they are already compressed.  I also never thought of it from the server side, when you think of youtube, it doesn't seem to have a problem pumping videos all day long, it's always clients that have the issues.</p>
+<p>personally i think those who came up with compression are ultra geniuses, i just imagine some one looking at a 5KB text file and thinking &quot;let me do this even smaller in size but same content&quot;</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

@@ -1,0 +1,74 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mtaw" target="_blank">mtaw</a>
+			<div class="markdown"><p>A file with actual random data isn’t ”almost impossible” to compress. It is <em>mathematically provable</em> to be impossible.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MusicBandFanAccount" target="_blank">MusicBandFanAccount</a>
+			<div class="markdown"><p>Since any set of characters can arise from random generation (including this sentence), shouldn't it be more like &quot;completely random data of a sufficient length is almost certainly impossible to compress&quot;?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SmellGoodDontThey" target="_blank">SmellGoodDontThey</a>
+			<div class="markdown"><p>The formal statement is more like &quot;there is no fixed compression scheme that can, on average, compress a uniformly random file into fewer bits than it started with&quot;.</p>
+<p>It is possible to write an algorithm that compresses many strings, but it necessarily does poorly on all the others. For example, the following scheme compresses 25% of strings by exactly 1 bit. If the string starts with &quot;11&quot;, return the string starting at the second character. Otherwise, prepend the string with a &quot;0&quot; and return the rest verbatim. This can be reversed pretty easily.</p>
+<p>In python (untested):</p>
+<pre><code>def compress(s):
+    if s[:2] == "11":
+        return s[1:]
+    else:
+        return "0"+s
+
+def decompress(c):
+    if c[0] == "0":
+        return c[1:]
+    else:
+        return "1"+c</code></pre></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/oneplusetoipi" target="_blank">oneplusetoipi</a>
+			<div class="markdown"><p>I think more clarification is needed. Some random files will be compressible. Randomly you could have a a long string that repeats in the file and can be replaced with a short replacement string.</p>
+<p>However, you cannot create a generic algorithm that will work on all random files. The reason is that the overhead of replacement strings ends up being more costly than the reduction through replacement. </p>
+<p>One thing to note is that the replacement string can show up in the original file so a special long string is needed to represent that string in those cases. In the first example the replacement character was %. What does the compression algorithm do if encounters the % symbol in the original text? It substitutes some more complicated string that it can recognize when it is decompressing.</p>
+<p>When the overhead of the dictionary and the substitution characters are included in the cost of compression, then compression for most all random files becomes a losing proposition.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/SpiderFnJerusalem" target="_blank">SpiderFnJerusalem</a>
+			<div class="markdown"><p>I don't think that's true. Repeating patterns can emerge randomly by pure chance. They're very unlikely to be compressible to a noticable degree, but depending on size there are bound to be a couple of repeating byte sequences here or there. It will be negligible but not &quot;mathematically impossible&quot;. </p>
+<p>Theoretically, if you run a random text generator for all eternity, it will produce all of shakespeare's works sooner or later.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheSkiGeek" target="_blank">TheSkiGeek</a>
+			<div class="markdown"><p>You have to include the overhead of whatever dictionary/mapping is used to track the repeated patterns.  You’ll find some random sequences that can be compressed by a tiny amount but also many that can’t be compressed at all.  And of course occasionally you’d get one that compresses well.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CrocodileJock" target="_blank">CrocodileJock</a>
+			<div class="markdown"><p>I’m going with “later”</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DaBIGmeow888" target="_blank">DaBIGmeow888</a>
+			<div class="markdown"><p>That's why I believe there is no god, our DNA was a random text generator running for eternity on a computer simulation.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ristake" target="_blank">Ristake</a>
+			<div class="markdown"><p>If you cant compress something that's already compressed, how does a text bomb work? I thought it was the same text file compressed into itself 100s of times</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/satibel" target="_blank">satibel</a>
+			<div class="markdown"><p>Afaik It abuses the working of zip files, by referencing multiple times the same file.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/pm_me_wet_kittehs" target="_blank">pm_me_wet_kittehs</a>
+			<div class="markdown"><p>Dictionary compressors, like zip, use what are called backreferences. ex. I have some sort of code that tells you to &quot;copy the 10 characters that occurred 50 characters ago over here&quot;. So you go back 50 characters, copy 10 characters from there and paste them at your current position.</p>
+<p>Now imagine you're doing this copying one character at a time. This is important. So the above becomes &quot;repeat the following for 10 times: copy the 50th to last character over to the end&quot;.</p>
+<p>Now here's why the last paragraph was important. Suppose I have the text &quot;hello&quot; so far, and I add a backreference which tells you to go back 5 characters, and copy a million characters from there. You might think that you can't copy a million charactera from a string of just 5 characters. But since they're done one at a time, this works.</p>
+<p>&quot;Repeat for a million times: copy the 5th to last character to the end&quot;</p>
+<p>&quot;helloh&quot;</p>
+<p>&quot;hellohe&quot;</p>
+<p>&quot;hellohel&quot;</p>
+<p>&quot;hellohell&quot;</p>
+<p>&quot;hellohello&quot;</p>
+<p>&quot;hellohelloh&quot;</p>
+<p>and so on...</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/terrordbn" target="_blank">terrordbn</a>
+			<div class="markdown"><p>From a storage perspective, encryption also makes compression or deduplication more difficult.  Actually, if you try to compress encrypted data with existing compression algorithms, it can actually make the storage consumed <em>larger</em> than the original because the algorithms will store some amount of metadata within the compressed outputs.</p></div>		</li>
+					</ul>
+	
