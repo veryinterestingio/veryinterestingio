@@ -1,0 +1,40 @@
+<div class="answers">
+	<div class="answer" data-handle="h10zfwq">
+		<a class="author" href="https://www.reddit.com/user/zjm555" target="_blank">zjm555</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The computational requirements for a status page are extremely low compared to a full website such as e.g. reddit or facebook. It's extremely cacheable, lightweight, and read-only. There's no user authentication or policy enforcement logic. It's also, for obvious reasons, hosted on separate infrastructure from the main site.</p>
+<p>Furthermore, even during an outage event, a status site is going to receive less traffic than the actual site, since only a more savvy subset of the users will bother checking the status page.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="h10m0m1">
+		<a class="author" href="https://www.reddit.com/user/Gnonthgol" target="_blank">Gnonthgol</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The most obvious way to implement this is to host the status page with a competitor using completely independent infrastructure. Another trick which can be implemented is that if any part of the status page fails in some way it will just fail by showing the service as failed. So for example with todays fastly issue when the front end servers worked but the backend network had issues the frontends can be configured to show a status page with everything failing if they can not find the back end servers. This obviously does not work if there is any errors very early in the pipeline but at that point it is likely a problem with the clients network provieder anyway and the status page would be of no help.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="h11t6av">
+		<a class="author" href="https://www.reddit.com/user/AdvertisersSellShit" target="_blank">AdvertisersSellShit</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Ahn noticed the fastly outage didnt ya.
+But to the point they host their main infrastructure separately from the status page.
+For example you host the status page in a Azure (Microsoft) datacenter in the region eu-west1, while the main infrastructure is hosted at AWS in us-east1…</p>
+<p>Simplified example but you get the gist.
+It could still be with the same provider but different regions too.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="h110s2l">
+		<a class="author" href="https://www.reddit.com/user/Tex-Rob" target="_blank">Tex-Rob</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A park you visit could be closed, but the signs at the perimeter and leading to it will still be there.  It's much like this.  The status pages are kept specifically in heavily redundant places, sometimes reside in multiple places, so that they can always be reached, and not at the same physical location as the site itself.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="h120nw1">
+		<a class="author" href="https://www.reddit.com/user/roa1986" target="_blank">roa1986</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The easiest solution is to just use something like <a href="https://statuspage.com" target="_blank">https://statuspage.com</a>, which also has a statuspage (<a href="https://metastatuspage.com/" target="_blank">https://metastatuspage.com/</a>). Unfortunately there is no metametastatuspage.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>

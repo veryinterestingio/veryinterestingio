@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>ELI5: How are status pages for major CDNs and major backbone providers designed to be up even though the provider is down?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="nv1s13">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/explainlikeimfive/comments/nv1s13/eli5_how_are_status_pages_for_major_cdns_and/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Technology">Technology</span>
+			<a href="/posts/nv1s13" onclick="return false">How are status pages for major CDNs and major backbone providers designed to be up even though the provider is down?</a>
+		</h2>
+		<!--<span class="date">2021-06-11</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>ELI5: How are status pages for major CDNs and major backbone providers designed to be up even though the provider is down?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="h10zfwq">
+		<a class="author" href="https://www.reddit.com/user/zjm555" target="_blank">zjm555</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The computational requirements for a status page are extremely low compared to a full website such as e.g. reddit or facebook. It's extremely cacheable, lightweight, and read-only. There's no user authentication or policy enforcement logic. It's also, for obvious reasons, hosted on separate infrastructure from the main site.</p>
+<p>Furthermore, even during an outage event, a status site is going to receive less traffic than the actual site, since only a more savvy subset of the users will bother checking the status page.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="h10m0m1">
+		<a class="author" href="https://www.reddit.com/user/Gnonthgol" target="_blank">Gnonthgol</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The most obvious way to implement this is to host the status page with a competitor using completely independent infrastructure. Another trick which can be implemented is that if any part of the status page fails in some way it will just fail by showing the service as failed. So for example with todays fastly issue when the front end servers worked but the backend network had issues the frontends can be configured to show a status page with everything failing if they can not find the back end servers. This obviously does not work if there is any errors very early in the pipeline but at that point it is likely a problem with the clients network provieder anyway and the status page would be of no help.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="h11t6av">
+		<a class="author" href="https://www.reddit.com/user/AdvertisersSellShit" target="_blank">AdvertisersSellShit</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Ahn noticed the fastly outage didnt ya.
+But to the point they host their main infrastructure separately from the status page.
+For example you host the status page in a Azure (Microsoft) datacenter in the region eu-west1, while the main infrastructure is hosted at AWS in us-east1…</p>
+<p>Simplified example but you get the gist.
+It could still be with the same provider but different regions too.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="h110s2l">
+		<a class="author" href="https://www.reddit.com/user/Tex-Rob" target="_blank">Tex-Rob</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A park you visit could be closed, but the signs at the perimeter and leading to it will still be there.  It's much like this.  The status pages are kept specifically in heavily redundant places, sometimes reside in multiple places, so that they can always be reached, and not at the same physical location as the site itself.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="h120nw1">
+		<a class="author" href="https://www.reddit.com/user/roa1986" target="_blank">roa1986</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The easiest solution is to just use something like <a href="https://statuspage.com" target="_blank">https://statuspage.com</a>, which also has a statuspage (<a href="https://metastatuspage.com/" target="_blank">https://metastatuspage.com/</a>). Unfortunately there is no metametastatuspage.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/nv1s13" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>

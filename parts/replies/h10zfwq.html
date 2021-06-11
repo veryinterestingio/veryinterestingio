@@ -1,0 +1,23 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/aqeelat" target="_blank">aqeelat</a>
+			<div class="markdown"><p>That’s really helpful, but I’m thinking about what would happen if a website ended up hosting the status page on a service that uses the same availability zone without knowing it. Is it common practice to have the status pages behind a load balancer that routes to multiple infrastructures? If AWS goes down, route it through Azure, or whatever.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/zjm555" target="_blank">zjm555</a>
+			<div class="markdown"><p>Having your IaaS provider crash and burn catastrophically is just one way that a site might go down, and to be honest it's a much less common one. Most incidents are not due to the infrastructure provider, but rather the site itself exhausting its allocated resources or having a software bug.</p>
+<p>That said, status pages for major sites are geographically distributed with robust failover behavior, i.e. &quot;high availability&quot; distributed services. The exact mechanisms for load balancing and failover vary, but the business of CDNs is to be extremely robust toward exactly these types of scenarios.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/T-T-N" target="_blank">T-T-N</a>
+			<div class="markdown"><p>If Azure crash and burn globally, Micro$oft is going to need a lot more contract lawyers</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheSkiGeek" target="_blank">TheSkiGeek</a>
+			<div class="markdown"><p>There have been problems like this before.  Pretty sure one of the big AWS outages managed to take down the AWS status infrastructure, and at the time they didn’t have a fallback to something else.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/mustang__1" target="_blank">mustang__1</a>
+			<div class="markdown"><p>Well, fastlycdn just had an outage this morning that took half the damn internet lol. It's the top thread over in r/sysadmin</p></div>		</li>
+					</ul>
+		</ul>
+	
