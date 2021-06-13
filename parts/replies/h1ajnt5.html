@@ -1,0 +1,45 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BigKlepa" target="_blank">BigKlepa</a>
+			<div class="markdown"><p>What I've done for a couple of hobby video games:</p>
+<p>&quot;once you've loaded all the sounds, add 10% to the bar&quot;</p>
+<p>&quot;Once you've loaded the environment, add 50% to the bar&quot;</p>
+<p>&quot;Once you've got all the special effects, add 20% to the bar&quot;</p>
+<p>&quot;Once all the monsters and NPCs are in, add 20% to the bar&quot;</p>
+<p>If all the sounds are loaded last, or take the longest time to load, my super basic crummy loading bar would be stuck at 90% for a long time.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OneAndOnlyJackSchitt" target="_blank">OneAndOnlyJackSchitt</a>
+			<div class="markdown"><p>Why not just add up the total size of sounds, environment, special effects, and NPCs and then update the progress bar based on how much total (altogether, not from each class) is loaded? Presumably you have everything in various arrays or collections so <code>uint32 endProgress = sound.size() + enviro.size() + spfx.size() + npc.size();</code></p>
+<p>Or you could use two progress bars, the first which has the four steps in your post and the second which shows progress if the current data class that's being loaded?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/khyodo" target="_blank">khyodo</a>
+			<div class="markdown"><p>Because &quot;loading&quot; isn't entirely 1:1 with it's size. There maybe other processing on top of that such as decompressing certain assets or something.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Mordil" target="_blank">Mordil</a>
+			<div class="markdown"><p>Because the amount of engineering effort to do that is better spent on adding another feature, and the amount of effort of the CPU doing those calculations are better spent on <em>loading more resources</em>.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Thee_Wolf" target="_blank">Thee_Wolf</a>
+			<div class="markdown"><p>The coolest way is to load everything with a percentage bar but say to the player what it's loading :p</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KURAKAZE" target="_blank">KURAKAZE</a>
+			<div class="markdown"><p>I agree this is the best answer. Other answers are correct also, but the big part people didn't mention is that there is no universal way of how the progress bar behaves - it is completely up to the programmer who made it. </p>
+<p>So different bars are doing different things in the background based on what the programmer decided. </p>
+<p>Overall the other explanations are pretty accurate in that the progress bar is not based on concrete time, and is heavily influenced by what the program is doing and how your individual computer is handling it. </p>
+<p>Some computers are faster than others in specific aspects so the same program won't run the same way in different computers.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/tamper2" target="_blank">tamper2</a>
+			<div class="markdown"><p>I had a programmer I used to work with which had to display a progress bar for an upload sequence.<br />
+He didn't know how to actually measure the progress, so he just displayed a counter counting up at a linear interval, from 0% to 100%, while slowly decreasing its speed as it got closer to 100% (just so it'll never quite reach). It was quite an amusing &quot;solution&quot;.  </p>
+<p>Just shows that it can vary quite widely with different implementations (like fake ones).</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/If_you_just_lookatit" target="_blank">If_you_just_lookatit</a>
+			<div class="markdown"><p>Manager:  &quot;Can't you make this load any faster?!&quot;</p>
+<p>Developer: &quot;As you can see sir, I have sped up the 0-90% by a factor of 10.  But there is just no getting around this last 10% of operations.&quot;</p></div>		</li>
+					</ul>
+		</ul>
+	
