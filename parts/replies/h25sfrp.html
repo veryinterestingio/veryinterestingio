@@ -1,0 +1,25 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/NordicMissingno" target="_blank">NordicMissingno</a>
+			<div class="markdown"><p>I liked the detail about serialization =). BTW what are the differences (conceptual and/or technical) between an API and any other interface you can create for your code/program/library?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lobax" target="_blank">lobax</a>
+			<div class="markdown"><p>If you have an interface for other programmers (or even just yourself) that you expose for use between modules and/or programs, then that is an API. This things can be fully internal, like a library built by one team that is used by other teams in the same company.</p>
+<p>The key thing is that the interface the API provides can be left unchanged while the code behind it is abstracted away and can be continuously updated without those using the api having to care.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/BattleAnus" target="_blank">BattleAnus</a>
+			<div class="markdown"><p>Imagine a codebase that has classes to handle getting the time and date in different timezones (e.g. <code>getDateTimeEST()</code> or <code>getDateTimePST()</code>, etc.).</p>
+<p>It could have an API that sits as an extra layer between the user and those classes and picks the correct class based on the location of the user, so the user simply makes a request to <code>example.server/api/getDateTime</code> and it returns the time based on a specific class. This would be an example of an API.</p>
+<p>You could also imagine that if the user had access to the code for the classes themselves, he might right some code that simply imports the class he wants and makes the call directly: <code>import getDateTimeEST; print getDateTimeEST();</code>. This would be one way of interfacing with code that isn't an API.</p>
+<p>Another (admittedly contrived) way of interfacing would be for the datetime app to update a publically-accessible text file with the times of each timezone, and so the user would simply read from that text file to get the time, possibly doing some filtering to get the datetime they want. Alternatively this could be stored in memory instead of on a hard disk, as long as the user's program had access to that bit of memory.</p>
+<p>These are some ways that a user could utilize the code of the app that aren't considered an API</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Seraphimod" target="_blank">Seraphimod</a>
+			<div class="markdown"><p>This is fantastic. Thank you!</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/lawrencelewillows" target="_blank">lawrencelewillows</a>
+			<div class="markdown"><p>Very helpful, thanks.</p></div>		</li>
+					</ul>
+	
