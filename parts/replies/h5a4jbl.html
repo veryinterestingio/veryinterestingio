@@ -1,0 +1,42 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/jaa101" target="_blank">jaa101</a>
+			<div class="markdown"><p>Raw files can still vary in size because they can still be compressed. The difference is that they mostly don't use lossy compression as JPEG images generally do but even lossless compression saves substantial storage space.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bee-sting" target="_blank">bee-sting</a>
+			<div class="markdown"><p>Ah I didn't know that, all the raw files from my Canon are identical in size. TIL!</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/OrganizationMoney701" target="_blank">OrganizationMoney701</a>
+			<div class="markdown"><p>this means your canon isn't compressing anything at all</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Coomb" target="_blank">Coomb</a>
+			<div class="markdown"><p>That's because the guy you're responding to isn't actually talking about raw camera data. It's true that lossless compression exists, but truly raw sensor data has a fixed number of bits per channel and channels per pixel and it will use all of those bits for every pixel. That's why a raw 4096x2160 image will always be, for example, 8 color depth bits per channel (for example) <em> 3 channels per pixel </em> 4096 px wide * 2160 px tall = 79.6 Mb (26.5 MB) per image.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/adag96" target="_blank">adag96</a>
+			<div class="markdown"><p>I guess my question still stands then. What is done in the 'processed file' that causes different colors to be 'stored' with different amounts of information? In other words, why is a blue sky going to be a different file size than say, a red sky?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MrBeverly" target="_blank">MrBeverly</a>
+			<div class="markdown"><p>Compression allows you to say the same thing with less data by reducing redundancy.</p>
+<p>Consider the string &quot;<em>Greeeeeeeen</em>&quot; which takes 11 characters to store.</p>
+<p>I could compress it by storing the string as &quot;<em>Gre8n</em>&quot; which only takes 5 characters to store. Despite taking up less space, the same data is preserved.</p>
+<p>Now consider the string &quot;<em>Green</em>&quot; which already only takes 5 characters to store. If I compress it using the same &quot;algorithm&quot; it comes out as &quot;<em>Gre2n</em>&quot; which is still 5 characters. This string cannot be compressed further without losing data necessary to put it back together.</p>
+<p>Consider &quot;<em>Mississippi</em>&quot;. If we tried to compress this, we may get &quot;<em>Mis2is2ip2i</em>&quot; which is still 11 characters. Despite all the repeating characters in the string, they're broken up by non-identical data which prevents compression from squeezing very effectively.</p>
+<p>When you compress a video, a solid blue sky would be the same thing as a string with a bunch of repeating characters next to each other. The compression algorithm can get a lot of mileage by replacing all the identical repeated data with one much shorter instruction. The red sky may have a lot more detail breaking up the solid, compressible areas which prevents you from getting a good result.</p>
+<p>Keep in mind the example provided above is very simplified and not what actual compression looks like, although it gets the general idea across.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bee-sting" target="_blank">bee-sting</a>
+			<div class="markdown"><p>So say there's a perfect rectangle of blue sky, the file will store information as 'paint this rectangle this colour blue'. So the information is now the size and location of the rectangle, and the colour, rather than the colour for the thousands of pixels that made up that rectangle. </p>
+<p>Ie 3 bits of information vs thousands</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/KapteeniJ" target="_blank">KapteeniJ</a>
+			<div class="markdown"><p>It's basically a question of compression. To make it very simple, imagine writing instructions to paint Mona Lisa on MS Paint. Pretty difficult, no? But if I ask you to to make blue canvas on MS Paint, instructions are so simple they fit in the sentence of me asking you to do it.</p>
+<p>Image files, compressed, are just shortest instructions computer can come up with so some other computer knows how to paint that picture based on those instructions alone.</p>
+<p>Why some images are easier than others in JPG's specifically is harder to explain since it relates to the kinds of instructions JPG file format allows and doesn't allow, and those instructions are themselves tricky to explain, but hopefully it's easy to understand that if you think of them as instructions for human painter instead, some images are easier to describe and give instructions for than others. For computer all that differs is the kinds of instructions you give, the rest of the logic is the same.</p></div>		</li>
+					</ul>
+		</ul>
+	
