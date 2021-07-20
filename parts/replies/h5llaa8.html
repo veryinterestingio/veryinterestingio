@@ -1,0 +1,37 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Culat" target="_blank">Culat</a>
+			<div class="markdown"><p>I like this one, there's a good write up <a href="https://www.evanmiller.org/how-not-to-sort-by-average-rating.html" target="_blank">here</a>.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/87_Silverado" target="_blank">87_Silverado</a>
+			<div class="markdown"><p>This is interesting. I wonder how it could be implemented to give more weight to recent ratings.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/living_david_aloca" target="_blank">living_david_aloca</a>
+			<div class="markdown"><p>Maybe you’re looking for a popularity metric. You could calculate that and combine the two - perhaps simply by multiplying them.</p></div>		</li>
+					</ul>
+		</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/wbsgrepit" target="_blank">wbsgrepit</a>
+			<div class="markdown"><p>I agree, however it is important for op to really dig in and understand nuances in different algorithms -- many have pretty severe edge cases that can cause wildly unexpected results (bias multipliers etc)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/living_david_aloca" target="_blank">living_david_aloca</a>
+			<div class="markdown"><p>Without knowing the math though, these things can be tested. It’s pretty clear when something like this doesn’t work well especially since each item will have an independent confidence interval.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CompMolNeuro" target="_blank">CompMolNeuro</a>
+			<div class="markdown"><p>I use this too but simplified because I'm retired.  Just calculate the p-values and think them as a percent approval rather than confidence.  The bigger the number, the better the product.  There is always a lower limit to sample size though.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AreYouEvenMoist" target="_blank">AreYouEvenMoist</a>
+			<div class="markdown"><p>How would that work? I can't really see how a measure of confidence can be used to rank? Or are you measuring them all against the same baseline? What happens if more than one are far enough from the baseline to have a p-value of 0?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/CompMolNeuro" target="_blank">CompMolNeuro</a>
+			<div class="markdown"><p>Same hypothesis.  Either I would buy it again or I would not.  5 is yes, 4 and below are no.  The reviews I see generally list 'star distribution' so I can estimate standard deviation.  Then find t, go to a z table and get the answer as a decimal.  Then I imagine the 're-buyability' as 100%(1-p) and compare one to the other.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

@@ -1,0 +1,28 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/malachias" target="_blank">malachias</a>
+			<div class="markdown"><p>This is my favorite method, because I like the concept of what it actually represents:</p>
+<p>&quot;Suppose there is a 'true' quality of a thing - given the data we have available, I can say with 95% confidence that this true score is at least X&quot;</p>
+<p>There's a really accessible description of what it is and why it works, as well as how to implement it easily, here:
+<a href="https://www.evanmiller.org/how-not-to-sort-by-average-rating.html" target="_blank">https://www.evanmiller.org/how-not-to-sort-by-average-rating.html</a></p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/InfiniteImagination" target="_blank">InfiniteImagination</a>
+			<div class="markdown"><p>I don't personally have a strong stance on this, but you might be interested in this section of <a href="https://steamdb.info/blog/steamdb-rating/" target="_blank">the discussion I linked earlier</a> specifically dealing with why Wilson's Method is not necessarily the best tool to use when what you want to achieve is a single score, since what it does really well is generate a confidence interval, and that's a similar but subtly different goal.</p>
+<blockquote>
+<p>For one, Wilson's formula isn't really meant to be used quite like this. It takes a rating and the sample size (the number of reviews), and outputs a confidence interval. And a confidence interval basically says that “We are some% sure that the score is between x and y”. If you increase the % of how sure you are, the distance between x and y also increases, and vice versa. But to get a single rating, it's not quite okay to just take the lower bound of that interval.</p>
+<p>Secondly, because of what was mentioned in the last paragraph, it always gives us a lower rating than the original. This is clearly the incorrect behaviour, as something that just came out and gets a single negative review will be marked as having a score of 0%. Meanwhile, an established terrible game can have 10 positive and 500 negative reviews, and it will rank higher.</p>
+</blockquote>
+<p>I guess using Wilson's Method and taking the lower bound works fine if what you really want to do is avoid products being ranked more highly than is justified, but it's not as good at avoiding ranks that are lower than is justified.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/bradygilg" target="_blank">bradygilg</a>
+			<div class="markdown"><p>'Lower limit' relative to the most prevalent label. So 500/510 in the negative case.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/InfiniteImagination" target="_blank">InfiniteImagination</a>
+			<div class="markdown"><p>What are you quoting? I don't see &quot;limit&quot; or &quot;label&quot; used anywhere and am not sure what point you are making.</p>
+<p>Edit: Oh, I see what you're saying, that it could use the lower bound of the confidence interval while looking at the number of negative reviews, rather than the number of positive. I'm not sure whether that significantly changes the point being made in the article.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

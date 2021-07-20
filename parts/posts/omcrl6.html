@@ -1,0 +1,90 @@
+<li class="post" data-handle="omcrl6">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/omcrl6/is_there_an_formula_that_can_measure_the/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Mathematics">Mathematics</span>
+			<a href="/posts/omcrl6" onclick="return false">Is there an formula that can measure the 'popularity' of ratings?</a>
+		</h2>
+		<!--<span class="date">2021-07-20</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>For example, 1,000 upvotes and 10 downvotes would be considered much more popular than 5 upvotes and 0 downvotes despite the fact that the first case has more downvotes.</p>
+<p>On the other hand, 200 upvotes and 800 downvotes would be considered much less popular than the original 5 upvotes and 0 downvotes despite the fact that the first case has more upvotes.</p>
+<p>Is there a methodology that can be used to objectively measure how 'good' certain ratings are?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="h5llaa8">
+		<a class="author" href="https://www.reddit.com/user/living_david_aloca" target="_blank">living_david_aloca</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You’re looking for a binomial proportion confidence interval. In particular, the Wilson score has been useful to me. For ranking items based on reviews I’d suggest using the lower bound of the score (since it’s an interval with low and high bounds). This is what I’ve used to rank items by ratings for clients and it works quite well at balancing positive interactions with total interactions.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="h5k6ygr">
+		<a class="author" href="https://www.reddit.com/user/functor7" target="_blank">functor7</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>There's the <a href="https://en.wikipedia.org/wiki/Rule_of_succession" target="_blank">Rule of Succession</a>.</p>
+<p>Let's say that a post has N total votes with U total upvotes. Then a measure of the &quot;quality&quot; of the post, according to the Rule of Succession, is (U+1)/(N+2). This is the likelihood that the next up/down vote will be an upvote.</p>
+<p>For example, if N=1000 and U=990 then this value is 991/1002 = 0.989. If N=5 and U=5 then this value is 6/7 = 0.857. So the one with more votes is &quot;better&quot;. For the other example, if N=1000 and U=200, then the value is 201/1002 = 0.2001, which is much less than 0.857.</p>
+<p>This formula comes from asking the question: If the chances of a post getting an upvote is P, then how likely is is it to get U upvotes out of N total votes? That is, we change P and see how likely it is to get what we see. This formula is then an average value that you get when you vary P.</p>
+<p>For a more in-depth explanation, see <a href="https://www.youtube.com/watch?v=8idr1WZ1A7Q" target="_blank">this 3blue1brown video</a>. He motivates it through things like Amazon seller ratings.</p>
+<p>Of course, this assumes that this likelihood does not change over time, which is definitely not true on reddit. But this works as an initial approximation.</p>
+<hr />
+<p>EDIT: People are asking for a clearer &quot;why&quot; for the +1,+2 bit in this and I'll try to explain in more detail.</p>
+<p>I started to write about the derivation, but it doesn't really provide a good intuitive reason for this to be true. It's a demonstration <em>that</em> the +1, +2 are true, rather than &quot;why&quot;. I think the explanation on Wikipedia is not so great, <a href="http://understandinguncertainty.org/node/225" target="_blank">this</a> is the probably the best for people who are familiar with basic objects in probability and calculus that I found.</p>
+<p>But heuristically, the situation is as follows: We are not looking at one reddit post in isolation, we are sampling one reddit post out of <em>all</em> reddit posts. Since up/down ratios are all over the place, a reasonable starting point is to assume that every possible up/down ratio is equally likely. This is, of course, an assumption which can be improved with more analysis, but this is the assumption that the Rule of Succession begins with. With this assumption, we can assume that a randomly selected reddit post will have an up/down ratio of 1. Or, the expected value of U/N will be 1/2.</p>
+<p>So if our randomly selected post have a U/N very close to 1, then it is likely that U/N is an <em>overestimate</em>. Conversely, if U/N is close to 0, then it is likely that U/N is an <em>underestimate</em>. There is then a tension between the expected value of 1/2 and the measured value of U/N. Given this tension, what can we expect the <em>true</em> probability of an upvote or downvote to be?</p>
+<p>We then give both the benefit of the doubt by taking the list of measured upvotes/downvotes and testing it against two new votes, one up and one down, from the expected 1/2. That is, we combine these two conflicting values to get something that optimizes the totally happiness of both. This turns U/N into (U+1)/(N+2). This will act to pull U/N towards 1/2. The force of this pull will be greater the further U/N is from 1/2, and the resilience that U/N has <em>against</em> this movement depends on how big N is. In this way (U+1)/(N+2) is an equilibrium point of the tension between the expected probability of 1/2 and the measured probability of U/N. </p>
+<p>A little more quantitatively, if p=U/N and q=(U+1)/(N+2) then</p>
+<ul>
+<li>p-q = (p-1/2) / (1+N/2)</li>
+</ul>
+<p>And we can see the balancing happen in this equation. If p is close to 1/2, then q is not far from p thanks to the numerator. If N is large, then q is again not moved far from p. This value is then suspicious of values of p far from 1/2 with only a small number of samples.</p>
+<p>So the +1 +2 can be seen as coming from our absolute lack of knowledge about that the actual probability should be, forcing us to &quot;expect&quot; 1/2. The +1, +2 term then tries to balance the observed value vs the expected value. The mathematical analysis just makes this exact, in a way.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="h5lgfms">
+		<a class="author" href="https://www.reddit.com/user/InfiniteImagination" target="_blank">InfiniteImagination</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You might be interested in <a href="https://steamdb.info/blog/steamdb-rating/" target="_blank">this discussion of the SteamDB rating algorithm</a>, which aims to produce a better result than the actual Steam store for what constitutes a &quot;good&quot; total, taking into account the number of positive and negative ratings. It discusses the following:</p>
+<pre><code>( Total Reviews = Positive Reviews + Negative Reviews )
+( Review Score = frac{Positive Reviews}{Total Reviews} )
+( Rating = Review Score - (Review Score - 0.5)*2^{-log_{10}(Total Reviews + 1)} )</code></pre></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="h5mt78u">
+		<a class="author" href="https://www.reddit.com/user/SarahKnowles777" target="_blank">SarahKnowles777</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Even more complex when you consider:</p>
+<p>1) companies now bribe customers for reviews; there are products on Amazon where <em>nearly all</em> of the 5-Star reviews are essentially lies</p>
+<p>2) due to 'social validation' customers tend to think better of something once it already has higher ratings, increasing the likelihood of even more undeserved 5-Star reviews</p>
+<p>3)  different populations are more vs less rational, honest, and intelligent; they'll probably perceive ratings/reviews very differently.  So who are the reviews targeted to?</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="h5ljkfx">
+		<a class="author" href="https://www.reddit.com/user/bradygilg" target="_blank">bradygilg</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>These are all cases of estimating bernoulli probability confidence intervals. There are several different formulae, but the most popular is to use <a href="https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval#Wilson_score_interval" target="_blank">Wilson's Method</a> and rank the scores by the lower end of the confidence interval. </p>
+<p>You can test the algorithm at <a href="https://www.statskingdom.com/41_proportion_confidence_interval.html" target="_blank">this link</a>. For example, 1000 upvotes out of 1010 total votes gives a 95% confidence interval of [0.982 , 0.995], so this would score a 0.982. 5 votes out of 5 votes gives an interval of [0.566 , 1.00], and would only score 0.566. The 1000/1010 comment would be ranked higher.
+This is how <a href="https://medium.com/hacking-and-gonzo/how-reddit-ranking-algorithms-work-ef111e33d0d9" target="_blank">Reddit's 'Best' sorting</a> is designed (At least, while it was still open source. It probably still is.), among many other websites, although they have used <a href="https://www.evanmiller.org/how-not-to-sort-by-average-rating.html" target="_blank">more dubious methods in the past</a>.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/omcrl6" onclick="return false"><span>show</span></a>
+</li>
