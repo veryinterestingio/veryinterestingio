@@ -1,0 +1,66 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Optrode" target="_blank">Optrode</a>
+			<div class="markdown"><p>While true, there are two important points to note: </p>
+<p>One, the original &quot;diagnosis&quot; of the Lorenz machine was NOT done with ciphertext alone. It was done using two slightly different messages with the exact same settings (wheel settings &amp; message key / &quot;indicator&quot;), which allowed them to work out the message, remove the message, and thereby extract most of the keystream. Working out the functioning of the machine from a sample keystream, while impressive, is massively easier than doing the same thing using ciphertext only (with no message key reuse). I don't know if they'd ever have managed it without that huge stroke of luck. Certainly not as quickly. </p>
+<p>And even then, the Lorenz machine is actually easier to analyze than Enigma, because it can easily be broken down into separate parts (the five bits of each character) that are mostly enciphered independently. Thus it has poor confusion relative to enigma: In Lorenz, changing one part of the key changes only one part of the ciphertext (except for the mu wheels). This makes it easier to identify periodicity in the ciphertext. In Enigma, you can't break each character down into bits that are (mostly) separately encrypted.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JizzyTeaCups" target="_blank">JizzyTeaCups</a>
+			<div class="markdown"><p>There's a lot of jargon here I don't follow/understand, but want to very badly. Do you have any suggestions how to get started in understanding this area? (I'm assuming this would fall under the umbrella of &quot;cryptography&quot;?)</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Robot3517" target="_blank">Robot3517</a>
+			<div class="markdown"><p>Not OP, but I found Simon Singh's The Code Book to be a very decent (and readable!) introduction to some of these topics. Definitely a place to start.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/YouDroppedYourDildo" target="_blank">YouDroppedYourDildo</a>
+			<div class="markdown"><p>The Enigma was difficult to break because of the electro mechanical double step, which is rumored to be an original bug that they kept around on purpose.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AlwaysMakingBadPuns" target="_blank">AlwaysMakingBadPuns</a>
+			<div class="markdown"><p>What was the mistake?</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/DigitalAgeHermit" target="_blank">DigitalAgeHermit</a>
+			<div class="markdown"><p>In the case of Enigma, an operator sent a message that the recipient asked to have repeated. The operator not only didn't reset the rotors (which would have been the policy to maintain security), but they resent the message with several of the words abbreviated, which gave Blechley Park a massive leg up when the time came to decode the message</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TheWhompingPillow" target="_blank">TheWhompingPillow</a>
+			<div class="markdown"><p>How would abbreviations be a clue or make it easier? At first thought, I'd think it would make it harder.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Braken111" target="_blank">Braken111</a>
+			<div class="markdown"><p>That wouldn't make it easier at all to decipher for Enigma?</p>
+<p>Each keystroke would change ther following path, and so on? And those paths could be changed on a whim with settings?</p>
+<p>Abbreviations would just make everything a even more jumbled mess. </p>
+<p>IIRC it was the fact that most messages started with similar phrases regarding weather, praising Hitler, or something like that.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/TomatoCo" target="_blank">TomatoCo</a>
+			<div class="markdown"><p>When configuring Enigma you'd set the machine according to the day's code. Then, for every message, you'd pick a random position on the wheels, encode that position twice at the beginning of the message, then set your wheels to that position and carry on. </p>
+<p>The issue was that operators were unlikely to pick a good random position and often just went a few slots away from the day's configuration's wheel position.<br />
+Furthermore, by encoding the position twice (to allow transmission error), cryptanalysts knew that ciphertext characters 1, 2, and 3 were the same as ciphertext characters 4, 5, and 6.</p>
+<p>The rotor design also had the flaw that a character could not encipher to itself. One operator was ordered to broadcast a dummy transmission to confuse the allies. A cryptanalyst looked at the dummy message and saw that the ciphertext didn't contain a single L and, therefore, the plaintext must be straight L's. This gave away the day's configuration.</p>
+<p>As others mentioned, the German messages were also extremely formulaic. The allies would poorly conceal minefields and then attempt to break Enigma transmissions on the basis that they started with &quot;ACHTUNG MINEN&quot;.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Ace0spades808" target="_blank">Ace0spades808</a>
+			<div class="markdown"><blockquote>
+<p>The rotor design also had the flaw that a character could not encipher to itself. One operator was ordered to broadcast a dummy transmission to confuse the allies. A cryptanalyst looked at the dummy message and saw that the ciphertext didn't contain a single L and, therefore, the plaintext must be straight L's. This gave away the day's configuration.</p>
+</blockquote>
+<p>So I understand why it's a flaw, but how could it be determined that it must be straight L's? Couldn't a message like &quot;LLL LLLL LLL&quot; be encrypted as &quot;XYZ KAMT NOP&quot;?  That leaves several letters that aren't used in either the original message or the encrypted one. Even if you expanded it to include every letter but L I don't see how that inherently means it must be all L's...unless there was a known property of the Enigma where that would be impossible somehow.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/thephoton" target="_blank">thephoton</a>
+			<div class="markdown"><p>IIRC it was things like beginning a large fraction of messages with the same text (&quot;Heil Hitler&quot;) and sending a weather report (with somewhat predictable content) at the same time every day.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/JoshwaarBee" target="_blank">JoshwaarBee</a>
+			<div class="markdown"><p>Apparently there was a specific guard camp in the African deserts that would send the same message every day too: &quot;Nothing to report.&quot; (Except in German)</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	
