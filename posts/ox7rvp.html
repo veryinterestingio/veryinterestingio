@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/less" href="/css/post.less">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="/img/cat.jpg"/>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58440568-4', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-bottom"};
+	</script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+	<title>How to understand that Godel's Incompleteness theorems and his Completeness theorem don't contradict each other?</title>
+</head>
+<body>
+	<div id="header">
+	<a href="/about" title="About">About</a>
+</div>
+	<div id="content">
+		<div class="home">
+			<a href="/">Back to Home</a>
+		</div>
+
+		<ul class="posts">
+<li class="post" data-handle="ox7rvp">
+	<div class="overview">
+		<a class="source" href="https://www.reddit.com/r/askscience/comments/ox7rvp/how_to_understand_that_godels_incompleteness/" target="_blank" title="Reddit thread where this comes from"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<h2>
+			<span class="tags tag-Mathematics">Mathematics</span>
+			<a href="/posts/ox7rvp" onclick="return false">How to understand that Godel's Incompleteness theorems and his Completeness theorem don't contradict each other?</a>
+		</h2>
+		<!--<span class="date">2021-08-06</span>-->
+		<span class="is-new">NEW</span>
+	</div>
+
+		<div class="question"><span class="qa" title="Question">Q:</span><div class="markdown"><p>As a layman, it seems that his Incompleteness theorems and completeness theorem seem to contradict each other, but it turns out they are both true.</p>
+<p>The completeness theorem seems to say &quot;anything true is provable.&quot; But the Incompleteness theorems seem to show that there are &quot;limits to provability in formal axiomatic theories.&quot; </p>
+<p>I feel like I'm misinterpreting what these theorems say, and it turns out they don't contradict each other. Can someone help me understand why?</p></div></div>
+
+	<div class="comment-section">
+		<div class="answers-placeholder">
+			<div class="answers">
+	<div class="answer" data-handle="h7l1r54">
+		<a class="author" href="https://www.reddit.com/user/theglandcanyon" target="_blank">theglandcanyon</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The completeness theorem says that any logical consequence of the axioms is provable. This means that we're not missing any logical rules, the ones we have are &quot;complete&quot;. They suffice to prove everything you could hope to prove.</p>
+<p>The incompleteness theorem says that any set of axioms is either self-contradictory, or cannot prove some true statement about numbers. You can still prove every logical consequence of the axioms you have, but you can never get enough axioms to ensure that every true statement about numbers is a logical consequence of them.</p>
+<p>In a word: completeness says that every logical consequence of your axioms is provable, incompleteness says that there will always be true facts that are not a logical consequence of your axioms. (There are some qualifications you have to make when stating the incompleteness theorem precisely; the axioms are assumed to be computably listable, and so on.)</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="h7l8cwv">
+		<a class="author" href="https://www.reddit.com/user/cryslith" target="_blank">cryslith</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>As many other commenters have stated, they don't contradict each other.  Let's see why.</p>
+<p>The completeness theorem states that for a first-order theory T, if a statement S is true in all models of T, then T proves S.</p>
+<p>The first incompleteness theorem states that for a first-order theory T (with a recurrent enumerable set of axioms, i.e. some program can enumerate the possibly-infinite list of them), if T is consistent and includes basic arithmetic, then there is some true statement G about arithmetic that T cannot prove.</p>
+<p>Putting these two theorems together, what we learn is that there exists a model of T in which G doesn't hold.  We know this because the completeness theorem tells us that if all models of T satisfied G, then T would prove G.  We also know that this model includes non-standard numbers.  We know this because otherwise, we would have a disproof of G within the standard natural numbers, which would contradict the fact that G is true.</p>
+<p>Note that we don't get an overall contradiction by combining the two theorems.  All we get is that there exists a model of T with certain properties.</p>
+<p>Please let me know if I misstated a detail in the above explanation.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="h7l49wt">
+		<a class="author" href="https://www.reddit.com/user/blueracoon_42" target="_blank">blueracoon_42</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>The two theorems talk about two different kinds of completeness.  </p>
+<p>Semantic completeness, as in the completeness theorem, means that the formal proof system manages to capture everything we consider to be universally true: For every statement, if it is valid, then it is provable, i.e., it doesn't happen that something holds universally but we can't prove it.   </p>
+<p>Syntactic completeness, as in the incompleteness theorem, is also sometimes called 'negation completeness' and means that the proof system has an opinion on everything: For every statement, the system either proves the statement or the negation of it, i.e., it doesn't happen that there is a sentence which the proof system can not decide in the form of a proof or a refutation.  </p>
+<p>The incompleteness theorem states that for the formal system considered the latter is not the case, i.e., there are indeed sentences which are neither provable or disprovable. In particular, there are sentences which are true but unprovable.  </p>
+<p>The crucial point you are missing is that there is a difference between truth and validity:   </p>
+<p>Truth in logic is always relative to a particular situation (also sometimes called model, structure or interpretation); a statement may be true in one structure (e.g. in the natural numbers) but false in another (i.e. for the integers). When setting up a formal theory, we often have a so-called 'standard model' or 'intended interpretation' in mind; for the arithmetic theory which the incompleteness theorem talks about, this is the structure of the natural numbers with the usual understanding of the symbols zero, plus, etc. When we say that a statement is 'true' without any further specification, we mean that it is true in the standard model. But it is important to bear in mind that this is just a convenient abbreviation, and technically it does not make sense to say that something is true without saying where it is supposed to be true; the statement may be true in the standard model but false under some other, non-standard interpretation.   </p>
+<p>Validity, on the other hand, means universal truth, i.e. truth in every possible interpretation, and is therefore a stronger property than just truth (in the standard model).  </p>
+<p>Therefore, semantic completeness does not mean that every statement which is true (under the standard interpretation) is provable: It only means that every statement which is valid (true under every possible interpretation) is provable.  </p>
+<p>Since not every statement which is true is also automatically universally true, there may well be statements which are true in the standard model but not universally so and therefore also not provable.  </p>
+<p>This is why semantic completeness does not contradict syntactic incompleteness. The combination of semantic completeness + syntactic incompleteness directly has the consequence that such non-standard models, which meaningfully differ from the intended interpretation but nevertheless obey all axioms of the theory, do actually exist.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="h7lelod">
+		<a class="author" href="https://www.reddit.com/user/singularineet" target="_blank">singularineet</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Let me use an analogy to a simpler situation to explain it.</p>
+<p>Consider the axioms of a group, from group theory. You know: (a*b)*c=a*(b*c), a*inv(a)=1, a*1=1*a=a, that stuff.</p>
+<p>There are many groups, all of them satisfy those axioms. There are statements that are true in all groups. Being able to prove all such statements from the group axioms would be a &quot;completeness&quot; theorem. But there are also statements that are true in some groups, but not in others. (Like a*b=b*a, which is true in Abelian groups and false in non-Abelian groups.) Obviously you can neither prove nor disprove such statements from the group axioms. The existence of such statements—which can neither be proved nor disproved—is an &quot;incompleteness&quot; theorem.</p>
+<p>What's really going on with Gödel's Incompleteness Theorem is that it shows you can't put together a reasonable set of axioms that nails down the natural numbers. You always get lots of different possible structures, which are each a superset of the natural numbers. And there are statements which are true for some of those structures but not for others. This is exactly like the fact that the group axioms allow lots of different possible groups.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="h7ku5e7">
+		<a class="author" href="https://www.reddit.com/user/AntiKamniaChemicalCo" target="_blank">AntiKamniaChemicalCo</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>You're on the right track. These theorems don't contradict each other, and the Completeness Theorem does not mean any statement in any formal system is provable or decidable, it only means that the logically valid statements in such a system have some proof which is finitely enumerable.</p>
+<p>The incompleteness theorem uses a different notion of completeness, which is that all Sentences are Decidable, and goes on to show that if a formal system is Consistent and meets other criteria we can always construct Undecidable statements in it, for which there is no proof or disproof. If we can encode arithmetic and the natural numbers, we can use an encoding of these numbers to construct undecidable statements like &quot;This sentence is false&quot; or the formal equivalent.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>		</div>
+		<div class="more-less">
+			<a class="collapse" href="javascript:void(0)">collapse</a>
+			<a class="more-answers" href="javascript:void(0)">4 more answers...</a>
+			<a class="less-answers lower" href="javascript:void(0)">less answers...</a>
+			&nbsp;
+		</div>
+	</div>
+	<a class="show" href="/posts/ox7rvp" onclick="return false"><span>show</span></a>
+</li>
+		</ul>
+	</div>
+
+	<script>
+		var config = {"stream":{"initial":10,"catchup":5},"api":{"url":"api.veryinteresting.io"}};
+	</script>
+	<script src="/js/project.js"></script>
+	<script src="/js/post.js"></script>
+</body>
+</html>
