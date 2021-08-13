@@ -1,0 +1,81 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/larvyde" target="_blank">larvyde</a>
+			<div class="markdown"><p>Then there's zip quines. Someone noticed that zip's compression scheme looks a lot like a programming language, and wrote a &quot;program&quot; that unzips into itself, so a virus scanner recursively scanning zip files essentially see an infinitely deep zips-within-a-zip</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/the-johnnadina" target="_blank">the-johnnadina</a>
+			<div class="markdown"><p>holy shit zip quines exist??? thats amazing</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/[deleted]" target="_blank">[deleted]</a>
+			<div class="markdown"><p>[entfernt]</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Frazzledragon" target="_blank">Frazzledragon</a>
+			<div class="markdown"><p>I liked learning about this.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/paucus62" target="_blank">paucus62</a>
+			<div class="markdown"><p>zipception</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eric2332" target="_blank">eric2332</a>
+			<div class="markdown"><p>Mathematicians have actually proven that every compression method, while it makes some files smaller, has to make other files larger.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/General_Letter6271" target="_blank">General_Letter6271</a>
+			<div class="markdown"><p>It's since it's mathematically impossible to find a single algorithm that compresses n bytes into n-1 bytes. This is since you could compress n-1 to n-2 bytes, then to n-3, and all the way down to 0. And it makes no sense that you can compress any piece of data to nothing without losing any information</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/eric2332" target="_blank">eric2332</a>
+			<div class="markdown"><p>I don't like that explanation (an algorithm could compress N bits to N-1 bits for SOME values of N, and it would be a useful algorithm, but your disproof by induction wouldn't work).</p>
+<p>I would put it differently:</p>
+<p>Each uncompressed file has to have a unique compressed file and vice versa, otherwise you don't know what to compress/decompress to.</p>
+<p>So if you're using ASCII (128 possible characters), there are 128^N possible uncompressed files. But let's say you want to compress to N-1 bits - there are only 128^(N-1) files of length N-1, which is a much smaller number (128 times smaller). So all the other &quot;compressed&quot; files have to be N bits or larger.</p>
+<p>(This is the &quot;pigeonhole principle&quot; mentioned in a later comment - hopefully I used simpler language)</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/forgot_semicolon" target="_blank">forgot_semicolon</a>
+			<div class="markdown"><p>Isn't that a natural conclusion? Taking from the examples above, if you have the file:</p>
+<pre><code>This is the first phrase
+This is the first phrase
+This is the first phrase
+This is the second phrase
+This is the second phrase
+This is the second phrase</code></pre>
+<p>Then you might compress it down to:</p>
+<pre><code>x=This is the first phrase
+y=This is the second phrase
+
+x
+x
+x
+y
+y
+y</code></pre>
+<p>Meaning you have some overhead (the definitions), which you hope to compensate for with the compressed lines. So if your overhead &gt; your compression, you end up with a larger file. Like how this:</p>
+<pre><code>This is my favorite food that is yellow</code></pre>
+<p>Can turn into this:</p>
+<pre><code>x=is
+This x my favorite food that x yellow</code></pre>
+<p>If your compression algorithm is too quick to compress. Which means the &quot;perfect&quot; algorithm will simply check if the compressed file is actually smaller, and if not, return the original file instead</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/trevorsg" target="_blank">trevorsg</a>
+			<div class="markdown"><p>It's even more natural via the <a href="https://en.wikipedia.org/wiki/Pigeonhole_principle" target="_blank">pigeonhole principle</a>. </p>
+<ol>
+<li>Assume such a compression algorithm <em>C</em> exists which, for any given input, produces a lossless compressed output the same or smaller than the input, and that it is strictly smaller for at least some inputs. </li>
+<li>Clearly, the range of <em>C</em> (the number of distinct possible outputs) is smaller than the domain of <em>C</em> (the number of distinct possible inputs), meaning that there are at least 2 different inputs that map to the same output (the pigeonhole principle). If this is not clear to you, it may help to constrain the size of your inputs (such as 10 bits or fewer).</li>
+<li>A lossless compression algorithm must be completely reversible (<a href="https://en.wikipedia.org/wiki/Bijection#:~:text=In%20mathematics%2C%20a%20bijection%2C%20bijective,element%20of%20the%20first%20set." target="_blank">bijective</a>) in order to obtain the original input. But if there is an output that could have been reached from more than one different inputs, there is no way to know which of those inputs to choose, so some data loss has occurred.</li>
+</ol>
+<p>Because of this contradiction, the proposed algorithm <em>C</em> does not exist.</p></div>		</li>
+						<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/PaMu1337" target="_blank">PaMu1337</a>
+			<div class="markdown"><p>It's even simpler to prove:</p>
+<p>Consider all possible files that are at most 2 bytes large. There are 65793 possible files like that: 65536 2byte files, 256 1byte files, and 1 0byte file. Each of them has to compress to a unique new file, meaning that there are 65793 possible compressed files. If two of the files would compress to the same thing, you wouldn't be able to decompress it anymore.</p>
+<p>If one of the 2 byte files gets compressed into a 1 byte compressed file,  then one of the original 1 byte files needs to turn into a 2 byte compressed file, to make room for the first one. Otherwise you would end up with 257 1 byte files, and there just aren't that many possible 1 byte files.</p>
+<p>This generalizes for any possible compression algorithm, and any size of file.</p></div>		</li>
+					</ul>
+		</ul>
+		</ul>
+	

@@ -1,0 +1,123 @@
+<div class="answers">
+	<div class="answer" data-handle="h8dqowc">
+		<a class="author" href="https://www.reddit.com/user/mwclarkson" target="_blank">mwclarkson</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If I asked a 5 year old what was in my cupboard they might say:</p>
+<ul>
+<li>A can of beans</li>
+<li>A can of beans</li>
+<li>A can of beans</li>
+<li>A can of soup</li>
+<li>Another can of soup</li>
+<li>Another can of soup</li>
+<li>Another can of soup</li>
+</ul>
+<p>If I asked someone else they might say:</p>
+<ul>
+<li>3 cans of beans</li>
+<li>4 cans of soup</li>
+</ul>
+<p>Both answers contain exactly the same data. </p>
+<p>Often computer files store data one piece at a time. By using the method above they can store data using less space.</p>
+<p>The technical term for this is run length encoding.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="h8dil8c">
+		<a class="author" href="https://www.reddit.com/user/Porkbellied" target="_blank">Porkbellied</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Suppose you have a .txt file with partial lyrics to The Rolling Stones’ song ‘Start Me Up’:</p>
+<blockquote>
+<ul>
+<li>If you start me up
+If you start me up I'll never stop
+If you start me up
+If you start me up I'll never stop
+I've been running hot
+You got me ticking gonna blow my top
+If you start me up
+If you start me up I'll never stop
+never stop, never stop, never stop*</li>
+</ul>
+</blockquote>
+<p>Now let’s do the following:</p>
+<p>let xxx = ‘If you start me up’;</p>
+<p>let yyy = ‘never stop’;</p>
+<p>So we represent this part of the song with xxx and yyy, and the lyrics become:</p>
+<blockquote>
+<ul>
+<li>xxx
+xxx I'll yyy
+xxx
+xxx I'll yyy
+I've been running hot
+You got me ticking gonna blow my top
+xxx
+xxx I'll yyy
+yyy, yyy, yyy*</li>
+</ul>
+</blockquote>
+<p>Which gets you a smaller net file size with the same information.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="h8du8l4">
+		<a class="author" href="https://www.reddit.com/user/popClingwrap" target="_blank">popClingwrap</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>As others have said, zipping replaces repeated data in the original file with smaller placeholders and an index that allows this data to be added back on unzipping.
+Something to add is that the inclusion of the index means that zipping a very small file can actually increase its size.
+An interesting historic use in hacking is the zip bomb, where many GB of a single repeating character are zipped down to an archive of just a few KB.
+Virus scanners used to unpack archives to check the contents and doing so would result in mass of data that would overload the system. <a href="https://en.wikipedia.org/wiki/Zip_bomb?wprov=sfla1" target="_blank">https://en.wikipedia.org/wiki/Zip_bomb?wprov=sfla1</a></p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="h8dvuip">
+		<a class="author" href="https://www.reddit.com/user/ledow" target="_blank">ledow</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Two parts at work:</p>
+<ol>
+<li>Compression - by finding common / similar areas of the file data, you can remove duplicates such that you can save space.  Unfortunately, almost all modern formats are already compressed - including modern Word docs, image files, video files, etc. so compression doesn't really play a part in a ZIP any more.  Ironically, most of those files are literal ZIP files themselves (i.e. a Word doc is an XML file plus lots of other files inside a ZIP file nowadays!  You can literally open a Word doc in a zip program and you'll see).</li>
+<li>Collating multiple files inside one file.  Rather than have to send multiple files and their information, a ZIP can act as a collection of multiple files.  Nowadays Windows interprets ZIPs as a folder, and they pretty much are.  One ZIP file may contain dozens of hundreds of smaller files inside itself.  Because many modern protocols are dumb, they don't make it easy to send multiple files, so a ZIP file is often a convenient way to overcome such difficulties... just ZIP up everything and send that one ZIP file instead.</li>
+</ol>
+<p>You can see that if you ZIP several Word documents, they'll all have similar areas inside them that Word uses to identify a Word file, say.  So you can &quot;remove&quot; them and just remember one of them, and you've saved space.  So ZIP works better if you're zipping lots of similar files, as it will find common areas between ALL the files you zipped.</p>
+<p>You can also apply encryption to the ZIP file as well, which will appear as a password-protected ZIP file.  This used to be insecure but nowadays it's AES encryption which is perfectly fine.</p>
+<p>Thus people can now send one smaller file, password-protected, containing multiple larger files in one go by using ZIP.  So it's quite popular.</p>
+<p>Note that things like RAR, 7Zip, etc. are all pretty much the same, they just use slightly different packaging, compression, etc. algorithms.</p>
+<p>Even your web pages are &quot;zipped&quot; nowadays.  Back in the day your browser would ask for multiple file individually and the server had to respond to each request and couldn't compress them so they would take longer to send (HTML compresses really well, but you have to do the compression and in the old days compressing was quite CPU-intensive especially on a large server).  Nowadays your browser asks if the server can &quot;gzip&quot; (basically the same algorithm as ZIP) the pages for you.  So your webpages take less data and download faster, and it can also put multiple files in the one stream (this is part &quot;zip&quot; and part better protocols) so you don't have to request multiple files all the time.</p>
+<p>Most modern file formats don't compress well because they're already compressed with something like ZIP or gzip so we have lost that advantage, really, for the average user.  Hell, even your hard drive can be compressed using the same algorithm, Windows has the option built-in.  It just doesn't save much space any more because almost everything you use is already zipped, so it just slows things down a fraction.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="h8e3gg3">
+		<a class="author" href="https://www.reddit.com/user/justin0628" target="_blank">justin0628</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>when zipping a file, the computer creates variables. for example</p>
+<blockquote>
+<p>x = never gonna</p>
+</blockquote>
+<p>now that we have a variable, the computer will replace every &quot;never gonna&quot; on the file.</p>
+<p>so from</p>
+<blockquote>
+<p>never gonna give you up</p>
+<p>never gonna let you down</p>
+<p>never gonna run around and</p>
+<p>dessert you</p>
+</blockquote>
+<p>will turn into</p>
+<blockquote>
+<p>x give you up</p>
+<p>x let you down</p>
+<p>x run around and</p>
+<p>dessert you</p>
+</blockquote>
+<p>doing this saves the computer some space, therefore <strong>compressing/zipping</strong> it</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+</div>
