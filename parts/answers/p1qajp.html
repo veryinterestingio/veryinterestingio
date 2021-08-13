@@ -1,0 +1,47 @@
+<div class="answers">
+	<div class="answer" data-handle="h8f9jqn">
+		<a class="author" href="https://www.reddit.com/user/BxMxK" target="_blank">BxMxK</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>UPC, specifically UPC-A, is a series of line of varying thickness representing 25 bits to encode a 12-digit number</p>
+<p>QR code is a series of black squares presented in a grid that can represent up to a 7089-digit number with 23624 bits.</p>
+<p>So if you're strictly speaking of data then a QR code can have 23599 more bits of data.</p>
+<p>When you start encoding different types of information then it varies. There are multiple ways of encoding data into a QR code across the many iterations of the specification.</p>
+<p>Edit: Sorry, I shouldn't rush to answer something on mobile. 11 digit UPC-A code plus the 12th check digit would represent 40 bits of data. This would be 23584 bits less than the largest QR codes.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<a class="less-answers upper" href="javascript:void(0)">less answers...</a>
+	<div class="answer" data-handle="h8fajob">
+		<a class="author" href="https://www.reddit.com/user/Dunbaratu" target="_blank">Dunbaratu</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>Imagine if you made a document in something like Word, and you pasted in a barcode image on one line, then hit Return and pasted a different barcode on the next line, then hit Return and pasted a different barcode on the next line, and so on.  Line after line of barcode images.  Now imagine if you didn't have to make those barcodes very tall - if you could squish the images' height down so each one is short but still wide.  Now you take those lines of squished barcodes and remove the spacing between the lines of the document so they butt up against each other.  Now you have a little rectangular block made of multiple rows of barcodes.  That's *sort of* what a QR code is doing (<em>not exactly, because there's other blocks embedded in the middle to help with formatting and fixing alignment in case the image is bent or folded, and QR codes use a lot more redundancy for error detection and repair, so &quot;rows of barcodes&quot; is only *sort of* what QR is doing.</em>)  </p>
+<p>Now imagine if you print this document out on paper, and then cut out the square with the codes and hand that to someone to decode.  One problem they'd have is that they don't know which way was &quot;up&quot; on the paper in the first place because you cut it into a square.  I'm sure you've seen that QR codes always have this big ugly box in 3 of the corners but not all 4 corners.  That's to solve this problem of which way is up on the image.  It tells the computer which way to rotate the image in its head before decoding it.  It should rotate it so the corner without the big box is in the lower-right.</p>
+<p>As to how much more it can hold than a UPC code, that question isn't simple because there's multiple UPC code standards and multiple QR code standards.  You may see numbers quoted like 7000 different digits, but keep in mind that that refers to the biggest most dense QR codes which are not usually what you'll find in general public usage.  What you typically find in consumer usage only holds a hundred or so digits.  Usually that's enough to encode a basic alphanumeric string for a web URL, as long as it's not super super long.  (An address of about 50 chars or less).</p>
+<p>As to why not use the denser format? Well, because it's easier to get a &quot;good scan&quot; when the image is clunkier and blockier.  It makes it a lot more tolerant of noise.  For things like labels on store products, or images quickly snapped with a mobile phone, that tolerance of noisy images is important.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="h8eyqd0">
+		<a class="author" href="https://www.reddit.com/user/Nephisimian" target="_blank">Nephisimian</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>If you think about what a UPC code is, it's just a series of black and white lines, right? Each of those lines can be represented as a binary digit, a 1 or a 0, depending on whether it's black or white. If you only cared about a binary string, that's all you'd need. You could make a barcode that was 4 digits long by having 4 lines. If B is 0 and W is 1, then 4 lines of BWWB will be read as 0110. However, this isn't super convenient, so UPC organises these lines into blocks of 7, and uses the order of the lines to represent a decimal digit. 1110010 for example represents 0. </p>
+<p>But, those lines don't actually need to be very long. The vertical dimension in a UPC code is doing absolutely nothing in terms of the information it delivers, it's just making it so the line of light from the barcode reader doesn't need to be perfectly aligned - it's making it much easier to scan. So, you could squish a barcode down to be potentially even just 1 atom tall if you really wanted to and could invent a reader capable of seeing something that small. With the shift to cameras, which can see the actual image and not just detect the red line bouncing off it, the height of the barcode can be shrunk down immensely. This is pretty much what a QR code is doing - by shifting to squares instead of lines, it can fit a lot more information in, because it frees up the vertical dimension to contain different information to the bits of the code above and below it.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="h8exzsi">
+		<a class="author" href="https://www.reddit.com/user/howiieb" target="_blank">howiieb</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A UPC code stores precisely 8 digits and it does so only with vertical lines, with various combinations of black or white representing specific values. A QR code does this process over a whole grid, meaning there is simply space for more digits - the most dense version of the QR standard can store 7089 digits.</p></div>		<div class="replies-controls">
+			<a class="show-replies" href="javascript:void(0)">show replies...</a>
+			<a class="hide-replies" href="javascript:void(0)">hide replies...</a>
+		</div>
+		<div class="replies-placeholder"></div>
+	</div>
+	<div class="answer" data-handle="h8g21ws">
+		<a class="author" href="https://www.reddit.com/user/yqlim" target="_blank">yqlim</a>
+		<span class="qa" title="Answer">A:</span><div class="markdown"><p>A non-technical ELI5 explanation. </p>
+<p>A barcode only stores data horizontally, while a QR code stores data both horizontally and vertically. </p>
+<p>Take a barcode that has 5cm width and 5cm height, it can only store 5cm of data, even though the height of the barcode is also 5cm. </p>
+<p>A QR code that is 5cm width and 5cm height, however, can store 5cm * 5cm = 25cm² worth of data. </p>
+<p>It may not be technically correct, but it’s good enough for a 5 years old.</p></div>		<div class="replies-placeholder"></div>
+	</div>
+</div>

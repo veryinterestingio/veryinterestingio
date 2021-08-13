@@ -1,0 +1,48 @@
+	<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Nagisan" target="_blank">Nagisan</a>
+			<div class="markdown"><blockquote>
+<p>If B is 0 and W is 1  </p>
+</blockquote>
+<p>Just for reference, black is actual 1 and white is 0. The idea being that white is &quot;empty&quot; and black is &quot;full&quot;, such as in regular paper where white paper has nothing on it.  </p>
+<p>Not that it changes your explanation at all (as you described it accurately to your statement of '<em>if</em> black is 0...'), just adding the actual standard used by barcodes.</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Nephisimian" target="_blank">Nephisimian</a>
+			<div class="markdown"><p>Thanks. All I remember about that is the perpetual debate of whether a barcode reader is reading the white lines or the black lines lol</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Nagisan" target="_blank">Nagisan</a>
+			<div class="markdown"><p>To my understanding it uses both....there's a ratio relating to timing that stays constant when the beam reflects off the white parts vs the black parts, which allows scanning at different distances and angles to work. Without that timing ratio you would need to keep the distance/angle constant for it to scan properly each time.  </p>
+<p>So it has to actually read both white and black to figure out the angle/distance properly otherwise it can't tell if there's two (or more) white/black lines touching each other or it's just really close or really far away or something.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/MuaddibMcFly" target="_blank">MuaddibMcFly</a>
+			<div class="markdown"><p>Are you quite certain of that?  The white reflects, and the black doesn't...</p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/Nagisan" target="_blank">Nagisan</a>
+			<div class="markdown"><p>Yup, that's the normal standard (particularly, in all my comments, I'm referring to the UPC barcodes). The black does reflect, just not nearly as much.  </p>
+<p>Think of it this way, many barcodes have a white background. So if you wanted to say &quot;Hey, something is here that I can see&quot;, would you expect the white background to represent that, or the individual black bar that you can see against a white background to represent that?</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/darkdoppelganger" target="_blank">darkdoppelganger</a>
+			<div class="markdown"><p>I've always been told that black is zero, white is zero and the transition between the two is one.</p></div>		</li>
+					</ul>
+			<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/AceJohnny" target="_blank">AceJohnny</a>
+			<div class="markdown"><blockquote>
+<p>Each of those lines can be represented as a binary digit, a 1 or a 0, depending on whether it's black or white.</p>
+</blockquote>
+<p>This is incorrect, UPC codes don't encode values directly as the black-or-white bars. For example, 0xFF would a lot of white (or black bars) but you never see barcodes with extra-super-thick lines. You'll only ever see &quot;single thickness&quot; or &quot;double-thickness&quot; white or black lines.</p>
+<p>The reason UPC codes don't just use black and white as 0 or 1 is to make it easier to read with the bardcode is at an angle or on a wrinkled wrapper (like on bread packaging), where a fold at the wrong place would transform a single 0 into multiples (or make it disappear).</p>
+<p>Here's more info on how UPC barcodes are actually encoded:
+<a href="https://www.cut-the-knot.org/do_you_know/BarcodeEncoding.shtml" target="_blank">https://www.cut-the-knot.org/do_you_know/BarcodeEncoding.shtml</a></p></div>		</li>
+					<ul class="replies">
+		<li class="reply">
+			<a class="author" href="https://www.reddit.com/user/just_some_a--hole" target="_blank">just_some_a--hole</a>
+			<div class="markdown"><p>Bar codes used the SME patterns to determine how to read the bits.  The S and E patterns are 101 and the M pattern is 01010.  By reading these three patterns (at the <strong>S</strong>tart, <strong>M</strong>iddle, and <strong>E</strong>nd of the code) the system can tell where each bit begins and ends, which is how it handles reading the code at an angle.  It can read the code upside down because of the parity bits added to each encoded number (odd parity for the left, even parity for the right).</p>
+<p>And yes, they UPC codes <em>do</em> use black for 1 and white for 0.  The encoding is unique, though, so you can't compare it to ASCII or any other encoding value.</p></div>		</li>
+					</ul>
+		</ul>
+	
